@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Book de Resultados — Data Contract",
+  "description": "Schema de validação para a planilha de dados do Book de Resultados de Avaliação Educacional",
+  "version": "1.0.0",
+  "type": "object",
+  "required": ["metadata", "escolas", "resultados", "distribuicao"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "Informações gerais da avaliação",
+      "required": ["municipio", "ano", "ciclo", "data"],
+      "properties": {
+        "municipio": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nome do município"
+        },
+        "ano": {
+          "type": ["integer", "string"],
+          "description": "Ano da avaliação"
+        },
+        "ciclo": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Ciclo da avaliação (ex: 2025-sem1)"
+        },
+        "data": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Data da avaliação"
+        }
+      },
+      "additionalProperties": true
+    },
+    "escolas": {
+      "type": "array",
+      "description": "Lista de escolas participantes",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id_escola", "nome_escola"],
+        "properties": {
+          "id_escola": {
+            "type": ["string", "integer", "number"],
+            "description": "Identificador único da escola"
+          },
+          "nome_escola": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nome da escola"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "resultados": {
+      "type": "array",
+      "description": "Resultados por escola, ano e disciplina",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id_escola", "ano", "disciplina", "media", "participacao"],
+        "properties": {
+          "id_escola": {
+            "type": ["string", "integer", "number"],
+            "description": "Identificador da escola"
+          },
+          "ano": {
+            "type": ["string", "integer"],
+            "description": "Ano/série avaliado(a)"
+          },
+          "disciplina": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nome da disciplina"
+          },
+          "media": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Média de proficiência"
+          },
+          "participacao": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Percentual de participação (0–100)"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "distribuicao": {
+      "type": "array",
+      "description": "Distribuição de alunos por nível de proficiência",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id_escola", "nivel", "alunos"],
+        "properties": {
+          "id_escola": {
+            "type": ["string", "integer", "number"],
+            "description": "Identificador da escola"
+          },
+          "nivel": {
+            "type": "string",
+            "enum": ["abaixo_do_basico", "basico", "adequado", "avancado"],
+            "description": "Nível de proficiência"
+          },
+          "alunos": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Número de alunos neste nível"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

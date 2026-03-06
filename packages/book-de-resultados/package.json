@@ -1,0 +1,36 @@
+{
+  "name": "@synkra/book-de-resultados",
+  "version": "1.0.0",
+  "description": "Geração automática do Book de Resultados de Avaliação Educacional a partir de planilhas XLSX",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "book",
+    "resultados",
+    "avaliacao",
+    "educacional",
+    "relatorio",
+    "pdf",
+    "pptx",
+    "automation"
+  ],
+  "author": "Synkra AI <team@synkra.ai>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "pptxgenjs": "^4.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
