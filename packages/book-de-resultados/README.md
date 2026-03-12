@@ -435,9 +435,91 @@ git commit -m "test(regression): update Canoas baseline after <descrição da mu
 | `src/renderer.js`      | Construção das páginas do book                        |
 | `src/charts.js`        | Descritores de gráficos por página                    |
 | `src/components.js`    | Descritores de componentes visuais (proficiência, habilidades, comparativo) |
+| `src/design-manifest.js`| Carregamento e resolução do contrato declarativo de componentes |
+| `src/html-renderer.js` | Renderização HTML paginada com CSS de impressão       |
+| `src/chrome.js`        | Chrome (cabeçalho/rodapé) por página                  |
 | `src/theme.js`         | Sistema de tema visual parametrizável                 |
 | `src/exporter.js`      | Exportação para PPTX/PDF/JSON (usa tema e componentes) |
 | `src/index.js`         | Orquestração do pipeline completo                     |
+
+---
+
+## Arquitetura Declarativa: Manifest + Tokens + Components
+
+O Book de Resultados utiliza uma arquitetura declarativa de três camadas que separa decisões editoriais do código de renderização:
+
+### 1. Design Manifest (`config/design-manifest.json`)
+
+Ponto de entrada do contrato editorial. Define:
+- **Seções** → templates visuais (mapeamento `section` → `template`)
+- **Templates** → regras de shell, frame e chrome
+- **Assets editoriais** referenciados por caminho relativo
+- Referência ao arquivo de tokens e ao catálogo de componentes
+
+### 2. Theme Tokens (`config/theme.tokens.yaml`)
+
+Arquivo YAML com valores de design (cores, tipografia, espaçamentos). Consumido por `createTheme()` e sobrescrevível via opção `theme` na API.
+
+### 3. Design Components (`config/design-components.json`)
+
+Catálogo declarativo de componentes (v1.2.0). Cada seção do book é mapeada a um componente com:
+- **kind** — tipo semântico (ex: `analytical-overview`, `school-summary`)
+- **assetSet** — referência opcional a um conjunto de assets (logos, mascotes, imagens)
+- **subcomponents** — decomposição granular do componente
+
+**Seções mapeadas (10):**
+
+| Seção | Componente | Kind |
+|---|---|---|
+| `capa` | `cover-page` | `page-cover` |
+| `participacao_rede` | `participacao-rede-opening` | `editorial-opening` |
+| `participacao_rede_tabela` | `participacao-rede-tabela` | `editorial-table` |
+| `escola` | `school-summary` | `school-summary` |
+| `escola_disciplinas` | `escola-disciplinas` | `school-comparison` |
+| `visao_geral` | `network-overview` | `analytical-overview` |
+| `resultados_disciplina` | `discipline-results` | `analytical-discipline` |
+| `ranking` | `ranking-table` | `analytical-ranking` |
+| `habilidades_disciplina` | `skills-table` | `analytical-skills` |
+| `resultados_ano` | `year-results` | `analytical-year` |
+
+### Fluxo de resolução
+
+```
+renderer.js                    design-manifest.js
+─────────                      ──────────────────
+buildVisaoGeral(...)     →     resolveSectionComponent('visao_geral', manifest)
+                                  ↓
+                               sectionComponents['visao_geral'] → 'network-overview'
+                                  ↓
+                               components['network-overview'] → { kind, subcomponents }
+                                  ↓
+                               assetSets[component.assetSet] → {} (merged)
+                                  ↓
+                               returns { id, kind, assets, subcomponents }
+```
+
+O `html-renderer.js` emite `data-component-id` nos wrappers HTML, permitindo isolamento de estilos por componente via CSS `[data-component-id]`.
+
+### Helpers disponíveis
+
+| Helper | Descrição |
+|---|---|
+| `resolveSectionComponent(section, manifest)` | Resolve seção → componente completo |
+| `resolveChapterComponent(chapterKey, manifest)` | Resolve capítulo → componente |
+| `resolveSubcomponent(section, subId, manifest)` | Resolve subcomponente específico |
+| `buildShellClasses(shellRef, componentId, extra)` | Gera classes CSS de shell |
+| `buildShellDataAttributes(shellRef, componentId)` | Gera data-attributes de shell |
+
+### Adicionando novos componentes editoriais
+
+1. Declare o asset set em `config/design-components.json` → `assetSets`
+2. Declare o componente em `components` com `kind`, `assetSet` (opcional) e `subcomponents`
+3. Mapeie a seção em `sectionComponents` (ex: `"minha_secao": "meu-componente"`)
+4. No builder (`renderer.js`), chame `resolveSectionComponent('minha_secao', designManifest)`
+5. Passe `componentId` no objeto `data` da página
+6. No `html-renderer.js`, emita `data-component-id` no wrapper HTML
+7. Adicione testes em `design-manifest.test.js` para o novo componente
+8. Valide com `npx jest --testPathPatterns="tests/book-de-resultados"`
 
 ---
 
@@ -446,7 +528,8 @@ git commit -m "test(regression): update Canoas baseline after <descrição da mu
 O contrato de dados está formalizado em:
 
 ```
-schemas/data-contract.json
+schemas/data-contract.json       — contrato de dados da planilha
+schemas/design-components.json   — schema do catálogo de componentes (draft-07)
 ```
 
 ---

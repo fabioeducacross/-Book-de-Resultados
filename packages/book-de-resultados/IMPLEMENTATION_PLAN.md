@@ -145,11 +145,11 @@ Garantir que o book esteja rastreavel, reproduzivel e seguro para evolucao.
 
 ### Tasks
 
-- [ ] Criar checklist de validacao visual por secao
-- [ ] Expandir testes de regressao HTML/PDF para os novos componentes declarativos
-- [ ] Revisar cobertura de assets relativos no HTML review
-- [ ] Atualizar README com a arquitetura `manifest + tokens + components`
-- [ ] Registrar fluxo oficial para adicionar novos componentes editoriais
+- [x] Criar checklist de validacao visual por secao
+- [x] Expandir testes de regressao HTML/PDF para os novos componentes declarativos
+- [x] Revisar cobertura de assets relativos no HTML review
+- [x] Atualizar README com a arquitetura `manifest + tokens + components`
+- [x] Registrar fluxo oficial para adicionar novos componentes editoriais
 
 ## Backlog de Risco
 
