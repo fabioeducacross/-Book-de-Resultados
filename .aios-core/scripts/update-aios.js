@@ -127,8 +127,9 @@ process.on('exit', cleanup);
 
 console.log('📥 Cloning upstream (sparse, shallow)...');
 
-const UPSTREAM_DIR  = path.join(TEMP_DIR, 'upstream');
-const UPSTREAM_AIOS = path.join(UPSTREAM_DIR, '.aios-core');
+const UPSTREAM_DIR       = path.join(TEMP_DIR, 'upstream');
+// Upstream repo uses .aiox-core, local project uses .aios-core
+const UPSTREAM_AIOX_CORE = path.join(UPSTREAM_DIR, '.aiox-core');
 
 fs.mkdirSync(UPSTREAM_DIR, { recursive: true });
 
@@ -143,22 +144,24 @@ try {
   process.exit(1);
 }
 
-// Configure sparse-checkout to only fetch .aios-core/
-exec(`git -C "${UPSTREAM_DIR}" sparse-checkout set .aios-core`);
+// Configure sparse-checkout to only fetch .aiox-core/ (upstream folder name)
+exec(`git -C "${UPSTREAM_DIR}" sparse-checkout set .aiox-core`);
 
 // Verify the directory materialised
-if (!fs.existsSync(UPSTREAM_AIOS)) {
-  // sparse-checkout might need an explicit pull of blobs
+if (!fs.existsSync(UPSTREAM_AIOX_CORE)) {
   try {
     exec(`git -C "${UPSTREAM_DIR}" read-tree -mu HEAD`);
   } catch { /* ignore */ }
 }
 
-if (!fs.existsSync(UPSTREAM_AIOS)) {
-  console.log('❌ Upstream .aios-core/ not found after clone.');
+if (!fs.existsSync(UPSTREAM_AIOX_CORE)) {
+  console.log('❌ Upstream .aiox-core/ not found after clone.');
   console.log('   → Check: https://github.com/SynkraAI/aios-core');
   process.exit(1);
 }
+
+// Alias for the rest of the script (upstream content maps to local .aios-core)
+const UPSTREAM_AIOS = UPSTREAM_AIOX_CORE;
 
 console.log('✅ Fetched upstream');
 console.log('');
