@@ -61,8 +61,8 @@ Mapear todos os assets do book como contratos reutilizaveis para cada shell e co
 - [x] Inventariar todos os assets reais usados no book institucional
 - [x] Separar asset sets por grupo: cover, chapter, editorial, school, comparison, tables
 - [x] Incluir mascotes, logos, overlays, imagens de abertura e recortes de referencia no JSON
-- [ ] Eliminar paths soltos de assets dentro de `src/renderer.js`
-- [ ] Eliminar fallbacks hardcoded no `src/html-renderer.js` quando houver componente declarado
+- [x] Eliminar paths soltos de assets dentro de `src/renderer.js`
+- [x] Eliminar fallbacks hardcoded no `src/html-renderer.js` quando houver componente declarado
 - [x] Criar naming padrao para asset sets e component ids
 
 ### Saida Esperada
@@ -79,10 +79,10 @@ Fechar a aderencia da secao `escola` usando contrato declarativo de componentes 
 
 - [x] Mapear a pagina `escola` em subcomponentes declarativos
 - [x] Definir no JSON: eyebrow, mascote, title block, KPI cards, tabela operacional, destaque de participacao
-- [ ] Remover detalhes visuais inventados que nao existam no book de referencia
-- [ ] Alinhar o recorte do mascote com a referencia institucional final
-- [ ] Validar no preview HTML contra a pagina equivalente do PDF
-- [ ] Cobrir no teste de HTML fidelity a estrutura final da pagina
+- [x] Remover detalhes visuais inventados que nao existam no book de referencia
+- [x] Alinhar o recorte do mascote com a referencia institucional final
+- [x] Validar no preview HTML contra a pagina equivalente do PDF
+- [x] Cobrir no teste de HTML fidelity a estrutura final da pagina
 
 ### Subcomponentes Alvo
 
@@ -103,10 +103,10 @@ Fechar a aderencia da secao `escola_disciplinas` usando o mesmo modelo declarati
 
 - [x] Quebrar `escola_disciplinas` em shells e subcomponentes
 - [x] Mapear comparativos, blocos por disciplina, legenda e areas de referencia
-- [ ] Migrar qualquer asset ou ornamento visual ainda embutido no CSS para o JSON
-- [ ] Ajustar HTML renderer para consumir component ids da secao
-- [ ] Validar contra a referencia institucional da pagina correspondente
-- [ ] Atualizar testes focados da secao
+- [x] Migrar qualquer asset ou ornamento visual ainda embutido no CSS para o JSON
+- [x] Ajustar HTML renderer para consumir component ids da secao
+- [x] Validar contra a referencia institucional da pagina correspondente
+- [x] Atualizar testes focados da secao
 
 ## Sprint 5 — Analitico Central
 
@@ -116,12 +116,12 @@ Aplicar o mesmo padrao declarativo nas secoes analiticas principais.
 
 ### Tasks
 
-- [ ] Mapear `visao_geral`
-- [ ] Mapear `resultados_disciplina`
-- [ ] Mapear `ranking`
-- [ ] Mapear `habilidades_disciplina`
-- [ ] Revisar `resultados_ano`
-- [ ] Consolidar nomenclatura de shells, frames e context strips
+- [x] Mapear `visao_geral`
+- [x] Mapear `resultados_disciplina`
+- [x] Mapear `ranking`
+- [x] Mapear `habilidades_disciplina`
+- [x] Revisar `resultados_ano`
+- [x] Consolidar nomenclatura de shells, frames e context strips
 
 ## Sprint 6 — Refatoracao do HTML Renderer
 
@@ -131,11 +131,11 @@ Reduzir a dependencia de CSS por secao e mover o renderer para um modelo orienta
 
 ### Tasks
 
-- [ ] Criar helpers para leitura de componente por secao e subcomponente
-- [ ] Criar helpers para classes e data attributes por shell e component id
-- [ ] Substituir branches literais por resolucao declarativa quando possivel
-- [ ] Isolar estilos por shell em vez de acumular regras por secao
-- [ ] Revisar fallbacks para compatibilidade com dados antigos
+- [x] Criar helpers para leitura de componente por secao e subcomponente
+- [x] Criar helpers para classes e data attributes por shell e component id
+- [x] Substituir branches literais por resolucao declarativa quando possivel
+- [x] Isolar estilos por shell em vez de acumular regras por secao
+- [x] Revisar fallbacks para compatibilidade com dados antigos
 
 ## Sprint 7 — Validacao e Fechamento
 
@@ -145,11 +145,11 @@ Garantir que o book esteja rastreavel, reproduzivel e seguro para evolucao.
 
 ### Tasks
 
-- [ ] Criar checklist de validacao visual por secao
-- [ ] Expandir testes de regressao HTML/PDF para os novos componentes declarativos
-- [ ] Revisar cobertura de assets relativos no HTML review
-- [ ] Atualizar README com a arquitetura `manifest + tokens + components`
-- [ ] Registrar fluxo oficial para adicionar novos componentes editoriais
+- [x] Criar checklist de validacao visual por secao
+- [x] Expandir testes de regressao HTML/PDF para os novos componentes declarativos
+- [x] Revisar cobertura de assets relativos no HTML review
+- [x] Atualizar README com a arquitetura `manifest + tokens + components`
+- [x] Registrar fluxo oficial para adicionar novos componentes editoriais
 
 ## Backlog de Risco
 

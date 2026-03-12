@@ -195,6 +195,30 @@ function resolveComponentById(componentId, designManifest) {
     };
 }
 
+function resolveSubcomponent(section, subcomponentId, designManifest) {
+    const component = resolveSectionComponent(section, designManifest);
+    if (!component || !component.subcomponents) {
+        return null;
+    }
+    const sub = component.subcomponents[subcomponentId];
+    return sub && typeof sub === 'object' ? { id: subcomponentId, ...sub } : null;
+}
+
+function buildShellClasses(shellRef, componentId, extra = []) {
+    const tokens = [];
+    if (shellRef) tokens.push(`shell-${shellRef}`);
+    if (componentId) tokens.push(`component-${componentId}`);
+    tokens.push(...extra.filter(Boolean));
+    return tokens.join(' ');
+}
+
+function buildShellDataAttributes(shellRef, componentId) {
+    const attrs = [];
+    if (shellRef) attrs.push(`data-shell="${shellRef}"`);
+    if (componentId) attrs.push(`data-component-id="${componentId}"`);
+    return attrs.join(' ');
+}
+
 module.exports = {
     DEFAULT_DESIGN_MANIFEST_PATH,
     loadDesignManifest,
@@ -202,4 +226,7 @@ module.exports = {
     resolveManifestSectionLayout,
     resolveSectionComponent,
     resolveChapterComponent,
+    resolveSubcomponent,
+    buildShellClasses,
+    buildShellDataAttributes,
 };

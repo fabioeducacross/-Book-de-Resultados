@@ -1016,6 +1016,11 @@ describe('Stage 7.5 — HTML/PDF fidelity: institutional composition from the Ca
     expect(alfaSchoolPage.html).not.toContain('class="page-number"');
     expect(alfaSchoolPage.html).not.toContain('class="page-footer"');
     expect(alfaSchoolPage.html).not.toContain('class="page-header"');
+    // Sprint 3: no invented visual details
+    expect(alfaSchoolPage.text).not.toContain('✦');
+    expect(alfaSchoolPage.html).not.toContain('owl-mascot');
+    expect(alfaSchoolPage.html).toContain('class="school-owl-image"');
+    expect(alfaSchoolPage.html).toContain('class="school-brand-eyebrow"');
     baseline.pipeline.htmlFidelity.school.operationalLabels.forEach((label) => {
       expect(alfaSchoolPage.text).toContain(label);
     });
