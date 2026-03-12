@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "id": "educacross-book-components",
     "label": "Educacross Book Component Contracts",
     "assetSets": {
@@ -20,6 +20,13 @@
             "mascotImageUrl": "assets/editorial/canoas-2025/school-owl-reference.png",
             "mascotAlt": "Mascote institucional",
             "eyebrowPrefix": "SME"
+        },
+        "escola-disciplinas-canoas": {
+            "eyebrowPrefix": "SME"
+        },
+        "participacao-rede-tabela-canoas": {
+            "imageUrl": "assets/editorial/canoas-2025/fotolia_52159267.jpg",
+            "imageAlt": "Estudantes em sala de aula"
         }
     },
     "components": {
@@ -35,15 +42,69 @@
             "kind": "editorial-opening",
             "assetSet": "participacao-rede-canoas"
         },
+        "participacao-rede-tabela": {
+            "kind": "editorial-table",
+            "assetSet": "participacao-rede-tabela-canoas"
+        },
         "school-summary": {
             "kind": "school-summary",
-            "assetSet": "school-summary-canoas"
+            "assetSet": "school-summary-canoas",
+            "subcomponents": {
+                "school-summary-header": {
+                    "kind": "eyebrow",
+                    "label": "Cabeçalho da escola com eyebrow institucional e nome"
+                },
+                "school-summary-mascot": {
+                    "kind": "mascot",
+                    "label": "Mascote institucional ao lado do nome da escola"
+                },
+                "school-summary-kpis": {
+                    "kind": "kpi-cards",
+                    "label": "Cards de indicadores: participação, média, ranking e total de alunos"
+                },
+                "school-summary-operational-table": {
+                    "kind": "operational-table",
+                    "label": "Tabela operacional por ano e disciplina"
+                },
+                "school-summary-participation-callout": {
+                    "kind": "participation-callout",
+                    "label": "Destaque de participação com taxa e comparativo de rede"
+                },
+                "school-summary-proficiency-callouts": {
+                    "kind": "proficiency-callouts",
+                    "label": "Distribuição de proficiência por nível (abaixo do básico, básico, adequado, avançado)"
+                }
+            }
+        },
+        "escola-disciplinas": {
+            "kind": "school-comparison",
+            "assetSet": "escola-disciplinas-canoas",
+            "subcomponents": {
+                "escola-disciplinas-header": {
+                    "kind": "eyebrow",
+                    "label": "Cabeçalho da escola com eyebrow e título por área"
+                },
+                "escola-disciplinas-comparativos": {
+                    "kind": "discipline-comparison-blocks",
+                    "label": "Blocos comparativos por disciplina com proficiência e participação"
+                },
+                "escola-disciplinas-legenda": {
+                    "kind": "legend",
+                    "label": "Legenda de referência para os blocos comparativos"
+                },
+                "escola-disciplinas-distribuicao": {
+                    "kind": "distribution-block",
+                    "label": "Distribuição de proficiência por disciplina e por ano"
+                }
+            }
         }
     },
     "sectionComponents": {
         "capa": "cover-page",
         "participacao_rede": "participacao-rede-opening",
-        "escola": "school-summary"
+        "participacao_rede_tabela": "participacao-rede-tabela",
+        "escola": "school-summary",
+        "escola_disciplinas": "escola-disciplinas"
     },
     "chapterComponents": {
         "resultados": "chapter-resultados"
