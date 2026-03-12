@@ -25,7 +25,7 @@ const DEFAULT_SQUADS_PATH = './squads';
  * Default templates directory path
  * @constant {string}
  */
-const DEFAULT_TEMPLATES_PATH = './.aios-core/development/templates/squad';
+const DEFAULT_TEMPLATES_PATH = './.aiox-core/development/templates/squad';
 
 /**
  * Component types and their configurations

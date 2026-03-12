@@ -324,22 +324,22 @@ acceptance-criteria:
 - capability-analyzer.js:
     description: Analyze current capabilities and identify improvements
     language: JavaScript
-    location: .aios-core/scripts/capability-analyzer.js
+    location: .aiox-core/scripts/capability-analyzer.js
 
 - improvement-validator.js:
     description: Validate improvement plans against safety rules
     language: JavaScript
-    location: .aios-core/scripts/improvement-validator.js
+    location: .aiox-core/scripts/improvement-validator.js
 
 - sandbox-tester.js:
     description: Test improvements in isolated sandbox environment
     language: JavaScript
-    location: .aios-core/scripts/sandbox-tester.js
+    location: .aiox-core/scripts/sandbox-tester.js
 
 - backup-manager.js:
     description: Manage backups and rollback operations
     language: JavaScript
-    location: .aios-core/scripts/backup-manager.js
+    location: .aiox-core/scripts/backup-manager.js
 ```
 
 ---
@@ -581,7 +581,7 @@ rollback_info:
 ### Safe Mode Fallback
 ```javascript
 // Always maintain safe mode entry point
-if (process.env.AIOS_SAFE_MODE === 'true') {
+if (process.env.AIOX_SAFE_MODE === 'true') {
   console.log('Running in safe mode - self-modification disabled');
   process.exit(0);
 }

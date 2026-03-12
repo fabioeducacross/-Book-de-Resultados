@@ -1,7 +1,7 @@
 # Subagent Step Prompt Template
 
 > **Purpose:** Reusable template for constructing subagent prompts in the Workflow Runtime Engine.
-> Each variable is replaced at runtime by the orchestrator (aios-master) before spawning the subagent via the Task tool.
+> Each variable is replaced at runtime by the orchestrator (aiox-master) before spawning the subagent via the Task tool.
 
 ---
 
@@ -91,14 +91,14 @@ Execute the task now. Do NOT greet. Do NOT show commands. Do NOT ask questions (
 
 | Context | Agent Path | Task Path | Data Path |
 |---------|-----------|-----------|-----------|
-| `core` | `.aios-core/development/agents/{agent}.md` | `.aios-core/development/tasks/{uses}.md` | `.aios-core/data/{file}` |
+| `core` | `.aiox-core/development/agents/{agent}.md` | `.aiox-core/development/tasks/{uses}.md` | `.aiox-core/data/{file}` |
 | `squad` | `squads/{squad}/agents/{agent}.md` | `squads/{squad}/tasks/{uses}.md` | `squads/{squad}/data/{file}` |
 | `hybrid` | squad-first, core-fallback | squad-first, core-fallback | squad-first, core-fallback |
 
 ### Hybrid Resolution Order
 
 1. Check `squads/{squad}/agents/{agent}.md` first
-2. If not found, check `.aios-core/development/agents/{agent}.md`
+2. If not found, check `.aiox-core/development/agents/{agent}.md`
 3. If agent has explicit prefix (`core:architect` or `squad:validator`), use that directly
 
 ### Agent YAML Extraction
@@ -114,7 +114,7 @@ The `{{TASK_CONTENT}}` variable should contain the full task file content, from 
 ## Notes
 
 - This template is referenced by `run-workflow-engine.md` task
-- The orchestrator (aios-master) builds the prompt by reading files and replacing variables
+- The orchestrator (aiox-master) builds the prompt by reading files and replacing variables
 - Subagents receive the complete prompt and execute autonomously
 - The orchestrator parses the `step_output` YAML block from the subagent's response
 - If the subagent fails to produce a valid YAML block, the orchestrator retries or requests manual intervention

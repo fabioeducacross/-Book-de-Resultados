@@ -1,7 +1,7 @@
 {
-  "name": "@aios/health-dashboard",
+  "name": "@aiox/health-dashboard",
   "version": "1.0.0",
-  "description": "AIOS Health Check System Dashboard",
+  "description": "AIOX Health Check System Dashboard",
   "type": "module",
   "scripts": {
     "dev": "vite",

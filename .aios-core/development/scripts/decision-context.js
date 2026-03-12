@@ -5,7 +5,7 @@
  * Used by dev agent in yolo mode to track decisions, files, tests, and metrics.
  *
  * @module decision-context
- * @see .aios-core/scripts/decision-log-generator.js - Generates final log from this context
+ * @see .aiox-core/scripts/decision-log-generator.js - Generates final log from this context
  */
 
 const { execSync } = require('child_process');

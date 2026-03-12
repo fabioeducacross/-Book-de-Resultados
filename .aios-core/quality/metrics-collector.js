@@ -15,7 +15,7 @@ const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
 
 // Default configuration
-const DEFAULT_DATA_FILE = '.aios/data/quality-metrics.json';
+const DEFAULT_DATA_FILE = '.aiox/data/quality-metrics.json';
 const DEFAULT_RETENTION_DAYS = 30;
 
 /**
@@ -103,7 +103,7 @@ class MetricsCollector {
 
     const schemaPath = path.join(
       this.projectRoot,
-      '.aios-core/quality/schemas/quality-metrics.schema.json',
+      '.aiox-core/quality/schemas/quality-metrics.schema.json',
     );
 
     try {

@@ -25,7 +25,7 @@ class NotificationManager {
    */
   constructor(config = {}) {
     this.config = config;
-    this.notificationsPath = config.notificationsPath || '.aios/notifications';
+    this.notificationsPath = config.notificationsPath || '.aiox/notifications';
     this.channels = config.channels || ['console', 'file'];
     this.templates = this.loadTemplates();
     // Save queue for serializing concurrent writes to history file

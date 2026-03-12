@@ -9,7 +9,7 @@
  * Hook lifecycle event mapping between CLIs
  */
 const EVENT_MAPPING = {
-  // AIOS Event -> { claude: ClaudeEvent, gemini: GeminiEvent }
+  // AIOX Event -> { claude: ClaudeEvent, gemini: GeminiEvent }
   sessionStart: { claude: null, gemini: 'SessionStart' },
   beforeAgent: { claude: 'PreToolUse', gemini: 'BeforeAgent' },
   beforeTool: { claude: 'PreToolUse', gemini: 'BeforeTool' },
@@ -25,7 +25,7 @@ class UnifiedHook {
    * Create a unified hook
    * @param {Object} config - Hook configuration
    * @param {string} config.name - Hook name
-   * @param {string} config.event - AIOS event name
+   * @param {string} config.event - AIOX event name
    * @param {string} [config.matcher='*'] - Tool/event matcher pattern
    */
   constructor(config) {
@@ -53,13 +53,13 @@ class UnifiedHook {
     if (!claudeEvent) return null;
 
     // TODO: Restore when runners/ directory is implemented (Story MIS-2)
-    // Runners not yet implemented - path .aios-core/hooks/unified/runners/ does not exist
+    // Runners not yet implemented - path .aiox-core/hooks/unified/runners/ does not exist
     return null;
 
     // return {
     //   event: claudeEvent,
     //   matcher: this.matcher,
-    //   handler: `node .aios-core/hooks/unified/runners/claude-runner.js ${this.name}`,
+    //   handler: `node .aiox-core/hooks/unified/runners/claude-runner.js ${this.name}`,
     // };
   }
 
@@ -71,7 +71,7 @@ class UnifiedHook {
     const geminiEvent = EVENT_MAPPING[this.event]?.gemini;
 
     // TODO: Restore when runners/ directory is implemented (Story MIS-2)
-    // Runners not yet implemented - path .aios-core/hooks/unified/runners/ does not exist
+    // Runners not yet implemented - path .aiox-core/hooks/unified/runners/ does not exist
     return null;
 
     // return {
@@ -80,7 +80,7 @@ class UnifiedHook {
     //     {
     //       name: this.name,
     //       type: 'command',
-    //       command: `node .aios-core/hooks/unified/runners/gemini-runner.js ${this.name}`,
+    //       command: `node .aiox-core/hooks/unified/runners/gemini-runner.js ${this.name}`,
     //       timeout: this.timeout,
     //     },
     //   ],

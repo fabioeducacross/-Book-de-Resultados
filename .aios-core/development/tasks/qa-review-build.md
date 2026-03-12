@@ -53,7 +53,7 @@ autoClaude:
 
     - name: status.json
       type: file
-      path: .aios/status.json
+      path: .aiox/status.json
       update: true
 
   verification:
@@ -990,7 +990,7 @@ blocking: false
 actions:
   - id: update-status-json
     action: update_json
-    path: .aios/status.json
+    path: .aiox/status.json
     updates:
       - path: 'stories.{storyId}.qaReviewed'
         value: true
@@ -1146,7 +1146,7 @@ contents:
 ### Secondary Output: status.json
 
 ```yaml
-location: .aios/status.json
+location: .aiox/status.json
 updates:
   - stories.{storyId}.qaReviewed: true
   - stories.{storyId}.qaSignal: 'APPROVE|REJECT'

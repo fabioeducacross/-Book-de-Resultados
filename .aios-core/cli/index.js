@@ -1,7 +1,7 @@
 /**
- * AIOS CLI Entry Point
+ * AIOX CLI Entry Point
  *
- * Main entry point for the AIOS CLI with Commander.js integration.
+ * Main entry point for the AIOX CLI with Commander.js integration.
  * Registers all subcommands including workers, agents, etc.
  *
  * @module cli
@@ -42,9 +42,9 @@ function createProgram() {
   const program = new Command();
 
   program
-    .name('aios')
+    .name('aiox')
     .version(packageVersion)
-    .description('AIOS-FullStack: AI-Orchestrated System for Full Stack Development')
+    .description('AIOX-FullStack: AI-Orchestrated System for Full Stack Development')
     .addHelpText('after', `
 Commands:
   workers           Manage and discover workers
@@ -52,49 +52,49 @@ Commands:
   qa                Quality Gate Manager (run, status)
   metrics           Quality Gate Metrics (record, show, seed, cleanup)
   config            Manage layered configuration (show, diff, migrate, validate)
-  pro               AIOS Pro license management (activate, status, deactivate, features)
+  pro               AIOX Pro license management (activate, status, deactivate, features)
   mcp               Manage global MCP configuration
-  migrate           Migrate from v2.0 to v2.1 structure
+  migrate           Migrate from v2.0 to v4.0.4 structure
   generate          Generate documents from templates (prd, adr, pmdr, etc.)
-  install           Install AIOS in current project
-  init <name>       Create new AIOS project
+  install           Install AIOX in current project
+  init <name>       Create new AIOX project
   info              Show system information
   doctor            Run system diagnostics
 
 For command help:
-  $ aios <command> --help
+  $ aiox <command> --help
 
 Examples:
-  $ aios workers search "json transformation"
-  $ aios workers list --category=data
-  $ aios manifest validate
-  $ aios manifest regenerate
-  $ aios qa run
-  $ aios qa status
-  $ aios mcp setup --with-defaults
-  $ aios mcp link
-  $ aios mcp status
-  $ aios metrics show
-  $ aios metrics record --layer 1 --passed
-  $ aios metrics seed --days 30
-  $ aios migrate --dry-run
-  $ aios migrate --from=2.0 --to=2.1
-  $ aios generate pmdr --title "Feature X Decision"
-  $ aios generate adr --save
-  $ aios generate list
-  $ aios config show
-  $ aios config show --debug
-  $ aios config diff --levels L1,L2
-  $ aios config migrate --dry-run
-  $ aios config validate
-  $ aios config init-local
-  $ aios pro activate --key PRO-XXXX-XXXX-XXXX-XXXX
-  $ aios pro status
-  $ aios pro deactivate
-  $ aios pro features
-  $ aios pro validate
-  $ aios install
-  $ aios doctor
+  $ aiox workers search "json transformation"
+  $ aiox workers list --category=data
+  $ aiox manifest validate
+  $ aiox manifest regenerate
+  $ aiox qa run
+  $ aiox qa status
+  $ aiox mcp setup --with-defaults
+  $ aiox mcp link
+  $ aiox mcp status
+  $ aiox metrics show
+  $ aiox metrics record --layer 1 --passed
+  $ aiox metrics seed --days 30
+  $ aiox migrate --dry-run
+  $ aiox migrate --from=2.0 --to=2.1
+  $ aiox generate pmdr --title "Feature X Decision"
+  $ aiox generate adr --save
+  $ aiox generate list
+  $ aiox config show
+  $ aiox config show --debug
+  $ aiox config diff --levels L1,L2
+  $ aiox config migrate --dry-run
+  $ aiox config validate
+  $ aiox config init-local
+  $ aiox pro activate --key PRO-XXXX-XXXX-XXXX-XXXX
+  $ aiox pro status
+  $ aiox pro deactivate
+  $ aiox pro features
+  $ aiox pro validate
+  $ aiox install
+  $ aiox doctor
 `);
 
   // Add workers command

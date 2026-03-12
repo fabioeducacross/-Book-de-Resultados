@@ -32,7 +32,7 @@ Commands:
   cleanup           Remove old records beyond retention period
 
 Data Storage:
-  Metrics are stored in .aios/data/quality-metrics.json
+  Metrics are stored in .aiox/data/quality-metrics.json
   History is retained for 30 days by default
 
 Layers:
@@ -41,14 +41,14 @@ Layers:
   Layer 3: Human Review (checklist, sign-off)
 
 Examples:
-  $ aios metrics record --layer 1 --passed --duration 3200
-  $ aios metrics record --layer 2 --passed --findings 3 --coderabbit
-  $ aios metrics show
-  $ aios metrics show --layer 2
-  $ aios metrics show --format json
-  $ aios metrics seed --days 30
-  $ aios metrics cleanup
-  $ aios metrics cleanup --dry-run
+  $ aiox metrics record --layer 1 --passed --duration 3200
+  $ aiox metrics record --layer 2 --passed --findings 3 --coderabbit
+  $ aiox metrics show
+  $ aiox metrics show --layer 2
+  $ aiox metrics show --format json
+  $ aiox metrics seed --days 30
+  $ aiox metrics cleanup
+  $ aiox metrics cleanup --dry-run
 `);
 
   // Add subcommands

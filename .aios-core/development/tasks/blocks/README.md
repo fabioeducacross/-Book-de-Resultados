@@ -10,7 +10,7 @@ Blocks are small, focused units of functionality that can be included in multipl
 ## Directory Structure
 
 ```
-.aios-core/development/tasks/blocks/
+.aiox-core/development/tasks/blocks/
 ├── README.md                  # This file
 ├── context-loading.md         # Load project context (git, gotchas, config)
 ├── execution-pattern.md       # Task blocking patterns + anti-patterns
@@ -54,7 +54,7 @@ blocks:
 ### Method 3: Programmatic (JavaScript)
 
 ```javascript
-const { loadBlock, executeBlock } = require('.aios-core/utils/block-loader');
+const { loadBlock, executeBlock } = require('.aiox-core/utils/block-loader');
 
 // Load block definition
 const block = await loadBlock('context-loading');

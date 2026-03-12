@@ -45,7 +45,7 @@ function formatTable(results, options = {}) {
   const { query = '', duration = '0', searchMethod = 'keyword', verbose = false } = options;
 
   if (results.length === 0) {
-    return `No workers found matching "${query}".\n\nTry different search terms or check available categories with 'aios workers list --categories'.`;
+    return `No workers found matching "${query}".\n\nTry different search terms or check available categories with 'aiox workers list --categories'.`;
   }
 
   // Header
@@ -72,7 +72,7 @@ function formatTable(results, options = {}) {
   });
 
   // Footer
-  output += '\nUse \'aios workers info <id>\' for details.';
+  output += '\nUse \'aiox workers info <id>\' for details.';
 
   // Verbose info
   if (verbose) {

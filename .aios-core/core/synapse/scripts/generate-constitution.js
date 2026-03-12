@@ -1,10 +1,10 @@
 /**
  * Constitution Generator
  *
- * Reads .aios-core/constitution.md and generates .synapse/constitution
+ * Reads .aiox-core/constitution.md and generates .synapse/constitution
  * in KEY=VALUE format for the SYNAPSE Context Engine L0 layer.
  *
- * Usage: node .aios-core/core/synapse/scripts/generate-constitution.js
+ * Usage: node .aiox-core/core/synapse/scripts/generate-constitution.js
  *
  * @module core/synapse/scripts/generate-constitution
  * @version 1.0.0
@@ -120,7 +120,7 @@ function extractRules(articleContent) {
 function generateConstitution(articles) {
   const lines = [
     '# SYNAPSE Constitution Domain (L0)',
-    '# Auto-generated from .aios-core/constitution.md',
+    '# Auto-generated from .aiox-core/constitution.md',
     '# DO NOT EDIT MANUALLY — re-run generate-constitution.js',
     '',
   ];
@@ -153,9 +153,8 @@ function generateConstitution(articles) {
  */
 function main(options = {}) {
   const projectRoot = options.projectRoot || path.resolve(__dirname, '..', '..', '..', '..');
-  const constitutionPath = options.constitutionPath || path.join(projectRoot, '.aios-core', 'constitution.md');
+  const constitutionPath = options.constitutionPath || path.join(projectRoot, '.aiox-core', 'constitution.md');
   const outputPath = options.outputPath || path.join(projectRoot, '.synapse', 'constitution');
-  const shouldSetExitCode = options.setExitCode ?? require.main === module;
 
   // Read source
   let content;
@@ -164,9 +163,7 @@ function main(options = {}) {
   } catch (error) {
     if (error.code === 'ENOENT') {
       console.error(`Constitution not found: ${constitutionPath}`);
-      if (shouldSetExitCode) {
-        process.exitCode = 1;
-      }
+      process.exitCode = 1;
       return { success: false, error: 'Constitution file not found' };
     }
     throw error;
@@ -177,9 +174,7 @@ function main(options = {}) {
 
   if (articles.length === 0) {
     console.error('No articles found in constitution.md');
-    if (shouldSetExitCode) {
-      process.exitCode = 1;
-    }
+    process.exitCode = 1;
     return { success: false, error: 'No articles found' };
   }
 
@@ -197,10 +192,6 @@ function main(options = {}) {
 
   const totalRules = articles.reduce((sum, a) => sum + a.rules.length + 1, 0);
   console.log(`Constitution generated: ${articles.length} articles, ${totalRules} rules`);
-
-  if (shouldSetExitCode) {
-    process.exitCode = 0;
-  }
 
   return { success: true, articles: articles.length, rules: totalRules, outputPath };
 }

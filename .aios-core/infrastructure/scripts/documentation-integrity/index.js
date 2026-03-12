@@ -1,7 +1,7 @@
 /**
  * Documentation Integrity System
  *
- * Mode-aware project configuration system for AIOS.
+ * Mode-aware project configuration system for AIOX.
  * Supports three installation modes: framework-dev, greenfield, brownfield.
  *
  * @module documentation-integrity
@@ -21,7 +21,7 @@ module.exports = {
   // Mode detection
   detectInstallationMode: modeDetector.detectInstallationMode,
   collectMarkers: modeDetector.collectMarkers,
-  isAiosCoreRepository: modeDetector.isAiosCoreRepository,
+  isAioxCoreRepository: modeDetector.isAioxCoreRepository,
   mapLegacyTypeToMode: modeDetector.mapLegacyTypeToMode,
   validateModeSelection: modeDetector.validateModeSelection,
   getModeOptions: modeDetector.getModeOptions,
@@ -59,7 +59,7 @@ module.exports = {
   generateGitignore: gitignoreGenerator.generateGitignore,
   mergeGitignore: gitignoreGenerator.mergeGitignore,
   generateGitignoreFile: gitignoreGenerator.generateGitignoreFile,
-  hasAiosIntegration: gitignoreGenerator.hasAiosIntegration,
+  hasAioxIntegration: gitignoreGenerator.hasAioxIntegration,
   GitignoreTemplates: gitignoreGenerator.GitignoreTemplates,
   TechStack: gitignoreGenerator.TechStack,
 

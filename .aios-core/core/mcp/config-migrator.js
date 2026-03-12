@@ -37,8 +37,8 @@ const MIGRATION_OPTION = {
  */
 function detectProjectConfig(projectRoot = process.cwd()) {
   const possiblePaths = [
-    path.join(projectRoot, '.aios-core', 'tools', 'mcp', 'global-config.json'),
-    path.join(projectRoot, '.aios-core', 'mcp.json'),
+    path.join(projectRoot, '.aiox-core', 'tools', 'mcp', 'global-config.json'),
+    path.join(projectRoot, '.aiox-core', 'mcp.json'),
     path.join(projectRoot, '.claude', 'mcp.json'),
     path.join(projectRoot, 'mcp.json'),
   ];

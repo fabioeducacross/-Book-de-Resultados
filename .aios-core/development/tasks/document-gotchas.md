@@ -44,12 +44,12 @@ atomic_layer: Service
 **Saída:**
 - campo: gotchas_file
   tipo: string
-  destino: .aios/gotchas.md
+  destino: .aiox/gotchas.md
   persistido: true
 
 - campo: gotchas_json
   tipo: string
-  destino: .aios/gotchas.json
+  destino: .aiox/gotchas.json
   persistido: true
 
 - campo: statistics
@@ -68,12 +68,12 @@ atomic_layer: Service
 
 ```yaml
 pre-conditions:
-  - [ ] Project has .aios directory initialized
+  - [ ] Project has .aiox directory initialized
     tipo: pre-condition
     blocker: false
     validação: |
-      Check if .aios/ directory exists, create if not
-    error_message: "Creating .aios/ directory"
+      Check if .aiox/ directory exists, create if not
+    error_message: "Creating .aiox/ directory"
 
   - [ ] Node.js available for script execution
     tipo: pre-condition
@@ -97,14 +97,14 @@ post-conditions:
     tipo: post-condition
     blocker: true
     validação: |
-      Check .aios/gotchas.md exists and has content
+      Check .aiox/gotchas.md exists and has content
     error_message: "Failed to generate gotchas.md"
 
   - [ ] gotchas.json schema valid
     tipo: post-condition
     blocker: false
     validação: |
-      Validate .aios/gotchas.json against schema
+      Validate .aiox/gotchas.json against schema
     error_message: "gotchas.json schema validation failed"
 ```
 
@@ -157,7 +157,7 @@ acceptance-criteria:
    - Deduplicates based on content similarity
    - Categorizes by area
    - Merges with existing gotchas
-   - Generates `.aios/gotchas.md` and `.aios/gotchas.json`
+   - Generates `.aiox/gotchas.md` and `.aiox/gotchas.json`
 
 2. **list**
    - Lists all gotchas
@@ -178,10 +178,10 @@ acceptance-criteria:
 ### 1. Initialize
 
 ```javascript
-const { GotchasDocumenter } = require('.aios-core/infrastructure/scripts/gotchas-documenter');
+const { GotchasDocumenter } = require('.aiox-core/infrastructure/scripts/gotchas-documenter');
 
 const documenter = new GotchasDocumenter(rootPath, {
-  outputPath: '.aios/gotchas.md',
+  outputPath: '.aiox/gotchas.md',
   quiet: false
 });
 ```
@@ -190,7 +190,7 @@ const documenter = new GotchasDocumenter(rootPath, {
 
 ```javascript
 // Merge with existing gotchas to preserve manually added ones
-documenter.mergeWithExisting('.aios/gotchas.json');
+documenter.mergeWithExisting('.aiox/gotchas.json');
 ```
 
 ### 3. Scan Insights Files
@@ -199,7 +199,7 @@ documenter.mergeWithExisting('.aios/gotchas.json');
 // Scans:
 // - docs/stories/**/insights/*.json
 // - docs/stories/**/session-*.json
-// - .aios/insights/*.json
+// - .aiox/insights/*.json
 await documenter.scanInsightsFiles();
 ```
 
@@ -237,7 +237,7 @@ console.log(`Duplicates merged: ${stats.gotchasDeduplicated}`);
 ```javascript
 // In capture-session-insights workflow
 afterCapture: async (insightsPath) => {
-  const { updateGotchas } = require('.aios-core/infrastructure/scripts/gotchas-documenter');
+  const { updateGotchas } = require('.aiox-core/infrastructure/scripts/gotchas-documenter');
   await updateGotchas(rootPath);
 }
 ```
@@ -248,7 +248,7 @@ afterCapture: async (insightsPath) => {
 
 ```javascript
 // In self-critique-checklist.md execution
-const { getGotchasForSelfCritique } = require('.aios-core/infrastructure/scripts/gotchas-documenter');
+const { getGotchasForSelfCritique } = require('.aiox-core/infrastructure/scripts/gotchas-documenter');
 
 // Get relevant gotchas for current context
 const relevantGotchas = getGotchasForSelfCritique(rootPath, 'TypeScript');
@@ -363,7 +363,7 @@ const useStore = create<StoreType>()(
 
 ```json
 {
-  "schema": "aios-gotchas-v1",
+  "schema": "aiox-gotchas-v1",
   "version": "1.0.0",
   "generatedAt": "2026-01-28T14:00:00Z",
   "statistics": {
@@ -383,22 +383,22 @@ const useStore = create<StoreType>()(
 
 ```bash
 # Update gotchas from all insights
-node .aios-core/infrastructure/scripts/gotchas-documenter.js update
+node .aiox-core/infrastructure/scripts/gotchas-documenter.js update
 
 # List all gotchas
-node .aios-core/infrastructure/scripts/gotchas-documenter.js list
+node .aiox-core/infrastructure/scripts/gotchas-documenter.js list
 
 # List high severity only
-node .aios-core/infrastructure/scripts/gotchas-documenter.js list --severity high
+node .aiox-core/infrastructure/scripts/gotchas-documenter.js list --severity high
 
 # Search for specific gotchas
-node .aios-core/infrastructure/scripts/gotchas-documenter.js search "zustand"
+node .aiox-core/infrastructure/scripts/gotchas-documenter.js search "zustand"
 
 # List by category
-node .aios-core/infrastructure/scripts/gotchas-documenter.js category TypeScript
+node .aiox-core/infrastructure/scripts/gotchas-documenter.js category TypeScript
 
 # Output as JSON
-node .aios-core/infrastructure/scripts/gotchas-documenter.js list --format json
+node .aiox-core/infrastructure/scripts/gotchas-documenter.js list --format json
 ```
 
 ---
@@ -420,7 +420,7 @@ node .aios-core/infrastructure/scripts/gotchas-documenter.js list --format json
    - **Recovery:** Continue processing other files
 
 3. **Error:** Write permission denied
-   - **Cause:** Cannot write to .aios directory
+   - **Cause:** Cannot write to .aiox directory
    - **Resolution:** Check file permissions
    - **Recovery:** Output to stdout instead
 
@@ -448,15 +448,15 @@ token_usage: ~500 tokens (for help text only)
 **Script:** gotchas-documenter.js
   - **Purpose:** Extract and consolidate gotchas from session insights
   - **Language:** JavaScript
-  - **Location:** .aios-core/infrastructure/scripts/gotchas-documenter.js
+  - **Location:** .aiox-core/infrastructure/scripts/gotchas-documenter.js
 
 ---
 
 ## Dependencies
 
-- `.aios-core/development/tasks/capture-session-insights.md` - Provides input insights
-- `.aios-core/product/checklists/self-critique-checklist.md` - Consumes gotchas (AC5)
-- `.aios-core/development/tasks/spec-write-spec.md` - May reference gotchas
+- `.aiox-core/development/tasks/capture-session-insights.md` - Provides input insights
+- `.aiox-core/product/checklists/self-critique-checklist.md` - Consumes gotchas (AC5)
+- `.aiox-core/development/tasks/spec-write-spec.md` - May reference gotchas
 
 ---
 

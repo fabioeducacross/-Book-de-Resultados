@@ -1,6 +1,6 @@
 # ============================================
-# AIOS User Configuration (L5)
-# Location: ~/.aios/user-config.yaml
+# AIOX User Configuration (L5)
+# Location: ~/.aiox/user-config.yaml
 # Scope: Cross-project, per-user preferences
 # Priority: Highest (overrides L1-L4)
 # ============================================
@@ -10,9 +10,8 @@
 # - advanced: Full access to all agents and commands
 user_profile: "bob"
 
-# Default AI model for agent operations (optional — user-managed)
-# Uncomment and set your preferred model:
-# default_model: "claude-sonnet"
+# Default AI model for agent operations
+default_model: "claude-sonnet"
 
 # Default language for agent responses
 default_language: "pt-BR"

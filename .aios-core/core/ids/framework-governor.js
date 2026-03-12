@@ -3,7 +3,7 @@
 /**
  * FrameworkGovernor — IDS Story IDS-7
  *
- * Facade class that integrates aios-master with the IDS Entity Registry for
+ * Facade class that integrates aiox-master with the IDS Entity Registry for
  * framework governance. Wraps DecisionEngine, RegistryLoader, and RegistryUpdater
  * to provide pre-check, impact analysis, post-registration, health, and stats.
  *
@@ -11,10 +11,10 @@
  * with a 2s timeout and fallback on error.
  *
  * @example
- *   const { RegistryLoader } = require('.aios-core/core/ids/registry-loader');
- *   const { IncrementalDecisionEngine } = require('.aios-core/core/ids/incremental-decision-engine');
- *   const { RegistryUpdater } = require('.aios-core/core/ids/registry-updater');
- *   const { FrameworkGovernor } = require('.aios-core/core/ids/framework-governor');
+ *   const { RegistryLoader } = require('.aiox-core/core/ids/registry-loader');
+ *   const { IncrementalDecisionEngine } = require('.aiox-core/core/ids/incremental-decision-engine');
+ *   const { RegistryUpdater } = require('.aiox-core/core/ids/registry-updater');
+ *   const { FrameworkGovernor } = require('.aiox-core/core/ids/framework-governor');
  *
  *   const loader = new RegistryLoader();
  *   const engine = new IncrementalDecisionEngine(loader);
@@ -23,7 +23,7 @@
  *
  *   const result = await governor.preCheck('validate yaml schema', 'task');
  *
- * Story: IDS-7 (aios-master IDS Governor Integration)
+ * Story: IDS-7 (aiox-master IDS Governor Integration)
  */
 
 const path = require('path');
@@ -243,7 +243,7 @@ class FrameworkGovernor {
     return this._withTimeout(async () => {
       const task = {
         id: metadata.taskId || 'framework-governor-register',
-        agent: metadata.agent || 'aios-master',
+        agent: metadata.agent || 'aiox-master',
         type: metadata.type || 'create',
       };
 

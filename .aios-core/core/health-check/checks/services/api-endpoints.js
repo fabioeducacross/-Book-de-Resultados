@@ -3,7 +3,7 @@
  *
  * Verifies external API endpoint connectivity.
  *
- * @module @synkra/aios-core/health-check/checks/services/api-endpoints
+ * @module aiox-core/health-check/checks/services/api-endpoints
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -117,7 +117,7 @@ class ApiEndpointsCheck extends BaseCheck {
           method: 'HEAD',
           timeout: 5000,
           headers: {
-            'User-Agent': 'AIOS-HealthCheck/1.0',
+            'User-Agent': 'AIOX-HealthCheck/1.0',
           },
         },
         (res) => {

@@ -4,17 +4,17 @@ const yaml = require('js-yaml');
 const chalk = require('chalk');
 
 /**
- * Framework structure analyzer for Synkra AIOS
+ * Framework structure analyzer for Synkra AIOX
  * Discovers and catalogs all framework components
  */
 class FrameworkAnalyzer {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.aiosCoreDir = path.join(this.rootPath, 'aios-core');
+    this.aioxCoreDir = path.join(this.rootPath, 'aiox-core');
     this.excludes = options.excludes || [
       'node_modules',
       '.git',
-      '.aios',
+      '.aiox',
       'dist',
       'build',
       'coverage',
@@ -94,7 +94,7 @@ class FrameworkAnalyzer {
    */
   async discoverAgents() {
     const agents = [];
-    const agentsDir = path.join(this.aiosCoreDir, 'agents');
+    const agentsDir = path.join(this.aioxCoreDir, 'agents');
 
     try {
       await fs.access(agentsDir);
@@ -121,7 +121,7 @@ class FrameworkAnalyzer {
    */
   async discoverTasks() {
     const tasks = [];
-    const tasksDir = path.join(this.aiosCoreDir, 'tasks');
+    const tasksDir = path.join(this.aioxCoreDir, 'tasks');
 
     try {
       await fs.access(tasksDir);
@@ -148,7 +148,7 @@ class FrameworkAnalyzer {
    */
   async discoverWorkflows() {
     const workflows = [];
-    const workflowsDir = path.join(this.aiosCoreDir, 'workflows');
+    const workflowsDir = path.join(this.aioxCoreDir, 'workflows');
 
     try {
       await fs.access(workflowsDir);
@@ -175,7 +175,7 @@ class FrameworkAnalyzer {
    */
   async discoverUtils() {
     const utils = [];
-    const utilsDir = path.join(this.aiosCoreDir, 'utils');
+    const utilsDir = path.join(this.aioxCoreDir, 'utils');
 
     try {
       await fs.access(utilsDir);
@@ -202,7 +202,7 @@ class FrameworkAnalyzer {
    */
   async discoverTemplates() {
     const templates = [];
-    const templatesDir = path.join(this.aiosCoreDir, 'templates');
+    const templatesDir = path.join(this.aioxCoreDir, 'templates');
 
     try {
       await fs.access(templatesDir);

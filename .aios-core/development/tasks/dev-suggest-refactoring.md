@@ -129,11 +129,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -734,7 +734,7 @@ class SuggestRefactoringTask {
 
   async loadSuggestion(suggestionId) {
     // Try to load from cache or previous export
-    const cacheFile = path.join(this.rootPath, '.aios', 'refactoring', `${suggestionId}.json`);
+    const cacheFile = path.join(this.rootPath, '.aiox', 'refactoring', `${suggestionId}.json`);
     
     try {
       const content = await fs.readFile(cacheFile, 'utf-8');
@@ -825,11 +825,17 @@ module.exports = SuggestRefactoringTask;
 3. Run pattern detectors
 4. Generate suggestions
 5. Prioritize by impact
+6. **Code Intelligence Blast Radius** (if available):
+   - Call `assessRefactoringImpact(candidateFiles)` from `.aiox-core/core/code-intel/helpers/dev-helper`
+   - If result is not null, enrich each suggestion with:
+     - `blastRadius`: number of affected references
+     - `riskLevel`: LOW (<5 refs) | MEDIUM (5-15) | HIGH (>15)
+   - If code intelligence not available: suggestions work as before (no blast radius shown)
 
 ### Review Phase
 1. Display suggestions
 2. Group by file/type
-3. Show impact analysis
+3. Show impact analysis (including blast radius and risk level when available)
 4. Provide preview
 5. Export for review
 

@@ -8,7 +8,7 @@
  * @version 1.0.0
  *
  * @example
- * const { PermissionMode, OperationGuard } = require('./.aios-core/core/permissions');
+ * const { PermissionMode, OperationGuard } = require('./.aiox-core/core/permissions');
  *
  * // Check current mode
  * const mode = new PermissionMode();

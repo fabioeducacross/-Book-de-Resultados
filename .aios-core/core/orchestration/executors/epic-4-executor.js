@@ -145,7 +145,7 @@ class Epic4Executor extends EpicExecutor {
     const possiblePaths = [
       this._getPath('docs', 'stories', storyId, 'plan', 'implementation.yaml'),
       this._getPath('docs', 'stories', storyId, 'implementation.yaml'),
-      this._getPath('.aios', 'plans', `${storyId}.yaml`),
+      this._getPath('.aiox', 'plans', `${storyId}.yaml`),
     ];
 
     for (const planPath of possiblePaths) {

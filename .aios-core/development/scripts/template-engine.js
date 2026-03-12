@@ -1,5 +1,5 @@
 /**
- * Template Engine for AIOS-FULLSTACK
+ * Template Engine for AIOX-FULLSTACK
  * Handles variable substitution, conditionals, and loops for component generation
  * @module template-engine
  */

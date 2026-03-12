@@ -3,7 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 
 /**
- * Dependency impact analyzer for Synkra AIOS framework
+ * Dependency impact analyzer for Synkra AIOX framework
  * Analyzes how component modifications affect dependent components
  */
 class DependencyImpactAnalyzer {
@@ -134,7 +134,7 @@ class DependencyImpactAnalyzer {
     const componentTypes = ['agents', 'tasks', 'workflows', 'utils'];
     
     for (const type of componentTypes) {
-      const typeDir = path.join(this.rootPath, 'aios-core', type);
+      const typeDir = path.join(this.rootPath, 'aiox-core', type);
       
       try {
         const files = await fs.readdir(typeDir);
@@ -205,7 +205,7 @@ class DependencyImpactAnalyzer {
       this.categorizeDependency(dep, dependencies, filePath);
     });
 
-    // Extract AIOS-specific references
+    // Extract AIOX-specific references
     const agentRefs = content.match(/agent[_-]?name\s*[:=]\s*['"](.*?)['"]/gi) || [];
     agentRefs.forEach(match => {
       const agentName = match.match(/['"](.*?)['"]/)[1];
@@ -237,7 +237,7 @@ class DependencyImpactAnalyzer {
       const resolvedPath = path.resolve(path.dirname(filePath), dep);
       const relativePath = path.relative(this.rootPath, resolvedPath);
       dependencies.internal.push(relativePath);
-    } else if (dep.includes('aios-core/') || dep.includes('/aios-core/')) {
+    } else if (dep.includes('aiox-core/') || dep.includes('/aiox-core/')) {
       dependencies.framework.push(dep);
     } else if (dep.includes('test') || dep.includes('spec')) {
       dependencies.tests.push(dep);

@@ -26,7 +26,7 @@ class ChecklistRunner {
    */
   constructor(projectRoot) {
     this.projectRoot = projectRoot;
-    this.checklistsPath = path.join(projectRoot, '.aios-core', 'product', 'checklists');
+    this.checklistsPath = path.join(projectRoot, '.aiox-core', 'product', 'checklists');
   }
 
   /**

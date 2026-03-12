@@ -27,7 +27,7 @@ This regression test suite provides standardized test scenarios for validating t
    ```
 
 3. **PM Tool Access:** Configured (ClickUp/GitHub/Jira)
-   - Check `.aios-core/core-config.yaml` for PM tool setting
+   - Check `.aiox-core/core-config.yaml` for PM tool setting
    - Ensure API credentials configured if required
 
 4. **Test Database:** Supabase local or test instance

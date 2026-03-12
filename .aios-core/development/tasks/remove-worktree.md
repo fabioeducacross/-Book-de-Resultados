@@ -95,7 +95,7 @@ post-conditions:
   - [ ] Worktree directory removed
     tipo: post-condition
     blocker: true
-    validação: Directory .aios/worktrees/{storyId} does not exist
+    validação: Directory .aiox/worktrees/{storyId} does not exist
     error_message: "Worktree directory still exists."
 
   - [ ] Branch deleted (unless --keep-branch)
@@ -169,7 +169,7 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 **Action:** Verify worktree exists
 
 ```javascript
-const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
+const WorktreeManager = require('./.aiox-core/infrastructure/scripts/worktree-manager.js');
 const manager = new WorktreeManager();
 const exists = await manager.exists(storyId);
 ```
@@ -201,7 +201,7 @@ const worktree = await manager.get(storyId);
 📁 Worktree Details
 
 Story:              {storyId}
-Path:               .aios/worktrees/{storyId}
+Path:               .aiox/worktrees/{storyId}
 Branch:             auto-claude/{storyId}
 Created:            {createdAt}
 Uncommitted:        {uncommittedChanges} files
@@ -234,7 +234,7 @@ Files with changes:
   - ...
 
 Options:
-  1. Commit changes first    : cd .aios/worktrees/{storyId} && git commit
+  1. Commit changes first    : cd .aiox/worktrees/{storyId} && git commit
   2. Merge to base branch    : *merge-worktree {storyId}
   3. Force remove (lose data): *remove-worktree {storyId} --force
 
@@ -251,7 +251,7 @@ Proceed with removal? [y/N]:
 🗑️  Confirm Removal
 
 You are about to remove:
-  • Worktree: .aios/worktrees/{storyId}
+  • Worktree: .aiox/worktrees/{storyId}
   • Branch:   auto-claude/{storyId}
 
 This action cannot be undone.
@@ -271,7 +271,7 @@ await manager.remove(storyId, { force: options.force });
 
 **This performs:**
 
-1. `git worktree remove .aios/worktrees/{storyId}`
+1. `git worktree remove .aiox/worktrees/{storyId}`
 2. `git branch -d auto-claude/{storyId}` (or -D if force)
 
 ---
@@ -286,7 +286,7 @@ await manager.remove(storyId, { force: options.force });
 ╚══════════════════════════════════════════════════════════════╝
 
 Removed:
-  • Worktree: .aios/worktrees/{storyId}
+  • Worktree: .aiox/worktrees/{storyId}
   • Branch:   auto-claude/{storyId}
 
 Remaining worktrees: {count.total}
@@ -336,7 +336,7 @@ Run *list-worktrees to see remaining worktrees.
 ```
 ❌ Cannot remove worktree while inside it.
 
-   Current directory: .aios/worktrees/{storyId}
+   Current directory: .aiox/worktrees/{storyId}
 
    Please navigate out first:
      cd {projectRoot}
@@ -377,7 +377,7 @@ If automatic removal fails:
 
 ```bash
 # Remove worktree
-git worktree remove .aios/worktrees/{storyId} --force
+git worktree remove .aiox/worktrees/{storyId} --force
 
 # Delete branch
 git branch -D auto-claude/{storyId}
@@ -400,7 +400,7 @@ git worktree prune
 
 ### Scripts
 
-- `.aios-core/infrastructure/scripts/worktree-manager.js`
+- `.aiox-core/infrastructure/scripts/worktree-manager.js`
 
 ### Git Commands Used
 

@@ -84,24 +84,24 @@ function getHomeDir() {
 }
 
 /**
- * Get global AIOS directory path
- * @returns {string} Path to ~/.aios/
+ * Get global AIOX directory path
+ * @returns {string} Path to ~/.aiox/
  */
-function getGlobalAiosDir() {
-  return path.join(getHomeDir(), '.aios');
+function getGlobalAioxDir() {
+  return path.join(getHomeDir(), '.aiox');
 }
 
 /**
  * Get global MCP directory path
- * @returns {string} Path to ~/.aios/mcp/
+ * @returns {string} Path to ~/.aiox/mcp/
  */
 function getGlobalMcpDir() {
-  return path.join(getGlobalAiosDir(), 'mcp');
+  return path.join(getGlobalAioxDir(), 'mcp');
 }
 
 /**
  * Get global MCP config file path
- * @returns {string} Path to ~/.aios/mcp/global-config.json
+ * @returns {string} Path to ~/.aiox/mcp/global-config.json
  */
 function getGlobalConfigPath() {
   return path.join(getGlobalMcpDir(), 'global-config.json');
@@ -109,7 +109,7 @@ function getGlobalConfigPath() {
 
 /**
  * Get global MCP servers directory path
- * @returns {string} Path to ~/.aios/mcp/servers/
+ * @returns {string} Path to ~/.aiox/mcp/servers/
  */
 function getServersDir() {
   return path.join(getGlobalMcpDir(), 'servers');
@@ -117,7 +117,7 @@ function getServersDir() {
 
 /**
  * Get global MCP cache directory path
- * @returns {string} Path to ~/.aios/mcp/cache/
+ * @returns {string} Path to ~/.aiox/mcp/cache/
  */
 function getCacheDir() {
   return path.join(getGlobalMcpDir(), 'cache');
@@ -125,10 +125,10 @@ function getCacheDir() {
 
 /**
  * Get global credentials directory path
- * @returns {string} Path to ~/.aios/credentials/
+ * @returns {string} Path to ~/.aiox/credentials/
  */
 function getCredentialsDir() {
-  return path.join(getGlobalAiosDir(), 'credentials');
+  return path.join(getGlobalAioxDir(), 'credentials');
 }
 
 /**
@@ -176,7 +176,7 @@ module.exports = {
   isLinux,
   isUnix,
   getHomeDir,
-  getGlobalAiosDir,
+  getGlobalAioxDir,
   getGlobalMcpDir,
   getGlobalConfigPath,
   getServersDir,

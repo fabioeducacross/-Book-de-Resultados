@@ -4,7 +4,7 @@
  * Verifies Gemini CLI installation, authentication, and configuration.
  * Detects available features including Preview features, Extensions, and Hooks.
  *
- * @module @synkra/aios-core/health-check/checks/services/gemini-cli
+ * @module aiox-core/health-check/checks/services/gemini-cli
  * @version 1.0.0
  * @story GEMINI-INT Story 1 - Gemini CLI Health Check & Detection
  */
@@ -92,7 +92,7 @@ class GeminiCliCheck extends BaseCheck {
       await fs.access(geminiDir);
       details.projectConfig = true;
 
-      // Check for rules.md (AIOS rules)
+      // Check for rules.md (AIOX rules)
       try {
         await fs.access(path.join(geminiDir, 'rules.md'));
         details.hasProjectRules = true;
@@ -120,13 +120,13 @@ class GeminiCliCheck extends BaseCheck {
         // No settings.json or invalid JSON
       }
 
-      // Check for AIOS agents
+      // Check for AIOX agents
       try {
-        const agentsDir = path.join(geminiDir, 'rules', 'AIOS', 'agents');
+        const agentsDir = path.join(geminiDir, 'rules', 'AIOX', 'agents');
         const agentFiles = await fs.readdir(agentsDir);
-        details.aiosAgents = agentFiles.filter((f) => f.endsWith('.md')).length;
+        details.aioxAgents = agentFiles.filter((f) => f.endsWith('.md')).length;
       } catch {
-        details.aiosAgents = 0;
+        details.aioxAgents = 0;
       }
     } catch {
       // No project config
@@ -193,8 +193,8 @@ class GeminiCliCheck extends BaseCheck {
       warnings.push('Project .gemini/rules.md not found');
     }
 
-    if (details.projectConfig && details.aiosAgents === 0) {
-      warnings.push('No AIOS agents installed for Gemini CLI');
+    if (details.projectConfig && details.aioxAgents === 0) {
+      warnings.push('No AIOX agents installed for Gemini CLI');
     }
 
     if (!details.features.previewFeatures) {
@@ -206,14 +206,14 @@ class GeminiCliCheck extends BaseCheck {
       return this.warning(`Gemini CLI needs attention: ${issues.join(', ')}`, {
         recommendation: issues.includes('Not authenticated')
           ? 'Run `gemini` to authenticate with your Google account'
-          : 'Run `npx aios-core install` and select Gemini CLI',
+          : 'Run `npx aiox-core install` and select Gemini CLI',
         details: { ...details, issues, warnings },
       });
     }
 
     if (warnings.length > 0) {
       return this.warning(`Gemini CLI configuration incomplete: ${warnings.join(', ')}`, {
-        recommendation: 'Run `npx aios-core install` and select Gemini CLI',
+        recommendation: 'Run `npx aiox-core install` and select Gemini CLI',
         details: { ...details, warnings },
       });
     }
@@ -228,7 +228,7 @@ class GeminiCliCheck extends BaseCheck {
     if (details.features.extensions.length > 0) {
       parts.push(`${details.features.extensions.length} extensions`);
     }
-    if (details.aiosAgents > 0) parts.push(`${details.aiosAgents} AIOS agents`);
+    if (details.aioxAgents > 0) parts.push(`${details.aioxAgents} AIOX agents`);
 
     return this.pass(`Gemini CLI configured (${parts.join(', ')})`, {
       details,

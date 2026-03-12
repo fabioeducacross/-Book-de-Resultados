@@ -1,7 +1,7 @@
 /**
  * Search Command - Main entry point for worker search
  *
- * Implements `aios workers search <query>` CLI command.
+ * Implements `aiox workers search <query>` CLI command.
  * Supports semantic search (OpenAI embeddings) and keyword fallback.
  *
  * @module cli/commands/workers/search
@@ -38,12 +38,12 @@ function createSearchCommand() {
     .option('-v, --verbose', 'Show verbose output')
     .addHelpText('after', `
 Examples:
-  $ aios workers search "json csv"
-  $ aios workers search "data transformation" --category=etl
-  $ aios workers search "validation" --tags=schema,json
-  $ aios workers search "api" --format=json --limit=5
-  $ aios workers search "transform" --semantic
-  $ aios workers search "convert" --keyword
+  $ aiox workers search "json csv"
+  $ aiox workers search "data transformation" --category=etl
+  $ aiox workers search "validation" --tags=schema,json
+  $ aiox workers search "api" --format=json --limit=5
+  $ aiox workers search "transform" --semantic
+  $ aiox workers search "convert" --keyword
 `)
     .action(executeSearch);
 

@@ -15,9 +15,9 @@ describe('ProjectStatusLoader', () => {
 
   beforeEach(async () => {
     // Use OS temp directory to ensure complete isolation from parent git repo
-    testRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'aios-test-'));
+    testRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'aiox-test-'));
     loader = new ProjectStatusLoader(testRoot);
-    cacheFile = path.join(testRoot, '.aios', 'project-status.yaml');
+    cacheFile = path.join(testRoot, '.aiox', 'project-status.yaml');
   });
 
   afterEach(async () => {
@@ -403,7 +403,7 @@ Test story
         lastUpdate: new Date().toISOString(),
         worktrees: {
           'STORY-42': {
-            path: '.aios/worktrees/STORY-42',
+            path: '.aiox/worktrees/STORY-42',
             branch: 'auto-claude/STORY-42',
             createdAt: '2026-01-28T10:00:00Z',
             lastActivity: '2026-01-28T12:30:00Z',
@@ -411,7 +411,7 @@ Test story
             status: 'active',
           },
           'STORY-43': {
-            path: '.aios/worktrees/STORY-43',
+            path: '.aiox/worktrees/STORY-43',
             branch: 'auto-claude/STORY-43',
             createdAt: '2026-01-27T10:00:00Z',
             lastActivity: '2026-01-27T12:30:00Z',
@@ -481,7 +481,7 @@ Test story
         await execa('git', ['commit', '-m', 'Initial commit'], { cwd: testRoot });
 
         // Create worktree manually
-        const worktreePath = path.join(testRoot, '.aios', 'worktrees', 'STORY-TEST');
+        const worktreePath = path.join(testRoot, '.aiox', 'worktrees', 'STORY-TEST');
         await execa('git', ['worktree', 'add', worktreePath, '-b', 'auto-claude/STORY-TEST'], {
           cwd: testRoot,
         });
@@ -523,7 +523,7 @@ Test story
         await execa('git', ['commit', '-m', 'Initial commit'], { cwd: testRoot });
 
         // Create worktree
-        const worktreePath = path.join(testRoot, '.aios', 'worktrees', 'STORY-GEN');
+        const worktreePath = path.join(testRoot, '.aiox', 'worktrees', 'STORY-GEN');
         await execa('git', ['worktree', 'add', worktreePath, '-b', 'auto-claude/STORY-GEN'], {
           cwd: testRoot,
         });

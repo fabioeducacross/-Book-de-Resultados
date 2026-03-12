@@ -72,22 +72,22 @@ async function executeAdd(server, options) {
       console.log('');
     }
 
-    console.log('Usage: aios mcp add <server-name>');
-    console.log('Example: aios mcp add context7');
+    console.log('Usage: aiox mcp add <server-name>');
+    console.log('Example: aiox mcp add context7');
     return;
   }
 
   // Check global config exists
   if (!globalConfigExists()) {
     console.error('❌ Global MCP config not found.');
-    console.log('Run "aios mcp setup" first to create global configuration.');
+    console.log('Run "aiox mcp setup" first to create global configuration.');
     process.exit(1);
   }
 
   // Server name required for most operations
   if (!server) {
     console.error('❌ Server name required.');
-    console.log('Usage: aios mcp add <server-name>');
+    console.log('Usage: aiox mcp add <server-name>');
     console.log('');
     console.log('Available templates:');
     for (const name of getAvailableTemplates()) {
@@ -95,8 +95,8 @@ async function executeAdd(server, options) {
     }
     console.log('');
     console.log('Or provide custom config:');
-    console.log('  aios mcp add myserver --type sse --url https://example.com/mcp');
-    console.log('  aios mcp add myserver --command npx --args "-y,@scope/mcp-server"');
+    console.log('  aiox mcp add myserver --type sse --url https://example.com/mcp');
+    console.log('  aiox mcp add myserver --command npx --args "-y,@scope/mcp-server"');
     process.exit(1);
   }
 
@@ -220,8 +220,8 @@ async function executeAdd(server, options) {
         console.log(`  - ${name}`);
       }
       console.log('\nOr provide custom config:');
-      console.log(`  aios mcp add ${server} --type sse --url <url>`);
-      console.log(`  aios mcp add ${server} --command npx --args "-y,@scope/server"`);
+      console.log(`  aiox mcp add ${server} --type sse --url <url>`);
+      console.log(`  aiox mcp add ${server} --command npx --args "-y,@scope/server"`);
     }
 
     process.exit(1);

@@ -23,7 +23,7 @@ const path = require('path');
 /**
  * Session state storage location
  */
-const SESSION_DIR = path.join(process.cwd(), '.aios-core', '.session');
+const SESSION_DIR = path.join(process.cwd(), '.aiox-core', '.session');
 const SESSION_FILE = path.join(SESSION_DIR, 'current-session.json');
 
 /**

@@ -140,7 +140,7 @@ acceptance-criteria:
 
 - **Tool:** code-analyzer
   - **Purpose:** Static code analysis and metrics
-  - **Source:** .aios-core/utils/code-analyzer.js
+  - **Source:** .aiox-core/utils/code-analyzer.js
 
 - **Tool:** file-system
   - **Purpose:** Recursive directory traversal
@@ -155,7 +155,7 @@ acceptance-criteria:
 - **Script:** analyze-codebase.js
   - **Purpose:** Codebase analysis and reporting
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/analyze-codebase.js
+  - **Location:** .aiox-core/scripts/analyze-codebase.js
 
 ---
 

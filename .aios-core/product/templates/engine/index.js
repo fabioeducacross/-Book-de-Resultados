@@ -1,6 +1,6 @@
 /**
  * Template Engine v2.0
- * Main entry point for the AIOS Template Engine
+ * Main entry point for the AIOX Template Engine
  *
  * @module TemplateEngine
  * @version 2.0.0
@@ -38,7 +38,7 @@ class TemplateEngine {
     this.baseDir = options.baseDir || process.cwd();
 
     this.templatesDir = options.templatesDir ||
-      path.join(this.baseDir, '.aios-core', 'product', 'templates');
+      path.join(this.baseDir, '.aiox-core', 'product', 'templates');
 
     this.schemasDir = options.schemasDir ||
       path.join(this.templatesDir, 'engine', 'schemas');

@@ -2,11 +2,11 @@
  * Migration Structure Analysis Module
  *
  * Detects v2.0 structure and generates migration plan
- * for v2.0 → v2.1 migration.
+ * for v2.0 → v4.0.4 migration.
  *
  * @module cli/commands/migrate/analyze
  * @version 1.0.0
- * @story 2.14 - Migration Script v2.0 → v2.1
+ * @story 2.14 - Migration Script v2.0 → v4.0.4
  */
 
 const fs = require('fs');
@@ -14,7 +14,7 @@ const path = require('path');
 const { getAllFiles } = require('./backup');
 
 /**
- * Module mapping configuration for v2.0 → v2.1 migration
+ * Module mapping configuration for v2.0 → v4.0.4 migration
  */
 const MODULE_MAPPING = {
   core: {
@@ -70,21 +70,21 @@ const MODULE_MAPPING = {
  * @returns {Promise<Object>} Detection result
  */
 async function detectV2Structure(projectRoot) {
-  const aiosCoreDir = path.join(projectRoot, '.aios-core');
+  const aioxCoreDir = path.join(projectRoot, '.aiox-core');
 
-  if (!fs.existsSync(aiosCoreDir)) {
+  if (!fs.existsSync(aioxCoreDir)) {
     return {
       isV2: false,
       isV21: false,
       version: null,
-      error: 'No .aios-core directory found',
+      error: 'No .aiox-core directory found',
     };
   }
 
-  // Check for v2.1 modular structure (core, development, product, infrastructure dirs)
+  // Check for v4.0.4 modular structure (core, development, product, infrastructure dirs)
   const v21Modules = ['core', 'development', 'product', 'infrastructure'];
   const hasV21Structure = v21Modules.every(module =>
-    fs.existsSync(path.join(aiosCoreDir, module)),
+    fs.existsSync(path.join(aioxCoreDir, module)),
   );
 
   if (hasV21Structure) {
@@ -92,14 +92,14 @@ async function detectV2Structure(projectRoot) {
       isV2: false,
       isV21: true,
       version: '2.1',
-      message: 'Project already has v2.1 modular structure',
+      message: 'Project already has v4.0.4 modular structure',
     };
   }
 
   // Check for v2.0 flat structure
   const v20Indicators = ['agents', 'tasks', 'registry', 'cli'];
   const hasV20Structure = v20Indicators.some(dir =>
-    fs.existsSync(path.join(aiosCoreDir, dir)),
+    fs.existsSync(path.join(aioxCoreDir, dir)),
   );
 
   if (hasV20Structure) {
@@ -115,13 +115,13 @@ async function detectV2Structure(projectRoot) {
     isV2: false,
     isV21: false,
     version: null,
-    error: 'Unable to detect AIOS version structure',
+    error: 'Unable to detect AIOX version structure',
   };
 }
 
 /**
  * Categorize file into target module
- * @param {string} relativePath - Relative path from .aios-core
+ * @param {string} relativePath - Relative path from .aiox-core
  * @returns {string|null} Module name or null
  */
 function categorizeFile(relativePath) {
@@ -151,7 +151,7 @@ function categorizeFile(relativePath) {
  */
 async function analyzeMigrationPlan(projectRoot, options = {}) {
   const { verbose: _verbose = false } = options;
-  const aiosCoreDir = path.join(projectRoot, '.aios-core');
+  const aioxCoreDir = path.join(projectRoot, '.aiox-core');
 
   // First detect version
   const versionInfo = await detectV2Structure(projectRoot);
@@ -164,7 +164,7 @@ async function analyzeMigrationPlan(projectRoot, options = {}) {
   }
 
   // Get all files
-  const allFiles = await getAllFiles(aiosCoreDir);
+  const allFiles = await getAllFiles(aioxCoreDir);
 
   // Build migration plan
   const plan = {
@@ -172,7 +172,7 @@ async function analyzeMigrationPlan(projectRoot, options = {}) {
     sourceVersion: '2.0',
     targetVersion: '2.1',
     projectRoot,
-    aiosCoreDir,
+    aioxCoreDir,
     modules: {
       core: { files: [], size: 0 },
       development: { files: [], size: 0 },
@@ -188,7 +188,7 @@ async function analyzeMigrationPlan(projectRoot, options = {}) {
 
   // Categorize each file
   for (const filePath of allFiles) {
-    const relativePath = path.relative(aiosCoreDir, filePath);
+    const relativePath = path.relative(aioxCoreDir, filePath);
     const stats = await fs.promises.stat(filePath);
     const module = categorizeFile(relativePath);
 
@@ -200,7 +200,7 @@ async function analyzeMigrationPlan(projectRoot, options = {}) {
 
     if (module && plan.modules[module]) {
       // Calculate target path
-      fileInfo.targetPath = path.join(aiosCoreDir, module, relativePath);
+      fileInfo.targetPath = path.join(aioxCoreDir, module, relativePath);
       plan.modules[module].files.push(fileInfo);
       plan.modules[module].size += stats.size;
     } else {
@@ -211,9 +211,9 @@ async function analyzeMigrationPlan(projectRoot, options = {}) {
     plan.totalSize += stats.size;
   }
 
-  // Check for potential conflicts (existing v2.1 directories)
+  // Check for potential conflicts (existing v4.0.4 directories)
   for (const moduleName of Object.keys(plan.modules)) {
-    const targetDir = path.join(aiosCoreDir, moduleName);
+    const targetDir = path.join(aioxCoreDir, moduleName);
     if (fs.existsSync(targetDir)) {
       plan.conflicts.push({
         type: 'existing_directory',

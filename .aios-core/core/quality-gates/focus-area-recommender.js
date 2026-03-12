@@ -130,8 +130,8 @@ class FocusAreaRecommender {
       },
       {
         pattern: /agent|workflow|task|orchestrat/i,
-        category: 'aios-core',
-        highlight: 'AIOS framework changes',
+        category: 'aiox-core',
+        highlight: 'AIOX framework changes',
         risk: 'high',
       },
       {
@@ -228,7 +228,7 @@ class FocusAreaRecommender {
     const secondary = [];
 
     // Lower priority categories
-    const secondaryCategories = ['ux', 'configuration', 'performance', 'aios-core'];
+    const secondaryCategories = ['ux', 'configuration', 'performance', 'aiox-core'];
 
     secondaryCategories.forEach((cat) => {
       if (fileAnalysis.categories[cat]?.length > 0) {
@@ -293,8 +293,8 @@ class FocusAreaRecommender {
         'Are expensive operations optimized?',
         'Is the memory footprint acceptable?',
       ],
-      'aios-core': [
-        'Does this follow AIOS framework patterns?',
+      'aiox-core': [
+        'Does this follow AIOX framework patterns?',
         'Is backward compatibility maintained?',
         'Are agent/task contracts preserved?',
         'Is the change properly documented?',

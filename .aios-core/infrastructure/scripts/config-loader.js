@@ -8,7 +8,7 @@
  *        const loader = new AgentConfigLoader(agentId);
  *        const config = await loader.load(coreConfig);
  * 
- * AIOS Config Loader with Lazy Loading
+ * AIOX Config Loader with Lazy Loading
  *
  * Intelligent configuration loader that only loads what each agent needs,
  * significantly reducing memory footprint and load times.
@@ -46,7 +46,7 @@ const agentRequirements = {
   analyst: ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'toolConfigurations'],
   'data-engineer': ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'toolConfigurations', 'pvMindContext', 'hybridOpsConfig'],
   devops: ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'toolConfigurations'],
-  'aios-master': ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'registry', 'expansionPacks', 'toolConfigurations'],
+  'aiox-master': ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'registry', 'expansionPacks', 'toolConfigurations'],
   'ux-expert': ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'toolConfigurations'],
   'db-sage': ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'toolConfigurations', 'pvMindContext', 'hybridOpsConfig'],
   security: ['frameworkDocsLocation', 'projectDocsLocation', 'devLoadAlwaysFiles', 'lazyLoading', 'toolConfigurations'],
@@ -89,7 +89,7 @@ function isCacheValid() {
  * Loads full config file (used for initial load or cache refresh)
  */
 async function loadFullConfig() {
-  const configPath = path.join('.aios-core', 'core-config.yaml');
+  const configPath = path.join('.aiox-core', 'core-config.yaml');
 
   const startTime = Date.now();
 

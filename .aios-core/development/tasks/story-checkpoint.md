@@ -188,7 +188,7 @@ action: save_session_state
 steps:
   1_save_state:
     description: "Persist workflow state"
-    location: ".aios/workflow-state/${story_id}-state.yaml"
+    location: ".aiox/workflow-state/${story_id}-state.yaml"
     content:
       workflow_id: development-cycle
       current_story: "${story_file}"
@@ -293,7 +293,7 @@ steps:
 
   2_save_final_state:
     description: "Save abort state"
-    location: ".aios/workflow-state/${story_id}-state.yaml"
+    location: ".aiox/workflow-state/${story_id}-state.yaml"
     status: aborted
 
   3_report:

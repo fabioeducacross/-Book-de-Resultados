@@ -212,7 +212,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -284,7 +284,7 @@ const {
   trackFile,
   trackTest,
   completeDecisionLogging
-} = require('./.aios-core/scripts/decision-recorder');
+} = require('./.aiox-core/scripts/decision-recorder');
 ```
 
 1. **Initialization** (On Yolo Mode Start)
@@ -478,12 +478,18 @@ const {
 ### Order of Execution
 
 1. Read (first or next) task
-2. Implement task and its subtasks
-3. Write tests
-4. Execute validations
-5. **Only if ALL pass**: Mark task checkbox [x]
-6. Update story File List (ensure all created/modified/deleted files listed)
-7. Repeat until all tasks complete
+2. **Code Intelligence Check (IDS G4)** — Before creating new files or functions:
+   - If code intelligence is available (`isCodeIntelAvailable()` from `.aiox-core/core/code-intel`):
+     - Call `checkBeforeWriting(fileName, description)` from `.aiox-core/core/code-intel/helpers/dev-helper`
+     - If result is not null, display as **"Code Intelligence Suggestion"** (non-blocking advisory)
+     - Log suggestion in decision-log if in YOLO mode
+   - If code intelligence is NOT available: skip silently (zero impact on workflow)
+3. Implement task and its subtasks
+4. Write tests
+5. Execute validations
+6. **Only if ALL pass**: Mark task checkbox [x]
+7. Update story File List (ensure all created/modified/deleted files listed)
+8. Repeat until all tasks complete
 
 ### Story File Updates (All Modes)
 
@@ -523,7 +529,7 @@ const {
 4. Full regression test suite passes
 5. File List is complete
 6. **Execute CodeRabbit Self-Healing Loop** (see below)
-7. Execute `.aios-core/product/checklists/story-dod-checklist.md`
+7. Execute `.aiox-core/product/checklists/story-dod-checklist.md`
 8. Set story status: "Ready for Review"
 9. HALT (do not proceed further)
 
@@ -553,7 +559,7 @@ Execute **AFTER** all tasks are complete but **BEFORE** running the DOD checklis
 │  WHILE iteration < max_iterations:                           │
 │    ┌────────────────────────────────────────────────────┐   │
 │    │ 1. Run CodeRabbit CLI                              │   │
-│    │    wsl bash -c 'cd /mnt/c/.../@synkra/aiox-core &&    │   │
+│    │    wsl bash -c 'cd /mnt/c/.../aiox-core &&    │   │
 │    │    ~/.local/bin/coderabbit --prompt-only           │   │
 │    │    -t uncommitted'                                  │   │
 │    │                                                     │   │
@@ -854,7 +860,7 @@ git checkout abc123def456 -- <file-path>
 **Output**:
 ```
 💬 Interactive Mode - Balanced Development
-📋 Story 3.15: Expansion Pack Auto Configuration
+📋 Story 3.15: Squad Auto Configuration
 
 📖 Task 1: Design configuration schema
 ❓ Decision Point - Schema Format
@@ -893,7 +899,7 @@ Found 5 technical decisions needed.
 
 ## Dependencies
 
-- `.aios-core/product/checklists/story-dod-checklist.md` - Definition of Done checklist
+- `.aiox-core/product/checklists/story-dod-checklist.md` - Definition of Done checklist
 
 ## Tools
 
@@ -908,3 +914,11 @@ Found 5 technical decisions needed.
 - **Decision Logs**: Persisted in `.ai/decision-log-{story-id}.md` for future reference and review
 - **Educational Value**: Interactive mode explanations help developers learn framework patterns
 - **Scope Drift Prevention**: Pre-flight mode eliminates mid-development ambiguity
+
+## Handoff
+next_agent: @qa
+next_command: *review {story-id}
+condition: Story status is Ready for Review
+alternatives:
+  - agent: @qa, command: *gate {story-id}, condition: Quick gate decision needed
+  - agent: @dev, command: *apply-qa-fixes, condition: Self-identified issues during dev

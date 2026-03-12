@@ -130,7 +130,7 @@ const overview = {
   version: manifest.version,
   author: manifest.author,
   license: manifest.license,
-  aiosMinVersion: manifest.aios?.minVersion || 'N/A',
+  aioxMinVersion: manifest.aiox?.minVersion || 'N/A',
   description: manifest.description
 };
 ```
@@ -214,7 +214,7 @@ Overview
   Version: {version}
   Author: {author}
   License: {license}
-  AIOX Min Version: {aiosMinVersion}
+  AIOX Min Version: {aioxMinVersion}
 
 Components
   Agents ({count})
@@ -288,8 +288,8 @@ post-conditions:
 ## Dependencies
 
 - **Scripts:**
-  - `.aios-core/development/scripts/squad/squad-loader.js`
-  - `.aios-core/development/scripts/squad/squad-analyzer.js`
+  - `.aiox-core/development/scripts/squad/squad-loader.js`
+  - `.aiox-core/development/scripts/squad/squad-analyzer.js`
 
 - **Tools:**
   - js-yaml (YAML parsing)

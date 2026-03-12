@@ -1,6 +1,6 @@
 /**
  * MCP Workflow Template
- * Synkra AIOS Framework
+ * Synkra AIOX Framework
  * Version: 1.0.0
  *
  * This template demonstrates how to create Code Mode workflows
@@ -35,7 +35,7 @@ const WORKFLOW_META = {
   name: '{{WORKFLOW_NAME:-example-workflow}}',
   version: '1.0.0',
   description: '{{WORKFLOW_DESCRIPTION:-Example MCP workflow template}}',
-  author: 'AIOS Framework',
+  author: 'AIOX Framework',
   mcps_required: ['fs', 'fetch'], // MCPs used by this workflow
   estimated_duration: '10-30 seconds',
   token_savings: '~98.7%',

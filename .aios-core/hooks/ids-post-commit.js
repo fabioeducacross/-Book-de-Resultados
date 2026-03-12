@@ -7,13 +7,32 @@
  * Runs asynchronously after each commit to update the entity registry
  * with changes from the committed files. Does NOT block the commit.
  *
- * Usage: node .aios-core/hooks/ids-post-commit.js
+ * Usage: node .aiox-core/hooks/ids-post-commit.js
  */
 
 const { execSync } = require('child_process');
 const path = require('path');
 
 const REPO_ROOT = path.resolve(__dirname, '../..');
+
+function isDocsOnlyPath(relativePath) {
+  const p = String(relativePath || '').replace(/\\/g, '/');
+  if (!p) return false;
+
+  if (p.startsWith('docs/')) return true;
+  if (p === 'README.md') return true;
+  if (p === 'CHANGELOG.md') return true;
+  if (p === 'CONTRIBUTING.md') return true;
+  if (p === 'CODE_OF_CONDUCT.md') return true;
+  if (p === 'AGENTS.md') return true;
+
+  return false;
+}
+
+function isDocsOnlyCommit(changes) {
+  if (!Array.isArray(changes) || changes.length === 0) return false;
+  return changes.every((c) => isDocsOnlyPath(c.relativePath));
+}
 
 function getChangedFilesFromLastCommit() {
   try {
@@ -52,7 +71,11 @@ function getChangedFilesFromLastCommit() {
       }
 
       if (!filePath) continue;
-      changes.push({ action, filePath: path.resolve(REPO_ROOT, filePath) });
+      changes.push({
+        action,
+        relativePath: filePath,
+        filePath: path.resolve(REPO_ROOT, filePath),
+      });
     }
 
     return changes;
@@ -67,8 +90,13 @@ async function main() {
 
   if (changes.length === 0) return;
 
+  if (process.env.AIOX_IDS_FORCE !== '1' && isDocsOnlyCommit(changes)) {
+    console.log('[IDS-Hook] Docs-only commit detected, skipping registry update.');
+    return;
+  }
+
   try {
-    const { RegistryUpdater } = require(path.resolve(REPO_ROOT, '.aios-core/core/ids/registry-updater.js'));
+    const { RegistryUpdater } = require(path.resolve(REPO_ROOT, '.aiox-core/core/ids/registry-updater.js'));
     const updater = new RegistryUpdater();
     const result = await updater.processChanges(changes);
 

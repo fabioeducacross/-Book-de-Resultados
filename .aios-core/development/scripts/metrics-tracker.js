@@ -8,7 +8,7 @@ const chalk = require('chalk');
 class MetricsTracker {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.metricsFile = path.join(this.rootPath, '.aios', 'improvement-metrics.json');
+    this.metricsFile = path.join(this.rootPath, '.aiox', 'improvement-metrics.json');
     this.maxEntries = options.maxEntries || 1000;
     
     // Metric categories

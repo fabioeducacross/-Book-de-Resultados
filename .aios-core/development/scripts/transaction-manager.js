@@ -1,5 +1,5 @@
 /**
- * Transaction Manager for AIOS-FULLSTACK
+ * Transaction Manager for AIOX-FULLSTACK
  * Manages component operations with rollback support
  * @module transaction-manager
  */
@@ -13,8 +13,8 @@ const ComponentMetadata = require('./component-metadata');
 class TransactionManager {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.transactionPath = path.join(this.rootPath, 'aios-core', 'transactions');
-    this.backupPath = path.join(this.rootPath, 'aios-core', 'backups');
+    this.transactionPath = path.join(this.rootPath, 'aiox-core', 'transactions');
+    this.backupPath = path.join(this.rootPath, 'aiox-core', 'backups');
     this.componentMetadata = new ComponentMetadata({ rootPath: this.rootPath });
     
     // Active transactions
@@ -486,7 +486,7 @@ class TransactionManager {
    */
   async rollbackManifestUpdate(operation, results) {
     try {
-      const manifestPath = path.join(this.rootPath, 'aios-core', 'team-manifest.yaml');
+      const manifestPath = path.join(this.rootPath, 'aiox-core', 'team-manifest.yaml');
       
       if (operation.previousState) {
         // Restore previous manifest state

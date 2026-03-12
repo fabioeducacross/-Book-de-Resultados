@@ -162,8 +162,8 @@ import { useStore } from '../../../stores/feature/store'
 
 - **Princípios derivados de:** `.claude/CLAUDE.md`
 - **Inspirado por:** GitHub Spec-Kit Constitution System
-- **Gates implementados em:** `.aios-core/development/tasks/`
-- **Checklists relacionados:** `.aios-core/product/checklists/`
+- **Gates implementados em:** `.aiox-core/development/tasks/`
+- **Checklists relacionados:** `.aiox-core/product/checklists/`
 
 ---
 

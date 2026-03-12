@@ -3,7 +3,7 @@
  * Replace with your actual test cases
  */
 
-import { loadAgent, executeCommand } from '@aios/testing';
+import { loadAgent, executeCommand } from '@aiox/testing';
 
 describe('example-agent', () => {
   let agent;

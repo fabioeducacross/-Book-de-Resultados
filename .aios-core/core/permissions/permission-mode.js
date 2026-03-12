@@ -68,7 +68,7 @@ class PermissionMode {
 
   constructor(projectRoot = process.cwd()) {
     this.projectRoot = projectRoot;
-    this.configPath = path.join(projectRoot, '.aios', 'config.yaml');
+    this.configPath = path.join(projectRoot, '.aiox', 'config.yaml');
     this.currentMode = 'ask'; // default
     this._loaded = false;
   }
@@ -257,9 +257,9 @@ class PermissionMode {
     config.permissions = config.permissions || {};
     config.permissions.mode = mode;
 
-    // Ensure .aios directory exists
-    const aiosDir = path.dirname(this.configPath);
-    await fs.mkdir(aiosDir, { recursive: true });
+    // Ensure .aiox directory exists
+    const aioxDir = path.dirname(this.configPath);
+    await fs.mkdir(aioxDir, { recursive: true });
 
     // Write config
     const configYaml = yaml.dump(config, { indent: 2 });

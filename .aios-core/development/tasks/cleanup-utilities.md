@@ -58,7 +58,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join(__dirname, '../../.aios-core/core-config.yaml');
+const configPath = path.join(__dirname, '../../.aiox-core/core-config.yaml');
 const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
 
 const devStoryLocation = config.devStoryLocation; // For accessing audit report
@@ -74,7 +74,7 @@ const qaLocation = config.qa?.qaLocation || 'docs/qa'; // qaLocation
 ```bash
 # Create timestamped backup of entire utils directory
 mkdir -p .backups
-cp -r .aios-core/utils ".backups/utils.backup-3.18-$(date +%Y%m%d-%H%M%S)"
+cp -r .aiox-core/utils ".backups/utils.backup-3.18-$(date +%Y%m%d-%H%M%S)"
 ```
 
 **1.2 Verify Audit Report**
@@ -98,13 +98,13 @@ For each deprecated utility, check for active references:
 **2.1 Automated Dependency Check**
 ```bash
 # Check for require() statements
-grep -r "require.*utility-name" .aios-core/agents .aios-core/tasks .aios-core/workflows Squads/
+grep -r "require.*utility-name" .aiox-core/agents .aiox-core/tasks .aiox-core/workflows Squads/
 
 # Check for string references (utility mentioned in docs/configs)
-grep -r "utility-name" .aios-core/agents/ .aios-core/tasks/ .aios-core/core-config.yaml
+grep -r "utility-name" .aiox-core/agents/ .aiox-core/tasks/ .aiox-core/core-config.yaml
 
 # Count total references
-count=$(grep -r "utility-name" .aios-core/ Squads/ 2>/dev/null | wc -l)
+count=$(grep -r "utility-name" .aiox-core/ Squads/ 2>/dev/null | wc -l)
 echo "References found: $count"
 ```
 
@@ -133,12 +133,12 @@ Document utilities that cannot be archived due to dependencies:
 
 **3.1 Create Archive Directory**
 ```bash
-mkdir -p .aios-core/utils-archive
+mkdir -p .aiox-core/utils-archive
 ```
 
 **3.2 Create Archive README**
 
-Create `.aios-core/utils-archive/ARCHIVE-README.md`:
+Create `.aiox-core/utils-archive/ARCHIVE-README.md`:
 
 ```markdown
 # Archived Utilities - Story 3.18
@@ -178,7 +178,7 @@ If you need to restore an archived utility:
 
 1. **Copy file back**:
    ```bash
-   cp .aios-core/utils-archive/utility-name.js .aios-core/scripts/
+   cp .aiox-core/utils-archive/utility-name.js .aiox-core/scripts/
    ```
 
 2. **Reinstall dependencies** (if needed):
@@ -193,7 +193,7 @@ If you need to restore an archived utility:
 
 4. **Test thoroughly**:
    ```bash
-   node .aios-core/scripts/test-utilities.js
+   node .aiox-core/scripts/test-utilities.js
    ```
 
 5. **Update Story 3.18**:
@@ -212,13 +212,13 @@ If cleanup breaks something:
 
 **Immediate Rollback**:
 ```bash
-rm -rf .aios-core/utils
-cp -r .backups/utils.backup-3.18-YYYYMMDD-HHMMSS .aios-core/utils
+rm -rf .aiox-core/utils
+cp -r .backups/utils.backup-3.18-YYYYMMDD-HHMMSS .aiox-core/utils
 ```
 
 **Selective Restoration**:
 ```bash
-cp .aios-core/utils-archive/specific-utility.js .aios-core/scripts/
+cp .aiox-core/utils-archive/specific-utility.js .aiox-core/scripts/
 ```
 
 ---
@@ -352,11 +352,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -367,7 +367,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -435,10 +435,10 @@ For each utility in the deprecated list with 0 dependencies:
 
 ```bash
 # Use git mv to preserve history
-git mv .aios-core/scripts/utility-name.js .aios-core/utils-archive/
+git mv .aiox-core/scripts/utility-name.js .aiox-core/utils-archive/
 
 # Or for multiple files:
-git mv .aios-core/scripts/{aios-validator-fixed.js,aios-validator-refactored.js} .aios-core/utils-archive/
+git mv .aiox-core/scripts/{aiox-validator-fixed.js,aiox-validator-refactored.js} .aiox-core/utils-archive/
 ```
 
 **4.2 Move Misplaced Files** (Category D)
@@ -448,7 +448,7 @@ git mv .aios-core/scripts/{aios-validator-fixed.js,aios-validator-refactored.js}
 mkdir -p tests/utils
 
 # Move test files to proper location
-git mv .aios-core/scripts/aios-validator.test.js tests/utils/
+git mv .aiox-core/scripts/aiox-validator.test.js tests/utils/
 ```
 
 **4.3 Update Archive README**
@@ -459,8 +459,8 @@ Add complete list of archived files to ARCHIVE-README.md:
 ## Archived Utilities
 
 ### Category A: Duplicate/Redundant (9 files)
-1. aios-validator-fixed.js - Duplicate of aios-validator.js
-2. aios-validator-refactored.js - Duplicate of aios-validator.js
+1. aiox-validator-fixed.js - Duplicate of aiox-validator.js
+2. aiox-validator-refactored.js - Duplicate of aiox-validator.js
 ...
 
 ### Category B: Incomplete Experiments (9 files)
@@ -479,14 +479,14 @@ Add complete list of archived files to ARCHIVE-README.md:
 
 **5.1 Update core-config.yaml**
 
-Update utility count in `.aios-core/core-config.yaml`:
+Update utility count in `.aiox-core/core-config.yaml`:
 
 ```yaml
 framework:
   entities:
     utils:
       count: 51  # Updated from 81
-      location: .aios-core/scripts/
+      location: .aiox-core/scripts/
 ```
 
 **5.2 Add Changelog Entry**
@@ -521,7 +521,7 @@ If any developer guides reference archived utilities, update them:
 Run framework validator to ensure no broken references:
 
 ```bash
-node .aios-core/scripts/aios-validator.js
+node .aiox-core/scripts/aiox-validator.js
 ```
 
 Expected: 0 errors related to missing utilities
@@ -545,9 +545,9 @@ Verify no broken references to archived utilities:
 
 ```bash
 # Check for require() statements pointing to archived utilities
-for util in $(ls .aios-core/utils-archive/*.js); do
+for util in $(ls .aiox-core/utils-archive/*.js); do
   name=$(basename $util .js)
-  refs=$(grep -r "require.*$name" .aios-core/agents .aios-core/tasks 2>/dev/null | wc -l)
+  refs=$(grep -r "require.*$name" .aiox-core/agents .aiox-core/tasks 2>/dev/null | wc -l)
   if [ $refs -gt 0 ]; then
     echo "⚠️ Found $refs references to archived utility: $name"
   fi
@@ -561,7 +561,7 @@ Expected: 0 references to archived utilities
 Re-run test-utilities.js to verify remaining utilities:
 
 ```bash
-node .aios-core/scripts/test-utilities.js
+node .aiox-core/scripts/test-utilities.js
 ```
 
 Expected: Only active utilities tested, no errors loading utilities
@@ -577,29 +577,29 @@ Document the exact rollback procedure in story completion notes:
 
 **Full Rollback**:
 ```bash
-rm -rf .aios-core/utils
-cp -r .backups/utils.backup-3.18-YYYYMMDD-HHMMSS .aios-core/utils
-git checkout .aios-core/core-config.yaml
+rm -rf .aiox-core/utils
+cp -r .backups/utils.backup-3.18-YYYYMMDD-HHMMSS .aiox-core/utils
+git checkout .aiox-core/core-config.yaml
 ```
 
 **Selective Restoration**:
 ```bash
-cp .aios-core/utils-archive/utility-name.js .aios-core/scripts/
+cp .aiox-core/utils-archive/utility-name.js .aiox-core/scripts/
 ```
 
 **Verification**:
 ```bash
-node .aios-core/scripts/aios-validator.js
+node .aiox-core/scripts/aiox-validator.js
 ```
 ```
 
 ## Output
 
 **Primary Deliverables**:
-1. `.aios-core/utils-archive/` - Archive directory with 30 deprecated utilities
-2. `.aios-core/utils-archive/ARCHIVE-README.md` - Archive documentation
+1. `.aiox-core/utils-archive/` - Archive directory with 30 deprecated utilities
+2. `.aiox-core/utils-archive/ARCHIVE-README.md` - Archive documentation
 3. `.backups/utils.backup-3.18-YYYYMMDD-HHMMSS/` - Timestamped backup
-4. Updated `.aios-core/core-config.yaml` - Corrected utility count
+4. Updated `.aiox-core/core-config.yaml` - Corrected utility count
 5. Updated story change_log - Cleanup completion entry
 
 **Expected Results**:
@@ -614,7 +614,7 @@ node .aios-core/scripts/aios-validator.js
 
 - ✅ All 30 deprecated utilities archived without deletion
 - ✅ Zero broken references (grep validation passes)
-- ✅ Framework validation (aios-validator.js) passes
+- ✅ Framework validation (aiox-validator.js) passes
 - ✅ All agents (@dev, @po, @qa) activate successfully
 - ✅ Backup created before changes
 - ✅ Archive README created with restoration instructions

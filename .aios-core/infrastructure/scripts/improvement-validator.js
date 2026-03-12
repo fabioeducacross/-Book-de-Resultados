@@ -35,7 +35,7 @@ class ImprovementValidator {
     // Improvement history for recursive detection
     this.improvementHistoryFile = path.join(
       this.rootPath,
-      '.aios',
+      '.aiox',
       'improvement-history.json',
     );
     
@@ -395,7 +395,7 @@ class ImprovementValidator {
    */
   getCurrentImprovementDepth() {
     // Check if we're running within an improvement context
-    const depth = process.env.AIOS_IMPROVEMENT_DEPTH || '0';
+    const depth = process.env.AIOX_IMPROVEMENT_DEPTH || '0';
     return parseInt(depth, 10);
   }
 

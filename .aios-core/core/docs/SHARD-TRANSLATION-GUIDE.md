@@ -44,7 +44,7 @@ Common Terms:
 # ... and many more
 ```
 
-**See full dictionary:** `.aios-core/tasks/shard-doc.md` (Section 3)
+**See full dictionary:** `.aiox-core/tasks/shard-doc.md` (Section 3)
 
 ### 3. Fallback System
 
@@ -55,7 +55,7 @@ If the Agent needs architecture files and finds Portuguese names:
 2. `technology-stack.md` (fallback)
 3. `pilha-tecnologica.md` (Portuguese fallback)
 
-**Configuration:** `.aios-core/core-config.yaml`
+**Configuration:** `.aiox-core/core-config.yaml`
 
 ```yaml
 devLoadAlwaysFiles:
@@ -103,10 +103,10 @@ After sharding, validate that all filenames are correct:
 
 ```bash
 # Check for issues
-node .aios-core/scripts/validate-filenames.js
+node .aiox-core/scripts/validate-filenames.js
 
 # Auto-fix issues (renames files)
-node .aios-core/scripts/validate-filenames.js --fix
+node .aiox-core/scripts/validate-filenames.js --fix
 ```
 
 **What the validator checks:**
@@ -123,10 +123,10 @@ If you have an existing project with Portuguese filenames:
 cp -r docs docs.backup-portuguese
 
 # 2. Validate to see issues
-node .aios-core/scripts/validate-filenames.js
+node .aiox-core/scripts/validate-filenames.js
 
 # 3. Auto-fix (renames files)
-node .aios-core/scripts/validate-filenames.js --fix
+node .aiox-core/scripts/validate-filenames.js --fix
 
 # 4. Or re-shard from original
 *shard docs/prd.md docs/prd
@@ -152,7 +152,7 @@ node .aios-core/scripts/validate-filenames.js --fix
 
 ### For Project-Specific Terms
 
-Edit `.aios-core/tasks/shard-doc.md`, Section 3:
+Edit `.aiox-core/tasks/shard-doc.md`, Section 3:
 
 ```yaml
 # Add your custom translations
@@ -174,8 +174,8 @@ The system can be extended to support other languages by:
 ### Problem: Files still have Portuguese names
 
 **Solution:**
-1. Check you're using the updated `.aios-core/tasks/shard-doc.md`
-2. Run validator to confirm: `node .aios-core/scripts/validate-filenames.js`
+1. Check you're using the updated `.aiox-core/tasks/shard-doc.md`
+2. Run validator to confirm: `node .aiox-core/scripts/validate-filenames.js`
 3. Use `--fix` flag to auto-correct
 
 ### Problem: core-config references missing files
@@ -187,7 +187,7 @@ The fallback system handles this automatically. Agent will try:
 3. Portuguese equivalents
 
 **Manual fix:**
-Edit `.aios-core/core-config.yaml` to add more fallbacks.
+Edit `.aiox-core/core-config.yaml` to add more fallbacks.
 
 ### Problem: Some terms aren't translating
 
@@ -205,7 +205,7 @@ novo-termo: new-term
 If a term is intentionally Portuguese (e.g., company name), add exception to validator:
 
 ```javascript
-// .aios-core/scripts/validate-filenames.js
+// .aiox-core/scripts/validate-filenames.js
 const ALLOWED_EXCEPTIONS = ['your-term'];
 ```
 
@@ -230,7 +230,7 @@ const ALLOWED_EXCEPTIONS = ['your-term'];
 ### Files Modified by This Feature
 
 ```
-.aios-core/
+.aiox-core/
 ├── tasks/
 │   ├── shard-doc.md          # Translation logic + dictionary
 │   └── create-next-story.md  # Fallback file loading
@@ -243,7 +243,7 @@ const ALLOWED_EXCEPTIONS = ['your-term'];
 
 **Enable/Disable Markdown Exploder:**
 ```yaml
-# .aios-core/core-config.yaml
+# .aiox-core/core-config.yaml
 markdownExploder: true  # Uses md-tree CLI (faster)
 markdownExploder: false # Uses manual method (has translation)
 ```
@@ -261,7 +261,7 @@ ls docs/prd/
 ls docs/architecture/
 
 # Count Portuguese files
-node .aios-core/scripts/validate-filenames.js
+node .aiox-core/scripts/validate-filenames.js
 ```
 
 #### Step 2: Backup
@@ -277,13 +277,13 @@ cp -r docs docs.backup-$(date +%Y%m%d)
 *shard docs/architecture.md docs/architecture
 
 # Option B: Auto-fix existing files
-node .aios-core/scripts/validate-filenames.js --fix
+node .aiox-core/scripts/validate-filenames.js --fix
 ```
 
 #### Step 4: Verify
 ```bash
 # Confirm all files are English
-node .aios-core/scripts/validate-filenames.js
+node .aiox-core/scripts/validate-filenames.js
 
 # Check stories can find files
 *create-story  # Test story creation
@@ -313,15 +313,15 @@ A: Currently, translation works with manual shard method only. We're working on 
 A: No, the fallback system ensures compatibility with both naming conventions.
 
 **Q: How do I add more translations?**
-A: Edit `.aios-core/tasks/shard-doc.md`, Section 3, and add to the YAML dictionary.
+A: Edit `.aiox-core/tasks/shard-doc.md`, Section 3, and add to the YAML dictionary.
 
 ## Support
 
 If you encounter issues:
 
 1. Check this guide first
-2. Run the validator: `node .aios-core/scripts/validate-filenames.js`
-3. Review `.aios-core/tasks/shard-doc.md` for translation rules
+2. Run the validator: `node .aiox-core/scripts/validate-filenames.js`
+3. Review `.aiox-core/tasks/shard-doc.md` for translation rules
 4. Open an issue with:
    - Your PRD heading
    - Expected filename

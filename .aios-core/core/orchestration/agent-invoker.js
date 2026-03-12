@@ -110,8 +110,8 @@ class AgentInvoker extends EventEmitter {
     this.executor = options.executor || null;
 
     // Paths
-    this.agentsDir = path.join(this.projectRoot, '.aios-core', 'development', 'agents');
-    this.tasksDir = path.join(this.projectRoot, '.aios-core', 'development', 'tasks');
+    this.agentsDir = path.join(this.projectRoot, '.aiox-core', 'development', 'agents');
+    this.tasksDir = path.join(this.projectRoot, '.aiox-core', 'development', 'tasks');
 
     // Audit log (AC7)
     this.invocations = [];

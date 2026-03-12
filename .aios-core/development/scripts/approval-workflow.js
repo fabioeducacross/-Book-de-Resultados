@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 
 /**
- * Approval workflow for AIOS-FULLSTACK framework
+ * Approval workflow for AIOX-FULLSTACK framework
  * Manages approval process for high-impact modifications
  */
 class ApprovalWorkflow {
@@ -481,7 +481,7 @@ class ApprovalWorkflow {
 
     // Write to audit log file
     try {
-      const logDir = path.join(this.rootPath, '.aios', 'audit');
+      const logDir = path.join(this.rootPath, '.aiox', 'audit');
       await fs.mkdir(logDir, { recursive: true });
       
       const logFile = path.join(logDir, 'approval_log.jsonl');

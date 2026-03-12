@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS V3 Schema Validator
+ * AIOX V3 Schema Validator
  *
  * Validates agent and task files against V3 schemas.
  * Supports both V2 (legacy) and V3 formats.
@@ -347,7 +347,7 @@ async function main() {
 
   if (args.length === 0 || args.includes('--help')) {
     console.log(`
-AIOS V3 Schema Validator
+AIOX V3 Schema Validator
 
 Usage:
   node validate-v3-schema.js <file>           Validate single file

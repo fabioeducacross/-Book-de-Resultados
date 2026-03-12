@@ -37,8 +37,8 @@ Migrates legacy squad formats to AIOX 2.1 standard.
 # Migrate with detailed output
 *migrate-squad ./squads/my-squad --verbose
 
-# Migrate expansion pack
-*migrate-squad ./expansion-packs/my-pack --verbose
+# Migrate squad
+*migrate-squad ./squads/my-pack --verbose
 ```
 
 ## Parameters
@@ -57,8 +57,8 @@ The migrator detects the following legacy patterns:
 |---------|-----------|------------------|
 | `config.yaml` | Legacy manifest name | Rename to `squad.yaml` |
 | Flat structure | No `tasks/`, `agents/` dirs | Create directory structure |
-| Missing `aios.type` | Field not present | Add `aios.type: squad` |
-| Missing `aios.minVersion` | Field not present | Add `aios.minVersion: 2.1.0` |
+| Missing `aiox.type` | Field not present | Add `aiox.type: squad` |
+| Missing `aiox.minVersion` | Field not present | Add `aiox.minVersion: 2.1.0` |
 | Missing `name` | Field not present | Infer from directory name |
 | Missing `version` | Field not present | Add `version: 1.0.0` |
 
@@ -112,16 +112,16 @@ ISSUES FOUND:
 ───────────────────────────────────────────────────────────
   ⚠️ [WARNING] Uses deprecated config.yaml manifest
   ⚠️ [WARNING] Missing task-first directories: tasks, agents
-  ❌ [ERROR] Missing required field: aios.type
-  ❌ [ERROR] Missing required field: aios.minVersion
+  ❌ [ERROR] Missing required field: aiox.type
+  ❌ [ERROR] Missing required field: aiox.minVersion
 
 ───────────────────────────────────────────────────────────
 PLANNED ACTIONS:
 ───────────────────────────────────────────────────────────
   1. Rename config.yaml → squad.yaml
   2. Create directories: tasks, agents
-  3. Add field: aios.type = "squad"
-  4. Add field: aios.minVersion = "2.1.0"
+  3. Add field: aiox.type = "squad"
+  4. Add field: aiox.minVersion = "2.1.0"
 
 ═══════════════════════════════════════════════════════════
 ```
@@ -139,8 +139,8 @@ MIGRATION RESULT:
   Executed Actions:
     ✅ Rename config.yaml → squad.yaml [success]
     ✅ Create directories: tasks, agents [success]
-    ✅ Add field: aios.type = "squad" [success]
-    ✅ Add field: aios.minVersion = "2.1.0" [success]
+    ✅ Add field: aiox.type = "squad" [success]
+    ✅ Add field: aiox.minVersion = "2.1.0" [success]
 
   Post-Migration Validation:
     Valid: Yes
@@ -160,8 +160,8 @@ MIGRATION RESULT:
   Executed Actions:
     🔍 Rename config.yaml → squad.yaml [dry-run]
     🔍 Create directories: tasks, agents [dry-run]
-    🔍 Add field: aios.type = "squad" [dry-run]
-    🔍 Add field: aios.minVersion = "2.1.0" [dry-run]
+    🔍 Add field: aiox.type = "squad" [dry-run]
+    🔍 Add field: aiox.minVersion = "2.1.0" [dry-run]
 
 ═══════════════════════════════════════════════════════════
 ```
@@ -199,8 +199,8 @@ ls ./squads/my-squad/
 ## Implementation
 
 ```javascript
-const { SquadMigrator } = require('./.aios-core/development/scripts/squad');
-const { SquadValidator } = require('./.aios-core/development/scripts/squad');
+const { SquadMigrator } = require('./.aiox-core/development/scripts/squad');
+const { SquadValidator } = require('./.aiox-core/development/scripts/squad');
 
 async function migrateSquad(options) {
   const { squadPath, dryRun, verbose } = options;
@@ -238,6 +238,6 @@ async function migrateSquad(options) {
 
 - **Story:** SQS-7 (Squad Migration Tool)
 - **Dependencies:** squad-migrator.js, squad-validator.js
-- **Schema:** .aios-core/schemas/squad-schema.json
+- **Schema:** .aiox-core/schemas/squad-schema.json
 - **Agent:** @squad-creator (Craft)
 - **Similar Tasks:** *validate-squad, *create-squad

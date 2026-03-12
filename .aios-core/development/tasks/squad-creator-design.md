@@ -286,7 +286,7 @@ This will:
 ## Implementation
 
 ```javascript
-const { SquadDesigner } = require('./.aios-core/development/scripts/squad');
+const { SquadDesigner } = require('./.aiox-core/development/scripts/squad');
 
 async function designSquad(options) {
   const designer = new SquadDesigner();

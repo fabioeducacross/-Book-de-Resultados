@@ -139,7 +139,7 @@ acceptance-criteria:
 
 - **Tool:** query-validator
   - **Purpose:** Cypher query syntax validation
-  - **Source:** .aios-core/utils/db-query-validator.js
+  - **Source:** .aiox-core/utils/db-query-validator.js
 
 ---
 
@@ -150,7 +150,7 @@ acceptance-criteria:
 - **Script:** db-query.js
   - **Purpose:** Execute Neo4j queries with error handling
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/db-query.js
+  - **Location:** .aiox-core/scripts/db-query.js
 
 ---
 

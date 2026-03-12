@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# AIOS Framework Documentation Migration Script
+# AIOX Framework Documentation Migration Script
 #
-# Purpose: Migrate framework docs from aios-fullstack to aios-core (REPO 1)
+# Purpose: Migrate framework docs from aiox-fullstack to aiox-core (REPO 1)
 # Story: 6.1.2.6 - Framework Configuration System
 # Execution Timeline: Q2 2026 (Repository Migration Phase)
 #
@@ -11,7 +11,7 @@
 #
 # Options:
 #   --dry-run        Show what would be migrated without making changes
-#   --target-repo    Path to aios-core repository (default: ../aios-core)
+#   --target-repo    Path to aiox-core repository (default: ../aiox-core)
 #   --help           Show this help message
 #
 
@@ -26,7 +26,7 @@ NC='\033[0m' # No Color
 
 # Default values
 DRY_RUN=false
-TARGET_REPO="../aios-core"
+TARGET_REPO="../aiox-core"
 SOURCE_DOCS="docs/framework"
 
 # Parse command line arguments
@@ -55,7 +55,7 @@ done
 # Header
 echo ""
 echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║  AIOS Framework Documentation Migration Script             ║${NC}"
+echo -e "${BLUE}║  AIOX Framework Documentation Migration Script             ║${NC}"
 echo -e "${BLUE}║  Story 6.1.2.6: Framework Configuration System             ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
@@ -94,7 +94,7 @@ print_section "Step 1: Verify Source Directory"
 
 if [ ! -d "$SOURCE_DOCS" ]; then
   echo -e "${RED}✗ Error: Source directory not found: $SOURCE_DOCS${NC}"
-  echo "  Please run this script from the aios-fullstack root directory"
+  echo "  Please run this script from the aiox-fullstack root directory"
   exit 1
 fi
 
@@ -116,7 +116,7 @@ print_section "Step 2: Verify Target Repository"
 
 if [ ! -d "$TARGET_REPO" ]; then
   echo -e "${RED}✗ Error: Target repository not found: $TARGET_REPO${NC}"
-  echo "  Please clone aios-core first or specify correct path with --target-repo"
+  echo "  Please clone aiox-core first or specify correct path with --target-repo"
   exit 1
 fi
 
@@ -182,25 +182,25 @@ if [ "$DRY_RUN" = false ]; then
 # Framework Documentation Migration Notice
 
 **Migration Date:** $(date +%Y-%m-%d)
-**Source:** aios-fullstack/docs/framework/
-**Target:** aios-core/docs/framework/
+**Source:** aiox-fullstack/docs/framework/
+**Target:** aiox-core/docs/framework/
 **Story:** 6.1.2.6 - Framework Configuration System
 
 ## Migration Status
 
-✅ Framework documentation successfully migrated from aios-fullstack to aios-core (REPO 1)
+✅ Framework documentation successfully migrated from aiox-fullstack to aiox-core (REPO 1)
 
 ## Files Migrated
 
-- coding-standards.md - Official AIOS coding standards
+- coding-standards.md - Official AIOX coding standards
 - tech-stack.md - Technology stack and architecture decisions
 - source-tree.md - Project structure and file organization
 
 ## Backward Compatibility
 
 For backward compatibility during the migration period (Q2-Q3 2026):
-- aios-fullstack maintains copies in `docs/framework/` (will be removed Q3 2026)
-- aios-fullstack maintains legacy copies in `docs/architecture/` (will be removed Q3 2026)
+- aiox-fullstack maintains copies in `docs/framework/` (will be removed Q3 2026)
+- aiox-fullstack maintains legacy copies in `docs/architecture/` (will be removed Q3 2026)
 
 ## Post-Migration Actions
 
@@ -213,8 +213,8 @@ For backward compatibility during the migration period (Q2-Q3 2026):
 
 If migration issues occur:
 ```bash
-# Restore from aios-fullstack
-cd aios-fullstack
+# Restore from aiox-fullstack
+cd aiox-fullstack
 git log --all --full-history -- "docs/framework/*"
 ```
 
@@ -262,11 +262,11 @@ if [ "$DRY_RUN" = false ] && [ -d "$TARGET_REPO/.git" ]; then
   echo "  Suggested git commands:"
   echo "    cd $TARGET_REPO"
   echo "    git add docs/framework/"
-  echo "    git commit -m \"docs: migrate framework documentation from aios-fullstack\""
+  echo "    git commit -m \"docs: migrate framework documentation from aiox-fullstack\""
   echo ""
   echo "    Story: 6.1.2.6 - Framework Configuration System"
   echo "    Migrated: coding-standards.md, tech-stack.md, source-tree.md"
-  echo "    Source: aios-fullstack/docs/framework/"
+  echo "    Source: aiox-fullstack/docs/framework/"
   echo ""
   echo -e "${YELLOW}  Note: Review changes before committing${NC}"
 else
@@ -286,8 +286,8 @@ echo "  Next Steps:"
 echo "    1. Review migrated files in $TARGET_DOCS"
 echo "    2. Test agent activations with new paths"
 echo "    3. Update agent config files (agent-config-requirements.yaml)"
-echo "    4. Commit changes to aios-core repository"
-echo "    5. Update aios-fullstack deprecation warnings (Q3 2026)"
+echo "    4. Commit changes to aiox-core repository"
+echo "    5. Update aiox-fullstack deprecation warnings (Q3 2026)"
 echo ""
 
 if [ "$DRY_RUN" = true ]; then

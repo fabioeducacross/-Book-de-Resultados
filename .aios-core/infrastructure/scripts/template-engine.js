@@ -1,5 +1,5 @@
 /**
- * Template Engine for Synkra AIOS
+ * Template Engine for Synkra AIOX
  * Handles variable substitution, conditionals, and loops for component generation
  * @module template-engine
  */

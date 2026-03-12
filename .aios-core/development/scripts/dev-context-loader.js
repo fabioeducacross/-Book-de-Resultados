@@ -12,12 +12,12 @@ const fs = require('fs').promises;
 const path = require('path');
 const yaml = require('js-yaml');
 
-const CACHE_DIR = path.join(process.cwd(), '.aios', 'cache');
+const CACHE_DIR = path.join(process.cwd(), '.aiox', 'cache');
 const CACHE_TTL = 3600 * 1000; // 1 hour
 
 class DevContextLoader {
   constructor() {
-    this.coreConfigPath = path.join(process.cwd(), '.aios-core', 'core-config.yaml');
+    this.coreConfigPath = path.join(process.cwd(), '.aiox-core', 'core-config.yaml');
     this.summaryCache = new Map();
     this.cacheDir = CACHE_DIR; // Make configurable for testing
   }

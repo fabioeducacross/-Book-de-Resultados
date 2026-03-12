@@ -4,7 +4,7 @@
  * Central registry for all health checks. Manages check registration,
  * lookup, and categorization by domain and severity.
  *
- * @module @synkra/aios-core/health-check/check-registry
+ * @module aiox-core/health-check/check-registry
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -241,7 +241,7 @@ class CheckRegistry {
     } catch (error) {
       // Built-in checks may not be available yet during initial setup
       // This is expected and will be populated as checks are implemented
-      if (process.env.AIOS_DEBUG) {
+      if (process.env.AIOX_DEBUG) {
         console.warn('Some built-in checks could not be loaded:', error.message);
       }
     }

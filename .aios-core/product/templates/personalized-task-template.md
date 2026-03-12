@@ -133,14 +133,14 @@ Eu recomendo #3 pra começar - facilita construir rápido e depois separar se ne
 ## Dependencies
 
 **Tasks:**
-- `.aios-core/tasks/{dependency1}.md`
-- `.aios-core/tasks/{dependency2}.md`
+- `.aiox-core/tasks/{dependency1}.md`
+- `.aiox-core/tasks/{dependency2}.md`
 
 **Templates:**
-- `.aios-core/product/templates/{template1}.yaml`
+- `.aiox-core/product/templates/{template1}.yaml`
 
 **Checklists:**
-- `.aios-core/product/checklists/{checklist1}.md`
+- `.aiox-core/product/checklists/{checklist1}.md`
 
 **Tools:**
 - `{tool1}` - {Usage description}
@@ -152,7 +152,7 @@ Eu recomendo #3 pra começar - facilita construir rápido e depois separar se ne
 
 ### Standard Task Report
 
-All task outputs MUST use this structure (see `.aios-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md`):
+All task outputs MUST use this structure (see `.aiox-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md`):
 
 **FIXED SECTIONS (never change order):**
 1. Header (lines 1-7: Agent, Task, Timestamps, Duration, Tokens)
@@ -335,7 +335,7 @@ params:
 - **CRITICAL:** Always follow output template structure (familiaridade = produtividade)
 - **CRITICAL:** Track duration and tokens for all task executions
 - **CRITICAL:** Use agent's vocabulary and tone consistently
-- See `.aios-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md` for complete guidelines
+- See `.aiox-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md` for complete guidelines
 
 ---
 

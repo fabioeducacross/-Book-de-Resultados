@@ -8,7 +8,7 @@ Run a self-healing health check on the IDS entity registry to detect and auto-fi
 
 ## Pre-Conditions
 
-- Entity registry exists at `.aios-core/data/entity-registry.yaml`
+- Entity registry exists at `.aiox-core/data/entity-registry.yaml`
 - IDS modules are installed (IDS-1, IDS-3, IDS-4a)
 
 ---
@@ -18,7 +18,7 @@ Run a self-healing health check on the IDS entity registry to detect and auto-fi
 ### Step 1: Run Health Check
 
 ```bash
-node bin/aios-ids.js ids:health
+node bin/aiox-ids.js ids:health
 ```
 
 Review the output for any detected issues.
@@ -28,20 +28,20 @@ Review the output for any detected issues.
 If auto-fixable issues are detected, run with `--fix`:
 
 ```bash
-node bin/aios-ids.js ids:health --fix
+node bin/aiox-ids.js ids:health --fix
 ```
 
 This will:
 - Create a backup of the registry before changes
 - Auto-fix issues: checksum mismatches, orphaned references, missing keywords, stale timestamps
 - Skip non-auto-healable issues (missing files) and emit warnings
-- Log all healing actions to `.aios-core/data/registry-healing-log.jsonl`
+- Log all healing actions to `.aiox-core/data/registry-healing-log.jsonl`
 
 ### Step 3: JSON Output (Machine-Readable)
 
 ```bash
-node bin/aios-ids.js ids:health --json
-node bin/aios-ids.js ids:health --fix --json
+node bin/aiox-ids.js ids:health --json
+node bin/aiox-ids.js ids:health --fix --json
 ```
 
 ### Step 4: Review Warnings
@@ -73,7 +73,7 @@ Review the warnings and take manual action as suggested.
 ## Programmatic Usage
 
 ```javascript
-const { RegistryHealer } = require('.aios-core/core/ids/registry-healer');
+const { RegistryHealer } = require('.aiox-core/core/ids/registry-healer');
 
 const healer = new RegistryHealer();
 const healthResult = healer.runHealthCheck();

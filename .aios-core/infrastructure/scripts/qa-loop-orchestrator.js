@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS QA Loop Orchestrator
+ * AIOX QA Loop Orchestrator
  *
  * Story: 6.5 - QA Loop Orchestrator
  * Epic: Epic 6 - QA Evolution
@@ -41,11 +41,11 @@ const CONFIG = {
   statusDir: 'qa',
 
   // AC7: Dashboard integration paths
-  dashboardStatusPath: '.aios/dashboard/status.json',
-  legacyStatusPath: '.aios/status.json',
+  dashboardStatusPath: '.aiox/dashboard/status.json',
+  legacyStatusPath: '.aiox/status.json',
 
   // Workflow definition
-  workflowPath: '.aios-core/development/workflows/qa-loop.yaml',
+  workflowPath: '.aiox-core/development/workflows/qa-loop.yaml',
 
   // Timeouts (milliseconds)
   reviewTimeout: 1800000, // 30 minutes
@@ -57,7 +57,7 @@ const CONFIG = {
 
   // Session persistence (AC4 enhancement)
   abandonedThreshold: 3600000, // 1 hour - consider loop abandoned if no update
-  persistenceIndexPath: '.aios/qa-loops-index.json', // Track all active loops
+  persistenceIndexPath: '.aiox/qa-loops-index.json', // Track all active loops
 };
 
 // ═══════════════════════════════════════════════════════════════════════════════════
@@ -145,9 +145,9 @@ class QALoopOrchestrator {
   _loadMaxIterations() {
     // Try to load from project config
     const configPaths = [
-      path.join(this.rootPath, '.aios/config.yaml'),
-      path.join(this.rootPath, '.aios/config.yml'),
-      path.join(this.rootPath, 'aios.config.js'),
+      path.join(this.rootPath, '.aiox/config.yaml'),
+      path.join(this.rootPath, '.aiox/config.yml'),
+      path.join(this.rootPath, 'aiox.config.js'),
     ];
 
     for (const configPath of configPaths) {
@@ -1037,7 +1037,7 @@ function checkAbandonedLoops(options = {}) {
 
 function printHelp() {
   console.log(`
-📊 QA Loop Orchestrator - AIOS QA Evolution (Story 6.5)
+📊 QA Loop Orchestrator - AIOX QA Evolution (Story 6.5)
 
 Usage:
   node qa-loop-orchestrator.js <story-id> [command] [options]

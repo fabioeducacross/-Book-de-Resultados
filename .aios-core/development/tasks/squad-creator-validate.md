@@ -124,8 +124,8 @@ Result: VALID (with warnings)
 ## Implementation
 
 ```javascript
-const { SquadLoader } = require('./.aios-core/development/scripts/squad');
-const { SquadValidator } = require('./.aios-core/development/scripts/squad');
+const { SquadLoader } = require('./.aiox-core/development/scripts/squad');
+const { SquadValidator } = require('./.aiox-core/development/scripts/squad');
 
 async function validateSquad(options) {
   const { squadPath, name, strict, verbose } = options;
@@ -155,5 +155,5 @@ async function validateSquad(options) {
 - **Story:** SQS-3 (Squad Validator + JSON Schema)
 - **Story:** SQS-10 (Project Config Reference) - Config path resolution
 - **Dependencies:** squad-loader.js, squad-validator.js
-- **Schema:** .aios-core/schemas/squad-schema.json
+- **Schema:** .aiox-core/schemas/squad-schema.json
 - **Agent:** @squad-creator (Craft)

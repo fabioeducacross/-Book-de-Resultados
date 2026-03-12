@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/SynkraAI/aiox-core/schemas/squad-schema.json",
-  "title": "AIOS Squad Manifest",
+  "title": "AIOX Squad Manifest",
   "description": "Schema for squad.yaml manifest files (Task-First Architecture)",
   "type": "object",
   "required": ["name", "version"],
@@ -43,13 +43,13 @@
       "pattern": "^[a-z0-9-]+$",
       "description": "Prefix for slash commands (e.g., 'etl' for /etl-*)"
     },
-    "aios": {
+    "aiox": {
       "type": "object",
       "properties": {
         "minVersion": {
           "type": "string",
           "pattern": "^\\d+\\.\\d+\\.\\d+$",
-          "description": "Minimum AIOS version required"
+          "description": "Minimum AIOX version required"
         },
         "type": {
           "type": "string",
@@ -66,9 +66,9 @@
           "type": "string",
           "description": "Node.js version requirement (e.g., >=18.0.0)"
         },
-        "aios": {
+        "aiox": {
           "type": "string",
-          "description": "AIOS version requirement (e.g., >=2.0.0)"
+          "description": "AIOX version requirement (e.g., >=2.0.0)"
         }
       }
     },
@@ -128,7 +128,7 @@
     },
     "config": {
       "type": "object",
-      "description": "Configuration inheritance from aios-core",
+      "description": "Configuration inheritance from aiox-core",
       "properties": {
         "extends": {
           "type": "string",

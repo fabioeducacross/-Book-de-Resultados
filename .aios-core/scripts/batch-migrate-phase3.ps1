@@ -1,14 +1,14 @@
 # Phase 3 - Batch migrate remaining utility & support tasks
 
 # Get all remaining non-compliant tasks
-$allTasks = Get-ChildItem .aios-core/tasks/*.md | Where-Object { $_.Name -notlike '*v1-backup*' } | ForEach-Object { $_.Name }
+$allTasks = Get-ChildItem .aiox-core/tasks/*.md | Where-Object { $_.Name -notlike '*v1-backup*' } | ForEach-Object { $_.Name }
 
 Write-Host "Finding non-compliant tasks..." -ForegroundColor Cyan
 
 $nonCompliantTasks = @()
 
 foreach ($task in $allTasks) {
-  $result = node .aios-core/scripts/validate-task-v2.js ".aios-core/tasks/$task" 2>&1
+  $result = node .aiox-core/scripts/validate-task-v2.js ".aiox-core/tasks/$task" 2>&1
   if ($LASTEXITCODE -ne 0) {
     $nonCompliantTasks += $task
   }
@@ -23,7 +23,7 @@ $startTime = Get-Date
 
 foreach ($task in $nonCompliantTasks) {
   Write-Host "Migrating: $task" -ForegroundColor Yellow
-  node .aios-core/scripts/migrate-task-to-v2.js ".aios-core/tasks/$task" 2>&1 | Out-Null
+  node .aiox-core/scripts/migrate-task-to-v2.js ".aiox-core/tasks/$task" 2>&1 | Out-Null
   
   if ($LASTEXITCODE -eq 0 -or $LASTEXITCODE -eq 1) {
     $successCount++

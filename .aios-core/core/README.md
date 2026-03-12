@@ -16,10 +16,10 @@ The core module is automatically available within the Synkra AIOX framework:
 
 ```javascript
 // CommonJS
-const core = require('./.aios-core/core');
+const core = require('./.aiox-core/core');
 
 // ES Modules
-import { ConfigCache, ElicitationEngine } from './.aios-core/core/index.esm.js';
+import { ConfigCache, ElicitationEngine } from './.aiox-core/core/index.esm.js';
 ```
 
 ## Module Structure
@@ -30,7 +30,7 @@ core/
 │   ├── config-cache.js     # Global configuration cache with TTL support
 │   └── config-loader.js    # Lazy-loading configuration system
 ├── data/                   # Framework knowledge and patterns
-│   ├── aios-kb.md          # AIOX knowledge base
+│   ├── aiox-kb.md          # AIOX knowledge base
 │   ├── workflow-patterns.yaml
 │   └── agent-config-requirements.yaml
 ├── docs/                   # Internal documentation
@@ -63,7 +63,7 @@ core/
 Global configuration cache with TTL support.
 
 ```javascript
-const { globalConfigCache } = require('./.aios-core/core');
+const { globalConfigCache } = require('./.aiox-core/core');
 
 // Store configuration
 globalConfigCache.set('my-key', { value: 42 }, 300000); // 5 min TTL
@@ -76,7 +76,7 @@ const config = globalConfigCache.get('my-key');
 Load configuration for a specific agent with lazy loading.
 
 ```javascript
-const { loadAgentConfig } = require('./.aios-core/core');
+const { loadAgentConfig } = require('./.aiox-core/core');
 const agentConfig = await loadAgentConfig('dev');
 ```
 
@@ -84,7 +84,7 @@ const agentConfig = await loadAgentConfig('dev');
 Load specific configuration sections.
 
 ```javascript
-const { loadConfigSections } = require('./.aios-core/core');
+const { loadConfigSections } = require('./.aiox-core/core');
 const config = await loadConfigSections(['persona', 'commands']);
 ```
 
@@ -94,7 +94,7 @@ const config = await loadConfigSections(['persona', 'commands']);
 Detects current execution context (IDE, terminal, environment).
 
 ```javascript
-const { ContextDetector } = require('./.aios-core/core');
+const { ContextDetector } = require('./.aiox-core/core');
 const detector = new ContextDetector();
 const context = detector.detectContext();
 ```
@@ -103,7 +103,7 @@ const context = detector.detectContext();
 Manages session context loading and updates.
 
 ```javascript
-const { SessionContextLoader } = require('./.aios-core/core');
+const { SessionContextLoader } = require('./.aiox-core/core');
 const loader = new SessionContextLoader();
 const context = await loader.loadContext(sessionId);
 ```
@@ -114,7 +114,7 @@ const context = await loader.loadContext(sessionId);
 Core engine for interactive prompting workflows.
 
 ```javascript
-const { ElicitationEngine } = require('./.aios-core/core');
+const { ElicitationEngine } = require('./.aiox-core/core');
 const engine = new ElicitationEngine();
 
 const session = await engine.startSession('create-agent');
@@ -125,7 +125,7 @@ const response = await engine.processStep(session.id, userInput);
 Manages elicitation session state.
 
 ```javascript
-const { ElicitationSessionManager } = require('./.aios-core/core');
+const { ElicitationSessionManager } = require('./.aiox-core/core');
 const manager = new ElicitationSessionManager();
 ```
 
@@ -141,7 +141,7 @@ Pre-defined elicitation workflows:
 Validates YAML content with type-specific rules.
 
 ```javascript
-const { YAMLValidator, validateYAML } = require('./.aios-core/core');
+const { YAMLValidator, validateYAML } = require('./.aiox-core/core');
 
 // Quick validation
 const result = await validateYAML(yamlContent, 'agent');
@@ -155,7 +155,7 @@ const validation = await validator.validateFile('agent.yaml', 'agent');
 Formats agent output with personalization.
 
 ```javascript
-const { PersonalizedOutputFormatter } = require('./.aios-core/core');
+const { PersonalizedOutputFormatter } = require('./.aiox-core/core');
 const formatter = new PersonalizedOutputFormatter(agent, task, result);
 const output = formatter.format();
 ```

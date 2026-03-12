@@ -1,5 +1,5 @@
 /**
- * Component Generator for Synkra AIOS
+ * Component Generator for Synkra AIOX
  * Generates agents, tasks, and workflows using templates
  * @module component-generator
  */
@@ -20,11 +20,11 @@ const chalk = require('chalk');
 class ComponentGenerator {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.templatesPath = path.join(this.rootPath, 'aios-core', 'templates');
+    this.templatesPath = path.join(this.rootPath, 'aiox-core', 'templates');
     this.outputPaths = {
-      agent: path.join(this.rootPath, 'aios-core', 'agents'),
-      task: path.join(this.rootPath, 'aios-core', 'tasks'),
-      workflow: path.join(this.rootPath, 'aios-core', 'workflows'),
+      agent: path.join(this.rootPath, 'aiox-core', 'agents'),
+      task: path.join(this.rootPath, 'aiox-core', 'tasks'),
+      workflow: path.join(this.rootPath, 'aiox-core', 'workflows'),
     };
     
     this.templateEngine = new TemplateEngine();
@@ -411,7 +411,7 @@ class ComponentGenerator {
         }
         
         // Notes
-        variables.EACH_NOTES = ['Generated using Synkra AIOS template system'];
+        variables.EACH_NOTES = ['Generated using Synkra AIOX template system'];
         break;
         
       case 'workflow':
@@ -422,7 +422,7 @@ class ComponentGenerator {
         variables.WORKFLOW_TYPE = answers.workflowType;
         
         // Metadata
-        variables.AUTHOR = process.env.USER || 'Synkra AIOS';
+        variables.AUTHOR = process.env.USER || 'Synkra AIOX';
         variables.CREATED_DATE = new Date().toISOString();
         variables.LAST_MODIFIED = new Date().toISOString();
         variables.EACH_TAGS = ['generated', componentType];
@@ -546,7 +546,7 @@ class ComponentGenerator {
   async loadElicitationWorkflow(componentType) {
     const workflowPath = path.join(
       this.rootPath,
-      'aios-core',
+      'aiox-core',
       'elicitation',
       `${componentType}-elicitation.js`,
     );
@@ -631,7 +631,7 @@ class ComponentGenerator {
     // Check which tasks need to be created
     for (const command of variables.COMMANDS) {
       const taskId = this.commandToTaskId(command.COMMAND_NAME);
-      const taskPath = path.join(this.rootPath, 'aios-core', 'tasks', `${taskId}.md`);
+      const taskPath = path.join(this.rootPath, 'aiox-core', 'tasks', `${taskId}.md`);
       
       if (await fs.pathExists(taskPath)) {
         existingTasks.push(taskId);

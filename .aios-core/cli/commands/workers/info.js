@@ -1,7 +1,7 @@
 /**
  * Info Command - Show detailed worker information
  *
- * Implements `aios workers info <id>` CLI command.
+ * Implements `aiox workers info <id>` CLI command.
  * Displays complete worker metadata, usage examples, and related workers.
  *
  * @module cli/commands/workers/info
@@ -28,10 +28,10 @@ function createInfoCommand() {
     .option('-v, --verbose', 'Show verbose/debug output')
     .addHelpText('after', `
 Examples:
-  $ aios workers info json-csv-transformer
-  $ aios workers info architect-checklist --format=json
-  $ aios workers info create-story --format=yaml
-  $ aios workers info data-analyzer --verbose
+  $ aiox workers info json-csv-transformer
+  $ aiox workers info architect-checklist --format=json
+  $ aiox workers info create-story --format=yaml
+  $ aiox workers info data-analyzer --verbose
 
 Output Formats:
   pretty   Formatted text with sections and boxes (default)

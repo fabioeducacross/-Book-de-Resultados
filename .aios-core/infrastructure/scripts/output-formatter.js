@@ -48,7 +48,7 @@ class PersonalizedOutputFormatter {
         return;
       }
 
-      const agentPath = path.join(process.cwd(), '.aios-core', 'agents', `${this.agent.id}.md`);
+      const agentPath = path.join(process.cwd(), '.aiox-core', 'agents', `${this.agent.id}.md`);
       
       if (!fs.existsSync(agentPath)) {
         console.warn(`[OutputFormatter] Agent file not found: ${agentPath}`);

@@ -13,7 +13,7 @@ describe('WorktreeManager', () => {
 
   beforeEach(async () => {
     // Use OS temp directory to ensure complete isolation from source tree
-    testRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'aios-worktree-test-'));
+    testRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'aiox-worktree-test-'));
 
     // Initialize git repo for tests
     try {
@@ -52,7 +52,7 @@ describe('WorktreeManager', () => {
     it('should use default options when none provided', () => {
       const defaultManager = new WorktreeManager('/tmp/test');
       expect(defaultManager.maxWorktrees).toBe(10);
-      expect(defaultManager.worktreeDir).toBe('.aios/worktrees');
+      expect(defaultManager.worktreeDir).toBe('.aiox/worktrees');
       expect(defaultManager.branchPrefix).toBe('auto-claude/');
       expect(defaultManager.staleDays).toBe(30);
     });
@@ -74,7 +74,7 @@ describe('WorktreeManager', () => {
   describe('getWorktreePath', () => {
     it('should return correct path for story', () => {
       const wtPath = manager.getWorktreePath('STORY-42');
-      expect(wtPath).toBe(path.join(testRoot, '.aios/worktrees', 'STORY-42'));
+      expect(wtPath).toBe(path.join(testRoot, '.aiox/worktrees', 'STORY-42'));
     });
   });
 

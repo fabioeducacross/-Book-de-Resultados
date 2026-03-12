@@ -271,7 +271,7 @@ class Epic5Executor extends EpicExecutor {
     this._log('Escalating to human intervention');
 
     // Create escalation report
-    const reportPath = this._getPath('.aios', 'escalations', `${context.storyId}-${Date.now()}.md`);
+    const reportPath = this._getPath('.aiox', 'escalations', `${context.storyId}-${Date.now()}.md`);
 
     const report = `# Escalation Report
 

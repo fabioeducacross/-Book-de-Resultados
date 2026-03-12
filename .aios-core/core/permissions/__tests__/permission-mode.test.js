@@ -16,8 +16,8 @@ describe('PermissionMode', () => {
 
   beforeEach(async () => {
     // Create temp directory for tests
-    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'aios-test-'));
-    await fs.mkdir(path.join(tempDir, '.aios'), { recursive: true });
+    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'aiox-test-'));
+    await fs.mkdir(path.join(tempDir, '.aiox'), { recursive: true });
     mode = new PermissionMode(tempDir);
   });
 
@@ -39,7 +39,7 @@ describe('PermissionMode', () => {
 
     it('should load mode from config file', async () => {
       await fs.writeFile(
-        path.join(tempDir, '.aios', 'config.yaml'),
+        path.join(tempDir, '.aiox', 'config.yaml'),
         'permissions:\n  mode: auto\n',
       );
 
@@ -49,7 +49,7 @@ describe('PermissionMode', () => {
 
     it('should fallback to "ask" for invalid mode in config', async () => {
       await fs.writeFile(
-        path.join(tempDir, '.aios', 'config.yaml'),
+        path.join(tempDir, '.aiox', 'config.yaml'),
         'permissions:\n  mode: invalid_mode\n',
       );
 
@@ -66,7 +66,7 @@ describe('PermissionMode', () => {
       expect(mode.currentMode).toBe('auto');
 
       // Verify persisted
-      const configContent = await fs.readFile(path.join(tempDir, '.aios', 'config.yaml'), 'utf-8');
+      const configContent = await fs.readFile(path.join(tempDir, '.aiox', 'config.yaml'), 'utf-8');
       expect(configContent).toContain('mode: auto');
     });
 

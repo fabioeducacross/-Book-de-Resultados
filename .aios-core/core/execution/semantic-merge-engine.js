@@ -874,12 +874,12 @@ Provide ONLY the merged code in a code block. No explanations outside the code b
 
 /**
  * Custom rules loader with caching (following ConfigLoader pattern)
- * Loads project-specific merge rules from .aios/merge-rules.yaml
+ * Loads project-specific merge rules from .aiox/merge-rules.yaml
  */
 class CustomRulesLoader {
   constructor(rootPath = process.cwd()) {
     this.rootPath = rootPath;
-    this.rulesPath = path.join(rootPath, '.aios', 'merge-rules.yaml');
+    this.rulesPath = path.join(rootPath, '.aiox', 'merge-rules.yaml');
     this.cache = {
       rules: null,
       lastLoad: null,
@@ -1178,8 +1178,8 @@ class CustomRulesLoader {
         encoding: 'utf8',
         env: {
           ...process.env,
-          AIOS_MERGE_HOOK: hookName,
-          AIOS_MERGE_CONTEXT: JSON.stringify(context),
+          AIOX_MERGE_HOOK: hookName,
+          AIOX_MERGE_CONTEXT: JSON.stringify(context),
         },
       });
       return true;
@@ -1219,7 +1219,7 @@ class SemanticMergeEngine extends EventEmitter {
     });
 
     // Storage
-    this.storageDir = config.storageDir || path.join(this.rootPath, '.aios', 'merge');
+    this.storageDir = config.storageDir || path.join(this.rootPath, '.aiox', 'merge');
   }
 
   /**

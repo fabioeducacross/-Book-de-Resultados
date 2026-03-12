@@ -15,11 +15,11 @@ const AGENTS_TO_UPDATE = [
   'analyst.md',
   'data-engineer.md',
   'devops.md',
-  'aios-master.md',
+  'aiox-master.md',
   'ux-design-expert.md',
 ];
 
-const AGENTS_DIR = path.join(process.cwd(), '.aios-core', 'agents');
+const AGENTS_DIR = path.join(process.cwd(), '.aiox-core', 'agents');
 
 async function updateAgent(agentFile) {
   const filePath = path.join(AGENTS_DIR, agentFile);
@@ -31,7 +31,7 @@ async function updateAgent(agentFile) {
 
     // Pattern 1: Update activation-instructions
     const activationPattern = /(- STEP 2\.5: Load project status.*\n)( {2}- STEP 3: Greet user)/s;
-    const activationReplacement = '$1  - STEP 2.6: Load session context using .aios-core/scripts/session-context-loader.js to detect previous agent and workflow state\n$2';
+    const activationReplacement = '$1  - STEP 2.6: Load session context using .aiox-core/scripts/session-context-loader.js to detect previous agent and workflow state\n$2';
 
     content = content.replace(activationPattern, activationReplacement);
 

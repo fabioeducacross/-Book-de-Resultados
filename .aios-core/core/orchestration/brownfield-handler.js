@@ -3,7 +3,7 @@
  *
  * Epic 12: Bob Full Integration — Completando o PRD v2.0
  *
- * Handles first execution behavior for existing projects without AIOS documentation.
+ * Handles first execution behavior for existing projects without AIOX documentation.
  * Executes the brownfield-discovery.yaml workflow to analyze the codebase and
  * generate technical debt assessment.
  *
@@ -104,7 +104,7 @@ class BrownfieldHandler extends EventEmitter {
     // Workflow path
     this.workflowPath = path.join(
       projectRoot,
-      '.aios-core/development/workflows/brownfield-discovery.yaml',
+      '.aiox-core/development/workflows/brownfield-discovery.yaml',
     );
 
     // Phase progress tracking
@@ -183,7 +183,7 @@ class BrownfieldHandler extends EventEmitter {
    * @returns {Promise<Object>} Handler result
    */
   async handle(context = {}) {
-    this._log('🔍 First execution detected — project has code but no AIOS docs');
+    this._log('🔍 First execution detected — project has code but no AIOX docs');
 
     // Step 1: Check if user has already accepted (resuming)
     if (context.userAccepted === true) {
@@ -602,7 +602,7 @@ Quer que eu comece?`;
           data: {
             message: 'Vou criar um plano para resolver os débitos técnicos.',
             nextStep: 'brownfield_create_epic',
-            taskPath: '.aios-core/development/tasks/brownfield-create-epic.md',
+            taskPath: '.aiox-core/development/tasks/brownfield-create-epic.md',
             context,
           },
         };

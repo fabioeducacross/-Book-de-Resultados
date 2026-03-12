@@ -34,7 +34,7 @@ atomic_layer: Molecule
 
 ### Step 1: Load agent-config-requirements.yaml
 
-Read `.aios-core/data/agent-config-requirements.yaml` and extract all `files_loaded[].path` entries across all agents.
+Read `.aiox-core/data/agent-config-requirements.yaml` and extract all `files_loaded[].path` entries across all agents.
 
 ### Step 2: Verify file existence
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * AIOS After Tool Hook for Gemini CLI
- * Story GEMINI-INT.6 - AIOS Hooks System
+ * AIOX After Tool Hook for Gemini CLI
+ * Story GEMINI-INT.6 - AIOX Hooks System
  *
  * Executes after tool completion for audit logging.
  */
@@ -29,7 +29,7 @@ async function afterTool() {
 function logToolResult(tool, result) {
   try {
     const projectDir = process.env.GEMINI_PROJECT_DIR || process.cwd();
-    const logDir = path.join(projectDir, '.aios', 'logs');
+    const logDir = path.join(projectDir, '.aiox', 'logs');
 
     if (!fs.existsSync(logDir)) {
       fs.mkdirSync(logDir, { recursive: true });
@@ -55,7 +55,7 @@ function trackFileModification(filePath) {
 
   try {
     const projectDir = process.env.GEMINI_PROJECT_DIR || process.cwd();
-    const trackPath = path.join(projectDir, '.aios', 'session-files.json');
+    const trackPath = path.join(projectDir, '.aiox', 'session-files.json');
 
     let files = [];
     if (fs.existsSync(trackPath)) {

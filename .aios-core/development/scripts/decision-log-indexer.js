@@ -5,7 +5,7 @@
  * Automatically updates when new logs are generated.
  *
  * @module decision-log-indexer
- * @see .aios-core/scripts/decision-recorder.js
+ * @see .aiox-core/scripts/decision-recorder.js
  */
 
 const fs = require('fs').promises;
@@ -19,7 +19,7 @@ const path = require('path');
 async function loadConfig() {
   const yaml = require('js-yaml');
   try {
-    const configContent = await fs.readFile('.aios-core/core-config.yaml', 'utf8');
+    const configContent = await fs.readFile('.aiox-core/core-config.yaml', 'utf8');
     return yaml.load(configContent);
   } catch (error) {
     console.warn('Warning: Could not load core-config.yaml for indexing:', error.message);
@@ -91,7 +91,7 @@ function generateIndexContent(logMetadata) {
 ## Quick Links
 
 - [Decision Logging Guide](../docs/guides/decision-logging-guide.md)
-- [Core Configuration](.aios-core/core-config.yaml)
+- [Core Configuration](.aiox-core/core-config.yaml)
 
 ---
 
@@ -125,7 +125,7 @@ Total logs: ${logMetadata.length}
 ---
 
 *This index is updated automatically when decision logs are generated*
-*To manually rebuild the index, run: node .aios-core/scripts/decision-log-indexer.js rebuild*
+*To manually rebuild the index, run: node .aiox-core/scripts/decision-log-indexer.js rebuild*
 `;
 
   return markdown;

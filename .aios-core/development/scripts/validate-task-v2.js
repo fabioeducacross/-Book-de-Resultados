@@ -191,11 +191,11 @@ function validateTask(filePath) {
 }
 
 /**
- * Validate all tasks in .aios-core/tasks/
+ * Validate all tasks in .aiox-core/tasks/
  * @returns {Object} Summary of validation results
  */
 function validateAllTasks() {
-  const tasksDir = path.join(process.cwd(), '.aios-core', 'tasks');
+  const tasksDir = path.join(process.cwd(), '.aiox-core', 'tasks');
   
   if (!fs.existsSync(tasksDir)) {
     console.error(`${colors.red}✗ Tasks directory not found: ${tasksDir}${colors.reset}`);

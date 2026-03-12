@@ -54,7 +54,7 @@ inputs:
 outputs:
   - name: patterns_markdown
     type: string
-    destino: File (.aios/patterns.md)
+    destino: File (.aiox/patterns.md)
     persistido: true
 
   - name: patterns_json
@@ -77,7 +77,7 @@ pre-conditions:
   - [ ] Project root is a valid codebase
     tipo: pre-condition
     blocker: true
-    validação: Check package.json or .aios-core exists
+    validação: Check package.json or .aiox-core exists
     error_message: "Could not find project root. Run from within a project directory."
 
   - [ ] Code files exist
@@ -101,7 +101,7 @@ if (args.help) {
 
 ### Step 2: Initialize Pattern Extractor
 ```javascript
-const PatternExtractor = require('.aios-core/infrastructure/scripts/pattern-extractor');
+const PatternExtractor = require('.aiox-core/infrastructure/scripts/pattern-extractor');
 const extractor = new PatternExtractor(args.root);
 ```
 
@@ -168,7 +168,7 @@ Extract and document code patterns from the codebase.
 Subcommands:
   extract     Extract patterns and output as markdown (default)
   json        Output patterns as JSON
-  save        Save to .aios/patterns.md
+  save        Save to .aiox/patterns.md
   merge       Merge with existing patterns file
 
 Options:
@@ -190,13 +190,13 @@ Pattern Categories:
 
 Examples:
   *extract-patterns                           # Output to console
-  *extract-patterns save                      # Save to .aios/patterns.md
+  *extract-patterns save                      # Save to .aiox/patterns.md
   *extract-patterns json --output p.json      # Save as JSON
   *extract-patterns --category "State"        # Only state patterns
   *extract-patterns merge                     # Update existing file
 
 Output File:
-  Default location: .aios/patterns.md
+  Default location: .aiox/patterns.md
   This file is referenced by the Spec Writer for consistent patterns.
 ```
 
@@ -273,7 +273,7 @@ export const useExampleStore = create<ExampleState>()(
 ### Summary Output
 ```text
 Scanning patterns in: /path/to/project
-Patterns saved to: .aios/patterns.md
+Patterns saved to: .aiox/patterns.md
 
 Total patterns detected: 12
   State Management: 3
@@ -294,7 +294,7 @@ post-conditions:
   - [ ] Patterns file created/updated
     tipo: post-condition
     blocker: false
-    validação: Check .aios/patterns.md exists and is valid markdown
+    validação: Check .aiox/patterns.md exists and is valid markdown
 
   - [ ] Summary displayed
     tipo: post-condition
@@ -317,7 +317,7 @@ The generated `patterns.md` file is automatically referenced by the Spec Writer 
 ```yaml
 # In spec-write.md task
 references:
-  - path: .aios/patterns.md
+  - path: .aiox/patterns.md
     purpose: Ensure new code follows existing patterns
     usage: Include relevant patterns in implementation notes
 ```
@@ -366,7 +366,7 @@ optimizations:
 
 ```bash
 # Direct script execution
-node .aios-core/infrastructure/scripts/pattern-extractor.js [command] [options]
+node .aiox-core/infrastructure/scripts/pattern-extractor.js [command] [options]
 
 # Via AIOX command
 *extract-patterns [command] [options]
@@ -384,7 +384,7 @@ created: 2026-01-29
 author: "@dev (Dex)"
 dependencies:
   modules:
-    - .aios-core/infrastructure/scripts/pattern-extractor.js
+    - .aiox-core/infrastructure/scripts/pattern-extractor.js
   tasks: []
   referenced_by:
     - spec-write.md

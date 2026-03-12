@@ -1,5 +1,5 @@
 /**
- * Component Metadata Manager for Synkra AIOS
+ * Component Metadata Manager for Synkra AIOX
  * Manages detailed metadata for all framework components
  * @module component-metadata
  */
@@ -19,11 +19,11 @@ try {
 class ComponentMetadata {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.metadataPath = path.join(this.rootPath, 'aios-core', 'metadata');
+    this.metadataPath = path.join(this.rootPath, 'aiox-core', 'metadata');
 
     // Initialize memory adapter if available
     this.memoryClient = MemoryAdapter ? new MemoryAdapter({
-      persistencePath: path.join(this.rootPath, 'aios-memory-layer-mvp', 'data'),
+      persistencePath: path.join(this.rootPath, 'aiox-memory-layer-mvp', 'data'),
       namespace: 'component-metadata',
     }) : null;
     

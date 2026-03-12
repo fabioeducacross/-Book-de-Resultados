@@ -30,7 +30,7 @@ async function initializeDecisionLogging(agentId, storyPath, options = {}) {
   // Load config to check if decision logging is enabled
   let config = {};
   try {
-    const configContent = await fs.readFile('.aios-core/core-config.yaml', 'utf8');
+    const configContent = await fs.readFile('.aiox-core/core-config.yaml', 'utf8');
     config = yaml.load(configContent);
   } catch (error) {
     console.warn('Warning: Could not load core-config.yaml:', error.message);

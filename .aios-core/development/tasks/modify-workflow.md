@@ -167,7 +167,7 @@ acceptance-criteria:
 
 - **Tool:** ast-parser
   - **Purpose:** Parse and modify code safely
-  - **Source:** .aios-core/utils/ast-parser.js
+  - **Source:** .aiox-core/utils/ast-parser.js
 
 ---
 
@@ -178,7 +178,7 @@ acceptance-criteria:
 - **Script:** modify-file.js
   - **Purpose:** Safe file modification with backup
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/modify-file.js
+  - **Location:** .aiox-core/scripts/modify-file.js
 
 ---
 
@@ -248,7 +248,7 @@ To safely modify existing workflow definitions while maintaining their orchestra
 ## Prerequisites
 
 - Target workflow must exist (path resolved from target_context):
-  - `core` → `.aios-core/development/workflows/`
+  - `core` → `.aiox-core/development/workflows/`
   - `squad` → `squads/{squad_name}/workflows/`
   - `hybrid` → `squads/{squad_name}/workflows/`
 - User must provide modification intent or specific changes
@@ -260,12 +260,12 @@ To safely modify existing workflow definitions while maintaining their orchestra
 ### 1. Workflow Analysis and Backup
 
 - Resolve workflow path based on target_context:
-  - `core` → `.aios-core/development/workflows/{workflow-name}.yaml`
+  - `core` → `.aiox-core/development/workflows/{workflow-name}.yaml`
   - `squad` → `squads/{squad_name}/workflows/{workflow-name}.yaml`
   - `hybrid` → `squads/{squad_name}/workflows/{workflow-name}.yaml`
 - Load target workflow from resolved path
 - Create timestamped backup in same context:
-  - `core` → `.aios-core/development/workflows/.backups/{workflow-name}.yaml.{timestamp}`
+  - `core` → `.aiox-core/development/workflows/.backups/{workflow-name}.yaml.{timestamp}`
   - `squad` → `squads/{squad_name}/workflows/.backups/{workflow-name}.yaml.{timestamp}`
   - `hybrid` → `squads/{squad_name}/workflows/.backups/{workflow-name}.yaml.{timestamp}`
 - Parse and analyze workflow structure:
@@ -349,7 +349,7 @@ Create comprehensive diff:
   name: {workflow-name}
   description: {description}
 + last_modified: {timestamp}
-+ modified_by: aios-developer
++ modified_by: aiox-developer
 
 @@ Phases @@
   planning:

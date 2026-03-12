@@ -1,4 +1,4 @@
-# Template File Structure for Synkra AIOS
+# Template File Structure for Synkra AIOX
 # This YAML defines output templates that agents use to generate consistent documents
 # Version: 1.0 (Story 6.1.2 - Personalized Agents)
 
@@ -237,12 +237,12 @@ changelog:
 related:
   standard: docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md
   agents:
-    - .aios-core/agents/{agent1}.md
-    - .aios-core/agents/{agent2}.md
+    - .aiox-core/agents/{agent1}.md
+    - .aiox-core/agents/{agent2}.md
   tasks:
-    - .aios-core/tasks/{task1}.md
+    - .aiox-core/tasks/{task1}.md
   templates:
-    - .aios-core/product/templates/{related-template}.yaml
+    - .aiox-core/product/templates/{related-template}.yaml
 
 ---
 

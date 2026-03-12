@@ -6,8 +6,8 @@
  * and don't contain Portuguese characters or untranslated terms.
  *
  * Usage:
- *   node .aios-core/utils/validate-filenames.js
- *   node .aios-core/utils/validate-filenames.js --fix
+ *   node .aiox-core/utils/validate-filenames.js
+ *   node .aiox-core/utils/validate-filenames.js --fix
  */
 
 const fs = require('fs');
@@ -136,7 +136,7 @@ class FilenameValidator {
   }
 
   report() {
-    console.log('\n📋 AIOS Filename Validation Report\n');
+    console.log('\n📋 AIOX Filename Validation Report\n');
     console.log('=' .repeat(60));
 
     if (this.errors.length === 0 && this.warnings.length === 0) {
@@ -163,7 +163,7 @@ class FilenameValidator {
       console.log('To fix these issues:');
       console.log('1. Re-run the shard task with updated translation rules');
       console.log('2. Or manually rename the files using the suggestions above');
-      console.log('3. Or run: node .aios-core/utils/validate-filenames.js --fix\n');
+      console.log('3. Or run: node .aiox-core/utils/validate-filenames.js --fix\n');
 
       return false;
     }

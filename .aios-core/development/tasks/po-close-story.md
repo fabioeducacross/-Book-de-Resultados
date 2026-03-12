@@ -187,7 +187,7 @@ questions:
   - Story path (relative to docs/stories/):
     input: text
     validation: File must exist
-    example: "epics/epic-pro-aios-pro-architecture/story-pro-5-repo-bootstrap.md"
+    example: "epics/epic-pro-aiox-pro-architecture/story-pro-5-repo-bootstrap.md"
 
   - PR number (optional):
     input: text
@@ -365,7 +365,7 @@ ${nextStorySuggestion}
 
 ```bash
 # Interactive mode (recommended)
-*close-story epics/epic-pro-aios-pro-architecture/story-pro-5-repo-bootstrap.md
+*close-story epics/epic-pro-aiox-pro-architecture/story-pro-5-repo-bootstrap.md
 
 # With PR info
 *close-story story-pro-5-repo-bootstrap.md --pr 84 --commit ce19c81a
@@ -425,3 +425,10 @@ updated_at: 2026-02-05
 - `validate-next-story.md` - Validates story before implementation (START)
 - `po-close-story.md` - Closes story after merge (END)
 - `po-backlog-review.md` - Review backlog for sprint planning
+
+## Handoff
+next_agent: @sm
+next_command: *draft
+condition: Story closed, next story in epic available
+alternatives:
+  - agent: @po, command: *backlog-review, condition: Sprint review needed before next story

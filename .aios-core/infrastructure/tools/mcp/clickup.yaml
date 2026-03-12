@@ -393,7 +393,7 @@ tool:
           // From the response, find the Backlog list:
           {
             "spaces": [{
-              "name": "AIOS Project",
+              "name": "AIOX Project",
               "lists": [
                 {
                   "name": "Backlog",

@@ -4,7 +4,7 @@ responsável: @architect
 responsável_type: agent
 atomic_layer: task
 Entrada: |
-  - preset_path: Path to the tech preset file (default: .aios-core/data/tech-presets/)
+  - preset_path: Path to the tech preset file (default: .aiox-core/data/tech-presets/)
   - name: Preset name without extension (e.g., "nextjs-react")
   - strict: If true, warnings become errors (default: false)
   - fix: If true, create story for fixes (default: false)
@@ -86,7 +86,7 @@ preset:
 ````
 1. Resolve preset path
    ├── If full path provided → use directly
-   ├── If name provided → resolve via .aios-core/data/tech-presets/{name}.md
+   ├── If name provided → resolve via .aiox-core/data/tech-presets/{name}.md
    └── If --all → scan all .md files except _template.md
 
 2. Parse preset file
@@ -176,11 +176,11 @@ Fix validation issues in tech preset {name}.md
 
 ## Related
 
-- Preset: .aios-core/data/tech-presets/{name}.md
+- Preset: .aiox-core/data/tech-presets/{name}.md
 ```
 
 ## Related
 
 - **Agent:** @architect (Aria)
-- **Location:** .aios-core/data/tech-presets/
+- **Location:** .aiox-core/data/tech-presets/
 - **Similar:** validate-squad (validation pattern reference)

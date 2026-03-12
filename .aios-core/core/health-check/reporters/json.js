@@ -4,7 +4,7 @@
  * Generates JSON-formatted health check reports.
  * Suitable for CI/CD integration, dashboards, and programmatic consumption.
  *
- * @module @synkra/aios-core/health-check/reporters/json
+ * @module aiox-core/health-check/reporters/json
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -53,7 +53,7 @@ class JSONReporter {
 
     // Build report object
     const report = {
-      $schema: 'https://aios.synkra.ai/schemas/health-check-report.json',
+      $schema: 'https://aiox.synkra.ai/schemas/health-check-report.json',
       version: '1.0.0',
       timestamp,
       mode: config?.mode || 'quick',

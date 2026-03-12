@@ -1,7 +1,7 @@
 ---
 # No checklists needed - this task facilitates brainstorming sessions, validation is through user interaction
 docOutputLocation: docs/brainstorming-session-results.md
-template: ".aios-core/product/templates/brainstorming-output-tmpl.yaml"
+template: ".aiox-core/product/templates/brainstorming-output-tmpl.yaml"
 tools:
   - github-cli
 ---
@@ -139,11 +139,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -154,7 +154,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 

@@ -928,4 +928,4 @@ When integrating with existing feature:
 
 ---
 
-_AIOS Tech Preset - Synkra AIOX Framework_
+_AIOX Tech Preset - Synkra AIOX Framework_

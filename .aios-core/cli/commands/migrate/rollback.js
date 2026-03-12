@@ -1,11 +1,11 @@
 /**
  * Migration Rollback Module
  *
- * Handles rollback from v2.1 back to v2.0 structure using backup.
+ * Handles rollback from v4.0.4 back to v2.0 structure using backup.
  *
  * @module cli/commands/migrate/rollback
  * @version 1.0.0
- * @story 2.14 - Migration Script v2.0 → v2.1
+ * @story 2.14 - Migration Script v2.0 → v4.0.4
  */
 
 const fs = require('fs');
@@ -14,12 +14,12 @@ const { findLatestBackup, verifyBackup, copyFileWithMetadata } = require('./back
 const { clearMigrationState } = require('./execute');
 
 /**
- * Remove v2.1 module directories
- * @param {string} aiosCoreDir - Path to .aios-core
+ * Remove v4.0.4 module directories
+ * @param {string} aioxCoreDir - Path to .aiox-core
  * @param {Object} options - Options
  * @returns {Promise<Object>} Removal result
  */
-async function removeV21Structure(aiosCoreDir, options = {}) {
+async function removeV21Structure(aioxCoreDir, options = {}) {
   const { onProgress = () => {} } = options;
 
   const v21Modules = ['core', 'development', 'product', 'infrastructure'];
@@ -28,10 +28,10 @@ async function removeV21Structure(aiosCoreDir, options = {}) {
     errors: [],
   };
 
-  onProgress({ phase: 'remove', message: '✓ Removing v2.1 structure...' });
+  onProgress({ phase: 'remove', message: '✓ Removing v4.0.4 structure...' });
 
   for (const moduleName of v21Modules) {
-    const moduleDir = path.join(aiosCoreDir, moduleName);
+    const moduleDir = path.join(aioxCoreDir, moduleName);
 
     if (fs.existsSync(moduleDir)) {
       try {
@@ -88,21 +88,21 @@ async function restoreFromBackup(backup, projectRoot, options = {}) {
     onProgress({ phase: 'verified', message: `  ✓ Verified ${verification.verified} files` });
   }
 
-  const aiosCoreDir = path.join(projectRoot, '.aios-core');
-  const backupAiosCoreDir = path.join(backup.path, '.aios-core');
+  const aioxCoreDir = path.join(projectRoot, '.aiox-core');
+  const backupAioxCoreDir = path.join(backup.path, '.aiox-core');
 
-  // Restore .aios-core files
+  // Restore .aiox-core files
   onProgress({ phase: 'restore', message: '✓ Restoring v2.0 files...' });
 
   for (const file of backup.manifest.files) {
     try {
       const sourcePath = file.isConfig
         ? path.join(backup.path, file.relativePath)
-        : path.join(backupAiosCoreDir, file.relativePath);
+        : path.join(backupAioxCoreDir, file.relativePath);
 
       const targetPath = file.isConfig
         ? path.join(projectRoot, file.relativePath)
-        : path.join(aiosCoreDir, file.relativePath);
+        : path.join(aioxCoreDir, file.relativePath);
 
       await copyFileWithMetadata(sourcePath, targetPath);
       result.restored++;
@@ -182,9 +182,9 @@ async function executeRollback(projectRoot, options = {}) {
     },
   });
 
-  // Step 1: Remove v2.1 structure
-  const aiosCoreDir = path.join(projectRoot, '.aios-core');
-  result.removal = await removeV21Structure(aiosCoreDir, { onProgress });
+  // Step 1: Remove v4.0.4 structure
+  const aioxCoreDir = path.join(projectRoot, '.aiox-core');
+  result.removal = await removeV21Structure(aioxCoreDir, { onProgress });
 
   if (result.removal.errors.length > 0) {
     result.errors.push(...result.removal.errors);
@@ -210,7 +210,7 @@ async function executeRollback(projectRoot, options = {}) {
   let validCount = 0;
 
   for (const dir of expectedDirs) {
-    if (fs.existsSync(path.join(aiosCoreDir, dir))) {
+    if (fs.existsSync(path.join(aioxCoreDir, dir))) {
       validCount++;
     }
   }
@@ -235,7 +235,7 @@ function formatRollbackSummary(result) {
   const lines = [];
 
   lines.push('');
-  lines.push('🔙 AIOS Migration Rollback');
+  lines.push('🔙 AIOX Migration Rollback');
   lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
   if (result.backup) {
@@ -273,7 +273,7 @@ function formatRollbackSummary(result) {
   }
 
   if (result.removal?.removed?.length > 0) {
-    lines.push(`Removed: ${result.removal.removed.length} v2.1 directories`);
+    lines.push(`Removed: ${result.removal.removed.length} v4.0.4 directories`);
   }
 
   return lines.join('\n');

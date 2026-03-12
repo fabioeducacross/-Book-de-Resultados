@@ -141,7 +141,7 @@ acceptance-criteria:
 
 - **Tool:** validation-engine
   - **Purpose:** Rule-based validation and reporting
-  - **Source:** .aios-core/utils/validation-engine.js
+  - **Source:** .aiox-core/utils/validation-engine.js
 
 - **Tool:** schema-validator
   - **Purpose:** JSON/YAML schema validation
@@ -156,7 +156,7 @@ acceptance-criteria:
 - **Script:** run-validation.js
   - **Purpose:** Execute validation rules and generate report
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/run-validation.js
+  - **Location:** .aiox-core/scripts/run-validation.js
 
 ---
 
@@ -252,7 +252,7 @@ Execute CodeRabbit self-healing **FIRST** before manual review:
 │  WHILE iteration < max_iterations:                                │
 │    ┌─────────────────────────────────────────────────────────┐   │
 │    │ 1. Run CodeRabbit CLI                                   │   │
-│    │    wsl bash -c 'cd /mnt/c/.../@synkra/aiox-core &&         │   │
+│    │    wsl bash -c 'cd /mnt/c/.../aiox-core &&         │   │
 │    │    ~/.local/bin/coderabbit --prompt-only                │   │
 │    │    -t committed --base main'                            │   │
 │    │                                                          │   │
@@ -367,6 +367,29 @@ If self-healing fails:
 - Gate automatically set to FAIL
 - `top_issues` populated from remaining CodeRabbit issues
 - `status_reason` includes "CodeRabbit self-healing exhausted"
+
+---
+
+### 0b. Code Intelligence: Reference Impact (Optional)
+
+> This step is **conditional** — only executes when a code intelligence provider is available.
+> If `isCodeIntelAvailable()` returns false, skip silently and proceed to Risk Assessment.
+
+After CodeRabbit self-healing (Step 0), if code intelligence is available:
+
+1. Collect modified files from the story's File List
+2. Call `getReferenceImpact(files)` from `.aiox-core/core/code-intel/helpers/qa-helper.js`
+3. If result is not null, include reference impact in the review:
+   ```
+   ### Reference Impact (Code Intelligence)
+   | Modified File | Consumers Affected |
+   |--------------|-------------------|
+   | {file} | {consumers.length} consumers ({list of consumer files}) |
+   ```
+4. Files with many consumers (>10) should trigger deeper review of those changes
+5. This data supplements Risk Assessment (Step 1) — high consumer count may auto-escalate to deep review
+
+> **Fallback guarantee:** If code intelligence is unavailable or `getReferenceImpact` returns null, the review continues exactly as before — no reference impact section is added.
 
 ---
 
@@ -534,7 +557,7 @@ NFR assessment: qa.qaLocation/assessments/{epic}.{story}-nfr-{YYYYMMDD}.md
 **Template and Directory:**
 
 - Render from `../templates/qa-gate-tmpl.yaml`
-- Create directory defined in `qa.qaLocation/gates` (see `.aios-core/core-config.yaml`) if missing
+- Create directory defined in `qa.qaLocation/gates` (see `.aiox-core/core-config.yaml`) if missing
 - Save to: `qa.qaLocation/gates/{epic}.{story}-{slug}.yml`
 
 Gate file structure:
@@ -679,5 +702,13 @@ After review:
   - Dev Notes or Acceptance Criteria updates
 
 - **No Action Required**: The sync happens transparently when using story-manager utilities. If sync fails, story file is still saved locally with a warning message.
+
+## Handoff
+next_agent: @dev
+next_command: *apply-qa-fixes
+condition: QA verdict is REJECT
+alternatives:
+  - agent: @devops, command: *push, condition: QA verdict is APPROVE
+  - agent: @dev, command: *fix-qa-issues, condition: Structured fix from QA_FIX_REQUEST.md
 
 - **Manual Sync**: If needed, use: `npm run sync-story -- --story {epic}.{story}` 

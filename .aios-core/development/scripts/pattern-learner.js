@@ -11,7 +11,7 @@ class PatternLearner extends EventEmitter {
   constructor(options = {}) {
     super();
     this.rootPath = options.rootPath || process.cwd();
-    this.patternsDir = path.join(this.rootPath, '.aios', 'patterns');
+    this.patternsDir = path.join(this.rootPath, '.aiox', 'patterns');
     this.historyFile = path.join(this.patternsDir, 'modification_history.json');
     this.patternsFile = path.join(this.patternsDir, 'learned_patterns.json');
     this.patterns = new Map();

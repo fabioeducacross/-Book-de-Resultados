@@ -169,7 +169,7 @@ class ContextInjector {
 
     try {
       // Try to read codebase map
-      const codebaseMapPath = path.join(this.rootPath, '.aios', 'codebase-map.json');
+      const codebaseMapPath = path.join(this.rootPath, '.aiox', 'codebase-map.json');
       if (fs.existsSync(codebaseMapPath)) {
         const codebaseMap = JSON.parse(fs.readFileSync(codebaseMapPath, 'utf8'));
         context.name = codebaseMap.name || codebaseMap.projectName || 'project';

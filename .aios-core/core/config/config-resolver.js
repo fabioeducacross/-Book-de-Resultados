@@ -142,12 +142,12 @@ function clearSchemaCache() {
  * Standard config file paths relative to project root.
  */
 const CONFIG_FILES = {
-  framework: '.aios-core/framework-config.yaml',
-  project: '.aios-core/project-config.yaml',
+  framework: '.aiox-core/framework-config.yaml',
+  project: '.aiox-core/project-config.yaml',
   pro: 'pro/pro-config.yaml',
-  local: '.aios-core/local-config.yaml',
-  legacy: '.aios-core/core-config.yaml',
-  user: path.join(os.homedir(), '.aios', 'user-config.yaml'),
+  local: '.aiox-core/local-config.yaml',
+  legacy: '.aiox-core/core-config.yaml',
+  user: path.join(os.homedir(), '.aiox', 'user-config.yaml'),
 };
 
 /**
@@ -305,7 +305,7 @@ function loadLayeredConfig(projectRoot, options = {}) {
 
   // L3: App (optional — only when appDir is specified)
   if (options.appDir) {
-    const appConfigPath = path.join(options.appDir, 'aios-app.config.yaml');
+    const appConfigPath = path.join(options.appDir, 'aiox-app.config.yaml');
     const l3 = loadYaml(projectRoot, appConfigPath);
     if (l3.data) {
       config = deepMerge(config, l3.data);
@@ -329,7 +329,7 @@ function loadLayeredConfig(projectRoot, options = {}) {
     }
   }
 
-  // L5: User (optional — global user preferences, cross-project, ~/.aios/user-config.yaml)
+  // L5: User (optional — global user preferences, cross-project, ~/.aiox/user-config.yaml)
   const l5 = loadYamlAbsolute(CONFIG_FILES.user);
   if (l5.data) {
     config = deepMerge(config, l5.data);
@@ -362,15 +362,15 @@ function loadLegacyConfig(projectRoot) {
     throw new Error(`Legacy config file not found: ${CONFIG_FILES.legacy}`);
   }
 
-  const suppressDeprecation = process.env.AIOS_SUPPRESS_DEPRECATION === 'true'
-    || process.env.AIOS_SUPPRESS_DEPRECATION === '1';
+  const suppressDeprecation = process.env.AIOX_SUPPRESS_DEPRECATION === 'true'
+    || process.env.AIOX_SUPPRESS_DEPRECATION === '1';
 
   if (!suppressDeprecation) {
     warnings.push(
       '[DEPRECATION] Monolithic core-config.yaml detected. '
-      + 'Run `aios config migrate` to split into layered config files. '
+      + 'Run `aiox config migrate` to split into layered config files. '
       + 'Monolithic format will be removed in v4.0.0. '
-      + 'Set AIOS_SUPPRESS_DEPRECATION=true to silence this warning.',
+      + 'Set AIOX_SUPPRESS_DEPRECATION=true to silence this warning.',
     );
   }
 
@@ -486,7 +486,7 @@ function getConfigAtLevel(projectRoot, level, options = {}) {
       break;
     case 'app': case '3': case 'L3':
       if (!options.appDir) return null;
-      relativePath = path.join(options.appDir, 'aios-app.config.yaml');
+      relativePath = path.join(options.appDir, 'aiox-app.config.yaml');
       break;
     case 'local': case '4': case 'L4':
       relativePath = CONFIG_FILES.local;
@@ -516,9 +516,9 @@ function getConfigAtLevel(projectRoot, level, options = {}) {
 const VALID_USER_PROFILES = ['bob', 'advanced'];
 
 /**
- * Ensure the ~/.aios/ directory exists with secure permissions.
+ * Ensure the ~/.aiox/ directory exists with secure permissions.
  *
- * @returns {string} Path to ~/.aios/ directory
+ * @returns {string} Path to ~/.aiox/ directory
  */
 function ensureUserConfigDir() {
   const dir = path.dirname(CONFIG_FILES.user);
@@ -529,7 +529,7 @@ function ensureUserConfigDir() {
 }
 
 /**
- * Set a value in the user config file (~/.aios/user-config.yaml).
+ * Set a value in the user config file (~/.aiox/user-config.yaml).
  * Creates the file and directory if they don't exist.
  * Invalidates the config cache after writing.
  *

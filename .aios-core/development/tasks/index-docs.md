@@ -133,7 +133,7 @@ acceptance-criteria:
 
 - **Tool:** template-engine
   - **Purpose:** Document template processing
-  - **Source:** .aios-core/product/templates/
+  - **Source:** .aiox-core/product/templates/
 
 ---
 
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** generate-docs.js
   - **Purpose:** Documentation generation from templates
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/generate-docs.js
+  - **Location:** .aiox-core/scripts/generate-docs.js
 
 ---
 

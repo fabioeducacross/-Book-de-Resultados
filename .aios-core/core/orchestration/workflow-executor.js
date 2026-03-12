@@ -92,10 +92,10 @@ class WorkflowExecutor {
 
     this.workflowPath = path.join(
       projectRoot,
-      '.aios-core/development/workflows/development-cycle.yaml',
+      '.aiox-core/development/workflows/development-cycle.yaml',
     );
-    this.statePath = path.join(projectRoot, '.aios/workflow-state/');
-    this.configPath = path.join(projectRoot, '.aios-core/core-config.yaml');
+    this.statePath = path.join(projectRoot, '.aiox/workflow-state/');
+    this.configPath = path.join(projectRoot, '.aiox-core/core-config.yaml');
 
     this.workflow = null;
     this.state = null;

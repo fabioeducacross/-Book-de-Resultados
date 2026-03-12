@@ -1,11 +1,11 @@
 /**
- * Skill Dispatcher - Dispatches to AIOS Skills instead of generic Task calls
+ * Skill Dispatcher - Dispatches to AIOX Skills instead of generic Task calls
  *
  * Maps agent IDs to Skill invocations and prepares structured payloads.
  * Used by WorkflowOrchestrator to invoke specialized agents with full personas.
  *
  * Responsibilities:
- * - Map agent IDs to AIOS Skill names
+ * - Map agent IDs to AIOX Skill names
  * - Build dispatch payloads with context
  * - Parse and normalize skill outputs
  *
@@ -19,7 +19,7 @@
 
 /**
  * @typedef {Object} DispatchPayload
- * @property {string} skill - Full skill name (e.g., 'AIOS:agents:architect')
+ * @property {string} skill - Full skill name (e.g., 'AIOX:agents:architect')
  * @property {string} args - Arguments string for the skill
  * @property {Object} context - Execution context
  */
@@ -35,7 +35,7 @@
  */
 
 /**
- * Dispatches workflow phases to AIOS Skills
+ * Dispatches workflow phases to AIOX Skills
  */
 /**
  * Primary agents (not aliases) - used by getAvailableAgents()
@@ -52,11 +52,11 @@ const PRIMARY_AGENTS = new Set([
   'analyst',
   'ux-design-expert',
   'devops',
-  'aios-master',
+  'aiox-master',
 ]);
 
 /**
- * Dispatches workflow phases to AIOS Skills
+ * Dispatches workflow phases to AIOX Skills
  */
 class SkillDispatcher {
   /**
@@ -67,29 +67,29 @@ class SkillDispatcher {
 
     /**
      * Mapping from agent IDs to full Skill names
-     * These correspond to files in .claude/commands/AIOS/agents/
+     * These correspond to files in .claude/commands/AIOX/agents/
      */
     this.skillMapping = {
       // Core development agents
-      architect: 'AIOS:agents:architect',
-      'data-engineer': 'AIOS:agents:data-engineer',
-      dev: 'AIOS:agents:dev',
-      qa: 'AIOS:agents:qa',
+      architect: 'AIOX:agents:architect',
+      'data-engineer': 'AIOX:agents:data-engineer',
+      dev: 'AIOX:agents:dev',
+      qa: 'AIOX:agents:qa',
 
       // Product agents
-      pm: 'AIOS:agents:pm',
-      po: 'AIOS:agents:po',
-      sm: 'AIOS:agents:sm',
-      analyst: 'AIOS:agents:analyst',
+      pm: 'AIOX:agents:pm',
+      po: 'AIOX:agents:po',
+      sm: 'AIOX:agents:sm',
+      analyst: 'AIOX:agents:analyst',
 
       // Specialized agents
-      'ux-design-expert': 'AIOS:agents:ux-design-expert',
-      'ux-expert': 'AIOS:agents:ux-design-expert', // Alias
-      devops: 'AIOS:agents:devops',
-      'github-devops': 'AIOS:agents:devops', // Alias
+      'ux-design-expert': 'AIOX:agents:ux-design-expert',
+      'ux-expert': 'AIOX:agents:ux-design-expert', // Alias
+      devops: 'AIOX:agents:devops',
+      'github-devops': 'AIOX:agents:devops', // Alias
 
       // Master agent
-      'aios-master': 'AIOS:agents:aios-master',
+      'aiox-master': 'AIOX:agents:aiox-master',
     };
 
     /**
@@ -107,17 +107,17 @@ class SkillDispatcher {
       'ux-design-expert': { name: 'Brad', title: 'UX Design Expert' },
       'ux-expert': { name: 'Brad', title: 'UX Design Expert' },
       devops: { name: 'Gage', title: 'DevOps Engineer' },
-      'aios-master': { name: 'Orion', title: 'Master Orchestrator' },
+      'aiox-master': { name: 'Orion', title: 'Master Orchestrator' },
     };
   }
 
   /**
    * Get the full Skill name for an agent
    * @param {string} agentId - Agent identifier (e.g., 'architect')
-   * @returns {string} Full skill name (e.g., 'AIOS:agents:architect')
+   * @returns {string} Full skill name (e.g., 'AIOX:agents:architect')
    */
   getSkillName(agentId) {
-    return this.skillMapping[agentId] || `AIOS:agents:${agentId}`;
+    return this.skillMapping[agentId] || `AIOX:agents:${agentId}`;
   }
 
   /**
@@ -127,7 +127,7 @@ class SkillDispatcher {
    */
   getAgentPersona(agentId) {
     return (
-      this.agentPersonas[agentId] || { name: agentId, title: 'AIOS Agent' }
+      this.agentPersonas[agentId] || { name: agentId, title: 'AIOX Agent' }
     );
   }
 
@@ -170,6 +170,8 @@ class SkillDispatcher {
         workflowId: context.workflowId,
         yoloMode: context.yoloMode || false,
         previousPhases: context.previousPhases || {},
+        executionProfile: context.executionProfile || null,
+        executionPolicy: context.executionPolicy || null,
       },
     };
   }
@@ -354,7 +356,7 @@ class SkillDispatcher {
    * @returns {boolean}
    */
   isValidAgent(agentId) {
-    return agentId in this.skillMapping || agentId.startsWith('AIOS:');
+    return agentId in this.skillMapping || agentId.startsWith('AIOX:');
   }
 }
 

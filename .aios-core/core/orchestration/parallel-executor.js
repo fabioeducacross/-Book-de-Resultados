@@ -27,41 +27,37 @@ class ParallelExecutor {
    * @returns {Promise<Object[]>} Results from all phases
    */
   async executeParallel(phases, executePhase, options = {}) {
-    const maxConcurrency = this._normalizeConcurrency(options.maxConcurrency);
+    const maxConcurrency = options.maxConcurrency || this.maxConcurrency;
     const results = [];
     const errors = [];
 
     console.log(chalk.yellow(`\n⚡ Executing ${phases.length} phases in parallel (max ${maxConcurrency} concurrent)`));
 
-    const tasks = phases.map((phase) => async () => {
+    // Use Promise.allSettled for resilient parallel execution
+    const promises = phases.map(async (phase) => {
       const phaseId = phase.phase || phase.step;
-      const startTime = Date.now();
-      this.runningTasks.set(phaseId, { status: 'running', startTime });
+      this.runningTasks.set(phaseId, { status: 'running', startTime: Date.now() });
 
       try {
         const result = await executePhase(phase);
         this.runningTasks.set(phaseId, {
           status: 'completed',
-          startTime,
           endTime: Date.now(),
           result,
         });
         return { phase: phaseId, status: 'fulfilled', result };
       } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : String(error);
-
         this.runningTasks.set(phaseId, {
           status: 'failed',
-          startTime,
           endTime: Date.now(),
-          error: errorMessage,
+          error: error.message,
         });
-        return { phase: phaseId, status: 'rejected', error: errorMessage };
+        return { phase: phaseId, status: 'rejected', error: error.message };
       }
     });
 
     // Execute with concurrency limit
-    const settled = await this._executeWithConcurrencyLimit(tasks, maxConcurrency);
+    const settled = await this._executeWithConcurrencyLimit(promises, maxConcurrency);
 
     // Process results
     for (const result of settled) {
@@ -94,22 +90,24 @@ class ParallelExecutor {
    * @private
    */
   async _executeWithConcurrencyLimit(tasks, limit) {
-    const normalizedLimit = this._normalizeConcurrency(limit);
-    const results = new Array(tasks.length);
-    let nextIndex = 0;
+    const results = [];
+    const executing = new Set();
 
-    const workers = Array.from(
-      { length: Math.min(normalizedLimit, tasks.length) },
-      async () => {
-        while (nextIndex < tasks.length) {
-          const currentIndex = nextIndex++;
-          results[currentIndex] = await tasks[currentIndex]();
+    for (const task of tasks) {
+      const p = Promise.resolve().then(() => task);
+      results.push(p);
+
+      if (limit <= tasks.length) {
+        const e = p.then(() => executing.delete(e));
+        executing.add(e);
+
+        if (executing.size >= limit) {
+          await Promise.race(executing);
         }
-      },
-    );
+      }
+    }
 
-    await Promise.all(workers);
-    return results;
+    return Promise.allSettled(results);
   }
 
   /**
@@ -120,7 +118,7 @@ class ParallelExecutor {
     const status = {};
     for (const [id, taskStatus] of this.runningTasks) {
       status[id] = { ...taskStatus };
-      if (Number.isFinite(taskStatus.startTime) && Number.isFinite(taskStatus.endTime)) {
+      if (taskStatus.startTime && taskStatus.endTime) {
         status[id].duration = taskStatus.endTime - taskStatus.startTime;
       }
     }
@@ -184,7 +182,7 @@ class ParallelExecutor {
    * @param {number} max - Maximum concurrent executions
    */
   setMaxConcurrency(max) {
-    this.maxConcurrency = this._normalizeConcurrency(max);
+    this.maxConcurrency = Math.max(1, Math.min(10, max));
   }
 
   /**
@@ -201,7 +199,7 @@ class ParallelExecutor {
       switch (status.status) {
         case 'completed':
           completed++;
-          if (Number.isFinite(status.startTime) && Number.isFinite(status.endTime)) {
+          if (status.startTime && status.endTime) {
             totalDuration += status.endTime - status.startTime;
           }
           break;
@@ -221,17 +219,6 @@ class ParallelExecutor {
       running,
       averageDuration: completed > 0 ? Math.round(totalDuration / completed) : 0,
     };
-  }
-
-  /**
-   * Normalize concurrency values to supported bounds
-   * @private
-   * @param {number} limit - Requested concurrency limit
-   * @returns {number} Safe concurrency value
-   */
-  _normalizeConcurrency(limit) {
-    const candidate = Number.isFinite(limit) ? Math.floor(limit) : this.maxConcurrency;
-    return Math.max(1, Math.min(10, candidate));
   }
 }
 

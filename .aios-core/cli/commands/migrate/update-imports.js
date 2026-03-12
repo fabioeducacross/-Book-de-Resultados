@@ -5,7 +5,7 @@
  *
  * @module cli/commands/migrate/update-imports
  * @version 1.0.0
- * @story 2.14 - Migration Script v2.0 → v2.1
+ * @story 2.14 - Migration Script v2.0 → v4.0.4
  */
 
 const fs = require('fs');
@@ -86,7 +86,7 @@ async function scanFileImports(filePath) {
 }
 
 /**
- * Transform an import path from v2.0 to v2.1 structure
+ * Transform an import path from v2.0 to v4.0.4 structure
  * @param {string} importPath - Original import path
  * @param {string} currentFileModule - Module of the file containing the import
  * @param {string} currentFilePath - Path of the file containing the import
@@ -107,7 +107,7 @@ function transformImportPath(importPath, currentFileModule, currentFilePath, tra
     // and where that file now lives
 
     // For now, we'll use heuristics:
-    // 1. If the path goes up to .aios-core root and then into a folder, update it
+    // 1. If the path goes up to .aiox-core root and then into a folder, update it
 
     const parts = importPath.split('/');
     let upCount = 0;
@@ -121,7 +121,7 @@ function transformImportPath(importPath, currentFileModule, currentFilePath, tra
       }
     }
 
-    // If going up enough to reach .aios-core root
+    // If going up enough to reach .aiox-core root
     if (restParts.length > 0) {
       const targetDir = restParts[0];
 
@@ -135,8 +135,8 @@ function transformImportPath(importPath, currentFileModule, currentFilePath, tra
           const newParts = [];
 
           // From current file's module directory
-          // Current structure after migration: .aios-core/{module}/...
-          // Need to go to: .aios-core/{targetModule}/...
+          // Current structure after migration: .aiox-core/{module}/...
+          // Need to go to: .aiox-core/{targetModule}/...
 
           if (currentFileModule === moduleName) {
             // Same module, just adjust the path
@@ -185,7 +185,7 @@ async function updateFileImports(filePath, transformMap, fileModule, options = {
 
     for (const imp of imports) {
       const relativePath = path.relative(
-        path.dirname(filePath).split('.aios-core')[1]?.slice(1) || '',
+        path.dirname(filePath).split('.aiox-core')[1]?.slice(1) || '',
         '',
       );
 
@@ -230,12 +230,12 @@ async function updateFileImports(filePath, transformMap, fileModule, options = {
 
 /**
  * Scan and update all imports in the migrated structure
- * @param {string} aiosCoreDir - Path to .aios-core
+ * @param {string} aioxCoreDir - Path to .aiox-core
  * @param {Object} plan - Migration plan
  * @param {Object} options - Options
  * @returns {Promise<Object>} Update results
  */
-async function updateAllImports(aiosCoreDir, plan, options = {}) {
+async function updateAllImports(aioxCoreDir, plan, options = {}) {
   const { verbose = false, dryRun = false, onProgress = () => {} } = options;
 
   const transformMap = buildPathTransformMap(plan);
@@ -254,7 +254,7 @@ async function updateAllImports(aiosCoreDir, plan, options = {}) {
   const modules = ['core', 'development', 'product', 'infrastructure'];
 
   for (const moduleName of modules) {
-    const moduleDir = path.join(aiosCoreDir, moduleName);
+    const moduleDir = path.join(aioxCoreDir, moduleName);
 
     if (!fs.existsSync(moduleDir)) continue;
 
@@ -288,7 +288,7 @@ async function updateAllImports(aiosCoreDir, plan, options = {}) {
         result.details.push(updateResult);
         onProgress({
           phase: 'file',
-          message: `  → ${path.relative(aiosCoreDir, file)} (${updateResult.updated} imports)`,
+          message: `  → ${path.relative(aioxCoreDir, file)} (${updateResult.updated} imports)`,
         });
       }
     }
@@ -326,10 +326,10 @@ async function getJsFiles(dir, files = []) {
 
 /**
  * Verify no broken imports exist after migration
- * @param {string} aiosCoreDir - Path to .aios-core
+ * @param {string} aioxCoreDir - Path to .aiox-core
  * @returns {Promise<Object>} Verification result
  */
-async function verifyImports(aiosCoreDir) {
+async function verifyImports(aioxCoreDir) {
   const result = {
     valid: true,
     totalImports: 0,
@@ -340,7 +340,7 @@ async function verifyImports(aiosCoreDir) {
   const modules = ['core', 'development', 'product', 'infrastructure'];
 
   for (const moduleName of modules) {
-    const moduleDir = path.join(aiosCoreDir, moduleName);
+    const moduleDir = path.join(aioxCoreDir, moduleName);
 
     if (!fs.existsSync(moduleDir)) continue;
 
@@ -369,7 +369,7 @@ async function verifyImports(aiosCoreDir) {
 
           if (!found) {
             result.brokenImports.push({
-              file: path.relative(aiosCoreDir, file),
+              file: path.relative(aioxCoreDir, file),
               import: imp.importPath,
               type: imp.type,
               resolvedPath,

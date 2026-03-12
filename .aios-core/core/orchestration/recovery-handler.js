@@ -605,7 +605,7 @@ class RecoveryHandler extends EventEmitter {
    * @private
    */
   async _saveEscalationReport(report) {
-    const reportsDir = path.join(this.projectRoot, '.aios', 'escalations');
+    const reportsDir = path.join(this.projectRoot, '.aiox', 'escalations');
     await fs.ensureDir(reportsDir);
 
     const filename = `escalation-${this.storyId}-epic${report.epicNum}-${Date.now()}.json`;

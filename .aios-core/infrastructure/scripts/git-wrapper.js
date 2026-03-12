@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const chalk = require('chalk');
 
 /**
- * GitWrapper - Centralized git operations for AIOS
+ * GitWrapper - Centralized git operations for AIOX
  *
  * Refactored to use execa for cross-platform compatibility
  * All git operations route through execGit() method

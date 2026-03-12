@@ -1,7 +1,7 @@
 /**
  * Terminal Spawner - Node.js wrapper for pm.sh
  *
- * Provides async API for spawning AIOS agents in separate terminals
+ * Provides async API for spawning AIOX agents in separate terminals
  * to maintain clean context isolation during orchestration.
  *
  * Story 11.2: Bob Terminal Spawning
@@ -224,7 +224,7 @@ async function createContextFile(context, outputDir = os.tmpdir()) {
     createdAt: new Date().toISOString(),
   };
 
-  const contextPath = path.join(outputDir, `aios-context-${Date.now()}.json`);
+  const contextPath = path.join(outputDir, `aiox-context-${Date.now()}.json`);
   await fs.writeFile(contextPath, JSON.stringify(validatedContext, null, 2));
 
   return contextPath;
@@ -351,9 +351,9 @@ async function spawnInline(agent, task, options = {}) {
     const child = spawn('bash', [scriptPath, ...args], {
       env: {
         ...process.env,
-        AIOS_DEBUG: opts.debug ? 'true' : 'false',
-        AIOS_OUTPUT_DIR: opts.outputDir,
-        AIOS_INLINE_MODE: 'true', // Signal to pm.sh that we're running inline
+        AIOX_DEBUG: opts.debug ? 'true' : 'false',
+        AIOX_OUTPUT_DIR: opts.outputDir,
+        AIOX_INLINE_MODE: 'true', // Signal to pm.sh that we're running inline
       },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
@@ -550,8 +550,8 @@ async function spawnAgent(agent, task, options = {}) {
       // Execute pm.sh
       const env = {
         ...process.env,
-        AIOS_DEBUG: opts.debug ? 'true' : 'false',
-        AIOS_OUTPUT_DIR: opts.outputDir,
+        AIOX_DEBUG: opts.debug ? 'true' : 'false',
+        AIOX_OUTPUT_DIR: opts.outputDir,
       };
 
       const result = execSync(`bash "${scriptPath}" ${args.join(' ')}`, {
@@ -662,11 +662,11 @@ async function cleanupOldFiles(outputDir = os.tmpdir(), maxAgeMs = 3600000) {
 
   try {
     const files = await fs.readdir(outputDir);
-    const aiosFiles = files.filter(
-      (f) => f.startsWith('aios-output-') || f.startsWith('aios-lock-') || f.startsWith('aios-context-'),
+    const aioxFiles = files.filter(
+      (f) => f.startsWith('aiox-output-') || f.startsWith('aiox-lock-') || f.startsWith('aiox-context-'),
     );
 
-    for (const file of aiosFiles) {
+    for (const file of aioxFiles) {
       const filePath = path.join(outputDir, file);
       try {
         const stats = await fs.stat(filePath);
@@ -842,7 +842,7 @@ function generateCompatibilityReport(testResults = []) {
 function formatCompatibilityReport(report) {
   const lines = [
     '═══════════════════════════════════════════════════════════════',
-    '                 AIOS Terminal Spawner Compatibility Report     ',
+    '                 AIOX Terminal Spawner Compatibility Report     ',
     '═══════════════════════════════════════════════════════════════',
     '',
     `Generated: ${report.generatedAt}`,

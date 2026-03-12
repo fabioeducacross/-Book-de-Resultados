@@ -1,5 +1,5 @@
 /**
- * Rollback Handler for AIOS-FULLSTACK
+ * Rollback Handler for AIOX-FULLSTACK
  * Handles undo operations for component transactions
  * @module rollback-handler
  */
@@ -16,7 +16,7 @@ class RollbackHandler {
     this.rootPath = options.rootPath || process.cwd();
     this.transactionManager = new TransactionManager({ rootPath: this.rootPath });
     this.modificationValidator = new ModificationValidator();
-    this.backupPath = path.join(this.rootPath, 'aios-core', '.backups');
+    this.backupPath = path.join(this.rootPath, 'aiox-core', '.backups');
   }
 
   /**

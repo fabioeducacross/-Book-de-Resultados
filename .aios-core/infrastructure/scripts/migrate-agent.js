@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Agent Migration Script (V2 → V3)
+ * AIOX Agent Migration Script (V2 → V3)
  * Story 2.4: Migrates agents to V3 format with Auto-Claude capabilities
  *
  * Usage:
@@ -16,9 +16,9 @@ const path = require('path');
 const yaml = require('js-yaml');
 
 // Paths
-const AGENTS_DIR = '.aios-core/development/agents';
-const BACKUP_DIR = '.aios/migration-backup';
-const SCHEMAS_DIR = '.aios-core/schemas';
+const AGENTS_DIR = '.aiox-core/development/agents';
+const BACKUP_DIR = '.aiox/migration-backup';
+const SCHEMAS_DIR = '.aiox-core/schemas';
 
 // Agent capability matrix based on role
 const AGENT_CAPABILITIES = {
@@ -94,7 +94,7 @@ const AGENT_CAPABILITIES = {
   sm: {
     // Scrum Master doesn't have specific Auto-Claude capabilities
   },
-  'aios-master': {
+  'aiox-master': {
     specPipeline: {
       canGather: true,
       canAssess: true,
@@ -396,7 +396,7 @@ function formatListOutput(agents) {
 
   lines.push('');
   lines.push('═══════════════════════════════════════════════════════════');
-  lines.push('  AIOS Agents - Migration Status');
+  lines.push('  AIOX Agents - Migration Status');
   lines.push('═══════════════════════════════════════════════════════════');
   lines.push('');
 
@@ -428,7 +428,7 @@ async function main() {
 
   if (args.length === 0 || args.includes('--help')) {
     console.log(`
-AIOS Agent Migration Script (V2 → V3)
+AIOX Agent Migration Script (V2 → V3)
 
 Usage:
   node migrate-agent.js <agent-id> [options]
@@ -454,7 +454,7 @@ Examples:
   let rootPath = process.cwd();
   while (rootPath !== '/') {
     try {
-      await fs.access(path.join(rootPath, '.aios-core'));
+      await fs.access(path.join(rootPath, '.aiox-core'));
       break;
     } catch {
       rootPath = path.dirname(rootPath);
@@ -462,7 +462,7 @@ Examples:
   }
 
   if (rootPath === '/') {
-    console.error('Error: Could not find .aios-core directory. Run from project root.');
+    console.error('Error: Could not find .aiox-core directory. Run from project root.');
     process.exit(1);
   }
 

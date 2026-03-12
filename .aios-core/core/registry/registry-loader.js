@@ -47,7 +47,7 @@ class ServiceRegistry {
 
     // Determine registry path
     const registryPath = this.registryPath ||
-      path.join(process.cwd(), '.aios-core/core/registry/service-registry.json');
+      path.join(process.cwd(), '.aiox-core/core/registry/service-registry.json');
 
     const startTime = Date.now();
 

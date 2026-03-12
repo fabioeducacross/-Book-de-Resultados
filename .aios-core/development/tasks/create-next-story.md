@@ -129,7 +129,7 @@ acceptance-criteria:
 
 - **Tool:** component-generator
   - **Purpose:** Generate new components from templates
-  - **Source:** .aios-core/scripts/component-generator.js
+  - **Source:** .aiox-core/scripts/component-generator.js
 
 - **Tool:** file-system
   - **Purpose:** File creation and validation
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** create-component.js
   - **Purpose:** Component creation workflow
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/create-component.js
+  - **Location:** .aiox-core/scripts/create-component.js
 
 ---
 
@@ -239,6 +239,16 @@ To identify the next logical story based on project progress and epic definition
 - **If no story files exist:** The next story is ALWAYS 1.1 (first story of first epic)
 - Announce the identified story to the user: "Identified next story for preparation: {epicNum}.{storyNum} - {Story Title}"
 
+### 1.2 Code Intelligence: Duplicate Detection & File Suggestions (Auto-skip if unavailable)
+
+- **Check code intelligence availability:** Call `isCodeIntelAvailable()` from `.aiox-core/core/code-intel`
+- **If available:**
+  - Call `detectDuplicateStory(storyDescription)` from `.aiox-core/core/code-intel/helpers/story-helper`
+    - If matches found: Display advisory warning to user — "Similar functionality found: {warning}". This is **advisory only** and does NOT block story creation.
+  - Call `suggestRelevantFiles(storyDescription)` from `.aiox-core/core/code-intel/helpers/story-helper`
+    - If files found: Pre-populate a "Suggested Files" note in the Dev Notes section with the relevant file references
+- **If NOT available:** Skip this step silently — story creation proceeds exactly as before
+
 ### 2. Gather Story Requirements and Previous Story Context
 
 - Extract story requirements from the identified epic file
@@ -278,7 +288,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join(__dirname, '../../.aios-core/core-config.yaml');
+const configPath = path.join(__dirname, '../../.aiox-core/core-config.yaml');
 const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
 
 const qaLocation = config.qa?.qaLocation || 'docs/qa';
@@ -772,3 +782,10 @@ Use the primary agent from "Specialized Agent Assignment" to determine which sel
   - Next steps: For Complex stories, suggest the user carefully review the story draft and also optionally have the PO run the task `aiox-core/tasks/validate-next-story`
 
 **ClickUp Integration Note:** This task now includes Epic verification (Section 5.1), ClickUp story task creation (Section 5.3), and automatic frontmatter updates (Section 5.4). Stories are created as subtasks of their parent Epic in ClickUp's Backlog list. If Epic verification or ClickUp sync fails, the story file will still be created locally with a warning message.
+
+## Handoff
+next_agent: @po
+next_command: *validate-story-draft {story-id}
+condition: Story status is Draft
+alternatives:
+  - agent: @dev, command: *develop {story-id}, condition: Story already validated by PO

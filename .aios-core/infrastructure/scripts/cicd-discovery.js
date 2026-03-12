@@ -3,7 +3,7 @@
  * Gap Analysis Implementation
  *
  * Auto-detects CI/CD infrastructure in projects and provides
- * integration points for AIOS workflows.
+ * integration points for AIOX workflows.
  */
 
 const fs = require('fs');
@@ -768,7 +768,7 @@ class PipelineAnalyzer {
 }
 
 /**
- * IntegrationSuggester - Suggests AIOS integration points
+ * IntegrationSuggester - Suggests AIOX integration points
  */
 class IntegrationSuggester {
   /**
@@ -777,13 +777,13 @@ class IntegrationSuggester {
   suggest(analysis, provider) {
     const suggestions = [];
 
-    // Add AIOS build step
+    // Add AIOX build step
     suggestions.push({
       type: 'add_step',
       priority: 'high',
-      title: 'Add AIOS Build Orchestration',
-      description: 'Integrate AIOS build orchestrator for intelligent parallel builds',
-      code: this.getAIOSBuildStep(provider),
+      title: 'Add AIOX Build Orchestration',
+      description: 'Integrate AIOX build orchestrator for intelligent parallel builds',
+      code: this.getAIOXBuildStep(provider),
     });
 
     // Add test step if missing
@@ -792,7 +792,7 @@ class IntegrationSuggester {
         type: 'add_step',
         priority: 'medium',
         title: 'Add Test Discovery',
-        description: 'Use AIOS test discovery to automatically find and run tests',
+        description: 'Use AIOX test discovery to automatically find and run tests',
         code: this.getTestStep(provider),
       });
     }
@@ -814,7 +814,7 @@ class IntegrationSuggester {
         type: 'add_step',
         priority: 'high',
         title: 'Add Security Scanning',
-        description: 'Add AIOS PR Review AI for security analysis',
+        description: 'Add AIOX PR Review AI for security analysis',
         code: this.getSecurityStep(provider),
       });
     }
@@ -830,12 +830,12 @@ class IntegrationSuggester {
       });
     }
 
-    // Add AIOS status reporting
+    // Add AIOX status reporting
     suggestions.push({
       type: 'add_step',
       priority: 'low',
-      title: 'Add AIOS Status Reporting',
-      description: 'Report build status to AIOS dashboard',
+      title: 'Add AIOX Status Reporting',
+      description: 'Report build status to AIOX dashboard',
       code: this.getStatusStep(provider),
     });
 
@@ -843,36 +843,36 @@ class IntegrationSuggester {
   }
 
   /**
-   * Get AIOS build step for provider
+   * Get AIOX build step for provider
    */
-  getAIOSBuildStep(provider) {
+  getAIOXBuildStep(provider) {
     const steps = {
-      'github-actions': `- name: AIOS Build Orchestration
-  run: npx aios build --parallel --smart-cache
+      'github-actions': `- name: AIOX Build Orchestration
+  run: npx aiox build --parallel --smart-cache
   env:
-    AIOS_CI: true`,
+    AIOX_CI: true`,
 
-      'gitlab-ci': `aios_build:
+      'gitlab-ci': `aiox_build:
   stage: build
   script:
-    - npx aios build --parallel --smart-cache
+    - npx aiox build --parallel --smart-cache
   variables:
-    AIOS_CI: "true"`,
+    AIOX_CI: "true"`,
 
-      jenkins: `stage('AIOS Build') {
+      jenkins: `stage('AIOX Build') {
   steps {
-    sh 'npx aios build --parallel --smart-cache'
+    sh 'npx aiox build --parallel --smart-cache'
   }
   environment {
-    AIOS_CI = 'true'
+    AIOX_CI = 'true'
   }
 }`,
 
       circleci: `- run:
-    name: AIOS Build Orchestration
-    command: npx aios build --parallel --smart-cache
+    name: AIOX Build Orchestration
+    command: npx aiox build --parallel --smart-cache
     environment:
-      AIOS_CI: true`,
+      AIOX_CI: true`,
     };
 
     return steps[provider] || steps['github-actions'];
@@ -884,23 +884,23 @@ class IntegrationSuggester {
   getTestStep(provider) {
     const steps = {
       'github-actions': `- name: Run Tests
-  run: npx aios test --discover --coverage`,
+  run: npx aiox test --discover --coverage`,
 
       'gitlab-ci': `test:
   stage: test
   script:
-    - npx aios test --discover --coverage
+    - npx aiox test --discover --coverage
   coverage: '/Coverage: \\d+\\.\\d+%/'`,
 
       jenkins: `stage('Test') {
   steps {
-    sh 'npx aios test --discover --coverage'
+    sh 'npx aiox test --discover --coverage'
   }
 }`,
 
       circleci: `- run:
     name: Run Tests
-    command: npx aios test --discover --coverage`,
+    command: npx aiox test --discover --coverage`,
     };
 
     return steps[provider] || steps['github-actions'];
@@ -939,18 +939,18 @@ class IntegrationSuggester {
   getSecurityStep(provider) {
     const steps = {
       'github-actions': `- name: Security Scan
-  run: npx aios review --security-only
+  run: npx aiox review --security-only
   continue-on-error: true`,
 
       'gitlab-ci': `security_scan:
   stage: test
   script:
-    - npx aios review --security-only
+    - npx aiox review --security-only
   allow_failure: true`,
 
       jenkins: `stage('Security Scan') {
   steps {
-    sh 'npx aios review --security-only'
+    sh 'npx aiox review --security-only'
   }
   post {
     failure {
@@ -961,7 +961,7 @@ class IntegrationSuggester {
 
       circleci: `- run:
     name: Security Scan
-    command: npx aios review --security-only
+    command: npx aiox review --security-only
     when: always`,
     };
 
@@ -988,27 +988,27 @@ class IntegrationSuggester {
    */
   getStatusStep(provider) {
     const steps = {
-      'github-actions': `- name: Report to AIOS
+      'github-actions': `- name: Report to AIOX
   if: always()
-  run: npx aios status --report-ci
+  run: npx aiox status --report-ci
   env:
-    AIOS_BUILD_STATUS: \${{ job.status }}`,
+    AIOX_BUILD_STATUS: \${{ job.status }}`,
 
       'gitlab-ci': `report_status:
   stage: .post
   script:
-    - npx aios status --report-ci
+    - npx aiox status --report-ci
   when: always`,
 
       jenkins: `post {
   always {
-    sh 'npx aios status --report-ci'
+    sh 'npx aiox status --report-ci'
   }
 }`,
 
       circleci: `- run:
-    name: Report to AIOS
-    command: npx aios status --report-ci
+    name: Report to AIOX
+    command: npx aiox status --report-ci
     when: always`,
     };
 

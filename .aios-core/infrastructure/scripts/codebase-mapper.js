@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Codebase Mapper
+ * AIOX Codebase Mapper
  *
  * Story: 7.2 - Codebase Mapper
  * Epic: Epic 7 - Memory Layer
@@ -10,9 +10,9 @@
  * Used by the Context Generator (Epic 4) to understand project structure.
  *
  * Features:
- * - AC1: Located in `.aios-core/infrastructure/scripts/`
+ * - AC1: Located in `.aiox-core/infrastructure/scripts/`
  * - AC2: Generates: services, directories, patterns, conventions, dependencies
- * - AC3: Output: `.aios/codebase-map.json`
+ * - AC3: Output: `.aiox/codebase-map.json`
  * - AC4: Automatic updates after significant merges
  * - AC5: Command `*map-codebase` available globally
  * - AC6: Used by Context Generator (Epic 4)
@@ -32,7 +32,7 @@ const path = require('path');
 
 const CONFIG = {
   // AC3: Output path
-  outputPath: '.aios/codebase-map.json',
+  outputPath: '.aiox/codebase-map.json',
   // Schema version
   schemaVersion: '1.0',
   // Default max depth
@@ -1146,7 +1146,7 @@ async function main() {
 
   if (args.includes('--help') || args.includes('-h')) {
     console.log(`
-Codebase Mapper - AIOS Memory Layer (Story 7.2)
+Codebase Mapper - AIOX Memory Layer (Story 7.2)
 
 Usage:
   node codebase-mapper.js [command] [options]
@@ -1155,7 +1155,7 @@ Usage:
 Commands:
   map             Generate codebase map (default)
   json            Output as JSON to stdout
-  save            Save to .aios/codebase-map.json
+  save            Save to .aiox/codebase-map.json
   diff            Compare with existing map
 
 Options:
@@ -1174,9 +1174,9 @@ Examples:
   node codebase-mapper.js --depth 3 --output ./custom-map.json
 
 Acceptance Criteria Coverage:
-  AC1: Located in .aios-core/infrastructure/scripts/
+  AC1: Located in .aiox-core/infrastructure/scripts/
   AC2: Generates: services, directories, patterns, conventions, dependencies
-  AC3: Output: .aios/codebase-map.json
+  AC3: Output: .aiox/codebase-map.json
   AC4: Automatic updates after significant merges (via git hooks)
   AC5: Command *map-codebase available globally
   AC6: Used by Context Generator (Epic 4)

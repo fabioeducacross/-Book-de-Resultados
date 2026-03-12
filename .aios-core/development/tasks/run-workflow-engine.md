@@ -44,7 +44,7 @@ atomic_layer: Config
 **Saída:**
 - campo: workflow_state
   tipo: object
-  destino: File system (.aios/{instance-id}-engine-state.yaml)
+  destino: File system (.aiox/{instance-id}-engine-state.yaml)
   persistido: true
 
 - campo: execution_report
@@ -80,7 +80,7 @@ pre-conditions:
     tipo: pre-condition
     blocker: true
     validação: |
-      Check .aios/{instance-id}-engine-state.yaml exists with status=active
+      Check .aiox/{instance-id}-engine-state.yaml exists with status=active
     error_message: "Pre-condition failed: No active engine workflow instance found. Use action=start first."
   - [ ] Task tool must be available for subagent spawning
     tipo: pre-condition
@@ -106,7 +106,7 @@ post-conditions:
     tipo: post-condition
     blocker: true
     validação: |
-      Verify .aios/{instance-id}-engine-state.yaml exists and contains outputs
+      Verify .aiox/{instance-id}-engine-state.yaml exists and contains outputs
     error_message: "Post-condition failed: State file not written"
 ```
 
@@ -154,11 +154,11 @@ acceptance-criteria:
 
 - **Tool:** workflow-state-manager
   - **Purpose:** Create and manage workflow state
-  - **Source:** .aios-core/development/scripts/workflow-state-manager.js
+  - **Source:** .aiox-core/development/scripts/workflow-state-manager.js
 
 - **Tool:** workflow-validator
   - **Purpose:** Validate workflow before starting
-  - **Source:** .aios-core/development/scripts/workflow-validator.js
+  - **Source:** .aiox-core/development/scripts/workflow-validator.js
 
 ---
 
@@ -237,7 +237,7 @@ Execute workflows by spawning **real subagents** via the Task tool, **one step a
 ## Prerequisites
 
 - Workflow YAML validated and accessible
-- Template: `subagent-step-prompt.md` available at `.aios-core/development/templates/`
+- Template: `subagent-step-prompt.md` available at `.aiox-core/development/templates/`
 - Agent files accessible at resolved paths
 - Task files accessible at resolved paths (via `uses` field)
 
@@ -262,7 +262,7 @@ Invocation N: continue → load state → [end marker] → final report → DONE
 Initialize a new workflow and execute the first action step.
 
 **1. Resolve workflow path** based on `target_context`:
-- `core` → `.aios-core/development/workflows/{workflow_name}.yaml`
+- `core` → `.aiox-core/development/workflows/{workflow_name}.yaml`
 - `squad` → `squads/{squad_name}/workflows/{workflow_name}.yaml`
 - `hybrid` → `squads/{squad_name}/workflows/{workflow_name}.yaml`
 
@@ -402,7 +402,7 @@ Completed steps:
 Artifacts created:
   - {list from step_results}
 
-State preserved at: .aios/{instance_id}-engine-state.yaml
+State preserved at: .aiox/{instance_id}-engine-state.yaml
 ```
 
 **4. Save state.**
@@ -521,7 +521,7 @@ Mode: ENGINE (step-by-step)
 --- Artifacts ---
   {list of all artifacts created across all steps}
 
-State saved to: .aios/{instance_id}-engine-state.yaml
+State saved to: .aiox/{instance_id}-engine-state.yaml
 ```
 
 After the report, ask the user if they want to create a handoff document.
@@ -565,7 +565,7 @@ Constructs the complete prompt for a subagent using the template.
 
 ### Process
 
-1. **Load template** from `.aios-core/development/templates/subagent-step-prompt.md`
+1. **Load template** from `.aiox-core/development/templates/subagent-step-prompt.md`
 2. **Extract agent info:**
    - Read agent file → extract `agent.name` → `{{AGENT_NAME}}`
    - Read agent file → extract `agent.title` → `{{AGENT_TITLE}}`
@@ -603,18 +603,18 @@ Constructs the complete prompt for a subagent using the template.
 resolve_agent_path(agent_ref, target_context, squad_name):
   # Handle explicit prefix
   IF agent_ref starts with "core:":
-    RETURN ".aios-core/development/agents/{agent_ref without prefix}.md"
+    RETURN ".aiox-core/development/agents/{agent_ref without prefix}.md"
   IF agent_ref starts with "squad:":
     RETURN "squads/{squad_name}/agents/{agent_ref without prefix}.md"
 
   # Context-based resolution
   IF target_context == "core":
-    RETURN ".aios-core/development/agents/{agent_ref}.md"
+    RETURN ".aiox-core/development/agents/{agent_ref}.md"
   IF target_context == "squad":
     RETURN "squads/{squad_name}/agents/{agent_ref}.md"
   IF target_context == "hybrid":
     squad_path = "squads/{squad_name}/agents/{agent_ref}.md"
-    core_path = ".aios-core/development/agents/{agent_ref}.md"
+    core_path = ".aiox-core/development/agents/{agent_ref}.md"
     IF squad_path exists → RETURN squad_path
     IF core_path exists → RETURN core_path
     ERROR: Agent not found in either context
@@ -625,12 +625,12 @@ resolve_agent_path(agent_ref, target_context, squad_name):
 ```
 resolve_task_path(uses_ref, target_context, squad_name):
   IF target_context == "core":
-    RETURN ".aios-core/development/tasks/{uses_ref}.md"
+    RETURN ".aiox-core/development/tasks/{uses_ref}.md"
   IF target_context == "squad":
     RETURN "squads/{squad_name}/tasks/{uses_ref}.md"
   IF target_context == "hybrid":
     squad_path = "squads/{squad_name}/tasks/{uses_ref}.md"
-    core_path = ".aios-core/development/tasks/{uses_ref}.md"
+    core_path = ".aiox-core/development/tasks/{uses_ref}.md"
     IF squad_path exists → RETURN squad_path
     IF core_path exists → RETURN core_path
     ERROR: Task not found in either context
@@ -641,12 +641,12 @@ resolve_task_path(uses_ref, target_context, squad_name):
 ```
 resolve_data_path(data_ref, target_context, squad_name):
   IF target_context == "core":
-    RETURN ".aios-core/data/{data_ref}"
+    RETURN ".aiox-core/data/{data_ref}"
   IF target_context == "squad":
     RETURN "squads/{squad_name}/data/{data_ref}"
   IF target_context == "hybrid":
     squad_path = "squads/{squad_name}/data/{data_ref}"
-    core_path = ".aios-core/data/{data_ref}"
+    core_path = ".aiox-core/data/{data_ref}"
     IF squad_path exists → RETURN squad_path
     IF core_path exists → RETURN core_path
     WARN: Data file not found, skip
@@ -776,7 +776,7 @@ Task tool call:
 State is saved after **every invocation** (start, continue, skip, abort). This enables resume across sessions.
 
 ```yaml
-# .aios/{instance-id}-engine-state.yaml
+# .aiox/{instance-id}-engine-state.yaml
 engine_state:
   workflow_id: {id}
   workflow_name: {name}
@@ -821,7 +821,7 @@ engine_state:
 The state file persists on disk. To resume in a new Claude Code session:
 
 ```
-@aios-master
+@aiox-master
 *run-workflow {name} continue --mode=engine
 ```
 

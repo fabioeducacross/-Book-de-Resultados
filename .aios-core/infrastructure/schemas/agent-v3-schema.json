@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "agent-v3-schema",
-  "title": "AIOS Agent V3 Schema",
-  "description": "Schema for AIOS agent definitions with Auto-Claude patterns",
+  "title": "AIOX Agent V3 Schema",
+  "description": "Schema for AIOX agent definitions with Auto-Claude patterns",
   "type": "object",
   "required": ["agent", "persona", "commands", "dependencies", "autoClaude"],
   "properties": {

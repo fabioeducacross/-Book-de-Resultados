@@ -1,7 +1,7 @@
 /**
  * Validate Command Module
  *
- * CLI command for validating AIOS-Core installation integrity.
+ * CLI command for validating AIOX-Core installation integrity.
  * Compares installed files against the install manifest.
  *
  * @module cli/commands/validate
@@ -9,11 +9,11 @@
  * @story 6.19 - Post-Installation Validation & Integrity Verification
  *
  * Usage:
- *   aios validate                    # Validate current installation
- *   aios validate --repair           # Repair missing/corrupted files
- *   aios validate --repair --dry-run # Preview repairs without applying
- *   aios validate --detailed         # Show detailed file list
- *   aios validate --json             # Output as JSON
+ *   aiox validate                    # Validate current installation
+ *   aiox validate --repair           # Repair missing/corrupted files
+ *   aiox validate --repair --dry-run # Preview repairs without applying
+ *   aiox validate --detailed         # Show detailed file list
+ *   aiox validate --json             # Output as JSON
  */
 
 'use strict';
@@ -57,7 +57,7 @@ function createValidateCommand() {
   const validate = new Command('validate');
 
   validate
-    .description('Validate AIOS-Core installation integrity')
+    .description('Validate AIOX-Core installation integrity')
     .option('-r, --repair', 'Repair missing or corrupted files')
     .option('-d, --dry-run', 'Preview repairs without applying (use with --repair)')
     .option('--detailed', 'Show detailed file list')
@@ -71,22 +71,22 @@ function createValidateCommand() {
       `
 Examples:
   ${chalk.dim('# Validate current installation')}
-  $ aios validate
+  $ aiox validate
 
   ${chalk.dim('# Validate with detailed file list')}
-  $ aios validate --detailed
+  $ aiox validate --detailed
 
   ${chalk.dim('# Repair missing/corrupted files')}
-  $ aios validate --repair
+  $ aiox validate --repair
 
   ${chalk.dim('# Preview what would be repaired')}
-  $ aios validate --repair --dry-run
+  $ aiox validate --repair --dry-run
 
   ${chalk.dim('# Quick validation (skip hash check)')}
-  $ aios validate --no-hash
+  $ aiox validate --no-hash
 
   ${chalk.dim('# Output as JSON for CI/CD')}
-  $ aios validate --json
+  $ aiox validate --json
 
 Exit Codes:
   0 - Validation passed
@@ -107,27 +107,27 @@ Exit Codes:
  */
 async function runValidation(options) {
   const projectRoot = process.cwd();
-  const aiosCoreDir = path.join(projectRoot, '.aios-core');
+  const aioxCoreDir = path.join(projectRoot, '.aiox-core');
 
-  // Check if AIOS-Core is installed
-  if (!fs.existsSync(aiosCoreDir)) {
+  // Check if AIOX-Core is installed
+  if (!fs.existsSync(aioxCoreDir)) {
     if (options.json) {
       console.log(
         JSON.stringify(
           {
             status: 'failed',
-            error: 'AIOS-Core not found in current directory',
+            error: 'AIOX-Core not found in current directory',
             // SECURITY: Sanitize path - only show relative indicator
-            location: '.aios-core',
+            location: '.aiox-core',
           },
           null,
           2
         )
       );
     } else {
-      console.error(chalk.red('\nError: AIOS-Core not found in current directory'));
-      console.error(chalk.dim(`Expected at: ${aiosCoreDir}`));
-      console.error(chalk.dim('\nRun `npx aios-core install` to install AIOS-Core'));
+      console.error(chalk.red('\nError: AIOX-Core not found in current directory'));
+      console.error(chalk.dim(`Expected at: ${aioxCoreDir}`));
+      console.error(chalk.dim('\nRun `npx aiox-core install` to install AIOX-Core'));
     }
     process.exit(ExitCode.ERROR);
   }
@@ -162,7 +162,7 @@ async function runValidation(options) {
 
   // SECURITY: Validate --source directory if provided
   if (sourceDir) {
-    const sourceManifest = path.join(sourceDir, '.aios-core', 'install-manifest.yaml');
+    const sourceManifest = path.join(sourceDir, '.aiox-core', 'install-manifest.yaml');
     if (!fs.existsSync(sourceManifest)) {
       if (options.json) {
         console.log(
@@ -189,13 +189,11 @@ async function runValidation(options) {
     const possibleSources = [
       path.join(__dirname, '../../../../..'), // npm package root
       path.join(projectRoot, 'node_modules/aiox-core'),
-      path.join(projectRoot, 'node_modules/@synkra/aiox-core'),
-      path.join(projectRoot, 'node_modules/aios-core'),
-      path.join(projectRoot, 'node_modules/@synkra/aios-core'),
+      path.join(projectRoot, 'node_modules/aiox-core'),
     ];
 
     for (const src of possibleSources) {
-      if (fs.existsSync(path.join(src, '.aios-core', 'install-manifest.yaml'))) {
+      if (fs.existsSync(path.join(src, '.aiox-core', 'install-manifest.yaml'))) {
         sourceDir = src;
         break;
       }

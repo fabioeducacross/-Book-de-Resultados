@@ -7,14 +7,14 @@ const workflowElicitationSteps = [
   {
     title: 'Target Context',
     description: 'Where should this workflow be created?',
-    help: 'Workflows can live in the AIOS core framework or within a specific squad.',
+    help: 'Workflows can live in the AIOX core framework or within a specific squad.',
     questions: [
       {
         type: 'list',
         name: 'targetContext',
         message: 'Where should this workflow be created?',
         choices: [
-          { name: 'AIOS Core - Framework-level workflow', value: 'core' },
+          { name: 'AIOX Core - Framework-level workflow', value: 'core' },
           { name: 'Squad - Squad-specific workflow', value: 'squad' },
           { name: 'Hybrid - Uses agents from both core AND a squad', value: 'hybrid' },
         ],

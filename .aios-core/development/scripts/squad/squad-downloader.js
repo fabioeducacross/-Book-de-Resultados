@@ -1,7 +1,7 @@
 /**
  * Squad Downloader Utility
  *
- * Downloads squads from the aios-squads GitHub repository.
+ * Downloads squads from the aiox-squads GitHub repository.
  * Uses GitHub API for registry.json and raw file downloads.
  *
  * @module squad-downloader
@@ -14,18 +14,18 @@ const fs = require('fs').promises;
 const path = require('path');
 
 /**
- * Default registry URL for aios-squads
+ * Default registry URL for aiox-squads
  * @constant {string}
  */
 const REGISTRY_URL =
-  'https://raw.githubusercontent.com/SynkraAI/aios-squads/main/registry.json';
+  'https://raw.githubusercontent.com/SynkraAI/aiox-squads/main/registry.json';
 
 /**
- * GitHub API base URL for aios-squads contents
+ * GitHub API base URL for aiox-squads contents
  * @constant {string}
  */
 const GITHUB_API_BASE =
-  'https://api.github.com/repos/SynkraAI/aios-squads/contents/packages';
+  'https://api.github.com/repos/SynkraAI/aiox-squads/contents/packages';
 
 /**
  * Default path for downloaded squads
@@ -84,7 +84,7 @@ class SquadDownloaderError extends Error {
 }
 
 /**
- * Squad Downloader class for downloading squads from aios-squads repository
+ * Squad Downloader class for downloading squads from aiox-squads repository
  */
 class SquadDownloader {
   /**
@@ -259,7 +259,7 @@ class SquadDownloader {
   }
 
   /**
-   * Fetch registry from aios-squads repository
+   * Fetch registry from aiox-squads repository
    *
    * @returns {Promise<Object>} Registry data
    * @throws {SquadDownloaderError} REGISTRY_FETCH_ERROR if fetch fails
@@ -360,7 +360,7 @@ class SquadDownloader {
       throw new SquadDownloaderError(
         DownloaderErrorCodes.DOWNLOAD_ERROR,
         'Invalid response from GitHub API',
-        'Check if squad exists in aios-squads repository',
+        'Check if squad exists in aiox-squads repository',
       );
     }
 
@@ -406,7 +406,7 @@ class SquadDownloader {
     return new Promise((resolve, reject) => {
       const options = {
         headers: {
-          'User-Agent': 'AIOS-SquadDownloader/1.0',
+          'User-Agent': 'AIOX-SquadDownloader/1.0',
         },
       };
 

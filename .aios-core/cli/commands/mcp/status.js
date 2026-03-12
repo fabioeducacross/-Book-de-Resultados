@@ -99,7 +99,7 @@ async function executeStatus(options) {
     console.log(`  Servers: ${serverList.total} configured, ${serverList.enabled} enabled`);
   } else {
     console.log('  Status: ❌ Not configured');
-    console.log('  Run "aios mcp setup" to create global config');
+    console.log('  Run "aiox mcp setup" to create global config');
   }
 
   // Project Link Section
@@ -115,18 +115,18 @@ async function executeStatus(options) {
       break;
     case LINK_STATUS.NOT_LINKED:
       console.log('  Status: ⚪ Not linked');
-      console.log('  Run "aios mcp link" to link project to global config');
+      console.log('  Run "aiox mcp link" to link project to global config');
       break;
     case LINK_STATUS.BROKEN:
       console.log('  Status: 🔴 Broken link');
       console.log(`  Target: ${linkStatus.target}`);
-      console.log('  Run "aios mcp link --force" to fix');
+      console.log('  Run "aiox mcp link --force" to fix');
       break;
     case LINK_STATUS.DIRECTORY:
       console.log('  Status: 📁 Local directory (not linked)');
       if (projectConfig.found) {
         console.log(`  Local config: ${projectConfig.serverCount} servers`);
-        console.log('  Run "aios mcp link --migrate" to use global config');
+        console.log('  Run "aiox mcp link --migrate" to use global config');
       }
       break;
     default:
@@ -169,11 +169,11 @@ async function executeStatus(options) {
 
   // Quick actions
   if (!globalExists) {
-    console.log('\n💡 Quick start: aios mcp setup --with-defaults');
+    console.log('\n💡 Quick start: aiox mcp setup --with-defaults');
   } else if (linkStatus.status === LINK_STATUS.NOT_LINKED) {
-    console.log('\n💡 Link project: aios mcp link');
+    console.log('\n💡 Link project: aiox mcp link');
   } else if (serverList.enabled === 0) {
-    console.log('\n💡 Add server: aios mcp add context7');
+    console.log('\n💡 Add server: aiox mcp add context7');
   }
 }
 

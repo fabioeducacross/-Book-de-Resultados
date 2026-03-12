@@ -11,7 +11,7 @@ const SecurityChecker = require('./security-checker');
 class CapabilityAnalyzer {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.coreDir = path.join(this.rootPath, 'aios-core');
+    this.coreDir = path.join(this.rootPath, 'aiox-core');
     this.security = new SecurityChecker();
     
     // Capability categories

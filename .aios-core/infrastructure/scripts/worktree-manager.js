@@ -16,10 +16,10 @@ const chalk = require('chalk');
 /**
  * @typedef {Object} WorktreeManagerOptions
  * @property {number} [maxWorktrees=10] - Maximum number of concurrent worktrees
- * @property {string} [worktreeDir='.aios/worktrees'] - Directory for worktrees
+ * @property {string} [worktreeDir='.aiox/worktrees'] - Directory for worktrees
  * @property {string} [branchPrefix='auto-claude/'] - Prefix for worktree branches
  * @property {number} [staleDays=30] - Days after which a worktree is considered stale
- * @property {string} [mergeLogDir='.aios/logs/merges'] - Directory for merge audit logs
+ * @property {string} [mergeLogDir='.aiox/logs/merges'] - Directory for merge audit logs
  */
 
 /**
@@ -63,10 +63,10 @@ class WorktreeManager {
   constructor(projectRoot, options = {}) {
     this.projectRoot = projectRoot || process.cwd();
     this.maxWorktrees = options.maxWorktrees || 10;
-    this.worktreeDir = options.worktreeDir || '.aios/worktrees';
+    this.worktreeDir = options.worktreeDir || '.aiox/worktrees';
     this.branchPrefix = options.branchPrefix || 'auto-claude/';
     this.staleDays = options.staleDays || 30;
-    this.mergeLogDir = options.mergeLogDir || '.aios/logs/merges';
+    this.mergeLogDir = options.mergeLogDir || '.aiox/logs/merges';
     this.gitPath = 'git';
   }
 

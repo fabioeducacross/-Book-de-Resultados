@@ -134,7 +134,7 @@ acceptance-criteria:
 - **Script:** analyze-codebase.js
   - **Purpose:** Codebase analysis and reporting
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/analyze-codebase.js
+  - **Location:** .aiox-core/scripts/analyze-codebase.js
 
 ---
 

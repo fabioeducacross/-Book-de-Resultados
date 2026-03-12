@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "task-v3-schema",
-  "title": "AIOS Task V3 Schema",
-  "description": "Schema for AIOS task definitions with Auto-Claude patterns",
+  "title": "AIOX Task V3 Schema",
+  "description": "Schema for AIOX task definitions with Auto-Claude patterns",
   "type": "object",
   "required": ["name", "description", "steps"],
   "properties": {
@@ -27,6 +27,12 @@
       "type": "boolean",
       "default": false,
       "description": "Whether task requires user interaction"
+    },
+    "execution_mode": {
+      "type": "string",
+      "enum": ["direct", "programmatic"],
+      "default": "direct",
+      "description": "Execution mode: 'direct' (standard tool calls) or 'programmatic' (PTC/batch — consolidate N tool calls into single Bash block, per ADR-3 native tools only). Tasks without this field default to 'direct' (backward compatible)."
     },
     "inputs": {
       "type": "object",

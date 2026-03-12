@@ -64,7 +64,7 @@ outputs:
 
 - field: core_config
   type: file
-  destination: .aios-core/core-config.yaml
+  destination: .aiox-core/core-config.yaml
   persisted: true
 
 - field: gitignore
@@ -94,7 +94,7 @@ pre-conditions:
     type: pre-condition
     blocker: true
     validation: |
-      Verify .aios-core/infrastructure/scripts/documentation-integrity/index.js exists
+      Verify .aiox-core/infrastructure/scripts/documentation-integrity/index.js exists
     error_message: "Pre-condition failed: Documentation Integrity module not found"
 ```
 
@@ -119,7 +119,7 @@ post-conditions:
     type: post-condition
     blocker: true
     validation: |
-      Verify .aios-core/core-config.yaml exists and has deployment configuration
+      Verify .aiox-core/core-config.yaml exists and has deployment configuration
     error_message: "Post-condition failed: core-config.yaml not properly configured"
 ```
 
@@ -163,11 +163,11 @@ acceptance-criteria:
 
 - **Tool:** documentation-integrity
   - **Purpose:** Mode detection, doc generation, config generation
-  - **Source:** .aios-core/infrastructure/scripts/documentation-integrity/index.js
+  - **Source:** .aiox-core/infrastructure/scripts/documentation-integrity/index.js
 
 - **Tool:** deployment-config-loader
   - **Purpose:** Load and validate deployment configuration
-  - **Source:** .aios-core/infrastructure/scripts/documentation-integrity/deployment-config-loader.js
+  - **Source:** .aiox-core/infrastructure/scripts/documentation-integrity/deployment-config-loader.js
 
 ---
 
@@ -178,22 +178,22 @@ acceptance-criteria:
 - **Script:** mode-detector.js
   - **Purpose:** Detect installation mode from project markers
   - **Language:** JavaScript
-  - **Location:** .aios-core/infrastructure/scripts/documentation-integrity/mode-detector.js
+  - **Location:** .aiox-core/infrastructure/scripts/documentation-integrity/mode-detector.js
 
 - **Script:** doc-generator.js
   - **Purpose:** Generate project documentation from templates
   - **Language:** JavaScript
-  - **Location:** .aios-core/infrastructure/scripts/documentation-integrity/doc-generator.js
+  - **Location:** .aiox-core/infrastructure/scripts/documentation-integrity/doc-generator.js
 
 - **Script:** config-generator.js
   - **Purpose:** Generate core-config.yaml
   - **Language:** JavaScript
-  - **Location:** .aios-core/infrastructure/scripts/documentation-integrity/config-generator.js
+  - **Location:** .aiox-core/infrastructure/scripts/documentation-integrity/config-generator.js
 
 - **Script:** gitignore-generator.js
   - **Purpose:** Generate or merge .gitignore
   - **Language:** JavaScript
-  - **Location:** .aios-core/infrastructure/scripts/documentation-integrity/gitignore-generator.js
+  - **Location:** .aiox-core/infrastructure/scripts/documentation-integrity/gitignore-generator.js
 
 ---
 
@@ -271,7 +271,7 @@ Generate project-specific documentation and configuration using the Documentatio
 First, determine the installation mode based on project markers:
 
 ```javascript
-const { detectInstallationMode, collectMarkers } = require('./.aios-core/infrastructure/scripts/documentation-integrity');
+const { detectInstallationMode, collectMarkers } = require('./.aiox-core/infrastructure/scripts/documentation-integrity');
 
 const targetDir = process.cwd(); // or specified directory
 const detected = detectInstallationMode(targetDir);
@@ -322,7 +322,7 @@ For greenfield and brownfield projects, gather deployment preferences:
 Using the gathered context, generate project documentation:
 
 ```javascript
-const { buildDocContext, generateDocs } = require('./.aios-core/infrastructure/scripts/documentation-integrity');
+const { buildDocContext, generateDocs } = require('./.aiox-core/infrastructure/scripts/documentation-integrity');
 
 const context = buildDocContext(projectName, mode, markers, {
   // Custom overrides if needed
@@ -348,7 +348,7 @@ console.log(`Generated ${result.filesCreated.length} documentation files`);
 Create the core-config.yaml with deployment settings:
 
 ```javascript
-const { buildConfigContext, generateConfig, DeploymentWorkflow, DeploymentPlatform } = require('./.aios-core/infrastructure/scripts/documentation-integrity');
+const { buildConfigContext, generateConfig, DeploymentWorkflow, DeploymentPlatform } = require('./.aiox-core/infrastructure/scripts/documentation-integrity');
 
 const configContext = buildConfigContext(projectName, mode, {
   workflow: DeploymentWorkflow.STAGING_FIRST,
@@ -371,7 +371,7 @@ const configResult = generateConfig(targetDir, mode, configContext);
 Handle .gitignore based on project state:
 
 ```javascript
-const { generateGitignoreFile, hasAiosIntegration } = require('./.aios-core/infrastructure/scripts/documentation-integrity');
+const { generateGitignoreFile, hasAioxIntegration } = require('./.aiox-core/infrastructure/scripts/documentation-integrity');
 
 const gitignoreResult = generateGitignoreFile(targetDir, markers, {
   projectName,
@@ -386,7 +386,7 @@ console.log(`Gitignore ${gitignoreResult.mode}: ${gitignoreResult.path}`);
 Confirm the deployment config can be loaded by other tasks:
 
 ```javascript
-const { loadDeploymentConfig, validateDeploymentConfig } = require('./.aios-core/infrastructure/scripts/documentation-integrity');
+const { loadDeploymentConfig, validateDeploymentConfig } = require('./.aiox-core/infrastructure/scripts/documentation-integrity');
 
 const deployConfig = loadDeploymentConfig(targetDir);
 const validation = validateDeploymentConfig(deployConfig);
@@ -423,7 +423,7 @@ Generated Files:
   ✓ docs/architecture/source-tree.md
   ✓ docs/architecture/coding-standards.md
   ✓ docs/architecture/tech-stack.md
-  ✓ .aios-core/core-config.yaml
+  ✓ .aiox-core/core-config.yaml
   ✓ .gitignore (created)
 
 Deployment Configuration:

@@ -179,7 +179,7 @@ acceptance-criteria:
 - **Script:** parse-qa-report.js
   - **Purpose:** Extract issues from QA report
   - **Language:** JavaScript
-  - **Location:** .aios-core/development/scripts/parse-qa-report.js (optional)
+  - **Location:** .aiox-core/development/scripts/parse-qa-report.js (optional)
 
 ---
 
@@ -252,7 +252,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join(__dirname, '../../.aios-core/core-config.yaml');
+const configPath = path.join(__dirname, '../../.aiox-core/core-config.yaml');
 const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
 
 const qa_location = config.qa.qaLocation;
@@ -536,7 +536,7 @@ function parseStoryId(input) {
 
 **Issue ID:** FIX-6.3-002
 
-**Location:** `.aios-core/development/tasks/qa-review-story.md`
+**Location:** `.aiox-core/development/tasks/qa-review-story.md`
 
 **Problem:**
 QA review task has no associated unit tests. Coverage: 0%
@@ -621,3 +621,10 @@ This task is complete when:
 - Constraints section present
 - File follows template structure
 ```
+
+## Handoff
+next_agent: @dev
+next_command: *fix-qa-issues
+condition: QA_FIX_REQUEST.md generated
+alternatives:
+  - agent: @dev, command: *apply-qa-fixes, condition: Simple fixes, no structured request needed

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * AIOS Before Agent Hook for Gemini CLI
- * Story GEMINI-INT.6 - AIOS Hooks System
+ * AIOX Before Agent Hook for Gemini CLI
+ * Story GEMINI-INT.6 - AIOX Hooks System
  *
  * Executes before agent processing to inject gotchas and patterns.
  * Output must be valid JSON to stdout.
@@ -24,7 +24,7 @@ async function beforeAgent() {
 
   // Load gotchas
   try {
-    const gotchasPath = path.join(projectDir, '.aios', 'gotchas.json');
+    const gotchasPath = path.join(projectDir, '.aiox', 'gotchas.json');
     if (fs.existsSync(gotchasPath)) {
       const gotchas = JSON.parse(fs.readFileSync(gotchasPath, 'utf8'));
       result.contextInjection.gotchas = gotchas.slice(0, 5); // Top 5 recent
@@ -35,7 +35,7 @@ async function beforeAgent() {
 
   // Load patterns from codebase map
   try {
-    const codebaseMapPath = path.join(projectDir, '.aios', 'codebase-map.json');
+    const codebaseMapPath = path.join(projectDir, '.aiox', 'codebase-map.json');
     if (fs.existsSync(codebaseMapPath)) {
       const map = JSON.parse(fs.readFileSync(codebaseMapPath, 'utf8'));
       if (map.patterns) {

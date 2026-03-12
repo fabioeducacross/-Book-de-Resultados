@@ -423,4 +423,4 @@ tracking:
 
 ---
 
-_AIOS Quality Dimensions Framework v1.0_
+_AIOX Quality Dimensions Framework v1.0_

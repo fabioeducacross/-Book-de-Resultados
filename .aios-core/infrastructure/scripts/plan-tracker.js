@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Plan Progress Tracker
+ * AIOX Plan Progress Tracker
  *
  * Story: 4.6 - Execution Engine
  * Epic: Epic 4 - Execution Engine
@@ -10,13 +10,13 @@
  * Generates visual progress bars and integrates with dashboard status.json.
  *
  * Features:
- * - AC1: Located in `.aios-core/infrastructure/scripts/`
+ * - AC1: Located in `.aiox-core/infrastructure/scripts/`
  * - AC2: Calculates total, completed, in-progress, pending, failed
  * - AC3: Global `*plan-status {story-id}` command support
  * - AC4: Visual progress bars output
  * - AC5: Generates `plan/build-progress.txt` snapshot
  * - AC6: Auto-updates after each subtask
- * - AC7: Integrates with `.aios/dashboard/status.json`
+ * - AC7: Integrates with `.aiox/dashboard/status.json`
  *
  * @author @architect (Aria)
  * @version 1.0.0
@@ -36,9 +36,9 @@ const CONFIG = {
   progressBarFilled: '▓',
   progressBarEmpty: '░',
   // AC7: Dashboard integration path
-  dashboardStatusPath: '.aios/dashboard/status.json',
+  dashboardStatusPath: '.aiox/dashboard/status.json',
   // Legacy status path for backwards compatibility
-  legacyStatusPath: '.aios/status.json',
+  legacyStatusPath: '.aiox/status.json',
   // AC5: Build progress snapshot file
   buildProgressFile: 'build-progress.txt',
   // Plan file name
@@ -162,9 +162,9 @@ class PlanTracker {
         'plan',
         CONFIG.implementationFile
       ),
-      // .aios plans location
-      path.join(this.rootPath, '.aios/plans', this.storyId, CONFIG.implementationFile),
-      // Epic-based location (e.g., aios-core-ade/story-4.6)
+      // .aiox plans location
+      path.join(this.rootPath, '.aiox/plans', this.storyId, CONFIG.implementationFile),
+      // Epic-based location (e.g., aiox-core-ade/story-4.6)
       ...this._getEpicBasedPaths(),
     ];
 
@@ -466,8 +466,8 @@ class PlanTracker {
   /**
    * Update dashboard status.json with progress (AC7)
    *
-   * Updates `.aios/dashboard/status.json` for dashboard integration.
-   * Also updates legacy `.aios/status.json` for backwards compatibility.
+   * Updates `.aiox/dashboard/status.json` for dashboard integration.
+   * Also updates legacy `.aiox/status.json` for backwards compatibility.
    *
    * @returns {string} Path to updated status file
    */
@@ -737,7 +737,7 @@ async function main() {
 
   if (args.length < 1 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-\u{1F4CA} Plan Progress Tracker - AIOS Execution Engine (Story 4.6)
+\u{1F4CA} Plan Progress Tracker - AIOX Execution Engine (Story 4.6)
 
 Usage:
   node plan-tracker.js <story-id> [command] [options]
@@ -770,13 +770,13 @@ Examples:
   node plan-tracker.js --plan-path docs/stories/STORY-42/plan/implementation.yaml
 
 Acceptance Criteria Coverage:
-  AC1: Located in .aios-core/infrastructure/scripts/
+  AC1: Located in .aiox-core/infrastructure/scripts/
   AC2: Calculates total, completed, in-progress, pending, failed
   AC3: *plan-status {story-id} command globally available
   AC4: Visual progress bars in output
   AC5: Generates plan/build-progress.txt snapshot
   AC6: Auto-updates after each subtask
-  AC7: Integrates with .aios/dashboard/status.json
+  AC7: Integrates with .aiox/dashboard/status.json
 `);
     process.exit(args.includes('--help') || args.includes('-h') ? 0 : 1);
   }

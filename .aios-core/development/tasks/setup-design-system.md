@@ -122,11 +122,11 @@ acceptance-criteria:
 
 - **Tool:** project-scaffolder
   - **Purpose:** Generate project structure and config
-  - **Source:** .aios-core/scripts/project-scaffolder.js
+  - **Source:** .aiox-core/scripts/project-scaffolder.js
 
 - **Tool:** config-manager
   - **Purpose:** Initialize configuration files
-  - **Source:** .aios-core/utils/config-manager.js
+  - **Source:** .aiox-core/utils/config-manager.js
 
 ---
 
@@ -137,7 +137,7 @@ acceptance-criteria:
 - **Script:** init-project.js
   - **Purpose:** Project initialization workflow
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/init-project.js
+  - **Location:** .aiox-core/scripts/init-project.js
 
 ---
 

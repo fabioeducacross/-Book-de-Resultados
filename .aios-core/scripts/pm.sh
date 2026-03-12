@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================
-# AIOS PM Orchestration Script (pm.sh)
+# AIOX PM Orchestration Script (pm.sh)
 # Story 11.2: Bob Terminal Spawning
 #
 # Spawns agents in separate terminals with clean context
@@ -13,12 +13,12 @@
 #   task        - Task to execute (e.g., develop, review, create-story)
 #   params      - Additional parameters for the agent (optional)
 #   --context   - Path to context file (JSON with story, files, instructions)
-#   --output    - Custom output file path (default: /tmp/aios-output-{timestamp}.md)
+#   --output    - Custom output file path (default: /tmp/aiox-output-{timestamp}.md)
 #
 # Environment Variables:
-#   AIOS_OUTPUT_DIR   - Directory for output files (default: /tmp)
-#   AIOS_DEBUG        - Enable debug logging (default: false)
-#   AIOS_TIMEOUT      - Timeout in seconds (default: 300)
+#   AIOX_OUTPUT_DIR   - Directory for output files (default: /tmp)
+#   AIOX_DEBUG        - Enable debug logging (default: false)
+#   AIOX_TIMEOUT      - Timeout in seconds (default: 300)
 #   CLAUDE_CMD        - Claude CLI command (default: claude)
 #
 # Exit Codes:
@@ -38,11 +38,11 @@ readonly VERSION="1.0.0"
 readonly SCRIPT_NAME="$(basename "$0")"
 
 # Configuration
-OUTPUT_DIR="${AIOS_OUTPUT_DIR:-/tmp}"
-DEBUG="${AIOS_DEBUG:-false}"
-TIMEOUT="${AIOS_TIMEOUT:-300}"
+OUTPUT_DIR="${AIOX_OUTPUT_DIR:-/tmp}"
+DEBUG="${AIOX_DEBUG:-false}"
+TIMEOUT="${AIOX_TIMEOUT:-300}"
 CLAUDE_CMD="${CLAUDE_CMD:-claude}"
-INLINE_MODE="${AIOS_INLINE_MODE:-false}"
+INLINE_MODE="${AIOX_INLINE_MODE:-false}"
 
 # Arguments
 AGENT=""
@@ -77,7 +77,7 @@ log_error() {
 
 show_help() {
   cat << EOF
-AIOS Multi-Modal Orchestration Script v${VERSION}
+AIOX Multi-Modal Orchestration Script v${VERSION}
 
 Usage: ${SCRIPT_NAME} <agent> <task> [params] [options]
 
@@ -93,10 +93,10 @@ Options:
   --version, -v      Show version
 
 Environment Variables:
-  AIOS_OUTPUT_DIR    Output directory (default: /tmp)
-  AIOS_DEBUG         Enable debug mode (default: false)
-  AIOS_TIMEOUT       Timeout in seconds (default: 300)
-  AIOS_INLINE_MODE   Run without a visual terminal (default: false)
+  AIOX_OUTPUT_DIR    Output directory (default: /tmp)
+  AIOX_DEBUG         Enable debug mode (default: false)
+  AIOX_TIMEOUT       Timeout in seconds (default: 300)
+  AIOX_INLINE_MODE   Run without a visual terminal (default: false)
   CLAUDE_CMD         Claude CLI command (default: claude)
 
 Examples:
@@ -220,10 +220,10 @@ setup_paths() {
   if [[ -n "$CUSTOM_OUTPUT" ]]; then
     OUTPUT_FILE="$CUSTOM_OUTPUT"
   else
-    OUTPUT_FILE="${OUTPUT_DIR}/aios-output-${timestamp}.md"
+    OUTPUT_FILE="${OUTPUT_DIR}/aiox-output-${timestamp}.md"
   fi
 
-  LOCK_FILE="${OUTPUT_DIR}/aios-lock-${timestamp}.lock"
+  LOCK_FILE="${OUTPUT_DIR}/aiox-lock-${timestamp}.lock"
 
   log_debug "Output file: $OUTPUT_FILE"
   log_debug "Lock file: $LOCK_FILE"
@@ -332,7 +332,7 @@ spawn_inline() {
 
   # Build the command
   local output=""
-  output+="=== AIOS Agent Session (Inline) ===$(printf '\n')"
+  output+="=== AIOX Agent Session (Inline) ===$(printf '\n')"
   output+="Agent: ${AGENT}$(printf '\n')"
   output+="Task: ${TASK}$(printf '\n')"
   [[ -n "$PARAMS" ]] && output+="Params: ${PARAMS}$(printf '\n')"
@@ -383,7 +383,7 @@ spawn_terminal() {
 
   # For now, we'll create a simpler command that demonstrates the concept
   # The actual claude CLI integration will depend on how claude accepts agent/task args
-  local full_cmd="echo '=== AIOS Agent Session ===' && "
+  local full_cmd="echo '=== AIOX Agent Session ===' && "
   full_cmd+="echo 'Agent: ${AGENT}' && "
   full_cmd+="echo 'Task: ${TASK}' && "
   [[ -n "$PARAMS" ]] && full_cmd+="echo 'Params: ${PARAMS}' && "
@@ -441,7 +441,7 @@ main() {
   parse_args "$@"
   setup_paths
 
-  log_info "AIOS Multi-Modal Orchestration Script v${VERSION}"
+  log_info "AIOX Multi-Modal Orchestration Script v${VERSION}"
   log_info "Agent: $AGENT"
   log_info "Task: $TASK"
   [[ -n "$PARAMS" ]] && log_info "Params: $PARAMS"

@@ -141,7 +141,7 @@ acceptance-criteria:
 
 - **Tool:** query-validator
   - **Purpose:** SQL query syntax validation
-  - **Source:** .aios-core/utils/db-query-validator.js
+  - **Source:** .aiox-core/utils/db-query-validator.js
 
 ---
 
@@ -152,7 +152,7 @@ acceptance-criteria:
 - **Script:** db-query.js
   - **Purpose:** Execute PostgreSQL queries with error handling via Supabase
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/db-query.js
+  - **Location:** .aiox-core/scripts/db-query.js
 
 ---
 
@@ -216,7 +216,7 @@ Check for smoke test in this order:
 
 1. `supabase/tests/smoke/v_current.sql` (project-specific)
 2. `supabase/tests/smoke_test.sql` (project-specific)
-3. `.aios-core/product/templates/tmpl-smoke-test.sql` (template)
+3. `.aiox-core/product/templates/tmpl-smoke-test.sql` (template)
 
 ### 2. Run Smoke Test
 
@@ -227,8 +227,8 @@ if [ -f "supabase/tests/smoke/v_current.sql" ]; then
   SMOKE_TEST="supabase/tests/smoke/v_current.sql"
 elif [ -f "supabase/tests/smoke_test.sql" ]; then
   SMOKE_TEST="supabase/tests/smoke_test.sql"
-elif [ -f ".aios-core/product/templates/tmpl-smoke-test.sql" ]; then
-  SMOKE_TEST=".aios-core/product/templates/tmpl-smoke-test.sql"
+elif [ -f ".aiox-core/product/templates/tmpl-smoke-test.sql" ]; then
+  SMOKE_TEST=".aiox-core/product/templates/tmpl-smoke-test.sql"
 else
   echo "❌ No smoke test file found"
   exit 1

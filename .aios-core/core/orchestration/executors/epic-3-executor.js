@@ -34,7 +34,7 @@ class Epic3Executor extends EpicExecutor {
   constructor(orchestrator) {
     super(orchestrator, 3);
     this.pipelinePath = this._getPath(
-      '.aios-core',
+      '.aiox-core',
       'development',
       'workflows',
       'spec-pipeline.yaml',
@@ -144,7 +144,7 @@ class Epic3Executor extends EpicExecutor {
       this._getPath('docs', 'stories', storyId, 'spec.md'),
       this._getPath('docs', 'stories', storyId, 'SPEC.md'),
       this._getPath('docs', 'specs', `${storyId}.md`),
-      this._getPath('.aios', 'specs', `${storyId}.md`),
+      this._getPath('.aiox', 'specs', `${storyId}.md`),
     ];
 
     for (const specPath of possiblePaths) {
@@ -161,7 +161,7 @@ class Epic3Executor extends EpicExecutor {
    * @private
    */
   async _executePhase(phase, _context) {
-    const taskPath = this._getPath('.aios-core', 'development', 'tasks', `spec-${phase}.md`);
+    const taskPath = this._getPath('.aiox-core', 'development', 'tasks', `spec-${phase}.md`);
 
     // Check if task file exists
     if (!(await fs.pathExists(taskPath))) {

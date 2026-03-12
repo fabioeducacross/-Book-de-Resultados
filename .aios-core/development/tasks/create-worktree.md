@@ -77,7 +77,7 @@ pre-conditions:
   - [ ] WorktreeManager is available
     tipo: pre-condition
     blocker: true
-    validação: Script exists at .aios-core/infrastructure/scripts/worktree-manager.js
+    validação: Script exists at .aiox-core/infrastructure/scripts/worktree-manager.js
     error_message: "WorktreeManager not found. Ensure AIOX is properly installed."
 
   - [ ] Max worktrees limit not reached
@@ -98,7 +98,7 @@ post-conditions:
   - [ ] Worktree directory exists
     tipo: post-condition
     blocker: true
-    validação: Directory exists at .aios/worktrees/{storyId}
+    validação: Directory exists at .aiox/worktrees/{storyId}
     error_message: "Worktree directory was not created."
 
   - [ ] Branch exists
@@ -135,7 +135,7 @@ acceptance-criteria:
 
 - **Tool:** WorktreeManager
   - **Purpose:** Git worktree operations
-  - **Source:** .aios-core/infrastructure/scripts/worktree-manager.js
+  - **Source:** .aiox-core/infrastructure/scripts/worktree-manager.js
 
 - **Tool:** git
   - **Purpose:** Version control operations
@@ -216,7 +216,7 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 **Action:** Verify worktree doesn't already exist
 
 ```javascript
-const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
+const WorktreeManager = require('./.aiox-core/infrastructure/scripts/worktree-manager.js');
 const manager = new WorktreeManager();
 const exists = await manager.exists(storyId);
 ```
@@ -225,7 +225,7 @@ const exists = await manager.exists(storyId);
 
 ```
 ⚠️  Worktree for '{storyId}' already exists.
-    Path: .aios/worktrees/{storyId}
+    Path: .aiox/worktrees/{storyId}
     Branch: auto-claude/{storyId}
 
     Use *list-worktrees to see all worktrees.
@@ -268,7 +268,7 @@ const worktreeInfo = await manager.create(storyId);
 
 **Creates:**
 
-- Directory: `.aios/worktrees/{storyId}/`
+- Directory: `.aiox/worktrees/{storyId}/`
 - Branch: `auto-claude/{storyId}`
 
 ---
@@ -283,12 +283,12 @@ const worktreeInfo = await manager.create(storyId);
 ╚══════════════════════════════════════════════════════════════╝
 
 Story:    {storyId}
-Path:     .aios/worktrees/{storyId}
+Path:     .aiox/worktrees/{storyId}
 Branch:   auto-claude/{storyId}
 Status:   active
 
 Next Steps:
-  • cd .aios/worktrees/{storyId}  - Navigate to worktree
+  • cd .aiox/worktrees/{storyId}  - Navigate to worktree
   • git status                    - Check worktree state
   • *list-worktrees               - See all worktrees
   • *merge-worktree {storyId}     - Merge back when done
@@ -303,7 +303,7 @@ Next Steps:
 ```typescript
 interface WorktreeInfo {
   storyId: string; // 'STORY-42'
-  path: string; // '/abs/path/.aios/worktrees/STORY-42'
+  path: string; // '/abs/path/.aiox/worktrees/STORY-42'
   branch: string; // 'auto-claude/STORY-42'
   createdAt: Date; // Creation timestamp
   uncommittedChanges: number; // 0 (new worktree)
@@ -313,7 +313,7 @@ interface WorktreeInfo {
 
 ### File System
 
-- `.aios/worktrees/{storyId}/` - Isolated worktree directory
+- `.aiox/worktrees/{storyId}/` - Isolated worktree directory
 
 ---
 
@@ -381,7 +381,7 @@ To remove a created worktree:
 Or manually:
 
 ```bash
-git worktree remove .aios/worktrees/{storyId}
+git worktree remove .aiox/worktrees/{storyId}
 git branch -d auto-claude/{storyId}
 ```
 
@@ -399,7 +399,7 @@ git branch -d auto-claude/{storyId}
 
 ### Scripts
 
-- `.aios-core/infrastructure/scripts/worktree-manager.js` - Core manager
+- `.aiox-core/infrastructure/scripts/worktree-manager.js` - Core manager
 
 ### NPM Packages
 
@@ -416,7 +416,7 @@ git branch -d auto-claude/{storyId}
 ## Related
 
 - **Story:** 1.3 - CLI Commands for Worktree Management
-- **Script:** `.aios-core/infrastructure/scripts/worktree-manager.js`
+- **Script:** `.aiox-core/infrastructure/scripts/worktree-manager.js`
 - **Tasks:** `list-worktrees.md`, `remove-worktree.md`, `merge-worktree.md`
 
 ---

@@ -13,8 +13,8 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const CONFIG_PATH = path.join(process.cwd(), '.aios-core', 'core-config.yaml');
-const BACKUP_PATH = path.join(process.cwd(), '.aios-core', 'core-config.yaml.backup');
+const CONFIG_PATH = path.join(process.cwd(), '.aiox-core', 'core-config.yaml');
+const BACKUP_PATH = path.join(process.cwd(), '.aiox-core', 'core-config.yaml.backup');
 const VALID_PREFERENCES = ['auto', 'minimal', 'named', 'archetypal'];
 
 // Bob mode restricts greeting to simpler levels (Story ACT-2)

@@ -3,7 +3,7 @@
  *
  * Verifies task definition files are valid.
  *
- * @module @synkra/aios-core/health-check/checks/project/task-definitions
+ * @module aiox-core/health-check/checks/project/task-definitions
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -29,7 +29,7 @@ class TaskDefinitionsCheck extends BaseCheck {
       timeout: 5000,
       cacheable: true,
       healingTier: 0, // Cannot auto-fix task definitions
-      tags: ['aios', 'tasks', 'config'],
+      tags: ['aiox', 'tasks', 'config'],
     });
   }
 
@@ -41,8 +41,8 @@ class TaskDefinitionsCheck extends BaseCheck {
   async execute(context) {
     const projectRoot = context.projectRoot || process.cwd();
     const taskPaths = [
-      path.join(projectRoot, '.aios-core', 'development', 'tasks'),
-      path.join(projectRoot, '.aios-core', 'infrastructure', 'tasks'),
+      path.join(projectRoot, '.aiox-core', 'development', 'tasks'),
+      path.join(projectRoot, '.aiox-core', 'infrastructure', 'tasks'),
     ];
 
     const validTasks = [];

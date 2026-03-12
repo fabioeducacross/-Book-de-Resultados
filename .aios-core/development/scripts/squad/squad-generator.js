@@ -33,10 +33,10 @@ const DEFAULT_DESIGNS_PATH = './squads/.designs';
 const SQUAD_DESIGN_SCHEMA_PATH = path.join(__dirname, '../../schemas/squad-design-schema.json');
 
 /**
- * Default AIOS minimum version
+ * Default AIOX minimum version
  * @constant {string}
  */
-const DEFAULT_AIOS_MIN_VERSION = '2.1.0';
+const DEFAULT_AIOX_MIN_VERSION = '2.1.0';
 
 /**
  * Available templates
@@ -213,7 +213,7 @@ class SquadGeneratorError extends Error {
     return new SquadGeneratorError(
       GeneratorErrorCodes.SCHEMA_NOT_FOUND,
       `Schema not found at "${schemaPath}"`,
-      'Ensure AIOS is properly installed',
+      'Ensure AIOX is properly installed',
     );
   }
 }
@@ -333,8 +333,8 @@ author: ${safeYamlValue(config.author || 'Unknown')}
 license: ${config.license || 'MIT'}
 slashPrefix: ${extractSlashPrefix(config.name)}
 
-aios:
-  minVersion: "${config.aiosMinVersion || DEFAULT_AIOS_MIN_VERSION}"
+aiox:
+  minVersion: "${config.aioxMinVersion || DEFAULT_AIOX_MIN_VERSION}"
   type: squad
 
 components:
@@ -376,7 +376,7 @@ tags:
 function generateReadme(config) {
   return `# ${config.name}
 
-${config.description || 'Custom AIOS squad.'}
+${config.description || 'Custom AIOX squad.'}
 
 ## Installation
 
@@ -400,7 +400,7 @@ ${config.includeTask || config.template === 'etl' ? '- **example-agent-task** - 
 
 ## Configuration
 
-This squad ${config.configMode === 'extend' ? 'extends' : config.configMode === 'override' ? 'overrides' : 'does not inherit'} the core AIOS configuration.
+This squad ${config.configMode === 'extend' ? 'extends' : config.configMode === 'override' ? 'overrides' : 'does not inherit'} the core AIOX configuration.
 
 ## Development
 
@@ -423,7 +423,7 @@ ${config.license || 'MIT'}
 function generateCodingStandards(config) {
   return `# Coding Standards - ${config.name}
 
-> This file ${config.configMode === 'extend' ? 'extends' : config.configMode === 'override' ? 'overrides' : 'is independent of'} the core AIOS coding standards.
+> This file ${config.configMode === 'extend' ? 'extends' : config.configMode === 'override' ? 'overrides' : 'is independent of'} the core AIOX coding standards.
 
 ## Code Style
 
@@ -463,7 +463,7 @@ function generateTechStack(config) {
 ## Runtime
 
 - Node.js >= 18.x
-- AIOS >= ${config.aiosMinVersion || DEFAULT_AIOS_MIN_VERSION}
+- AIOX >= ${config.aioxMinVersion || DEFAULT_AIOX_MIN_VERSION}
 
 ## Dependencies
 
@@ -744,7 +744,7 @@ class SquadGenerator {
    * @param {string} [config.configMode='extend'] - Config inheritance mode
    * @param {boolean} [config.includeAgent=true] - Include example agent
    * @param {boolean} [config.includeTask=true] - Include example task
-   * @param {string} [config.aiosMinVersion] - Minimum AIOS version
+   * @param {string} [config.aioxMinVersion] - Minimum AIOX version
    * @param {string} [config.projectRoot] - Project root directory (for detecting project configs)
    * @returns {Promise<Object>} Generation result with path and files
    * @throws {SquadGeneratorError} If generation fails
@@ -760,7 +760,7 @@ class SquadGenerator {
       configMode: config.configMode || 'extend',
       includeAgent: config.includeAgent !== false,
       includeTask: config.includeTask !== false,
-      aiosMinVersion: config.aiosMinVersion || DEFAULT_AIOS_MIN_VERSION,
+      aioxMinVersion: config.aioxMinVersion || DEFAULT_AIOX_MIN_VERSION,
       projectRoot: config.projectRoot || process.cwd(),
     };
 
@@ -1398,7 +1398,7 @@ module.exports = {
   CONFIG_MODES,
   DEFAULT_SQUADS_PATH,
   DEFAULT_DESIGNS_PATH,
-  DEFAULT_AIOS_MIN_VERSION,
+  DEFAULT_AIOX_MIN_VERSION,
   SQUAD_DESIGN_SCHEMA_PATH,
   isValidSquadName,
   getGitUserName,

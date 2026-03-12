@@ -19,7 +19,7 @@ const fs = require('fs');
 const path = require('path');
 const ContextDetector = require('./context-detector');
 
-const SESSION_STATE_PATH = path.join(process.cwd(), '.aios', 'session-state.json');
+const SESSION_STATE_PATH = path.join(process.cwd(), '.aiox', 'session-state.json');
 const MAX_COMMANDS_HISTORY = 10;
 
 class SessionContextLoader {

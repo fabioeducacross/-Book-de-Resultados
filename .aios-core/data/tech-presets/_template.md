@@ -254,4 +254,4 @@ describe('[Component/Service]', () => {
 
 ---
 
-_AIOS Tech Preset - Created with Synkra AIOX Framework_
+_AIOX Tech Preset - Created with Synkra AIOX Framework_

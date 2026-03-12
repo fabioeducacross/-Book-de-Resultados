@@ -3,13 +3,13 @@ const path = require('path');
 const chalk = require('chalk');
 
 /**
- * Usage tracker for AIOS-FULLSTACK framework components
+ * Usage tracker for AIOX-FULLSTACK framework components
  * Tracks component usage patterns for deprecation warnings and impact analysis
  */
 class UsageTracker {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.usageDir = path.join(this.rootPath, '.aios', 'usage');
+    this.usageDir = path.join(this.rootPath, '.aiox', 'usage');
     this.usageCache = new Map();
     this.scanPatterns = this.initializeScanPatterns();
   }
@@ -402,13 +402,13 @@ class UsageTracker {
       id: componentId,
       type: type,
       name: name,
-      file_path: `aios-core/${type}s/${name}.md`
+      file_path: `aiox-core/${type}s/${name}.md`
     };
   }
 
   async getScanPaths(_options) {
     const defaultPaths = [
-      path.join(this.rootPath, 'aios-core'),
+      path.join(this.rootPath, 'aiox-core'),
       path.join(this.rootPath, 'src'),
       path.join(this.rootPath, 'lib')
     ];
@@ -465,8 +465,8 @@ class UsageTracker {
     const configRefs = [];
     const configFiles = [
       'package.json',
-      '.aiosrc',
-      'aios.config.js',
+      '.aioxrc',
+      'aiox.config.js',
       'manifest.yaml'
     ];
 

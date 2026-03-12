@@ -252,8 +252,8 @@ async function validateFields(registryPath) {
     }
 
     // Check path format
-    if (worker.path && !worker.path.startsWith('.aios-core/')) {
-      issues.push({ id: worker.id, issue: 'Invalid path prefix (must start with .aios-core/)' });
+    if (worker.path && !worker.path.startsWith('.aiox-core/')) {
+      issues.push({ id: worker.id, issue: 'Invalid path prefix (must start with .aiox-core/)' });
     }
   }
 
@@ -277,8 +277,8 @@ async function validateFields(registryPath) {
  */
 async function main() {
   const baseDir = process.argv[2] || process.cwd();
-  const registryPath = path.join(baseDir, '.aios-core/core/registry/service-registry.json');
-  const schemaPath = path.join(baseDir, '.aios-core/core/registry/registry-schema.json');
+  const registryPath = path.join(baseDir, '.aiox-core/core/registry/service-registry.json');
+  const schemaPath = path.join(baseDir, '.aiox-core/core/registry/registry-schema.json');
 
   console.log('Service Registry Validator');
   console.log('='.repeat(50));

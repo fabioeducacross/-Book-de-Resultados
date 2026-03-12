@@ -504,7 +504,7 @@ class SquadValidator {
           result.warnings.push({
             code: ValidationErrorCodes.AGENT_INVALID_FORMAT,
             file: agentFile,
-            message: 'Agent file may not follow AIOS agent definition format',
+            message: 'Agent file may not follow AIOX agent definition format',
             suggestion:
               'Use agent: YAML frontmatter or markdown heading structure',
           });
@@ -632,12 +632,12 @@ class SquadValidator {
       result.warnings.push({
         code: 'WORKFLOW_VALIDATOR_UNAVAILABLE',
         message: 'WorkflowValidator module not found, skipping workflow content validation',
-        suggestion: 'Ensure workflow-validator.js exists in .aios-core/development/scripts/',
+        suggestion: 'Ensure workflow-validator.js exists in .aiox-core/development/scripts/',
       });
       return result;
     }
 
-    const coreAgentsPath = path.join(process.cwd(), '.aios-core', 'development', 'agents');
+    const coreAgentsPath = path.join(process.cwd(), '.aiox-core', 'development', 'agents');
     const validator = new WorkflowValidator({
       verbose: this.verbose,
       strict: this.strict,

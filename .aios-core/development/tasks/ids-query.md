@@ -45,7 +45,7 @@ atomic_layer: Molecule
 
 ```yaml
 pre-conditions:
-  - [ ] Entity Registry exists at .aios-core/data/entity-registry.yaml
+  - [ ] Entity Registry exists at .aiox-core/data/entity-registry.yaml
     tipo: pre-condition
     blocker: false
     validação: |
@@ -69,24 +69,24 @@ Query the IDS (Incremental Development System) Entity Registry to find existing 
 
 ```bash
 # Basic query
-node bin/aios-ids.js ids:query "validate story drafts"
+node bin/aiox-ids.js ids:query "validate story drafts"
 
 # With JSON output
-node bin/aios-ids.js ids:query "template rendering engine" --json
+node bin/aiox-ids.js ids:query "template rendering engine" --json
 
 # Filter by type
-node bin/aios-ids.js ids:query "database migration" --type script
+node bin/aiox-ids.js ids:query "database migration" --type script
 
 # Filter by category
-node bin/aios-ids.js ids:query "agent persona" --category agents
+node bin/aiox-ids.js ids:query "agent persona" --category agents
 ```
 
 ### Programmatic Usage (Agent Context)
 
 ```javascript
 const path = require('path');
-const { RegistryLoader } = require(path.resolve('.aios-core/core/ids/registry-loader'));
-const { IncrementalDecisionEngine } = require(path.resolve('.aios-core/core/ids/incremental-decision-engine'));
+const { RegistryLoader } = require(path.resolve('.aiox-core/core/ids/registry-loader'));
+const { IncrementalDecisionEngine } = require(path.resolve('.aiox-core/core/ids/incremental-decision-engine'));
 
 const loader = new RegistryLoader();
 loader.load();
@@ -133,7 +133,7 @@ rationale: "Found 3 matches above threshold..."
 
 ## Related Commands
 
-- `aios ids:create-review` — Review CREATE decisions for 30-day assessment
+- `aiox ids:create-review` — Review CREATE decisions for 30-day assessment
 - `*develop` — Development workflow (uses IDS recommendations at G4 gate)
 
 ---

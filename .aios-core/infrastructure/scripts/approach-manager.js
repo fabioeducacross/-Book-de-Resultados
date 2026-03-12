@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Approach Manager
+ * AIOX Approach Manager
  *
  * Story: 5.3 - Current Approach Tracker
  * Epic: Epic 5 - Recovery & Learning System
@@ -32,7 +32,7 @@ const path = require('path');
 
 const CONFIG = {
   // AC6: Template file location
-  templatePath: '.aios-core/product/templates/current-approach-tmpl.md',
+  templatePath: '.aiox-core/product/templates/current-approach-tmpl.md',
   // AC1: Current approach file name
   currentApproachFile: 'current-approach.md',
   // AC7: History file name
@@ -709,7 +709,7 @@ async function main() {
 
   if (args.length < 1 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-Approach Manager - AIOS Recovery System (Story 5.3)
+Approach Manager - AIOX Recovery System (Story 5.3)
 
 Usage:
   node approach-manager.js <story-id> <command> [subtask-id] [options]

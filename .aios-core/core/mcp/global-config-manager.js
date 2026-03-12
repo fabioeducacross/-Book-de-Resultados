@@ -1,7 +1,7 @@
 /**
  * Global Config Manager
  *
- * Manages the global MCP configuration at ~/.aios/mcp/
+ * Manages the global MCP configuration at ~/.aiox/mcp/
  * Handles creation, reading, updating of global config.
  *
  * @module core/mcp/global-config-manager
@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const {
-  getGlobalAiosDir,
+  getGlobalAioxDir,
   getGlobalMcpDir,
   getGlobalConfigPath,
   getServersDir,
@@ -80,11 +80,11 @@ const SERVER_TEMPLATES = {
 };
 
 /**
- * Check if global AIOS directory exists
+ * Check if global AIOX directory exists
  * @returns {boolean}
  */
 function globalDirExists() {
-  return fs.existsSync(getGlobalAiosDir());
+  return fs.existsSync(getGlobalAioxDir());
 }
 
 /**
@@ -112,7 +112,7 @@ function createGlobalStructure() {
   const errors = [];
 
   const directories = [
-    getGlobalAiosDir(),
+    getGlobalAioxDir(),
     getGlobalMcpDir(),
     getServersDir(),
     getCacheDir(),
@@ -215,7 +215,7 @@ function addServer(serverName, serverConfig = null) {
   const config = readGlobalConfig();
 
   if (!config) {
-    return { success: false, error: 'Global config not found. Run "aios mcp setup" first.' };
+    return { success: false, error: 'Global config not found. Run "aiox mcp setup" first.' };
   }
 
   // Use template if available and no config provided

@@ -9,10 +9,10 @@ Scripts are now organized by domain across three locations:
 
 | Location | Purpose |
 |----------|---------|
-| `.aios-core/core/` | Core framework modules (elicitation, session) |
-| `.aios-core/development/scripts/` | Development scripts (greeting, workflow, hooks) |
-| `.aios-core/infrastructure/scripts/` | Infrastructure scripts (git config, validators) |
-| `.aios-core/scripts/` (this directory) | Legacy utilities and migration scripts |
+| `.aiox-core/core/` | Core framework modules (elicitation, session) |
+| `.aiox-core/development/scripts/` | Development scripts (greeting, workflow, hooks) |
+| `.aiox-core/infrastructure/scripts/` | Infrastructure scripts (git config, validators) |
+| `.aiox-core/scripts/` (this directory) | Legacy utilities and migration scripts |
 
 ## Scripts in This Directory
 
@@ -39,17 +39,17 @@ If you're looking for a script that was previously here, use this mapping:
 ```text
 OLD PATH                                      NEW PATH
 -----------------------------------------     ------------------------------------------
-.aios-core/scripts/context-detector.js      → .aios-core/core/session/context-detector.js
-.aios-core/scripts/elicitation-engine.js    → .aios-core/core/elicitation/elicitation-engine.js
-.aios-core/scripts/elicitation-session-manager.js → .aios-core/core/elicitation/session-manager.js
-.aios-core/scripts/greeting-builder.js      → .aios-core/development/scripts/greeting-builder.js
-.aios-core/scripts/workflow-navigator.js    → .aios-core/development/scripts/workflow-navigator.js
-.aios-core/scripts/agent-exit-hooks.js      → .aios-core/development/scripts/agent-exit-hooks.js
-.aios-core/scripts/git-config-detector.js   → .aios-core/infrastructure/scripts/git-config-detector.js
-.aios-core/scripts/project-status-loader.js → .aios-core/infrastructure/scripts/project-status-loader.js
-.aios-core/scripts/aios-validator.js        → .aios-core/infrastructure/scripts/aios-validator.js
-.aios-core/scripts/tool-resolver.js         → .aios-core/infrastructure/scripts/tool-resolver.js
-.aios-core/scripts/output-formatter.js      → .aios-core/infrastructure/scripts/output-formatter.js
+.aiox-core/scripts/context-detector.js      → .aiox-core/core/session/context-detector.js
+.aiox-core/scripts/elicitation-engine.js    → .aiox-core/core/elicitation/elicitation-engine.js
+.aiox-core/scripts/elicitation-session-manager.js → .aiox-core/core/elicitation/session-manager.js
+.aiox-core/scripts/greeting-builder.js      → .aiox-core/development/scripts/greeting-builder.js
+.aiox-core/scripts/workflow-navigator.js    → .aiox-core/development/scripts/workflow-navigator.js
+.aiox-core/scripts/agent-exit-hooks.js      → .aiox-core/development/scripts/agent-exit-hooks.js
+.aiox-core/scripts/git-config-detector.js   → .aiox-core/infrastructure/scripts/git-config-detector.js
+.aiox-core/scripts/project-status-loader.js → .aiox-core/infrastructure/scripts/project-status-loader.js
+.aiox-core/scripts/aiox-validator.js        → .aiox-core/infrastructure/scripts/aiox-validator.js
+.aiox-core/scripts/tool-resolver.js         → .aiox-core/infrastructure/scripts/tool-resolver.js
+.aiox-core/scripts/output-formatter.js      → .aiox-core/infrastructure/scripts/output-formatter.js
 ```
 
 ## Configuration
@@ -58,10 +58,10 @@ The `scriptsLocation` in `core-config.yaml` now uses a modular structure:
 
 ```yaml
 scriptsLocation:
-  core: .aios-core/core
-  development: .aios-core/development/scripts
-  infrastructure: .aios-core/infrastructure/scripts
-  legacy: .aios-core/scripts  # This directory
+  core: .aiox-core/core
+  development: .aiox-core/development/scripts
+  infrastructure: .aiox-core/infrastructure/scripts
+  legacy: .aiox-core/scripts  # This directory
 ```
 
 ## Usage Examples
@@ -70,37 +70,37 @@ scriptsLocation:
 
 ```javascript
 // Elicitation Engine (from core)
-const ElicitationEngine = require('./.aios-core/core/elicitation/elicitation-engine');
+const ElicitationEngine = require('./.aiox-core/core/elicitation/elicitation-engine');
 
 // Context Detector (from core)
-const ContextDetector = require('./.aios-core/core/session/context-detector');
+const ContextDetector = require('./.aiox-core/core/session/context-detector');
 ```
 
 ### Loading Development Scripts
 
 ```javascript
 // Greeting Builder
-const GreetingBuilder = require('./.aios-core/development/scripts/greeting-builder');
+const GreetingBuilder = require('./.aiox-core/development/scripts/greeting-builder');
 
 // Workflow Navigator
-const WorkflowNavigator = require('./.aios-core/development/scripts/workflow-navigator');
+const WorkflowNavigator = require('./.aiox-core/development/scripts/workflow-navigator');
 ```
 
 ### Loading Infrastructure Scripts
 
 ```javascript
 // Project Status Loader
-const { loadProjectStatus } = require('./.aios-core/infrastructure/scripts/project-status-loader');
+const { loadProjectStatus } = require('./.aiox-core/infrastructure/scripts/project-status-loader');
 
 // Git Config Detector
-const GitConfigDetector = require('./.aios-core/infrastructure/scripts/git-config-detector');
+const GitConfigDetector = require('./.aiox-core/infrastructure/scripts/git-config-detector');
 ```
 
 ### Loading Legacy Scripts (this directory)
 
 ```javascript
 // Session Context Loader
-const sessionLoader = require('./.aios-core/scripts/session-context-loader');
+const sessionLoader = require('./.aiox-core/scripts/session-context-loader');
 ```
 
 ## Related Documentation

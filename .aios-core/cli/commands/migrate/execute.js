@@ -1,11 +1,11 @@
 /**
  * Migration Execution Module
  *
- * Executes the migration from v2.0 → v2.1 structure.
+ * Executes the migration from v2.0 → v4.0.4 structure.
  *
  * @module cli/commands/migrate/execute
  * @version 1.0.0
- * @story 2.14 - Migration Script v2.0 → v2.1
+ * @story 2.14 - Migration Script v2.0 → v4.0.4
  */
 
 const fs = require('fs');
@@ -14,12 +14,12 @@ const { copyFileWithMetadata } = require('./backup');
 const { MODULE_MAPPING } = require('./analyze');
 
 /**
- * Create module directories for v2.1 structure
- * @param {string} aiosCoreDir - Path to .aios-core
+ * Create module directories for v4.0.4 structure
+ * @param {string} aioxCoreDir - Path to .aiox-core
  * @param {Object} options - Options
  * @returns {Promise<Object>} Created directories
  */
-async function createModuleDirectories(aiosCoreDir, options = {}) {
+async function createModuleDirectories(aioxCoreDir, options = {}) {
   const { onProgress = () => {} } = options;
   const modules = Object.keys(MODULE_MAPPING);
   const created = [];
@@ -27,7 +27,7 @@ async function createModuleDirectories(aiosCoreDir, options = {}) {
   onProgress({ phase: 'directories', message: 'Creating module directories...' });
 
   for (const moduleName of modules) {
-    const moduleDir = path.join(aiosCoreDir, moduleName);
+    const moduleDir = path.join(aioxCoreDir, moduleName);
 
     if (!fs.existsSync(moduleDir)) {
       await fs.promises.mkdir(moduleDir, { recursive: true });
@@ -43,11 +43,11 @@ async function createModuleDirectories(aiosCoreDir, options = {}) {
  * Migrate files for a single module
  * @param {Object} moduleData - Module data from migration plan
  * @param {string} moduleName - Module name
- * @param {string} aiosCoreDir - Path to .aios-core
+ * @param {string} aioxCoreDir - Path to .aiox-core
  * @param {Object} options - Options
  * @returns {Promise<Object>} Migration result
  */
-async function migrateModule(moduleData, moduleName, aiosCoreDir, options = {}) {
+async function migrateModule(moduleData, moduleName, aioxCoreDir, options = {}) {
   const { verbose = false, onProgress = () => {}, dryRun = false } = options;
 
   const result = {
@@ -57,7 +57,7 @@ async function migrateModule(moduleData, moduleName, aiosCoreDir, options = {}) 
     totalSize: 0,
   };
 
-  const moduleDir = path.join(aiosCoreDir, moduleName);
+  const moduleDir = path.join(aioxCoreDir, moduleName);
 
   for (const file of moduleData.files) {
     try {
@@ -102,7 +102,7 @@ async function migrateModule(moduleData, moduleName, aiosCoreDir, options = {}) 
 }
 
 /**
- * Execute full migration from v2.0 to v2.1
+ * Execute full migration from v2.0 to v4.0.4
  * @param {Object} plan - Migration plan from analyzeMigrationPlan
  * @param {Object} options - Execution options
  * @returns {Promise<Object>} Migration result
@@ -134,7 +134,7 @@ async function executeMigration(plan, options = {}) {
 
   // Phase 1: Create module directories
   if (!dryRun) {
-    await createModuleDirectories(plan.aiosCoreDir, { onProgress });
+    await createModuleDirectories(plan.aioxCoreDir, { onProgress });
   }
 
   // Phase 2: Migrate each module
@@ -160,7 +160,7 @@ async function executeMigration(plan, options = {}) {
     const moduleResult = await migrateModule(
       moduleData,
       moduleName,
-      plan.aiosCoreDir,
+      plan.aioxCoreDir,
       { verbose, onProgress, dryRun },
     );
 
@@ -187,7 +187,7 @@ async function executeMigration(plan, options = {}) {
 
     for (const file of plan.uncategorized) {
       try {
-        const targetPath = path.join(plan.aiosCoreDir, 'core', file.relativePath);
+        const targetPath = path.join(plan.aioxCoreDir, 'core', file.relativePath);
         await copyFileWithMetadata(file.sourcePath, targetPath);
         result.totalFiles++;
         result.totalSize += file.size;
@@ -209,7 +209,7 @@ async function executeMigration(plan, options = {}) {
 
     for (const [_moduleName, config] of Object.entries(MODULE_MAPPING)) {
       for (const dir of config.directories) {
-        const originalDir = path.join(plan.aiosCoreDir, dir);
+        const originalDir = path.join(plan.aioxCoreDir, dir);
         if (fs.existsSync(originalDir)) {
           dirsToCleanup.add(originalDir);
         }
@@ -247,7 +247,7 @@ async function executeMigration(plan, options = {}) {
  * @param {Object} state - Migration state
  */
 async function saveMigrationState(projectRoot, state) {
-  const statePath = path.join(projectRoot, '.aios-migration-state.json');
+  const statePath = path.join(projectRoot, '.aiox-migration-state.json');
   await fs.promises.writeFile(statePath, JSON.stringify({
     ...state,
     timestamp: new Date().toISOString(),
@@ -260,7 +260,7 @@ async function saveMigrationState(projectRoot, state) {
  * @returns {Object|null} Migration state or null
  */
 async function loadMigrationState(projectRoot) {
-  const statePath = path.join(projectRoot, '.aios-migration-state.json');
+  const statePath = path.join(projectRoot, '.aiox-migration-state.json');
 
   if (fs.existsSync(statePath)) {
     const content = await fs.promises.readFile(statePath, 'utf8');
@@ -275,7 +275,7 @@ async function loadMigrationState(projectRoot) {
  * @param {string} projectRoot - Project root
  */
 async function clearMigrationState(projectRoot) {
-  const statePath = path.join(projectRoot, '.aios-migration-state.json');
+  const statePath = path.join(projectRoot, '.aiox-migration-state.json');
 
   if (fs.existsSync(statePath)) {
     await fs.promises.unlink(statePath);

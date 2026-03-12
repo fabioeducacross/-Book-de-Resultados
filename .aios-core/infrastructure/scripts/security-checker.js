@@ -1,5 +1,5 @@
 /**
- * Security Checker for AIOS Developer Meta-Agent
+ * Security Checker for AIOX Developer Meta-Agent
  * Validates generated code and configurations for security vulnerabilities
  */
 

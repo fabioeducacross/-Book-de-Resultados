@@ -6,7 +6,7 @@
  * Intercepts requests to DeepSeek API and logs token usage to local JSON file.
  *
  * @module usage-tracker
- * @location .aios-core/infrastructure/scripts/llm-routing/usage-tracker/
+ * @location .aiox-core/infrastructure/scripts/llm-routing/usage-tracker/
  */
 
 const http = require('http');
@@ -19,7 +19,7 @@ const url = require('url');
 // Configuration
 const DEFAULT_PORT = 8787;
 const DEEPSEEK_HOST = 'api.deepseek.com';
-const DATA_DIR = path.join(os.homedir(), '.aios', 'usage-tracking');
+const DATA_DIR = path.join(os.homedir(), '.aiox', 'usage-tracking');
 const USAGE_FILE = path.join(DATA_DIR, 'deepseek-usage.json');
 
 // Pricing per million tokens (as of Dec 2025)
@@ -399,7 +399,7 @@ function startServer(options = {}) {
 ╠════════════════════════════════════════════════════════════╣
 ║  Proxy URL:    http://127.0.0.1:${port}/anthropic              ║
 ║  Alias:        ${alias.padEnd(43)}║
-║  Data File:    ~/.aios/usage-tracking/deepseek-usage.json  ║
+║  Data File:    ~/.aiox/usage-tracking/deepseek-usage.json  ║
 ╠════════════════════════════════════════════════════════════╣
 ║  Endpoints:                                                ║
 ║    /health     - Health check                              ║

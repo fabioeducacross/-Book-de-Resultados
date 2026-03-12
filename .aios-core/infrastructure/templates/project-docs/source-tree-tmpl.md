@@ -12,7 +12,7 @@ This document defines the directory structure and file organization standards fo
 
 ```
 {{PROJECT_NAME}}/
-├── .aios-core/                    # AIOX configuration
+├── .aiox-core/                    # AIOX configuration
 │   └── core-config.yaml           # Project configuration
 │
 ├── .github/                       # GitHub configuration
@@ -116,7 +116,7 @@ This document defines the directory structure and file organization standards fo
 
 | File | Location | Purpose |
 |------|----------|---------|
-| `.aios-core/core-config.yaml` | Root | AIOX configuration |
+| `.aiox-core/core-config.yaml` | Root | AIOX configuration |
 | `.env`, `.env.*` | Root | Environment variables |
 | `.gitignore` | Root | Git ignore rules |
 {{#if IS_NODE}}

@@ -11,8 +11,8 @@ const path = require('path');
  * Maps deprecated agent IDs to their new target IDs
  */
 const DEFAULT_REDIRECTS = {
-  'aios-developer': 'aios-master',
-  'aios-orchestrator': 'aios-master',
+  'aiox-developer': 'aiox-master',
+  'aiox-orchestrator': 'aiox-master',
   'db-sage': 'data-engineer',
   'github-devops': 'devops',
 };
@@ -51,11 +51,11 @@ ${baseContent.instruction}
 | Status | Deprecated |
 
 ---
-*AIOS Redirect - Synced automatically*
+*AIOX Redirect - Synced automatically*
 `;
 
     case 'xml-tagged-markdown':
-      // Windsurf format
+      // Generic markdown format
       return `${baseContent.header}
 
 <redirect>
@@ -70,7 +70,7 @@ ${baseContent.instruction}
 </notice>
 
 ---
-*AIOS Redirect - Synced automatically*
+*AIOX Redirect - Synced automatically*
 `;
 
     case 'condensed-rules':
@@ -82,7 +82,7 @@ ${baseContent.instruction}
 > ${baseContent.notice} ${baseContent.instruction}
 
 ---
-*AIOS Redirect - Synced automatically*
+*AIOX Redirect - Synced automatically*
 `;
   }
 }

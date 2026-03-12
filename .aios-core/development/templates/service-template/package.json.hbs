@@ -1,5 +1,5 @@
 {
-  "name": "@aios/{{kebabCase serviceName}}",
+  "name": "@aiox/{{kebabCase serviceName}}",
   "version": "1.0.0",
   "description": "{{description}}",
   "main": "dist/index.js",
@@ -41,13 +41,13 @@
     "prepublishOnly": "npm run clean && npm run build && npm test"
   },
   "keywords": [
-    "aios",
+    "aiox",
     "{{kebabCase serviceName}}",
     "service"{{#if isApiIntegration}},
     "api",
     "integration"{{/if}}
   ],
-  "author": "AIOS-FullStack",
+  "author": "AIOX-FullStack",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
@@ -73,13 +73,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aios-fullstack/{{kebabCase serviceName}}.git"
+    "url": "https://github.com/aiox-fullstack/{{kebabCase serviceName}}.git"
   },
   "bugs": {
-    "url": "https://github.com/aios-fullstack/{{kebabCase serviceName}}/issues"
+    "url": "https://github.com/aiox-fullstack/{{kebabCase serviceName}}/issues"
   },
-  "homepage": "https://github.com/aios-fullstack/{{kebabCase serviceName}}#readme",
-  "aios": {
+  "homepage": "https://github.com/aiox-fullstack/{{kebabCase serviceName}}#readme",
+  "aiox": {
     "storyId": "{{storyId}}",
     "type": "{{#if isApiIntegration}}api-integration{{else}}utility-service{{/if}}",
     "generatedAt": "{{generatedAt}}"

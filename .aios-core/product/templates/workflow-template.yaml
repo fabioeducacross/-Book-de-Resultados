@@ -1,6 +1,6 @@
 # yamllint disable
-# Workflow Template for Synkra AIOS
-# This template is used by aios-developer to create new workflows
+# Workflow Template for Synkra AIOX
+# This template is used by aiox-developer to create new workflows
 # Variables are replaced during generation: {{VARIABLE_NAME}}
 #
 # NOTE: This file contains Handlebars template directives ({{...}}) that are

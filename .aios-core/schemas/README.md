@@ -249,7 +249,7 @@ autoClaude:
 ### Validate Single File
 
 ```bash
-node validate-v3-schema.js .aios-core/development/agents/dev.md
+node validate-v3-schema.js .aiox-core/development/agents/dev.md
 ```
 
 ### Validate All Files
@@ -269,7 +269,7 @@ node validate-v3-schema.js --all --strict
 ### Show V2 vs V3 Diff
 
 ```bash
-node validate-v3-schema.js --diff .aios-core/development/agents/dev.md
+node validate-v3-schema.js --diff .aiox-core/development/agents/dev.md
 ```
 
 ### JSON Output
@@ -285,7 +285,7 @@ node validate-v3-schema.js --all --json
 ### Step 1: Check Current Status
 
 ```bash
-node validate-v3-schema.js --diff .aios-core/development/agents/dev.md
+node validate-v3-schema.js --diff .aiox-core/development/agents/dev.md
 ```
 
 ### Step 2: Add autoClaude Section
@@ -318,14 +318,14 @@ autoClaude:
 ### Step 3: Validate
 
 ```bash
-node validate-v3-schema.js .aios-core/development/agents/dev.md --strict
+node validate-v3-schema.js .aiox-core/development/agents/dev.md --strict
 ```
 
 ---
 
 ## Related Documents
 
-- PRD: `docs/prd/aios-autonomous-development-engine.md`
+- PRD: `docs/prd/aiox-autonomous-development-engine.md`
 - Auto-Claude Analysis: `docs/architecture/AUTO-CLAUDE-ANALYSIS-COMPLETE.md`
 - Migration Stories: `docs/stories/aiox-core-ade/epic-2-migration-v2-v3.md`
 
@@ -392,12 +392,12 @@ node validate-v3-schema.js .aios-core/development/agents/dev.md --strict
 
 ## Related Documents
 
-- PRD: `docs/prd/aios-autonomous-development-engine.md`
+- PRD: `docs/prd/aiox-autonomous-development-engine.md`
 - Auto-Claude Analysis: `docs/architecture/AUTO-CLAUDE-ANALYSIS-COMPLETE.md`
 - Migration Stories: `docs/stories/aiox-core-ade/epic-2-migration-v2-v3.md`
 
 ---
 
-_AIOS V3 Schemas - Synkra Framework_
+_AIOX V3 Schemas - Synkra Framework_
 _Created: 2026-01-28_
 _Updated: 2026-01-28 - Added status and known issues_

@@ -16,12 +16,12 @@ checklists:
 
 ## Purpose
 
-To help users contribute to the AIOX open-source project (`@synkra/aiox-core`) by automating the PR creation process, ensuring contributions follow project standards, pass quality checks, and have proper formatting before submission.
+To help users contribute to the AIOX open-source project (`aiox-core`) by automating the PR creation process, ensuring contributions follow project standards, pass quality checks, and have proper formatting before submission.
 
-**Target Repository**: `@synkra/aiox-core` (open-source framework)
+**Target Repository**: `aiox-core` (open-source framework)
 
 **Contribution Types Supported**:
-- Expansion packs (new agents, tasks, workflows)
+- Squads (new agents, tasks, workflows)
 - Agent improvements (enhanced prompts, new commands)
 - Task refinements (better checklists, templates)
 - Tool integrations (new MCP tools)
@@ -102,7 +102,7 @@ To help users contribute to the AIOX open-source project (`@synkra/aiox-core`) b
    - Ensure naming conventions followed
 
 2. **Validate Repository State**
-   - Check if `@synkra/aiox-core` repository is set as upstream
+   - Check if `aiox-core` repository is set as upstream
    - Verify fork exists (or create one)
    - Ensure main branch is up-to-date
 
@@ -132,7 +132,7 @@ To help users contribute to the AIOX open-source project (`@synkra/aiox-core`) b
 
 6. **Validate Contribution Standards**
    - Check against contribution guidelines:
-     - [ ] **Expansion Packs**: Have README, agent.md, tasks/, proper structure
+     - [ ] **Squads**: Have README, agent.md, tasks/, proper structure
      - [ ] **Agents**: Follow agent template, have commands, dependencies
      - [ ] **Tasks**: Follow task format spec, have checklists, complete docs
      - [ ] **Tools**: Have tool definition YAML, usage examples
@@ -183,7 +183,7 @@ To help users contribute to the AIOX open-source project (`@synkra/aiox-core`) b
       ```
       feat(Squad): add content-creator pack with Instagram agent
       
-      Implements a complete content creation expansion pack with:
+      Implements a complete content creation squad with:
       - Instagram content specialist agent
       - 5 new tasks (create-post, schedule-content, analyze-performance, etc.)
       - Template library for posts, stories, reels
@@ -303,8 +303,8 @@ To help users contribute to the AIOX open-source project (`@synkra/aiox-core`) b
   - **Validation**: Files at `contribution_path` exist
   - **Error**: "Files not found at {contribution_path}"
 
-- [ ] Fork of @synkra/aiox-core exists
-  - **Validation**: `gh repo view {user}/@synkra/aiox-core` succeeds
+- [ ] Fork of aiox-core exists
+  - **Validation**: `gh repo view {user}/aiox-core` succeeds
   - **Action**: If not found, create fork automatically
 
 - [ ] Main branch is up-to-date
@@ -362,7 +362,7 @@ Thank you for your interest in contributing! 🎉
 
 ### Types of Contributions
 
-- **Expansion Packs**: New agent ecosystems
+- **Squads**: New agent ecosystems
 - **Agents**: Improved or new agents
 - **Tasks**: Enhanced or new tasks
 - **Tools**: MCP tool integrations
@@ -572,7 +572,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -632,11 +632,11 @@ updated_at: 2025-11-17
 
 ## Usage Examples
 
-### Example 1: Submit New Expansion Pack
+### Example 1: Submit New Squad
 
 ```bash
-aios activate Otto  # github-devops agent
-aios pr create \
+aiox activate Otto  # github-devops agent
+aiox pr create \
   --type="Squad" \
   --path="Squads/content-creator/" \
   --issue=42
@@ -647,7 +647,7 @@ aios pr create \
 ### Example 2: Submit Agent Improvement
 
 ```bash
-aios pr create \
+aiox pr create \
   --type="agent" \
   --path="aiox-core/agents/improved-po.md" \
   --title="feat(agent): enhance PO agent with story validation"
@@ -658,7 +658,7 @@ aios pr create \
 ### Example 3: Submit Bug Fix
 
 ```bash
-aios pr create \
+aiox pr create \
   --type="bug-fix" \
   --path="aiox-core/tasks/create-next-story.md" \
   --title="fix(task): correct file path validation in create-next-story"

@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const WORKFLOW_PATTERNS_PATH = path.join(process.cwd(), '.aios-core', 'data', 'workflow-patterns.yaml');
+const WORKFLOW_PATTERNS_PATH = path.join(process.cwd(), '.aiox-core', 'data', 'workflow-patterns.yaml');
 
 class WorkflowNavigator {
   constructor() {

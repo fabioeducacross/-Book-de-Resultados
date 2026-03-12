@@ -120,8 +120,8 @@ Added gotcha: gotcha-lxyz123-abc456
 ## Integration
 
 - **Uses:** `GotchasMemory.addGotcha()`
-- **Script:** `.aios-core/core/memory/gotchas-memory.js`
-- **Outputs:** `.aios/gotchas.json`, `.aios/gotchas.md`
+- **Script:** `.aiox-core/core/memory/gotchas-memory.js`
+- **Outputs:** `.aiox/gotchas.json`, `.aiox/gotchas.md`
 
 ---
 

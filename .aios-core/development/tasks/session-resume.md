@@ -41,7 +41,7 @@ outputs:
 ### Step 1: Load Session State
 
 ```javascript
-const { loadSessionState } = require('.aios-core/core/orchestration');
+const { loadSessionState } = require('.aiox-core/core/orchestration');
 const sessionState = await loadSessionState(projectRoot);
 
 if (!sessionState) {
@@ -52,7 +52,7 @@ if (!sessionState) {
 ### Step 2: Check for Crash
 
 ```javascript
-const { SessionState } = require('.aios-core/core/orchestration');
+const { SessionState } = require('.aiox-core/core/orchestration');
 const manager = new SessionState(projectRoot);
 await manager.loadSessionState();
 
@@ -110,7 +110,7 @@ options:
 ### Step 5: Execute Selected Action
 
 ```javascript
-const { ResumeOption } = require('.aios-core/core/orchestration');
+const { ResumeOption } = require('.aiox-core/core/orchestration');
 
 const result = await manager.handleResumeOption(selectedOption);
 

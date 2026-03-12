@@ -4,10 +4,10 @@
  * Autonomous Build Loop - Story 8.1
  *
  * Executes builds autonomously in a loop: load spec → create plan → execute subtasks → verify → retry/complete.
- * Inspired by Auto-Claude's Coder Agent but with AIOS extensibility.
+ * Inspired by Auto-Claude's Coder Agent but with AIOX extensibility.
  *
  * Features:
- * - AC1: Located in `.aios-core/core/execution/`
+ * - AC1: Located in `.aiox-core/core/execution/`
  * - AC2: Loop: load spec → create plan → execute subtasks → verify → retry/complete
  * - AC3: Maximum 10 iterations per subtask (configurable)
  * - AC4: Global timeout of 30 minutes per story (configurable)
@@ -887,7 +887,7 @@ async function main() {
 
   if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-${chalk.bold('Autonomous Build Loop')} - AIOS Coder Agent Loop (Story 8.1)
+${chalk.bold('Autonomous Build Loop')} - AIOX Coder Agent Loop (Story 8.1)
 
 ${chalk.cyan('Usage:')}
   autonomous-build-loop <command> <story-id> [options]
@@ -919,7 +919,7 @@ ${chalk.cyan('Examples:')}
   autonomous-build-loop status STORY-42
 
 ${chalk.cyan('Acceptance Criteria:')}
-  AC1: Located in .aios-core/core/execution/
+  AC1: Located in .aiox-core/core/execution/
   AC2: Loop: load spec → create plan → execute → verify → retry/complete
   AC3: Maximum 10 iterations per subtask (configurable)
   AC4: Global timeout of 30 minutes (configurable)

@@ -142,11 +142,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -157,7 +157,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -228,7 +228,7 @@ optional:
 ## Prerequisites
 
 - Story file must exist
-- PM tool configured in `.aios-pm-config.yaml` (or will use local-only mode)
+- PM tool configured in `.aiox-pm-config.yaml` (or will use local-only mode)
 
 ## Task Execution Steps
 
@@ -241,7 +241,7 @@ optional:
 ### Step 2: Get PM Adapter
 
 ```javascript
-const { getPMAdapter } = require('../.aios-core/scripts/pm-adapter-factory');
+const { getPMAdapter } = require('../.aiox-core/scripts/pm-adapter-factory');
 
 const adapter = getPMAdapter();
 console.log(`Using ${adapter.getName()} adapter`);
@@ -281,7 +281,7 @@ Display formatted summary:
 
 - **Story file not found**: Display error with correct path
 - **PM tool connection failed**: Show error message from adapter
-- **Configuration missing**: Inform user to run `aios init`
+- **Configuration missing**: Inform user to run `aiox init`
 - **Sync failed**: Display adapter-specific error message
 
 ## Notes
@@ -297,7 +297,7 @@ Display formatted summary:
 This task can be called directly or via story-manager utilities:
 
 ```javascript
-const { syncStoryToPM } = require('../.aios-core/scripts/story-manager');
+const { syncStoryToPM } = require('../.aiox-core/scripts/story-manager');
 
 await syncStoryToPM(storyPath);
 ```

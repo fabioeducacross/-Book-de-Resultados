@@ -2,7 +2,7 @@
  * Manifest Generator
  *
  * Generates CSV manifest files for agents, workers, and tasks.
- * Scans the .aios-core directory structure to build comprehensive manifests.
+ * Scans the .aiox-core directory structure to build comprehensive manifests.
  *
  * @module manifest-generator
  * @version 1.0.0
@@ -111,8 +111,8 @@ function extractAgentSection(yamlContent) {
 class ManifestGenerator {
   constructor(options = {}) {
     this.basePath = options.basePath || process.cwd();
-    this.aiosCoreDir = path.join(this.basePath, '.aios-core');
-    this.manifestDir = path.join(this.aiosCoreDir, 'manifests');
+    this.aioxCoreDir = path.join(this.basePath, '.aiox-core');
+    this.manifestDir = path.join(this.aioxCoreDir, 'manifests');
     this.version = '2.1.0';
   }
 
@@ -158,7 +158,7 @@ class ManifestGenerator {
    * @returns {Promise<object>} Generation result
    */
   async generateAgentsManifest() {
-    const agentsDir = path.join(this.aiosCoreDir, 'development', 'agents');
+    const agentsDir = path.join(this.aioxCoreDir, 'development', 'agents');
     const outputPath = path.join(this.manifestDir, 'agents.csv');
 
     const agents = [];
@@ -185,7 +185,7 @@ class ManifestGenerator {
               icon: agent.icon || '🤖',
               version: this.version,
               status: 'active',
-              file_path: `.aios-core/development/agents/${file}`,
+              file_path: `.aiox-core/development/agents/${file}`,
               when_to_use: agent.whenToUse || '',
             });
           }
@@ -227,7 +227,7 @@ class ManifestGenerator {
    * @returns {Promise<object>} Generation result
    */
   async generateWorkersManifest() {
-    const registryPath = path.join(this.aiosCoreDir, 'core', 'registry', 'service-registry.json');
+    const registryPath = path.join(this.aioxCoreDir, 'core', 'registry', 'service-registry.json');
     const outputPath = path.join(this.manifestDir, 'workers.csv');
 
     try {
@@ -278,7 +278,7 @@ class ManifestGenerator {
    * @returns {Promise<object>} Generation result
    */
   async generateTasksManifest() {
-    const tasksDir = path.join(this.aiosCoreDir, 'development', 'tasks');
+    const tasksDir = path.join(this.aioxCoreDir, 'development', 'tasks');
     const outputPath = path.join(this.manifestDir, 'tasks.csv');
 
     const tasks = [];
@@ -334,7 +334,7 @@ class ManifestGenerator {
             category,
             format,
             has_elicitation: hasElicitation,
-            file_path: `.aios-core/development/tasks/${file}`,
+            file_path: `.aiox-core/development/tasks/${file}`,
             status: 'active',
           });
 

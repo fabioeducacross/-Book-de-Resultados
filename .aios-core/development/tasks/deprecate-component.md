@@ -129,11 +129,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -238,7 +238,7 @@ Mark framework components as deprecated with timeline management and migration p
 *deprecate-component agent weather-fetcher --replacement weather-service --reason "Performance optimization" --timeline 3
 
 # Deprecate a utility with migration guide
-*deprecate-component util old-logger --replacement @aios/logger --migration-guide docs/migration/logger.md --severity high
+*deprecate-component util old-logger --replacement @aiox/logger --migration-guide docs/migration/logger.md --severity high
 
 # Immediate deprecation for security issue
 *deprecate-component task insecure-parser --immediate --reason "Security vulnerability" --severity critical

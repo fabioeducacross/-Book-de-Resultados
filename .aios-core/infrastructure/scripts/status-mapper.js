@@ -1,11 +1,11 @@
 // File: common/utils/status-mapper.js
 
 /**
- * Status Mapper - Bidirectional status mapping between AIOS and ClickUp
+ * Status Mapper - Bidirectional status mapping between AIOX and ClickUp
  *
  * This module provides utilities for:
- * - Mapping AIOS story statuses to ClickUp custom field values
- * - Mapping ClickUp story-status values back to AIOS statuses
+ * - Mapping AIOX story statuses to ClickUp custom field values
+ * - Mapping ClickUp story-status values back to AIOX statuses
  * - Handling ClickUp-specific statuses (e.g., "Ready for Dev")
  *
  * CRITICAL: Stories use ClickUp custom field "story-status", NOT native status.
@@ -13,7 +13,7 @@
  */
 
 const STATUS_MAPPING = {
-  AIOS_TO_CLICKUP: {
+  AIOX_TO_CLICKUP: {
     'Draft': 'Draft',
     'Ready for Review': 'Ready for Review',
     'Review': 'Review',
@@ -21,7 +21,7 @@ const STATUS_MAPPING = {
     'Done': 'Done',
     'Blocked': 'Blocked',
   },
-  CLICKUP_TO_AIOS: {
+  CLICKUP_TO_AIOX: {
     'Draft': 'Draft',
     'Ready for Dev': 'Ready for Review',  // ClickUp-specific status
     'Ready for Review': 'Ready for Review',
@@ -33,30 +33,30 @@ const STATUS_MAPPING = {
 };
 
 /**
- * Maps an AIOS story status to ClickUp story-status custom field value
+ * Maps an AIOX story status to ClickUp story-status custom field value
  *
- * @param {string} aiosStatus - Local .md file status
+ * @param {string} aioxStatus - Local .md file status
  * @returns {string} ClickUp story-status value
  */
-function mapStatusToClickUp(aiosStatus) {
-  const mapped = STATUS_MAPPING.AIOS_TO_CLICKUP[aiosStatus];
+function mapStatusToClickUp(aioxStatus) {
+  const mapped = STATUS_MAPPING.AIOX_TO_CLICKUP[aioxStatus];
 
   if (!mapped) {
-    console.warn(`Unknown AIOS status: ${aiosStatus}, using as-is`);
-    return aiosStatus;
+    console.warn(`Unknown AIOX status: ${aioxStatus}, using as-is`);
+    return aioxStatus;
   }
 
   return mapped;
 }
 
 /**
- * Maps a ClickUp story-status custom field value to AIOS story status
+ * Maps a ClickUp story-status custom field value to AIOX story status
  *
  * @param {string} clickupStatus - ClickUp story-status value
  * @returns {string} Local .md file status
  */
 function mapStatusFromClickUp(clickupStatus) {
-  const mapped = STATUS_MAPPING.CLICKUP_TO_AIOS[clickupStatus];
+  const mapped = STATUS_MAPPING.CLICKUP_TO_AIOX[clickupStatus];
 
   if (!mapped) {
     console.warn(`Unknown ClickUp status: ${clickupStatus}, using as-is`);
@@ -67,13 +67,13 @@ function mapStatusFromClickUp(clickupStatus) {
 }
 
 /**
- * Validates if a status is a valid AIOS story status
+ * Validates if a status is a valid AIOX story status
  *
  * @param {string} status - Status to validate
  * @returns {boolean} True if valid
  */
-function isValidAIOSStatus(status) {
-  return Object.keys(STATUS_MAPPING.AIOS_TO_CLICKUP).includes(status);
+function isValidAIOXStatus(status) {
+  return Object.keys(STATUS_MAPPING.AIOX_TO_CLICKUP).includes(status);
 }
 
 /**
@@ -83,16 +83,16 @@ function isValidAIOSStatus(status) {
  * @returns {boolean} True if valid
  */
 function isValidClickUpStatus(status) {
-  return Object.keys(STATUS_MAPPING.CLICKUP_TO_AIOS).includes(status);
+  return Object.keys(STATUS_MAPPING.CLICKUP_TO_AIOX).includes(status);
 }
 
 /**
- * Gets all valid AIOS story statuses
+ * Gets all valid AIOX story statuses
  *
  * @returns {string[]} Array of valid statuses
  */
-function getValidAIOSStatuses() {
-  return Object.keys(STATUS_MAPPING.AIOS_TO_CLICKUP);
+function getValidAIOXStatuses() {
+  return Object.keys(STATUS_MAPPING.AIOX_TO_CLICKUP);
 }
 
 /**
@@ -101,15 +101,15 @@ function getValidAIOSStatuses() {
  * @returns {string[]} Array of valid statuses
  */
 function getValidClickUpStatuses() {
-  return Object.keys(STATUS_MAPPING.CLICKUP_TO_AIOS);
+  return Object.keys(STATUS_MAPPING.CLICKUP_TO_AIOX);
 }
 
 module.exports = {
   mapStatusToClickUp,
   mapStatusFromClickUp,
-  isValidAIOSStatus,
+  isValidAIOXStatus,
   isValidClickUpStatus,
-  getValidAIOSStatuses,
+  getValidAIOXStatuses,
   getValidClickUpStatuses,
   STATUS_MAPPING, // Export for testing
 };

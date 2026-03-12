@@ -128,11 +128,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -143,7 +143,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -235,7 +235,7 @@ Offer a concise list of main topic areas the user might want to explore:
 7. **Configuration** - Customizing AIOX for your needs
 8. **Best Practices** - Tips for effective AIOX usage
 
-Or ask me about anything else related to @synkra/aiox-core!
+Or ask me about anything else related to aiox-core!
 
 ### 3. Respond Contextually
 
@@ -263,7 +263,7 @@ When user is done or wants to exit KB mode:
 
 **User**: *kb-mode
 
-**Assistant**: I've entered KB mode and have access to the full AIOX knowledge base. I can help you with detailed information about any aspect of @synkra/aiox-core.
+**Assistant**: I've entered KB mode and have access to the full AIOX knowledge base. I can help you with detailed information about any aspect of aiox-core.
 
 **What would you like to know more about?**
 
@@ -276,7 +276,7 @@ When user is done or wants to exit KB mode:
 7. **Configuration** - Customizing AIOX for your needs
 8. **Best Practices** - Tips for effective AIOX usage
 
-Or ask me about anything else related to @synkra/aiox-core!
+Or ask me about anything else related to aiox-core!
 
 **User**: Tell me about workflows
 

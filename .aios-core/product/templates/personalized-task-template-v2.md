@@ -342,13 +342,13 @@ acceptance-criteria:
 
 ```yaml
 **Template:**
-- path: .aios-core/product/templates/task-execution-report.md
+- path: .aiox-core/product/templates/task-execution-report.md
   type: output
   version: 1.0
   variables: [agent_name, task_name, duration, tokens, status_message]
   schema: schemas/task-execution-report.schema.json
 
-- path: .aios-core/product/templates/story-tmpl.yaml
+- path: .aiox-core/product/templates/story-tmpl.yaml
   type: input
   version: 2.1
   variables: [story_id, title, description, acceptance_criteria]
@@ -417,12 +417,12 @@ acceptance-criteria:
 
 ```yaml
 **Scripts:**
-- .aios-core/scripts/dev-specific/test-runner.js:
+- .aiox-core/scripts/dev-specific/test-runner.js:
     description: Runs tests with coverage reporting specific to dev agent
     language: javascript
     version: 1.2.0
 
-- .aios-core/scripts/qa-specific/regression-validator.js:
+- .aiox-core/scripts/qa-specific/regression-validator.js:
     description: QA-specific regression validation logic
     language: javascript
     version: 2.0.0
@@ -525,7 +525,7 @@ acceptance-criteria:
 - fallback: |
     If template not found:
     1. Check alternative template paths
-    2. Use generic template from .aios-core/product/templates/
+    2. Use generic template from .aiox-core/product/templates/
     3. If no generic template, create minimal output structure
 - retry:
     max_attempts: 2
@@ -560,7 +560,7 @@ acceptance-criteria:
 - strategy: fallback
 - fallback: |
     If data file not found:
-    1. Check alternative data sources (.aios-core/data/)
+    1. Check alternative data sources (.aiox-core/data/)
     2. Prompt user for manual data entry
     3. Use minimal default data structure
 - retry:
@@ -894,8 +894,8 @@ atomic_layer: Molecule
 - **CRITICAL:** All outputs use standardized template (familiaridade = produtividade)
 - **CRITICAL:** Track duration and tokens for all executions
 - **CRITICAL:** Use agent's vocabulary and tone consistently
-- See `.aios-core/docs/standards/TASK-FORMAT-SPECIFICATION-V1.md` for complete spec
-- See `.aios-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md` for personality guidelines
+- See `.aiox-core/docs/standards/TASK-FORMAT-SPECIFICATION-V1.md` for complete spec
+- See `.aiox-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md` for personality guidelines
 
 ---
 

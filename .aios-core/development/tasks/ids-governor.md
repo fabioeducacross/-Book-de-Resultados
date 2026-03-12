@@ -3,8 +3,8 @@
 **Task ID:** ids-governor
 **Version:** 1.0
 **Purpose:** Execute IDS Framework Governor commands (*ids query, *ids health, *ids stats, *ids impact)
-**Agent:** @aios-master
-**Story:** IDS-7 (aios-master IDS Governor Integration)
+**Agent:** @aiox-master
+**Story:** IDS-7 (aiox-master IDS Governor Integration)
 
 ---
 
@@ -63,21 +63,21 @@ This task handles the execution of IDS (Incremental Development System) commands
 All commands are also available via CLI:
 
 ```bash
-node bin/aios-ids.js ids:check "your intent" --type task
-node bin/aios-ids.js ids:impact create-doc
-node bin/aios-ids.js ids:stats --json
-node bin/aios-ids.js ids:register path/to/file.md
+node bin/aiox-ids.js ids:check "your intent" --type task
+node bin/aiox-ids.js ids:impact create-doc
+node bin/aiox-ids.js ids:stats --json
+node bin/aiox-ids.js ids:register path/to/file.md
 ```
 
 ---
 
 ## Dependencies
 
-- `.aios-core/core/ids/framework-governor.js` — FrameworkGovernor class
-- `.aios-core/core/ids/registry-loader.js` — RegistryLoader
-- `.aios-core/core/ids/incremental-decision-engine.js` — DecisionEngine
-- `.aios-core/core/ids/registry-updater.js` — RegistryUpdater
-- `.aios-core/core/ids/registry-healer.js` — RegistryHealer (optional, IDS-4a)
+- `.aiox-core/core/ids/framework-governor.js` — FrameworkGovernor class
+- `.aiox-core/core/ids/registry-loader.js` — RegistryLoader
+- `.aiox-core/core/ids/incremental-decision-engine.js` — DecisionEngine
+- `.aiox-core/core/ids/registry-updater.js` — RegistryUpdater
+- `.aiox-core/core/ids/registry-healer.js` — RegistryHealer (optional, IDS-4a)
 
 ---
 

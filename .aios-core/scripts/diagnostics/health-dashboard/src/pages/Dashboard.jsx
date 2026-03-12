@@ -141,7 +141,7 @@ function Dashboard() {
       {/* Footer */}
       <footer className="dashboard-footer">
         <p>
-          AIOS Health Check v{data?.version || '1.0.0'} |
+          AIOX Health Check v{data?.version || '1.0.0'} |
           Mode: {data?.mode || 'full'} |
           Duration: {data?.duration || 'N/A'}
         </p>

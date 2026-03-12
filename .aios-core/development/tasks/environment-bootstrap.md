@@ -78,7 +78,7 @@ atomic_layer: Organism
 **Saída:**
 - campo: environment_report
   tipo: object
-  destino: File system (.aios/environment-report.yaml)
+  destino: File system (.aiox/environment-report.yaml)
   persistido: true
 
 - campo: git_initialized
@@ -152,7 +152,7 @@ post-conditions:
     tipo: post-condition
     blocker: false
     validação: |
-      Check .aios/environment-report.yaml exists
+      Check .aiox/environment-report.yaml exists
     error_message: "Environment report not generated"
 ```
 
@@ -191,7 +191,7 @@ acceptance-criteria:
     tipo: acceptance-criterion
     blocker: false
     validação: |
-      Check docs/, .aios/, and package.json exist
+      Check docs/, .aiox/, and package.json exist
     error_message: "Project structure incomplete"
 ```
 
@@ -207,11 +207,11 @@ acceptance-criteria:
 
 - **Tool:** cli-checker
   - **Purpose:** Verify CLI installations and versions
-  - **Source:** .aios-core/infrastructure/scripts/cli-checker.js
+  - **Source:** .aiox-core/infrastructure/scripts/cli-checker.js
 
 - **Tool:** github-cli
   - **Purpose:** Repository creation and authentication
-  - **Source:** .aios-core/infrastructure/tools/cli/github-cli.yaml
+  - **Source:** .aiox-core/infrastructure/tools/cli/github-cli.yaml
 
 ---
 
@@ -251,7 +251,7 @@ token_usage: ~500-1,000 tokens (for guidance only)
 **Optimization Notes:**
 
 - Parallel CLI checks to reduce total time
-- Cache detection results in .aios/environment-report.yaml
+- Cache detection results in .aiox/environment-report.yaml
 - Skip already-installed tools
 
 ---
@@ -772,8 +772,8 @@ out/
 Thumbs.db
 
 # AIOX generated files
-.aios/project-status.yaml
-.aios/environment-report.yaml
+.aiox/project-status.yaml
+.aiox/environment-report.yaml
 
 # Logs
 logs/
@@ -868,7 +868,7 @@ $directories = @(
   "docs/stories",
   "docs/architecture",
   "docs/guides",
-  ".aios",
+  ".aiox",
   "src",
   "tests"
 )
@@ -878,7 +878,7 @@ foreach ($dir in $directories) {
   Write-Host "  Created: $dir/"
 }
 
-# Create .aios/config.yaml
+# Create .aiox/config.yaml
 @"
 # AIOX Project Configuration
 version: 2.1.0
@@ -901,7 +901,7 @@ permissions:
 settings:
   auto_update_status: true
   quality_gates_enabled: true
-"@ | Out-File -FilePath ".aios/config.yaml" -Encoding utf8
+"@ | Out-File -FilePath ".aiox/config.yaml" -Encoding utf8
 
 # Create package.json if not exists
 if (-not (Test-Path "package.json")) {
@@ -931,7 +931,7 @@ Write-Host "✅ Project structure created"
 
 ### Step 6.1: User Profile Selection (Story 12.1)
 
-**Action:** Ask user for their profile preference and persist to `~/.aios/user-config.yaml`
+**Action:** Ask user for their profile preference and persist to `~/.aiox/user-config.yaml`
 
 **Elicitation Point (PRD §2.4):**
 
@@ -958,12 +958,12 @@ Escolha [1/2]:
 **Persistence:**
 
 ```bash
-# Create ~/.aios/ with secure permissions
-mkdir -p ~/.aios
-chmod 700 ~/.aios
+# Create ~/.aiox/ with secure permissions
+mkdir -p ~/.aiox
+chmod 700 ~/.aiox
 
 # Write user-config.yaml with selected profile
-cat > ~/.aios/user-config.yaml << EOF
+cat > ~/.aiox/user-config.yaml << EOF
 # AIOX User Preferences (global, cross-project)
 # Created by environment-bootstrap
 # Change with: *toggle-profile
@@ -975,7 +975,7 @@ EOF
 **Programmatic (Node.js):**
 
 ```javascript
-const { setUserConfigValue, ensureUserConfigDir } = require('.aios-core/core/config/config-resolver');
+const { setUserConfigValue, ensureUserConfigDir } = require('.aiox-core/core/config/config-resolver');
 
 // Ensure directory exists with permissions 700
 ensureUserConfigDir();
@@ -987,8 +987,8 @@ setUserConfigValue('default_language', 'pt-BR');
 
 **Validation:**
 - Profile must be either `bob` or `advanced`
-- `~/.aios/` directory must have permissions 700
-- `~/.aios/user-config.yaml` must be valid YAML after write
+- `~/.aiox/` directory must have permissions 700
+- `~/.aiox/user-config.yaml` must be valid YAML after write
 
 ---
 
@@ -1217,9 +1217,9 @@ $report = @{
 
 # Convert to YAML and save
 # (Simplified - in practice use ConvertTo-Yaml module or js-yaml)
-$report | ConvertTo-Json -Depth 5 | Out-File -FilePath ".aios/environment-report.json" -Encoding utf8
+$report | ConvertTo-Json -Depth 5 | Out-File -FilePath ".aiox/environment-report.json" -Encoding utf8
 
-Write-Host "✅ Environment report saved to .aios/environment-report.json"
+Write-Host "✅ Environment report saved to .aiox/environment-report.json"
 ```
 
 ---
@@ -1249,7 +1249,7 @@ Write-Host "✅ Environment report saved to .aios/environment-report.json"
 ║  Project Structure                                                         ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║  my-awesome-project/                                                       ║
-║  ├── .aios/                    # AIOX configuration                        ║
+║  ├── .aiox/                    # AIOX configuration                        ║
 ║  │   ├── config.yaml           # Project config                            ║
 ║  │   └── environment-report.json                                           ║
 ║  ├── docs/                     # Documentation (PRD, architecture)         ║
@@ -1278,14 +1278,14 @@ Write-Host "✅ Environment report saved to .aios/environment-report.json"
 ║                                                                            ║
 ║  3. Continue with greenfield-fullstack workflow...                         ║
 ║                                                                            ║
-║  Full workflow: .aios-core/development/workflows/greenfield-fullstack.yaml ║
+║  Full workflow: .aiox-core/development/workflows/greenfield-fullstack.yaml ║
 ║                                                                            ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║  Quick Reference                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
-║  • View environment report: cat .aios/environment-report.json              ║
+║  • View environment report: cat .aiox/environment-report.json              ║
 ║  • Check GitHub repo: gh repo view --web                                   ║
-║  • AIOX help: @aios-master *help                                           ║
+║  • AIOX help: @aiox-master *help                                           ║
 ║  • Re-run bootstrap: @devops *environment-bootstrap                        ║
 ║                                                                            ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
@@ -1306,7 +1306,7 @@ Environment bootstrap completed in 8m 32s
 - [ ] GitHub remote repository created
 - [ ] .gitignore configured
 - [ ] Project structure created
-- [ ] .aios/config.yaml created
+- [ ] .aiox/config.yaml created
 - [ ] Environment report generated
 - [ ] Initial commit pushed to GitHub
 
@@ -1364,7 +1364,7 @@ To undo environment bootstrap:
 rm -rf .git
 
 # Remove AIOX files
-rm -rf .aios
+rm -rf .aiox
 rm -f .gitignore
 rm -f README.md
 
@@ -1379,7 +1379,7 @@ gh repo delete REPO_NAME --yes
 - [GitHub CLI Documentation](https://cli.github.com/manual/)
 - [Supabase CLI Documentation](https://supabase.com/docs/guides/cli)
 - [Railway CLI Documentation](https://docs.railway.app/reference/cli-api)
-- [AIOX Greenfield Workflow](.aios-core/development/workflows/greenfield-fullstack.yaml)
+- [AIOX Greenfield Workflow](.aiox-core/development/workflows/greenfield-fullstack.yaml)
 - [CodeRabbit Setup Guide](docs/guides/coderabbit/README.md)
 
 ---

@@ -3,7 +3,7 @@
  *
  * Verifies agent configuration files are valid YAML.
  *
- * @module @synkra/aios-core/health-check/checks/project/agent-config
+ * @module aiox-core/health-check/checks/project/agent-config
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -29,7 +29,7 @@ class AgentConfigCheck extends BaseCheck {
       timeout: 5000,
       cacheable: true,
       healingTier: 0, // Cannot auto-fix invalid YAML
-      tags: ['aios', 'agents', 'config'],
+      tags: ['aiox', 'agents', 'config'],
     });
   }
 
@@ -41,7 +41,7 @@ class AgentConfigCheck extends BaseCheck {
   async execute(context) {
     const projectRoot = context.projectRoot || process.cwd();
     const agentPaths = [
-      path.join(projectRoot, '.aios-core', 'development', 'agents'),
+      path.join(projectRoot, '.aiox-core', 'development', 'agents'),
       path.join(projectRoot, '.claude', 'commands'),
     ];
 

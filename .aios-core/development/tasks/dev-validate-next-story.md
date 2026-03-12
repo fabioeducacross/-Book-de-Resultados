@@ -129,11 +129,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -218,7 +218,7 @@ To comprehensively validate a story draft before implementation begins, ensuring
 
 ### 0. Load Core Configuration and Inputs
 
-- Load `.aios-core/core-config.yaml`
+- Load `.aiox-core/core-config.yaml`
 - If the file does not exist, HALT and inform the user: "core-config.yaml not found. This file is required for story validation."
 - Extract key configurations: `devStoryLocation`, `prd.*`, `architecture.*`
 - Identify and load the following inputs:

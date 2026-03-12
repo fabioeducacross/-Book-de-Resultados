@@ -67,7 +67,7 @@ console.log(status);
 
 ## Configuration
 
-Create `.aios-ai-config.yaml` in project root:
+Create `.aiox-ai-config.yaml` in project root:
 
 ```yaml
 ai_providers:

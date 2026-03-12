@@ -71,7 +71,7 @@ atomic_layer: Organism
 **Saída:**
 - campo: devops_setup_report
   tipo: object
-  destino: File system (.aios/devops-setup-report.yaml)
+  destino: File system (.aiox/devops-setup-report.yaml)
   persistido: true
 
 - campo: workflows_installed
@@ -127,7 +127,7 @@ pre-conditions:
     tipo: pre-condition
     blocker: false
     validação: |
-      Check .aios/devops-setup-report.yaml existence
+      Check .aiox/devops-setup-report.yaml existence
     warning_message: "DevOps setup already completed. Use --force to reconfigure."
 ```
 
@@ -159,7 +159,7 @@ post-conditions:
     tipo: post-condition
     blocker: false
     validação: |
-      Test-Path ".aios/devops-setup-report.yaml"
+      Test-Path ".aiox/devops-setup-report.yaml"
     error_message: "Setup report not generated"
 ```
 
@@ -191,7 +191,7 @@ acceptance-criteria:
     tipo: acceptance-criterion
     blocker: true
     validação: |
-      .aios/devops-setup-report.yaml contains all setup details
+      .aiox/devops-setup-report.yaml contains all setup details
     error_message: "Setup report incomplete"
 ```
 
@@ -203,7 +203,7 @@ acceptance-criteria:
 
 - **Tool:** github-cli
   - **Purpose:** Repository operations, branch protection, secrets
-  - **Source:** .aios-core/infrastructure/tools/cli/github-cli.yaml
+  - **Source:** .aiox-core/infrastructure/tools/cli/github-cli.yaml
 
 - **Tool:** git
   - **Purpose:** Local repository operations
@@ -328,7 +328,7 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "✅ Repository exists on GitHub"
 
 # Check idempotency
-if (Test-Path ".aios/devops-setup-report.yaml") {
+if (Test-Path ".aiox/devops-setup-report.yaml") {
   Write-Host "⚠️  DevOps setup already completed"
   Write-Host "   Use --force to reconfigure"
 }
@@ -457,7 +457,7 @@ echo "=== Installing GitHub Actions Workflows ==="
 New-Item -ItemType Directory -Path ".github/workflows" -Force | Out-Null
 
 # Copy ci.yml template with customization
-$ciTemplate = Get-Content ".aios-core/infrastructure/templates/github-workflows/ci.yml.template" -Raw
+$ciTemplate = Get-Content ".aiox-core/infrastructure/templates/github-workflows/ci.yml.template" -Raw
 
 # Substitute variables based on project type
 $ciWorkflow = $ciTemplate `
@@ -472,12 +472,12 @@ $ciWorkflow | Out-File -FilePath ".github/workflows/ci.yml" -Encoding utf8
 Write-Host "✅ Installed ci.yml"
 
 # Copy pr-automation.yml
-Copy-Item ".aios-core/infrastructure/templates/github-workflows/pr-automation.yml.template" `
+Copy-Item ".aiox-core/infrastructure/templates/github-workflows/pr-automation.yml.template" `
   -Destination ".github/workflows/pr-automation.yml"
 Write-Host "✅ Installed pr-automation.yml"
 
 # Copy release.yml
-Copy-Item ".aios-core/infrastructure/templates/github-workflows/release.yml.template" `
+Copy-Item ".aiox-core/infrastructure/templates/github-workflows/release.yml.template" `
   -Destination ".github/workflows/release.yml"
 Write-Host "✅ Installed release.yml"
 ```
@@ -516,7 +516,7 @@ Write-Host "✅ Installed release.yml"
 echo "=== Configuring CodeRabbit ==="
 
 # Generate .coderabbit.yaml with project-specific path instructions
-$coderabbitConfig = Get-Content ".aios-core/infrastructure/templates/coderabbit.yaml.template" -Raw
+$coderabbitConfig = Get-Content ".aiox-core/infrastructure/templates/coderabbit.yaml.template" -Raw
 
 # Customize based on project structure
 $pathInstructions = @()
@@ -748,12 +748,12 @@ validation_checklist:
   - "[$(if($secretsConfigured.Count -gt 0){'x'}else{' '})] Repository secrets configured"
 "@
 
-# Ensure .aios directory exists
-New-Item -ItemType Directory -Path ".aios" -Force | Out-Null
+# Ensure .aiox directory exists
+New-Item -ItemType Directory -Path ".aiox" -Force | Out-Null
 
-$report | Out-File -FilePath ".aios/devops-setup-report.yaml" -Encoding utf8
+$report | Out-File -FilePath ".aiox/devops-setup-report.yaml" -Encoding utf8
 
-Write-Host "✅ Setup report saved to .aios/devops-setup-report.yaml"
+Write-Host "✅ Setup report saved to .aiox/devops-setup-report.yaml"
 ```
 
 ---
@@ -806,11 +806,11 @@ Write-Host "✅ Setup report saved to .aios/devops-setup-report.yaml"
 ║     gh pr create --title "Test CI Pipeline" --body "Testing CI setup"      ║
 ║                                                                            ║
 ║  3. Commit the DevOps configuration:                                       ║
-║     git add .github/ .coderabbit.yaml .aios/                              ║
+║     git add .github/ .coderabbit.yaml .aiox/                              ║
 ║     git commit -m "chore: add DevOps configuration [Story 5.10]"          ║
 ║     git push                                                               ║
 ║                                                                            ║
-║  Report saved: .aios/devops-setup-report.yaml                             ║
+║  Report saved: .aiox/devops-setup-report.yaml                             ║
 ║                                                                            ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 
@@ -866,7 +866,7 @@ Write-Host "✅ Setup report saved to .aios/devops-setup-report.yaml"
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [GitHub Branch Protection API](https://docs.github.com/en/rest/branches/branch-protection)
 - [CodeRabbit Documentation](https://docs.coderabbit.ai/)
-- [Story 5.10 - GitHub DevOps Setup](docs/stories/v2.1/sprint-5/story-5.10-github-devops-user-projects.md)
+- [Story 5.10 - GitHub DevOps Setup](docs/stories/v4.0.4/sprint-5/story-5.10-github-devops-user-projects.md)
 
 ---
 

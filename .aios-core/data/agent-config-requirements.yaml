@@ -4,28 +4,28 @@
 # Part of Story 6.1.2.6: Framework Configuration System
 #
 # Performance Targets:
-# - critical: <30ms (aios-master)
+# - critical: <30ms (aiox-master)
 # - high: <50ms (dev, qa, devops, security, github-devops)
 # - medium: <75ms (po, sm, architect, data-engineer, db-sage)
-# - low: <100ms (pm, analyst, ux-design-expert, aios-developer, aios-orchestrator)
+# - low: <100ms (pm, analyst, ux-design-expert, aiox-developer, aiox-orchestrator)
 
 agents:
   # ======================================================================
   # CRITICAL PRIORITY AGENTS (<30ms target)
   # ======================================================================
 
-  aios-master:
+  aiox-master:
     config_sections:
       - dataLocation
       - registry
     files_loaded:
-      - path: .aios-core/data/aios-kb.md
+      - path: .aiox-core/data/aiox-kb.md
         lazy: true
         condition: kb_command
         size: 35KB
     lazy_loading:
       registry: false      # Always load (15KB, frequently used)
-      aios-kb: true        # Load only on *kb command
+      aiox-kb: true        # Load only on *kb command
     performance_target: <30ms
 
   # ======================================================================
@@ -47,7 +47,7 @@ agents:
       - path: docs/framework/source-tree.md
         lazy: false
         size: 20KB
-      - path: .aios-core/data/technical-preferences.md
+      - path: .aiox-core/data/technical-preferences.md
         lazy: false
         size: 15KB
     lazy_loading:
@@ -61,13 +61,13 @@ agents:
       - dataLocation
       - storyBacklog
     files_loaded:
-      - path: .aios-core/data/technical-preferences.md
+      - path: .aiox-core/data/technical-preferences.md
         lazy: false
         size: 15KB
-      - path: .aios-core/product/data/test-levels-framework.md
+      - path: .aiox-core/product/data/test-levels-framework.md
         lazy: false
         size: 8KB
-      - path: .aios-core/product/data/test-priorities-matrix.md
+      - path: .aiox-core/product/data/test-priorities-matrix.md
         lazy: false
         size: 6KB
     lazy_loading:
@@ -79,7 +79,7 @@ agents:
       - dataLocation
       - cicdLocation
     files_loaded:
-      - path: .aios-core/data/technical-preferences.md
+      - path: .aiox-core/data/technical-preferences.md
         lazy: false
         size: 15KB
     lazy_loading: {}
@@ -90,7 +90,7 @@ agents:
       - dataLocation
       - githubLocation
     files_loaded:
-      - path: .aios-core/data/technical-preferences.md
+      - path: .aiox-core/data/technical-preferences.md
         lazy: false
         size: 15KB
     lazy_loading: {}
@@ -106,7 +106,7 @@ agents:
       - dataLocation
       - templatesLocation
     files_loaded:
-      - path: .aios-core/data/technical-preferences.md
+      - path: .aiox-core/data/technical-preferences.md
         lazy: false
         size: 15KB
     lazy_loading:
@@ -120,7 +120,7 @@ agents:
       - storyBacklog
       - templatesLocation
     files_loaded:
-      - path: .aios-core/product/data/elicitation-methods.md
+      - path: .aiox-core/product/data/elicitation-methods.md
         lazy: false
         size: 5KB
     lazy_loading:
@@ -134,10 +134,10 @@ agents:
       - storyBacklog
       - dataLocation
     files_loaded:
-      - path: .aios-core/product/data/mode-selection-best-practices.md
+      - path: .aiox-core/product/data/mode-selection-best-practices.md
         lazy: false
         size: 10KB
-      - path: .aios-core/data/workflow-patterns.yaml
+      - path: .aiox-core/data/workflow-patterns.yaml
         lazy: false
         size: 8KB
       - path: docs/framework/coding-standards.md
@@ -151,7 +151,7 @@ agents:
       - dataLocation
       - etlLocation
     files_loaded:
-      - path: .aios-core/data/technical-preferences.md
+      - path: .aiox-core/data/technical-preferences.md
         lazy: false
         size: 15KB
     lazy_loading: {}
@@ -162,7 +162,7 @@ agents:
       - dataLocation
       - databaseLocation
     files_loaded:
-      - path: .aios-core/data/technical-preferences.md
+      - path: .aiox-core/data/technical-preferences.md
         lazy: false
         size: 15KB
     lazy_loading: {}
@@ -191,7 +191,7 @@ agents:
       - dataLocation
       - analyticsLocation
     files_loaded:
-      - path: .aios-core/product/data/brainstorming-techniques.md
+      - path: .aiox-core/product/data/brainstorming-techniques.md
         lazy: false
         size: 2KB
       - path: docs/framework/tech-stack.md
@@ -217,27 +217,27 @@ agents:
     lazy_loading: {}
     performance_target: <100ms
 
-  aios-developer:
+  aiox-developer:
     config_sections:
       - dataLocation
       - registry
       - templatesLocation
     files_loaded:
-      - path: .aios-core/data/aios-kb.md
+      - path: .aiox-core/data/aiox-kb.md
         lazy: true
         condition: meta_operations
         size: 35KB
     lazy_loading:
-      aios_kb: true              # Load only for meta operations
+      aiox_kb: true              # Load only for meta operations
       agent_templates: true      # Load when creating agents
     performance_target: <100ms
 
-  aios-orchestrator:
+  aiox-orchestrator:
     config_sections:
       - dataLocation
       - registry
     files_loaded:
-      - path: .aios-core/data/workflow-patterns.yaml
+      - path: .aiox-core/data/workflow-patterns.yaml
         lazy: false
         size: 8KB
     lazy_loading: {}
@@ -250,7 +250,7 @@ agents:
     files_loaded: []
     lazy_loading:
       agent_registry: true         # Load when validating/creating squads
-      expansion_pack_manifest: true # Load when managing expansion packs
+      squad_manifest: true # Load when managing squads
     performance_target: <150ms
 
   # ======================================================================
@@ -274,27 +274,27 @@ lazy_loading_strategy:
     pvMindContext:
       size: 75KB
       load_only_for: []
-      description: PVMind integration context (not used in AIOS-FullStack)
+      description: PVMind integration context (not used in AIOX-FullStack)
       fallback: null
 
     expansionPacks:
       size: variable
       load_only_when: pack requested by user
-      description: Optional expansion packs
+      description: Optional squads
       fallback: []
 
     registry:
       size: 15KB
       load_only_for:
-        - aios-master
-        - aios-developer
-        - aios-orchestrator
+        - aiox-master
+        - aiox-developer
+        - aiox-orchestrator
       description: Full registry of framework components
       fallback: minimal registry (agent count only)
 
   # Files commonly used across agents (cache these)
   shared_files:
-    - path: .aios-core/data/technical-preferences.md
+    - path: .aiox-core/data/technical-preferences.md
       size: 15KB
       used_by:
         - dev
@@ -346,7 +346,7 @@ performance_baseline:
       config_size: 50KB
       improvement: 60% reduction in size, 80% faster
 
-  aios_master:
+  aiox_master:
     before_optimization:
       load_time: 150ms
       config_size: 50KB
@@ -374,7 +374,7 @@ cache_strategy:
   ttl: 300000  # 5 minutes in milliseconds
 
   high_priority_files:
-    - .aios-core/data/technical-preferences.md
+    - .aiox-core/data/technical-preferences.md
     - docs/framework/coding-standards.md
     - docs/framework/tech-stack.md
     - docs/framework/source-tree.md
@@ -393,13 +393,13 @@ cache_strategy:
 migration_notes:
   framework_docs:
     current_location: docs/framework/
-    future_location: aios-core/docs/framework/  # In REPO 1
+    future_location: aiox-core/docs/framework/  # In REPO 1
     migration_phase: Q2 2026
 
   backward_compatibility:
     - Keep old paths working until Q3 2026
     - Update all agent file paths in migration
-    - Automated migration script: .aios-core/scripts/migrate-framework-docs.sh
+    - Automated migration script: .aiox-core/scripts/migrate-framework-docs.sh
 
 # Auto-generated: 2025-01-16
 # Story: 6.1.2.6 - Framework Configuration System

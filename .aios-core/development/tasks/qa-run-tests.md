@@ -139,7 +139,7 @@ acceptance-criteria:
 
 - **Tool:** validation-engine
   - **Purpose:** Rule-based validation and reporting
-  - **Source:** .aios-core/utils/validation-engine.js
+  - **Source:** .aiox-core/utils/validation-engine.js
 
 - **Tool:** schema-validator
   - **Purpose:** JSON/YAML schema validation
@@ -154,7 +154,7 @@ acceptance-criteria:
 - **Script:** run-validation.js
   - **Purpose:** Execute validation rules and generate report
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/run-validation.js
+  - **Location:** .aiox-core/scripts/run-validation.js
 
 ---
 

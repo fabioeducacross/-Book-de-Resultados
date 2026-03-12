@@ -19,7 +19,7 @@ $pass = 0
 $fail = 0
 
 foreach ($t in $tasks) {
-  node .aios-core/scripts/validate-task-v2.js ".aios-core/tasks/$t" | Out-Null
+  node .aiox-core/scripts/validate-task-v2.js ".aiox-core/tasks/$t" | Out-Null
   
   if ($LASTEXITCODE -eq 0) {
     $pass++

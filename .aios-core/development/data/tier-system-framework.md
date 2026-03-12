@@ -472,4 +472,4 @@ tier_quality_gates:
 
 ---
 
-_AIOS Tier System Framework v1.0_
+_AIOX Tier System Framework v1.0_

@@ -28,11 +28,11 @@ Commands:
   status            Show current gate status
 
 Examples:
-  $ aios qa run                    Run full pipeline
-  $ aios qa run --layer=1          Run only Layer 1 (pre-commit)
-  $ aios qa run --layer=2          Run only Layer 2 (PR automation)
-  $ aios qa run --verbose          Run with detailed output
-  $ aios qa status                 Show current gate status
+  $ aiox qa run                    Run full pipeline
+  $ aiox qa run --layer=1          Run only Layer 1 (pre-commit)
+  $ aiox qa run --layer=2          Run only Layer 2 (PR automation)
+  $ aiox qa run --verbose          Run with detailed output
+  $ aiox qa status                 Show current gate status
 
 Layers:
   Layer 1: Pre-commit (lint, test, typecheck) - Fast local checks

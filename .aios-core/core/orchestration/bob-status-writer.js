@@ -4,7 +4,7 @@
  * Story 12.6: Observability Panel Integration + Dashboard Bridge
  * PRD Reference: §3.8 (Painel de Observabilidade do Bob)
  *
- * Writes Bob orchestration state to `.aios/dashboard/bob-status.json`
+ * Writes Bob orchestration state to `.aiox/dashboard/bob-status.json`
  * for dashboard consumption. Follows CLI First principle — CLI panel
  * works standalone, Dashboard is optional consumer.
  *
@@ -140,7 +140,7 @@ class BobStatusWriter {
       ...options,
     };
 
-    this.dashboardDir = path.join(projectRoot, '.aios', 'dashboard');
+    this.dashboardDir = path.join(projectRoot, '.aiox', 'dashboard');
     this.statusPath = path.join(this.dashboardDir, 'bob-status.json');
 
     // Internal state tracking

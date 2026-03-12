@@ -73,7 +73,7 @@ const DEFAULT_DEPLOYMENT_CONFIG = {
  * @returns {Object} Deployment configuration (merged with defaults)
  */
 function loadDeploymentConfig(projectRoot) {
-  const configPath = path.join(projectRoot, '.aios-core', 'core-config.yaml');
+  const configPath = path.join(projectRoot, '.aiox-core', 'core-config.yaml');
 
   if (!fs.existsSync(configPath)) {
     console.warn(`[deployment-config-loader] core-config.yaml not found at ${configPath}`);
@@ -107,7 +107,7 @@ function loadDeploymentConfig(projectRoot) {
  * @returns {Object|null} Project configuration or null if not found
  */
 function loadProjectConfig(projectRoot) {
-  const configPath = path.join(projectRoot, '.aios-core', 'core-config.yaml');
+  const configPath = path.join(projectRoot, '.aiox-core', 'core-config.yaml');
 
   if (!fs.existsSync(configPath)) {
     return null;

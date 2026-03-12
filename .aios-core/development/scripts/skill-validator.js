@@ -1,8 +1,8 @@
 /**
- * AIOS Skill Validator
+ * AIOX Skill Validator
  * Story GEMINI-INT.5 - Skills Cross-CLI Compatibility
  *
- * Validates that AIOS agent skills work correctly in both
+ * Validates that AIOX agent skills work correctly in both
  * Claude Code and Gemini CLI environments.
  */
 
@@ -15,8 +15,8 @@ const yaml = require('js-yaml');
  */
 class SkillValidator {
   constructor(config = {}) {
-    this.agentsDir = config.agentsDir || path.join(process.cwd(), '.aios-core', 'development', 'agents');
-    this.tasksDir = config.tasksDir || path.join(process.cwd(), '.aios-core', 'development', 'tasks');
+    this.agentsDir = config.agentsDir || path.join(process.cwd(), '.aiox-core', 'development', 'agents');
+    this.tasksDir = config.tasksDir || path.join(process.cwd(), '.aiox-core', 'development', 'tasks');
     this.errors = [];
     this.warnings = [];
   }
@@ -162,7 +162,7 @@ class SkillValidator {
    * @param {Object} result - Result object to update
    */
   validateGeminiCompatibility(agentDef, result) {
-    // Gemini CLI uses .gemini/rules/AIOS/agents/ structure
+    // Gemini CLI uses .gemini/rules/AIOX/agents/ structure
     // Check for any Gemini-specific requirements
 
     // Gemini requires activation-instructions
@@ -278,7 +278,7 @@ class SkillValidator {
    * @returns {string} Formatted report
    */
   generateReport(results) {
-    let report = '# AIOS Skills Cross-CLI Compatibility Report\n\n';
+    let report = '# AIOX Skills Cross-CLI Compatibility Report\n\n';
 
     report += `**Overall Status:** ${results.compatible ? '✅ Compatible' : '❌ Issues Found'}\n\n`;
 

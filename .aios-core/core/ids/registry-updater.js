@@ -18,10 +18,12 @@ const {
   REPO_ROOT,
   REGISTRY_PATH,
 } = require(path.resolve(__dirname, '../../development/scripts/populate-entity-registry.js'));
+const { enrichRegistryEntry } = require(path.resolve(__dirname, '../code-intel/helpers/creation-helper'));
+const { classifyLayer } = require(path.resolve(__dirname, 'layer-classifier'));
 
-const LOCK_FILE = path.resolve(REPO_ROOT, '.aios-core/data/.entity-registry.lock');
-const BACKUP_DIR = path.resolve(REPO_ROOT, '.aios-core/data/registry-backups');
-const AUDIT_LOG_PATH = path.resolve(REPO_ROOT, '.aios-core/data/registry-update-log.jsonl');
+const LOCK_FILE = path.resolve(REPO_ROOT, '.aiox-core/data/.entity-registry.lock');
+const BACKUP_DIR = path.resolve(REPO_ROOT, '.aiox-core/data/registry-backups');
+const AUDIT_LOG_PATH = path.resolve(REPO_ROOT, '.aiox-core/data/registry-update-log.jsonl');
 const MAX_AUDIT_LOG_SIZE = 5 * 1024 * 1024; // 5MB
 const DEBOUNCE_MS = 100;
 const LOCK_TIMEOUT_MS = 5000;
@@ -47,7 +49,14 @@ const EXCLUDE_PATTERNS = [
 class RegistryUpdater {
   constructor(options = {}) {
     this._registryPath = options.registryPath || REGISTRY_PATH;
-    this._repoRoot = options.repoRoot || REPO_ROOT;
+    // Resolve repoRoot to real path to handle macOS /var -> /private/var symlink
+    // This ensures path.relative() works correctly with resolved file paths
+    const rawRepoRoot = options.repoRoot || REPO_ROOT;
+    try {
+      this._repoRoot = fs.realpathSync(rawRepoRoot);
+    } catch {
+      this._repoRoot = rawRepoRoot;
+    }
     this._debounceMs = options.debounceMs ?? DEBOUNCE_MS;
     this._auditLogPath = options.auditLogPath || AUDIT_LOG_PATH;
     this._lockFile = options.lockFile || LOCK_FILE;
@@ -126,9 +135,28 @@ class RegistryUpdater {
         const abs = path.isAbsolute(c.filePath)
           ? c.filePath
           : path.resolve(this._repoRoot, c.filePath);
-        return { action: c.action, filePath: this._resolveSymlink(abs) };
+        // For unlink, file doesn't exist so _resolveSymlink returns original path
+        // We need to manually resolve the path to match _repoRoot format on macOS
+        let resolved = this._resolveSymlink(abs);
+        if (c.action === 'unlink' && resolved === abs) {
+          // File doesn't exist - normalize path manually for macOS /var -> /private/var
+          // This ensures path.relative() works correctly with _repoRoot
+          resolved = abs.replace(/^\/var\//, '/private/var/');
+        }
+        return { action: c.action, filePath: resolved };
       })
-      .filter((c) => !this._isExcluded(c.filePath) && this._isIncluded(c.filePath));
+      .filter((c) => {
+        // For unlink (delete), skip file existence checks - the file no longer exists
+        // We only need to verify the path would be in scope and not excluded
+        if (c.action === 'unlink') {
+          if (this._isExcluded(c.filePath)) return false;
+          // For deletions, check if path matches any known category pattern
+          const relPath = path.relative(this._repoRoot, c.filePath).replace(/\\/g, '/');
+          return this._detectCategory(relPath) !== null;
+        }
+        // For add/change, use standard inclusion check
+        return !this._isExcluded(c.filePath) && this._isIncluded(c.filePath);
+      });
 
     if (validChanges.length === 0) return { updated: 0, errors: [] };
 
@@ -252,6 +280,10 @@ class RegistryUpdater {
 
         if (updated > 0) {
           this._resolveAllUsedBy(registry);
+
+          // NOG-8: Apply code intelligence enrichment AFTER resolveAllUsedBy
+          // so that code-intel usedBy data is merged on top of static graph
+          await this._applyCodeIntelEnrichments(registry);
           registry.metadata.lastUpdated = new Date().toISOString();
           registry.metadata.entityCount = this._countEntities(registry);
           this._writeRegistry(registry);
@@ -301,6 +333,7 @@ class RegistryUpdater {
 
     registry.entities[category][entityId] = {
       path: relPath,
+      layer: classifyLayer(relPath),
       type: config.type,
       purpose,
       keywords,
@@ -314,6 +347,11 @@ class RegistryUpdater {
       checksum,
       lastVerified: new Date().toISOString(),
     };
+
+    // NOG-8: Enrich with code intelligence data (advisory, never blocks registration)
+    this._pendingEnrichments = this._pendingEnrichments || [];
+    this._pendingEnrichments.push({ entityId, category, relPath });
+
     return true;
   }
 
@@ -398,6 +436,43 @@ class RegistryUpdater {
       }
     }
     return found;
+  }
+
+  // ─── Internal: Code Intelligence Enrichment (NOG-8) ────────────
+
+  /**
+   * Apply code intelligence enrichment to newly created entities.
+   * Advisory only — never blocks registration. Falls back gracefully.
+   * @param {Object} registry - Registry data
+   * @private
+   */
+  async _applyCodeIntelEnrichments(registry) {
+    const pending = this._pendingEnrichments || [];
+    this._pendingEnrichments = [];
+
+    for (const { entityId, category, relPath } of pending) {
+      try {
+        const entity = registry.entities[category]?.[entityId];
+        if (!entity) continue;
+
+        const enrichment = await enrichRegistryEntry(entityId, relPath);
+        if (!enrichment) continue;
+
+        // Pre-populate usedBy if code intel found references
+        if (enrichment.usedBy && enrichment.usedBy.length > 0) {
+          entity.usedBy = [...new Set([...(entity.usedBy || []), ...enrichment.usedBy])];
+        }
+
+        // Pre-populate dependencies if code intel found them
+        if (enrichment.dependencies && enrichment.dependencies.nodes && enrichment.dependencies.nodes.length > 0) {
+          const existingDeps = Array.isArray(entity.dependencies) ? entity.dependencies : [];
+          const newDeps = enrichment.dependencies.nodes.filter((n) => typeof n === 'string');
+          entity.dependencies = [...new Set([...existingDeps, ...newDeps])];
+        }
+      } catch {
+        // NOG-8 AC5: Fallback — enrichment failure never blocks registration
+      }
+    }
   }
 
   // ─── Internal: Registry I/O ──────────────────────────────────────

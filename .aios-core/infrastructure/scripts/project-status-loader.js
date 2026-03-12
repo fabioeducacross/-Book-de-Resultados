@@ -9,7 +9,7 @@ const WorktreeManager = require('./worktree-manager');
  * ProjectStatusLoader - Dynamic project status for agent activation context
  *
  * Story 6.1.2.4: Captures git state, recent work, and current story/epic
- * for display in agent greetings across all 11 AIOS agents.
+ * for display in agent greetings across all 11 AIOX agents.
  *
  * Story ACT-3: Reliability overhaul
  * - Event-driven cache invalidation via git state change detection
@@ -93,7 +93,7 @@ class ProjectStatusLoader {
    */
   loadConfig() {
     try {
-      const configPath = path.join(this.rootPath, '.aios-core', 'core-config.yaml');
+      const configPath = path.join(this.rootPath, '.aiox-core', 'core-config.yaml');
       const configContent = fsSync.readFileSync(configPath, 'utf8');
       return yaml.load(configContent);
     } catch (error) {
@@ -147,13 +147,13 @@ class ProjectStatusLoader {
       if (normalizedGitDir !== normalizedCommonDir) {
         // Create a short hash from the worktree path for a unique cache filename
         const worktreeHash = this._hashString(this.rootPath).substring(0, 8);
-        return path.join(this.rootPath, '.aios', `project-status-${worktreeHash}.yaml`);
+        return path.join(this.rootPath, '.aiox', `project-status-${worktreeHash}.yaml`);
       }
     } catch (error) {
       // Not a git repo or git not available - use default path
     }
 
-    return path.join(this.rootPath, '.aios', 'project-status.yaml');
+    return path.join(this.rootPath, '.aiox', 'project-status.yaml');
   }
 
   /**
@@ -657,7 +657,7 @@ class ProjectStatusLoader {
     const lockAcquired = await this._acquireLock();
 
     try {
-      // Ensure .aios directory exists
+      // Ensure .aiox directory exists
       const cacheDir = path.dirname(this.cacheFile);
       await fs.mkdir(cacheDir, { recursive: true });
 
@@ -812,7 +812,7 @@ class ProjectStatusLoader {
 
 /**
  * @typedef {Object} WorktreeStatusInfo
- * @property {string} path - Relative path to worktree (.aios/worktrees/{story-id})
+ * @property {string} path - Relative path to worktree (.aiox/worktrees/{story-id})
  * @property {string} branch - Branch name (auto-claude/{story-id})
  * @property {string} createdAt - ISO timestamp when worktree was created
  * @property {string} lastActivity - ISO timestamp of last activity check

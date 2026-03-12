@@ -28,7 +28,7 @@ const DEFAULT_CONFIG = {
   minConfidenceThreshold: 0.3, // Below this = deprecated
 
   // Feedback storage
-  feedbackStorePath: '.aios/qa-feedback.json',
+  feedbackStorePath: '.aiox/qa-feedback.json',
   maxFeedbackHistory: 1000,
 
   // Suggestions

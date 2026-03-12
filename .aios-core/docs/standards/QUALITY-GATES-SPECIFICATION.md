@@ -1,4 +1,4 @@
-# Quality Gates Specification v2.1
+# Quality Gates Specification v4.2
 
 **Version:** 2.1.0
 **Last Updated:** 2025-12-09
@@ -290,7 +290,7 @@ reviews:
       instructions: "Focus on test coverage and edge cases"
     - path: "**/*.md"
       instructions: "Check for broken links, typos, and clarity"
-    - path: ".aios-core/**"
+    - path: ".aiox-core/**"
       instructions: "Ensure consistency with framework standards"
 
 chat:
@@ -330,7 +330,7 @@ Strategic review by humans focusing on architecture, business logic, and edge ca
 * @team-leads
 
 # Architecture-sensitive areas
-/.aios-core/core/ @architect @senior-devs
+/.aiox-core/core/ @architect @senior-devs
 /docs/architecture/ @architect
 /src/core/ @senior-devs
 
@@ -476,18 +476,18 @@ reviews:
         - Mock appropriateness
         - Assertion quality
 
-    - path: ".aios-core/docs/standards/**"
+    - path: ".aiox-core/docs/standards/**"
       instructions: |
         Verify:
-        - Terminology uses 'Squad' not 'Expansion Pack'
+        - Terminology uses 'Squad' not 'Squad'
         - All internal links work
-        - Version numbers are v2.1
+        - Version numbers are v4.2
 
     - path: "squads/**"
       instructions: |
         Check:
         - squad.yaml manifest is valid
-        - peerDependency on @aios/core declared
+        - peerDependency on @aiox/core declared
         - Follows Squad structure conventions
 
     - path: ".github/workflows/**"
@@ -512,7 +512,7 @@ reviews:
 | Issues escaping to production | ~15% |
 | Developer context switches | High |
 
-### After Quality Gates (v2.1)
+### After Quality Gates (v4.2)
 
 | Metric | Value | Improvement |
 |--------|-------|-------------|

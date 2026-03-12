@@ -129,11 +129,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -258,7 +258,7 @@ Automatically improve code quality across multiple dimensions including formatti
 *improve-code-quality . --recursive --report quality-report.json
 
 # Use custom configuration
-*improve-code-quality aiox-core --config .aios/quality-config.json
+*improve-code-quality aiox-core --config .aiox/quality-config.json
 ```
 
 ## Implementation
@@ -520,7 +520,7 @@ class ImproveCodeQualityTask {
   }
 
   async createBackup(filePath) {
-    const backupDir = path.join(this.rootPath, '.aios', 'backups', 'code-quality');
+    const backupDir = path.join(this.rootPath, '.aiox', 'backups', 'code-quality');
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const relativePath = path.relative(this.rootPath, filePath);
     const backupPath = path.join(backupDir, timestamp, relativePath);

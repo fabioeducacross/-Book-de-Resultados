@@ -7,15 +7,15 @@ setlocal enabledelayedexpansion
 set "PROXY_PORT=8787"
 
 :: Try multiple locations for the tracker script
-if defined AIOS_HOME (
-    set "TRACKER_SCRIPT=%AIOS_HOME%\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
+if defined AIOX_HOME (
+    set "TRACKER_SCRIPT=%AIOX_HOME%\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
     if exist "!TRACKER_SCRIPT!" goto :found
 )
 
-set "TRACKER_SCRIPT=%USERPROFILE%\aios-core\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
+set "TRACKER_SCRIPT=%USERPROFILE%\aiox-core\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
 if exist "%TRACKER_SCRIPT%" goto :found
 
-set "TRACKER_SCRIPT=%USERPROFILE%\Workspaces\AIOS\SynkraAI\aios-core\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
+set "TRACKER_SCRIPT=%USERPROFILE%\Workspaces\AIOX\SynkraAI\aiox-core\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
 if exist "%TRACKER_SCRIPT%" goto :found
 
 set "TRACKER_SCRIPT=%~dp0..\usage-tracker\index.js"

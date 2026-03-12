@@ -29,7 +29,7 @@ workflow:
   project_types:
     - greenfield
     - brownfield
-    - aios-development
+    - aiox-development
     - epic-execution
 
   metadata:
@@ -88,7 +88,7 @@ workflow:
   #   Phase 5: @devops push & PR
   #   Phase 6: @po checkpoint (AUTO-GO in wave mode, human in interactive)
   #
-  # Reference: .aios-core/development/workflows/development-cycle.yaml
+  # Reference: .aiox-core/development/workflows/development-cycle.yaml
 
   inner_workflow:
     ref: development-cycle
@@ -177,7 +177,7 @@ workflow:
   state:
     persistence:
       enabled: true
-      location: ".aios/workflow-state/"
+      location: ".aiox/workflow-state/"
       format: json
       file: "${config.epicId}-pipeline.json"
 

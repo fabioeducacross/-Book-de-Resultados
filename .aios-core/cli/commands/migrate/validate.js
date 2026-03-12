@@ -5,7 +5,7 @@
  *
  * @module cli/commands/migrate/validate
  * @version 1.0.0
- * @story 2.14 - Migration Script v2.0 → v2.1
+ * @story 2.14 - Migration Script v2.0 → v4.0.4
  */
 
 const fs = require('fs');
@@ -17,11 +17,11 @@ const { verifyImports } = require('./update-imports');
 // const { formatSize } = require('./analyze');
 
 /**
- * Validate the v2.1 module structure exists
- * @param {string} aiosCoreDir - Path to .aios-core
+ * Validate the v4.0.4 module structure exists
+ * @param {string} aioxCoreDir - Path to .aiox-core
  * @returns {Promise<Object>} Validation result
  */
-async function validateStructure(aiosCoreDir) {
+async function validateStructure(aioxCoreDir) {
   const result = {
     valid: true,
     modules: {},
@@ -32,7 +32,7 @@ async function validateStructure(aiosCoreDir) {
   const expectedModules = ['core', 'development', 'product', 'infrastructure'];
 
   for (const moduleName of expectedModules) {
-    const moduleDir = path.join(aiosCoreDir, moduleName);
+    const moduleDir = path.join(aioxCoreDir, moduleName);
     const moduleResult = {
       exists: false,
       fileCount: 0,
@@ -76,7 +76,7 @@ async function validateStructure(aiosCoreDir) {
   }
 
   // Check for leftover v2.0 directories at root level
-  const rootEntries = await fs.promises.readdir(aiosCoreDir, { withFileTypes: true });
+  const rootEntries = await fs.promises.readdir(aioxCoreDir, { withFileTypes: true });
 
   for (const entry of rootEntries) {
     if (entry.isDirectory() && !expectedModules.includes(entry.name)) {
@@ -295,7 +295,7 @@ async function runTests(projectRoot, options = {}) {
  */
 async function runFullValidation(projectRoot, options = {}) {
   const { onProgress = () => {}, skipTests = false, skipLint = false } = options;
-  const aiosCoreDir = path.join(projectRoot, '.aios-core');
+  const aioxCoreDir = path.join(projectRoot, '.aiox-core');
 
   const result = {
     valid: true,
@@ -312,7 +312,7 @@ async function runFullValidation(projectRoot, options = {}) {
 
   // Validate structure
   onProgress({ phase: 'structure', message: '✓ Validating structure...' });
-  result.structure = await validateStructure(aiosCoreDir);
+  result.structure = await validateStructure(aioxCoreDir);
 
   if (result.structure.errors.length > 0) {
     result.valid = false;
@@ -323,7 +323,7 @@ async function runFullValidation(projectRoot, options = {}) {
 
   // Verify imports
   onProgress({ phase: 'imports', message: '✓ Verifying imports...' });
-  result.imports = await verifyImports(aiosCoreDir);
+  result.imports = await verifyImports(aioxCoreDir);
 
   if (!result.imports.valid) {
     result.valid = false;
@@ -435,9 +435,9 @@ function generateSummary(migrationResult, validationResult, options = {}) {
   lines.push('Next steps:');
   lines.push('  1. Test your project: npm test');
   lines.push('  2. Review changes: git diff');
-  lines.push('  3. Report issues: github.com/aios/issues');
+  lines.push('  3. Report issues: github.com/aiox/issues');
   lines.push('');
-  lines.push('To rollback: aios migrate --rollback');
+  lines.push('To rollback: aiox migrate --rollback');
 
   return lines.join('\n');
 }

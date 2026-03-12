@@ -4,11 +4,11 @@
  * CLI commands for the layered configuration system (ADR-PRO-002).
  *
  * Subcommands:
- *   aios config show [--level <n>] [--app <name>] [--debug]
- *   aios config diff --levels <a>,<b>
- *   aios config migrate [--dry-run] [--force]
- *   aios config validate [--level <n>]
- *   aios config init-local
+ *   aiox config show [--level <n>] [--app <name>] [--debug]
+ *   aiox config diff --levels <a>,<b>
+ *   aiox config migrate [--dry-run] [--force]
+ *   aiox config validate [--level <n>]
+ *   aiox config init-local
  *
  * @module cli/commands/config
  * @version 1.0.0
@@ -22,7 +22,7 @@ const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
-// Resolve core config modules (relative from .aios-core/cli/commands/config/)
+// Resolve core config modules (relative from .aiox-core/cli/commands/config/)
 const configResolverPath = path.resolve(__dirname, '..', '..', '..', 'core', 'config', 'config-resolver');
 const mergeUtilsPath = path.resolve(__dirname, '..', '..', '..', 'core', 'config', 'merge-utils');
 const envInterpolatorPath = path.resolve(__dirname, '..', '..', '..', 'core', 'config', 'env-interpolator');
@@ -45,7 +45,7 @@ function getProjectRoot() {
 }
 
 // ---------------------------------------------------------------------------
-// aios config show
+// aiox config show
 // ---------------------------------------------------------------------------
 
 function showAction(options) {
@@ -113,7 +113,7 @@ function printDebugConfig(config, sources, prefix = '') {
 }
 
 // ---------------------------------------------------------------------------
-// aios config diff
+// aiox config diff
 // ---------------------------------------------------------------------------
 
 function diffAction(options) {
@@ -198,7 +198,7 @@ function formatValue(v) {
 }
 
 // ---------------------------------------------------------------------------
-// aios config migrate
+// aiox config migrate
 // ---------------------------------------------------------------------------
 
 function migrateAction(options) {
@@ -253,20 +253,20 @@ function migrateAction(options) {
     console.log(`Backup created: ${backupPath}`);
 
     // Write split files
-    const header1 = '# AIOS Framework Configuration (Level 1)\n# DO NOT EDIT — Part of the AIOS framework.\n# Override in project-config.yaml or local-config.yaml.\n\n';
+    const header1 = '# AIOX Framework Configuration (Level 1)\n# DO NOT EDIT — Part of the AIOX framework.\n# Override in project-config.yaml or local-config.yaml.\n\n';
     fs.writeFileSync(fwPath, header1 + yaml.dump(l1Sections, { lineWidth: 120 }));
     console.log(`Created: ${CONFIG_FILES.framework}`);
 
-    const header2 = '# AIOS Project Configuration (Level 2)\n# Project-specific settings shared across the team.\n\n';
+    const header2 = '# AIOX Project Configuration (Level 2)\n# Project-specific settings shared across the team.\n\n';
     fs.writeFileSync(projPath, header2 + yaml.dump(l2Sections, { lineWidth: 120 }));
     console.log(`Created: ${CONFIG_FILES.project}`);
 
-    const header4 = '# AIOS Local Configuration (Level 4)\n# Machine-specific overrides. DO NOT commit to git.\n\n';
+    const header4 = '# AIOX Local Configuration (Level 4)\n# Machine-specific overrides. DO NOT commit to git.\n\n';
     fs.writeFileSync(localPath, header4 + yaml.dump(l4Sections, { lineWidth: 120 }));
     console.log(`Created: ${CONFIG_FILES.local}`);
 
     // Update .gitignore if needed
-    ensureGitignore(root, '.aios-core/local-config.yaml');
+    ensureGitignore(root, '.aiox-core/local-config.yaml');
 
     // Validate: resolved config should match original
     const resolved = resolveConfig(root, { skipCache: true });
@@ -277,7 +277,7 @@ function migrateAction(options) {
       console.log('\nValidation: PASS — Resolved config matches original.');
     } else {
       console.log('\nValidation: WARNING — Resolved config differs from original.');
-      console.log('This may be expected due to key normalization. Run `aios config diff` to inspect.');
+      console.log('This may be expected due to key normalization. Run `aiox config diff` to inspect.');
     }
 
     console.log('\nMigration complete. Original preserved at core-config.yaml.backup');
@@ -295,7 +295,7 @@ function splitL1(config) {
 
   // metadata (framework portion)
   if (config.markdownExploder !== undefined) l1.markdownExploder = config.markdownExploder;
-  l1.metadata = { name: 'Synkra AIOS', framework_version: '3.12.0' };
+  l1.metadata = { name: 'Synkra AIOX', framework_version: '3.12.0' };
 
   // resource_locations (Section 3)
   if (config.toolsLocation) l1.resource_locations = { tools_dir: config.toolsLocation };
@@ -443,7 +443,7 @@ function ensureGitignore(root, entry) {
 }
 
 // ---------------------------------------------------------------------------
-// aios config validate
+// aiox config validate
 // ---------------------------------------------------------------------------
 
 function validateAction(options) {
@@ -523,16 +523,16 @@ function validateYamlSyntax(root, level, issues) {
 }
 
 // ---------------------------------------------------------------------------
-// aios config init-local
+// aiox config init-local
 // ---------------------------------------------------------------------------
 
 function initLocalAction() {
   const root = getProjectRoot();
-  const templatePath = path.join(root, '.aios-core', 'local-config.yaml.template');
-  const targetPath = path.join(root, '.aios-core', 'local-config.yaml');
+  const templatePath = path.join(root, '.aiox-core', 'local-config.yaml.template');
+  const targetPath = path.join(root, '.aiox-core', 'local-config.yaml');
 
   if (!fs.existsSync(templatePath)) {
-    console.error('Template not found: .aios-core/local-config.yaml.template');
+    console.error('Template not found: .aiox-core/local-config.yaml.template');
     process.exit(1);
   }
 
@@ -542,11 +542,11 @@ function initLocalAction() {
   }
 
   fs.copyFileSync(templatePath, targetPath);
-  console.log('Created: .aios-core/local-config.yaml (from template)');
+  console.log('Created: .aiox-core/local-config.yaml (from template)');
   console.log('Edit this file to customize your machine-specific settings.');
 
   // Ensure gitignore
-  ensureGitignore(root, '.aios-core/local-config.yaml');
+  ensureGitignore(root, '.aiox-core/local-config.yaml');
 }
 
 // ---------------------------------------------------------------------------
@@ -554,14 +554,14 @@ function initLocalAction() {
 // ---------------------------------------------------------------------------
 
 /**
- * Create the `aios config` command with all subcommands.
+ * Create the `aiox config` command with all subcommands.
  * @returns {Command}
  */
 function createConfigCommand() {
   const configCmd = new Command('config')
     .description('Manage layered configuration (ADR-PRO-002)');
 
-  // aios config show
+  // aiox config show
   configCmd
     .command('show')
     .description('Show resolved configuration')
@@ -570,7 +570,7 @@ function createConfigCommand() {
     .option('-d, --debug', 'Show source annotations for each value')
     .action(showAction);
 
-  // aios config diff
+  // aiox config diff
   configCmd
     .command('diff')
     .description('Compare configuration between two levels')
@@ -578,7 +578,7 @@ function createConfigCommand() {
     .option('-a, --app <name>', 'Include app-specific context')
     .action(diffAction);
 
-  // aios config migrate
+  // aiox config migrate
   configCmd
     .command('migrate')
     .description('Migrate monolithic core-config.yaml to layered files')
@@ -586,14 +586,14 @@ function createConfigCommand() {
     .option('--force', 'Overwrite existing split files')
     .action(migrateAction);
 
-  // aios config validate
+  // aiox config validate
   configCmd
     .command('validate')
     .description('Validate YAML syntax and lint config files')
     .option('-l, --level <level>', 'Validate specific level only')
     .action(validateAction);
 
-  // aios config init-local
+  // aiox config init-local
   configCmd
     .command('init-local')
     .description('Create local-config.yaml from template')

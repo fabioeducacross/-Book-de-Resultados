@@ -1,7 +1,7 @@
 /**
  * Service Registry Builder
  *
- * Scans AIOS modules and builds the service registry JSON file.
+ * Scans AIOX modules and builds the service registry JSON file.
  * Extracts metadata from tasks, templates, scripts, checklists, and workflows.
  *
  * @module build-registry
@@ -19,7 +19,7 @@ const REGISTRY_VERSION = '1.0.0';
 // Source directories to scan
 const SCAN_SOURCES = [
   {
-    pattern: '.aios-core/development/tasks/**/*.md',
+    pattern: '.aiox-core/development/tasks/**/*.md',
     category: 'task',
     taskFormat: 'TASK-FORMAT-V1',
     subcategoryExtractor: (filePath) => {
@@ -43,7 +43,7 @@ const SCAN_SOURCES = [
     },
   },
   {
-    pattern: '.aios-core/product/templates/**/*.md',
+    pattern: '.aiox-core/product/templates/**/*.md',
     category: 'template',
     taskFormat: 'TEMPLATE',
     subcategoryExtractor: (filePath) => {
@@ -53,7 +53,7 @@ const SCAN_SOURCES = [
     },
   },
   {
-    pattern: '.aios-core/infrastructure/scripts/**/*.js',
+    pattern: '.aiox-core/infrastructure/scripts/**/*.js',
     category: 'script',
     taskFormat: 'SCRIPT',
     subcategoryExtractor: (filePath) => {
@@ -69,13 +69,13 @@ const SCAN_SOURCES = [
     skipArchived: true,
   },
   {
-    pattern: '.aios-core/product/checklists/**/*.md',
+    pattern: '.aiox-core/product/checklists/**/*.md',
     category: 'checklist',
     taskFormat: 'CHECKLIST',
     subcategoryExtractor: () => 'quality',
   },
   {
-    pattern: '.aios-core/development/workflows/**/*.yaml',
+    pattern: '.aiox-core/development/workflows/**/*.yaml',
     category: 'workflow',
     taskFormat: 'WORKFLOW',
     subcategoryExtractor: (filePath) => {
@@ -86,13 +86,13 @@ const SCAN_SOURCES = [
     },
   },
   {
-    pattern: '.aios-core/core/data/**/*.md',
+    pattern: '.aiox-core/core/data/**/*.md',
     category: 'data',
     taskFormat: 'TASK-FORMAT-V1',
     subcategoryExtractor: () => 'knowledge',
   },
   {
-    pattern: '.aios-core/core/data/**/*.yaml',
+    pattern: '.aiox-core/core/data/**/*.yaml',
     category: 'data',
     taskFormat: 'TASK-FORMAT-V1',
     subcategoryExtractor: () => 'configuration',
@@ -421,7 +421,7 @@ async function saveRegistry(registry, outputPath) {
  */
 async function main() {
   const baseDir = process.argv[2] || process.cwd();
-  const outputPath = process.argv[3] || path.join(baseDir, '.aios-core/core/registry/service-registry.json');
+  const outputPath = process.argv[3] || path.join(baseDir, '.aiox-core/core/registry/service-registry.json');
 
   try {
     const registry = await buildRegistry(baseDir);

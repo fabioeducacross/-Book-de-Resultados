@@ -5,7 +5,7 @@
  * @version 1.0.0
  *
  * @example
- * const learning = require('./.aios-core/workflow-intelligence/learning');
+ * const learning = require('./.aiox-core/workflow-intelligence/learning');
  *
  * // Capture a session pattern
  * const capture = learning.createPatternCapture();

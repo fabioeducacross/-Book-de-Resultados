@@ -7,12 +7,22 @@ Automatically synchronizes AIOX agent definitions to IDE command files.
 
 ## Overview
 
-IDE Sync keeps agent definitions in `.aios-core/development/agents/` synchronized with IDE-specific command files in:
+IDE Sync keeps agent definitions in `.aiox-core/development/agents/` synchronized with IDE-specific command files in:
 
 - `.claude/commands/AIOX/agents/` (Claude Code)
+- `.codex/agents/` (Codex CLI support files)
+- `.gemini/rules/AIOX/agents/` (Gemini CLI)
+- `.gemini/commands/` (Gemini slash command launcher files)
+- `.github/agents/` (GitHub Copilot support files)
 - `.cursor/rules/agents/` (Cursor)
-- `.windsurf/rules/agents/` (Windsurf)
 - `.antigravity/rules/agents/` (Antigravity)
+
+For Codex `/skills` activators, use the dedicated skills sync:
+
+```bash
+npm run sync:skills:codex
+npm run sync:skills:codex:global
+```
 
 ## Pre-commit Integration (Story TD-4)
 
@@ -41,14 +51,18 @@ Sync agents to all enabled IDEs:
 ```bash
 npm run sync:ide
 # or
-node .aios-core/infrastructure/scripts/ide-sync/index.js sync
+node .aiox-core/infrastructure/scripts/ide-sync/index.js sync
 ```
 
 Sync specific IDE only:
 
 ```bash
 npm run sync:ide:cursor
-npm run sync:ide:windsurf
+npm run sync:ide:codex
+npm run sync:ide:gemini
+npm run sync:ide:github-copilot
+npm run sync:ide:antigravity
+npm run sync:ide:claude
 ```
 
 ### Validate
@@ -58,7 +72,7 @@ Check if IDE files are in sync (report mode):
 ```bash
 npm run sync:ide:validate
 # or
-node .aios-core/infrastructure/scripts/ide-sync/index.js validate
+node .aiox-core/infrastructure/scripts/ide-sync/index.js validate
 ```
 
 Strict mode (CI - exits with code 1 if drift detected):
@@ -66,7 +80,7 @@ Strict mode (CI - exits with code 1 if drift detected):
 ```bash
 npm run sync:ide:check
 # or
-node .aios-core/infrastructure/scripts/ide-sync/index.js validate --strict
+node .aiox-core/infrastructure/scripts/ide-sync/index.js validate --strict
 ```
 
 ## Options
@@ -81,16 +95,28 @@ node .aios-core/infrastructure/scripts/ide-sync/index.js validate --strict
 
 ## Configuration
 
-Configure in `.aios-core/core-config.yaml`:
+Configure in `.aiox-core/core-config.yaml`:
 
 ```yaml
 ideSync:
   enabled: true
-  source: .aios-core/development/agents
+  source: .aiox-core/development/agents
   targets:
     claude-code:
       enabled: true
       path: .claude/commands/AIOX/agents
+      format: full-markdown-yaml
+    codex:
+      enabled: true
+      path: .codex/agents
+      format: full-markdown-yaml
+    gemini:
+      enabled: true
+      path: .gemini/rules/AIOX/agents
+      format: full-markdown-yaml
+    github-copilot:
+      enabled: true
+      path: .github/agents
       format: full-markdown-yaml
     cursor:
       enabled: true
@@ -98,7 +124,7 @@ ideSync:
       format: condensed-rules
     # ... other IDEs
   redirects:
-    aios-developer: aios-master
+    aiox-developer: aiox-master
     db-sage: data-engineer
 ```
 
@@ -109,9 +135,22 @@ Each IDE has a specific format for agent files:
 | IDE         | Format                  | Extension |
 | ----------- | ----------------------- | --------- |
 | Claude Code | Full markdown with YAML | `.md`     |
+| Codex CLI   | Full markdown with YAML | `.md`     |
+| Gemini CLI  | Full markdown with YAML | `.md`     |
+| GitHub Copilot | Full markdown with YAML | `.md`   |
 | Cursor      | Condensed rules         | `.md`     |
-| Windsurf    | XML-tagged markdown     | `.md`     |
 | Antigravity | Cursor-style            | `.md`     |
+
+Platform-specific checks:
+
+```bash
+npm run validate:claude-sync
+npm run validate:claude-integration
+npm run validate:codex-sync
+npm run validate:codex-integration
+npm run validate:gemini-sync
+npm run validate:gemini-integration
+```
 
 ## Redirect Agents
 
@@ -120,15 +159,15 @@ Deprecated or renamed agents are handled via redirects. When an old agent name i
 Example redirect file:
 
 ```markdown
-# Agent Redirect: aios-developer -> aios-master
+# Agent Redirect: aiox-developer -> aiox-master
 
-This agent has been renamed. Use `aios-master` instead.
+This agent has been renamed. Use `aiox-master` instead.
 ```
 
 ## File Structure
 
 ```
-.aios-core/infrastructure/scripts/ide-sync/
+.aiox-core/infrastructure/scripts/ide-sync/
 ├── index.js                 # Main orchestrator
 ├── agent-parser.js          # Parse agent YAML/MD files
 ├── redirect-generator.js    # Generate redirect files
@@ -137,7 +176,6 @@ This agent has been renamed. Use `aios-master` instead.
 └── transformers/
     ├── claude-code.js       # Claude Code format
     ├── cursor.js            # Cursor format
-    ├── windsurf.js          # Windsurf format
     └── antigravity.js       # Antigravity format
 ```
 

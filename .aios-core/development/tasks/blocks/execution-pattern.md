@@ -97,7 +97,7 @@ SendMessage("hey, are you done yet?")
 ```markdown
 ## Execution Pattern (CRITICAL)
 
-See: `.aios-core/development/tasks/blocks/execution-pattern.md`
+See: `.aiox-core/development/tasks/blocks/execution-pattern.md`
 
 This skill uses **{execution_type}** execution with {parallel_count} parallel agents.
 ```

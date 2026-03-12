@@ -2,11 +2,11 @@
  * Migration Backup Module
  *
  * Handles backup creation, verification, and manifest generation
- * for v2.0 → v2.1 migration.
+ * for v2.0 → v4.0.4 migration.
  *
  * @module cli/commands/migrate/backup
  * @version 1.0.0
- * @story 2.14 - Migration Script v2.0 → v2.1
+ * @story 2.14 - Migration Script v2.0 → v4.0.4
  */
 
 const fs = require('fs');
@@ -20,7 +20,7 @@ const crypto = require('crypto');
 function createBackupDirName() {
   const date = new Date();
   const dateStr = date.toISOString().split('T')[0];
-  return `.aios-backup-${dateStr}`;
+  return `.aiox-backup-${dateStr}`;
 }
 
 /**
@@ -108,7 +108,7 @@ async function getAllFiles(dir, fileList = []) {
 }
 
 /**
- * Create backup of .aios-core directory
+ * Create backup of .aiox-core directory
  * @param {string} projectRoot - Project root directory
  * @param {Object} options - Backup options
  * @param {boolean} options.verbose - Show detailed progress
@@ -118,13 +118,13 @@ async function getAllFiles(dir, fileList = []) {
 async function createBackup(projectRoot, options = {}) {
   const { verbose = false, onProgress = () => {} } = options;
 
-  const aiosCoreDir = path.join(projectRoot, '.aios-core');
+  const aioxCoreDir = path.join(projectRoot, '.aiox-core');
   const backupDirName = createBackupDirName();
   const backupDir = path.join(projectRoot, backupDirName);
 
-  // Check if .aios-core exists
-  if (!fs.existsSync(aiosCoreDir)) {
-    throw new Error('No .aios-core directory found. Is this an AIOS v2.0 project?');
+  // Check if .aiox-core exists
+  if (!fs.existsSync(aioxCoreDir)) {
+    throw new Error('No .aiox-core directory found. Is this an AIOX v2.0 project?');
   }
 
   // Check if backup already exists
@@ -138,7 +138,7 @@ async function createBackup(projectRoot, options = {}) {
   await fs.promises.mkdir(backupDir, { recursive: true });
 
   // Get all files to backup
-  const files = await getAllFiles(aiosCoreDir);
+  const files = await getAllFiles(aioxCoreDir);
   const manifest = {
     version: '2.0',
     created: new Date().toISOString(),
@@ -155,8 +155,8 @@ async function createBackup(projectRoot, options = {}) {
   // Copy each file
   for (let i = 0; i < files.length; i++) {
     const srcFile = files[i];
-    const relativePath = path.relative(aiosCoreDir, srcFile);
-    const destFile = path.join(backupDir, '.aios-core', relativePath);
+    const relativePath = path.relative(aioxCoreDir, srcFile);
+    const destFile = path.join(backupDir, '.aiox-core', relativePath);
 
     const result = await copyFileWithMetadata(srcFile, destFile);
 
@@ -176,9 +176,9 @@ async function createBackup(projectRoot, options = {}) {
 
   // Backup config files if they exist
   const configFiles = [
-    'aios.config.js',
-    'aios.config.json',
-    '.aios/config.yaml',
+    'aiox.config.js',
+    'aiox.config.json',
+    '.aiox/config.yaml',
     '.mcp.json',
   ];
 
@@ -225,7 +225,7 @@ async function verifyBackup(backupDir) {
   const manifestPath = path.join(backupDir, 'backup-manifest.json');
 
   if (!fs.existsSync(manifestPath)) {
-    throw new Error('Backup manifest not found. Is this a valid AIOS backup?');
+    throw new Error('Backup manifest not found. Is this a valid AIOX backup?');
   }
 
   const manifest = JSON.parse(await fs.promises.readFile(manifestPath, 'utf8'));
@@ -240,7 +240,7 @@ async function verifyBackup(backupDir) {
   for (const file of manifest.files) {
     const filePath = file.isConfig
       ? path.join(backupDir, file.relativePath)
-      : path.join(backupDir, '.aios-core', file.relativePath);
+      : path.join(backupDir, '.aiox-core', file.relativePath);
 
     if (!fs.existsSync(filePath)) {
       results.missing.push(file.relativePath);
@@ -274,11 +274,11 @@ async function findLatestBackup(projectRoot) {
   const entries = await fs.promises.readdir(projectRoot, { withFileTypes: true });
 
   const backups = entries
-    .filter(entry => entry.isDirectory() && entry.name.startsWith('.aios-backup-'))
+    .filter(entry => entry.isDirectory() && entry.name.startsWith('.aiox-backup-'))
     .map(entry => ({
       name: entry.name,
       path: path.join(projectRoot, entry.name),
-      date: entry.name.replace('.aios-backup-', ''),
+      date: entry.name.replace('.aiox-backup-', ''),
     }))
     .sort((a, b) => b.date.localeCompare(a.date));
 
@@ -311,14 +311,14 @@ async function listBackups(projectRoot) {
   const backups = [];
 
   for (const entry of entries) {
-    if (entry.isDirectory() && entry.name.startsWith('.aios-backup-')) {
+    if (entry.isDirectory() && entry.name.startsWith('.aiox-backup-')) {
       const backupPath = path.join(projectRoot, entry.name);
       const manifestPath = path.join(backupPath, 'backup-manifest.json');
 
       const backup = {
         name: entry.name,
         path: backupPath,
-        date: entry.name.replace('.aios-backup-', ''),
+        date: entry.name.replace('.aiox-backup-', ''),
         hasManifest: false,
         fileCount: 0,
         totalSize: 0,

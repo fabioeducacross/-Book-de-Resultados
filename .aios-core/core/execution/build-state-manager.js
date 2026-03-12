@@ -397,7 +397,7 @@ class BuildStateManager {
    * @returns {Object|null} Last checkpoint or null
    */
   getLastCheckpoint() {
-    if (!this._state || this._state.checkpoints.length === 0) {
+    if (!this._state || !this._state.checkpoints || this._state.checkpoints.length === 0) {
       return null;
     }
     return this._state.checkpoints[this._state.checkpoints.length - 1];
@@ -1298,7 +1298,7 @@ async function main() {
 
   if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-${chalk.bold('Build State Manager')} - AIOS Build Recovery System (Story 8.4)
+${chalk.bold('Build State Manager')} - AIOX Build Recovery System (Story 8.4)
 
 ${chalk.cyan('Usage:')}
   build-state-manager <command> <story-id> [options]

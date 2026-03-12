@@ -41,19 +41,19 @@ steps:
   - name: Load Gotchas
     condition: include_gotchas == true
     actions:
-      - read: .aios/gotchas.json
+      - read: .aiox/gotchas.json
       - filter: by category if provided
     output: gotchas
 
   - name: Load Technical Preferences
     condition: include_preferences == true
     actions:
-      - read: .aios-core/data/technical-preferences.md
+      - read: .aiox-core/data/technical-preferences.md
     output: preferences
 
   - name: Load Core Config
     actions:
-      - read: .aios-core/core-config.yaml
+      - read: .aiox-core/core-config.yaml
       - extract: devLoadAlwaysFiles, project.*, deployment.*
     output: config
 ```
@@ -70,7 +70,7 @@ steps:
 ### Programmatic Usage
 
 ```javascript
-const { loadContext } = require('.aios-core/utils/context-loader');
+const { loadContext } = require('.aiox-core/utils/context-loader');
 
 const context = await loadContext({
   category: 'supabase',
@@ -89,9 +89,9 @@ console.log(context.config.devLoadAlwaysFiles);
 
 | File | Purpose |
 |------|---------|
-| `.aios/gotchas.json` | Known issues and workarounds |
-| `.aios-core/data/technical-preferences.md` | User-defined patterns |
-| `.aios-core/core-config.yaml` | Project configuration |
+| `.aiox/gotchas.json` | Known issues and workarounds |
+| `.aiox-core/data/technical-preferences.md` | User-defined patterns |
+| `.aiox-core/core-config.yaml` | Project configuration |
 
 ## Error Handling
 

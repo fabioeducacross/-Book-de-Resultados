@@ -1,5 +1,5 @@
 /**
- * AIOS Performance Optimizer
+ * AIOX Performance Optimizer
  * 
  * Analyzes code for performance bottlenecks and suggests optimizations
  * to improve runtime performance, memory usage, and scalability.

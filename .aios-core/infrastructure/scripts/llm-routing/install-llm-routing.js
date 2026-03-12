@@ -9,7 +9,7 @@
  * - claude-free: Uses DeepSeek API (~$0.14/M tokens)
  *
  * @module llm-routing
- * @location .aios-core/infrastructure/scripts/llm-routing/
+ * @location .aiox-core/infrastructure/scripts/llm-routing/
  */
 
 const fs = require('fs');
@@ -183,7 +183,7 @@ function updateClaudeConfig(trackingEnabled = true) {
       config = JSON.parse(fs.readFileSync(claudeConfigPath, 'utf8'));
     }
 
-    config.aiosLLMRouting = {
+    config.aioxLLMRouting = {
       version: LLM_ROUTING_VERSION,
       installedAt: new Date().toISOString(),
       commands: ['claude-max', 'claude-free', 'deepseek-usage', 'deepseek-proxy'],
@@ -245,7 +245,7 @@ function getInstallationSummary(result) {
     summary.push('  deepseek-usage      # View all usage stats');
     summary.push('  deepseek-usage <alias>  # Stats for specific alias');
     summary.push('');
-    summary.push('Usage data saved to: ~/.aios/usage-tracking/deepseek-usage.json');
+    summary.push('Usage data saved to: ~/.aiox/usage-tracking/deepseek-usage.json');
     summary.push('');
   } else {
     summary.push('');
@@ -268,7 +268,7 @@ module.exports = {
 
 // Run if executed directly
 if (require.main === module) {
-  console.log('\n🚀 AIOS LLM Routing Installer\n');
+  console.log('\n🚀 AIOX LLM Routing Installer\n');
 
   const result = installLLMRouting({
     projectRoot: process.cwd(),

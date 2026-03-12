@@ -18,7 +18,7 @@ const _fs = require('fs');
 const path = require('path');
 const ContextDetector = require('../../core/session/context-detector');
 
-const SESSION_STATE_PATH = path.join(process.cwd(), '.aios', 'session-state.json');
+const SESSION_STATE_PATH = path.join(process.cwd(), '.aiox', 'session-state.json');
 
 /**
  * Agent exit hook - called when command completes

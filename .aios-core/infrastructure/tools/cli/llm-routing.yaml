@@ -1,5 +1,5 @@
 # LLM Routing Tool Definition
-# Location: .aios-core/infrastructure/tools/cli/llm-routing.yaml
+# Location: .aiox-core/infrastructure/tools/cli/llm-routing.yaml
 # Version: 1.0.0
 
 tool:
@@ -21,8 +21,8 @@ capabilities:
 
 installation:
   method: script
-  script: .aios-core/infrastructure/scripts/llm-routing/install-llm-routing.js
-  templates_dir: .aios-core/infrastructure/scripts/llm-routing/templates/
+  script: .aiox-core/infrastructure/scripts/llm-routing/install-llm-routing.js
+  templates_dir: .aiox-core/infrastructure/scripts/llm-routing/templates/
 
   # Files installed
   windows:
@@ -117,10 +117,10 @@ troubleshooting:
 
 related_docs:
   - docs/guides/llm-routing.md
-  - .aios-core/development/tasks/setup-llm-routing.md
+  - .aiox-core/development/tasks/setup-llm-routing.md
 
 metadata:
   created: "2025-12-14"
   updated: "2025-12-14"
-  author: "AIOS Framework"
+  author: "AIOX Framework"
   story: "6.7"

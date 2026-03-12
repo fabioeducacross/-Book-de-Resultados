@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Stop
 description: Stop orchestrator execution for a story
-agent: aios-master
+agent: aiox-master
 version: 1.0.0
 story: '0.9'
 epic: '0'
@@ -33,7 +33,7 @@ Current state: in_progress
 Current epic: 4
 
 Saving state for resume...
-State saved at: .aios/master-orchestrator/STORY-42.json
+State saved at: .aiox/master-orchestrator/STORY-42.json
 
 ✅ Orchestrator stopped successfully.
    Run *orchestrate-resume STORY-42 to continue.

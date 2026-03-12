@@ -129,11 +129,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -354,4 +354,11 @@ The story creation is successful when:
 - Always prioritize existing system integrity
 - When in doubt about integration complexity, use brownfield-create-epic instead
 - Stories should take no more than 4 hours of focused development work
+
+## Handoff
+next_agent: @po
+next_command: *validate-story-draft {story-id}
+condition: Brownfield story created from assessment
+alternatives:
+  - agent: @sm, command: *draft, condition: Need additional stories from same assessment
  

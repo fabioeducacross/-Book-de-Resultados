@@ -19,7 +19,7 @@ function transform(agentData) {
 
   const icon = agent.icon || '🤖';
   const name = agent.name || agentData.id;
-  const title = agent.title || 'AIOS Agent';
+  const title = agent.title || 'AIOX Agent';
   const whenToUse = agent.whenToUse || 'Use this agent for specific tasks';
   const archetype = persona.archetype || '';
 
@@ -83,7 +83,7 @@ ${agentData.sections.collaboration}
   }
 
   content += `---
-*AIOS Agent - Synced from .aios-core/development/agents/${agentData.filename}*
+*AIOX Agent - Synced from .aiox-core/development/agents/${agentData.filename}*
 `;
 
   return content;

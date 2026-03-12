@@ -150,7 +150,7 @@ author: Meu Nome
 license: MIT
 slashPrefix: meu-dominio
 
-aios:
+aiox:
   minVersion: "2.1.0"
   type: squad
 
@@ -229,7 +229,7 @@ tags:
 
 📚 Documentation:
    - Squad Guide: docs/guides/squads-guide.md
-   - Task Format: .aios-core/docs/standards/TASK-FORMAT-SPECIFICATION-V1.md
+   - Task Format: .aiox-core/docs/standards/TASK-FORMAT-SPECIFICATION-V1.md
 
 🚀 When ready to share:
    - Local only: Keep in ./squads/ (private)
@@ -249,8 +249,8 @@ tags:
 ## Implementation
 
 ```javascript
-const { SquadGenerator } = require('./.aios-core/development/scripts/squad');
-const { SquadValidator } = require('./.aios-core/development/scripts/squad');
+const { SquadGenerator } = require('./.aiox-core/development/scripts/squad');
+const { SquadValidator } = require('./.aiox-core/development/scripts/squad');
 
 async function createSquad(options) {
   const {
@@ -263,7 +263,7 @@ async function createSquad(options) {
     skipValidation,
     includeAgent,
     includeTask,
-    aiosMinVersion
+    aioxMinVersion
   } = options;
 
   // Validate name
@@ -282,7 +282,7 @@ async function createSquad(options) {
     configMode,
     includeAgent,
     includeTask,
-    aiosMinVersion
+    aioxMinVersion
   });
 
   // Validate (unless skipped)

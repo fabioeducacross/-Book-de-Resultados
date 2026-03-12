@@ -1,7 +1,7 @@
 /**
  * MCP Setup Command
  *
- * Creates the global ~/.aios/mcp/ directory structure.
+ * Creates the global ~/.aiox/mcp/ directory structure.
  *
  * @module cli/commands/mcp/setup
  * @version 1.0.0
@@ -17,7 +17,7 @@ const {
   getServerTemplate,
 } = require('../../../core/mcp/global-config-manager');
 const {
-  getGlobalAiosDir,
+  getGlobalAioxDir,
   getGlobalMcpDir,
   getGlobalConfigPath,
 } = require('../../../core/mcp/os-detector');
@@ -30,7 +30,7 @@ function createSetupCommand() {
   const setup = new Command('setup');
 
   setup
-    .description('Create global MCP configuration structure at ~/.aios/')
+    .description('Create global MCP configuration structure at ~/.aiox/')
     .option('--with-defaults', 'Include default server templates (context7, exa, github)')
     .option('--servers <servers>', 'Comma-separated list of servers to add (e.g., context7,exa,github)')
     .option('-f, --force', 'Force recreation even if exists')
@@ -133,7 +133,7 @@ async function executeSetup(options) {
   // Summary
   console.log('\n✅ Global MCP setup complete!\n');
   console.log('Structure created:');
-  console.log(`  ${getGlobalAiosDir()}/`);
+  console.log(`  ${getGlobalAioxDir()}/`);
   console.log('  ├── mcp/');
   console.log('  │   ├── global-config.json');
   console.log('  │   ├── servers/');
@@ -146,9 +146,9 @@ async function executeSetup(options) {
   }
 
   console.log('\nNext steps:');
-  console.log('  1. Run "aios mcp link" in your project to use global config');
-  console.log('  2. Run "aios mcp add <server>" to add more servers');
-  console.log('  3. Run "aios mcp status" to check configuration');
+  console.log('  1. Run "aiox mcp link" in your project to use global config');
+  console.log('  2. Run "aiox mcp add <server>" to add more servers');
+  console.log('  3. Run "aiox mcp status" to check configuration');
 
   if (options.verbose) {
     console.log('\nAvailable server templates:');

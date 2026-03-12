@@ -1,11 +1,11 @@
 /**
- * AIOS Migration Command
+ * AIOX Migration Command
  *
- * CLI command for migrating from v2.0 to v2.1 modular structure.
+ * CLI command for migrating from v2.0 to v4.0.4 modular structure.
  *
  * @module cli/commands/migrate
  * @version 1.0.0
- * @story 2.14 - Migration Script v2.0 → v2.1
+ * @story 2.14 - Migration Script v2.0 → v4.0.4
  */
 
 const { Command } = require('commander');
@@ -24,7 +24,7 @@ const { executeRollback, formatRollbackSummary, canRollback } = require('./rollb
  */
 function printHeader(fromVersion, toVersion) {
   console.log('');
-  console.log(`🔄 AIOS Migration v${fromVersion} → v${toVersion}`);
+  console.log(`🔄 AIOX Migration v${fromVersion} → v${toVersion}`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('');
 }
@@ -91,10 +91,10 @@ async function runMigration(options) {
 
   if (!versionInfo.isV2) {
     if (versionInfo.isV21) {
-      console.log('ℹ️  Project already has v2.1 structure. No migration needed.');
+      console.log('ℹ️  Project already has v4.0.4 structure. No migration needed.');
       return;
     }
-    console.error(`❌ ${versionInfo.error || 'Cannot detect AIOS version'}`);
+    console.error(`❌ ${versionInfo.error || 'Cannot detect AIOX version'}`);
     process.exit(1);
   }
 
@@ -118,7 +118,7 @@ async function runMigration(options) {
   // Check for conflicts
   if (plan.conflicts.length > 0) {
     console.log('');
-    console.log('⚠️  Conflicts detected. Some v2.1 directories already exist.');
+    console.log('⚠️  Conflicts detected. Some v4.0.4 directories already exist.');
 
     if (!yes) {
       const proceed = await askConfirmation('Continue anyway?');
@@ -200,7 +200,7 @@ async function runMigration(options) {
 
     if (!migrationResult.success) {
       console.error('  ❌ Migration failed');
-      console.log('  Run: aios migrate --rollback');
+      console.log('  Run: aiox migrate --rollback');
       process.exit(1);
     }
 
@@ -213,7 +213,7 @@ async function runMigration(options) {
 
   } catch (error) {
     console.error(`  ❌ Migration error: ${error.message}`);
-    console.log('  Run: aios migrate --rollback');
+    console.log('  Run: aiox migrate --rollback');
     process.exit(1);
   }
 
@@ -223,8 +223,8 @@ async function runMigration(options) {
   console.log('Phase 4: Import Updates');
 
   try {
-    const aiosCoreDir = path.join(projectRoot, '.aios-core');
-    const importResult = await updateAllImports(aiosCoreDir, plan, { verbose, onProgress });
+    const aioxCoreDir = path.join(projectRoot, '.aiox-core');
+    const importResult = await updateAllImports(aioxCoreDir, plan, { verbose, onProgress });
 
     console.log(`  ✓ Scanned ${importResult.totalFiles} files`);
     console.log(`  ✓ Updated ${importResult.importsUpdated} imports`);
@@ -250,7 +250,7 @@ async function runMigration(options) {
 
   // Generate and print summary
   const duration = formatDuration(Date.now() - startTime);
-  const backupDir = `.aios-backup-${new Date().toISOString().split('T')[0]}`;
+  const backupDir = `.aiox-backup-${new Date().toISOString().split('T')[0]}`;
 
   console.log('');
   console.log(generateSummary(
@@ -270,7 +270,7 @@ async function runRollbackCommand(options) {
   const onProgress = createProgressReporter(verbose);
 
   console.log('');
-  console.log('🔙 AIOS Migration Rollback');
+  console.log('🔙 AIOX Migration Rollback');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('');
 
@@ -317,7 +317,7 @@ async function showBackupStatus(_options) {
   const backups = await listBackups(projectRoot);
 
   console.log('');
-  console.log('📦 AIOS Migration Backups');
+  console.log('📦 AIOX Migration Backups');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
   if (backups.length === 0) {
@@ -363,7 +363,7 @@ function createMigrateCommand() {
   const migrate = new Command('migrate');
 
   migrate
-    .description('Migrate AIOS from v2.0 to v2.1 modular structure')
+    .description('Migrate AIOX from v2.0 to v4.0.4 modular structure')
     .option('--from <version>', 'Source version', '2.0')
     .option('--to <version>', 'Target version', '2.1')
     .option('--dry-run', 'Show migration plan without executing')
@@ -377,7 +377,7 @@ function createMigrateCommand() {
     .addHelpText('after', `
 Migration Flow:
   Phase 1: Backup
-    - Creates .aios-backup-{date}/ with all files
+    - Creates .aiox-backup-{date}/ with all files
     - Verifies backup integrity
 
   Phase 2: Analysis
@@ -400,19 +400,19 @@ Migration Flow:
     - Runs tests
 
 Examples:
-  $ aios migrate                          # Interactive migration
-  $ aios migrate --dry-run                # Preview changes
-  $ aios migrate --verbose                # Detailed output
-  $ aios migrate -y --skip-tests          # Non-interactive, skip tests
-  $ aios migrate --rollback               # Restore from backup
-  $ aios migrate --status                 # Show backups
+  $ aiox migrate                          # Interactive migration
+  $ aiox migrate --dry-run                # Preview changes
+  $ aiox migrate --verbose                # Detailed output
+  $ aiox migrate -y --skip-tests          # Non-interactive, skip tests
+  $ aiox migrate --rollback               # Restore from backup
+  $ aiox migrate --status                 # Show backups
 
 Rollback:
   If migration fails or you want to revert:
-  $ aios migrate --rollback
+  $ aiox migrate --rollback
 
   Manual rollback:
-  $ cp -r .aios-backup-{date}/* .aios-core/
+  $ cp -r .aiox-backup-{date}/* .aiox-core/
 `);
 
   migrate.action(async (options) => {

@@ -31,12 +31,12 @@ Commands:
   info <id>         Show detailed information about a worker
 
 Examples:
-  $ aios workers search "json transformation"
-  $ aios workers search "data" --category=etl
-  $ aios workers list --category=testing
-  $ aios workers list --format=table --page=2
-  $ aios workers info json-csv-transformer
-  $ aios workers info architect-checklist --format=json
+  $ aiox workers search "json transformation"
+  $ aiox workers search "data" --category=etl
+  $ aiox workers list --category=testing
+  $ aiox workers list --format=table --page=2
+  $ aiox workers info json-csv-transformer
+  $ aiox workers info architect-checklist --format=json
 `);
 
   // Add search subcommand (Story 2.7)

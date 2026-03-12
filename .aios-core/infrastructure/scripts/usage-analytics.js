@@ -3,7 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 
 /**
- * Usage pattern analyzer for Synkra AIOS framework components
+ * Usage pattern analyzer for Synkra AIOX framework components
  * Analyzes how components are used throughout the codebase
  */
 class UsageAnalytics {
@@ -22,7 +22,7 @@ class UsageAnalytics {
         /executeTask\(['"`]([^'"`]+)['"`]\)/g,
       ],
       agentReferences: [
-        /aios-developer/g,
+        /aiox-developer/g,
         /meta-agent/g,
         /@agent\s+([a-zA-Z-]+)/g,
       ],
@@ -148,7 +148,7 @@ class UsageAnalytics {
 
     try {
       const searchPaths = [
-        path.join(this.rootPath, 'aios-core'),
+        path.join(this.rootPath, 'aiox-core'),
         path.join(this.rootPath, 'tests'),
         path.join(this.rootPath, 'docs'),
         path.join(this.rootPath, 'examples'),
@@ -597,7 +597,7 @@ class UsageAnalytics {
 
   // Helper methods
   isExcludedDirectory(name) {
-    const excludes = ['node_modules', '.git', '.aios', 'dist', 'build', 'coverage'];
+    const excludes = ['node_modules', '.git', '.aiox', 'dist', 'build', 'coverage'];
     return excludes.includes(name) || name.startsWith('.');
   }
 

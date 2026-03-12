@@ -21,17 +21,17 @@ function createManifestCommand() {
   const manifest = new Command('manifest');
 
   manifest
-    .description('Manage AIOS manifest files for agents, workers, and tasks')
+    .description('Manage AIOX manifest files for agents, workers, and tasks')
     .addHelpText('after', `
 Commands:
   validate          Validate all manifest files
   regenerate        Regenerate manifests from source files
 
 Examples:
-  $ aios manifest validate
-  $ aios manifest validate --verbose
-  $ aios manifest regenerate
-  $ aios manifest regenerate --force
+  $ aiox manifest validate
+  $ aiox manifest validate --verbose
+  $ aiox manifest regenerate
+  $ aiox manifest regenerate --force
 `);
 
   // Add subcommands

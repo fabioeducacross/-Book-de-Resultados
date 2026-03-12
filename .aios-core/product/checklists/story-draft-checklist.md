@@ -112,7 +112,7 @@ Note: We don't need every file listed - just the important ones.]]
 
 ## 6. CODERABBIT INTEGRATION (CONDITIONAL)
 
-[[LLM: CONDITIONAL SECTION - Check `coderabbit_integration.enabled` in `.aios-core/core-config.yaml`
+[[LLM: CONDITIONAL SECTION - Check `coderabbit_integration.enabled` in `.aiox-core/core-config.yaml`
 
 **IF `coderabbit_integration.enabled: false`:**
 - SKIP this entire section (6)

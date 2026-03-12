@@ -206,7 +206,6 @@ class WaveExecutor extends EventEmitter {
    */
   async executeTaskWithTimeout(task, context) {
     const startTime = Date.now();
-    let timeoutId;
 
     // Track active execution
     this.activeExecutions.set(task.id, {
@@ -220,13 +219,9 @@ class WaveExecutor extends EventEmitter {
     try {
       // Create timeout promise
       const timeoutPromise = new Promise((_, reject) => {
-        timeoutId = setTimeout(() => {
+        setTimeout(() => {
           reject(new Error(`Task ${task.id} timed out after ${this.taskTimeout}ms`));
         }, this.taskTimeout);
-
-        if (typeof timeoutId.unref === 'function') {
-          timeoutId.unref();
-        }
       });
 
       // Execute task with rate limiting if available
@@ -277,18 +272,10 @@ class WaveExecutor extends EventEmitter {
         duration: Date.now() - startTime,
       };
     } finally {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-
       // Remove from active after a delay (for monitoring)
-      const cleanupTimer = setTimeout(() => {
+      setTimeout(() => {
         this.activeExecutions.delete(task.id);
       }, 5000);
-
-      if (typeof cleanupTimer.unref === 'function') {
-        cleanupTimer.unref();
-      }
     }
   }
 

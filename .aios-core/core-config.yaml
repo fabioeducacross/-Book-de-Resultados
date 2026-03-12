@@ -1,6 +1,6 @@
 markdownExploder: true
 project:
-  type: EXISTING_AIOS
+  type: EXISTING_AIOX
   installedAt: '2025-01-14T00:00:00Z'
   version: 2.1.0
 user_profile: advanced
@@ -31,26 +31,29 @@ devLoadAlwaysFilesFallback:
   - docs/es/framework/source-tree.md
 devDebugLog: .ai/debug-log.md
 devStoryLocation: docs/stories
-slashPrefix: AIOS
-toolsLocation: .aios-core/tools
+slashPrefix: AIOX
+toolsLocation: .aiox-core/tools
 scriptsLocation:
-  core: .aios-core/core
-  development: .aios-core/development/scripts
-  infrastructure: .aios-core/infrastructure/scripts
-  legacy: .aios-core/scripts
-dataLocation: .aios-core/data
-elicitationLocation: .aios-core/elicitation
+  core: .aiox-core/core
+  development: .aiox-core/development/scripts
+  infrastructure: .aiox-core/infrastructure/scripts
+  legacy: .aiox-core/scripts
+dataLocation: .aiox-core/data
+elicitationLocation: .aiox-core/elicitation
 squadsTemplateLocation: templates/squad
 mindsLocation: outputs/minds
 ide:
   selected:
     - vscode
+    - codex
+    - gemini
     - cursor
     - claude-code
   configs:
     vscode: true
+    codex: true
+    gemini: true
     cursor: true
-    windsurf: false
     zed: false
     claude-desktop: false
     claude-code: true
@@ -156,9 +159,12 @@ projectStatus:
     recentWork: true
     currentEpic: true
     currentStory: true
-  statusFile: .aios/project-status.yaml
+  statusFile: .aiox/project-status.yaml
   maxModifiedFiles: 5
   maxRecentCommits: 2
+synapse:
+  session:
+    staleTTLHours: 168 # 7 days — sessions older than this are cleaned up on first prompt
 agentIdentity:
   greeting:
     preference: auto
@@ -301,20 +307,28 @@ utils:
     - usage-tracker
 ideSync:
   enabled: true
-  source: .aios-core/development/agents
+  source: .aiox-core/development/agents
   targets:
     claude-code:
       enabled: true
-      path: .claude/commands/AIOS/agents
+      path: .claude/commands/AIOX/agents
       format: full-markdown-yaml
+    codex:
+      enabled: true
+      path: .codex/agents
+      format: full-markdown-yaml
+    gemini:
+      enabled: true
+      path: .gemini/rules/AIOX/agents
+      format: full-markdown-yaml
+    github-copilot:
+      enabled: true
+      path: .github/agents
+      format: github-copilot
     cursor:
       enabled: true
       path: .cursor/rules/agents
       format: condensed-rules
-    windsurf:
-      enabled: false
-      path: .windsurf/rules/agents
-      format: xml-tagged-markdown
     antigravity:
       enabled: true
       path: .antigravity/rules/agents
@@ -341,4 +355,34 @@ autoClaude:
     enabled: false
   qa:
     enabled: false
+# Boundary Mapping — Framework-Project Separation (Epic BM)
+# Controls deterministic protection of framework core files via Claude Code deny rules.
+# When frameworkProtection is true (default), .claude/settings.json includes deny rules
+# that block Edit/Write operations on L1/L2 paths listed in 'protected' below.
+# Set to false for framework contributors who need to edit core files directly.
+# NOTE: This flag is read by the installer during settings.json generation.
+# Changing this value alone does NOT add/remove deny rules — re-run the installer.
+# SINGLE SOURCE OF TRUTH: Both pre-commit hook (framework-guard.js) and
+# the installer read protected/exceptions from here. Do NOT hardcode paths elsewhere.
+boundary:
+  frameworkProtection: false # TEMPORARY: TOK-3 contributor mode — re-enable after story
+  # L1/L2 paths — blocked from editing in project mode
+  # Glob syntax: ** matches any depth, * matches single segment
+  protected:
+    - .aiox-core/core/**
+    - .aiox-core/development/tasks/**
+    - .aiox-core/development/templates/**
+    - .aiox-core/development/checklists/**
+    - .aiox-core/development/workflows/**
+    - .aiox-core/infrastructure/**
+    - .aiox-core/constitution.md
+    - bin/aiox.js
+    - bin/aiox-init.js
+  # L3 paths — mutable exceptions (allowed even within .aiox-core/)
+  exceptions:
+    - .aiox-core/data/**
+    - .aiox-core/development/agents/*/MEMORY.md
+    - .aiox-core/core/config/schemas/**
+    - .aiox-core/core/config/template-overrides.js
+
 # Memory Intelligence System (Epic MIS) configuration placeholder — MIS-2+

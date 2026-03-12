@@ -1,5 +1,5 @@
 /**
- * AIOS Events Module
+ * AIOX Events Module
  *
  * Exports for event types and dashboard emitter.
  *

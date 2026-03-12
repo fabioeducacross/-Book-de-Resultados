@@ -5,12 +5,12 @@
  * Uses fire-and-forget async execution to avoid blocking the compact operation.
  *
  * Architecture: Open Core
- * - aios-core: Hook runner (this file) + pro detection
- * - aios-pro: Digest extraction logic (memory/session-digest/)
+ * - aiox-core: Hook runner (this file) + pro detection
+ * - aiox-pro: Digest extraction logic (memory/session-digest/)
  *
- * @module .aios-core/hooks/unified/runners/precompact-runner
+ * @module .aiox-core/hooks/unified/runners/precompact-runner
  * @see Story MIS-3 - Session Digest (PreCompact Hook)
- * @see Story PRO-5 - aios-pro Repository Bootstrap
+ * @see Story PRO-5 - aiox-pro Repository Bootstrap
  */
 
 'use strict';
@@ -23,7 +23,7 @@ const { isProAvailable, loadProModule } = require(proDetectorPath);
  * PreCompact hook handler - Fire-and-forget session digest
  *
  * Execution flow:
- * 1. Detect aios-pro availability via pro-detector
+ * 1. Detect aiox-pro availability via pro-detector
  * 2. If available, fire-and-forget async digest extraction
  * 3. If not available, graceful no-op (log and return)
  * 4. NEVER block the compact operation (< 5s)
@@ -37,22 +37,22 @@ const { isProAvailable, loadProModule } = require(proDetectorPath);
  */
 async function onPreCompact(context) {
   try {
-    // 1. Detect aios-pro availability
+    // 1. Detect aiox-pro availability
     const proAvailable = isProAvailable();
 
     if (!proAvailable) {
-      console.log('[PreCompact] aios-pro not available, skipping session digest');
+      console.log('[PreCompact] aiox-pro not available, skipping session digest');
       return; // Graceful degradation - no-op
     }
 
     // 2. Fire-and-forget async execution (don't block compact)
     setImmediate(async () => {
       try {
-        // Dynamic import from aios-pro
+        // Dynamic import from aiox-pro
         const digestModule = loadProModule('memory/session-digest/extractor.js');
 
         if (!digestModule || typeof digestModule.extractSessionDigest !== 'function') {
-          console.error('[PreCompact] Digest extractor not found or invalid in aios-pro');
+          console.error('[PreCompact] Digest extractor not found or invalid in aiox-pro');
           return;
         }
 

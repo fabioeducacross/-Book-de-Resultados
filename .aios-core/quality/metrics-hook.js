@@ -23,7 +23,7 @@ const { MetricsCollector } = require('./metrics-collector');
  *
  * @example
  * // Call from pre-commit hook
- * const { recordPreCommitMetrics } = require('./.aios-core/quality/metrics-hook');
+ * const { recordPreCommitMetrics } = require('./.aiox-core/quality/metrics-hook');
  * const startTime = Date.now();
  * // ... run checks ...
  * await recordPreCommitMetrics({
@@ -63,7 +63,7 @@ async function recordPreCommitMetrics(result) {
  * @returns {Promise<Object>} Recorded run
  *
  * @example
- * const { recordPRReviewMetrics } = require('./.aios-core/quality/metrics-hook');
+ * const { recordPRReviewMetrics } = require('./.aiox-core/quality/metrics-hook');
  * await recordPRReviewMetrics({
  *   passed: true,
  *   durationMs: 180000, // 3 minutes
@@ -109,7 +109,7 @@ async function recordPRReviewMetrics(result) {
  * @returns {Promise<Object>} Recorded run
  *
  * @example
- * const { recordHumanReviewMetrics } = require('./.aios-core/quality/metrics-hook');
+ * const { recordHumanReviewMetrics } = require('./.aiox-core/quality/metrics-hook');
  * await recordHumanReviewMetrics({
  *   passed: true,
  *   durationMs: 600000, // 10 minutes
@@ -142,7 +142,7 @@ async function recordHumanReviewMetrics(result) {
  * @returns {Promise<Object>} Result of the check function
  *
  * @example
- * const { withPreCommitMetrics } = require('./.aios-core/quality/metrics-hook');
+ * const { withPreCommitMetrics } = require('./.aiox-core/quality/metrics-hook');
  *
  * async function runPreCommitChecks() {
  *   return await withPreCommitMetrics(async () => {

@@ -3,7 +3,7 @@
  *
  * Verifies .gitignore has required patterns.
  *
- * @module @synkra/aios-core/health-check/checks/repository/gitignore
+ * @module aiox-core/health-check/checks/repository/gitignore
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -176,7 +176,7 @@ class GitignoreCheck extends BaseCheck {
           const newContent =
             content +
             (content.endsWith('\n') ? '' : '\n') +
-            '# Added by AIOS Health Check\n' +
+            '# Added by AIOX Health Check\n' +
             toAdd.join('\n') +
             '\n';
 

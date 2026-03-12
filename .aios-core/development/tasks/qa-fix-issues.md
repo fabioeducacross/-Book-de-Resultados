@@ -462,7 +462,7 @@ phase_7:
     # Update plan tracker for dashboard integration
     - action: update_plan_tracker
       script: |
-        const { PlanTracker } = require('.aios-core/infrastructure/scripts/plan-tracker.js');
+        const { PlanTracker } = require('.aiox-core/infrastructure/scripts/plan-tracker.js');
         const tracker = new PlanTracker({ storyId: '{storyId}' });
         tracker.load();
         tracker.updateStatusJson({
@@ -683,3 +683,10 @@ metadata:
     - quality-assurance
     - development
 ```
+
+## Handoff
+next_agent: @qa
+next_command: *review {story-id}
+condition: All QA_FIX_REQUEST issues resolved
+alternatives:
+  - agent: @dev, command: *run-tests, condition: Verify fixes pass before re-review

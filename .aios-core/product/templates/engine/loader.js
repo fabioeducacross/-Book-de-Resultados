@@ -76,7 +76,7 @@ class TemplateLoader {
    */
   constructor(options = {}) {
     this.templatesDir = options.templatesDir ||
-      path.join(process.cwd(), '.aios-core', 'product', 'templates');
+      path.join(process.cwd(), '.aiox-core', 'product', 'templates');
     this.cache = new Map();
   }
 

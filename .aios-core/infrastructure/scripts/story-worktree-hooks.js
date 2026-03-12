@@ -22,7 +22,7 @@ let WorktreeManager = null;
  * Load configuration from core-config.yaml
  */
 async function loadConfig(rootPath) {
-  const configPath = path.join(rootPath, '.aios-core', 'core-config.yaml');
+  const configPath = path.join(rootPath, '.aiox-core', 'core-config.yaml');
   try {
     const content = await fs.readFile(configPath, 'utf-8');
     return yaml.load(content);
@@ -345,7 +345,7 @@ Options:
   let rootPath = process.cwd();
   while (rootPath !== '/') {
     try {
-      await fs.access(path.join(rootPath, '.aios-core'));
+      await fs.access(path.join(rootPath, '.aiox-core'));
       break;
     } catch {
       rootPath = path.dirname(rootPath);

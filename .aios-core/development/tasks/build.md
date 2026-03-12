@@ -63,7 +63,7 @@ This is the **main entry point** for autonomous development. It orchestrates all
 
 ### Phase Details
 
-1. **WORKTREE** - Creates isolated git worktree at `.aios/worktrees/{story-id}`
+1. **WORKTREE** - Creates isolated git worktree at `.aiox/worktrees/{story-id}`
 2. **PLAN** - Loads `plan/implementation.yaml` or generates from story ACs
 3. **EXECUTE** - Runs each subtask using Claude CLI with retry loop
 4. **QA** - Runs lint, tests, typecheck (AC8)

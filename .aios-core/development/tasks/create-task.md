@@ -147,7 +147,7 @@ acceptance-criteria:
 
 - **Tool:** component-generator
   - **Purpose:** Generate new components from templates
-  - **Source:** .aios-core/scripts/component-generator.js
+  - **Source:** .aiox-core/scripts/component-generator.js
 
 - **Tool:** file-system
   - **Purpose:** File creation and validation
@@ -162,7 +162,7 @@ acceptance-criteria:
 - **Script:** create-component.js
   - **Purpose:** Component creation workflow
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/create-component.js
+  - **Location:** .aiox-core/scripts/create-component.js
 
 ---
 
@@ -338,7 +338,7 @@ ELICIT: Task Dependencies
    - Output sanitization
 
 4. **Create Task File**
-   - Generate path: `.aios-core/tasks/{task-name}.md`
+   - Generate path: `.aiox-core/tasks/{task-name}.md`
    - Write formatted task definition
    - Ensure proper markdown structure
 
@@ -381,7 +381,7 @@ ELICIT: Task Dependencies
 ## Success Output
 ```
 ✅ Task '{task-name}' created successfully!
-📁 Location: .aios-core/tasks/{task-name}.md
+📁 Location: .aiox-core/tasks/{task-name}.md
 📝 Integration example:
    dependencies:
      tasks:

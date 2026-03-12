@@ -68,7 +68,7 @@ pre-conditions:
   - [ ] Pattern storage exists
     tipo: pre-condition
     blocker: false
-    validação: Check .aios-core/data/learned-patterns.yaml exists
+    validação: Check .aiox-core/data/learned-patterns.yaml exists
     error_message: "No patterns stored yet."
 ```
 
@@ -86,7 +86,7 @@ if (args.help) {
 
 ### Step 2: Load Learning Module
 ```javascript
-const learning = require('.aios-core/workflow-intelligence/learning');
+const learning = require('.aiox-core/workflow-intelligence/learning');
 const store = learning.getDefaultStore();
 ```
 
@@ -229,7 +229,7 @@ Quality:
   Avg success rate: 92%
   Total occurrences: 45
 
-Storage file: .aios-core/data/learned-patterns.yaml
+Storage file: .aiox-core/data/learned-patterns.yaml
 Last updated: 2025-12-26T10:30:00Z
 ```
 
@@ -294,7 +294,7 @@ try {
   displayStats(stats);
 } catch (error) {
   console.error(`⚠️ Error reading patterns: ${error.message}`);
-  console.log('Try running: rm .aios-core/data/learned-patterns.yaml');
+  console.log('Try running: rm .aiox-core/data/learned-patterns.yaml');
 }
 ```
 

@@ -3,7 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 
 /**
- * Modification risk assessment for Synkra AIOS framework
+ * Modification risk assessment for Synkra AIOX framework
  * Evaluates modification risks across multiple dimensions
  */
 class ModificationRiskAssessment {
@@ -172,7 +172,7 @@ class ModificationRiskAssessment {
 
     // Framework core dependencies are high risk
     const frameworkCoreComponents = dependencyImpact.affectedComponents.filter(comp => 
-      comp.path.includes('aios-core') && comp.impactScore >= 7,
+      comp.path.includes('aiox-core') && comp.impactScore >= 7,
     ).length;
 
     if (frameworkCoreComponents > 0) {

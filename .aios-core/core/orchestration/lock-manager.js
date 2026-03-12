@@ -28,7 +28,7 @@ const yaml = require('js-yaml');
 const DEFAULT_TTL_SECONDS = 300; // 5 minutes
 const RETRY_DELAY_MS = 2000;
 const MAX_RETRIES = 3;
-const LOCKS_DIR = '.aios/locks';
+const LOCKS_DIR = '.aiox/locks';
 
 /**
  * LockManager - File-based locking with PID/TTL management

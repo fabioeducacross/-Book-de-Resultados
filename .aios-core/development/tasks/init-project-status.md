@@ -125,11 +125,11 @@ acceptance-criteria:
 
 - **Tool:** project-scaffolder
   - **Purpose:** Generate project structure and config
-  - **Source:** .aios-core/scripts/project-scaffolder.js
+  - **Source:** .aiox-core/scripts/project-scaffolder.js
 
 - **Tool:** config-manager
   - **Purpose:** Initialize configuration files
-  - **Source:** .aios-core/utils/config-manager.js
+  - **Source:** .aiox-core/utils/config-manager.js
 
 ---
 
@@ -224,11 +224,11 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 
 ### Step 2: Check Current Configuration
 
-**Action:** Read `.aios-core/core-config.yaml` and check `projectStatus.enabled`
+**Action:** Read `.aiox-core/core-config.yaml` and check `projectStatus.enabled`
 
 **Logic:**
 ```javascript
-const config = yaml.load(fs.readFileSync('.aios-core/core-config.yaml'));
+const config = yaml.load(fs.readFileSync('.aiox-core/core-config.yaml'));
 const isEnabled = config?.projectStatus?.enabled === true;
 ```
 
@@ -258,7 +258,7 @@ projectStatus:
     recentWork: true
     currentEpic: true
     currentStory: true
-  statusFile: .aios/project-status.yaml
+  statusFile: .aiox/project-status.yaml
   maxModifiedFiles: 5
   maxRecentCommits: 2
 ```
@@ -270,12 +270,12 @@ projectStatus:
 
 ---
 
-### Step 4: Create .aios Directory
+### Step 4: Create .aiox Directory
 
-**Action:** Ensure `.aios/` directory exists
+**Action:** Ensure `.aiox/` directory exists
 
 ```bash
-mkdir -p .aios
+mkdir -p .aiox
 ```
 
 **Note:** Directory is created if missing, no error if exists.
@@ -287,11 +287,11 @@ mkdir -p .aios
 **Action:** Load project status for the first time
 
 ```javascript
-const { loadProjectStatus } = require('./.aios-core/scripts/project-status-loader.js');
+const { loadProjectStatus } = require('./.aiox-core/scripts/project-status-loader.js');
 const status = await loadProjectStatus();
 ```
 
-**Verification:** Check that `.aios/project-status.yaml` was created with valid content.
+**Verification:** Check that `.aiox/project-status.yaml` was created with valid content.
 
 **Sample Cache Content:**
 ```yaml
@@ -311,7 +311,7 @@ ttl: 60
 
 **Confirmation:**
 ```
-✅ Initialized project status cache (.aios/project-status.yaml)
+✅ Initialized project status cache (.aiox/project-status.yaml)
 ```
 
 ---
@@ -323,7 +323,7 @@ ttl: 60
 **Method:** Load status and format for display
 
 ```javascript
-const { loadProjectStatus, formatStatusDisplay } = require('./.aios-core/scripts/project-status-loader.js');
+const { loadProjectStatus, formatStatusDisplay } = require('./.aiox-core/scripts/project-status-loader.js');
 const status = await loadProjectStatus();
 const display = formatStatusDisplay(status);
 console.log('\nExample Agent Greeting:\n');
@@ -337,20 +337,20 @@ console.log('\nType *help to see available commands!');
 
 ### Step 7: Update .gitignore
 
-**Action:** Ensure `.aios/project-status.yaml` is gitignored
+**Action:** Ensure `.aiox/project-status.yaml` is gitignored
 
-**Check:** Look for `.aios/project-status.yaml` entry in `.gitignore`
+**Check:** Look for `.aiox/project-status.yaml` entry in `.gitignore`
 
 **If missing:** Add entry to `.gitignore`
 
 ```gitignore
 # AIOX Project Status Cache (auto-generated)
-.aios/project-status.yaml
+.aiox/project-status.yaml
 ```
 
 **Confirmation:**
 ```
-✅ Added .aios/project-status.yaml to .gitignore
+✅ Added .aiox/project-status.yaml to .gitignore
 ```
 
 ---
@@ -366,7 +366,7 @@ console.log('\nType *help to see available commands!');
 
 Configuration:
   • projectStatus.enabled = true
-  • Cache file: .aios/project-status.yaml
+  • Cache file: .aiox/project-status.yaml
   • Cache TTL: 60 seconds
   • Gitignored: Yes
 
@@ -384,11 +384,11 @@ Documentation: docs/guides/project-status-feature.md
 
 ### Files Created
 
-- `.aios/project-status.yaml` - Status cache file (gitignored)
+- `.aiox/project-status.yaml` - Status cache file (gitignored)
 
 ### Files Modified
 
-- `.aios-core/core-config.yaml` - projectStatus section enabled (if was disabled)
+- `.aiox-core/core-config.yaml` - projectStatus section enabled (if was disabled)
 - `.gitignore` - Added cache file entry (if missing)
 
 ### System State
@@ -400,9 +400,9 @@ Documentation: docs/guides/project-status-feature.md
 
 ## Validation
 
-- [ ] `.aios/project-status.yaml` exists and contains valid YAML
+- [ ] `.aiox/project-status.yaml` exists and contains valid YAML
 - [ ] `core-config.yaml` has `projectStatus.enabled: true`
-- [ ] `.gitignore` includes `.aios/project-status.yaml`
+- [ ] `.gitignore` includes `.aiox/project-status.yaml`
 - [ ] Test agent activation shows status display
 - [ ] Git repository detected correctly
 - [ ] Cache TTL is 60 seconds
@@ -427,17 +427,17 @@ git init
 
 **Error:**
 ```
-❌ Could not find .aios-core/core-config.yaml
+❌ Could not find .aiox-core/core-config.yaml
    Are you in the project root directory?
 ```
 
 **Resolution:** Navigate to project root before running task.
 
-### Permission Denied on .aios Directory
+### Permission Denied on .aiox Directory
 
 **Error:**
 ```
-❌ Cannot create .aios directory: Permission denied
+❌ Cannot create .aiox directory: Permission denied
 ```
 
 **Resolution:** Check file system permissions for project directory.
@@ -456,7 +456,7 @@ To disable project status tracking:
 
 2. **Remove cache file:**
    ```bash
-   rm .aios/project-status.yaml
+   rm .aiox/project-status.yaml
    ```
 
 3. **Restart agent sessions** - new activations won't load status
@@ -476,7 +476,7 @@ To disable project status tracking:
 
 ### Scripts
 
-- `.aios-core/scripts/project-status-loader.js` - Core status loader
+- `.aiox-core/scripts/project-status-loader.js` - Core status loader
 
 ### NPM Packages
 
@@ -497,7 +497,7 @@ To disable project status tracking:
 
 - **Story:** 6.1.2.4 - Dynamic Project Status Context
 - **Documentation:** `docs/guides/project-status-feature.md`
-- **Config:** `.aios-core/core-config.yaml` (projectStatus section)
+- **Config:** `.aiox-core/core-config.yaml` (projectStatus section)
 
 ---
 

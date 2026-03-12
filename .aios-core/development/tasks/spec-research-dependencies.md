@@ -1,5 +1,9 @@
 # Spec Pipeline: Research Dependencies
 
+---
+execution_mode: programmatic  # TOK-3: PTC-eligible (Bash batch) — multi-search + filter in single block
+---
+
 > **Phase:** 3 - Research
 > **Owner Agent:** @analyst
 > **Pipeline:** spec-pipeline
@@ -172,7 +176,7 @@ exa_fallback:
 ```yaml
 preferences_check:
   action: validate_against_tech_preferences
-  file: .aios-core/development/data/technical-preferences.md
+  file: .aiox-core/development/data/technical-preferences.md
 
   validation:
     - Is dependency in preferred list?

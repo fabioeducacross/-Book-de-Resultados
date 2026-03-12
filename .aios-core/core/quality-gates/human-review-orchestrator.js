@@ -31,8 +31,8 @@ class HumanReviewOrchestrator {
     this.config = config;
     this.focusRecommender = new FocusAreaRecommender(config.focusAreas || {});
     this.notificationManager = new NotificationManager(config.notifications || {});
-    this.statusPath = config.statusPath || '.aios/qa-status.json';
-    this.reviewRequestsPath = config.reviewRequestsPath || '.aios/human-review-requests';
+    this.statusPath = config.statusPath || '.aiox/qa-status.json';
+    this.reviewRequestsPath = config.reviewRequestsPath || '.aiox/human-review-requests';
     // Status queue for serializing concurrent writes to status file
     this.statusQueue = Promise.resolve();
   }

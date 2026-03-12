@@ -18,7 +18,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { DashboardEventType } = require('./types');
 
-const MONITOR_SERVER_URL = process.env.AIOS_MONITOR_URL || 'http://localhost:4001/events';
+const MONITOR_SERVER_URL = process.env.AIOX_MONITOR_URL || 'http://localhost:4001/events';
 const EMIT_TIMEOUT_MS = 500;
 
 /**
@@ -30,7 +30,7 @@ class DashboardEmitter {
   constructor() {
     this.sessionId = process.env.CLAUDE_CODE_SESSION_ID || randomUUID();
     this.projectRoot = process.cwd();
-    this.fallbackPath = path.join(this.projectRoot, '.aios', 'dashboard', 'events.jsonl');
+    this.fallbackPath = path.join(this.projectRoot, '.aiox', 'dashboard', 'events.jsonl');
     this.currentAgent = null;
     this.currentStoryId = null;
     this.enabled = true;
@@ -98,8 +98,8 @@ class DashboardEmitter {
       type,
       timestamp: Date.now(),
       session_id: this.sessionId,
-      aios_agent: this.currentAgent || undefined,
-      aios_story_id: this.currentStoryId || undefined,
+      aiox_agent: this.currentAgent || undefined,
+      aiox_story_id: this.currentStoryId || undefined,
       data,
     };
 
@@ -323,8 +323,8 @@ class DashboardEmitter {
           data: {
             ...event.data,
             session_id: event.session_id,
-            aios_agent: event.aios_agent,
-            aios_story_id: event.aios_story_id,
+            aiox_agent: event.aiox_agent,
+            aiox_story_id: event.aiox_story_id,
           },
         }),
         signal: controller.signal,

@@ -21,7 +21,7 @@ The session update pattern enables intelligent greeting adaptation by tracking c
 All agent commands should be wrapped with session updates:
 
 ```javascript
-const { updateSessionAfterCommand } = require('./.aios-core/scripts/command-execution-hook');
+const { updateSessionAfterCommand } = require('./.aiox-core/scripts/command-execution-hook');
 
 async function executeCommand(agentId, commandName, commandFn) {
   try {
@@ -46,7 +46,7 @@ async function executeCommand(agentId, commandName, commandFn) {
 When switching agents, record the transition:
 
 ```javascript
-const { updateSessionAfterCommand } = require('./.aios-core/scripts/command-execution-hook');
+const { updateSessionAfterCommand } = require('./.aiox-core/scripts/command-execution-hook');
 
 async function switchAgent(fromAgent, toAgent) {
   await updateSessionAfterCommand(toAgent, 'agent-activation', {
@@ -60,7 +60,7 @@ async function switchAgent(fromAgent, toAgent) {
 The greeting system automatically uses session state:
 
 ```javascript
-const GreetingBuilder = require('./.aios-core/development/scripts/greeting-builder');
+const GreetingBuilder = require('./.aiox-core/development/scripts/greeting-builder');
 const builder = new GreetingBuilder();
 
 // Session context is loaded automatically
@@ -152,7 +152,7 @@ await updateSessionAfterCommand('dev', 'develop-yolo');
 // → sessionType: 'existing'
 
 // Next activation shows abbreviated greeting
-const GreetingBuilder = require('./.aios-core/development/scripts/greeting-builder');
+const GreetingBuilder = require('./.aiox-core/development/scripts/greeting-builder');
 const builder = new GreetingBuilder();
 const greeting = await builder.buildGreeting(devAgent, { conversationHistory });
 // Uses 'existing' session type
@@ -180,7 +180,7 @@ await updateSessionAfterCommand('dev', 'apply-qa-fixes');
 // → sessionType: 'workflow'
 
 // Next greeting shows workflow context
-const GreetingBuilder = require('./.aios-core/development/scripts/greeting-builder');
+const GreetingBuilder = require('./.aiox-core/development/scripts/greeting-builder');
 const builder = new GreetingBuilder();
 const greeting = await builder.buildGreeting(devAgent, { conversationHistory });
 // Includes: "Continuing from @qa review..."
@@ -189,7 +189,7 @@ const greeting = await builder.buildGreeting(devAgent, { conversationHistory });
 ## Performance Considerations
 
 ### Session File Location
-- **Path:** `.aios-core/.session/current-session.json`
+- **Path:** `.aiox-core/.session/current-session.json`
 - **Size:** ~1-2KB (with history limit)
 - **I/O:** Read on greeting, write after command
 - **Impact:** <10ms per operation
@@ -221,16 +221,16 @@ node tests/integration/session-workflow.test.js
 ### Manual Testing
 ```bash
 # Clear session
-rm .aios-core/.session/current-session.json
+rm .aiox-core/.session/current-session.json
 
 # Test new session greeting
-node .aios-core/development/scripts/test-greeting-system.js
+node .aiox-core/development/scripts/test-greeting-system.js
 
 # Simulate command
-node -e "require('./.aios-core/scripts/command-execution-hook').updateSessionAfterCommand('dev', 'develop-yolo')"
+node -e "require('./.aiox-core/scripts/command-execution-hook').updateSessionAfterCommand('dev', 'develop-yolo')"
 
 # Test existing session (command history exists)
-node .aios-core/development/scripts/test-greeting-system.js
+node .aiox-core/development/scripts/test-greeting-system.js
 ```
 
 ## Troubleshooting
@@ -240,8 +240,8 @@ node .aios-core/development/scripts/test-greeting-system.js
 **Solution:** Check session file permissions and path
 
 ```bash
-ls -la .aios-core/.session/
-cat .aios-core/.session/current-session.json
+ls -la .aiox-core/.session/
+cat .aiox-core/.session/current-session.json
 ```
 
 ### Wrong Session Type
@@ -279,7 +279,7 @@ Old approach (deprecated):
 New approach (Story 6.1.4):
 ```javascript
 // STEP 3: Build intelligent greeting using GreetingBuilder
-const GreetingBuilder = require('./.aios-core/development/scripts/greeting-builder');
+const GreetingBuilder = require('./.aiox-core/development/scripts/greeting-builder');
 const builder = new GreetingBuilder();
 const greeting = await builder.buildGreeting(agentDef, { conversationHistory });
 ```
@@ -306,7 +306,7 @@ const greeting = await builder.buildGreeting(agentDef, { conversationHistory });
 ---
 
 **Related Documentation:**
-- [Story 6.1.4 Implementation](../../stories/aios migration/story-6.1.4.md)
+- [Story 6.1.4 Implementation](../../stories/aiox migration/story-6.1.4.md)
 - [Agent Configuration Guide](../config/agent-config-requirements.yaml)
 - [Greeting System Architecture](./greeting-system-architecture.md)
 

@@ -17,7 +17,7 @@ const crypto = require('crypto');
 // ═══════════════════════════════════════════════════════════════════════════════════
 
 const DEFAULT_CONFIG = {
-  storePath: '.aios/gotchas.json',
+  storePath: '.aiox/gotchas.json',
   maxGotchas: 500,
   minConfidence: 0.5,
   autoQueryBeforeExecution: true,

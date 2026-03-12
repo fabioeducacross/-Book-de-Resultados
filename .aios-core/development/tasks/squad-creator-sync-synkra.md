@@ -204,7 +204,7 @@ if (!fs.existsSync(squadYamlPath)) {
 }
 
 // 3. Validate with squad-validator.js
-const { validateSquad } = await import('.aios-core/development/scripts/squad/squad-validator.js');
+const { validateSquad } = await import('.aiox-core/development/scripts/squad/squad-validator.js');
 const validation = await validateSquad(squadYamlPath);
 
 if (!validation.valid) {

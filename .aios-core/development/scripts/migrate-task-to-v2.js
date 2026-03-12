@@ -55,7 +55,7 @@ const sectionTemplates = {
 ---
 `,
 
-  taskDefinition: `## Task Definition (AIOS Task Format V1.0)
+  taskDefinition: `## Task Definition (AIOX Task Format V1.0)
 
 \`\`\`yaml
 task: {TODO: task identifier}
@@ -354,7 +354,7 @@ function main() {
     console.log('Usage: node migrate-task-to-v2.js <task-file>');
     console.log('');
     console.log('Example:');
-    console.log('  node migrate-task-to-v2.js .aios-core/tasks/dev-develop-story.md');
+    console.log('  node migrate-task-to-v2.js .aiox-core/tasks/dev-develop-story.md');
     process.exit(0);
   }
 

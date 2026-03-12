@@ -13,7 +13,7 @@ const chalk = require('chalk');
 class ManifestPreview {
   constructor(rootPath) {
     this.rootPath = rootPath || process.cwd();
-    this.manifestPath = path.join(this.rootPath, 'aios-core', 'team-manifest.yaml');
+    this.manifestPath = path.join(this.rootPath, 'aiox-core', 'team-manifest.yaml');
     this.componentPreview = new ComponentPreview();
   }
 

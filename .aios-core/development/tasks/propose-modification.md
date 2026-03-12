@@ -129,11 +129,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -447,7 +447,7 @@ class ProposeModificationTask {
       assignees: config.assignees,
       linkedIssues: config.linkedIssues,
       metadata: {
-        createdBy: process.env.USER || 'aios-developer',
+        createdBy: process.env.USER || 'aiox-developer',
         createdAt: new Date().toISOString(),
         lastModified: new Date().toISOString(),
         version: 1
@@ -644,7 +644,7 @@ class ProposeModificationTask {
   }
 
   async storeProposal(proposal, result) {
-    const proposalsDir = path.join(this.rootPath, '.aios', 'proposals');
+    const proposalsDir = path.join(this.rootPath, '.aiox', 'proposals');
     await fs.mkdir(proposalsDir, { recursive: true });
 
     const proposalFile = path.join(proposalsDir, `${proposal.proposalId}.json`);
@@ -787,7 +787,7 @@ class ProposeModificationTask {
 
   generateProposalUrl(proposalId) {
     // In a real implementation, this would generate actual web URLs
-    return `http://aios-framework.local/proposals/${proposalId}`;
+    return `http://aiox-framework.local/proposals/${proposalId}`;
   }
 }
 

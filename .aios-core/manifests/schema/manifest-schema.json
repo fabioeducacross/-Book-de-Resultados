@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AIOS Manifest Schema",
-  "description": "Schema definitions for AIOS manifest CSV files",
+  "title": "AIOX Manifest Schema",
+  "description": "Schema definitions for AIOX manifest CSV files",
   "version": "1.0.0",
   "definitions": {
     "agents": {

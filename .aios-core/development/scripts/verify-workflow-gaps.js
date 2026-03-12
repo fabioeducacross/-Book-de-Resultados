@@ -4,7 +4,7 @@
  * Verification Script for Workflow Gap Fixes (GAP 1, 2, 3)
  *
  * Runs all verification checks and reports results.
- * Usage: node .aios-core/development/scripts/verify-workflow-gaps.js
+ * Usage: node .aiox-core/development/scripts/verify-workflow-gaps.js
  *
  * @version 1.0.0
  */
@@ -56,7 +56,7 @@ function verifyGap1() {
   section('GAP 1: Context Targeting');
 
   // 1.1 create-workflow.md has target_context and squad_name
-  const createWf = fs.readFileSync(path.join(ROOT, '.aios-core/development/tasks/create-workflow.md'), 'utf-8');
+  const createWf = fs.readFileSync(path.join(ROOT, '.aiox-core/development/tasks/create-workflow.md'), 'utf-8');
   assert(
     createWf.includes('campo: target_context'),
     '1.1a create-workflow.md has target_context field',
@@ -84,7 +84,7 @@ function verifyGap1() {
   );
 
   // 1.2 modify-workflow.md
-  const modifyWf = fs.readFileSync(path.join(ROOT, '.aios-core/development/tasks/modify-workflow.md'), 'utf-8');
+  const modifyWf = fs.readFileSync(path.join(ROOT, '.aiox-core/development/tasks/modify-workflow.md'), 'utf-8');
   assert(
     modifyWf.includes('campo: target_context'),
     '1.2a modify-workflow.md has target_context field',
@@ -102,7 +102,7 @@ function verifyGap1() {
   );
 
   // 1.3 workflow-elicitation.js
-  const steps = require('../../../.aios-core/core/elicitation/workflow-elicitation.js');
+  const steps = require('../../../.aiox-core/core/elicitation/workflow-elicitation.js');
   const firstStep = steps[0];
   assert(
     firstStep.title === 'Target Context',
@@ -155,7 +155,7 @@ function verifyGap1() {
   );
 
   // 1.4 workflow-template.yaml
-  const template = fs.readFileSync(path.join(ROOT, '.aios-core/product/templates/workflow-template.yaml'), 'utf-8');
+  const template = fs.readFileSync(path.join(ROOT, '.aiox-core/product/templates/workflow-template.yaml'), 'utf-8');
   assert(
     template.includes('{{TARGET_CONTEXT}}'),
     '1.4a Template has TARGET_CONTEXT variable',
@@ -181,7 +181,7 @@ async function verifyGap2() {
   // 2.1 WorkflowValidator loads
   let WorkflowValidator;
   try {
-    ({ WorkflowValidator } = require('../../../.aios-core/development/scripts/workflow-validator'));
+    ({ WorkflowValidator } = require('../../../.aiox-core/development/scripts/workflow-validator'));
     pass('2.1 WorkflowValidator module loads');
   } catch (e) {
     fail('2.1 WorkflowValidator module loads', e.message);
@@ -202,7 +202,7 @@ async function verifyGap2() {
   );
 
   // 2.3 Validate known-good workflow
-  const goodResult = await validator.validate(path.join(ROOT, '.aios-core/development/workflows/greenfield-service.yaml'));
+  const goodResult = await validator.validate(path.join(ROOT, '.aiox-core/development/workflows/greenfield-service.yaml'));
   assert(
     goodResult.valid === true,
     '2.3a greenfield-service.yaml validates as valid',
@@ -281,7 +281,7 @@ async function verifyGap2() {
 
   // 2.8 Strict mode — warnings become errors
   const strictValidator = new WorkflowValidator({ strict: true });
-  const strictResult = await strictValidator.validate(path.join(ROOT, '.aios-core/development/workflows/greenfield-service.yaml'));
+  const strictResult = await strictValidator.validate(path.join(ROOT, '.aiox-core/development/workflows/greenfield-service.yaml'));
   assert(
     strictResult.warnings.length === 0,
     '2.8 Strict mode moves all warnings to errors',
@@ -316,7 +316,7 @@ async function verifyGap2() {
   }
 
   // 2.10 SquadValidator has validateWorkflows
-  const { SquadValidator } = require('../../../.aios-core/development/scripts/squad/squad-validator');
+  const { SquadValidator } = require('../../../.aiox-core/development/scripts/squad/squad-validator');
   const sv = new SquadValidator({ verbose: false });
   assert(
     typeof sv.validateWorkflows === 'function',
@@ -325,7 +325,7 @@ async function verifyGap2() {
   );
 
   // 2.11 framework-analyzer integration
-  const FrameworkAnalyzer = require('../../../.aios-core/infrastructure/scripts/framework-analyzer');
+  const FrameworkAnalyzer = require('../../../.aiox-core/infrastructure/scripts/framework-analyzer');
   const fa = new FrameworkAnalyzer();
   const faResult = await fa.validateWorkflow({ id: 'test', name: 'Test', sequence: [] });
   assert(
@@ -336,21 +336,21 @@ async function verifyGap2() {
 
   // 2.12 validate-workflow.md task exists
   assert(
-    fs.existsSync(path.join(ROOT, '.aios-core/development/tasks/validate-workflow.md')),
+    fs.existsSync(path.join(ROOT, '.aiox-core/development/tasks/validate-workflow.md')),
     '2.12 validate-workflow.md task file exists',
     'File not found',
   );
 
-  // 2.13 aios-master has validate-workflow command
-  const masterMd = fs.readFileSync(path.join(ROOT, '.aios-core/development/agents/aios-master.md'), 'utf-8');
+  // 2.13 aiox-master has validate-workflow command
+  const masterMd = fs.readFileSync(path.join(ROOT, '.aiox-core/development/agents/aiox-master.md'), 'utf-8');
   assert(
     masterMd.includes('name: validate-workflow'),
-    '2.13a aios-master has validate-workflow command',
-    'Command not found in aios-master.md',
+    '2.13a aiox-master has validate-workflow command',
+    'Command not found in aiox-master.md',
   );
   assert(
     masterMd.includes('validate-workflow.md'),
-    '2.13b aios-master has validate-workflow.md in dependencies',
+    '2.13b aiox-master has validate-workflow.md in dependencies',
     'Dependency not found',
   );
 }
@@ -363,7 +363,7 @@ async function verifyGap3() {
   // 3.1 WorkflowStateManager loads
   let WorkflowStateManager;
   try {
-    ({ WorkflowStateManager } = require('../../../.aios-core/development/scripts/workflow-state-manager'));
+    ({ WorkflowStateManager } = require('../../../.aiox-core/development/scripts/workflow-state-manager'));
     pass('3.1 WorkflowStateManager module loads');
   } catch (e) {
     fail('3.1 WorkflowStateManager module loads', e.message);
@@ -376,7 +376,7 @@ async function verifyGap3() {
   try {
 
     // 3.2 Load real workflow and create state
-    const wfContent = fs.readFileSync(path.join(ROOT, '.aios-core/development/workflows/greenfield-service.yaml'), 'utf-8');
+    const wfContent = fs.readFileSync(path.join(ROOT, '.aiox-core/development/workflows/greenfield-service.yaml'), 'utf-8');
     const wfData = yaml.load(wfContent);
 
     const state = await mgr.createState(wfData, { target_context: 'core' });
@@ -577,7 +577,7 @@ async function verifyGap3() {
     );
 
     // 3.15 WorkflowNavigator state integration
-    const WorkflowNavigator = require('../../../.aios-core/development/scripts/workflow-navigator');
+    const WorkflowNavigator = require('../../../.aiox-core/development/scripts/workflow-navigator');
     const nav = new WorkflowNavigator();
     assert(
       typeof nav.detectWorkflowStateFromFile === 'function',
@@ -625,7 +625,7 @@ async function verifyGap3() {
     );
 
     // 3.19 workflow-patterns.yaml has state_integration
-    const patterns = yaml.load(fs.readFileSync(path.join(ROOT, '.aios-core/data/workflow-patterns.yaml'), 'utf-8'));
+    const patterns = yaml.load(fs.readFileSync(path.join(ROOT, '.aiox-core/data/workflow-patterns.yaml'), 'utf-8'));
     assert(
       !!patterns.state_integration,
       '3.19a workflow-patterns.yaml has state_integration key',
@@ -648,7 +648,7 @@ async function verifyGap3() {
     );
 
     // 3.20 workflow-state-schema.yaml exists and is valid YAML
-    const schemaContent = fs.readFileSync(path.join(ROOT, '.aios-core/data/workflow-state-schema.yaml'), 'utf-8');
+    const schemaContent = fs.readFileSync(path.join(ROOT, '.aiox-core/data/workflow-state-schema.yaml'), 'utf-8');
     const schema = yaml.load(schemaContent);
     assert(
       !!schema.fields,
@@ -663,21 +663,21 @@ async function verifyGap3() {
 
     // 3.21 run-workflow.md task exists
     assert(
-      fs.existsSync(path.join(ROOT, '.aios-core/development/tasks/run-workflow.md')),
+      fs.existsSync(path.join(ROOT, '.aiox-core/development/tasks/run-workflow.md')),
       '3.21 run-workflow.md task file exists',
       'File not found',
     );
 
-    // 3.22 aios-master has run-workflow command
-    const masterMd = fs.readFileSync(path.join(ROOT, '.aios-core/development/agents/aios-master.md'), 'utf-8');
+    // 3.22 aiox-master has run-workflow command
+    const masterMd = fs.readFileSync(path.join(ROOT, '.aiox-core/development/agents/aiox-master.md'), 'utf-8');
     assert(
       masterMd.includes('name: run-workflow'),
-      '3.22a aios-master has run-workflow command',
+      '3.22a aiox-master has run-workflow command',
       'Command not found',
     );
     assert(
       masterMd.includes('run-workflow.md'),
-      '3.22b aios-master has run-workflow.md in dependencies',
+      '3.22b aiox-master has run-workflow.md in dependencies',
       'Dependency not found',
     );
 
@@ -697,7 +697,7 @@ async function verifyGap4() {
   section('GAP 4: Cross-Context Agent Support (Hybrid)');
 
   // 4.1 Elicitation has 3 choices including hybrid
-  const steps = require('../../../.aios-core/core/elicitation/workflow-elicitation.js');
+  const steps = require('../../../.aiox-core/core/elicitation/workflow-elicitation.js');
   const firstStep = steps[0];
   const targetContextQ = firstStep.questions.find((q) => q.name === 'targetContext');
   assert(
@@ -726,7 +726,7 @@ async function verifyGap4() {
   );
 
   // 4.3 Schema includes hybrid
-  const schemaContent = fs.readFileSync(path.join(ROOT, '.aios-core/data/workflow-state-schema.yaml'), 'utf-8');
+  const schemaContent = fs.readFileSync(path.join(ROOT, '.aiox-core/data/workflow-state-schema.yaml'), 'utf-8');
   const schema = yaml.load(schemaContent);
   assert(
     schema.fields.target_context.enum.includes('hybrid'),
@@ -735,7 +735,7 @@ async function verifyGap4() {
   );
 
   // 4.4 WorkflowValidator accepts squadAgentsPath
-  const { WorkflowValidator, WorkflowValidationErrorCodes } = require('../../../.aios-core/development/scripts/workflow-validator');
+  const { WorkflowValidator, WorkflowValidationErrorCodes } = require('../../../.aiox-core/development/scripts/workflow-validator');
   const hybridValidator = new WorkflowValidator({
     squadAgentsPath: '/tmp/fake-squad-agents',
   });
@@ -850,7 +850,7 @@ async function verifyGap4() {
     );
 
     // 4.11 StateManager.createState with hybrid
-    const { WorkflowStateManager } = require('../../../.aios-core/development/scripts/workflow-state-manager');
+    const { WorkflowStateManager } = require('../../../.aiox-core/development/scripts/workflow-state-manager');
     hybridStateMgr = new WorkflowStateManager({ verbose: false });
     const wfData = {
       workflow: {
@@ -895,7 +895,7 @@ async function verifyGap4() {
     );
 
     // 4.14 workflow-patterns.yaml has cross_context
-    const patterns = yaml.load(fs.readFileSync(path.join(ROOT, '.aios-core/data/workflow-patterns.yaml'), 'utf-8'));
+    const patterns = yaml.load(fs.readFileSync(path.join(ROOT, '.aiox-core/data/workflow-patterns.yaml'), 'utf-8'));
     assert(
       !!patterns.cross_context,
       '4.14a workflow-patterns.yaml has cross_context key',
@@ -930,7 +930,7 @@ async function verifyGap4() {
       'run-workflow.md',
     ];
     for (const taskFile of taskFiles) {
-      const content = fs.readFileSync(path.join(ROOT, '.aios-core/development/tasks', taskFile), 'utf-8');
+      const content = fs.readFileSync(path.join(ROOT, '.aiox-core/development/tasks', taskFile), 'utf-8');
       assert(
         content.includes('hybrid'),
         `4.15 ${taskFile} mentions hybrid`,
@@ -939,7 +939,7 @@ async function verifyGap4() {
     }
 
     // 4.16 Template mentions hybrid
-    const template = fs.readFileSync(path.join(ROOT, '.aios-core/product/templates/workflow-template.yaml'), 'utf-8');
+    const template = fs.readFileSync(path.join(ROOT, '.aiox-core/product/templates/workflow-template.yaml'), 'utf-8');
     assert(
       template.includes('hybrid') || template.includes('IF_HYBRID'),
       '4.16 workflow-template.yaml mentions hybrid',
@@ -979,7 +979,7 @@ async function verifyGap4() {
 
 async function main() {
   console.log('\n' + '='.repeat(60));
-  console.log('  AIOS Workflow Gaps — Verification Suite');
+  console.log('  AIOX Workflow Gaps — Verification Suite');
   console.log('  Running from:', process.cwd());
   console.log('='.repeat(60));
 

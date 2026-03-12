@@ -211,7 +211,7 @@ class Epic6Executor extends EpicExecutor {
    * @private
    */
   async _generateReport(storyId, reviewHistory, finalVerdict) {
-    const reportPath = this._getPath('.aios', 'qa-reports', `${storyId}-${Date.now()}.md`);
+    const reportPath = this._getPath('.aiox', 'qa-reports', `${storyId}-${Date.now()}.md`);
 
     const verdictEmoji = {
       [QAVerdict.APPROVED]: '✅',

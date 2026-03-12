@@ -154,7 +154,7 @@ acceptance-criteria:
 - **Script:** security-scan.js
   - **Purpose:** Run security scans and generate reports
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/security-scan.js
+  - **Location:** .aiox-core/scripts/security-scan.js
 
 ---
 

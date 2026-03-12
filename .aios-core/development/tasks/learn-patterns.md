@@ -131,11 +131,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -146,7 +146,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -725,9 +725,9 @@ class LearnPatternsTask {
   async loadModification(modificationId) {
     // Try multiple sources for modification data
     const sources = [
-      path.join(this.rootPath, '.aios', 'modifications', `${modificationId}.json`),
-      path.join(this.rootPath, '.aios', 'history', `${modificationId}.json`),
-      path.join(this.rootPath, '.aios', 'proposals', `${modificationId}.json`)
+      path.join(this.rootPath, '.aiox', 'modifications', `${modificationId}.json`),
+      path.join(this.rootPath, '.aiox', 'history', `${modificationId}.json`),
+      path.join(this.rootPath, '.aiox', 'proposals', `${modificationId}.json`)
     ];
 
     for (const source of sources) {

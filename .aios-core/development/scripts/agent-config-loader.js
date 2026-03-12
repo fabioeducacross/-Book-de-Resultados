@@ -28,7 +28,7 @@ async function loadAgentRequirements() {
     return agentRequirements;
   }
 
-  const requirementsPath = path.join(process.cwd(), '.aios-core', 'data', 'agent-config-requirements.yaml');
+  const requirementsPath = path.join(process.cwd(), '.aiox-core', 'data', 'agent-config-requirements.yaml');
 
   try {
     const content = await fs.readFile(requirementsPath, 'utf8');
@@ -318,27 +318,23 @@ class AgentConfigLoader {
     }
     
     // Load from file
-    const agentPath = path.join(process.cwd(), '.aios-core', 'development', 'agents', `${this.agentId}.md`);
+    const agentPath = path.join(process.cwd(), '.aiox-core', 'development', 'agents', `${this.agentId}.md`);
     
     try {
       const content = await fs.readFile(agentPath, 'utf8');
       
-      // Extract YAML block (handle both ```yaml and ```yml, CRLF/LF line endings,
-      // and frontmatter-style definitions used by some agent files).
-      const yamlMatch = content.match(/```ya?ml\r?\n([\s\S]*?)\r?\n```/);
-      const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-      const rawYaml = yamlMatch?.[1] ?? frontmatterMatch?.[1];
-
-      if (!rawYaml) {
+      // Extract YAML block (handle both ```yaml and ```yml)
+      const yamlMatch = content.match(/```ya?ml\n([\s\S]*?)\n```/);
+      if (!yamlMatch) {
         throw new Error(`No YAML block found in ${this.agentId}.md`);
       }
       
       let agentDef;
       try {
-        agentDef = yaml.load(rawYaml);
+        agentDef = yaml.load(yamlMatch[1]);
       } catch (parseError) {
         // Try normalizing compact command format before parsing
-        const normalizedYaml = this._normalizeCompactCommands(rawYaml);
+        const normalizedYaml = this._normalizeCompactCommands(yamlMatch[1]);
         try {
           agentDef = yaml.load(normalizedYaml);
         } catch (_secondError) {
@@ -584,7 +580,7 @@ if (require.main === module) {
 
         case 'preload': {
           const agents = agentId ? [agentId] : [
-            'aios-master', 'dev', 'qa', 'architect', 'po', 'pm', 'sm',
+            'aiox-master', 'dev', 'qa', 'architect', 'po', 'pm', 'sm',
             'analyst', 'ux-expert', 'data-engineer', 'devops', 'db-sage', 'security',
           ];
 

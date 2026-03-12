@@ -8,7 +8,7 @@
  * in core/session/context-loader.js for backward compatibility.
  *
  * Migration note (WIS-3):
- * - Canonical location: .aios-core/core/session/context-loader.js
+ * - Canonical location: .aiox-core/core/session/context-loader.js
  * - This file exists for backward compatibility with existing imports
  * - New code should import from core/session/context-loader directly
  */

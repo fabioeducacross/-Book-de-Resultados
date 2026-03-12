@@ -72,7 +72,16 @@ class ConfigCache {
    * @returns {boolean} True if key exists and is valid
    */
   has(key) {
-    return this.get(key) !== null;
+    if (!this.cache.has(key)) {
+      return false;
+    }
+    const timestamp = this.timestamps.get(key);
+    if (Date.now() - timestamp > this.ttl) {
+      this.cache.delete(key);
+      this.timestamps.delete(key);
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -219,25 +228,15 @@ class ConfigCache {
 // Global cache instance (singleton)
 const globalConfigCache = new ConfigCache();
 
-const isJestRuntime = Boolean(process.env.JEST_WORKER_ID);
-let cleanupInterval = null;
-
-// Auto cleanup expired entries every minute without keeping short-lived processes alive.
-if (!isJestRuntime) {
-  cleanupInterval = setInterval(() => {
-    const cleared = globalConfigCache.clearExpired();
-    if (cleared > 0) {
-      console.log(`🗑️ Config cache: Cleared ${cleared} expired entries`);
-    }
-  }, 60 * 1000);
-
-  if (typeof cleanupInterval.unref === 'function') {
-    cleanupInterval.unref();
+// Auto cleanup expired entries every minute
+setInterval(() => {
+  const cleared = globalConfigCache.clearExpired();
+  if (cleared > 0) {
+    console.log(`🗑️ Config cache: Cleared ${cleared} expired entries`);
   }
-}
+}, 60 * 1000);
 
 module.exports = {
   ConfigCache,
   globalConfigCache,
-  cleanupInterval,
 };

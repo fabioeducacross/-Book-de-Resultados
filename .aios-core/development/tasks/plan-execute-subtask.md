@@ -53,7 +53,7 @@ autoClaude:
 
     - name: projectContext
       type: file
-      path: .aios/project-context.yaml
+      path: .aiox/project-context.yaml
       required: false
 
     - name: filesContext
@@ -146,7 +146,7 @@ step_1:
 
   actions:
     - action: load_file
-      path: .aios/project-context.yaml
+      path: .aiox/project-context.yaml
       required: false
       fallback: 'Use codebase defaults'
 
@@ -642,7 +642,7 @@ step_11:
     # AC7 Story 4.6: Update status.json for dashboard integration
     - action: update_dashboard_status
       script: |
-        const { PlanTracker } = require('.aios-core/infrastructure/scripts/plan-tracker.js');
+        const { PlanTracker } = require('.aiox-core/infrastructure/scripts/plan-tracker.js');
         const tracker = new PlanTracker({ storyId: '{storyId}' });
         tracker.load();
         tracker.updateStatusJson();
@@ -739,7 +739,7 @@ recovery:
   description: 'Track attempts and enable rollback on failure'
 
   attempt_tracking:
-    storage: .aios/recovery/{storyId}/{subtaskId}.json
+    storage: .aiox/recovery/{storyId}/{subtaskId}.json
     schema:
       subtaskId: string
       attempts: array

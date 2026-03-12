@@ -4,8 +4,8 @@
  *
  * Standalone CLI for managing greeting preferences.
  * Usage:
- *   node .aios-core/scripts/greeting-config-cli.js get greeting
- *   node .aios-core/scripts/greeting-config-cli.js set greeting.preference minimal
+ *   node .aiox-core/scripts/greeting-config-cli.js get greeting
+ *   node .aiox-core/scripts/greeting-config-cli.js set greeting.preference minimal
  */
 
 const GreetingPreferenceManager = require('./greeting-preference-manager');

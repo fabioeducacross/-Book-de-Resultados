@@ -129,7 +129,7 @@ acceptance-criteria:
 
 - **Tool:** validation-engine
   - **Purpose:** Rule-based validation and reporting
-  - **Source:** .aios-core/utils/validation-engine.js
+  - **Source:** .aiox-core/utils/validation-engine.js
 
 - **Tool:** schema-validator
   - **Purpose:** JSON/YAML schema validation
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** run-validation.js
   - **Purpose:** Execute validation rules and generate report
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/run-validation.js
+  - **Location:** .aiox-core/scripts/run-validation.js
 
 ---
 
@@ -218,7 +218,7 @@ To comprehensively validate a story draft before implementation begins, ensuring
 
 ### 0. Load Core Configuration and Inputs
 
-- Load `.aios-core/core-config.yaml`
+- Load `.aiox-core/core-config.yaml`
 - If the file does not exist, HALT and inform the user: "core-config.yaml not found. This file is required for story validation."
 - Extract key configurations: `devStoryLocation`, `prd.*`, `architecture.*`
 - Identify and load the following inputs:
@@ -374,6 +374,16 @@ To comprehensively validate a story draft before implementation begins, ensuring
 - [ ] FAIL: Section missing or critically incomplete
 - [ ] N/A: CodeRabbit disabled in core-config.yaml
 
+### 8.1 Code Intelligence: No Duplicate Functionality (Auto-skip if unavailable)
+
+- **Check code intelligence availability:** Call `isCodeIntelAvailable()` from `.aiox-core/core/code-intel`
+- **If available:**
+  - Call `validateNoDuplicates(storyDescription)` from `.aiox-core/core/code-intel/helpers/story-helper`
+    - If `hasDuplicates: true`: Add to validation report as **Should-Fix** issue — "Potential duplicate functionality detected: {suggestion}". This is **advisory only** and does NOT block validation.
+    - If `hasDuplicates: false`: Add to report as PASS — "No duplicate functionality detected"
+  - Include result in the **Validation Result** section under "Code Intelligence Check"
+- **If NOT available:** Skip this step silently — validation proceeds exactly as before with no code intelligence items in report
+
 ### 9. Anti-Hallucination Verification
 
 - **Epic Context Enrichment**: Import `EpicContextAccumulator` from `core/orchestration` and call `buildAccumulatedContext(epicId, storyN)` to enrich validation with accumulated epic context (progressive summarization within token limits)
@@ -452,4 +462,11 @@ Provide a structured validation report including:
 - **NO-GO**: Story requires fixes before implementation
 - **Implementation Readiness Score**: 1-10 scale
 - **Confidence Level**: High/Medium/Low for successful implementation
+
+## Handoff
+next_agent: @dev
+next_command: *develop {story-id}
+condition: Story status is Approved (GO decision)
+alternatives:
+  - agent: @sm, command: *draft, condition: Story rejected (NO-GO), needs rework
  

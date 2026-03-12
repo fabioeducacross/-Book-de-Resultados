@@ -1,5 +1,5 @@
 /**
- * Batch Component Creator for Synkra AIOS
+ * Batch Component Creator for Synkra AIOX
  * Creates multiple related components in a single operation
  * @module batch-creator
  */
@@ -441,7 +441,7 @@ class BatchCreator {
         config: {
           taskId: taskName,
           taskTitle: `Step ${i} of ${answers.workflowName}`,
-          agentName: 'aios-developer', // Default to meta-agent
+          agentName: 'aiox-developer', // Default to meta-agent
         },
       });
     }
@@ -480,7 +480,7 @@ class BatchCreator {
           type: 'input',
           name: 'agentName',
           message: `Task ${i} agent:`,
-          default: 'aios-developer',
+          default: 'aiox-developer',
         },
       ]);
       
@@ -527,7 +527,7 @@ class BatchCreator {
    * @private
    */
   async initTransactionLog() {
-    const logDir = path.join(this.rootPath, 'aios-core', 'logs', 'transactions');
+    const logDir = path.join(this.rootPath, 'aiox-core', 'logs', 'transactions');
     await fs.ensureDir(logDir);
     
     this.transactionLogPath = path.join(logDir, `${this.transaction.id}.json`);
@@ -581,7 +581,7 @@ class BatchCreator {
             type: 'input',
             name: 'agentName',
             message: 'Agent name:',
-            default: 'aios-developer',
+            default: 'aiox-developer',
           },
         ]);
         return taskAnswers;

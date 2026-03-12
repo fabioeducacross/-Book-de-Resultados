@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Asset Inventory Generator
- * Story 2.1: Creates comprehensive inventory of all AIOS assets
+ * AIOX Asset Inventory Generator
+ * Story 2.1: Creates comprehensive inventory of all AIOX assets
  *
  * Usage:
  *   node asset-inventory.js [--verbose] [--json] [--output path]
@@ -16,13 +16,13 @@ const yaml = require('js-yaml');
 
 // Asset locations relative to project root
 const ASSET_PATHS = {
-  agents: '.aios-core/development/agents',
-  tasks: '.aios-core/development/tasks',
-  templates: '.aios-core/product/templates',
-  checklists: '.aios-core/product/checklists',
-  scripts: '.aios-core/infrastructure/scripts',
-  schemas: '.aios-core/schemas',
-  data: '.aios-core/development/data',
+  agents: '.aiox-core/development/agents',
+  tasks: '.aiox-core/development/tasks',
+  templates: '.aiox-core/product/templates',
+  checklists: '.aiox-core/product/checklists',
+  scripts: '.aiox-core/infrastructure/scripts',
+  schemas: '.aiox-core/schemas',
+  data: '.aiox-core/development/data',
 };
 
 // File patterns for each asset type
@@ -489,7 +489,7 @@ function formatConsoleOutput(report, verbose = false) {
 
   lines.push('');
   lines.push('═══════════════════════════════════════════════════════════');
-  lines.push('  AIOS Asset Inventory');
+  lines.push('  AIOX Asset Inventory');
   lines.push(`  Generated: ${report.generated}`);
   lines.push('═══════════════════════════════════════════════════════════');
   lines.push('');
@@ -552,7 +552,7 @@ async function main() {
 
   if (args.includes('--help')) {
     console.log(`
-AIOS Asset Inventory Generator
+AIOX Asset Inventory Generator
 
 Usage:
   node asset-inventory.js [options]
@@ -571,11 +571,11 @@ Options:
   const outputIndex = args.indexOf('--output');
   const outputPath = outputIndex !== -1 ? args[outputIndex + 1] : null;
 
-  // Find project root (look for .aios-core directory)
+  // Find project root (look for .aiox-core directory)
   let rootPath = process.cwd();
   while (rootPath !== '/') {
     try {
-      await fs.access(path.join(rootPath, '.aios-core'));
+      await fs.access(path.join(rootPath, '.aiox-core'));
       break;
     } catch {
       rootPath = path.dirname(rootPath);
@@ -583,7 +583,7 @@ Options:
   }
 
   if (rootPath === '/') {
-    console.error('Error: Could not find .aios-core directory. Run from project root.');
+    console.error('Error: Could not find .aiox-core directory. Run from project root.');
     process.exit(1);
   }
 

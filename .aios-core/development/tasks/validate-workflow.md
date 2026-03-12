@@ -154,7 +154,7 @@ acceptance-criteria:
 
 - **Tool:** workflow-validator
   - **Purpose:** Validate workflow YAML files
-  - **Source:** .aios-core/development/scripts/workflow-validator.js
+  - **Source:** .aiox-core/development/scripts/workflow-validator.js
 
 - **Tool:** file-system
   - **Purpose:** File discovery and reading
@@ -169,7 +169,7 @@ acceptance-criteria:
 - **Script:** workflow-validator.js
   - **Purpose:** WorkflowValidator class with sub-validators
   - **Language:** JavaScript
-  - **Location:** .aios-core/development/scripts/workflow-validator.js
+  - **Location:** .aiox-core/development/scripts/workflow-validator.js
 
 ---
 
@@ -190,8 +190,8 @@ acceptance-criteria:
    - **Recovery:** Show line/column of syntax error
 
 3. **Error:** Missing Required Fields
-   - **Cause:** Workflow missing workflow.id, workflow.name, or sequence
-   - **Resolution:** Add missing fields to workflow YAML
+   - **Cause:** Workflow missing workflow.id, workflow.name, or execution array
+   - **Resolution:** Add `workflow.sequence` (official). `workflow.phases` is accepted for compatibility only.
    - **Recovery:** Show which fields are missing with examples
 
 ---
@@ -236,7 +236,7 @@ To validate workflow YAML files against AIOX conventions, checking structure, ag
 
 ## Prerequisites
 
-- WorkflowValidator class available at `.aios-core/development/scripts/workflow-validator.js`
+- WorkflowValidator class available at `.aiox-core/development/scripts/workflow-validator.js`
 - Target workflow file(s) must exist
 
 ## Elicitation Points
@@ -260,13 +260,13 @@ Based on inputs, resolve which workflow files to validate:
 
 **Single file by name:**
 - Resolve based on target_context:
-  - `core` → `.aios-core/development/workflows/{workflow_name}.yaml`
+  - `core` → `.aiox-core/development/workflows/{workflow_name}.yaml`
   - `squad` → `squads/{squad_name}/workflows/{workflow_name}.yaml`
   - `hybrid` → `squads/{squad_name}/workflows/{workflow_name}.yaml`
 
 **All workflows (--all flag):**
 - Scan directory based on target_context:
-  - `core` → all `.yaml` files in `.aios-core/development/workflows/`
+  - `core` → all `.yaml` files in `.aiox-core/development/workflows/`
   - `squad` → all `.yaml` files in `squads/{squad_name}/workflows/`
   - `hybrid` → all `.yaml` files in `squads/{squad_name}/workflows/`
 
@@ -316,6 +316,6 @@ Invalid: 0
 
 ## Integration
 
-- Called by `*validate-workflow` command in aios-master
+- Called by `*validate-workflow` command in aiox-master
 - Called by `SquadValidator.validateWorkflows()` during squad validation
 - Can be called by `FrameworkAnalyzer.validateWorkflow()` for analysis

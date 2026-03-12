@@ -285,7 +285,7 @@ function generateConfig(targetDir, mode, context, options = {}) {
       };
     }
 
-    const configDir = path.join(targetDir, '.aios-core');
+    const configDir = path.join(targetDir, '.aiox-core');
     const configPath = path.join(configDir, 'core-config.yaml');
 
     if (!options.dryRun) {

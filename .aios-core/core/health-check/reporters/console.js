@@ -4,7 +4,7 @@
  * Generates formatted console output for health check results.
  * Supports colors and various verbosity levels.
  *
- * @module @synkra/aios-core/health-check/reporters/console
+ * @module aiox-core/health-check/reporters/console
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -74,7 +74,7 @@ class ConsoleReporter {
 
     // Header
     lines.push('');
-    lines.push(this.formatHeader('AIOS Health Check Report'));
+    lines.push(this.formatHeader('AIOX Health Check Report'));
     lines.push(this.formatDivider());
 
     // Overall summary

@@ -182,7 +182,7 @@ Key dependencies from `requirements.txt`:
 
 | File | Purpose |
 |------|---------|
-| `.aios-core/core-config.yaml` | AIOX configuration |
+| `.aiox-core/core-config.yaml` | AIOX configuration |
 | `.env.example` | Environment template |
 | `.gitignore` | Git ignore rules |
 {{#if IS_NODE}}

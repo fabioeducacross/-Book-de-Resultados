@@ -44,11 +44,11 @@ This template provides a structured approach to analyze and rationalize agent co
 
 | # | Command | Category | Agent | Usage | Task File | Decision | Rationale | Migration Path |
 |---|---------|----------|-------|-------|-----------|----------|-----------|----------------|
-| 1 | example-command | Framework | aios-master | HIGH (15) | create-doc.md | ✅ KEEP | Core meta-framework capability | N/A |
-| 2 | party-mode | Utility | aios-master | ZERO (0) | N/A | ❌ REMOVE | Novelty feature, unused | Removed in v3.0 |
+| 1 | example-command | Framework | aiox-master | HIGH (15) | create-doc.md | ✅ KEEP | Core meta-framework capability | N/A |
+| 2 | party-mode | Utility | aiox-master | ZERO (0) | N/A | ❌ REMOVE | Novelty feature, unused | Removed in v3.0 |
 | 3 | explain | DB Perf | data-engineer | HIGH (12) | db-explain.md | 🔀 MERGE | Into analyze-performance | *analyze-performance query |
 | 4 | analyze-hotpaths | DB Perf | data-engineer | MED (5) | db-analyze-hotpaths.md | 🔀 MERGE | Into analyze-performance | *analyze-performance hotpaths |
-| 5 | create-prd | Docs | aios-master | MED (7) | create-doc.md | 🔄 DELEGATE | Better suited for @pm | Use @pm *create-prd |
+| 5 | create-prd | Docs | aiox-master | MED (7) | create-doc.md | 🔄 DELEGATE | Better suited for @pm | Use @pm *create-prd |
 
 ---
 
@@ -56,11 +56,11 @@ This template provides a structured approach to analyze and rationalize agent co
 
 ```bash
 # Count command usage across all documentation
-grep -r "\*command-name" docs/ .aios-core/ | wc -l
+grep -r "\*command-name" docs/ .aiox-core/ | wc -l
 
 # For each agent's commands:
-for cmd in $(grep -E "^  - [a-z-]+" .aios-core/agents/AGENT.md | cut -d':' -f1 | sed 's/  - //'); do
-  count=$(grep -r "\*$cmd" docs/ .aios-core/ 2>/dev/null | wc -l)
+for cmd in $(grep -E "^  - [a-z-]+" .aiox-core/agents/AGENT.md | cut -d':' -f1 | sed 's/  - //'); do
+  count=$(grep -r "\*$cmd" docs/ .aiox-core/ 2>/dev/null | wc -l)
   echo "$cmd: $count"
 done
 ```

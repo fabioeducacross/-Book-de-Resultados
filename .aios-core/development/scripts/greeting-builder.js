@@ -725,7 +725,7 @@ class GreetingBuilder {
       {
         regex: /greeting-builder\.js/,
         priority: 1,
-        desc: 'do **`.aios-core/scripts/greeting-builder.js`**',
+        desc: 'do **`.aiox-core/scripts/greeting-builder.js`**',
         category: 'script',
       },
       {
@@ -1193,7 +1193,7 @@ ${agentName} não está disponível diretamente no Modo Assistido.
 Use \`@pm\` (Bob) para todas as interações. Bob vai orquestrar os outros agentes internamente para você.
 
 **Para interagir com Bob:**
-   - Digite \`@pm\` ou \`/AIOS:agents:pm\`
+   - Digite \`@pm\` ou \`/AIOX:agents:pm\`
    - Use \`*help\` após ativar Bob para ver comandos disponíveis`;
   }
 
@@ -1392,7 +1392,7 @@ Use \`@pm\` (Bob) para todas as interações. Bob vai orquestrar os outros agent
    */
   _loadConfig() {
     try {
-      const configPath = path.join(process.cwd(), '.aios-core', 'core-config.yaml');
+      const configPath = path.join(process.cwd(), '.aiox-core', 'core-config.yaml');
       const content = fs.readFileSync(configPath, 'utf8');
       return yaml.load(content);
     } catch (_error) {

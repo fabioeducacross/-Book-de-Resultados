@@ -3,7 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 
 /**
- * Performance bottleneck analyzer for Synkra AIOS framework
+ * Performance bottleneck analyzer for Synkra AIOX framework
  * Identifies performance issues and optimization opportunities
  */
 class PerformanceAnalyzer {

@@ -22,7 +22,7 @@ This module provides utilities for:
 ### Squad Loader
 
 ```javascript
-const { SquadLoader } = require('./.aios-core/development/scripts/squad');
+const { SquadLoader } = require('./.aiox-core/development/scripts/squad');
 
 // Create loader instance
 const loader = new SquadLoader({
@@ -44,7 +44,7 @@ const squads = await loader.listLocal();
 ### Error Handling
 
 ```javascript
-const { SquadLoader, SquadLoaderError } = require('./.aios-core/development/scripts/squad');
+const { SquadLoader, SquadLoaderError } = require('./.aiox-core/development/scripts/squad');
 
 try {
   const loader = new SquadLoader();
@@ -100,7 +100,7 @@ This module is used by squad-creator agent tasks:
 npm test -- tests/unit/squad/squad-loader.test.js
 
 # Run with coverage
-npm test -- tests/unit/squad/squad-loader.test.js --coverage --collectCoverageFrom=".aios-core/development/scripts/squad/*.js"
+npm test -- tests/unit/squad/squad-loader.test.js --coverage --collectCoverageFrom=".aiox-core/development/scripts/squad/*.js"
 ```
 
 **Coverage:** 94.5% statements (target: 80%+)

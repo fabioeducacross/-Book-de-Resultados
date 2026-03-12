@@ -6,16 +6,16 @@ setlocal
 
 :: Try multiple locations for the tracker script
 :: 1. Environment variable (if set during installation)
-if defined AIOS_HOME (
-    set "TRACKER_SCRIPT=%AIOS_HOME%\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
+if defined AIOX_HOME (
+    set "TRACKER_SCRIPT=%AIOX_HOME%\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
     if exist "%TRACKER_SCRIPT%" goto :found
 )
 
 :: 2. Common installation locations
-set "TRACKER_SCRIPT=%USERPROFILE%\aios-core\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
+set "TRACKER_SCRIPT=%USERPROFILE%\aiox-core\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
 if exist "%TRACKER_SCRIPT%" goto :found
 
-set "TRACKER_SCRIPT=%USERPROFILE%\Workspaces\AIOS\SynkraAI\aios-core\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
+set "TRACKER_SCRIPT=%USERPROFILE%\Workspaces\AIOX\SynkraAI\aiox-core\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
 if exist "%TRACKER_SCRIPT%" goto :found
 
 :: 3. Relative to this script (for development)
@@ -23,17 +23,17 @@ set "TRACKER_SCRIPT=%~dp0..\usage-tracker\index.js"
 if exist "%TRACKER_SCRIPT%" goto :found
 
 :: 4. Global npm package location
-set "TRACKER_SCRIPT=%APPDATA%\npm\node_modules\@aios-fullstack\core\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
+set "TRACKER_SCRIPT=%APPDATA%\npm\node_modules\@aiox-fullstack\core\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\index.js"
 if exist "%TRACKER_SCRIPT%" goto :found
 
 echo [91mERROR: Usage tracker not found![0m
 echo.
-echo Please ensure AIOS is installed correctly.
+echo Please ensure AIOX is installed correctly.
 echo Expected locations:
-echo   - %%AIOS_HOME%%\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\
-echo   - %%USERPROFILE%%\aios-core\.aios-core\infrastructure\scripts\llm-routing\usage-tracker\
+echo   - %%AIOX_HOME%%\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\
+echo   - %%USERPROFILE%%\aiox-core\.aiox-core\infrastructure\scripts\llm-routing\usage-tracker\
 echo.
-echo Set AIOS_HOME environment variable: setx AIOS_HOME "C:\path\to\aios-core"
+echo Set AIOX_HOME environment variable: setx AIOX_HOME "C:\path\to\aiox-core"
 exit /b 1
 
 :found

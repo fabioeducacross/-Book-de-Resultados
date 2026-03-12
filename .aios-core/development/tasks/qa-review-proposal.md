@@ -129,7 +129,7 @@ acceptance-criteria:
 
 - **Tool:** validation-engine
   - **Purpose:** Rule-based validation and reporting
-  - **Source:** .aios-core/utils/validation-engine.js
+  - **Source:** .aiox-core/utils/validation-engine.js
 
 - **Tool:** schema-validator
   - **Purpose:** JSON/YAML schema validation
@@ -144,7 +144,7 @@ acceptance-criteria:
 - **Script:** run-validation.js
   - **Purpose:** Execute validation rules and generate report
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/run-validation.js
+  - **Location:** .aiox-core/scripts/run-validation.js
 
 ---
 
@@ -395,7 +395,7 @@ class ReviewProposalTask {
 
   async loadProposal(proposalId) {
     try {
-      const proposalFile = path.join(this.rootPath, '.aios', 'proposals', `${proposalId}.json`);
+      const proposalFile = path.join(this.rootPath, '.aiox', 'proposals', `${proposalId}.json`);
       const content = await fs.readFile(proposalFile, 'utf-8');
       return JSON.parse(content);
     } catch (error) {
@@ -487,7 +487,7 @@ class ReviewProposalTask {
 
   async checkForConflicts(proposal) {
     // Check for other pending proposals on the same component
-    const indexFile = path.join(this.rootPath, '.aios', 'proposals', 'index.json');
+    const indexFile = path.join(this.rootPath, '.aiox', 'proposals', 'index.json');
     
     try {
       const content = await fs.readFile(indexFile, 'utf-8');
@@ -655,7 +655,7 @@ class ReviewProposalTask {
     }
 
     // Set reviewer info
-    details.reviewer = process.env.USER || 'aios-reviewer';
+    details.reviewer = process.env.USER || 'aiox-reviewer';
     details.reviewTimestamp = new Date().toISOString();
 
     return details;
@@ -747,7 +747,7 @@ class ReviewProposalTask {
   }
 
   async storeReview(proposal, review) {
-    const reviewsDir = path.join(this.rootPath, '.aios', 'proposals', 'reviews');
+    const reviewsDir = path.join(this.rootPath, '.aiox', 'proposals', 'reviews');
     await fs.mkdir(reviewsDir, { recursive: true });
 
     const reviewFile = path.join(reviewsDir, `${review.reviewId}.json`);
@@ -803,7 +803,7 @@ class ReviewProposalTask {
     proposal.metadata.version++;
 
     // Save updated proposal
-    const proposalFile = path.join(this.rootPath, '.aios', 'proposals', `${proposal.proposalId}.json`);
+    const proposalFile = path.join(this.rootPath, '.aiox', 'proposals', `${proposal.proposalId}.json`);
     await fs.writeFile(proposalFile, JSON.stringify(proposal, null, 2));
 
     // Update index
@@ -811,7 +811,7 @@ class ReviewProposalTask {
   }
 
   async updateProposalIndex(proposal) {
-    const indexFile = path.join(this.rootPath, '.aios', 'proposals', 'index.json');
+    const indexFile = path.join(this.rootPath, '.aiox', 'proposals', 'index.json');
     
     try {
       const content = await fs.readFile(indexFile, 'utf-8');

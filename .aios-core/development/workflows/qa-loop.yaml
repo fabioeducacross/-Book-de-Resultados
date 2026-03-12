@@ -11,7 +11,7 @@ workflow:
 
   type: loop
   project_types:
-    - aios-development
+    - aiox-development
     - autonomous-development
     - qa-automation
 
@@ -68,8 +68,8 @@ workflow:
     statusFile: qa/loop-status.json
 
     # Dashboard integration (AC7)
-    dashboardStatusPath: .aios/dashboard/status.json
-    legacyStatusPath: .aios/status.json
+    dashboardStatusPath: .aiox/dashboard/status.json
+    legacyStatusPath: .aiox/status.json
 
     # Timeout per phase (milliseconds)
     reviewTimeout: 1800000  # 30 minutes

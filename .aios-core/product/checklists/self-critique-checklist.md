@@ -286,7 +286,7 @@ anti_patterns:
 
 This checklist is referenced by:
 
-- `.aios-core/development/tasks/plan-execute-subtask.md`
+- `.aiox-core/development/tasks/plan-execute-subtask.md`
 - `autoClaude.selfCritique.checklistRef: self-critique-checklist.md`
 
 Steps 5.5 and 6.5 in the Coder Agent workflow are MANDATORY gates. The subtask cannot proceed without passing these checkpoints.

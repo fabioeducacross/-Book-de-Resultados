@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Send event to AIOS Monitor server.
+Send event to AIOX Monitor server.
 Non-blocking with short timeout to avoid slowing Claude.
 """
 
@@ -10,13 +10,13 @@ import time
 import urllib.request
 from typing import Any
 
-SERVER_URL = os.environ.get("AIOS_MONITOR_URL", "http://localhost:4001")
-TIMEOUT_MS = int(os.environ.get("AIOS_MONITOR_TIMEOUT_MS", "500"))
+SERVER_URL = os.environ.get("AIOX_MONITOR_URL", "http://localhost:4001")
+TIMEOUT_MS = int(os.environ.get("AIOX_MONITOR_TIMEOUT_MS", "500"))
 
 
 def send_event(event_type: str, data: dict[str, Any]) -> bool:
     """
-    Send event to AIOS Monitor server.
+    Send event to AIOX Monitor server.
 
     Args:
         event_type: Hook event type (PreToolUse, PostToolUse, etc.)

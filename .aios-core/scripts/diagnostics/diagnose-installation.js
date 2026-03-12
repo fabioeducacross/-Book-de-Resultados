@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * AIOS-Core Installation Diagnostic Tool
+ * AIOX-Core Installation Diagnostic Tool
  *
  * Run this script to diagnose installation issues:
  *   node diagnose-installation.js
@@ -19,7 +19,7 @@ const REQUIRED_NPM = '9.0.0';
 
 console.log('');
 console.log('╔══════════════════════════════════════════════════════════════════╗');
-console.log('║          AIOS-Core Installation Diagnostic Tool                  ║');
+console.log('║          AIOX-Core Installation Diagnostic Tool                  ║');
 console.log('╚══════════════════════════════════════════════════════════════════╝');
 console.log('');
 
@@ -175,11 +175,11 @@ console.log('');
 
 // 8. Package Availability Check
 console.log('── Package Availability ────────────────────────────────────────────');
-const pkgInfo = exec('npm view aios-core version 2>&1');
+const pkgInfo = exec('npm view aiox-core version 2>&1');
 if (pkgInfo && !pkgInfo.includes('E404') && !pkgInfo.includes('error')) {
-  console.log(`  ✓ aios-core v${pkgInfo} is available on npm`);
+  console.log(`  ✓ aiox-core v${pkgInfo} is available on npm`);
 } else {
-  console.log('  ⚠️  Cannot verify aios-core package availability');
+  console.log('  ⚠️  Cannot verify aiox-core package availability');
   console.log(`    Result: ${pkgInfo || 'no response'}`);
   hasWarnings = true;
 }
@@ -218,8 +218,8 @@ console.log('');
 
 // 10. Test npx execution
 console.log('── npx Test ────────────────────────────────────────────────────────');
-console.log('  Testing: npx aios-core@latest --version');
-const npxTest = exec('npx aios-core@latest --version 2>&1');
+console.log('  Testing: npx aiox-core@latest --version');
+const npxTest = exec('npx aiox-core@latest --version 2>&1');
 if (npxTest && npxTest.match(/\d+\.\d+\.\d+/)) {
   console.log(`  ✓ SUCCESS: ${npxTest}`);
 } else {
@@ -246,8 +246,8 @@ if (hasErrors) {
 } else {
   console.log('✅ RESULT: All requirements met!');
   console.log('');
-  console.log('You can install AIOS-Core with:');
-  console.log('  npx aios-core@latest');
+  console.log('You can install AIOX-Core with:');
+  console.log('  npx aiox-core@latest');
   console.log('');
 }
 
@@ -268,7 +268,7 @@ const summary = {
   npxTestResult: npxTest,
 };
 
-const summaryFile = path.join(os.tmpdir(), 'aios-diagnostic-result.json');
+const summaryFile = path.join(os.tmpdir(), 'aiox-diagnostic-result.json');
 fs.writeFileSync(summaryFile, JSON.stringify(summary, null, 2));
 console.log(`📋 Full diagnostic saved to: ${summaryFile}`);
 console.log('');

@@ -200,7 +200,7 @@ Retry attempts (if selected): ___
 
 ### 1. Create Workflow File
 
-Use template: `.aios-core/product/templates/mcp-workflow.js`
+Use template: `.aiox-core/product/templates/mcp-workflow.js`
 
 ```javascript
 /**
@@ -425,7 +425,7 @@ version: 1.0.0
 story: Story 5.11 - Docker MCP Migration
 dependencies:
   - Docker MCP Toolkit
-  - Template: .aios-core/product/templates/mcp-workflow.js
+  - Template: .aiox-core/product/templates/mcp-workflow.js
 tags:
   - development
   - mcp

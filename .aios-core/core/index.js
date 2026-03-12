@@ -1,11 +1,11 @@
 /**
- * AIOS Core Module - Entry Point
+ * AIOX Core Module - Entry Point
  *
  * Provides centralized exports for all core framework functionality.
  * This module contains the essential runtime components that all other
  * modules depend on.
  *
- * @module @synkra/aios-core/core
+ * @module aiox-core/core
  * @version 2.0.0
  * @created Story 2.2 - Core Module Creation
  */

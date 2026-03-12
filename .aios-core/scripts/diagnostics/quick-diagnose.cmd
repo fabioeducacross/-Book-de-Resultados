@@ -1,7 +1,7 @@
 @echo off
 echo.
 echo ========================================
-echo    AIOS-Core Quick Diagnostic (CMD)
+echo    AIOX-Core Quick Diagnostic (CMD)
 echo ========================================
 echo.
 
@@ -48,27 +48,27 @@ for /f "tokens=*" %%i in ('npm config get prefix 2^>nul') do set NPM_PREFIX=%%i
 echo   npm prefix: %NPM_PREFIX%
 
 echo.
-echo Checking aios-core availability on npm...
-npm view aios-core version 2>nul
+echo Checking aiox-core availability on npm...
+npm view aiox-core version 2>nul
 if %errorlevel% neq 0 (
     echo   ERROR: Cannot access npm registry!
     echo   Check your internet/firewall settings
 ) else (
-    echo   aios-core: Available
+    echo   aiox-core: Available
 )
 
 echo.
 echo ========================================
-echo    Testing npx aios-core@latest
+echo    Testing npx aiox-core@latest
 echo ========================================
 echo.
-echo Running: npx aios-core@latest --version
+echo Running: npx aiox-core@latest --version
 echo (This may take a moment on first run...)
 echo.
-npx aios-core@latest --version
+npx aiox-core@latest --version
 if %errorlevel% neq 0 (
     echo.
-    echo   ERROR: npx aios-core failed!
+    echo   ERROR: npx aiox-core failed!
     echo.
     echo Common fixes:
     echo   1. Update Node.js to v18+: https://nodejs.org/
@@ -78,7 +78,7 @@ if %errorlevel% neq 0 (
 ) else (
     echo.
     echo   SUCCESS! You can now run:
-    echo   npx aios-core@latest
+    echo   npx aiox-core@latest
 )
 
 echo.

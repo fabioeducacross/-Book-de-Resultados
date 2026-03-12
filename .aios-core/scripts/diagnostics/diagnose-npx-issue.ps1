@@ -1,9 +1,9 @@
-# Diagnóstico de problema com npx aios-core
+# Diagnóstico de problema com npx aiox-core
 # Execute este script no PC com problema
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "   Diagnóstico NPX aios-core" -ForegroundColor Cyan
+Write-Host "   Diagnóstico NPX aiox-core" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -27,28 +27,28 @@ Write-Host "    Cache limpo"
 Write-Host ""
 
 # 4. Tentar baixar e executar manualmente
-Write-Host "[4] Baixando aios-core manualmente..." -ForegroundColor Yellow
-$tempDir = "$env:TEMP\aios-test-$(Get-Random)"
+Write-Host "[4] Baixando aiox-core manualmente..." -ForegroundColor Yellow
+$tempDir = "$env:TEMP\aiox-test-$(Get-Random)"
 New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
 Set-Location $tempDir
 
 Write-Host "    Diretório: $tempDir"
-npm pack aios-core@2.2.0 2>&1 | Out-Null
+npm pack aiox-core@2.2.0 2>&1 | Out-Null
 
-if (Test-Path "aios-core-2.2.0.tgz") {
+if (Test-Path "aiox-core-2.2.0.tgz") {
     Write-Host "    Download: OK" -ForegroundColor Green
 
     # Extrair
-    tar -xzf aios-core-2.2.0.tgz 2>&1 | Out-Null
+    tar -xzf aiox-core-2.2.0.tgz 2>&1 | Out-Null
 
-    if (Test-Path "package/bin/aios.js") {
+    if (Test-Path "package/bin/aiox.js") {
         Write-Host "    Extração: OK" -ForegroundColor Green
 
         # Tentar executar
         Write-Host ""
-        Write-Host "[5] Executando bin/aios.js --version:" -ForegroundColor Yellow
+        Write-Host "[5] Executando bin/aiox.js --version:" -ForegroundColor Yellow
         try {
-            $result = node package/bin/aios.js --version 2>&1
+            $result = node package/bin/aiox.js --version 2>&1
             if ($result -match "^\d+\.\d+\.\d+$") {
                 Write-Host "    Resultado: $result" -ForegroundColor Green
             } else {
@@ -61,11 +61,11 @@ if (Test-Path "aios-core-2.2.0.tgz") {
         # Tentar executar o wizard
         Write-Host ""
         Write-Host "[6] Testando wizard (Ctrl+C para cancelar):" -ForegroundColor Yellow
-        Write-Host "    Executando: node package/bin/aios.js --help"
-        node package/bin/aios.js --help 2>&1
+        Write-Host "    Executando: node package/bin/aiox.js --help"
+        node package/bin/aiox.js --help 2>&1
 
     } else {
-        Write-Host "    Extração: FALHOU - bin/aios.js não encontrado" -ForegroundColor Red
+        Write-Host "    Extração: FALHOU - bin/aiox.js não encontrado" -ForegroundColor Red
         Write-Host "    Conteúdo do package:"
         Get-ChildItem package -Recurse | Select-Object -First 20
     }
@@ -92,5 +92,5 @@ Write-Host "Solução recomendada:" -ForegroundColor Green
 Write-Host "1. Baixe Node.js LTS (v22 ou v20) de: https://nodejs.org/"
 Write-Host "2. Desinstale Node v24"
 Write-Host "3. Instale a versão LTS"
-Write-Host "4. Tente novamente: npx aios-core@latest"
+Write-Host "4. Tente novamente: npx aiox-core@latest"
 Write-Host ""

@@ -25,12 +25,12 @@
 ```
 ┌─────────────────────────────────────┐
 │   LAYER 1: Agent Persona Config     │  ← Personality definition (YAML)
-│   (.aios-core/agents/*.md)          │
+│   (.aiox-core/agents/*.md)          │
 └─────────────────────────────────────┘
               ↓
 ┌─────────────────────────────────────┐
 │   LAYER 2: Output Formatter         │  ← Template engine (JS)
-│   (.aios-core/infrastructure/scripts/)│
+│   (.aiox-core/infrastructure/scripts/)│
 └─────────────────────────────────────┘
               ↓
 ┌─────────────────────────────────────┐
@@ -46,7 +46,7 @@
 ### Agent File Structure (Updated)
 
 ```yaml
-# .aios-core/agents/{agent-id}.md
+# .aiox-core/agents/{agent-id}.md
 
 agent:
   name: {PersonalizedName}        # NEW: Human name (Dex, Quinn, Pax...)
@@ -121,7 +121,7 @@ persona_profile:
 ### Archetype Vocabulary Reference
 
 ```yaml
-# .aios-core/data/archetype-vocabulary.yaml
+# .aiox-core/data/archetype-vocabulary.yaml
 
 archetypes:
   Builder:
@@ -156,7 +156,7 @@ archetypes:
 ### Template Engine Architecture
 
 ```javascript
-// .aios-core/infrastructure/scripts/output-formatter.js
+// .aiox-core/infrastructure/scripts/output-formatter.js
 
 class PersonalizedOutputFormatter {
   constructor(agent, task, results) {
@@ -238,7 +238,7 @@ class PersonalizedOutputFormatter {
 ### Pattern Validation
 
 ```javascript
-// .aios-core/infrastructure/scripts/validate-output-pattern.js
+// .aiox-core/infrastructure/scripts/validate-output-pattern.js
 
 /**
  * Ensures all task outputs follow standard structure
@@ -283,7 +283,7 @@ function validateTaskOutput(output) {
 ### Task Execution Report Template
 
 ```markdown
-<!-- .aios-core/templates/task-execution-report.md -->
+<!-- .aiox-core/templates/task-execution-report.md -->
 
 ## 📊 Task Execution Report
 
@@ -314,7 +314,7 @@ function validateTaskOutput(output) {
 ### Checklist Template
 
 ```markdown
-<!-- .aios-core/templates/agent-checklist-template.md -->
+<!-- .aiox-core/templates/agent-checklist-template.md -->
 
 # {Agent ID} - {Checklist Title}
 
@@ -351,7 +351,7 @@ function validateTaskOutput(output) {
 ### Workflow YAML Template
 
 ```yaml
-# .aios-core/workflows/{workflow-name}.yaml
+# .aiox-core/workflows/{workflow-name}.yaml
 
 workflow:
   name: {Workflow Name}
@@ -423,7 +423,7 @@ workflow:
 8. Update ux-design-expert.md → Uma (Empathizer)
 9. Rename db-sage.md → data-engineer.md → Dara (Engineer)
 10. Rename github-devops.md → devops.md → Gage (Operator)
-11. Merge aios-developer + aios-orchestrator → aios-master.md → Orion (Orchestrator)
+11. Merge aiox-developer + aiox-orchestrator → aiox-master.md → Orion (Orchestrator)
 
 **Deliverable:** 11 updated agent files with persona_profile section
 

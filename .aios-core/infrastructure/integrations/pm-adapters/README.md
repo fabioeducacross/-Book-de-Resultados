@@ -30,7 +30,7 @@ if (isPMToolConfigured()) {
 
 ## Configuration
 
-PM tool is configured via `.aios-pm-config.yaml` in the project root:
+PM tool is configured via `.aiox-pm-config.yaml` in the project root:
 
 ```yaml
 pmTool: clickup  # Options: clickup, github, jira, local

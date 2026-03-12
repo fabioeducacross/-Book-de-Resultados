@@ -41,7 +41,7 @@ List and search known gotchas (issues and workarounds) from the project's gotcha
 steps:
   - name: Load Gotchas
     action: |
-      Load gotchas from .aios/gotchas.json via GotchasMemory
+      Load gotchas from .aiox/gotchas.json via GotchasMemory
 
   - name: Apply Filters
     action: |
@@ -137,8 +137,8 @@ By Source:
 ## Integration
 
 - **Uses:** `GotchasMemory.listGotchas()`, `GotchasMemory.search()`
-- **Script:** `.aios-core/core/memory/gotchas-memory.js`
-- **Source:** `.aios/gotchas.json`
+- **Script:** `.aiox-core/core/memory/gotchas-memory.js`
+- **Source:** `.aiox/gotchas.json`
 
 ---
 

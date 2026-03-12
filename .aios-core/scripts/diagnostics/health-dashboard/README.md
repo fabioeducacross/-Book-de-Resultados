@@ -72,7 +72,7 @@ health-dashboard/
 The dashboard reads health check data from:
 
 - **Development**: Uses embedded sample data
-- **Production**: Reads from `.aios/reports/health-check-latest.json`
+- **Production**: Reads from `.aiox/reports/health-check-latest.json`
 - **API**: Can be configured to fetch from `/api/health-report`
 
 ## Styling
@@ -113,8 +113,8 @@ The dashboard expects health check JSON in the format produced by the JSON repor
 ## Related
 
 - [Story HCS-2: Health Check Implementation](../../docs/stories/epics/epic-health-check-system/story-hcs-2-implementation.md)
-- [Health Check Core Module](../../.aios-core/core/health-check/)
-- [JSON Reporter](../../.aios-core/core/health-check/reporters/json.js)
+- [Health Check Core Module](../../.aiox-core/core/health-check/)
+- [JSON Reporter](../../.aiox-core/core/health-check/reporters/json.js)
 
 ---
 

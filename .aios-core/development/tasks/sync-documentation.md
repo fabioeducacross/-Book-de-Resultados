@@ -223,12 +223,12 @@ acceptance-criteria:
 - execute-task.js:
     description: Generic task execution wrapper
     language: JavaScript
-    location: .aios-core/scripts/execute-task.js
+    location: .aiox-core/scripts/execute-task.js
 
 - documentation-synchronizer.js:
     description: Core documentation synchronization engine
     language: JavaScript
-    location: .aios-core/scripts/documentation-synchronizer.js
+    location: .aiox-core/scripts/documentation-synchronizer.js
 ```
 
 ---

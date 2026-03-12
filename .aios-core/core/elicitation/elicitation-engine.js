@@ -1,5 +1,5 @@
 /**
- * Interactive Elicitation Engine for Synkra AIOS
+ * Interactive Elicitation Engine for Synkra AIOX
  * Handles progressive disclosure and contextual validation for component creation
  *
  * @module core/elicitation/elicitation-engine
@@ -121,7 +121,7 @@ class ElicitationEngine {
     if (options.saveSession) {
       this.sessionFile = path.join(
         process.cwd(),
-        '.aios-sessions',
+        '.aiox-sessions',
         `${componentType}-${Date.now()}.json`,
       );
       await fs.ensureDir(path.dirname(this.sessionFile));

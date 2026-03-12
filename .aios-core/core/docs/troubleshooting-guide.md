@@ -103,7 +103,7 @@ This guide helps diagnose and resolve common issues when using the Synkra AIOX m
 3. Check working directory:
    ```bash
    pwd
-   # Should be in @synkra/aiox-core root
+   # Should be in aiox-core root
    ```
 
 ## Template Processing Problems
@@ -538,7 +538,7 @@ FATAL ERROR: JavaScript heap out of memory
 DEBUG=* *create-agent
 
 # Specific modules
-DEBUG=aios:template,aios:elicitation *create-agent
+DEBUG=aiox:template,aiox:elicitation *create-agent
 
 # Performance timing
 DEBUG=perf:* *create-agent
@@ -548,7 +548,7 @@ DEBUG=perf:* *create-agent
 
 ```bash
 # Application logs
-tail -f aiox-core/logs/aios-developer.log
+tail -f aiox-core/logs/aiox-developer.log
 
 # Transaction logs
 ls -la aiox-core/logs/transactions/
@@ -610,7 +610,7 @@ If all else fails:
 
 1. **Backup current state**:
    ```bash
-   tar -czf aios-backup.tar.gz aiox-core/
+   tar -czf aiox-backup.tar.gz aiox-core/
    ```
 
 2. **Reset to clean state**:

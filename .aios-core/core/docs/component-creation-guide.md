@@ -369,7 +369,7 @@ Generated content contains: {{AGENT_NAME}}
 
 Enable detailed logging:
 ```bash
-DEBUG=aios:* *create-agent
+DEBUG=aiox:* *create-agent
 ```
 
 This shows:

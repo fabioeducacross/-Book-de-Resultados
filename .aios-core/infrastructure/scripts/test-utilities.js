@@ -3,10 +3,10 @@
 /**
  * Framework Utilities Audit Script
  *
- * Systematically tests all utilities in .aios-core/scripts/ and classifies them
+ * Systematically tests all utilities in .aiox-core/scripts/ and classifies them
  * as WORKING, FIXABLE, or DEPRECATED based on their functional status.
  *
- * Usage: node .aios-core/scripts/test-utilities.js
+ * Usage: node .aiox-core/scripts/test-utilities.js
  */
 
 const fs = require('fs');
@@ -25,9 +25,9 @@ let utilities = [];
 async function countIntegrationReferences(utilityName) {
   const basename = path.basename(utilityName, '.js');
   const searchDirs = [
-    '.aios-core/agents',
-    '.aios-core/tasks',
-    'expansion-packs',
+    '.aiox-core/agents',
+    '.aiox-core/tasks',
+    'squads',
   ];
 
   let totalCount = 0;

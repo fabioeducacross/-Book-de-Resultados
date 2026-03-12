@@ -268,7 +268,7 @@ updated_at: 2025-11-17
 ## Prerequisites
 - Git repository with changes to push
 - package.json with npm scripts (gracefully handles missing scripts)
-- Repository context detected (run `aios init` if needed)
+- Repository context detected (run `aiox init` if needed)
 
 ## Quality Gate Checks
 
@@ -280,7 +280,7 @@ const { detectRepositoryContext } = require('./../scripts/repository-detector');
 const context = detectRepositoryContext();
 if (!context) {
   console.error('❌ Unable to detect repository context');
-  console.error('Run "aios init" to configure installation mode');
+  console.error('Run "aiox init" to configure installation mode');
   process.exit(1);
 }
 
@@ -630,6 +630,64 @@ function determineSecurityGate(results) {
 }
 ```
 
+### 9.1 Impact Analysis (Code Intelligence — Advisory Only)
+
+> **Added by:** Story NOG-7 (DevOps Pre-Push Impact Analysis)
+> **Behavior:** Advisory only — NEVER blocks push. Auto-skips if code intelligence unavailable.
+
+```javascript
+const { assessPrePushImpact, classifyRiskLevel } = require('.aiox-core/core/code-intel/helpers/devops-helper');
+
+async function runImpactAnalysis(changedFiles) {
+  // Auto-skip if code intelligence unavailable
+  const { isCodeIntelAvailable } = require('.aiox-core/core/code-intel');
+  if (!isCodeIntelAvailable()) {
+    console.log('ℹ️  Code intelligence not available — skipping impact analysis');
+    return { skipped: true };
+  }
+
+  console.log('\n📊 Running Impact Analysis...\n');
+
+  const result = await assessPrePushImpact(changedFiles);
+
+  if (!result) {
+    console.log('ℹ️  Impact analysis returned no data — skipping');
+    return { skipped: true };
+  }
+
+  // Display formatted report
+  console.log(result.report);
+
+  // HIGH risk: add extra warning (advisory, does not block)
+  if (result.riskLevel === 'HIGH') {
+    console.log('\n⚠️  HIGH RISK detected. Additional confirmation recommended before push.');
+  }
+
+  return {
+    skipped: false,
+    riskLevel: result.riskLevel,
+    blastRadius: result.impact ? result.impact.blastRadius : 0,
+    report: result.report,
+  };
+}
+```
+
+**Integration with Summary Report:**
+
+Add impact analysis results to the summary report section:
+
+```
+Impact Analysis:
+  📊 Blast Radius: {N} files affected
+  📊 Risk Level: {LOW|MEDIUM|HIGH}
+  {if HIGH: ⚠️  HIGH RISK: {N} files affected. Confirm push?}
+  {if skipped: ℹ️  Skipped (code intelligence not available)}
+```
+
+**Important:** This step is purely advisory. A HIGH risk level does NOT change the overall gate status from PASS to FAIL. It only adds an informational warning and may prompt additional user confirmation.
+
+---
+
 ### 10. Verify Story Status (Optional - if using story-driven workflow)
 
 ```javascript
@@ -683,6 +741,11 @@ Quality Checks:
   ✓ npm run build        PASSED
   ✓ Security scan        PASSED
   ⚠️ Story status         SKIPPED (no story file)
+
+Impact Analysis (Advisory):
+  📊 Blast Radius: {N} files affected
+  📊 Risk Level: LOW | MEDIUM | HIGH
+  ℹ️  Advisory only — does not affect gate status
 
 Security Scan Results:
   ✓ Dependencies: 0 critical, 0 high, 2 moderate, 5 low
@@ -788,3 +851,10 @@ Called via `@github-devops *pre-push` command.
 - Security scan is mandatory (TR-3.14.11)
 - User always has final approval
 - Detailed logging for troubleshooting
+
+## Handoff
+next_agent: @devops
+next_command: *push
+condition: All quality checks PASS
+alternatives:
+  - agent: @dev, command: *run-tests, condition: Quality checks FAIL, needs fixes

@@ -59,7 +59,7 @@ infrastructure/ ← core/ ← development/ ← product/
 - `BatchCreator` - Batch operations
 
 ### Validation
-- `AiosValidator` - AIOX component validation
+- `AioxValidator` - AIOX component validation
 - `TemplateValidator` - Template validation
 - `SpotCheckValidator` - Spot check validation
 
@@ -92,16 +92,16 @@ const {
   getPMAdapter,
   TemplateEngine,
   resolveTool
-} = require('.aios-core/infrastructure');
+} = require('.aiox-core/infrastructure');
 
 // Or import directly from scripts
-const GitWrapper = require('.aios-core/infrastructure/scripts/git-wrapper');
+const GitWrapper = require('.aiox-core/infrastructure/scripts/git-wrapper');
 ```
 
 ## Tool Resolution
 
 ```javascript
-const { resolveTool } = require('.aios-core/infrastructure');
+const { resolveTool } = require('.aiox-core/infrastructure');
 
 // Get tool configuration
 const clickupTool = await resolveTool('clickup');
@@ -111,7 +111,7 @@ const githubCli = await resolveTool('github-cli');
 ## PM Adapters
 
 ```javascript
-const { getPMAdapter, isPMToolConfigured } = require('.aios-core/infrastructure');
+const { getPMAdapter, isPMToolConfigured } = require('.aiox-core/infrastructure');
 
 // Check if PM tool is configured
 if (isPMToolConfigured()) {

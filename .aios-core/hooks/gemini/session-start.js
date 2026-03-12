@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * AIOS Session Start Hook for Gemini CLI
- * Story GEMINI-INT.6 - AIOS Hooks System
+ * AIOX Session Start Hook for Gemini CLI
+ * Story GEMINI-INT.6 - AIOX Hooks System
  *
- * Executes at session start to load AIOS context and memory.
+ * Executes at session start to load AIOX context and memory.
  * Output must be valid JSON to stdout.
  */
 
@@ -17,7 +17,7 @@ async function sessionStart() {
   const result = {
     status: 'success',
     contextInjection: {
-      aiosVersion: '3.0',
+      aioxVersion: '3.0',
       sessionId,
       projectType: detectProjectType(projectDir),
       timestamp: new Date().toISOString(),
@@ -26,7 +26,7 @@ async function sessionStart() {
 
   // Load project context if available
   try {
-    const codebaseMapPath = path.join(projectDir, '.aios', 'codebase-map.json');
+    const codebaseMapPath = path.join(projectDir, '.aiox', 'codebase-map.json');
     if (fs.existsSync(codebaseMapPath)) {
       const codebaseMap = JSON.parse(fs.readFileSync(codebaseMapPath, 'utf8'));
       result.contextInjection.codebaseInfo = {

@@ -9,9 +9,9 @@ CRITICAL: Read the full YAML BLOCK that FOLLOWS IN THIS FILE to understand your 
 ```yaml
 IDE-FILE-RESOLUTION:
   - FOR LATER USE ONLY - NOT FOR ACTIVATION, when executing commands that reference dependencies
-  - Dependencies map to .aios-core/{type}/{name}
+  - Dependencies map to .aiox-core/{type}/{name}
   - type=folder (tasks|templates|checklists|data|utils|etc...), name=file-name
-  - Example: create-doc.md → .aios-core/tasks/create-doc.md
+  - Example: create-doc.md → .aiox-core/tasks/create-doc.md
   - IMPORTANT: Only load these files when user requests specific command execution
 
 REQUEST-RESOLUTION: Match user requests to your commands/dependencies flexibly (e.g., "draft story"→*create→create-next-story task, "make a new prd" would be dependencies->tasks->create-doc combined with the dependencies->templates->prd-tmpl.md), ALWAYS ask for clarification if no clear match.
@@ -28,7 +28,7 @@ activation-instructions:
   - MANDATORY INTERACTION RULE: Tasks with elicit=true require user interaction using exact specified format
   - When listing tasks/templates or presenting options, always show as numbered options list
   - STAY IN CHARACTER! Use your persona_profile vocabulary and tone consistently
-  - Use standardized output templates (see .aios-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md)
+  - Use standardized output templates (see .aiox-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md)
   - CRITICAL: On activation, greet user using greeting_level and HALT to await commands
 
 agent:
@@ -119,7 +119,7 @@ Choose archetype that matches agent's primary function:
 | **Empathizer** | User focus, experience | ux-design-expert (Uma) |
 | **Engineer** | Systems, data | data-engineer (Dara) |
 | **Operator** | Deployment, operations | devops (Gage) |
-| **Orchestrator** | Coordination, meta-level | aios-master (Orion) |
+| **Orchestrator** | Coordination, meta-level | aiox-master (Orion) |
 
 ### Tone Guidelines
 
@@ -137,7 +137,7 @@ Choose archetype that matches agent's primary function:
 - Focus on primary verbs (action words)
 - Avoid generic words used by all agents
 - Use PT-BR (per DECISION-1)
-- Refer to archetype vocabulary lists in `.aios-core/data/archetype-vocabulary.yaml`
+- Refer to archetype vocabulary lists in `.aiox-core/data/archetype-vocabulary.yaml`
 
 **Examples:**
 

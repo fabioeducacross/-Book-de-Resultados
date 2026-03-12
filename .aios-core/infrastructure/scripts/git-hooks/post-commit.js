@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Git Post-Commit Hook - AIOS ProjectStatusLoader Cache Invalidation
+ * Git Post-Commit Hook - AIOX ProjectStatusLoader Cache Invalidation
  *
  * Story ACT-3: Clears the project status cache after every commit
  * so that the next agent activation sees fresh data.
@@ -10,7 +10,7 @@
  *
  * Installation:
  *   Copy or symlink to .husky/post-commit, or add to your git hooks:
- *     node .aios-core/infrastructure/scripts/git-hooks/post-commit.js
+ *     node .aiox-core/infrastructure/scripts/git-hooks/post-commit.js
  */
 
 const fs = require('fs');
@@ -18,16 +18,16 @@ const path = require('path');
 
 /**
  * Find the project root by walking up from the current directory
- * looking for .aios-core directory.
+ * looking for .aiox-core directory.
  *
  * @returns {string|null} Project root or null
  */
 function findProjectRoot() {
   let dir = process.cwd();
 
-  // Walk up looking for .aios-core
+  // Walk up looking for .aiox-core
   for (let i = 0; i < 10; i++) {
-    if (fs.existsSync(path.join(dir, '.aios-core'))) {
+    if (fs.existsSync(path.join(dir, '.aiox-core'))) {
       return dir;
     }
     const parent = path.dirname(dir);
@@ -39,24 +39,24 @@ function findProjectRoot() {
 }
 
 /**
- * Clear all project-status cache files in the .aios directory.
+ * Clear all project-status cache files in the .aiox directory.
  * Handles both standard cache and worktree-specific cache files.
  */
 function clearProjectStatusCache() {
   const projectRoot = findProjectRoot();
-  const aiosDir = path.join(projectRoot, '.aios');
+  const aioxDir = path.join(projectRoot, '.aiox');
 
-  if (!fs.existsSync(aiosDir)) {
-    return; // No .aios directory - nothing to clear
+  if (!fs.existsSync(aioxDir)) {
+    return; // No .aiox directory - nothing to clear
   }
 
   try {
-    const files = fs.readdirSync(aiosDir);
+    const files = fs.readdirSync(aioxDir);
 
     for (const file of files) {
       // Match project-status.yaml and project-status-{hash}.yaml
       if (file.startsWith('project-status') && file.endsWith('.yaml')) {
-        const filePath = path.join(aiosDir, file);
+        const filePath = path.join(aioxDir, file);
         try {
           fs.unlinkSync(filePath);
         } catch (err) {

@@ -273,7 +273,7 @@ acceptance-criteria:
 - security-scan.js:
     description: Run security scans and generate reports
     language: JavaScript
-    location: .aios-core/scripts/security-scan.js
+    location: .aiox-core/scripts/security-scan.js
 ```
 
 ---
@@ -368,12 +368,12 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join(__dirname, '../../.aios-core/core-config.yaml');
+const configPath = path.join(__dirname, '../../.aiox-core/core-config.yaml');
 const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
 
 const dev_story_location = config.devStoryLocation;
 const architectureShardedLocation = config.architectureShardedLocation || 'docs/architecture';
-const utils_registry = config.utils?.registry || config['utils.registry'] || '.aios-core/utils';
+const utils_registry = config.utils?.registry || config['utils.registry'] || '.aiox-core/utils';
 ```
 
 ## Processo de Scan

@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Pipeline
 description: Start full ADE pipeline for a story
-agent: aios-master
+agent: aiox-master
 version: 1.0.0
 story: '0.9'
 epic: '0'
@@ -53,9 +53,9 @@ Starts the ADE Master Orchestrator pipeline for a given story.
 ## Output
 
 - Real-time progress in terminal
-- Dashboard status at `.aios/dashboard/status.json`
-- State saved at `.aios/master-orchestrator/{story-id}.json`
-- Logs at `.aios/logs/{story-id}.log`
+- Dashboard status at `.aiox/dashboard/status.json`
+- State saved at `.aiox/master-orchestrator/{story-id}.json`
+- Logs at `.aiox/logs/{story-id}.log`
 
 ## Exit Codes
 

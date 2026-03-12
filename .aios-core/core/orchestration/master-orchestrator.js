@@ -7,7 +7,7 @@
  * execution pipeline for truly autonomous development.
  *
  * Features:
- * - AC1: Located in `.aios-core/core/orchestration/`
+ * - AC1: Located in `.aiox-core/core/orchestration/`
  * - AC2: constructor(projectRoot, options) with storyId, maxRetries, autoRecovery
  * - AC3: executeFullPipeline() runs Epics 3→4→5→6
  * - AC4: executeEpic(epicNum, options) for individual epic execution
@@ -225,7 +225,7 @@ class MasterOrchestrator extends EventEmitter {
     // State persistence paths
     this.statePath = path.join(
       projectRoot,
-      '.aios',
+      '.aiox',
       'master-orchestrator',
       this.storyId ? `${this.storyId}.json` : 'current.json',
     );
@@ -1141,7 +1141,7 @@ class MasterOrchestrator extends EventEmitter {
   async loadState(storyId = null) {
     const targetStoryId = storyId || this.storyId;
     const targetPath = targetStoryId
-      ? path.join(this.projectRoot, '.aios', 'master-orchestrator', `${targetStoryId}.json`)
+      ? path.join(this.projectRoot, '.aiox', 'master-orchestrator', `${targetStoryId}.json`)
       : this.statePath;
 
     try {
@@ -1177,7 +1177,7 @@ class MasterOrchestrator extends EventEmitter {
    * @returns {Promise<Object|null>} Most recent valid state or null
    */
   async findLatestValidState() {
-    const stateDir = path.join(this.projectRoot, '.aios', 'master-orchestrator');
+    const stateDir = path.join(this.projectRoot, '.aiox', 'master-orchestrator');
 
     try {
       if (!(await fs.pathExists(stateDir))) {
@@ -1308,7 +1308,7 @@ class MasterOrchestrator extends EventEmitter {
    * @returns {Promise<Array>} List of state summaries
    */
   async listSavedStates() {
-    const stateDir = path.join(this.projectRoot, '.aios', 'master-orchestrator');
+    const stateDir = path.join(this.projectRoot, '.aiox', 'master-orchestrator');
 
     try {
       if (!(await fs.pathExists(stateDir))) {

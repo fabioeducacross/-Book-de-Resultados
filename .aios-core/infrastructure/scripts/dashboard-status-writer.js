@@ -1,7 +1,7 @@
 /**
  * Dashboard Status Writer
  *
- * Writes the current AIOS agent status to .aios/dashboard/status.json
+ * Writes the current AIOX agent status to .aiox/dashboard/status.json
  * This file is watched by the dashboard via SSE for real-time updates.
  *
  * Usage:
@@ -21,7 +21,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 // Status file location (relative to project root)
-const STATUS_DIR = '.aios/dashboard';
+const STATUS_DIR = '.aiox/dashboard';
 const STATUS_FILE = 'status.json';
 
 /**
@@ -41,10 +41,10 @@ async function ensureStatusDir(projectRoot) {
 
 /**
  * Gets the current project root
- * Uses AIOS_PROJECT_ROOT env var or cwd
+ * Uses AIOX_PROJECT_ROOT env var or cwd
  */
 function getProjectRoot() {
-  return process.env.AIOS_PROJECT_ROOT || process.cwd();
+  return process.env.AIOX_PROJECT_ROOT || process.cwd();
 }
 
 /**

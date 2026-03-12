@@ -3,13 +3,13 @@ const path = require('path');
 const chalk = require('chalk');
 
 /**
- * Test quality assessment for Synkra AIOS test generation
+ * Test quality assessment for Synkra AIOX test generation
  * Evaluates generated test quality and provides improvement recommendations
  */
 class TestQualityAssessment {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.qualityReportsDir = path.join(this.rootPath, '.aios', 'quality-reports');
+    this.qualityReportsDir = path.join(this.rootPath, '.aiox', 'quality-reports');
     this.qualityStandards = this.initializeQualityStandards();
     this.assessmentCache = new Map();
     this.qualityHistory = [];

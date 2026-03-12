@@ -136,11 +136,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -151,7 +151,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -275,7 +275,7 @@ const tags = tagsInput ? tagsInput.split(',').map(t => t.trim()) : [];
 
 ### 3. Add Item to Backlog
 ```javascript
-const { BacklogManager } = require('.aios-core/scripts/backlog-manager');
+const { BacklogManager } = require('.aiox-core/scripts/backlog-manager');
 
 const manager = new BacklogManager('docs/stories/backlog.md');
 await manager.load();

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Path Analyzer
+ * AIOX Path Analyzer
  * Story 2.2: Analyzes dependencies between assets and detects broken references
  *
  * Usage:
@@ -15,8 +15,8 @@ const path = require('path');
 
 // Reference patterns to detect
 const REFERENCE_PATTERNS = [
-  // Markdown code refs to .aios-core
-  { pattern: /`\.aios-core\/[^`]+`/g, type: 'code-ref' },
+  // Markdown code refs to .aiox-core
+  { pattern: /`\.aiox-core\/[^`]+`/g, type: 'code-ref' },
   // Task references
   { pattern: /tasks\/([a-z0-9-]+)\.md/gi, type: 'task' },
   // Template references (yaml, yml, md)
@@ -35,13 +35,13 @@ const REFERENCE_PATTERNS = [
 
 // Asset directories for path resolution
 const ASSET_DIRS = {
-  task: '.aios-core/development/tasks',
-  template: '.aios-core/product/templates',
-  checklist: '.aios-core/product/checklists',
-  script: '.aios-core/infrastructure/scripts',
-  data: '.aios-core/development/data',
-  schema: '.aios-core/schemas',
-  agent: '.aios-core/development/agents',
+  task: '.aiox-core/development/tasks',
+  template: '.aiox-core/product/templates',
+  checklist: '.aiox-core/product/checklists',
+  script: '.aiox-core/infrastructure/scripts',
+  data: '.aiox-core/development/data',
+  schema: '.aiox-core/schemas',
+  agent: '.aiox-core/development/agents',
 };
 
 /**
@@ -50,10 +50,10 @@ const ASSET_DIRS = {
 async function findFilesToAnalyze(rootPath) {
   const files = [];
   const dirsToScan = [
-    { dir: '.aios-core/development/agents', type: 'agent' },
-    { dir: '.aios-core/development/tasks', type: 'task' },
-    { dir: '.aios-core/product/templates', type: 'template' },
-    { dir: '.aios-core/product/checklists', type: 'checklist' },
+    { dir: '.aiox-core/development/agents', type: 'agent' },
+    { dir: '.aiox-core/development/tasks', type: 'task' },
+    { dir: '.aiox-core/product/templates', type: 'template' },
+    { dir: '.aiox-core/product/checklists', type: 'checklist' },
   ];
 
   for (const { dir, type } of dirsToScan) {
@@ -115,7 +115,7 @@ function extractReferences(content, filePath) {
  */
 function resolveReference(ref, rootPath) {
   // If it's a full path already
-  if (ref.reference.startsWith('.aios-core/')) {
+  if (ref.reference.startsWith('.aiox-core/')) {
     return path.join(rootPath, ref.reference);
   }
 
@@ -338,7 +338,7 @@ function formatConsoleOutput(report, verbose = false) {
 
   lines.push('');
   lines.push('═══════════════════════════════════════════════════════════');
-  lines.push('  AIOS Path Analysis Report');
+  lines.push('  AIOX Path Analysis Report');
   lines.push(`  Generated: ${report.generated}`);
   lines.push('═══════════════════════════════════════════════════════════');
   lines.push('');
@@ -399,7 +399,7 @@ async function main() {
 
   if (args.includes('--help')) {
     console.log(`
-AIOS Path Analyzer
+AIOX Path Analyzer
 
 Usage:
   node path-analyzer.js [options]
@@ -424,7 +424,7 @@ Options:
   let rootPath = process.cwd();
   while (rootPath !== '/') {
     try {
-      await fs.access(path.join(rootPath, '.aios-core'));
+      await fs.access(path.join(rootPath, '.aiox-core'));
       break;
     } catch {
       rootPath = path.dirname(rootPath);
@@ -432,7 +432,7 @@ Options:
   }
 
   if (rootPath === '/') {
-    console.error('Error: Could not find .aios-core directory. Run from project root.');
+    console.error('Error: Could not find .aiox-core directory. Run from project root.');
     process.exit(1);
   }
 

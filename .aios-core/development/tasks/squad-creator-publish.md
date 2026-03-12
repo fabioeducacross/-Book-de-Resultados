@@ -27,7 +27,7 @@ Checklist:
 
 # *publish-squad
 
-Publishes a local squad to the aios-squads GitHub repository via Pull Request.
+Publishes a local squad to the aiox-squads GitHub repository via Pull Request.
 
 ## Prerequisites
 
@@ -66,7 +66,7 @@ Author: developer-name
 PR Preview:
   Title: Add squad: my-squad
   Branch: squad/my-squad
-  Target: SynkraAI/aios-squads
+  Target: SynkraAI/aiox-squads
 
 Components:
   - Tasks: 5
@@ -86,7 +86,7 @@ Run without --dry-run to create the actual PR.
 
 Publishing: my-squad@1.0.0
   Source: ./squads/my-squad/
-  Target: github.com/SynkraAI/aios-squads
+  Target: github.com/SynkraAI/aiox-squads
 
 ✓ Validated successfully
 ✓ GitHub auth verified (user: your-username)
@@ -97,7 +97,7 @@ Publishing: my-squad@1.0.0
 ✓ Pushed to fork
 
 Pull Request Created!
-  URL: https://github.com/SynkraAI/aios-squads/pull/42
+  URL: https://github.com/SynkraAI/aiox-squads/pull/42
   Branch: squad/my-squad
 
 Next steps:
@@ -129,7 +129,7 @@ Next steps:
    └── Verify gh auth status
 
 4. Create/check fork
-   └── Fork SynkraAI/aios-squads if needed
+   └── Fork SynkraAI/aiox-squads if needed
 
 5. Clone fork to temp directory
    └── Shallow clone for speed
@@ -216,7 +216,7 @@ Squad must pass validation:
 ## Implementation
 
 Uses `SquadPublisher` class from:
-- `.aios-core/development/scripts/squad/squad-publisher.js`
+- `.aiox-core/development/scripts/squad/squad-publisher.js`
 
 ## Related Tasks
 

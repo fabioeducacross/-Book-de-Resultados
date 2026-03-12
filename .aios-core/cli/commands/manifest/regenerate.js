@@ -31,7 +31,7 @@ function createRegenerateCommand() {
         });
 
         if (!options.dryRun) {
-          console.log('Scanning .aios-core/...\n');
+          console.log('Scanning .aiox-core/...\n');
         } else {
           console.log('[DRY RUN] Would generate:\n');
         }

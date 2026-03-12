@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Pattern Extractor
+ * AIOX Pattern Extractor
  * Story 7.3: Extracts and documents code patterns from the codebase
  *
  * Analyzes code via AST and regex to detect common patterns,
@@ -13,7 +13,7 @@
  * Commands:
  *   extract         Extract patterns (default)
  *   json            Output as JSON
- *   save            Save to .aios/patterns.md
+ *   save            Save to .aiox/patterns.md
  *   merge           Merge with existing patterns
  *
  * Options:
@@ -56,7 +56,7 @@ const EXCLUDED_DIRS = [
   'tmp',
   'temp',
   '__pycache__',
-  '.aios/migration-backup',
+  '.aiox/migration-backup',
 ];
 
 /**
@@ -1314,7 +1314,7 @@ module.exports = { formatBytes, debounce, deepClone };
    * @param {string} outputPath - Output file path
    */
   async savePatterns(outputPath) {
-    const defaultPath = path.join(this.rootPath, '.aios', 'patterns.md');
+    const defaultPath = path.join(this.rootPath, '.aiox', 'patterns.md');
     const targetPath = outputPath || defaultPath;
 
     // Ensure directory exists
@@ -1332,7 +1332,7 @@ module.exports = { formatBytes, debounce, deepClone };
    * @param {string} existingPath - Path to existing patterns file
    */
   async mergeWithExisting(existingPath) {
-    const defaultPath = path.join(this.rootPath, '.aios', 'patterns.md');
+    const defaultPath = path.join(this.rootPath, '.aiox', 'patterns.md');
     const targetPath = existingPath || defaultPath;
 
     try {
@@ -1419,7 +1419,7 @@ async function main() {
 
   if (args.includes('--help') || args.includes('-h')) {
     console.log(`
-AIOS Pattern Extractor
+AIOX Pattern Extractor
 Extracts and documents code patterns from the codebase.
 
 Usage:
@@ -1428,7 +1428,7 @@ Usage:
 Commands:
   extract         Extract patterns (default)
   json            Output as JSON
-  save            Save to .aios/patterns.md
+  save            Save to .aiox/patterns.md
   merge           Merge with existing patterns
 
 Options:
@@ -1460,7 +1460,7 @@ Examples:
   const categoryIndex = args.indexOf('--category');
   const categoryFilter = categoryIndex !== -1 ? args[categoryIndex + 1] : null;
 
-  // Find project root (look for package.json or .aios-core)
+  // Find project root (look for package.json or .aiox-core)
   let projectRoot = rootPath;
   while (projectRoot !== '/') {
     try {

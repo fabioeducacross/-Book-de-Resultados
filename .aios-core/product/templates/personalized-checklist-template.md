@@ -230,7 +230,7 @@ After completing checklist, generate report using standardized format:
 
 1. All tasks and subtasks marked [x]
 2. All tests pass
-3. Execute `.aios-core/product/checklists/story-dod-checklist.md`
+3. Execute `.aiox-core/product/checklists/story-dod-checklist.md`
 4. Generate checklist report
 5. Set story status: "Ready for Review"
 ```
@@ -248,7 +248,7 @@ After completing checklist, generate report using standardized format:
 echo "🔍 Running {checklist-name}..."
 
 # Execute checklist validation
-node .aios-core/scripts/validate-checklist.js {checklist-id}
+node .aiox-core/scripts/validate-checklist.js {checklist-id}
 
 if [ $? -ne 0 ]; then
   echo "❌ Checklist validation failed. Commit blocked."
@@ -269,11 +269,11 @@ jobs:
     steps:
       - name: Run {Checklist Name}
         run: |
-          node .aios-core/scripts/validate-checklist.js {checklist-id}
+          node .aiox-core/scripts/validate-checklist.js {checklist-id}
 
       - name: Generate Report
         run: |
-          node .aios-core/scripts/generate-checklist-report.js {checklist-id}
+          node .aiox-core/scripts/generate-checklist-report.js {checklist-id}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
@@ -304,8 +304,8 @@ jobs:
 
 ## Related Documents
 
-- **Standard:** `.aios-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md`
-- **Agent File:** `.aios-core/agents/{agent-id}.md`
+- **Standard:** `.aiox-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md`
+- **Agent File:** `.aiox-core/agents/{agent-id}.md`
 - **Tasks Using This:** {list of tasks that execute this checklist}
 
 ---

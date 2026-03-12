@@ -334,7 +334,7 @@ class ModificationValidator {
       warnings: [],
     };
 
-    const baseDir = path.join(process.cwd(), 'aios-core');
+    const baseDir = path.join(process.cwd(), 'aiox-core');
 
     for (const [type, files] of Object.entries(dependencies)) {
       if (!Array.isArray(files)) continue;
@@ -504,7 +504,7 @@ class ModificationValidator {
    * @private
    */
   async checkAgentExists(agentName) {
-    const agentPath = path.join(process.cwd(), 'aios-core', 'agents', `${agentName}.md`);
+    const agentPath = path.join(process.cwd(), 'aiox-core', 'agents', `${agentName}.md`);
     try {
       await fs.access(agentPath);
       return true;

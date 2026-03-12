@@ -126,7 +126,6 @@ quality_gates:
 ide:
   vscode: true
   cursor: true
-  windsurf: false
 
 # MCP Configuration
 mcp:
@@ -178,7 +177,7 @@ Description of when to use this preset.
 ## Usage
 
 \`\`\`bash
-aios install --preset my-preset
+aiox install --preset my-preset
 \`\`\`
 ```
 
@@ -190,43 +189,43 @@ aios install --preset my-preset
 
 ```bash
 # Install with specific preset
-aios install --preset standard
+aiox install --preset standard
 
 # Install with multiple presets (layered)
-aios install --preset standard --preset frontend
+aiox install --preset standard --preset frontend
 
 # Install custom preset from directory
-aios install --preset ./presets/my-preset
+aiox install --preset ./presets/my-preset
 ```
 
 ### Listing Available Presets
 
 ```bash
 # List built-in presets
-aios presets list
+aiox presets list
 
 # List with details
-aios presets list --verbose
+aiox presets list --verbose
 ```
 
 ### Viewing Preset Details
 
 ```bash
 # View preset configuration
-aios presets show standard
+aiox presets show standard
 
 # Compare two presets
-aios presets diff minimal standard
+aiox presets diff minimal standard
 ```
 
 ### Exporting Current Configuration as Preset
 
 ```bash
 # Export current project config as preset
-aios presets export --name my-project-preset --output ./presets/
+aiox presets export --name my-project-preset --output ./presets/
 
 # Export with description
-aios presets export --name my-preset --description "Project template" --output ./presets/
+aiox presets export --name my-preset --description "Project template" --output ./presets/
 ```
 
 ---
@@ -236,7 +235,7 @@ aios presets export --name my-preset --description "Project template" --output .
 Presets can be layered to combine configurations:
 
 ```bash
-aios install --preset standard --preset frontend --preset small-team
+aiox install --preset standard --preset frontend --preset small-team
 ```
 
 **Resolution Order:**
@@ -292,7 +291,7 @@ agents:
 ### For Preset Users
 
 1. **Start minimal** - Begin with `minimal` or `standard`, add as needed
-2. **Review before install** - Use `aios presets show` to understand what you're getting
+2. **Review before install** - Use `aiox presets show` to understand what you're getting
 3. **Export before modifying** - Save your config as a preset before major changes
 4. **Keep presets updated** - Check for preset updates when upgrading AIOX
 

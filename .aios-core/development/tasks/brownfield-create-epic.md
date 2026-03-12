@@ -45,7 +45,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join(__dirname, '../../.aios-core/core-config.yaml');
+const configPath = path.join(__dirname, '../../.aiox-core/core-config.yaml');
 const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
 
 const dev_story_location = config.devStoryLocation;
@@ -54,6 +54,47 @@ const architectureShardedLocation = config.architectureShardedLocation || 'docs/
 ```
 
 ## Instructions
+
+### 0. Code Intelligence: Codebase Overview (Optional — Auto-skip if unavailable)
+
+> **Condition:** Only execute if `isCodeIntelAvailable()` returns true.
+> If no code intelligence provider is available, skip this step silently and proceed to Step 1.
+
+When code intelligence is available, enrich the epic with real codebase data:
+
+```javascript
+const { isCodeIntelAvailable } = require('.aiox-core/core/code-intel');
+const { getCodebaseOverview, getDependencyGraph } = require('.aiox-core/core/code-intel/helpers/planning-helper');
+
+if (isCodeIntelAvailable()) {
+  const overview = await getCodebaseOverview('.');
+  const depGraph = await getDependencyGraph('.');
+
+  // Include in epic under "Codebase Intelligence" section:
+  // - overview.codebase: project patterns, file groups
+  // - overview.stats: file counts, language distribution
+  // - depGraph.dependencies: module relationships
+  // - depGraph.summary: { totalDeps, depth }
+}
+```
+
+**If data is available, add this section to the epic:**
+
+#### Codebase Intelligence
+
+| Metric | Value |
+|--------|-------|
+| Project Overview | {{overview.codebase summary}} |
+| File Statistics | {{overview.stats}} |
+| Dependency Depth | {{depGraph.summary.depth}} |
+| Total Dependencies | {{depGraph.summary.totalDeps}} |
+
+**Dependency Graph Summary:**
+{{depGraph.dependencies key relationships}}
+
+> **Note:** This section is auto-generated from code intelligence. Values are real codebase data, not estimates.
+
+---
 
 ### 1. Project Analysis (Required)
 
@@ -106,8 +147,8 @@ Create a focused epic following this structure:
 Use the executor-assignment module to automatically assign executor and quality gate for each story:
 
 ```javascript
-// .aios-core/core/orchestration/executor-assignment.js
-const { assignExecutorFromContent } = require('.aios-core/core/orchestration/executor-assignment');
+// .aiox-core/core/orchestration/executor-assignment.js
+const { assignExecutorFromContent } = require('.aiox-core/core/orchestration/executor-assignment');
 
 // For each story in the epic:
 const storyContent = `${storyTitle}\n${storyDescription}\n${acceptanceCriteria}`;
@@ -425,11 +466,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -440,7 +481,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 

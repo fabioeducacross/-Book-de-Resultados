@@ -63,7 +63,7 @@ pre-conditions:
   - [ ] WorktreeManager is available
     tipo: pre-condition
     blocker: true
-    validação: Script exists at .aios-core/infrastructure/scripts/worktree-manager.js
+    validação: Script exists at .aiox-core/infrastructure/scripts/worktree-manager.js
     error_message: "WorktreeManager not found."
 ```
 
@@ -124,7 +124,7 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 **Action:** Get all AIOX-managed worktrees
 
 ```javascript
-const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
+const WorktreeManager = require('./.aiox-core/infrastructure/scripts/worktree-manager.js');
 const manager = new WorktreeManager();
 const worktrees = await manager.list();
 ```
@@ -185,7 +185,7 @@ console.log(JSON.stringify(filtered, null, 2));
 [
   {
     "storyId": "STORY-42",
-    "path": "/abs/path/.aios/worktrees/STORY-42",
+    "path": "/abs/path/.aiox/worktrees/STORY-42",
     "branch": "auto-claude/STORY-42",
     "createdAt": "2026-01-28T10:00:00.000Z",
     "uncommittedChanges": 3,
@@ -308,7 +308,7 @@ Formatted list based on `format` parameter.
 
 ### Scripts
 
-- `.aios-core/infrastructure/scripts/worktree-manager.js`
+- `.aiox-core/infrastructure/scripts/worktree-manager.js`
 
 ### Git Commands Used
 

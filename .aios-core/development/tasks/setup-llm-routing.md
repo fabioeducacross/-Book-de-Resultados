@@ -5,7 +5,7 @@
 **Created:** 2025-12-12
 **Updated:** 2025-12-14
 **Agent:** @dev (Dex)
-**Location:** .aios-core/development/tasks/setup-llm-routing.md
+**Location:** .aiox-core/development/tasks/setup-llm-routing.md
 
 ---
 
@@ -24,7 +24,7 @@ Configure LLM routing for Claude Code to use alternative providers (DeepSeek, Op
 For most users, just run the installer:
 
 ```bash
-node .aios-core/infrastructure/scripts/llm-routing/install-llm-routing.js
+node .aiox-core/infrastructure/scripts/llm-routing/install-llm-routing.js
 ```
 
 This will:
@@ -107,7 +107,7 @@ acceptance-criteria:
 
 ```bash
 # From aiox-core root
-node .aios-core/infrastructure/scripts/llm-routing/install-llm-routing.js
+node .aiox-core/infrastructure/scripts/llm-routing/install-llm-routing.js
 ```
 
 ### Step 2: Configure DeepSeek API Key (for claude-free)
@@ -200,8 +200,8 @@ claude-free
 
 - [DeepSeek API](<https://platform.deepseek.com/api_keys>)
 - [Claude Code Documentation](<https://docs.anthropic.com/claude-code>)
-- Tool Definition: `.aios-core/infrastructure/tools/cli/llm-routing.yaml`
-- Install Script: `.aios-core/infrastructure/scripts/llm-routing/install-llm-routing.js`
+- Tool Definition: `.aiox-core/infrastructure/tools/cli/llm-routing.yaml`
+- Install Script: `.aiox-core/infrastructure/scripts/llm-routing/install-llm-routing.js`
 
 ---
 
@@ -210,7 +210,7 @@ claude-free
 ```yaml
 story: "6.7"
 version: 1.1.0
-migrated_from: @synkra/aiox-core
+migrated_from: aiox-core
 dependencies:
   - install-llm-routing.js
   - llm-routing.yaml

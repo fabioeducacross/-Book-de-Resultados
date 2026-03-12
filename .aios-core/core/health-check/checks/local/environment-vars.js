@@ -3,7 +3,7 @@
  *
  * Verifies required environment variables are set.
  *
- * @module @synkra/aios-core/health-check/checks/local/environment-vars
+ * @module aiox-core/health-check/checks/local/environment-vars
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -24,9 +24,9 @@ const RECOMMENDED_VARS = [
 ];
 
 /**
- * AIOS-specific environment variables
+ * AIOX-specific environment variables
  */
-const AIOS_VARS = ['AIOS_DEBUG', 'AIOS_LOG_LEVEL'];
+const AIOX_VARS = ['AIOX_DEBUG', 'AIOX_LOG_LEVEL'];
 
 /**
  * Environment variables check
@@ -57,7 +57,7 @@ class EnvironmentVarsCheck extends BaseCheck {
   async execute(_context) {
     const missingRequired = [];
     const missingRecommended = [];
-    const aiosVars = [];
+    const aioxVars = [];
     const setVars = [];
 
     // Check required vars
@@ -78,10 +78,10 @@ class EnvironmentVarsCheck extends BaseCheck {
       }
     }
 
-    // Check AIOS-specific vars (info only)
-    for (const varName of AIOS_VARS) {
+    // Check AIOX-specific vars (info only)
+    for (const varName of AIOX_VARS) {
       if (process.env[varName]) {
-        aiosVars.push({ name: varName, value: this.maskValue(process.env[varName]) });
+        aioxVars.push({ name: varName, value: this.maskValue(process.env[varName]) });
       }
     }
 
@@ -105,7 +105,7 @@ class EnvironmentVarsCheck extends BaseCheck {
           details: {
             setVars,
             missingRecommended,
-            aiosVars,
+            aioxVars,
           },
         },
       );
@@ -114,7 +114,7 @@ class EnvironmentVarsCheck extends BaseCheck {
     return this.pass('All required environment variables are set', {
       details: {
         setVars,
-        aiosVars,
+        aioxVars,
         homeDir: process.env.HOME || process.env.USERPROFILE,
       },
     });

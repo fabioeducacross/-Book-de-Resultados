@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const DEFAULT_REPORT_PATH = '../../.aios/reports/health-check-latest.json';
+const DEFAULT_REPORT_PATH = '../../.aiox/reports/health-check-latest.json';
 
 /**
  * Custom hook for loading health check data
@@ -252,13 +252,13 @@ function getSampleData() {
       {
         checkId: 'RH-008',
         action: 'added-node_modules-to-gitignore',
-        backup: '.aios/backups/gitignore.1704380400',
+        backup: '.aiox/backups/gitignore.1704380400',
         timestamp: new Date(Date.now() - 3600000).toISOString(),
       },
       {
         checkId: 'PC-001',
         action: 'recreated-config',
-        backup: '.aios/backups/config.yaml.1704376800',
+        backup: '.aiox/backups/config.yaml.1704376800',
         timestamp: new Date(Date.now() - 7200000).toISOString(),
       },
     ],

@@ -82,10 +82,10 @@ autoClaude:
 
 ```yaml
 source: core-config
-location: .aios-core/core-config.yaml
+location: .aiox-core/core-config.yaml
 
 extract:
-  - project.type # EXISTING_AIOS, GREENFIELD, etc.
+  - project.type # EXISTING_AIOX, GREENFIELD, etc.
   - project.version # Framework version
   - ide.selected # Active IDEs
   - github.semantic_release.enabled
@@ -191,7 +191,7 @@ project_extraction:
 
   steps:
     - id: read-core-config
-      description: 'Parse .aios-core/core-config.yaml'
+      description: 'Parse .aiox-core/core-config.yaml'
       action: |
         1. Load YAML file
         2. Extract project metadata
@@ -272,6 +272,52 @@ scope_analysis:
         4. Note exemplar implementations
 ```
 
+### Step 3.5: Code Intelligence: Implementation Context (Optional — Auto-skip if unavailable)
+
+> **Condition:** Only execute if `isCodeIntelAvailable()` returns true.
+> If no code intelligence provider is available, skip this step silently and proceed to Step 4.
+
+When code intelligence is available, enrich the context with real symbol definitions, dependencies, and test references:
+
+```javascript
+const { isCodeIntelAvailable } = require('.aiox-core/core/code-intel');
+const { getImplementationContext } = require('.aiox-core/core/code-intel/helpers/planning-helper');
+
+if (isCodeIntelAvailable()) {
+  // Extract key symbols from story analysis (step 3)
+  const symbols = extractedComponents; // From step 3 scope analysis
+
+  const context = await getImplementationContext(symbols);
+
+  // Enrich files-context.yaml with:
+  // - context.definitions: exact file + line for each symbol definition
+  // - context.dependencies: dependency graph per symbol
+  // - context.relatedTests: test files referencing each symbol
+}
+```
+
+**If data is available, add to files-context.yaml:**
+
+```yaml
+codeIntelligence:
+  definitions:
+    - symbol: '{symbol}'
+      file: '{definition.file}'
+      line: {definition.line}
+  dependencies:
+    - symbol: '{symbol}'
+      deps: {dependency graph}
+  relatedTests:
+    - symbol: '{symbol}'
+      tests:
+        - file: '{test.file}'
+          line: {test.line}
+```
+
+> **Note:** Partial results are accepted — if findDefinition succeeds but analyzeDependencies fails for a symbol, the definition is still included.
+
+---
+
 ### Step 4: Generate Outputs
 
 ```yaml
@@ -347,13 +393,13 @@ project:
     source: '{main source directory}'
     tests: '{test directory}'
     stories: '{devStoryLocation}'
-    agents: '{scriptsLocation.development or .aios-core/development/agents}'
+    agents: '{scriptsLocation.development or .aiox-core/development/agents}'
 
 metadata:
   generatedBy: '@architect'
   generatedAt: '{ISO timestamp}'
   sources:
-    - '.aios-core/core-config.yaml'
+    - '.aiox-core/core-config.yaml'
     - 'docs/framework/tech-stack.md'
     - 'docs/framework/source-tree.md'
     - 'package.json'
@@ -543,7 +589,7 @@ command:
   examples:
     - '*create-context 4.2'
     - '*create-context STORY-42 --force'
-    - '*create-context aios-migration/story-6.1.2.5'
+    - '*create-context aiox-migration/story-6.1.2.5'
 
   options:
     - name: --force
@@ -606,7 +652,7 @@ errors:
     message: "Story '{storyId}' not found. Check path and try again."
 
   - id: core-config-missing
-    condition: '.aios-core/core-config.yaml not found'
+    condition: '.aiox-core/core-config.yaml not found'
     action: 'Use defaults, warn user'
     blocking: false
     fallback: |
@@ -652,7 +698,7 @@ errors:
 ```
 1. Check docs/stories/4.2/ exists ✓
 2. Check docs/stories/4.2/spec/ exists → No spec found
-3. Read .aios-core/core-config.yaml ✓
+3. Read .aiox-core/core-config.yaml ✓
 4. Read docs/framework/tech-stack.md ✓
 5. Read docs/framework/source-tree.md ✓
 6. Read package.json ✓
@@ -666,9 +712,9 @@ errors:
 
 ```yaml
 project:
-  name: '@synkra/aiox-core'
+  name: 'aiox-core'
   version: '2.3.0'
-  type: EXISTING_AIOS
+  type: EXISTING_AIOX
 
   stack:
     runtime: 'Node.js 18+'
@@ -695,19 +741,19 @@ project:
     test: 'jest'
     lint: 'eslint . --fix'
     build: 'npm run build'
-    dev: 'node bin/aios.js'
+    dev: 'node bin/aiox.js'
 
   directories:
-    source: '.aios-core/'
+    source: '.aiox-core/'
     tests: 'tests/'
     stories: 'docs/stories'
-    agents: '.aios-core/development/agents'
+    agents: '.aiox-core/development/agents'
 
 metadata:
   generatedBy: '@architect'
   generatedAt: '2026-01-28T12:00:00Z'
   sources:
-    - '.aios-core/core-config.yaml'
+    - '.aiox-core/core-config.yaml'
     - 'docs/framework/tech-stack.md'
     - 'docs/framework/source-tree.md'
     - 'package.json'
@@ -727,25 +773,25 @@ specAvailable: true
 
 relevantFiles:
   toModify:
-    - path: '.aios-core/development/tasks/spec-gather-requirements.md'
+    - path: '.aiox-core/development/tasks/spec-gather-requirements.md'
       purpose: 'Update task to include new elicitation method'
       confidence: high
       reason: 'Mentioned in acceptance criteria AC-1'
 
-    - path: '.aios-core/core/elicitation/elicitation-engine.js'
+    - path: '.aiox-core/core/elicitation/elicitation-engine.js'
       purpose: 'Add new question type'
       confidence: medium
       reason: 'Inferred from requirement FR-2'
 
   exemplars:
-    - path: '.aios-core/development/tasks/spec-assess-complexity.md'
+    - path: '.aiox-core/development/tasks/spec-assess-complexity.md'
       purpose: 'Follow same V3 autoClaude format'
       keyPatterns:
         - 'autoClaude section with version 3.0'
         - 'inputs/outputs YAML structure'
         - 'Error handling section'
 
-    - path: '.aios-core/core/elicitation/session/session-manager.js'
+    - path: '.aiox-core/core/elicitation/session/session-manager.js'
       purpose: 'Similar state management pattern'
       keyPatterns:
         - 'Class-based structure'
@@ -753,7 +799,7 @@ relevantFiles:
         - 'Event emission'
 
   dependencies:
-    - path: '.aios-core/core-config.yaml'
+    - path: '.aiox-core/core-config.yaml'
       relationship: 'May need new config key'
 
   tests:

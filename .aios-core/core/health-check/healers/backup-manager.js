@@ -4,7 +4,7 @@
  * Manages file backups for self-healing operations.
  * Ensures safe rollback capability before any modifications.
  *
- * @module @synkra/aios-core/health-check/healers/backup-manager
+ * @module aiox-core/health-check/healers/backup-manager
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -16,7 +16,7 @@ const crypto = require('crypto');
 /**
  * Default backup directory
  */
-const DEFAULT_BACKUP_DIR = '.aios/backups/health-check';
+const DEFAULT_BACKUP_DIR = '.aiox/backups/health-check';
 
 /**
  * Maximum backup retention (in days)

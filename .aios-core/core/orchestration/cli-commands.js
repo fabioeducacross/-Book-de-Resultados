@@ -67,7 +67,7 @@ async function orchestrate(storyId, options = {}) {
   }
 
   console.log(chalk.cyan('\n═══════════════════════════════════════════════════════════'));
-  console.log(chalk.cyan.bold(`  🚀 AIOS Orchestrator: ${storyId}`));
+  console.log(chalk.cyan.bold(`  🚀 AIOX Orchestrator: ${storyId}`));
   console.log(chalk.cyan('═══════════════════════════════════════════════════════════\n'));
 
   // Dry run mode (AC6)
@@ -203,7 +203,7 @@ async function orchestrateStatus(storyId, options = {}) {
     };
   }
 
-  const statePath = path.join(projectRoot, '.aios', 'master-orchestrator', `${storyId}.json`);
+  const statePath = path.join(projectRoot, '.aiox', 'master-orchestrator', `${storyId}.json`);
 
   if (!(await fs.pathExists(statePath))) {
     console.log(chalk.yellow(`\n⚠️  No orchestrator state found for ${storyId}`));
@@ -289,7 +289,7 @@ async function orchestrateStop(storyId, options = {}) {
     };
   }
 
-  const statePath = path.join(projectRoot, '.aios', 'master-orchestrator', `${storyId}.json`);
+  const statePath = path.join(projectRoot, '.aiox', 'master-orchestrator', `${storyId}.json`);
 
   if (!(await fs.pathExists(statePath))) {
     console.log(chalk.yellow(`\n⚠️  No orchestrator state found for ${storyId}\n`));
@@ -355,7 +355,7 @@ async function orchestrateResume(storyId, options = {}) {
     };
   }
 
-  const statePath = path.join(projectRoot, '.aios', 'master-orchestrator', `${storyId}.json`);
+  const statePath = path.join(projectRoot, '.aiox', 'master-orchestrator', `${storyId}.json`);
 
   if (!(await fs.pathExists(statePath))) {
     console.log(chalk.yellow(`\n⚠️  No saved state found for ${storyId}`));

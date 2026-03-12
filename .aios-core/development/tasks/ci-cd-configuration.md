@@ -653,7 +653,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -701,8 +701,8 @@ token_usage: ~3,000-10,000 tokens
 ### Example 1: Node.js Project with CodeRabbit
 
 ```bash
-aios activate Otto  # github-devops agent
-aios ci-cd setup \
+aiox activate Otto  # github-devops agent
+aiox ci-cd setup \
   --repo="." \
   --provider="github-actions" \
   --type="nodejs" \
@@ -715,7 +715,7 @@ aios ci-cd setup \
 ### Example 2: Python Project (GitLab CI)
 
 ```bash
-aios ci-cd setup \
+aiox ci-cd setup \
   --repo="/path/to/python-project" \
   --provider="gitlab-ci" \
   --type="python" \
@@ -727,7 +727,7 @@ aios ci-cd setup \
 ### Example 3: Monorepo with Turborepo
 
 ```bash
-aios ci-cd setup \
+aiox ci-cd setup \
   --repo="." \
   --provider="github-actions" \
   --type="monorepo" \

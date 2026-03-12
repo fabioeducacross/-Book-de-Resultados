@@ -3,7 +3,7 @@
  * @story 6.19 - IDE Command Auto-Sync System
  *
  * Format: Full markdown file with embedded YAML block
- * Target: .claude/commands/AIOS/agents/*.md
+ * Target: .claude/commands/AIOX/agents/*.md
  */
 
 /**
@@ -16,9 +16,9 @@ function transform(agentData) {
   // Claude Code uses the full original file
   if (agentData.raw) {
     // Add sync footer if not present
-    const syncFooter = `\n---\n*AIOS Agent - Synced from .aios-core/development/agents/${agentData.filename}*\n`;
+    const syncFooter = `\n---\n*AIOX Agent - Synced from .aiox-core/development/agents/${agentData.filename}*\n`;
 
-    if (!agentData.raw.includes('Synced from .aios-core/development/agents/')) {
+    if (!agentData.raw.includes('Synced from .aiox-core/development/agents/')) {
       return agentData.raw.trimEnd() + syncFooter;
     }
     return agentData.raw;
@@ -39,7 +39,7 @@ function generateMinimalContent(agentData) {
 
   const icon = agent.icon || '🤖';
   const name = agent.name || agentData.id;
-  const title = agent.title || 'AIOS Agent';
+  const title = agent.title || 'AIOX Agent';
   const whenToUse = agent.whenToUse || 'Use this agent for specific tasks';
 
   let content = `# ${agentData.id}
@@ -62,7 +62,7 @@ ${icon} **${name}** - ${title}
 
   content += `
 ---
-*AIOS Agent - Synced from .aios-core/development/agents/${agentData.filename}*
+*AIOX Agent - Synced from .aiox-core/development/agents/${agentData.filename}*
 `;
 
   return content;

@@ -131,7 +131,7 @@ acceptance-criteria:
 
 - **Tool:** code-analyzer
   - **Purpose:** Static code analysis and metrics
-  - **Source:** .aios-core/utils/code-analyzer.js
+  - **Source:** .aiox-core/utils/code-analyzer.js
 
 - **Tool:** file-system
   - **Purpose:** Recursive directory traversal
@@ -146,7 +146,7 @@ acceptance-criteria:
 - **Script:** analyze-codebase.js
   - **Purpose:** Codebase analysis and reporting
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/analyze-codebase.js
+  - **Location:** .aiox-core/scripts/analyze-codebase.js
 
 ---
 
@@ -217,7 +217,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join(__dirname, '../../.aios-core/core-config.yaml');
+const configPath = path.join(__dirname, '../../.aiox-core/core-config.yaml');
 const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
 
 const dev_story_location = config.devStoryLocation;
@@ -226,7 +226,7 @@ const qaLocation = config.qaLocation || 'docs/qa'; // qaLocation
 
 ## Purpose
 
-Systematically audit all utilities in `.aios-core/scripts/` to determine their functional status, classify them as WORKING/FIXABLE/DEPRECATED, and generate actionable recommendations for maintenance and cleanup.
+Systematically audit all utilities in `.aiox-core/scripts/` to determine their functional status, classify them as WORKING/FIXABLE/DEPRECATED, and generate actionable recommendations for maintenance and cleanup.
 
 ## Classification Criteria
 
@@ -255,7 +255,7 @@ Systematically audit all utilities in `.aios-core/scripts/` to determine their f
 Execute the test-utilities.js script to test all utilities:
 
 ```bash
-node .aios-core/scripts/test-utilities.js
+node .aiox-core/scripts/test-utilities.js
 ```
 
 This will:
@@ -270,9 +270,9 @@ Run integration scan to find utility usage:
 
 ```bash
 # For each utility, count references in agents and tasks
-for util in .aios-core/scripts/*.js; do
+for util in .aiox-core/scripts/*.js; do
   name=$(basename $util .js)
-  count=$(grep -r "$name" .aios-core/agents .aios-core/tasks Squads 2>/dev/null | wc -l)
+  count=$(grep -r "$name" .aiox-core/agents .aiox-core/tasks Squads 2>/dev/null | wc -l)
   echo "$name: $count references"
 done
 ```

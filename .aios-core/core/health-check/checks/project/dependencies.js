@@ -3,7 +3,7 @@
  *
  * Verifies that required dependencies are present and installed.
  *
- * @module @synkra/aios-core/health-check/checks/project/dependencies
+ * @module aiox-core/health-check/checks/project/dependencies
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -13,7 +13,7 @@ const path = require('path');
 const { BaseCheck, CheckSeverity, CheckDomain } = require('../../base-check');
 
 /**
- * Required AIOS dependencies
+ * Required AIOX dependencies
  */
 const REQUIRED_DEPENDENCIES = ['js-yaml'];
 

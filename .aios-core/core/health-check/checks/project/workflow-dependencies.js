@@ -3,7 +3,7 @@
  *
  * Verifies workflow files have valid dependencies.
  *
- * @module @synkra/aios-core/health-check/checks/project/workflow-dependencies
+ * @module aiox-core/health-check/checks/project/workflow-dependencies
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -29,7 +29,7 @@ class WorkflowDependenciesCheck extends BaseCheck {
       timeout: 5000,
       cacheable: true,
       healingTier: 0,
-      tags: ['aios', 'workflows', 'dependencies'],
+      tags: ['aiox', 'workflows', 'dependencies'],
     });
   }
 
@@ -41,8 +41,8 @@ class WorkflowDependenciesCheck extends BaseCheck {
   async execute(context) {
     const projectRoot = context.projectRoot || process.cwd();
     const workflowPaths = [
-      path.join(projectRoot, '.aios-core', 'development', 'workflows'),
-      path.join(projectRoot, '.aios-core', 'infrastructure', 'workflows'),
+      path.join(projectRoot, '.aiox-core', 'development', 'workflows'),
+      path.join(projectRoot, '.aiox-core', 'infrastructure', 'workflows'),
     ];
 
     const workflows = [];
@@ -54,8 +54,8 @@ class WorkflowDependenciesCheck extends BaseCheck {
 
     // Scan task directories
     const taskPaths = [
-      path.join(projectRoot, '.aios-core', 'development', 'tasks'),
-      path.join(projectRoot, '.aios-core', 'infrastructure', 'tasks'),
+      path.join(projectRoot, '.aiox-core', 'development', 'tasks'),
+      path.join(projectRoot, '.aiox-core', 'infrastructure', 'tasks'),
     ];
 
     for (const taskPath of taskPaths) {

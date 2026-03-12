@@ -77,10 +77,10 @@ docs/
 ### Available Agent Modes
 | Mode | Purpose |
 |------|---------|
-| aios-dev | Full-stack development |
-| aios-qa | Quality assurance |
-| aios-architect | System design |
-| aios-pm | Project management |
+| aiox-dev | Full-stack development |
+| aiox-qa | Quality assurance |
+| aiox-architect | System design |
+| aiox-pm | Project management |
 
 ### Performance Tips
 - Use inline completions for quick code suggestions
@@ -89,4 +89,4 @@ docs/
 - Use @workspace for project-wide context
 
 ---
-*Synkra AIOX GitHub Copilot Configuration v2.1*
+*Synkra AIOX GitHub Copilot Configuration v4.0.4*

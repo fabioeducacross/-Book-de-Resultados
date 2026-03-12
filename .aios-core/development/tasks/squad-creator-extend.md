@@ -256,7 +256,7 @@ Next steps:
 
 ## Component Templates
 
-Each component type uses a template from `.aios-core/development/templates/squad/`:
+Each component type uses a template from `.aiox-core/development/templates/squad/`:
 
 | Type | Template | Key Fields |
 |------|----------|------------|
@@ -373,19 +373,19 @@ post-conditions:
 ## Dependencies
 
 - **Scripts:**
-  - `.aios-core/development/scripts/squad/squad-loader.js`
-  - `.aios-core/development/scripts/squad/squad-extender.js`
-  - `.aios-core/development/scripts/squad/squad-validator.js`
+  - `.aiox-core/development/scripts/squad/squad-loader.js`
+  - `.aiox-core/development/scripts/squad/squad-extender.js`
+  - `.aiox-core/development/scripts/squad/squad-validator.js`
 
 - **Templates:**
-  - `.aios-core/development/templates/squad/agent-template.md`
-  - `.aios-core/development/templates/squad/task-template.md`
-  - `.aios-core/development/templates/squad/workflow-template.md`
-  - `.aios-core/development/templates/squad/checklist-template.md`
-  - `.aios-core/development/templates/squad/template-template.md`
-  - `.aios-core/development/templates/squad/tool-template.js`
-  - `.aios-core/development/templates/squad/script-template.js`
-  - `.aios-core/development/templates/squad/data-template.yaml`
+  - `.aiox-core/development/templates/squad/agent-template.md`
+  - `.aiox-core/development/templates/squad/task-template.md`
+  - `.aiox-core/development/templates/squad/workflow-template.md`
+  - `.aiox-core/development/templates/squad/checklist-template.md`
+  - `.aiox-core/development/templates/squad/template-template.md`
+  - `.aiox-core/development/templates/squad/tool-template.js`
+  - `.aiox-core/development/templates/squad/script-template.js`
+  - `.aiox-core/development/templates/squad/data-template.yaml`
 
 - **Tools:**
   - js-yaml (YAML parsing)

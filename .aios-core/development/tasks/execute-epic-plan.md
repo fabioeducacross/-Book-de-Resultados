@@ -59,7 +59,7 @@ atomic_layer: Orchestration
 **Saída:**
 - campo: epic_state
   tipo: object
-  destino: File system (.aios/epic-{epicId}-state.yaml)
+  destino: File system (.aiox/epic-{epicId}-state.yaml)
   persistido: true
 
 - campo: wave_report
@@ -97,14 +97,14 @@ pre-conditions:
     tipo: pre-condition
     blocker: true
     validação: |
-      execution.template must resolve to .aios-core/development/workflows/{template}.yaml
+      execution.template must resolve to .aiox-core/development/workflows/{template}.yaml
     error_message: "Pre-condition failed: Template '{template}' not found"
 
   - [ ] For action=continue, state file must exist
     tipo: pre-condition
     blocker: true
     validação: |
-      .aios/epic-{epicId}-state.yaml must exist with status=active
+      .aiox/epic-{epicId}-state.yaml must exist with status=active
     error_message: "Pre-condition failed: No active state found. Use action=start first."
 
   - [ ] Git working tree must be clean (no uncommitted changes)
@@ -125,7 +125,7 @@ post-conditions:
     tipo: post-condition
     blocker: true
     validação: |
-      .aios/epic-{epicId}-state.yaml exists and reflects completed waves/stories
+      .aiox/epic-{epicId}-state.yaml exists and reflects completed waves/stories
     error_message: "Post-condition failed: State file not persisted"
 
   - [ ] All completed stories have branches pushed
@@ -215,7 +215,7 @@ acceptance-criteria:
 4. **Error:** State file corrupted
    - **Cause:** Interrupted write, concurrent access
    - **Resolution:** Backup state before each write
-   - **Recovery:** Restore from .aios/epic-{epicId}-state.yaml.bak
+   - **Recovery:** Restore from .aiox/epic-{epicId}-state.yaml.bak
 
 ---
 
@@ -263,8 +263,8 @@ managing wave quality gates, and persisting state for resume across sessions.
 ## Prerequisites
 
 - Execution plan YAML exists (e.g., `docs/stories/epics/{epic}/EPIC-{ID}-EXECUTION.yaml`)
-- Template `epic-orchestration.yaml` exists in `.aios-core/development/workflows/`
-- Inner loop `development-cycle.yaml` exists in `.aios-core/development/workflows/`
+- Template `epic-orchestration.yaml` exists in `.aiox-core/development/workflows/`
+- Inner loop `development-cycle.yaml` exists in `.aiox-core/development/workflows/`
 - All story files referenced in the plan exist
 - Git working tree is clean
 
@@ -349,7 +349,7 @@ Display full analysis and ASK user to confirm before proceeding.
 **4. Initialize state:**
 
 ```yaml
-# .aios/epic-{epicId}-state.yaml
+# .aiox/epic-{epicId}-state.yaml
 epic_state:
   epicId: {epicId}
   execution_plan: {execution_plan_path}
@@ -407,7 +407,7 @@ Starting Wave 1...
 
 Resume epic execution from current state.
 
-**1. Load state** from `.aios/epic-{epicId}-state.yaml`
+**1. Load state** from `.aiox/epic-{epicId}-state.yaml`
 **2. Verify** status is `active`
 **3. Determine resume point:**
 
@@ -498,7 +498,7 @@ Branches created:
   - feat/act-2-user-profile-audit
   - ...
 
-State preserved at: .aios/epic-{epicId}-state.yaml
+State preserved at: .aiox/epic-{epicId}-state.yaml
 To resume later: @pm *execute-epic {path} continue
 ```
 
@@ -541,7 +541,7 @@ PROCEDURE execute_wave(wave, stories, state):
       # Spawn subagent for this story
       Task tool call:
         description: "EPIC:{epicId} Wave:{wave.number} Story:{story_id}"
-        subagent_type: "aios-dev"
+        subagent_type: "aiox-dev"
         prompt: |
           You are executing story {story_id} as part of epic {epicId}, Wave {wave.number}.
 
@@ -619,7 +619,7 @@ PROCEDURE execute_wave(wave, stories, state):
   # Spawn gate agent for integration review
   Task tool call:
     description: "EPIC:{epicId} Wave:{wave.number} GATE"
-    subagent_type: "aios-architect"  # or whatever the gate agent is
+    subagent_type: "aiox-architect"  # or whatever the gate agent is
     prompt: |
       You are reviewing Wave {wave.number} ("{wave.name}") of epic {epicId}.
 
@@ -656,7 +656,7 @@ PROCEDURE execute_wave(wave, stories, state):
 
     Task tool call:
       description: "EPIC:{epicId} Wave:{wave.number} MERGE"
-      subagent_type: "aios-devops"
+      subagent_type: "aiox-devops"
       prompt: |
         Merge Wave {wave.number} branches to main in this order:
         {wave.merge.order}
@@ -723,7 +723,7 @@ PROCEDURE final_gate(execution, state):
   # Spawn final gate agent
   Task tool call:
     description: "EPIC:{epicId} FINAL GATE"
-    subagent_type: "aios-architect"
+    subagent_type: "aiox-architect"
     prompt: |
       Epic-level sign-off for {epicId}.
 
@@ -766,7 +766,7 @@ END PROCEDURE
 State is saved after EVERY significant action (wave start, story complete, gate verdict, checkpoint).
 
 ```yaml
-# .aios/epic-{epicId}-state.yaml
+# .aiox/epic-{epicId}-state.yaml
 epic_state:
   epicId: EPIC-ACT
   execution_plan: docs/stories/epics/epic-activation-pipeline/EPIC-ACT-EXECUTION.yaml

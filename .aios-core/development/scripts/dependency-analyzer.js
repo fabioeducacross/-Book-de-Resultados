@@ -1,5 +1,5 @@
 /**
- * Dependency Analyzer for AIOS-FULLSTACK
+ * Dependency Analyzer for AIOX-FULLSTACK
  * Analyzes and resolves dependencies between components
  * @module dependency-analyzer
  */
@@ -12,13 +12,13 @@ const chalk = require('chalk');
 class DependencyAnalyzer {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.manifestPath = path.join(this.rootPath, 'aios-core', 'team-manifest.yaml');
+    this.manifestPath = path.join(this.rootPath, 'aiox-core', 'team-manifest.yaml');
     
     // Component paths
     this.paths = {
-      agents: path.join(this.rootPath, 'aios-core', 'agents'),
-      tasks: path.join(this.rootPath, 'aios-core', 'tasks'),
-      workflows: path.join(this.rootPath, 'aios-core', 'workflows')
+      agents: path.join(this.rootPath, 'aiox-core', 'agents'),
+      tasks: path.join(this.rootPath, 'aiox-core', 'tasks'),
+      workflows: path.join(this.rootPath, 'aiox-core', 'workflows')
     };
     
     // Dependency cache
@@ -621,7 +621,7 @@ class DependencyAnalyzer {
           taskId: id,
           taskTitle,
           taskDescription: `Dependency task for ${id}`,
-          agentName: 'aios-developer'
+          agentName: 'aiox-developer'
         };
         
       case 'workflow':

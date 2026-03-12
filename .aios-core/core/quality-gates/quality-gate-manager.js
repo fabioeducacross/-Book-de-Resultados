@@ -23,7 +23,7 @@ const { NotificationManager } = require('./notification-manager');
 /**
  * Default configuration path
  */
-const DEFAULT_CONFIG_PATH = '.aios-core/core/quality-gates/quality-gate-config.yaml';
+const DEFAULT_CONFIG_PATH = '.aiox-core/core/quality-gates/quality-gate-config.yaml';
 
 /**
  * Quality Gate Manager - Main orchestrator
@@ -266,7 +266,7 @@ class QualityGateManager {
    * @returns {Promise<Object>} Current status
    */
   async getStatus() {
-    const statusPath = this.config.status?.location || '.aios/qa-status.json';
+    const statusPath = this.config.status?.location || '.aiox/qa-status.json';
 
     try {
       const content = await fs.readFile(statusPath, 'utf8');
@@ -311,7 +311,7 @@ class QualityGateManager {
    * @returns {Promise<void>}
    */
   async saveStatus() {
-    const statusPath = this.config.status?.location || '.aios/qa-status.json';
+    const statusPath = this.config.status?.location || '.aiox/qa-status.json';
 
     const status = {
       lastRun: new Date().toISOString(),
@@ -340,7 +340,7 @@ class QualityGateManager {
    * @returns {Promise<string>} Report path
    */
   async saveReport(storyId = 'unknown') {
-    const reportDir = this.config.reports?.location || '.aios/qa-reports';
+    const reportDir = this.config.reports?.location || '.aiox/qa-reports';
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const reportPath = path.join(reportDir, `qa-report-${storyId}-${timestamp}.json`);
 

@@ -182,11 +182,11 @@ acceptance-criteria:
 
 - **Tool:** build-component
   - **Purpose:** Build individual components
-  - **Source:** .aios-core/development/tasks/build-component.md
+  - **Source:** .aiox-core/development/tasks/build-component.md
 
 - **Tool:** generate-documentation
   - **Purpose:** Generate Pattern Library docs
-  - **Source:** .aios-core/development/tasks/generate-documentation.md
+  - **Source:** .aiox-core/development/tasks/generate-documentation.md
 
 - **Tool:** accessibility-audit
   - **Purpose:** Run WCAG compliance checks
@@ -194,7 +194,7 @@ acceptance-criteria:
 
 - **Tool:** calculate-roi
   - **Purpose:** Calculate ROI metrics
-  - **Source:** .aios-core/development/tasks/calculate-roi.md
+  - **Source:** .aiox-core/development/tasks/calculate-roi.md
 
 ---
 

@@ -617,5 +617,5 @@ anti_patterns:
 
 ---
 
-_AIOS Decision Heuristics Framework v1.1_
+_AIOX Decision Heuristics Framework v1.1_
 _Updated: Specialist Selection Heuristic added_

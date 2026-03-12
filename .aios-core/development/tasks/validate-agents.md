@@ -1,5 +1,9 @@
 # Validate Agents Task
 
+---
+execution_mode: programmatic  # TOK-3: PTC-eligible — batch-scan all agent files in single Bash block
+---
+
 ## Purpose
 
 Validate all agent definition files for structural integrity, required fields,
@@ -21,8 +25,8 @@ Story ACT-6: Framework integrity checking via `*validate-agents` command.
 
 ### Step 1: Discover Agent Files
 
-Scan `.aios-core/development/agents/` for all `.md` files.
-Expected agents: dev, qa, architect, pm, po, sm, analyst, data-engineer, ux-design-expert, devops, aios-master, squad-creator
+Scan `.aiox-core/development/agents/` for all `.md` files.
+Expected agents: dev, qa, architect, pm, po, sm, analyst, data-engineer, ux-design-expert, devops, aiox-master, squad-creator
 
 ### Step 2: Parse YAML Block
 
@@ -56,11 +60,11 @@ Report as WARNING if still referencing old path.
 ### Step 5: Validate Dependencies
 
 For each agent's `dependencies.tasks` list:
-1. Check that each referenced task file exists in `.aios-core/development/tasks/`
+1. Check that each referenced task file exists in `.aiox-core/development/tasks/`
 2. Report missing dependencies as ERRORS
 
 For each agent's `dependencies.checklists` list:
-1. Check in `.aios-core/development/checklists/`
+1. Check in `.aiox-core/development/checklists/`
 2. Report missing as WARNINGS
 
 ### Step 6: Validate Command Structure
@@ -106,8 +110,8 @@ Summary: 11 passed, 1 warning, 0 failed
 
 - `js-yaml` - YAML parsing
 - `fs` - File system access
-- Agent files in `.aios-core/development/agents/`
-- Task files in `.aios-core/development/tasks/`
+- Agent files in `.aiox-core/development/agents/`
+- Task files in `.aiox-core/development/tasks/`
 - `unified-activation-pipeline.js` - Pipeline reference check
 
 ---

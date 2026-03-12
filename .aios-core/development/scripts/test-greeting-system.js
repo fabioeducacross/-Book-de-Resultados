@@ -4,7 +4,7 @@
  * Test Script for Contextual Greeting System
  *
  * Tests the greeting builder with different scenarios
- * Run: node .aios-core/scripts/test-greeting-system.js
+ * Run: node .aiox-core/scripts/test-greeting-system.js
  */
 
 const GreetingBuilder = require('./greeting-builder');

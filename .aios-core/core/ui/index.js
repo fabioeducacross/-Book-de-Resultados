@@ -3,7 +3,7 @@
  *
  * Story 11.6: Projeto Bob - Painel de Observabilidade CLI
  *
- * Provides CLI UI components for AIOS:
+ * Provides CLI UI components for AIOX:
  * - ObservabilityPanel: Real-time status display during Bob orchestration
  * - PanelRenderer: Low-level terminal rendering utilities
  *

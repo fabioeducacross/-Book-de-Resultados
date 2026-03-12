@@ -88,7 +88,7 @@ pre-conditions:
     type: pre-condition
     blocker: true
     validation: |
-      Verify .aios-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer.js exists
+      Verify .aiox-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer.js exists
     error_message: "Pre-condition failed: Brownfield Analyzer module not found"
 ```
 
@@ -157,11 +157,11 @@ acceptance-criteria:
 
 - **Tool:** brownfield-analyzer
   - **Purpose:** Analyze existing project structure and standards
-  - **Source:** .aios-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer.js
+  - **Source:** .aiox-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer.js
 
 - **Tool:** mode-detector
   - **Purpose:** Collect project markers for analysis
-  - **Source:** .aios-core/infrastructure/scripts/documentation-integrity/mode-detector.js
+  - **Source:** .aiox-core/infrastructure/scripts/documentation-integrity/mode-detector.js
 
 ---
 
@@ -172,7 +172,7 @@ acceptance-criteria:
 - **Script:** brownfield-analyzer.js
   - **Purpose:** Core analysis functions
   - **Language:** JavaScript
-  - **Location:** .aios-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer.js
+  - **Location:** .aiox-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer.js
 
 ---
 
@@ -250,7 +250,7 @@ Analyze an existing project to understand its structure, tech stack, coding stan
 Execute the brownfield analyzer on the target project:
 
 ```javascript
-const { analyzeProject, formatMigrationReport } = require('./.aios-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer');
+const { analyzeProject, formatMigrationReport } = require('./.aiox-core/infrastructure/scripts/documentation-integrity/brownfield-analyzer');
 
 const targetDir = process.cwd(); // or specified directory
 const analysis = analyzeProject(targetDir);

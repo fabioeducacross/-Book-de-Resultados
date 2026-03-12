@@ -18,7 +18,7 @@ workflow:
     elicit: true
     confirmation_required: true
     action_types:
-      task-reference: "Action references an existing task file in .aios-core/development/tasks/"
+      task-reference: "Action references an existing task file in .aiox-core/development/tasks/"
       agent-command: "Action references an agent-level command (e.g., *create-front-end-spec)"
       workflow-action: "Action is a workflow orchestration step executed via manual prompt"
 

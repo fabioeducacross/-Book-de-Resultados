@@ -4,7 +4,7 @@
  * Story 12.5: Session State Integration with Bob (AC8-11)
  *
  * Provides automated cleanup of:
- * - Session states older than 30 days (archived to .aios/archive/sessions/)
+ * - Session states older than 30 days (archived to .aiox/archive/sessions/)
  * - Snapshots older than 90 days (removed, reference kept in index.json)
  * - Orphan lock files (delegated to LockManager)
  *
@@ -25,8 +25,8 @@ const LockManager = require('./lock-manager');
 const STALE_SESSION_DAYS = 30;
 const STALE_SNAPSHOT_DAYS = 90;
 const SESSION_STATE_FILENAME = '.session-state.yaml';
-const ARCHIVE_DIR = '.aios/archive/sessions';
-const SNAPSHOTS_DIR = '.aios/snapshots';
+const ARCHIVE_DIR = '.aiox/archive/sessions';
+const SNAPSHOTS_DIR = '.aiox/snapshots';
 const SNAPSHOTS_INDEX = 'index.json';
 
 /**
@@ -114,7 +114,7 @@ class DataLifecycleManager {
   /**
    * Cleans up stale session states (AC8)
    *
-   * Sessions with last_updated > 30 days are moved to .aios/archive/sessions/
+   * Sessions with last_updated > 30 days are moved to .aiox/archive/sessions/
    *
    * @returns {Promise<number>} Number of sessions archived
    */

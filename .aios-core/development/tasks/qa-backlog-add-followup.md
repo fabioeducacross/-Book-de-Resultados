@@ -136,7 +136,7 @@ acceptance-criteria:
 
 - **Tool:** validation-engine
   - **Purpose:** Rule-based validation and reporting
-  - **Source:** .aios-core/utils/validation-engine.js
+  - **Source:** .aiox-core/utils/validation-engine.js
 
 - **Tool:** schema-validator
   - **Purpose:** JSON/YAML schema validation
@@ -151,7 +151,7 @@ acceptance-criteria:
 - **Script:** run-validation.js
   - **Purpose:** Execute validation rules and generate report
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/run-validation.js
+  - **Location:** .aiox-core/scripts/run-validation.js
 
 ---
 
@@ -276,7 +276,7 @@ const storyFile = matches[0];
 
 ### 3. Add to Backlog
 ```javascript
-const { BacklogManager } = require('.aios-core/scripts/backlog-manager');
+const { BacklogManager } = require('.aiox-core/scripts/backlog-manager');
 
 const manager = new BacklogManager('docs/stories/backlog.md');
 await manager.load();

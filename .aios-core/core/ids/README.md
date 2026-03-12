@@ -4,7 +4,7 @@ The Entity Registry is the central data store for the Incremental Development Sy
 
 ## Schema
 
-The registry is stored at `.aios-core/data/entity-registry.yaml` as a single YAML file.
+The registry is stored at `.aiox-core/data/entity-registry.yaml` as a single YAML file.
 
 ### Structure
 
@@ -34,7 +34,7 @@ entities:
 categories:
   - id: "tasks"
     description: "Executable task workflows"
-    basePath: ".aios-core/development/tasks"
+    basePath: ".aiox-core/development/tasks"
 ```
 
 ### Adaptability Scores
@@ -48,7 +48,7 @@ categories:
 ## RegistryLoader API
 
 ```js
-const { RegistryLoader } = require('./.aios-core/core/ids/registry-loader');
+const { RegistryLoader } = require('./.aiox-core/core/ids/registry-loader');
 const loader = new RegistryLoader(); // uses default path
 ```
 
@@ -98,7 +98,7 @@ const coreModules = loader.queryByPath('core/');
 Regenerate the registry from the filesystem:
 
 ```bash
-node .aios-core/development/scripts/populate-entity-registry.js
+node .aiox-core/development/scripts/populate-entity-registry.js
 ```
 
 The script:

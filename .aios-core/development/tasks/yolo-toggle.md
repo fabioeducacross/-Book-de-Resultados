@@ -32,7 +32,7 @@ atomic_layer: Atom
 **Saída:**
 - campo: newMode
   tipo: object
-  destino: .aios/config.yaml
+  destino: .aiox/config.yaml
   persistido: true
 ```
 
@@ -42,7 +42,7 @@ atomic_layer: Atom
 
 ### Step 1: Load Current Mode
 
-Read the current permission mode from `.aios/config.yaml` under `permissions.mode`.
+Read the current permission mode from `.aiox/config.yaml` under `permissions.mode`.
 If the file or field does not exist, default to `ask`.
 
 ### Step 2: Cycle to Next Mode
@@ -55,8 +55,8 @@ ask  ->  auto  ->  explore  ->  ask  (repeat)
 
 ### Step 3: Save New Mode
 
-Update `.aios/config.yaml` with the new `permissions.mode` value.
-The `PermissionMode._saveToConfig()` method handles this, including creating the `.aios/` directory if needed.
+Update `.aiox/config.yaml` with the new `permissions.mode` value.
+The `PermissionMode._saveToConfig()` method handles this, including creating the `.aiox/` directory if needed.
 
 ### Step 4: Display Confirmation
 
@@ -77,7 +77,7 @@ Current: [icon ModeName]
 ## Implementation
 
 ```javascript
-const { cycleMode } = require('./.aios-core/core/permissions');
+const { cycleMode } = require('./.aiox-core/core/permissions');
 
 async function yoloToggle() {
   const result = await cycleMode();
@@ -92,7 +92,7 @@ async function yoloToggle() {
 
 **Strategy:** graceful-fallback
 
-- If `.aios/config.yaml` cannot be read, start from default `ask` mode
+- If `.aiox/config.yaml` cannot be read, start from default `ask` mode
 - If write fails, display error and keep mode in memory only
 
 ---
@@ -103,8 +103,8 @@ async function yoloToggle() {
 story: ACT-4
 version: 1.0.0
 dependencies:
-  - .aios-core/core/permissions/permission-mode.js
-  - .aios-core/core/permissions/index.js
+  - .aiox-core/core/permissions/permission-mode.js
+  - .aiox-core/core/permissions/index.js
 tags:
   - permissions
   - mode-toggle

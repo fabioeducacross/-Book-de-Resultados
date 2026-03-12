@@ -20,7 +20,7 @@ $failCount = 0
 
 foreach ($task in $tasks) {
   Write-Host "`n=== Migrating $task ===" -ForegroundColor Cyan
-  node .aios-core/scripts/migrate-task-to-v2.js ".aios-core/tasks/$task"
+  node .aiox-core/scripts/migrate-task-to-v2.js ".aiox-core/tasks/$task"
   
   if ($LASTEXITCODE -eq 0 -or $LASTEXITCODE -eq 1) {
     $successCount++

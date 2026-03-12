@@ -286,17 +286,17 @@ ELICIT: Preset Configuration
 
 Presets allow loading only needed MCPs for specific workflows.
 
-1. Create 'aios-dev' preset?
+1. Create 'aiox-dev' preset?
    → Recommended MCPs: filesystem, github
    → Use case: Story implementation, PRs, code changes
    → Token budget: ~5-10k
 
-2. Create 'aios-research' preset?
+2. Create 'aiox-research' preset?
    → Recommended MCPs: filesystem, fetch
    → Use case: Documentation, web research
    → Token budget: ~8-15k
 
-3. Create 'aios-full' preset?
+3. Create 'aiox-full' preset?
    → All enabled MCPs
    → Use case: Complex multi-domain tasks
    → Token budget: Varies by MCPs

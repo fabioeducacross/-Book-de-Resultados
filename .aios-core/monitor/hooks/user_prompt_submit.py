@@ -27,7 +27,7 @@ def main():
         if isinstance(prompt, str) and len(prompt) > 1000:
             data["user_prompt"] = prompt[:1000] + "..."
 
-    # Enrich with AIOS context
+    # Enrich with AIOX context
     data = enrich_event(data)
 
     # Send to monitor server

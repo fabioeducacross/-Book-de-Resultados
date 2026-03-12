@@ -15,7 +15,7 @@ This template defines the canonical activation-instructions format for AIOX agen
 activation-instructions:
   - STEP 1: Read THIS ENTIRE FILE - it contains your complete persona definition
   - STEP 2: Adopt the persona defined in the 'agent' and 'persona' sections below
-  - STEP 3: Build intelligent greeting using .aios-core/development/scripts/greeting-builder.js
+  - STEP 3: Build intelligent greeting using .aiox-core/development/scripts/greeting-builder.js
            Call buildGreeting(agentDefinition, conversationHistory) which:
            - Detects session type (new/existing/workflow) via context analysis
            - Checks git configuration status (with 5min cache)
@@ -40,8 +40,8 @@ activation-instructions:
 
 ### BEFORE (Manual/Mechanical)
 ```yaml
-- STEP 2.5: Load project status using .aios-core/infrastructure/scripts/project-status-loader.js
-- STEP 2.6: Load session context using .aios-core/scripts/session-context-loader.js
+- STEP 2.5: Load project status using .aiox-core/infrastructure/scripts/project-status-loader.js
+- STEP 2.6: Load session context using .aiox-core/scripts/session-context-loader.js
 - STEP 3: Greet user with EXACTLY the text from greeting_levels.named
 - STEP 3.5: Introduce yourself using format: "I'm {agent.name}..."
 - STEP 3.6: Display session context if available
@@ -217,12 +217,12 @@ commands:
 
 ## Related Files
 
-- **GreetingBuilder**: `.aios-core/development/scripts/greeting-builder.js`
-- **Context Detector**: `.aios-core/core/session/context-detector.js`
-- **Git Config Detector**: `.aios-core/infrastructure/scripts/git-config-detector.js`
-- **Workflow Navigator**: `.aios-core/development/scripts/workflow-navigator.js`
-- **Project Status Loader**: `.aios-core/infrastructure/scripts/project-status-loader.js`
-- **Workflow Patterns**: `.aios-core/data/workflow-patterns.yaml`
+- **GreetingBuilder**: `.aiox-core/development/scripts/greeting-builder.js`
+- **Context Detector**: `.aiox-core/core/session/context-detector.js`
+- **Git Config Detector**: `.aiox-core/infrastructure/scripts/git-config-detector.js`
+- **Workflow Navigator**: `.aiox-core/development/scripts/workflow-navigator.js`
+- **Project Status Loader**: `.aiox-core/infrastructure/scripts/project-status-loader.js`
+- **Workflow Patterns**: `.aiox-core/data/workflow-patterns.yaml`
 
 ## Troubleshooting
 

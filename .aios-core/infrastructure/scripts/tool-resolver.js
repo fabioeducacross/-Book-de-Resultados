@@ -1,14 +1,14 @@
 const fs = require('fs-extra');
 const path = require('path');
 const yaml = require('js-yaml');
-const glob = require('glob');
+const fg = require('fast-glob');
 
 /**
- * ToolResolver - Resolves and loads AIOS tools from file system
+ * ToolResolver - Resolves and loads AIOX tools from file system
  *
  * Features:
  * - Map-based caching for performance (<5ms cached lookups)
- * - Search path priority: expansion pack → common → core
+ * - Search path priority: squad → common → core
  * - Glob-based file resolution
  * - Schema validation
  * - Health checking (tool_call, command, http methods)
@@ -23,9 +23,9 @@ class ToolResolver {
 
     // Base search paths (in priority order)
     this.basePaths = [
-      'aios-core/tools',
+      'aiox-core/tools',
       'common/tools',
-      // Expansion pack paths added dynamically during resolution
+      // Squad paths added dynamically during resolution
     ];
   }
 
@@ -34,7 +34,7 @@ class ToolResolver {
    *
    * @param {string} toolName - Tool identifier (e.g., 'clickup', 'github-cli')
    * @param {object} context - Resolution context (optional)
-   * @param {string} context.expansionPack - Specific expansion pack to search
+   * @param {string} context.expansionPack - Specific squad to search
    * @returns {object} Tool definition with schema_version detected
    * @throws {Error} If tool not found or validation fails
    */
@@ -45,17 +45,17 @@ class ToolResolver {
       return this.cache.get(cacheKey);
     }
 
-    // 2. Build search paths (expansion pack → core priority)
+    // 2. Build search paths (squad → core priority)
     const searchPaths = [];
     if (context.expansionPack) {
-      searchPaths.push(`expansion-packs/${context.expansionPack}/tools`);
+      searchPaths.push(`squads/${context.expansionPack}/tools`);
     }
     searchPaths.push(...this.basePaths);
 
     // 3. Find tool file using glob (searches subdirectories)
     let toolPath = null;
     for (const basePath of searchPaths) {
-      const candidates = glob.sync(`${basePath}/**/${toolName}.yaml`);
+      const candidates = fg.sync(`${basePath}/**/${toolName}.yaml`);
       if (candidates.length > 0) {
         toolPath = candidates[0];
         break;
@@ -288,7 +288,7 @@ class ToolResolver {
   listAvailableTools() {
     const allTools = [];
     for (const basePath of this.basePaths) {
-      const tools = glob.sync(`${basePath}/**/*.yaml`);
+      const tools = fg.sync(`${basePath}/**/*.yaml`);
       allTools.push(...tools);
     }
     return allTools;
@@ -304,12 +304,12 @@ class ToolResolver {
   async toolExists(toolName, context = {}) {
     const searchPaths = [];
     if (context.expansionPack) {
-      searchPaths.push(`expansion-packs/${context.expansionPack}/tools`);
+      searchPaths.push(`squads/${context.expansionPack}/tools`);
     }
     searchPaths.push(...this.basePaths);
 
     for (const basePath of searchPaths) {
-      const candidates = glob.sync(`${basePath}/**/${toolName}.yaml`);
+      const candidates = fg.sync(`${basePath}/**/${toolName}.yaml`);
       if (candidates.length > 0) {
         return true;
       }
@@ -331,7 +331,7 @@ class ToolResolver {
    */
   resetSearchPaths() {
     this.basePaths = [
-      'aios-core/tools',
+      'aiox-core/tools',
       'common/tools',
     ];
   }

@@ -104,7 +104,7 @@ function formatInfoPretty(worker, options = {}) {
 
   // Usage example section
   output += '\nUsage Example:\n';
-  output += `  aios task run ${worker.id}\n`;
+  output += `  aiox task run ${worker.id}\n`;
 
   // Related workers section
   if (relatedWorkers.length > 0) {
@@ -232,7 +232,7 @@ function formatNotFoundError(id, suggestions = []) {
     });
   }
 
-  output += `\nUse 'aios workers search ${id}' to find workers.`;
+  output += `\nUse 'aiox workers search ${id}' to find workers.`;
 
   return output;
 }

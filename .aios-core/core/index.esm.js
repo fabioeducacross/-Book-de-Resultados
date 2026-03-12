@@ -1,9 +1,9 @@
 /**
- * AIOS Core Module - ES Module Entry Point
+ * AIOX Core Module - ES Module Entry Point
  *
  * Provides ES module exports for all core framework functionality.
  *
- * @module @synkra/aios-core/core
+ * @module aiox-core/core
  * @version 2.0.0
  * @created Story 2.2 - Core Module Creation
  */

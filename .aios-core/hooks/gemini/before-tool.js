@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * AIOS Before Tool Hook for Gemini CLI
- * Story GEMINI-INT.6 - AIOS Hooks System
+ * AIOX Before Tool Hook for Gemini CLI
+ * Story GEMINI-INT.6 - AIOX Hooks System
  *
  * Executes before tool execution for security validation.
  * Can block dangerous operations.
@@ -87,7 +87,7 @@ async function beforeTool() {
 function logToolExecution(tool, args) {
   try {
     const projectDir = process.env.GEMINI_PROJECT_DIR || process.cwd();
-    const logDir = path.join(projectDir, '.aios', 'logs');
+    const logDir = path.join(projectDir, '.aiox', 'logs');
 
     if (!fs.existsSync(logDir)) {
       fs.mkdirSync(logDir, { recursive: true });

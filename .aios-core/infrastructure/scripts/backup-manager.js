@@ -14,7 +14,7 @@ const gunzip = promisify(zlib.gunzip);
 class BackupManager {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.backupDir = path.join(this.rootPath, '.aios', 'backup');
+    this.backupDir = path.join(this.rootPath, '.aiox', 'backup');
     this.maxBackups = options.maxBackups || 10;
     this.compressionLevel = options.compressionLevel || 6;
     

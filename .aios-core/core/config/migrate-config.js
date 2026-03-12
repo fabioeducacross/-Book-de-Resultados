@@ -2,8 +2,8 @@
  * Config Migration — Legacy core-config.yaml → L2 Project + L5 User
  *
  * Splits the monolithic core-config.yaml into:
- *   - .aios-core/project-config.yaml (L2) — team-shared project settings
- *   - ~/.aios/user-config.yaml (L5) — cross-project user preferences
+ *   - .aiox-core/project-config.yaml (L2) — team-shared project settings
+ *   - ~/.aiox/user-config.yaml (L5) — cross-project user preferences
  *
  * Safety:
  * - Creates backup before migration (core-config.backup.yaml)
@@ -21,7 +21,7 @@ const os = require('os');
 const yaml = require('js-yaml');
 
 /**
- * Fields that belong in L5 User config (~/.aios/user-config.yaml).
+ * Fields that belong in L5 User config (~/.aiox/user-config.yaml).
  * These are user-specific, cross-project preferences.
  */
 const USER_FIELDS = [
@@ -33,7 +33,7 @@ const USER_FIELDS = [
 ];
 
 /**
- * Fields that belong in L2 Project config (.aios-core/project-config.yaml).
+ * Fields that belong in L2 Project config (.aiox-core/project-config.yaml).
  * These are project-specific, team-shared settings.
  */
 const PROJECT_FIELDS = [
@@ -50,8 +50,8 @@ const PROJECT_FIELDS = [
  * @returns {boolean} True if in legacy mode
  */
 function isLegacyMode(projectRoot) {
-  const legacyPath = path.join(projectRoot, '.aios-core', 'core-config.yaml');
-  const frameworkPath = path.join(projectRoot, '.aios-core', 'framework-config.yaml');
+  const legacyPath = path.join(projectRoot, '.aiox-core', 'core-config.yaml');
+  const frameworkPath = path.join(projectRoot, '.aiox-core', 'framework-config.yaml');
   return fs.existsSync(legacyPath) && !fs.existsSync(frameworkPath);
 }
 
@@ -62,8 +62,8 @@ function isLegacyMode(projectRoot) {
  * @returns {string|null} Backup file path, or null if already backed up
  */
 function createBackup(projectRoot) {
-  const legacyPath = path.join(projectRoot, '.aios-core', 'core-config.yaml');
-  const backupPath = path.join(projectRoot, '.aios-core', 'core-config.backup.yaml');
+  const legacyPath = path.join(projectRoot, '.aiox-core', 'core-config.yaml');
+  const backupPath = path.join(projectRoot, '.aiox-core', 'core-config.backup.yaml');
 
   if (!fs.existsSync(legacyPath)) {
     return null;
@@ -127,12 +127,12 @@ function extractProjectFields(legacyConfig) {
 }
 
 /**
- * Ensure the ~/.aios/ directory exists.
+ * Ensure the ~/.aiox/ directory exists.
  *
- * @returns {string} Path to ~/.aios/ directory
+ * @returns {string} Path to ~/.aiox/ directory
  */
 function ensureUserConfigDir() {
-  const dir = path.join(os.homedir(), '.aios');
+  const dir = path.join(os.homedir(), '.aiox');
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
   }
@@ -140,7 +140,7 @@ function ensureUserConfigDir() {
 }
 
 /**
- * Write user config to ~/.aios/user-config.yaml.
+ * Write user config to ~/.aiox/user-config.yaml.
  * Merges with existing user config (does not overwrite existing fields).
  *
  * @param {Object} userFields - User config fields to write
@@ -148,7 +148,7 @@ function ensureUserConfigDir() {
  */
 function writeUserConfig(userFields) {
   ensureUserConfigDir();
-  const userConfigPath = path.join(os.homedir(), '.aios', 'user-config.yaml');
+  const userConfigPath = path.join(os.homedir(), '.aiox', 'user-config.yaml');
 
   let existing = {};
   try {
@@ -170,7 +170,7 @@ function writeUserConfig(userFields) {
 }
 
 /**
- * Write project config to .aios-core/project-config.yaml.
+ * Write project config to .aiox-core/project-config.yaml.
  * Merges with existing project config (does not overwrite existing fields).
  *
  * @param {string} projectRoot - Project root directory
@@ -178,7 +178,7 @@ function writeUserConfig(userFields) {
  * @returns {string} Path to project config file
  */
 function writeProjectConfig(projectRoot, projectFields) {
-  const projectConfigPath = path.join(projectRoot, '.aios-core', 'project-config.yaml');
+  const projectConfigPath = path.join(projectRoot, '.aiox-core', 'project-config.yaml');
 
   let existing = {};
   try {
@@ -230,7 +230,7 @@ function migrateConfig(projectRoot, options = {}) {
     projectFields: null,
   };
 
-  const legacyPath = path.join(projectRoot, '.aios-core', 'core-config.yaml');
+  const legacyPath = path.join(projectRoot, '.aiox-core', 'core-config.yaml');
 
   // Check if legacy config exists
   if (!fs.existsSync(legacyPath)) {

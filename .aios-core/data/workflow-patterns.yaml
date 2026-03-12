@@ -1,5 +1,5 @@
 # Workflow Patterns Definition
-# Defines common AIOS workflow sequences for context detection
+# Defines common AIOX workflow sequences for context detection
 #
 # Version: 1.0
 # Created: 2025-01-15
@@ -754,9 +754,9 @@ workflows:
 #
 state_integration:
   description: "File-based state persistence for guided workflow automation"
-  state_file_location: ".aios/{instance-id}-state.yaml"
-  state_file_schema: ".aios-core/data/workflow-state-schema.yaml"
-  manager_script: ".aios-core/development/scripts/workflow-state-manager.js"
+  state_file_location: ".aiox/{instance-id}-state.yaml"
+  state_file_schema: ".aiox-core/data/workflow-state-schema.yaml"
+  manager_script: ".aiox-core/development/scripts/workflow-state-manager.js"
 
   behavior:
     detection_priority:
@@ -795,7 +795,7 @@ cross_context:
     explanation: |
       When target_context=hybrid, agent references are resolved in this order:
       1. Check squad agents directory first (squads/{squad}/agents/)
-      2. If not found, fall back to core agents (.aios-core/development/agents/)
+      2. If not found, fall back to core agents (.aiox-core/development/agents/)
       3. If found in both, emit WF_AGENT_AMBIGUOUS warning
 
   explicit_prefix:
@@ -828,7 +828,7 @@ cross_context:
 
 # Validation Notes:
 # - Patterns cross-referenced with Epic 6.1 workflow analysis
-# - Commands verified against actual project usage in .aios-core/agents/*.md
+# - Commands verified against actual project usage in .aiox-core/agents/*.md
 # - Agent sequences match actual workflow patterns from recent stories
 # - Threshold of 2 ensures workflow detection is accurate but not overly sensitive
 # - All 10 workflows now have transition definitions (Story WIS-2)

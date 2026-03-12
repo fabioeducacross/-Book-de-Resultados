@@ -53,7 +53,7 @@ autoClaude:
 
   verification:
     type: script
-    script: .aios-core/infrastructure/scripts/subtask-verifier.js
+    script: .aiox-core/infrastructure/scripts/subtask-verifier.js
     timeout: 120
 ```
 
@@ -87,7 +87,7 @@ step_1:
     - action: find_implementation
       paths:
         - docs/stories/{storyId}/plan/implementation.yaml
-        - .aios/plans/{storyId}/implementation.yaml
+        - .aiox/plans/{storyId}/implementation.yaml
 
   validation:
     check: 'implementation.yaml found'
@@ -101,7 +101,7 @@ step_2:
   actions:
     - action: execute_script
       script: |
-        node .aios-core/infrastructure/scripts/subtask-verifier.js {subtaskId} \
+        node .aiox-core/infrastructure/scripts/subtask-verifier.js {subtaskId} \
           --implementation {implementationPath} \
           --verbose \
           --update

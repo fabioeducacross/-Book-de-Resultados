@@ -32,8 +32,8 @@ const {
 
 // ─── Constants ─────────────────────────────────────────────────────
 
-const HEALING_LOG_PATH = path.resolve(REPO_ROOT, '.aios-core/data/registry-healing-log.jsonl');
-const HEALING_BACKUP_DIR = path.resolve(REPO_ROOT, '.aios-core/data/registry-backups/healing');
+const HEALING_LOG_PATH = path.resolve(REPO_ROOT, '.aiox-core/data/registry-healing-log.jsonl');
+const HEALING_BACKUP_DIR = path.resolve(REPO_ROOT, '.aiox-core/data/registry-backups/healing');
 const MAX_HEALING_LOG_SIZE = 5 * 1024 * 1024; // 5MB
 const MAX_BACKUPS = 10;
 const STALE_DAYS_THRESHOLD = 7;
@@ -545,7 +545,7 @@ class RegistryHealer {
 
   /**
    * Emit warnings for issues that require manual intervention.
-   * Integrates with AIOS NotificationManager (console + file channels).
+   * Integrates with AIOX NotificationManager (console + file channels).
    *
    * @param {Array} issues - Non-auto-healable issues
    * @returns {Array} Warning objects emitted
@@ -654,7 +654,7 @@ class RegistryHealer {
       default:
         return [
           'Review the issue details and apply appropriate fix',
-          'Run \'aios ids:health --fix\' after resolving',
+          'Run \'aiox ids:health --fix\' after resolving',
         ];
     }
   }

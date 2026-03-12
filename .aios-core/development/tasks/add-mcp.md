@@ -373,12 +373,12 @@ Resolution:
    • {name}.tool3 - Description
 
 🔗 Status: Running
-📋 Preset: Added to 'aios-full'
+📋 Preset: Added to 'aiox-full'
 
 Next steps:
 1. Test tools: docker mcp tools call {name}.tool1 --param value
 2. Use in workflow: *mcp-workflow with {name} tools
-3. Add to other presets: docker mcp preset update aios-dev --add-server {name}
+3. Add to other presets: docker mcp preset update aiox-dev --add-server {name}
 ```
 
 ---

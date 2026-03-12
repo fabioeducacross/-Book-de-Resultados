@@ -14,14 +14,12 @@ This directory contains workflow definitions for the Synkra AIOX framework. Work
 - **greenfield-ui.yaml** - Workflow for new UI/frontend projects
 
 ### Configuration Workflows
-- **setup-environment.yaml** - Configure IDE (Windsurf/Cursor/Claude Code) with AIOX development rules
 
 ## Setup Environment Workflow
 
 The `setup-environment` workflow helps developers configure their IDE for optimal AIOX development experience.
 
 ### Features
-- Detects installed IDEs (Windsurf, Cursor, Claude Code)
 - Backs up existing IDE configurations
 - Applies AIOX-specific development rules
 - Verifies GitHub CLI installation and authentication
@@ -29,9 +27,9 @@ The `setup-environment` workflow helps developers configure their IDE for optima
 
 ### Usage
 
-From the aios-master agent:
+From the aiox-master agent:
 ```
-@aios-master
+@aiox-master
 *setup-environment
 ```
 
@@ -41,14 +39,12 @@ npm run setup:environment
 ```
 
 ### What It Does
-1. **IDE Detection** - Scans for `.windsurf/`, `.cursor/`, or `.claude/` directories
 2. **GitHub CLI Check** - Ensures GitHub CLI is installed and authenticated
 3. **Backup Creation** - Saves existing rules before making changes
 4. **Rule Application** - Copies AIOX-specific rules to appropriate locations
 5. **Verification** - Confirms successful setup
 
 ### IDE Rule Locations
-- **Windsurf**: `.windsurf/rules`
 - **Cursor**: `.cursorules`
 - **Claude Code**: `.claude/CLAUDE.md`
 
@@ -71,10 +67,17 @@ workflow:
   metadata:
     elicit: true  # If user interaction required
     confirmation_required: true
-  steps:
-    - id: step-1
-      name: Step name
-      description: What this step does
+  sequence:
+    - step: step_slug
+      id: step-1
+      agent: responsible-agent
+      action: What this step does
+      next: next-step-id
+
+  # Optional compatibility metadata (non-executable)
+  phases:
+    - phase_1: Discovery
+    - phase_2: Execution
 ```
 
 ## Best Practices

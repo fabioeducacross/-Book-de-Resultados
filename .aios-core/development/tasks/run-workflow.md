@@ -65,7 +65,7 @@ atomic_layer: Config
 **Saída:**
 - campo: workflow_state
   tipo: object
-  destino: File system (.aios/{instance-id}-state.yaml)
+  destino: File system (.aiox/{instance-id}-state.yaml)
   persistido: true
 
 - campo: next_steps
@@ -99,7 +99,7 @@ pre-conditions:
     tipo: pre-condition
     blocker: true
     validação: |
-      Check .aios/{instance-id}-state.yaml exists with status=active
+      Check .aiox/{instance-id}-state.yaml exists with status=active
     error_message: "Pre-condition failed: No active workflow instance found"
   - [ ] When target_context="squad" or "hybrid", squad directory must exist
     tipo: pre-condition
@@ -155,7 +155,7 @@ acceptance-criteria:
 
 - **Tool:** workflow-state-manager
   - **Purpose:** Create, load, save, and query workflow state
-  - **Implementation:** AI agent reads/writes `.aios/{instance-id}-state.yaml` files directly
+  - **Implementation:** AI agent reads/writes `.aiox/{instance-id}-state.yaml` files directly
 
 - **Tool:** workflow-validator
   - **Purpose:** Validate workflow YAML before starting
@@ -228,8 +228,8 @@ To provide guided workflow automation with file-based state persistence. Tracks 
 ## Prerequisites
 
 - Target workflow YAML must exist at the resolved path
-- For engine mode: `run-workflow-engine.md` task must exist at `.aios-core/development/tasks/run-workflow-engine.md`
-- State directory `.aios/` must be writable
+- For engine mode: `run-workflow-engine.md` task must exist at `.aiox-core/development/tasks/run-workflow-engine.md`
+- State directory `.aiox/` must be writable
 
 ## Elicitation Points
 
@@ -266,7 +266,7 @@ ELSE (mode == "guided" or not specified):
 Initialize a new workflow execution.
 
 1. **Resolve workflow file path** based on target_context:
-   - `core` → `.aios-core/development/workflows/{workflow_name}.yaml`
+   - `core` → `.aiox-core/development/workflows/{workflow_name}.yaml`
    - `squad` → `squads/{squad_name}/workflows/{workflow_name}.yaml`
    - `hybrid` → `squads/{squad_name}/workflows/{workflow_name}.yaml`
 
@@ -277,7 +277,7 @@ Initialize a new workflow execution.
 3. **Create state file** using WorkflowStateManager.createState():
    - Generates unique instance ID
    - Builds step list from workflow sequence
-   - Writes state to `.aios/{instance-id}-state.yaml`
+   - Writes state to `.aiox/{instance-id}-state.yaml`
 
 4. **Show step 1 instructions:**
    ```text
@@ -359,7 +359,7 @@ Abort workflow execution.
    Artifacts created:
    - {list of created artifacts}
 
-   State file preserved at: .aios/{instance-id}-state.yaml
+   State file preserved at: .aiox/{instance-id}-state.yaml
    (Delete manually if no longer needed)
    ```
 4. **Save final state**
@@ -369,7 +369,7 @@ Abort workflow execution.
 The state file persists between sessions. To continue a workflow:
 
 1. User starts new Claude Code session
-2. Activates @aios-master
+2. Activates @aiox-master
 3. Runs `*run-workflow {name} continue`
 4. System loads state, shows current step
 5. User executes step (possibly in new agent session)

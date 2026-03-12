@@ -947,7 +947,7 @@ class StuckDetector {
  * @returns {Promise<Object>} Configuration object
  */
 async function loadConfig(configPath) {
-  const defaultPath = path.join(process.cwd(), '.aios-core', 'core-config.yaml');
+  const defaultPath = path.join(process.cwd(), '.aiox-core', 'core-config.yaml');
   const filePath = configPath || defaultPath;
 
   try {
@@ -993,7 +993,7 @@ async function main() {
 
   if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-${chalk.bold('Stuck Detector')} - AIOS Auto-Claude Recovery System (Story 5.2)
+${chalk.bold('Stuck Detector')} - AIOX Auto-Claude Recovery System (Story 5.2)
 
 ${chalk.cyan('Usage:')}
   stuck-detector check <attempts-json> [--approach <current>]

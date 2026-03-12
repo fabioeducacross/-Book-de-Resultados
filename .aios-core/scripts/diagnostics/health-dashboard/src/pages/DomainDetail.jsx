@@ -13,7 +13,7 @@ const DOMAIN_LABELS = {
 };
 
 const DOMAIN_DESCRIPTIONS = {
-  project: 'Validates AIOS configuration files, task definitions, agent references, and template integrity.',
+  project: 'Validates AIOX configuration files, task definitions, agent references, and template integrity.',
   local: 'Checks development environment prerequisites including Node.js, Git, IDE configuration, and environment variables.',
   repository: 'Monitors GitHub Actions, branch protection, dependencies, and security vulnerabilities.',
   deployment: 'Verifies deployment configuration, environment variables, and service endpoints.',

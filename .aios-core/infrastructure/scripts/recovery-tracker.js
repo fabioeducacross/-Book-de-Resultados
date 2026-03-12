@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Recovery Tracker
+ * AIOX Recovery Tracker
  *
  * Story: 5.1 - Attempt Tracker
  * Epic: Epic 5 - Recovery System
@@ -10,7 +10,7 @@
  * Records approach, changes, success/failure, and error information.
  *
  * Features:
- * - AC1: Located in `.aios-core/infrastructure/scripts/`
+ * - AC1: Located in `.aiox-core/infrastructure/scripts/`
  * - AC2: Registra: attempt_number, timestamp, approach, success/fail, error
  * - AC3: Output: `docs/stories/{story-id}/recovery/attempts.json`
  * - AC4: Comando `*track-attempt {subtask-id}` no @dev
@@ -744,7 +744,7 @@ async function main() {
 
   if (args.length < 1 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-${chalk.bold('Recovery Tracker')} - AIOS Attempt Tracking System (Story 5.1)
+${chalk.bold('Recovery Tracker')} - AIOX Attempt Tracking System (Story 5.1)
 
 ${chalk.cyan('Usage:')}
   node recovery-tracker.js <command> <story-id> <subtask-id> [options]
@@ -786,7 +786,7 @@ ${chalk.cyan('Examples:')}
   node recovery-tracker.js summary STORY-42
 
 ${chalk.cyan('Acceptance Criteria Coverage:')}
-  AC1: Located in .aios-core/infrastructure/scripts/
+  AC1: Located in .aiox-core/infrastructure/scripts/
   AC2: Registra: attempt_number, timestamp, approach, success/fail, error
   AC3: Output: docs/stories/{story-id}/recovery/attempts.json
   AC4: Comando *track-attempt {subtask-id} no @dev

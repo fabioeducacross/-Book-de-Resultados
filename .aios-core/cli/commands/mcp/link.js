@@ -208,7 +208,7 @@ async function executeLink(options) {
 
   console.log('\n✅ Project linked to global MCP!');
   console.log('\nMCP servers are now shared across all linked projects.');
-  console.log('Run "aios mcp status" to see configuration details.');
+  console.log('Run "aiox mcp status" to see configuration details.');
 }
 
 module.exports = {

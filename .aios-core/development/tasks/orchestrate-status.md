@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Status
 description: Show orchestrator status for a story
-agent: aios-master
+agent: aiox-master
 version: 1.0.0
 story: '0.9'
 epic: '0'
@@ -50,8 +50,8 @@ Blocked: No
 
 ## Behavior
 
-1. Reads state from `.aios/master-orchestrator/{story-id}.json`
-2. Reads dashboard status from `.aios/dashboard/status.json`
+1. Reads state from `.aiox/master-orchestrator/{story-id}.json`
+2. Reads dashboard status from `.aiox/dashboard/status.json`
 3. Formats and displays current status
 4. Shows epic progress breakdown
 5. Lists any errors or warnings

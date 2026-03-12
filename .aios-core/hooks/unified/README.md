@@ -1,6 +1,6 @@
 # Unified Hooks System
 
-**Module:** `.aios-core/hooks/unified`
+**Module:** `.aiox-core/hooks/unified`
 **Purpose:** Cross-CLI hook abstraction layer
 **Supported CLIs:** Claude Code, Gemini Code
 
@@ -19,7 +19,7 @@ Hook Interface (hook-interface.js)
          ↓
 Hook Runners (runners/*.js)
          ↓
-Application Logic (aiox-core, aios-pro)
+Application Logic (aiox-core, aiox-pro)
 ```
 
 ---
@@ -70,7 +70,7 @@ class MyHook extends UnifiedHook {
 
 - **`precompact-runner.js`** (Story MIS-3)
   - Captures session digest before context compact
-  - Open Core architecture (delegates to aios-pro)
+  - Open Core architecture (delegates to aiox-pro)
   - Fire-and-forget async execution
 
 **Runner Pattern:**
@@ -128,13 +128,13 @@ Capture session knowledge before context compact to preserve institutional learn
 ```
 Claude Code PreCompact Event
          ↓
-.claude/hooks/precompact-session-digest.js
+.claude/hooks/precompact-session-digest.cjs
          ↓
 runners/precompact-runner.js
          ↓ (pro-detector check)
 pro/memory/session-digest/extractor.js
          ↓
-.aios/session-digests/{session-id}-{timestamp}.yaml
+.aiox/session-digests/{session-id}-{timestamp}.yaml
 ```
 
 ### Performance
@@ -145,7 +145,7 @@ pro/memory/session-digest/extractor.js
 
 ### Graceful Degradation
 
-- If aios-pro not available: no-op (log and return)
+- If aiox-pro not available: no-op (log and return)
 - If extraction fails: silent failure (log error)
 - If write fails: error propagated to logger
 
@@ -156,7 +156,7 @@ pro/memory/session-digest/extractor.js
 ### Step 1: Create Runner
 
 ```javascript
-// .aios-core/hooks/unified/runners/my-runner.js
+// .aiox-core/hooks/unified/runners/my-runner.js
 
 async function onMyEvent(context) {
   try {
@@ -188,14 +188,44 @@ module.exports = { onMyEvent, getHookConfig };
 
 ### Step 2: Register Hook
 
+**IMPORTANT:** Claude Code hooks must be registered as `type: "command"` in `settings.json`. They run as separate processes reading JSON from stdin — NOT as module exports.
+
 ```javascript
-// .claude/hooks/my-hook.js
+// .claude/hooks/my-hook.cjs — Process-based hook (reads stdin)
+#!/usr/bin/env node
+'use strict';
 
-const { onMyEvent } = require('../../.aios-core/hooks/unified/runners/my-runner');
+function readStdin() {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    process.stdin.setEncoding('utf8');
+    process.stdin.on('data', (chunk) => { data += chunk; });
+    process.stdin.on('end', () => {
+      try { resolve(JSON.parse(data)); }
+      catch (e) { reject(e); }
+    });
+  });
+}
 
-module.exports = async (context) => {
-  return await onMyEvent(context);
-};
+async function main() {
+  const input = await readStdin();
+  const { onMyEvent } = require('../../.aiox-core/hooks/unified/runners/my-runner');
+  await onMyEvent(input);
+}
+
+if (require.main === module) {
+  main().then(() => process.exit(0)).catch(() => process.exit(0));
+}
+```
+
+Then add the mapping to `HOOK_EVENT_MAP` in `packages/installer/src/wizard/ide-config-generator.js`:
+
+```javascript
+'my-hook.cjs': {
+  event: 'PreToolUse', // or UserPromptSubmit, PreCompact, etc.
+  matcher: null,       // or 'Write|Edit' for PreToolUse filtering
+  timeout: 10,
+},
 ```
 
 ### Step 3: Test Hook
@@ -284,7 +314,7 @@ catch (err) {
 const { isProAvailable } = require('../../../bin/utils/pro-detector');
 
 if (!isProAvailable()) {
-  console.log('[Hook] aios-pro not available, skipping');
+  console.log('[Hook] aiox-pro not available, skipping');
   return;
 }
 
@@ -298,10 +328,11 @@ const proModule = require('../../pro/...'); // Fails if pro absent
 
 - **Story GEMINI-INT.8:** Unified Hook Interface (completed)
 - **Story MIS-2:** Dead Code Cleanup (restored hooks foundation)
-- **Story MIS-3:** Session Digest (PreCompact Hook) ← **CURRENT**
-- **Story PRO-5:** aios-pro Repository Bootstrap (pro-detector pattern)
+- **Story MIS-3:** Session Digest (PreCompact Hook)
+- **Story MIS-3.1:** Fix Session-Digest Hook Registration ← **CURRENT**
+- **Story PRO-5:** aiox-pro Repository Bootstrap (pro-detector pattern)
 
 ---
 
 *Unified Hooks System - AIOX Core*
-*Updated: 2026-02-09 - Story MIS-3*
+*Updated: 2026-02-26 - Story MIS-3.1*

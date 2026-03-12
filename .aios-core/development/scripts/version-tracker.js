@@ -4,14 +4,14 @@ const semver = require('semver');
 const chalk = require('chalk');
 
 /**
- * Framework version tracking utility for AIOS-FULLSTACK
+ * Framework version tracking utility for AIOX-FULLSTACK
  * Manages framework versions, migration history, and compatibility tracking
  */
 class VersionTracker {
   constructor(options = {}) {
     this.rootPath = options.rootPath || process.cwd();
-    this.versionFile = path.join(this.rootPath, '.aios', 'version-info.json');
-    this.migrationDir = path.join(this.rootPath, '.aios', 'migrations');
+    this.versionFile = path.join(this.rootPath, '.aiox', 'version-info.json');
+    this.migrationDir = path.join(this.rootPath, '.aiox', 'migrations');
     this.currentVersion = null;
     this.versionInfo = null;
   }
@@ -454,7 +454,7 @@ class VersionTracker {
         migration_required: false,
         breaking_changes: [],
         compatibility_notes: 'Initial version',
-        release_notes: 'AIOS-FULLSTACK framework v1.0.0',
+        release_notes: 'AIOX-FULLSTACK framework v1.0.0',
         previous_version: null,
         status: 'active',
         components_modified: [],

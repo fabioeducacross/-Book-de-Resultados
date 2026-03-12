@@ -1,9 +1,9 @@
-# AIOS-Core Quick Diagnostic - Run this in PowerShell
+# AIOX-Core Quick Diagnostic - Run this in PowerShell
 # Usage: Copy and paste this entire script into PowerShell on the target machine
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "   AIOS-Core Quick Diagnostic" -ForegroundColor Cyan
+Write-Host "   AIOX-Core Quick Diagnostic" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -84,20 +84,20 @@ if ($npmPrefix) {
 # Check npm registry
 Write-Host ""
 Write-Host "Checking npm registry access..." -ForegroundColor Yellow
-$registryTest = & npm view aios-core version 2>$null
+$registryTest = & npm view aiox-core version 2>$null
 if ($registryTest) {
-    Write-Host "  aios-core v$registryTest available" -ForegroundColor Green
+    Write-Host "  aiox-core v$registryTest available" -ForegroundColor Green
 } else {
     Write-Host "  Cannot access npm registry!" -ForegroundColor Red
     Write-Host "  Check firewall/proxy settings" -ForegroundColor Yellow
 }
 
-# Test npx aios-core
+# Test npx aiox-core
 Write-Host ""
-Write-Host "Testing: npx aios-core@latest --version" -ForegroundColor Yellow
+Write-Host "Testing: npx aiox-core@latest --version" -ForegroundColor Yellow
 Write-Host "(This may take a moment...)" -ForegroundColor Gray
 try {
-    $result = & npx aios-core@latest --version 2>&1
+    $result = & npx aiox-core@latest --version 2>&1
     if ($result -match '\d+\.\d+\.\d+') {
         Write-Host "  SUCCESS: $result" -ForegroundColor Green
     } else {
@@ -113,5 +113,5 @@ Write-Host "   Diagnostic Complete" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "If all checks passed, run:" -ForegroundColor Green
-Write-Host "  npx aios-core@latest" -ForegroundColor White
+Write-Host "  npx aiox-core@latest" -ForegroundColor White
 Write-Host ""

@@ -3,7 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 
 /**
- * Component search utility for Synkra AIOS framework
+ * Component search utility for Synkra AIOX framework
  * Finds and searches components across the framework
  */
 class ComponentSearch {
@@ -53,7 +53,7 @@ class ComponentSearch {
     }
 
     const searchPaths = [
-      path.join(this.rootPath, 'aios-core', typeConfig.directory),
+      path.join(this.rootPath, 'aiox-core', typeConfig.directory),
       path.join(this.rootPath, typeConfig.directory),
     ];
 
@@ -153,7 +153,7 @@ class ComponentSearch {
     }
 
     const searchPaths = [
-      path.join(this.rootPath, 'aios-core', typeConfig.directory),
+      path.join(this.rootPath, 'aiox-core', typeConfig.directory),
       path.join(this.rootPath, typeConfig.directory),
     ];
 
@@ -256,7 +256,7 @@ class ComponentSearch {
    */
   async findRegistrationFile(componentType, componentName) {
     const possibleRegistrationFiles = [
-      path.join(this.rootPath, 'aios-core', 'registry.json'),
+      path.join(this.rootPath, 'aiox-core', 'registry.json'),
       path.join(this.rootPath, 'components.json'),
       path.join(this.rootPath, 'manifest.yaml'),
     ];

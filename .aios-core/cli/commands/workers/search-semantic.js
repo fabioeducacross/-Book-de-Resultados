@@ -126,7 +126,7 @@ async function loadWorkerEmbeddings() {
   // Check for pre-computed embeddings file
   const embeddingsPath = path.join(
     process.cwd(),
-    '.aios-core/core/registry/worker-embeddings.json',
+    '.aiox-core/core/registry/worker-embeddings.json',
   );
 
   if (fs.existsSync(embeddingsPath)) {
@@ -268,7 +268,7 @@ async function precomputeEmbeddings() {
   // Save to file
   const embeddingsPath = path.join(
     process.cwd(),
-    '.aios-core/core/registry/worker-embeddings.json',
+    '.aiox-core/core/registry/worker-embeddings.json',
   );
 
   const data = {

@@ -22,7 +22,7 @@
 ## Usage
 
 ```javascript
-const { renderTemplate } = require('.aios-core/infrastructure/scripts/template-engine');
+const { renderTemplate } = require('.aiox-core/infrastructure/scripts/template-engine');
 
 const result = await renderTemplate('{{COMPONENTNAME}}.md', {
   VAR1: 'value1',

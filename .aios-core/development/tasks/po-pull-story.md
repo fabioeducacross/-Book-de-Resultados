@@ -141,11 +141,11 @@ acceptance-criteria:
 
 - **Tool:** task-runner
   - **Purpose:** Task execution and orchestration
-  - **Source:** .aios-core/core/task-runner.js
+  - **Source:** .aiox-core/core/task-runner.js
 
 - **Tool:** logger
   - **Purpose:** Execution logging and error tracking
-  - **Source:** .aios-core/utils/logger.js
+  - **Source:** .aiox-core/utils/logger.js
 
 ---
 
@@ -156,7 +156,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -226,14 +226,14 @@ optional:
 
 ## Prerequisites
 
-- PM tool configured in `.aios-pm-config.yaml` (or will use local-only mode)
+- PM tool configured in `.aiox-pm-config.yaml` (or will use local-only mode)
 
 ## Task Execution Steps
 
 ### Step 1: Get PM Adapter
 
 ```javascript
-const { getPMAdapter, isPMToolConfigured } = require('../.aios-core/scripts/pm-adapter-factory');
+const { getPMAdapter, isPMToolConfigured } = require('../.aiox-core/scripts/pm-adapter-factory');
 
 if (!isPMToolConfigured()) {
   console.log('ℹ️  Local-only mode: No PM tool configured');
@@ -307,7 +307,7 @@ If `auto_merge: true` and updates exist:
 ## Integration with Story Manager
 
 ```javascript
-const { pullStoryFromPM } = require('../.aios-core/scripts/story-manager');
+const { pullStoryFromPM } = require('../.aiox-core/scripts/story-manager');
 
 const updates = await pullStoryFromPM(storyId);
 if (updates) {

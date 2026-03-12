@@ -8,13 +8,32 @@
  * Processes all files that differ between local HEAD and remote tracking branch.
  * Exits with 0 (success) even on errors — registry issues should not block push.
  *
- * Usage: node .aios-core/hooks/ids-pre-push.js
+ * Usage: node .aiox-core/hooks/ids-pre-push.js
  */
 
 const { execSync } = require('child_process');
 const path = require('path');
 
 const REPO_ROOT = path.resolve(__dirname, '../..');
+
+function isDocsOnlyPath(relativePath) {
+  const p = String(relativePath || '').replace(/\\/g, '/');
+  if (!p) return false;
+
+  if (p.startsWith('docs/')) return true;
+  if (p === 'README.md') return true;
+  if (p === 'CHANGELOG.md') return true;
+  if (p === 'CONTRIBUTING.md') return true;
+  if (p === 'CODE_OF_CONDUCT.md') return true;
+  if (p === 'AGENTS.md') return true;
+
+  return false;
+}
+
+function isDocsOnlyPush(changes) {
+  if (!Array.isArray(changes) || changes.length === 0) return false;
+  return changes.every((c) => isDocsOnlyPath(c.relativePath));
+}
 
 function getChangedFilesSinceRemote() {
   try {
@@ -58,7 +77,11 @@ function getChangedFilesSinceRemote() {
       }
 
       if (!filePath) continue;
-      changes.push({ action, filePath: path.resolve(REPO_ROOT, filePath) });
+      changes.push({
+        action,
+        relativePath: filePath,
+        filePath: path.resolve(REPO_ROOT, filePath),
+      });
     }
 
     return changes;
@@ -76,8 +99,13 @@ async function main() {
     process.exit(0);
   }
 
+  if (process.env.AIOX_IDS_FORCE !== '1' && isDocsOnlyPush(changes)) {
+    console.log('[IDS-Hook] Docs-only push detected, skipping registry update.');
+    process.exit(0);
+  }
+
   try {
-    const { RegistryUpdater } = require(path.resolve(REPO_ROOT, '.aios-core/core/ids/registry-updater.js'));
+    const { RegistryUpdater } = require(path.resolve(REPO_ROOT, '.aiox-core/core/ids/registry-updater.js'));
     const updater = new RegistryUpdater();
     const result = await updater.processChanges(changes);
 

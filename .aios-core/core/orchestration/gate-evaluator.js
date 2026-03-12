@@ -92,7 +92,7 @@ class GateEvaluator {
     }
 
     try {
-      const configPath = path.join(this.projectRoot, '.aios-core', 'core-config.yaml');
+      const configPath = path.join(this.projectRoot, '.aiox-core', 'core-config.yaml');
       if (await fs.pathExists(configPath)) {
         const content = await fs.readFile(configPath, 'utf8');
         const config = yaml.load(content);

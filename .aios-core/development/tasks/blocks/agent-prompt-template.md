@@ -74,7 +74,7 @@ After saving, send a message to the team lead with a summary.
 ### Programmatic Usage
 
 ```javascript
-const { loadBlock, renderTemplate } = require('.aios-core/utils/block-loader');
+const { loadBlock, renderTemplate } = require('.aiox-core/utils/block-loader');
 
 const template = await loadBlock('agent-prompt-template');
 const prompt = await renderTemplate(template, {

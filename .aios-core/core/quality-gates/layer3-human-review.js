@@ -195,8 +195,8 @@ class Layer3HumanReview extends BaseLayer {
       'docs/architecture/': '@architect',
       'docs/stories/': '@sm',
       'docs/prd/': '@po',
-      '.aios-core/agents/': '@aios-master',
-      '.aios-core/core/': '@architect',
+      '.aiox-core/agents/': '@aiox-master',
+      '.aiox-core/core/': '@architect',
       'tests/': '@qa',
       'src/': '@dev',
       '.github/': '@devops',
@@ -224,7 +224,7 @@ class Layer3HumanReview extends BaseLayer {
    */
   async roundRobinAssign() {
     const reviewers = ['@architect', '@qa', '@dev', '@sm'];
-    const statusPath = '.aios/qa-status.json';
+    const statusPath = '.aiox/qa-status.json';
 
     try {
       const status = JSON.parse(await fs.readFile(statusPath, 'utf8'));
@@ -254,7 +254,7 @@ class Layer3HumanReview extends BaseLayer {
     }
 
     try {
-      const statusPath = '.aios/qa-status.json';
+      const statusPath = '.aiox/qa-status.json';
       let status = {};
 
       try {
@@ -315,7 +315,7 @@ class Layer3HumanReview extends BaseLayer {
    * @returns {Promise<Object>} Sign-off result
    */
   async recordSignoff(storyId, reviewer) {
-    const statusPath = '.aios/qa-status.json';
+    const statusPath = '.aiox/qa-status.json';
     let status = {};
 
     try {

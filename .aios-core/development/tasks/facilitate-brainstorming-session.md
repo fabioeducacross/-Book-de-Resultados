@@ -1,14 +1,14 @@
 ---
 id: facilitate-brainstorming-session
 name: Facilitate Brainstorming Session
-agent: aios-master
+agent: aiox-master
 category: collaboration
 complexity: medium
 tools:
   - clickup        # Capture ideas and organize them
   - mcp            # Call specialized agents for domain expertise
 checklists:
-  - aios-master-checklist.md
+  - aiox-master-checklist.md
 ---
 
 # Facilitate Brainstorming Session
@@ -419,7 +419,7 @@ acceptance-criteria:
 - **Script:** execute-task.js
   - **Purpose:** Generic task execution wrapper
   - **Language:** JavaScript
-  - **Location:** .aios-core/scripts/execute-task.js
+  - **Location:** .aiox-core/scripts/execute-task.js
 
 ---
 
@@ -482,8 +482,8 @@ updated_at: 2025-11-17
 ### Example 1: Feature Ideation
 
 ```bash
-aios activate Maestro
-aios brainstorm "How can we improve AIOX user onboarding for non-technical users?"
+aiox activate Maestro
+aiox brainstorm "How can we improve AIOX user onboarding for non-technical users?"
 ```
 
 **Output**: 25 ideas across 5 categories, top 10 prioritized with next steps
@@ -491,7 +491,7 @@ aios brainstorm "How can we improve AIOX user onboarding for non-technical users
 ### Example 2: Problem Solving with Specific Agents
 
 ```bash
-aios brainstorm "How to reduce API latency in database queries?" \
+aiox brainstorm "How to reduce API latency in database queries?" \
   --agents="db-sage,architect,github-devops" \
   --goal="solution" \
   --format="actionable"
@@ -502,7 +502,7 @@ aios brainstorm "How to reduce API latency in database queries?" \
 ### Example 3: Strategic Planning
 
 ```bash
-aios brainstorm "What should be our open-source expansion strategy for Q1 2026?" \
+aiox brainstorm "What should be our open-source expansion strategy for Q1 2026?" \
   --agents="po,architect,github-devops" \
   --goal="strategy" \
   --context="docs/prd.md,docs/open-source-roadmap.md"

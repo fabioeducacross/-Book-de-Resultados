@@ -11,7 +11,7 @@ workflow:
 
   type: automation
   project_types:
-    - aios-development
+    - aiox-development
     - autonomous-development
     - parallel-development
 
@@ -85,14 +85,14 @@ workflow:
 
       - id: worktree_manager
         description: Verify WorktreeManager available
-        file_exists: .aios-core/infrastructure/scripts/worktree-manager.js
+        file_exists: .aiox-core/infrastructure/scripts/worktree-manager.js
         blocking: true
-        error: "WorktreeManager not found. AIOS infrastructure incomplete."
+        error: "WorktreeManager not found. AIOX infrastructure incomplete."
 
       - id: check_limit
         description: Check worktree limit not exceeded
         script: |
-          const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
+          const WorktreeManager = require('./.aiox-core/infrastructure/scripts/worktree-manager.js');
           const manager = new WorktreeManager();
           const count = await manager.getCount();
           return count.total < manager.maxWorktrees;
@@ -165,7 +165,7 @@ workflow:
         If exists, skip creation and optionally switch to it.
 
       script: |
-        const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
+        const WorktreeManager = require('./.aiox-core/infrastructure/scripts/worktree-manager.js');
         const manager = new WorktreeManager();
         const exists = await manager.exists(storyId);
 
@@ -204,7 +204,7 @@ workflow:
         Only runs if autoCleanup is enabled in config.
 
       script: |
-        const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
+        const WorktreeManager = require('./.aiox-core/infrastructure/scripts/worktree-manager.js');
         const manager = new WorktreeManager();
         const removed = await manager.cleanupStale();
 
@@ -239,7 +239,7 @@ workflow:
         story_id: "{storyId}"
 
       script: |
-        const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
+        const WorktreeManager = require('./.aiox-core/infrastructure/scripts/worktree-manager.js');
         const manager = new WorktreeManager();
 
         try {
@@ -295,8 +295,8 @@ workflow:
         console.log(`   cd ${worktreePath}\n`);
 
         // Set environment variable for shell integration
-        process.env.AIOS_WORKTREE = worktreePath;
-        process.env.AIOS_STORY = storyId;
+        process.env.AIOX_WORKTREE = worktreePath;
+        process.env.AIOX_STORY = storyId;
 
         return {
           worktreePath,

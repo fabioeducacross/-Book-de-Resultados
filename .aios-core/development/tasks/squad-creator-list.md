@@ -130,7 +130,7 @@ path: ./squads
 ## Implementation
 
 ```javascript
-const { SquadGenerator } = require('./.aios-core/development/scripts/squad');
+const { SquadGenerator } = require('./.aiox-core/development/scripts/squad');
 
 async function listSquads(options) {
   const { path: squadsPath, format, includeInvalid } = options;

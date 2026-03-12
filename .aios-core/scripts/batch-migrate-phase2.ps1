@@ -66,7 +66,7 @@ $startTime = Get-Date
 
 foreach ($task in $tasks) {
   Write-Host "Migrating: $task" -ForegroundColor Yellow
-  node .aios-core/scripts/migrate-task-to-v2.js ".aios-core/tasks/$task" 2>&1 | Out-Null
+  node .aiox-core/scripts/migrate-task-to-v2.js ".aiox-core/tasks/$task" 2>&1 | Out-Null
   
   if ($LASTEXITCODE -eq 0 -or $LASTEXITCODE -eq 1) {
     $successCount++

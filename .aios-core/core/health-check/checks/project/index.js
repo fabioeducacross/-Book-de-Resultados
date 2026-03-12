@@ -4,7 +4,7 @@
  * Checks for project configuration coherence and structure.
  * Domain: project
  *
- * @module @synkra/aios-core/health-check/checks/project
+ * @module aiox-core/health-check/checks/project
  * @version 1.0.0
  * @story HCS-2 - Health Check System Implementation
  */
@@ -13,7 +13,7 @@ const PackageJsonCheck = require('./package-json');
 const DependenciesCheck = require('./dependencies');
 const FrameworkConfigCheck = require('./framework-config');
 const NodeVersionCheck = require('./node-version');
-const AiosDirectoryCheck = require('./aios-directory');
+const AioxDirectoryCheck = require('./aiox-directory');
 const AgentConfigCheck = require('./agent-config');
 const TaskDefinitionsCheck = require('./task-definitions');
 const WorkflowDependenciesCheck = require('./workflow-dependencies');
@@ -26,7 +26,7 @@ module.exports = {
   DependenciesCheck,
   FrameworkConfigCheck,
   NodeVersionCheck,
-  AiosDirectoryCheck,
+  AioxDirectoryCheck,
   AgentConfigCheck,
   TaskDefinitionsCheck,
   WorkflowDependenciesCheck,

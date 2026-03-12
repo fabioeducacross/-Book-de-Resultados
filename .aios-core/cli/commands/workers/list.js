@@ -1,7 +1,7 @@
 /**
  * List Command - List all workers in the registry
  *
- * Implements `aios workers list` CLI command.
+ * Implements `aiox workers list` CLI command.
  * Displays workers grouped by category with filtering and pagination.
  *
  * @module cli/commands/workers/list
@@ -32,13 +32,13 @@ function createListCommand() {
     .option('-v, --verbose', 'Show verbose/debug output')
     .addHelpText('after', `
 Examples:
-  $ aios workers list
-  $ aios workers list --category=task
-  $ aios workers list --format=table
-  $ aios workers list --format=json --category=script
-  $ aios workers list --page=2 --limit=10
-  $ aios workers list --count
-  $ aios workers list --verbose
+  $ aiox workers list
+  $ aiox workers list --category=task
+  $ aiox workers list --format=table
+  $ aiox workers list --format=json --category=script
+  $ aiox workers list --page=2 --limit=10
+  $ aiox workers list --count
+  $ aiox workers list --verbose
 
 Output Formats:
   tree     Grouped tree view by category (default)

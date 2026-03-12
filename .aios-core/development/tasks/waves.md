@@ -152,7 +152,7 @@ Next Wave (after current completes):
 
 ```javascript
 // Task implementation
-const { analyzeWaves, createWaveAnalyzer } = require('.aios-core/workflow-intelligence');
+const { analyzeWaves, createWaveAnalyzer } = require('.aiox-core/workflow-intelligence');
 
 async function executeWaves(args, options) {
   const workflowId = args[0] || await detectCurrentWorkflow();

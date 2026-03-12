@@ -29,10 +29,10 @@ const LINK_STATUS = {
 /**
  * Get the project MCP link path
  * @param {string} projectRoot - Project root directory
- * @returns {string} Path to .aios-core/tools/mcp
+ * @returns {string} Path to .aiox-core/tools/mcp
  */
 function getProjectMcpPath(projectRoot = process.cwd()) {
-  return path.join(projectRoot, '.aios-core', 'tools', 'mcp');
+  return path.join(projectRoot, '.aiox-core', 'tools', 'mcp');
 }
 
 /**
@@ -230,7 +230,7 @@ function createLink(projectRoot = process.cwd(), options = {}) {
   if (!fs.existsSync(globalPath)) {
     return {
       success: false,
-      error: 'Global MCP directory does not exist. Run "aios mcp setup" first.',
+      error: 'Global MCP directory does not exist. Run "aiox mcp setup" first.',
       linkPath,
       globalPath,
     };

@@ -106,7 +106,7 @@ function createSeedCommand() {
         console.log(`  Pass Rate Points: ${metrics.trends.passRates.length}`);
         console.log(`  Auto-Catch Points: ${metrics.trends.autoCatchRate.length}`);
 
-        console.log('\n✅ Data saved to .aios/data/quality-metrics.json');
+        console.log('\n✅ Data saved to .aiox/data/quality-metrics.json');
 
         process.exit(0);
       } catch (error) {

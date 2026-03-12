@@ -441,7 +441,7 @@ class BobOrchestrator {
           success: false,
           projectState: null,
           action: 'lock_failed',
-          error: 'Another Bob orchestration is already running. Wait or check .aios/locks/',
+          error: 'Another Bob orchestration is already running. Wait or check .aiox/locks/',
         };
       }
 
@@ -718,7 +718,7 @@ class BobOrchestrator {
       return ProjectState.NO_CONFIG;
     }
 
-    // Check 3: Does AIOS documentation exist? (AC4, AC5)
+    // Check 3: Does AIOX documentation exist? (AC4, AC5)
     const hasArchDocs = fs.existsSync(path.join(projectRoot, 'docs/architecture'));
 
     if (!hasArchDocs) {
@@ -772,8 +772,8 @@ class BobOrchestrator {
     return {
       action: 'onboarding',
       data: {
-        message: 'Projeto sem configuração AIOS detectado. Iniciando onboarding...',
-        nextStep: 'run_aios_init',
+        message: 'Projeto sem configuração AIOX detectado. Iniciando onboarding...',
+        nextStep: 'run_aiox_init',
       },
     };
   }
@@ -794,7 +794,7 @@ class BobOrchestrator {
    * @private
    */
   async _handleBrownfield(context) {
-    this._log('🔍 First execution detected — project has code but no AIOS docs');
+    this._log('🔍 First execution detected — project has code but no AIOX docs');
 
     // Delegate to BrownfieldHandler (Story 12.8 - Task 3.6)
     return this.brownfieldHandler.handle(context);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS Rollback Manager
+ * AIOX Rollback Manager
  *
  * Story: 5.4 - Rollback Manager
  * Epic: Epic 5 - Recovery & Resilience
@@ -10,7 +10,7 @@
  * and providing safe rollback operations with confirmation.
  *
  * Features:
- * - AC1: Located in `.aios-core/infrastructure/scripts/`
+ * - AC1: Located in `.aiox-core/infrastructure/scripts/`
  * - AC2: Stores last good commit per subtask in `recovery/commits.json`
  * - AC3: Command `*rollback {subtask-id}` in @dev
  * - AC4: Targeted rollback - only affects files for specific subtask
@@ -500,7 +500,7 @@ async function main() {
 
   if (args.length < 1 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-Rollback Manager - AIOS Recovery System (Story 5.4)
+Rollback Manager - AIOX Recovery System (Story 5.4)
 
 Usage:
   node rollback-manager.js <command> <story-id> [subtask-id] [options]
@@ -539,7 +539,7 @@ Examples:
   node rollback-manager.js list STORY-42
 
 Acceptance Criteria Coverage:
-  AC1: Located in .aios-core/infrastructure/scripts/
+  AC1: Located in .aiox-core/infrastructure/scripts/
   AC2: Stores last good commit per subtask in recovery/commits.json
   AC3: Command *rollback {subtask-id} support
   AC4: Targeted rollback - only affects subtask files

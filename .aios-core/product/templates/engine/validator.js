@@ -24,7 +24,7 @@ class TemplateValidator {
    */
   constructor(options = {}) {
     this.schemasDir = options.schemasDir ||
-      path.join(process.cwd(), '.aios-core', 'product', 'templates', 'engine', 'schemas');
+      path.join(process.cwd(), '.aiox-core', 'product', 'templates', 'engine', 'schemas');
 
     this.ajv = new Ajv({
       allErrors: true,

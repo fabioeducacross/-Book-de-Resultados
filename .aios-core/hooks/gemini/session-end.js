@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * AIOS Session End Hook for Gemini CLI
- * Story GEMINI-INT.6 - AIOS Hooks System
+ * AIOX Session End Hook for Gemini CLI
+ * Story GEMINI-INT.6 - AIOX Hooks System
  *
  * Executes at session end to persist state to Memory Layer.
  */
@@ -15,14 +15,14 @@ async function sessionEnd() {
 
   // Persist session summary
   try {
-    const sessionDir = path.join(projectDir, '.aios', 'sessions');
+    const sessionDir = path.join(projectDir, '.aiox', 'sessions');
     if (!fs.existsSync(sessionDir)) {
       fs.mkdirSync(sessionDir, { recursive: true });
     }
 
     // Load session files if tracked
     let modifiedFiles = [];
-    const sessionFilesPath = path.join(projectDir, '.aios', 'session-files.json');
+    const sessionFilesPath = path.join(projectDir, '.aiox', 'session-files.json');
     if (fs.existsSync(sessionFilesPath)) {
       modifiedFiles = JSON.parse(fs.readFileSync(sessionFilesPath, 'utf8'));
       // Clean up
@@ -31,7 +31,7 @@ async function sessionEnd() {
 
     // Count tool executions
     let toolCount = 0;
-    const toolLogPath = path.join(projectDir, '.aios', 'logs', 'tool-results.jsonl');
+    const toolLogPath = path.join(projectDir, '.aiox', 'logs', 'tool-results.jsonl');
     if (fs.existsSync(toolLogPath)) {
       const content = fs.readFileSync(toolLogPath, 'utf8');
       toolCount = content.split('\n').filter((l) => l.includes(sessionId)).length;

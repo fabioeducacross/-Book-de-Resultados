@@ -3,7 +3,7 @@
 **Version:** 2.1.0
 **Date:** 2025-12-09
 **Purpose:** Document differences between AIOX open-source and AIOX service implementations
-**Status:** ⚠️ Needs Review - Updated for v2.1 Multi-Repo Strategy
+**Status:** ⚠️ Needs Review - Updated for v4.2 Multi-Repo Strategy
 
 ---
 
@@ -17,14 +17,14 @@ This document clarifies which features apply to which context.
 
 ---
 
-## Multi-Repo Strategy (v2.1)
+## Multi-Repo Strategy (v4.2)
 
 ### Repository Organization
 
 | Repository | License | Type | Contains |
 |------------|---------|------|----------|
 | `SynkraAI/aiox-core` | Commons Clause | Public | Core framework, 11 agents, Quality Gates |
-| `SynkraAI/aios-squads` | MIT | Public | ETL, Creator, MMOS-Mapper squads |
+| `SynkraAI/aiox-squads` | MIT | Public | ETL, Creator, MMOS-Mapper squads |
 | `SynkraAI/mcp-ecosystem` | Apache 2.0 | Public | Docker MCP, IDE configs, MCP presets |
 | `SynkraAI/mmos` | Proprietary + NDA | Private | MMOS Minds, DNA Mental |
 | `SynkraAI/certified-partners` | Proprietary | Private | Premium squads, partner portal |
@@ -33,11 +33,11 @@ This document clarifies which features apply to which context.
 
 | Package | Registry | Availability |
 |---------|----------|--------------|
-| `@aios/core` | npm public | Open-source |
-| `@aios/squad-etl` | npm public | Open-source |
-| `@aios/squad-creator` | npm public | Open-source |
-| `@aios/squad-mmos` | npm public | Open-source |
-| `@aios/mcp-presets` | npm public | Open-source |
+| `@aiox/core` | npm public | Open-source |
+| `@aiox/squad-etl` | npm public | Open-source |
+| `@aiox/squad-creator` | npm public | Open-source |
+| `@aiox/squad-mmos` | npm public | Open-source |
+| `@aiox/mcp-presets` | npm public | Open-source |
 
 ### Open-Source vs Service by Repository
 
@@ -45,7 +45,7 @@ This document clarifies which features apply to which context.
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    OPEN-SOURCE (Public Repos)                           │
 │                                                                         │
-│   SynkraAI/aiox-core        SynkraAI/aios-squads                   │
+│   SynkraAI/aiox-core        SynkraAI/aiox-squads                   │
 │   ┌─────────────────────┐     ┌─────────────────────┐                  │
 │   │ • Core Framework    │     │ • ETL Squad         │                  │
 │   │ • 11 Base Agents    │     │ • Creator Squad     │                  │
@@ -126,7 +126,7 @@ This document clarifies which features apply to which context.
 **Open-Source:**
 ```yaml
 **Template:**
-- path: .aios-core/templates/task-execution-report.md
+- path: .aiox-core/templates/task-execution-report.md
   type: output
   version: 1.0
   variables: [agent_name, task_name, duration]
@@ -143,7 +143,7 @@ This document clarifies which features apply to which context.
 ```
 
 **Difference:**
-- Open-source uses templates from `.aios-core/templates/`
+- Open-source uses templates from `.aiox-core/templates/`
 - Service uses Squad-specific templates with JSON Schema validation
 
 ---
@@ -165,7 +165,7 @@ acceptance-criteria:
   - [ ] {criterion}
 
 # Separate file for agent-general validations
-.aios-core/checklists/{agent-id}-general-validation.md
+.aiox-core/checklists/{agent-id}-general-validation.md
 ```
 
 **Rationale:**
@@ -196,7 +196,7 @@ acceptance-criteria:
 - Shared utility scripts (used by 2+ agents)
 
 **Scripts** = Agent-specific, not reusable
-- `.aios-core/scripts/{agent-id}-specific/{script}.js`
+- `.aiox-core/scripts/{agent-id}-specific/{script}.js`
 - Logic unique to one agent
 - Not abstracted for reuse
 
@@ -214,7 +214,7 @@ acceptance-criteria:
     shared_with: [dev, data-engineer, architect]
 
 **Scripts:**
-- .aios-core/scripts/dev-specific/test-runner.js:    # Only dev uses this
+- .aiox-core/scripts/dev-specific/test-runner.js:    # Only dev uses this
     description: Dev agent test execution logic
     language: javascript
 ```
@@ -266,7 +266,7 @@ Same as open-source, but may have:
 
 **Fallback Plans:**
 - Missing input → Prompt user or use defaults
-- Missing template → Use generic template from `.aios-core/templates/`
+- Missing template → Use generic template from `.aiox-core/templates/`
 - Missing tool → Abort and notify user
 - Missing data → Use minimal defaults or prompt user
 
@@ -276,7 +276,7 @@ Same as open-source, but may have:
 - strategy: fallback
 - fallback: |
     If template not found:
-    1. Check .aios-core/templates/ for generic version
+    1. Check .aiox-core/templates/ for generic version
     2. If not found, use minimal output structure
     3. Notify user of missing template
 ```
@@ -355,7 +355,7 @@ Same as open-source, but may have:
 ### Open-Source
 
 **Agent Personas:**
-- Defined in `.aios-core/agents/{agent-id}.md`
+- Defined in `.aiox-core/agents/{agent-id}.md`
 - All 11 agents have personas (Dex, Quinn, Pax, etc.)
 - PT-BR localization (DECISION-1)
 - 3 personification levels (minimal, named, archetypal)
@@ -453,7 +453,7 @@ function validateTask(task) {
 - [ ] Change `responsavel_type: Humano` → `responsavel_type: Agente`
 - [ ] Change `responsavel_type: Clone` → `responsavel_type: Agente` (unless MMOS)
 - [ ] Make `atomic_layer` optional (or remove if not useful)
-- [ ] Update template paths (squads/ → .aios-core/templates)
+- [ ] Update template paths (squads/ → .aiox-core/templates)
 - [ ] Remove service-specific fields (service_id, customer_id, billing_code)
 - [ ] Update error handling fallbacks (remove service APIs)
 - [ ] Update tools (remove proprietary/internal tools)
@@ -477,7 +477,7 @@ function validateTask(task) {
 |---------|-------------|---------|
 | **responsavel_type** | Agente only | Agente/Worker/Humano/Clone |
 | **atomic_layer** | Optional | Required for design |
-| **Templates** | .aios-core/templates/ | squads/{squad}/ |
+| **Templates** | .aiox-core/templates/ | squads/{squad}/ |
 | **Tools** | MCPs, open-source CLIs | + Proprietary APIs |
 | **Scripts** | Agent-specific only | + Service orchestration |
 | **Error Fallbacks** | Local/user-driven | + Service APIs |
@@ -489,7 +489,7 @@ function validateTask(task) {
 
 ## Related Documents
 
-- [AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md) - Complete v2.1 framework guide
+- [AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md) - Complete v4.2 framework guide
 - [STANDARDS-INDEX.md](./STANDARDS-INDEX.md) - Standards navigation
 - [TASK-FORMAT-SPECIFICATION-V1.md](./TASK-FORMAT-SPECIFICATION-V1.md) - Complete task format spec
 - [AGENT-PERSONALIZATION-STANDARD-V1.md](./AGENT-PERSONALIZATION-STANDARD-V1.md) - Personality guidelines
@@ -508,4 +508,4 @@ function validateTask(task) {
 
 **Last Updated:** 2025-12-09
 **Version:** 2.1.0
-**Applies to:** AIOX v2.1+
+**Applies to:** AIOX v4.2+

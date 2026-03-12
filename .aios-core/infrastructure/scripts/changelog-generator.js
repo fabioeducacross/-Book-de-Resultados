@@ -63,7 +63,7 @@ class ChangelogGenerator {
 
     // Output paths
     this.changelogPath = config.changelogPath || path.join(this.rootPath, 'docs', 'CHANGELOG.md');
-    this.jsonPath = config.jsonPath || path.join(this.rootPath, '.aios', 'changelog.json');
+    this.jsonPath = config.jsonPath || path.join(this.rootPath, '.aiox', 'changelog.json');
   }
 
   /**

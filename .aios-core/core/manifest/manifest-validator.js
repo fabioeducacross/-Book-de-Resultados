@@ -131,8 +131,8 @@ function parseCSVLine(line) {
 class ManifestValidator {
   constructor(options = {}) {
     this.basePath = options.basePath || process.cwd();
-    this.aiosCoreDir = path.join(this.basePath, '.aios-core');
-    this.manifestDir = path.join(this.aiosCoreDir, 'manifests');
+    this.aioxCoreDir = path.join(this.basePath, '.aiox-core');
+    this.manifestDir = path.join(this.aioxCoreDir, 'manifests');
     this.verbose = options.verbose || false;
   }
 
@@ -333,7 +333,7 @@ class ManifestValidator {
     return {
       required: ['id', 'name', 'version', 'status', 'file_path'],
       optional: ['archetype', 'icon', 'when_to_use'],
-      sourceDir: '.aios-core/development/agents',
+      sourceDir: '.aiox-core/development/agents',
     };
   }
 
@@ -357,7 +357,7 @@ class ManifestValidator {
     return {
       required: ['id', 'name', 'category', 'file_path', 'status'],
       optional: ['format', 'has_elicitation'],
-      sourceDir: '.aios-core/development/tasks',
+      sourceDir: '.aiox-core/development/tasks',
     };
   }
 

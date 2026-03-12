@@ -375,10 +375,10 @@ class SubagentDispatcher extends EventEmitter {
    * @returns {Promise<Object>} - Project context
    */
   async getProjectContext() {
-    // This would read from .aios/codebase-map.json or similar
+    // This would read from .aiox/codebase-map.json or similar
     return {
       rootPath: this.rootPath,
-      framework: 'aios-core',
+      framework: 'aiox-core',
       timestamp: new Date().toISOString(),
     };
   }
@@ -591,7 +591,7 @@ class SubagentDispatcher extends EventEmitter {
    * @returns {string} - Formatted prompt
    */
   buildPrompt(agentId, task, context) {
-    let prompt = `You are ${agentId}, a specialized agent in the AIOS framework.\n\n`;
+    let prompt = `You are ${agentId}, a specialized agent in the AIOX framework.\n\n`;
 
     prompt += '## Task\n';
     prompt += `**ID:** ${task.id}\n`;
