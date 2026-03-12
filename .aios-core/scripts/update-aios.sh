@@ -14,10 +14,17 @@ set -e
 echo "⚡ AIOS Update v5.2"
 echo ""
 
-# Preflight: check rsync
+# Preflight: check rsync — fall back to Node.js edition on Windows/no-rsync
 if ! command -v rsync >/dev/null 2>&1; then
-  echo "❌ rsync is required but not found in PATH."
-  exit 1
+  echo "⚠️  rsync not found — delegating to Node.js edition (update-aios.js)"
+  echo ""
+  if command -v node >/dev/null 2>&1; then
+    exec node "$(dirname "$0")/update-aios.js"
+  else
+    echo "❌ Neither rsync nor node is available in PATH."
+    echo "   Install rsync (winget install Ookii.rsync) or Node.js (nodejs.org)"
+    exit 1
+  fi
 fi
 
 # Validate: clean working tree for .aios-core

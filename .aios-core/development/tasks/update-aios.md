@@ -16,8 +16,11 @@ Git-native sync of AIOX framework from upstream repository. Uses sparse clone + 
 ## Quick Usage
 
 ```bash
-# Run the update script
+# Run the update script (auto-falls back to Node.js if rsync is not available)
 bash .aios-core/scripts/update-aios.sh
+
+# Windows / no-rsync alternative (Node.js only, no extra dependencies):
+node .aios-core/scripts/update-aios.js
 
 # Review changes shown by the script, then:
 git add .aios-core && git commit -m "chore: sync AIOX framework"   # Apply changes
@@ -145,6 +148,7 @@ git checkout -- .aios-core/
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 5.2-node | 2026-01-31 | **WINDOWS FIX:** Node.js edition (`update-aios.js`) — no rsync required; `.sh` auto-delegates |
 | 4.0.0 | 2026-01-31 | **SIMPLIFIED:** Git-native approach, 15-line bash script replaces 847-line JS |
 | 3.1.0 | 2026-01-30 | Dynamic protection for expansion pack commands |
 | 3.0.0 | 2026-01-29 | YOLO mode with rsync |
