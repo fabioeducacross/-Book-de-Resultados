@@ -1,6 +1,6 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-12T19:04:45.116Z'
+  lastUpdated: '2026-03-12T19:13:10.378Z'
   entityCount: 495
   checksumAlgorithm: sha256
 entities:
@@ -3382,8 +3382,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:396ac61c2ff873b1939dbe3d0d2e559e54f2134acabbbca3196350d9f2e2e710
-      lastVerified: '2026-03-12T19:04:45.101Z'
+      checksum: sha256:7ec1287995deda99f9511d3fa4865b1ebb76d03c38db1aeb58c6195b05534f7d
+      lastVerified: '2026-03-12T19:13:10.376Z'
     update-manifest:
       path: .aios-core/development/tasks/update-manifest.md
       type: task
