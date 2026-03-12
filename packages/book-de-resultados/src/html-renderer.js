@@ -2618,7 +2618,9 @@ function buildDocumentStyles(theme) {
 
     .school-owl-wrap .school-owl-image {
       width: 43mm;
-      height: auto;
+      max-height: 36mm;
+      object-fit: contain;
+      object-position: center bottom;
       filter: drop-shadow(0 1.6mm 2.4mm rgba(14, 52, 71, 0.14));
       display: block;
     }
@@ -4753,7 +4755,7 @@ function renderSchoolSummaryPageContent(page, assetResolver = null) {
     <div class="analytic-split" data-layout="${escapeHtml(layoutShell)}">
       <section class="school-summary-aside">
         <div class="school-brand-block">
-          <div class="school-brand-eyebrow">SME ${escapeHtml(data.municipio || 'Canoas')}</div>
+          <div class="school-brand-eyebrow">${escapeHtml(data.schoolEyebrowPrefix || 'SME')} ${escapeHtml(data.municipio || 'Canoas')}</div>
         </div>
         <div class="school-hero-figure" aria-hidden="true">
           <div class="school-owl-wrap">
@@ -4799,7 +4801,6 @@ function renderSchoolSummaryPageContent(page, assetResolver = null) {
         <div class="school-participation-feature">
           <div class="school-participation-number">${escapeHtml(participationValue)}</div>
           <div class="school-participation-label">de participação</div>
-          <div class="school-participation-stars" aria-hidden="true">✦ ✦</div>
         </div>
         <div class="sr-only">Previstos Iniciaram Finalizaram Participação Total</div>
         ${data.rankingPosition ? `<div class="sr-only">${escapeHtml(`Posição Geral: ${data.rankingPosition}º`)}</div>` : ''}
@@ -5208,28 +5209,6 @@ function renderSchoolStatBubble(highlight) {
         dos alunos apresentaram níveis proficientes e avançados em ${escapeHtml(highlight.disciplina)}.
       </p>
     </article>
-  `;
-}
-
-function renderOwlMascotSvg() {
-  return `
-    <svg class="owl-mascot" viewBox="0 0 240 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mascote coruja">
-      <path d="M38 82c6-30 25-48 40-54-6 18-4 36 2 53-18-8-29-1-42 1Z" fill="#123E4C"/>
-      <path d="M202 82c-13-2-24-9-42-1 6-17 8-35 2-53 15 6 34 24 40 54Z" fill="#123E4C"/>
-      <ellipse cx="120" cy="92" rx="52" ry="60" fill="#1C5161"/>
-      <ellipse cx="96" cy="88" rx="24" ry="28" fill="#FFF2D7"/>
-      <ellipse cx="144" cy="88" rx="24" ry="28" fill="#FFF2D7"/>
-      <circle cx="96" cy="88" r="13" fill="#F2A328"/>
-      <circle cx="144" cy="88" r="13" fill="#F2A328"/>
-      <circle cx="96" cy="88" r="7" fill="#161C24"/>
-      <circle cx="144" cy="88" r="7" fill="#161C24"/>
-      <path d="M120 95l-10 12h20l-10-12Z" fill="#F18825"/>
-      <path d="M96 40l10 18H86l10-18Z" fill="#123E4C"/>
-      <path d="M144 40l10 18h-20l10-18Z" fill="#123E4C"/>
-      <path d="M100 132h40l6 34H94l6-34Z" fill="#E8F4F0"/>
-      <path d="M101 166v18M139 166v18" stroke="#D18E25" stroke-width="5" stroke-linecap="round"/>
-      <path d="M97 184h-15M143 184h15" stroke="#D18E25" stroke-width="5" stroke-linecap="round"/>
-    </svg>
   `;
 }
 

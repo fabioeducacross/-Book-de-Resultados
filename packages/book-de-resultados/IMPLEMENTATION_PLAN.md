@@ -79,10 +79,10 @@ Fechar a aderencia da secao `escola` usando contrato declarativo de componentes 
 
 - [x] Mapear a pagina `escola` em subcomponentes declarativos
 - [x] Definir no JSON: eyebrow, mascote, title block, KPI cards, tabela operacional, destaque de participacao
-- [ ] Remover detalhes visuais inventados que nao existam no book de referencia
-- [ ] Alinhar o recorte do mascote com a referencia institucional final
-- [ ] Validar no preview HTML contra a pagina equivalente do PDF
-- [ ] Cobrir no teste de HTML fidelity a estrutura final da pagina
+- [x] Remover detalhes visuais inventados que nao existam no book de referencia
+- [x] Alinhar o recorte do mascote com a referencia institucional final
+- [x] Validar no preview HTML contra a pagina equivalente do PDF
+- [x] Cobrir no teste de HTML fidelity a estrutura final da pagina
 
 ### Subcomponentes Alvo
 
