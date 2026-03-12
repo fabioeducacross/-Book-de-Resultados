@@ -5238,7 +5238,7 @@ function resolveSchoolMascotAsset(data) {
     return data.schoolMascotAsset;
   }
 
-  return path.resolve(__dirname, '..', 'config', 'assets', 'editorial', 'canoas-2025', 'school-owl-reference.png');
+  return null;
 }
 
 function renderDisciplineBadgeIcon(disciplina) {

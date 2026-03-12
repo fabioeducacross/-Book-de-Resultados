@@ -61,8 +61,8 @@ Mapear todos os assets do book como contratos reutilizaveis para cada shell e co
 - [x] Inventariar todos os assets reais usados no book institucional
 - [x] Separar asset sets por grupo: cover, chapter, editorial, school, comparison, tables
 - [x] Incluir mascotes, logos, overlays, imagens de abertura e recortes de referencia no JSON
-- [ ] Eliminar paths soltos de assets dentro de `src/renderer.js`
-- [ ] Eliminar fallbacks hardcoded no `src/html-renderer.js` quando houver componente declarado
+- [x] Eliminar paths soltos de assets dentro de `src/renderer.js`
+- [x] Eliminar fallbacks hardcoded no `src/html-renderer.js` quando houver componente declarado
 - [x] Criar naming padrao para asset sets e component ids
 
 ### Saida Esperada
