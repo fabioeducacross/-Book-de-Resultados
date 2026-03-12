@@ -4821,11 +4821,12 @@ function renderSchoolAreaPageContent(page, charts, theme) {
   const data = page.data || {};
   const areaRows = buildReferenceAreaRows(data);
   const layoutShell = resolveLayoutShell(page, 'school-comparison-shell');
+  const networkLabel = data.schoolEyebrowPrefix || 'SME';
 
   return `
     <section class="reference-school-area" data-layout="${escapeHtml(layoutShell)}">
       <div class="reference-school-area-grid">
-        ${areaRows.map((row) => renderReferenceDisciplineModule(row, theme)).join('')}
+        ${areaRows.map((row) => renderReferenceDisciplineModule(row, theme, networkLabel)).join('')}
       </div>
       <div class="reference-area-legend">
         ${renderReferenceLegendItem('Abaixo do Básico', 'abaixo_do_basico', theme)}
@@ -5133,7 +5134,7 @@ function resolveDisciplineTheme(disciplina) {
   };
 }
 
-function renderReferenceDisciplineModule(row, theme) {
+function renderReferenceDisciplineModule(row, theme, networkLabel = 'SME') {
   return `
     <article class="reference-area-card">
       <div class="reference-area-card-head">
@@ -5143,7 +5144,7 @@ function renderReferenceDisciplineModule(row, theme) {
         <div class="reference-area-chip">${escapeHtml((row.label || row.disciplina || '').toUpperCase())}</div>
       </div>
       ${renderReferenceDistributionRow('Escola', row.escola, theme)}
-      ${renderReferenceDistributionRow('SME', row.rede, theme)}
+      ${renderReferenceDistributionRow(networkLabel, row.rede, theme)}
     </article>
   `;
 }

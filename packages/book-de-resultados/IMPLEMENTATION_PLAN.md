@@ -103,10 +103,10 @@ Fechar a aderencia da secao `escola_disciplinas` usando o mesmo modelo declarati
 
 - [x] Quebrar `escola_disciplinas` em shells e subcomponentes
 - [x] Mapear comparativos, blocos por disciplina, legenda e areas de referencia
-- [ ] Migrar qualquer asset ou ornamento visual ainda embutido no CSS para o JSON
-- [ ] Ajustar HTML renderer para consumir component ids da secao
-- [ ] Validar contra a referencia institucional da pagina correspondente
-- [ ] Atualizar testes focados da secao
+- [x] Migrar qualquer asset ou ornamento visual ainda embutido no CSS para o JSON
+- [x] Ajustar HTML renderer para consumir component ids da secao
+- [x] Validar contra a referencia institucional da pagina correspondente
+- [x] Atualizar testes focados da secao
 
 ## Sprint 5 — Analitico Central
 

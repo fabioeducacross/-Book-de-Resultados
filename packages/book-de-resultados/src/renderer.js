@@ -691,6 +691,7 @@ function buildEscolaPages(escola, rede, metadata = {}, canonicalModel = {}, them
       rankingPosition,
       comparativos,
       theme,
+      designManifest,
     ),
   ];
 }
@@ -743,7 +744,10 @@ function buildEscolaComparativosPage(
   rankingPosition,
   rawComparativos,
   theme,
+  designManifest = null,
 ) {
+  const sectionComponent = resolveSectionComponent('escola_disciplinas', designManifest);
+  const sectionAssets = (sectionComponent && sectionComponent.assets) || {};
   return {
     section: 'escola_disciplinas',
     title: `${escola.nome_escola} — Participação por Área`,
@@ -754,6 +758,7 @@ function buildEscolaComparativosPage(
       id_escola: escola.id_escola,
       nome_escola: escola.nome_escola,
       municipio: metadata.municipio || '',
+      schoolEyebrowPrefix: sectionAssets.eyebrowPrefix || null,
       rankingPosition: rankingPosition || null,
       hideRankingBadge: true,
       footerRight: 'Resultados',
