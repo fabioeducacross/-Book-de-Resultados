@@ -40,8 +40,8 @@ Fechar a base estrutural para que assets e componentes parem de ficar dispersos 
 - [x] Carregar o contrato no `src/design-manifest.js`
 - [x] Criar resolucao por secao e por capitulo
 - [x] Plugar os primeiros consumidores no renderer
-- [ ] Documentar formalmente o schema minimo do contrato de componentes
-- [ ] Adicionar testes unitarios especificos para `resolveSectionComponent()` e `resolveChapterComponent()`
+- [x] Documentar formalmente o schema minimo do contrato de componentes
+- [x] Adicionar testes unitarios especificos para `resolveSectionComponent()` e `resolveChapterComponent()`
 
 ### Arquivos Principais
 
@@ -58,12 +58,12 @@ Mapear todos os assets do book como contratos reutilizaveis para cada shell e co
 
 ### Tasks
 
-- [ ] Inventariar todos os assets reais usados no book institucional
-- [ ] Separar asset sets por grupo: cover, chapter, editorial, school, comparison, tables
-- [ ] Incluir mascotes, logos, overlays, imagens de abertura e recortes de referencia no JSON
+- [x] Inventariar todos os assets reais usados no book institucional
+- [x] Separar asset sets por grupo: cover, chapter, editorial, school, comparison, tables
+- [x] Incluir mascotes, logos, overlays, imagens de abertura e recortes de referencia no JSON
 - [ ] Eliminar paths soltos de assets dentro de `src/renderer.js`
 - [ ] Eliminar fallbacks hardcoded no `src/html-renderer.js` quando houver componente declarado
-- [ ] Criar naming padrao para asset sets e component ids
+- [x] Criar naming padrao para asset sets e component ids
 
 ### Saida Esperada
 
@@ -77,8 +77,8 @@ Fechar a aderencia da secao `escola` usando contrato declarativo de componentes 
 
 ### Tasks
 
-- [ ] Mapear a pagina `escola` em subcomponentes declarativos
-- [ ] Definir no JSON: eyebrow, mascote, title block, KPI cards, tabela operacional, destaque de participacao
+- [x] Mapear a pagina `escola` em subcomponentes declarativos
+- [x] Definir no JSON: eyebrow, mascote, title block, KPI cards, tabela operacional, destaque de participacao
 - [ ] Remover detalhes visuais inventados que nao existam no book de referencia
 - [ ] Alinhar o recorte do mascote com a referencia institucional final
 - [ ] Validar no preview HTML contra a pagina equivalente do PDF
@@ -101,8 +101,8 @@ Fechar a aderencia da secao `escola_disciplinas` usando o mesmo modelo declarati
 
 ### Tasks
 
-- [ ] Quebrar `escola_disciplinas` em shells e subcomponentes
-- [ ] Mapear comparativos, blocos por disciplina, legenda e areas de referencia
+- [x] Quebrar `escola_disciplinas` em shells e subcomponentes
+- [x] Mapear comparativos, blocos por disciplina, legenda e areas de referencia
 - [ ] Migrar qualquer asset ou ornamento visual ainda embutido no CSS para o JSON
 - [ ] Ajustar HTML renderer para consumir component ids da secao
 - [ ] Validar contra a referencia institucional da pagina correspondente

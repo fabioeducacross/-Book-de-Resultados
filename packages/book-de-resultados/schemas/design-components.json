@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "design-components",
+  "title": "Book de Resultados — Design Components Contract",
+  "description": "Schema de validação para o contrato declarativo de componentes editoriais do Book de Resultados. Cada componente declara sua identidade, kind, asset set e subcomponentes, permitindo que o renderer consuma o contrato em vez de regras espalhadas.",
+  "type": "object",
+  "required": ["version", "id", "assetSets", "components", "sectionComponents", "chapterComponents"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Versão semântica do contrato de componentes (ex: 1.0.0)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identificador único do catálogo de componentes (ex: educacross-book-components)"
+    },
+    "label": {
+      "type": "string",
+      "description": "Rótulo legível do catálogo de componentes"
+    },
+    "assetSets": {
+      "type": "object",
+      "description": "Catálogo de asset sets reutilizáveis. Cada chave é um asset set id; o valor é um objeto com os assets do set.",
+      "additionalProperties": {
+        "$ref": "#/definitions/assetSet"
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "Catálogo de componentes declarativos. Cada chave é um component id; o valor é um objeto de definição do componente.",
+      "additionalProperties": {
+        "$ref": "#/definitions/componentDefinition"
+      }
+    },
+    "sectionComponents": {
+      "type": "object",
+      "description": "Mapeamento de section key para component id. Permite ao renderer resolver o componente declarativo a partir do nome da seção.",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "chapterComponents": {
+      "type": "object",
+      "description": "Mapeamento de chapter key para component id. Permite ao renderer resolver o componente de abertura de capítulo.",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "definitions": {
+    "assetSet": {
+      "type": "object",
+      "description": "Conjunto de assets reutilizáveis para um componente editorial. Todas as propriedades são opcionais e específicas por kind.",
+      "additionalProperties": true,
+      "properties": {
+        "logoUrl": {
+          "type": ["string", "null"],
+          "description": "URL ou caminho relativo ao logo institucional"
+        },
+        "imageUrl": {
+          "type": ["string", "null"],
+          "description": "URL ou caminho relativo à imagem principal do componente"
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Texto alternativo da imagem principal"
+        },
+        "overlayImageUrl": {
+          "type": ["string", "null"],
+          "description": "URL ou caminho relativo à imagem de overlay decorativo"
+        },
+        "mascotImageUrl": {
+          "type": ["string", "null"],
+          "description": "URL ou caminho relativo ao mascote institucional"
+        },
+        "mascotAlt": {
+          "type": "string",
+          "description": "Texto alternativo do mascote"
+        },
+        "eyebrowPrefix": {
+          "type": "string",
+          "description": "Prefixo de eyebrow exibido acima do nome da escola (ex: SME)"
+        }
+      }
+    },
+    "componentDefinition": {
+      "type": "object",
+      "description": "Definição declarativa de um componente editorial.",
+      "required": ["kind"],
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Tipo do componente que determina qual shell e regras de composição se aplicam (ex: page-cover, chapter-opener, editorial-opening, school-summary)"
+        },
+        "assetSet": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Referência ao asset set id declarado em assetSets"
+        },
+        "subcomponents": {
+          "type": "object",
+          "description": "Subcomponentes declarativos do componente. Cada chave é um subcomponent id; o valor é um objeto de configuração.",
+          "additionalProperties": {
+            "$ref": "#/definitions/subcomponentDefinition"
+          }
+        }
+      }
+    },
+    "subcomponentDefinition": {
+      "type": "object",
+      "description": "Definição declarativa de um subcomponente (bloco visual dentro de um componente).",
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Tipo do subcomponente (ex: eyebrow, mascot, title-block, kpi-card, operational-table, participation-callout)"
+        },
+        "label": {
+          "type": "string",
+          "description": "Rótulo semântico do subcomponente"
+        },
+        "visible": {
+          "type": "boolean",
+          "description": "Controla se o subcomponente deve ser renderizado. Padrão: true"
+        }
+      }
+    }
+  }
+}
