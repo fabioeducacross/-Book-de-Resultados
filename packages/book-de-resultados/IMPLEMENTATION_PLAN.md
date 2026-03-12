@@ -131,11 +131,11 @@ Reduzir a dependencia de CSS por secao e mover o renderer para um modelo orienta
 
 ### Tasks
 
-- [ ] Criar helpers para leitura de componente por secao e subcomponente
-- [ ] Criar helpers para classes e data attributes por shell e component id
-- [ ] Substituir branches literais por resolucao declarativa quando possivel
-- [ ] Isolar estilos por shell em vez de acumular regras por secao
-- [ ] Revisar fallbacks para compatibilidade com dados antigos
+- [x] Criar helpers para leitura de componente por secao e subcomponente
+- [x] Criar helpers para classes e data attributes por shell e component id
+- [x] Substituir branches literais por resolucao declarativa quando possivel
+- [x] Isolar estilos por shell em vez de acumular regras por secao
+- [x] Revisar fallbacks para compatibilidade com dados antigos
 
 ## Sprint 7 — Validacao e Fechamento
 

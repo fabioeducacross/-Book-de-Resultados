@@ -292,11 +292,11 @@ function buildEditorialChapters(context = {}) {
       overlayImageUrl: resultadosChapterAssets.overlayImageUrl || editorialAssets.chapterResultadosOverlayImageUrl || null,
       imageAlt: resultadosChapterAssets.imageAlt || editorialAssets.chapterResultadosImageAlt || 'Abertura do capítulo Resultados',
       pageBuilders: [
-        ({ metadata, rede, theme }) => buildVisaoGeral(metadata, rede, theme),
-        ({ disciplinas, rede, theme }) => disciplinas.map((disciplina) => buildResultadosDisciplina(disciplina, rede, theme)),
-        ({ anos, rede, escolas }) => anos.map((ano) => buildResultadosAno(ano, rede, escolas, anos.length)),
-        ({ paginatedRankings }) => buildRankingPages(paginatedRankings),
-        ({ entities, facts, disciplinas, theme }) => buildHabilidadesPages(entities, facts, disciplinas, theme),
+        ({ metadata, rede, theme, options }) => buildVisaoGeral(metadata, rede, theme, options.designManifest),
+        ({ disciplinas, rede, theme, options }) => disciplinas.map((disciplina) => buildResultadosDisciplina(disciplina, rede, theme, options.designManifest)),
+        ({ anos, rede, escolas, options }) => anos.map((ano) => buildResultadosAno(ano, rede, escolas, anos.length, options.designManifest)),
+        ({ paginatedRankings, options }) => buildRankingPages(paginatedRankings, options.designManifest),
+        ({ entities, facts, disciplinas, theme, options }) => buildHabilidadesPages(entities, facts, disciplinas, theme, options.designManifest),
         ({ escolas, rede, metadata, entities, facts, derived, theme, options }) =>
           escolas.flatMap((escola) => buildEscolaPages(escola, rede, metadata, { entities, facts, derived }, theme, options.designManifest)),
       ],
@@ -588,7 +588,8 @@ function estimateParticipantsFromPercentage(totalPrevistos, participacao) {
   return Math.round(total * percent / 100);
 }
 
-function buildVisaoGeral(metadata, rede, theme) {
+function buildVisaoGeral(metadata, rede, theme, designManifest = null) {
+  const component = resolveSectionComponent('visao_geral', designManifest);
   return {
     section: 'visao_geral',
     title: 'Visão Geral da Rede',
@@ -603,6 +604,7 @@ function buildVisaoGeral(metadata, rede, theme) {
       mediaGeral: rede.mediaGeral,
       distribuicao: rede.distribuicao,
       mediasPorDisciplina: rede.mediasPorDisciplina,
+      componentId: component ? component.id : null,
       components: {
         proficiencia: buildProficienciaComponent(
           rede.distribuicao,
@@ -614,7 +616,8 @@ function buildVisaoGeral(metadata, rede, theme) {
   };
 }
 
-function buildResultadosDisciplina(disciplina, rede, theme) {
+function buildResultadosDisciplina(disciplina, rede, theme, designManifest = null) {
+  const component = resolveSectionComponent('resultados_disciplina', designManifest);
   const mediaDisciplina = (rede.mediasPorDisciplina || {})[disciplina] || { media: 0, participacao: 0 };
   const distribuicaoDisciplina = (rede.distribuicaoPorDisciplina || {})[disciplina] || rede.distribuicao;
   return {
@@ -628,6 +631,7 @@ function buildResultadosDisciplina(disciplina, rede, theme) {
       media: mediaDisciplina.media,
       participacao: mediaDisciplina.participacao,
       distribuicao: distribuicaoDisciplina,
+      componentId: component ? component.id : null,
       components: {
         proficiencia: buildProficienciaComponent(
           distribuicaoDisciplina,
@@ -639,19 +643,20 @@ function buildResultadosDisciplina(disciplina, rede, theme) {
   };
 }
 
-function buildRankingPages(paginatedRankings) {
+function buildRankingPages(paginatedRankings, designManifest = null) {
   const pages = [];
 
   for (const [disciplina, rankingPages] of Object.entries(paginatedRankings || {})) {
     rankingPages.forEach((pageRows, pageIdx) => {
-      pages.push(buildRankingPage(disciplina, pageRows, pageIdx, rankingPages.length));
+      pages.push(buildRankingPage(disciplina, pageRows, pageIdx, rankingPages.length, designManifest));
     });
   }
 
   return pages;
 }
 
-function buildRankingPage(disciplina, rows, pageIdx, totalPages) {
+function buildRankingPage(disciplina, rows, pageIdx, totalPages, designManifest = null) {
+  const component = resolveSectionComponent('ranking', designManifest);
   return {
     section: 'ranking',
     title: `Ranking de Escolas — ${disciplina}${totalPages > 1 ? ` (${pageIdx + 1}/${totalPages})` : ''}`,
@@ -660,6 +665,7 @@ function buildRankingPage(disciplina, rows, pageIdx, totalPages) {
       rows,
       pageIndex: pageIdx,
       totalPages,
+      componentId: component ? component.id : null,
     },
   };
 }
@@ -785,7 +791,8 @@ function buildEscolaComparativosPage(
   };
 }
 
-function buildResultadosAno(ano, rede, escolas, totalAnos = 1) {
+function buildResultadosAno(ano, rede, escolas, totalAnos = 1, designManifest = null) {
+  const component = resolveSectionComponent('resultados_ano', designManifest);
   const resultadosDoAno = (escolas || []).flatMap((escola) =>
     (escola.resultadosPorAno || []).filter((row) => String(row.ano) === String(ano)),
   );
@@ -838,6 +845,7 @@ function buildResultadosAno(ano, rede, escolas, totalAnos = 1) {
         : null,
       distribuicao: totalAnos === 1 ? rede.distribuicao : null,
       escolas: escolasDoAno,
+      componentId: component ? component.id : null,
     },
   };
 }
@@ -942,7 +950,7 @@ const HABILIDADES_MAX_ROWS_PER_PAGE = 20;
  * facts.desempenhosHabilidade and grouping by discipline.
  * Returns an empty array when there are no habilidades in the model.
  */
-function buildHabilidadesPages(entities, facts, disciplinas, theme) {
+function buildHabilidadesPages(entities, facts, disciplinas, theme, designManifest = null) {
   const habilidades = ((entities || {}).habilidades) || [];
   if (habilidades.length === 0) return [];
 
@@ -989,14 +997,15 @@ function buildHabilidadesPages(entities, facts, disciplinas, theme) {
     const totalPages = tableComponent.totalPages;
     for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
       const pageRows = tableComponent.pages[pageIdx] || [];
-      pages.push(buildHabilidadesPage(disciplina, pageRows, rows.length, pageIdx, totalPages, tableComponent, theme));
+      pages.push(buildHabilidadesPage(disciplina, pageRows, rows.length, pageIdx, totalPages, tableComponent, theme, designManifest));
     }
   }
 
   return pages;
 }
 
-function buildHabilidadesPage(disciplina, rows, totalHabilidades, pageIndex, totalPages, tableComponent, theme) {
+function buildHabilidadesPage(disciplina, rows, totalHabilidades, pageIndex, totalPages, tableComponent, theme, designManifest = null) {
+  const component = resolveSectionComponent('habilidades_disciplina', designManifest);
   const suffix = totalPages > 1 ? ` (${pageIndex + 1}/${totalPages})` : '';
   const tabela =
     tableComponent ||
@@ -1022,6 +1031,7 @@ function buildHabilidadesPage(disciplina, rows, totalHabilidades, pageIndex, tot
       totalHabilidades,
       pageIndex,
       totalPages,
+      componentId: component ? component.id : null,
       components: {
         tabela,
       },

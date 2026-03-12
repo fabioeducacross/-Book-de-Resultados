@@ -3827,7 +3827,9 @@ function renderPageContent(page, charts, theme, layoutProfile = null, assetResol
       return renderResultadosAnoContent(page, charts, theme);
     case 'ranking': {
       const rankingStyleFlags = resolvePageStyleFlags(page);
-      return [
+      const rankingComponentId = (data && data.componentId) || '';
+      const rankingComponentAttr = rankingComponentId ? ` data-component-id="${escapeHtml(rankingComponentId)}"` : '';
+      return `<div class="priority-template priority-template-ranking"${rankingComponentAttr}>${[
         renderSectionHero(
           page,
           `Leitura comparativa do ranking escolar em ${data.disciplina || 'disciplina'}.`,
@@ -3858,7 +3860,7 @@ function renderPageContent(page, charts, theme, layoutProfile = null, assetResol
             }
             : {},
         ),
-      ].join('');
+      ].join('')}</div>`;
     }
   }
 
@@ -4106,8 +4108,11 @@ function renderAnalyticalContent(page, charts, theme) {
     );
   }
 
+  const componentId = (page.data && page.data.componentId) || '';
+  const componentAttr = componentId ? ` data-component-id="${escapeHtml(componentId)}"` : '';
+
   return `
-    <div class="priority-template priority-template-${escapeHtml(page.section)}">
+    <div class="priority-template priority-template-${escapeHtml(page.section)}"${componentAttr}>
       ${blocks.join('')}
     </div>
   `;
@@ -4145,7 +4150,10 @@ function renderResultadosAnoContent(page, charts, theme) {
     blocks.push(renderTextPanel(page.title, 'Nenhuma escola com resultados disponíveis para este ano/série.'));
   }
 
-  return blocks.join('');
+  const componentId = (page.data && page.data.componentId) || '';
+  const componentAttr = componentId ? ` data-component-id="${escapeHtml(componentId)}"` : '';
+
+  return `<div class="priority-template priority-template-resultados-ano"${componentAttr}>${blocks.join('')}</div>`;
 }
 
 /**
@@ -4551,7 +4559,11 @@ function renderHabilidadesContent(page, data, theme) {
     ],
   );
 
+  const componentId = (data && data.componentId) || '';
+  const componentAttr = componentId ? ` data-component-id="${escapeHtml(componentId)}"` : '';
+
   return `
+    <div class="priority-template priority-template-habilidades"${componentAttr}>
     ${hero}
     ${renderContextStrip(contextItems, styleFlags.isDenseTable ? 'dense-table-context-strip' : '')}
     ${pagination}
@@ -4559,6 +4571,7 @@ function renderHabilidadesContent(page, data, theme) {
     panelClassName: 'panel dense-table-panel dense-table-panel-skills',
     tableClassName: 'skills-table dense-table-table',
   } : {})}
+    </div>
   `;
 }
 
