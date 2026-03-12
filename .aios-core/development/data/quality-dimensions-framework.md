@@ -1,7 +1,7 @@
 # Quality Dimensions Framework
 
 > **Version:** 1.0.0
-> **Source:** AIOS Quality Standards
+> **Source:** AIOX Quality Standards
 
 Framework for evaluating squad outputs using multi-dimensional quality scoring.
 

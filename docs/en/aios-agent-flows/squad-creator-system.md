@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@squad-creator** (Nova) is the **Creator** of the AIOS agent system. This agent is responsible for:
+**@squad-creator** (Nova) is the **Creator** of the AIOX agent system. This agent is responsible for:
 
 - Creating and configuring new agent squads
 - Defining squad compositions and roles
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @squad-creator System v1.0*
+*AIOX Agent Flows - @squad-creator System v1.0*

@@ -10,11 +10,11 @@
 
 ---
 
-Como migrar squads legados para o formato AIOS 2.1.
+Como migrar squads legados para o formato AIOX 2.1.
 
 ## Visão Geral
 
-AIOS 2.1 introduziu um novo formato de squad com:
+AIOX 2.1 introduziu um novo formato de squad com:
 
 - Arquitetura task-first
 - Validação JSON Schema
@@ -30,7 +30,7 @@ Squads legados usando `config.yaml` ou formatos mais antigos precisam de migraç
 | Indicador            | Legado        | Atual (2.1+)               |
 | -------------------- | ------------- | -------------------------- |
 | Arquivo de manifesto | `config.yaml` | `squad.yaml`               |
-| Campo AIOS type      | Ausente       | `aios.type: squad`         |
+| Campo AIOX type      | Ausente       | `aios.type: squad`         |
 | Versão mínima        | Ausente       | `aios.minVersion: "2.1.0"` |
 | Estrutura            | Agent-first   | Task-first                 |
 

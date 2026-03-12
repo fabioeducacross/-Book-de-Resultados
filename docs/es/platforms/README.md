@@ -12,7 +12,7 @@
 
 ## Visión General de las Plataformas Soportadas
 
-AIOS soporta 9 plataformas de desarrollo con IA. Elija la que mejor se adapte a su flujo de trabajo.
+AIOX soporta 9 plataformas de desarrollo con IA. Elija la que mejor se adapte a su flujo de trabajo.
 
 ### Tabla Comparativa Rápida
 
@@ -32,7 +32,7 @@ AIOS soporta 9 plataformas de desarrollo con IA. Elija la que mejor se adapte a 
 flowchart TD
     Start["¿Qué plataforma<br/>debo usar?"] --> Q1{"¿Usas<br/>Claude/Anthropic API?"}
 
-    Q1 -->|Sí| CC["<b>Claude Code</b> ⭐<br/>Mejor integración AIOS"]
+    Q1 -->|Sí| CC["<b>Claude Code</b> ⭐<br/>Mejor integración AIOX"]
     Q1 -->|No| Q2{"¿Prefieres<br/>VS Code?"}
 
     Q2 -->|Sí| Q3{"¿Quieres una<br/>extensión?"}
@@ -78,7 +78,7 @@ flowchart TD
 
 ```yaml
 config_file: .claude/CLAUDE.md
-agent_folder: .claude/commands/AIOS/agents
+agent_folder: .claude/commands/AIOX/agents
 activation: /agent-name (comandos slash)
 format: full-markdown-yaml
 mcp_support: native
@@ -234,7 +234,7 @@ special_features:
 
 ```mermaid
 graph TD
-    subgraph "AIOS Core"
+    subgraph "AIOX Core"
         Agents["Definiciones de Agentes<br/>.aios-core/development/agents"]
         Templates["Templates de IDE<br/>.aios-core/product/templates"]
         Sync["Sistema de Sync<br/>scripts ide-sync"]
@@ -267,7 +267,7 @@ graph TD
 
 ### Inicio Rápido
 
-1. **Instale AIOS** en su proyecto:
+1. **Instale AIOX** en su proyecto:
 
    ```bash
    npx @anthropic/aios init
@@ -290,7 +290,7 @@ graph TD
 ```mermaid
 sequenceDiagram
     participant User as Usuario
-    participant CLI as AIOS CLI
+    participant CLI as AIOX CLI
     participant Parser as Agent Parser
     participant Transform as IDE Transformer
     participant IDE as IDE Config
@@ -319,4 +319,4 @@ sequenceDiagram
 
 ---
 
-_Synkra AIOS - Documentación de Plataformas v1.0_
+_Synkra AIOX - Documentación de Plataformas v1.0_

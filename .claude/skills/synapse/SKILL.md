@@ -7,7 +7,7 @@ description: "This skill should be used when users want to understand the SYNAPS
 
 ## Overview
 
-SYNAPSE (Synkra Adaptive Processing & State Engine) is the unified context engine for AIOS. It injects contextual rules into every prompt via an 8-layer processing pipeline, adapting to context window usage through bracket-aware filtering.
+SYNAPSE (Synkra Adaptive Processing & State Engine) is the unified context engine for AIOX. It injects contextual rules into every prompt via an 8-layer processing pipeline, adapting to context window usage through bracket-aware filtering.
 
 **What it does:**
 - Injects rules per-prompt via Claude Code's `UserPromptSubmit` hook
@@ -18,7 +18,7 @@ SYNAPSE (Synkra Adaptive Processing & State Engine) is the unified context engin
 
 **What it replaces:** SYNAPSE replaces the legacy CARL system with full feature parity plus 8 new capabilities including agent-scoped domains, workflow activation, and CRUD management commands.
 
-**Architecture model:** Open Core — the 8-layer engine lives in `aios-core` (open source), memory integration is feature-gated in `aios-pro`.
+**Architecture model:** Open Core — the 8-layer engine lives in `aiox-core` (open source), memory integration is feature-gated in `aios-pro`.
 
 ## Quick Start
 

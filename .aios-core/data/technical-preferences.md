@@ -2,7 +2,7 @@
 
 ## Tech Presets
 
-AIOS provides pre-defined architecture presets for common technology stacks.
+AIOX provides pre-defined architecture presets for common technology stacks.
 Location: `.aios-core/data/tech-presets/`
 
 ### Available Presets

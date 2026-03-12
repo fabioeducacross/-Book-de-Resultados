@@ -1,4 +1,4 @@
-# AIOS Documentation Template
+# AIOX Documentation Template
 
 **Version:** 1.0.0
 **Last Updated:** 2026-01-28
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This document provides the standard template structure for AIOS documentation. All documentation in the AIOS framework should follow this template to ensure consistency and ease of navigation.
+This document provides the standard template structure for AIOX documentation. All documentation in the AIOX framework should follow this template to ensure consistency and ease of navigation.
 
 ---
 
@@ -57,7 +57,7 @@ Main content goes here.
 
 ---
 
-_Last Updated: {{DATE}} | AIOS Framework Team_
+_Last Updated: {{DATE}} | AIOX Framework Team_
 ```
 
 ### Full Template with i18n
@@ -86,7 +86,7 @@ _Last Updated: {{DATE}} | AIOS Framework Team_
 
 ## Overview
 
-Brief description of what this document covers and its purpose within the AIOS framework.
+Brief description of what this document covers and its purpose within the AIOX framework.
 
 ### Key Points
 
@@ -157,7 +157,7 @@ Content with diagrams:
 
 ---
 
-_Last Updated: {{DATE}} | AIOS Framework Team_
+_Last Updated: {{DATE}} | AIOX Framework Team_
 ```
 
 ---
@@ -303,7 +303,7 @@ Description of step 2.
 
 ---
 
-_Last Updated: {{DATE}} | AIOS Framework Team_
+_Last Updated: {{DATE}} | AIOX Framework Team_
 ```
 
 ### API/Reference Template
@@ -369,7 +369,7 @@ property2?: number;
 
 ---
 
-_Last Updated: {{DATE}} | AIOS Framework Team_
+_Last Updated: {{DATE}} | AIOX Framework Team_
 ```
 
 ---
@@ -451,17 +451,17 @@ Always include the language navigation header:
 
 **Version:** 1.0.0
 **Last Updated:** 2026-01-28
-**Audience:** Developers extending AIOS
+**Audience:** Developers extending AIOX
 
 ---
 
 ## Overview
 
-This guide explains how to create custom agents for the AIOS framework.
+This guide explains how to create custom agents for the AIOX framework.
 
 ## Prerequisites
 
-- [ ] AIOS Core installed
+- [ ] AIOX Core installed
 - [ ] Understanding of agent concepts
 
 ## Creating an Agent
@@ -478,17 +478,17 @@ persona: Expert in specific domain
 
 ---
 
-_Last Updated: 2026-01-28 | AIOS Framework Team_
+_Last Updated: 2026-01-28 | AIOX Framework Team_
 ```
 
 ---
 
 ## Related Documents
 
-- [AIOS Framework Documentation](/docs/README.md)
+- [AIOX Framework Documentation](/docs/README.md)
 - [Contributing Guide](/CONTRIBUTING.md)
 - [Style Guide](/docs/guides/style-guide.md)
 
 ---
 
-_Last Updated: 2026-01-28 | AIOS Framework Team_
+_Last Updated: 2026-01-28 | AIOX Framework Team_

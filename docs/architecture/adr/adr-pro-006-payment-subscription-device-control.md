@@ -11,7 +11,7 @@
 
 ## Context
 
-AIOS Pro operates as an open-core CLI product: `aios-core` is MIT-licensed and free, while `aios-pro` is a proprietary git submodule with premium squads, persistent memory, usage metrics, and enterprise integrations. The existing infrastructure (PRO-1 through PRO-8) provides feature gating, license key validation, encrypted local cache, machine fingerprinting, and graceful degradation.
+AIOX Pro operates as an open-core CLI product: `aiox-core` is MIT-licensed and free, while `aios-pro` is a proprietary git submodule with premium squads, persistent memory, usage metrics, and enterprise integrations. The existing infrastructure (PRO-1 through PRO-8) provides feature gating, license key validation, encrypted local cache, machine fingerprinting, and graceful degradation.
 
 **The gap:** No automated payment flow exists. Users cannot purchase, receive credentials automatically, manage subscriptions, or recover lost keys. Device limits (max 2 per license) exist in schema (`seats: { used, max }`) but are not enforced per-device.
 
@@ -52,7 +52,7 @@ After analyzing 6 gateways, **Polar.sh** is recommended as the primary payment g
 3. **Built-in license keys** with validation API -- eliminates need for custom license server for key generation
 4. **GitHub repository access grants** -- can automatically manage private submodule access per subscription
 5. **Type-safe Node.js SDK** (`@polar-sh/sdk`) with built-in webhook validation
-6. **Open source** (Apache 2.0) -- aligns with AIOS open-core philosophy
+6. **Open source** (Apache 2.0) -- aligns with AIOX open-core philosophy
 7. **Checkout links** -- shareable URLs work perfectly for CLI products without a website
 
 ### Why LemonSqueezy as Alternative
@@ -114,7 +114,7 @@ After analyzing 6 gateways, **Polar.sh** is recommended as the primary payment g
 
 ### Feature Comparison
 
-| Feature | Free (aios-core) | Pro Individual | Pro Team | Enterprise |
+| Feature | Free (aiox-core) | Pro Individual | Pro Team | Enterprise |
 |---------|-------------------|----------------|----------|------------|
 | Core agents | Yes | Yes | Yes | Yes |
 | Open-source squads | Yes | Yes | Yes | Yes |
@@ -217,7 +217,7 @@ License Record {
 | Format without deactivate | Self-service reset from other device, or stale cleanup at 60 days |
 | Concurrent activation race | Database transaction with `SELECT ... FOR UPDATE` |
 | License sharing abuse | Rate limiting: max 5 device swaps per 30 days |
-| Docker/CI | Not designed for ephemeral environments; use aios-core (free) for CI |
+| Docker/CI | Not designed for ephemeral environments; use aiox-core (free) for CI |
 
 ### Rate Limiting
 
@@ -378,7 +378,7 @@ CREATE TABLE recovery_audit_log (
 
 ## Open-Core Benchmarking Summary
 
-10 projects were analyzed. The 3 most structurally similar to AIOS Pro:
+10 projects were analyzed. The 3 most structurally similar to AIOX Pro:
 
 ### Sidekiq Pro (HIGHEST SIMILARITY)
 - Private gem server with credential-based access (analogous to private git submodule)
@@ -399,7 +399,7 @@ CREATE TABLE recovery_audit_log (
 
 ### Key Patterns Adopted
 
-| Pattern | Source | AIOS Pro Application |
+| Pattern | Source | AIOX Pro Application |
 |---------|--------|---------------------|
 | Credential delivery via email | Sidekiq Pro | Webhook -> generate key -> email |
 | Environment variable for CI | Nx Powerpack, Cal.com | `AIOS_PRO_LICENSE=<key>` |
@@ -484,7 +484,7 @@ All changes are **ADDITIVE**. The existing `{ key, machineId }` contract continu
 - Creates friction for legitimate multi-device workflows
 
 ### A4: Usage-Based Pricing (Rejected for V1)
-- AIOS Pro runs locally with 30-day offline support
+- AIOX Pro runs locally with 30-day offline support
 - Pure usage-based is architecturally incompatible with offline-first
 - Creates "meter anxiety" that suppresses adoption
 

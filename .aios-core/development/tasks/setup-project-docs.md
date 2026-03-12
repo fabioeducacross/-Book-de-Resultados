@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: setupProjectDocs()
@@ -144,7 +144,7 @@ acceptance-criteria:
     type: acceptance-criterion
     blocker: true
     validation: |
-      Assert .gitignore includes AIOS ignores and tech stack ignores
+      Assert .gitignore includes AIOX ignores and tech stack ignores
     error_message: "Acceptance criterion not met: .gitignore incomplete"
 
   - [ ] Configuration-Driven Architecture pattern applied
@@ -286,7 +286,7 @@ console.log(`Reason: ${detected.reason}`);
 
 | Mode | Description | Actions |
 |------|-------------|---------|
-| `framework-dev` | Contributing to aios-core itself | Skip project setup, use existing config |
+| `framework-dev` | Contributing to aiox-core itself | Skip project setup, use existing config |
 | `greenfield` | New empty project | Full scaffolding, deployment config wizard |
 | `brownfield` | Existing project | Analyze and adapt, merge configurations |
 

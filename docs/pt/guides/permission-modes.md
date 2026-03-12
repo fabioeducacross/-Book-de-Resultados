@@ -6,13 +6,13 @@
 
 # Guia de Modos de Permissão
 
-> Controle o nível de autonomia que os agentes AIOS têm sobre seu sistema.
+> Controle o nível de autonomia que os agentes AIOX têm sobre seu sistema.
 
 ---
 
 ## Visão Geral
 
-Os Modos de Permissão permitem controlar o nível de autonomia dos agentes AIOS. Seja explorando um novo codebase ou executando builds totalmente autônomos, há um modo para seu workflow.
+Os Modos de Permissão permitem controlar o nível de autonomia dos agentes AIOX. Seja explorando um novo codebase ou executando builds totalmente autônomos, há um modo para seu workflow.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -244,7 +244,7 @@ Defina o modo na automação:
 
 ```yaml
 # .github/workflows/aios.yml
-- name: Executar AIOS
+- name: Executar AIOX
   run: |
     echo "permissions:\n  mode: auto" > .aios/config.yaml
     aios run build

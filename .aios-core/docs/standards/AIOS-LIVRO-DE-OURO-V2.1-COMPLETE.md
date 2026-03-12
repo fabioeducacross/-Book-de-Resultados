@@ -1,12 +1,12 @@
-# AIOS Framework - Livro de Ouro v2.1 (Complete)
+# AIOX Framework - Livro de Ouro v2.1 (Complete)
 
 ## O Sistema Operacional Definitivo para Orquestração de Agentes IA
 
 **Versão:** 2.1.0
 **Status:** Living Document
 **Última Atualização:** 2025-12-09
-**Mantido Por:** AIOS Framework Team + Community
-**Repositório Principal:** `SynkraAI/aios-core`
+**Mantido Por:** AIOX Framework Team + Community
+**Repositório Principal:** `SynkraAI/aiox-core`
 
 ---
 
@@ -28,9 +28,9 @@ Este documento é a **versão consolidada v2.1** que incorpora todas as mudança
 
 **Referências Legadas:**
 
-- `AIOS-LIVRO-DE-OURO.md` - Base v2.0.0 (Jan 2025)
-- `AIOS-LIVRO-DE-OURO-V2.1.md` - Delta parcial
-- `AIOS-LIVRO-DE-OURO-V2.1-SUMMARY.md` - Resumo de mudanças
+- `AIOX-LIVRO-DE-OURO.md` - Base v2.0.0 (Jan 2025)
+- `AIOX-LIVRO-DE-OURO-V2.1.md` - Delta parcial
+- `AIOX-LIVRO-DE-OURO-V2.1-SUMMARY.md` - Resumo de mudanças
 
 ---
 
@@ -59,7 +59,7 @@ Este documento é a **versão consolidada v2.1** que incorpora todas as mudança
 │   ═══════════════════════                                               │
 │                                                                         │
 │   ┌────────────────────────────────────────────────────────────────┐   │
-│   │  SynkraAI/aios-core (Commons Clause)                         │   │
+│   │  SynkraAI/aiox-core (Commons Clause)                         │   │
 │   │  ─────────────────────────────────────                         │   │
 │   │  • Core Framework & Orchestration Engine                       │   │
 │   │  • 11 Base Agents (Dex, Luna, Aria, Quinn, etc.)              │   │
@@ -106,9 +106,9 @@ Este documento é a **versão consolidada v2.1** que incorpora todas as mudança
 | LangChain     | ✅ Complete              | ❌ None (commodity)            |
 | CrewAI        | ✅ Complete              | ❌ None (commodity)            |
 | AutoGen       | ✅ Complete              | ❌ None (commodity)            |
-| **AIOS v2.1** | ✅ **Complete**          | ✅ **Clones (DNA Mental™)** ⭐ |
+| **AIOX v2.1** | ✅ **Complete**          | ✅ **Clones (DNA Mental™)** ⭐ |
 
-**Analogia:** Linux é open source, mas Red Hat Enterprise Linux adiciona suporte e otimizações. Ambos são Linux, mas o valor agregado varia. AIOS funciona igual.
+**Analogia:** Linux é open source, mas Red Hat Enterprise Linux adiciona suporte e otimizações. Ambos são Linux, mas o valor agregado varia. AIOX funciona igual.
 
 ---
 
@@ -119,7 +119,7 @@ Este não é um documento para ser lido do início ao fim. É um **sistema de ap
 - 🚀 **Layer 0: DISCOVERY** - Descubra seu caminho (5 min)
 - 🎯 **Layer 1: UNDERSTANDING** - 5 essays que ensinam o modelo mental (75 min)
 - 🎨 **Layer 2: COMPONENT LIBRARY** - Catálogo completo de componentes
-- 📋 **Layer 3: USAGE GUIDE** - Como usar AIOS v2.1 no seu contexto
+- 📋 **Layer 3: USAGE GUIDE** - Como usar AIOX v2.1 no seu contexto
 - 📚 **Layer 4: COMPLETE REFERENCE** - Especificação técnica completa
 - 🔄 **META: EVOLUTION** - Como contribuir e evoluir o framework
 
@@ -129,7 +129,7 @@ Este não é um documento para ser lido do início ao fim. É um **sistema de ap
 
 # 🚀 LAYER 0: DISCOVERY ROUTER
 
-## Bem-vindo ao AIOS v2.1 - Vamos Encontrar Seu Caminho
+## Bem-vindo ao AIOX v2.1 - Vamos Encontrar Seu Caminho
 
 ### Learning Tracks Disponíveis
 
@@ -146,7 +146,7 @@ Este não é um documento para ser lido do início ao fim. É um **sistema de ap
 
 # 🎯 LAYER 1: UNDERSTANDING
 
-## Essay 1: Por Que AIOS Existe
+## Essay 1: Por Que AIOX Existe
 
 ### O Problema
 
@@ -160,7 +160,7 @@ Desenvolvimento com AI agents hoje é **caótico**:
 
 ### A Solução
 
-AIOS fornece **orquestração estruturada**:
+AIOX fornece **orquestração estruturada**:
 
 - 11 agents especializados com personalidades
 - Workflows multi-agent coordenados
@@ -632,13 +632,13 @@ $ aios task develop-story --story=1.1
 
 ```bash
 # Clone all repos
-mkdir -p ~/Workspaces/AIOS && cd ~/Workspaces/AIOS
-gh repo clone SynkraAI/aios-core
+mkdir -p ~/Workspaces/AIOX && cd ~/Workspaces/AIOX
+gh repo clone SynkraAI/aiox-core
 gh repo clone SynkraAI/aios-squads
 gh repo clone SynkraAI/mcp-ecosystem
 
 # Link for local development
-cd aios-core && npm install && npm link
+cd aiox-core && npm install && npm link
 cd ../aios-squads && npm install && npm link @aios/core
 
 # VS Code workspace
@@ -681,7 +681,7 @@ $ aios workers use json-parser --task my-task
 | Workflow                 | Use Case                | Agents Involved   |
 | ------------------------ | ----------------------- | ----------------- |
 | `greenfield-fullstack`   | New full-stack project  | All agents        |
-| `brownfield-integration` | Add AIOS to existing    | dev, architect    |
+| `brownfield-integration` | Add AIOX to existing    | dev, architect    |
 | `fork-join`              | Parallel task execution | Multiple          |
 | `organizer-worker`       | Delegated execution     | po, dev           |
 | `data-pipeline`          | ETL workflows           | data-engineer, qa |
@@ -703,7 +703,7 @@ $ aios workflow brownfield-integration --target=./existing-project
 ## Source Tree v2.1 (Current)
 
 ```
-@synkra/aios-core/                        # Root project
+@synkra/aiox-core/                        # Root project
 ├── .aios-core/                        # Framework layer
 │   ├── core/                          # Core module
 │   │   ├── config/                    # Configuration
@@ -830,8 +830,8 @@ $ aios workflow brownfield-integration --target=./existing-project
 
 **Última Atualização:** 2025-12-09
 **Versão:** 2.1.0-complete
-**Mantido Por:** AIOS Framework Team
+**Mantido Por:** AIOX Framework Team
 
 ---
 
-_Este documento consolida AIOS-LIVRO-DE-OURO.md (v2.0) + deltas v2.1 em um único documento completo._
+_Este documento consolida AIOX-LIVRO-DE-OURO.md (v2.0) + deltas v2.1 em um único documento completo._

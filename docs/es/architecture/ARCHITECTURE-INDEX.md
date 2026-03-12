@@ -1,4 +1,4 @@
-# AIOS Architecture Documentation Index
+# AIOX Architecture Documentation Index
 
 > 🌐 [EN](../../architecture/ARCHITECTURE-INDEX.md) | [PT](../../pt/architecture/ARCHITECTURE-INDEX.md) | **ES**
 
@@ -12,7 +12,7 @@
 
 ## 📋 Document Navigation
 
-This index provides navigation to all architecture documentation for AIOS v2.1.
+This index provides navigation to all architecture documentation for AIOX v2.1.
 
 > **Note:** Official framework documentation (coding-standards, tech-stack, source-tree) has been consolidated in `docs/framework/`. See [Framework README](../framework/README.md) for details.
 
@@ -39,7 +39,7 @@ docs/architecture/
 
 | Document | Description | Status |
 |----------|-------------|--------|
-| [High-Level Architecture](./high-level-architecture.md) | Overview of AIOS v2.1 architecture | ✅ Current |
+| [High-Level Architecture](./high-level-architecture.md) | Overview of AIOX v2.1 architecture | ✅ Current |
 | [Module System](./module-system.md) | 4-module modular architecture | ✅ Current |
 | [Memory Layer](./memory-layer.md) | Memory system architecture | ✅ Current |
 
@@ -112,12 +112,12 @@ docs/architecture/
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                     AIOS v2.1 ARCHITECTURE                              │
+│                     AIOX v2.1 ARCHITECTURE                              │
 │                                                                         │
 │   ┌─────────────────────────────────────────────────────────────────┐   │
 │   │                    MULTI-REPO STRUCTURE                          │   │
 │   │                                                                  │   │
-│   │   SynkraAI/aios-core ◄───── Central Hub                       │   │
+│   │   SynkraAI/aiox-core ◄───── Central Hub                       │   │
 │   │          │                    - Framework core                   │   │
 │   │          │                    - 11 base agents                   │   │
 │   │          │                    - Discussions hub                  │   │

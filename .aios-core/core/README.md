@@ -1,6 +1,6 @@
-# AIOS Core Module
+# AIOX Core Module
 
-> Central runtime module providing essential framework functionality for Synkra AIOS.
+> Central runtime module providing essential framework functionality for Synkra AIOX.
 
 **Version:** 2.0.0
 **Created:** Story 2.2 - Core Module Creation
@@ -8,11 +8,11 @@
 
 ## Overview
 
-The Core module contains the foundational runtime components that all other AIOS modules depend on. It provides configuration management, session handling, elicitation workflows, and essential utilities.
+The Core module contains the foundational runtime components that all other AIOX modules depend on. It provides configuration management, session handling, elicitation workflows, and essential utilities.
 
 ## Installation
 
-The core module is automatically available within the Synkra AIOS framework:
+The core module is automatically available within the Synkra AIOX framework:
 
 ```javascript
 // CommonJS
@@ -30,7 +30,7 @@ core/
 │   ├── config-cache.js     # Global configuration cache with TTL support
 │   └── config-loader.js    # Lazy-loading configuration system
 ├── data/                   # Framework knowledge and patterns
-│   ├── aios-kb.md          # AIOS knowledge base
+│   ├── aios-kb.md          # AIOX knowledge base
 │   ├── workflow-patterns.yaml
 │   └── agent-config-requirements.yaml
 ├── docs/                   # Internal documentation
@@ -226,4 +226,4 @@ Scripts that import these modules have been updated to reference the new paths.
 
 ---
 
-*Synkra AIOS Core Module v2.0.0*
+*Synkra AIOX Core Module v2.0.0*

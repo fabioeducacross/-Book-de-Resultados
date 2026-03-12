@@ -1,10 +1,10 @@
-# Referencia de API AIOS
+# Referencia de API AIOX
 
 > [EN](../../guides/api-reference.md) | [PT](../../pt/guides/api-reference.md) | **ES**
 
 ---
 
-Referencia completa de la API para Synkra AIOS - el Sistema Orquestado por IA para Desarrollo Full Stack.
+Referencia completa de la API para Synkra AIOX - el Sistema Orquestado por IA para Desarrollo Full Stack.
 
 **Versión:** 2.1.0
 **Última Actualización:** 2026-01-29
@@ -29,14 +29,14 @@ Referencia completa de la API para Synkra AIOS - el Sistema Orquestado por IA pa
 
 ### Arquitectura de la API
 
-AIOS proporciona una API unificada para interactuar con agentes de IA especializados a través de dos mecanismos principales:
+AIOX proporciona una API unificada para interactuar con agentes de IA especializados a través de dos mecanismos principales:
 
 1. **Activación de Agentes** - Usando el prefijo `@` para activar agentes especializados
 2. **Ejecución de Comandos** - Usando el prefijo `*` para ejecutar comandos de agentes
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      AIOS API Layer                          │
+│                      AIOX API Layer                          │
 ├─────────────────────────────────────────────────────────────┤
 │  @agent         →  Activa la persona del agente              │
 │  *command       →  Ejecuta comando del agente                │
@@ -397,7 +397,7 @@ Ejecución de tarea con argumentos: { story: "story-1.2.3" }
 
 | Comando                | Argumentos      | Descripción                                    |
 | ---------------------- | --------------- | ---------------------------------------------- |
-| `*create`              | `{type} {name}` | Crear componente AIOS (agent/task/workflow)    |
+| `*create`              | `{type} {name}` | Crear componente AIOX (agent/task/workflow)    |
 | `*modify`              | `{type} {name}` | Modificar componente existente                 |
 | `*validate-component`  | `{name}`        | Validar seguridad del componente               |
 | `*deprecate-component` | `{name}`        | Deprecar con ruta de migración                 |
@@ -415,7 +415,7 @@ Ejecución de tarea con argumentos: { story: "story-1.2.3" }
 | Comando | Argumentos                 | Descripción                                   |
 | ------- | -------------------------- | --------------------------------------------- |
 | `*plan` | `[create\|status\|update]` | Planificación de workflow                     |
-| `*kb`   | -                          | Alternar modo KB (conocimiento AIOS Method)   |
+| `*kb`   | -                          | Alternar modo KB (conocimiento AIOX Method)   |
 
 **Operaciones de Documentos:**
 
@@ -635,7 +635,7 @@ Claude Code es el IDE principal soportado con integración completa:
 ```
 .claude/
 ├── commands/
-│   └── AIOS/
+│   └── AIOX/
 │       └── agents/
 │           ├── dev.md
 │           ├── qa.md
@@ -892,13 +892,13 @@ Para desarrollo paralelo:
 
 ## Documentación Relacionada
 
-- [Guía de Usuario](./user-guide.md) - Comenzando con AIOS
+- [Guía de Usuario](./user-guide.md) - Comenzando con AIOX
 - [Guía de Selección de Agentes](./agent-selection-guide.md) - Eligiendo el agente correcto
 - [Guía ADE](./ade-guide.md) - Motor de Desarrollo Autónomo
 - [Gates de Calidad](./quality-gates.md) - Workflows de aseguramiento de calidad
 - [Guía de Sincronización de IDEs](./ide-sync-guide.md) - Sincronización multi-IDE
-- [Guía de Squads](./squads-guide.md) - Extendiendo AIOS con squads
+- [Guía de Squads](./squads-guide.md) - Extendiendo AIOX con squads
 
 ---
 
-_Synkra AIOS API Reference v2.1.0_
+_Synkra AIOX API Reference v2.1.0_

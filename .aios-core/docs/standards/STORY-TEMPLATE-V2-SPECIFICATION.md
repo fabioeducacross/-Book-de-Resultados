@@ -22,7 +22,7 @@
 
 ### Purpose
 
-The Story Template v2.0 standardizes story documentation across the AIOS project, ensuring consistency, traceability, and integration with automated tools like CodeRabbit.
+The Story Template v2.0 standardizes story documentation across the AIOX project, ensuring consistency, traceability, and integration with automated tools like CodeRabbit.
 
 ### What's New in v2.0
 
@@ -539,7 +539,7 @@ Use this checklist when creating or reviewing stories:
 
 ## Related Documents
 
-- [AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md)
+- [AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md)
 - [QUALITY-GATES-SPECIFICATION.md](./QUALITY-GATES-SPECIFICATION.md)
 - [STANDARDS-INDEX.md](./STANDARDS-INDEX.md)
 

@@ -1,4 +1,4 @@
-# AIOS Scripts - Legacy Directory
+# AIOX Scripts - Legacy Directory
 
 > **Note**: This directory now contains only legacy/migration scripts and a few active utilities.
 > Most scripts have been migrated to the modular structure (Story 6.16).

@@ -2,7 +2,7 @@
 
 **Task**: Semantic Version Management (Repository-Agnostic)
 
-**Purpose**: Analyze changes, recommend version bumps, and manage semantic versioning for ANY repository using AIOS.
+**Purpose**: Analyze changes, recommend version bumps, and manage semantic versioning for ANY repository using AIOX.
 
 **When to use**: Before creating a release, to determine appropriate version number based on changes.
 
@@ -29,7 +29,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: githubDevopsVersionManagement()

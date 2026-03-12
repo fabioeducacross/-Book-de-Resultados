@@ -1,4 +1,4 @@
-# Task: Update AIOS Framework
+# Task: Update AIOX Framework
 
 > **Version:** 4.0.0
 > **Created:** 2026-01-29
@@ -9,7 +9,7 @@
 
 ## Purpose
 
-Git-native sync of AIOS framework from upstream repository. Uses sparse clone + file comparison for safe review before applying changes. All local customizations preserved automatically by backup/restore.
+Git-native sync of AIOX framework from upstream repository. Uses sparse clone + file comparison for safe review before applying changes. All local customizations preserved automatically by backup/restore.
 
 ---
 
@@ -20,7 +20,7 @@ Git-native sync of AIOS framework from upstream repository. Uses sparse clone + 
 bash .aios-core/scripts/update-aios.sh
 
 # Review changes shown by the script, then:
-git add .aios-core && git commit -m "chore: sync AIOS framework"   # Apply changes
+git add .aios-core && git commit -m "chore: sync AIOX framework"   # Apply changes
 # OR
 git checkout -- .aios-core/                                         # Cancel changes
 ```
@@ -31,7 +31,7 @@ git checkout -- .aios-core/                                         # Cancel cha
 
 The script uses sparse clone + file comparison:
 
-1. **Clone upstream** - Sparse shallow clone of SynkraAI/aios-core (only `.aios-core/`)
+1. **Clone upstream** - Sparse shallow clone of SynkraAI/aiox-core (only `.aios-core/`)
 2. **Compare files** - Uses `comm` for O(n) file list comparison
 3. **Backup local-only** - Files that exist only locally are backed up
 4. **Sync** - Copy upstream files, restore local-only files
@@ -86,7 +86,7 @@ workflow:
   1. If dirty working tree: git add -A && git commit -m "chore: pre-update commit"
   2. bash .aios-core/scripts/update-aios.sh
   3. Review changes displayed
-  4. git add .aios-core && git commit -m "chore: sync AIOS framework"  # to apply
+  4. git add .aios-core && git commit -m "chore: sync AIOX framework"  # to apply
   5. git checkout -- .aios-core/                                        # to cancel
 
 pre-conditions:

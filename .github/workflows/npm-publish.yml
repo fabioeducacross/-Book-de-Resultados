@@ -155,6 +155,9 @@ jobs:
   publish:
     needs: [test, build]
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -203,15 +206,10 @@ jobs:
       - name: Publish aios-core to NPM
         if: steps.should-publish.outputs.should_publish == 'true'
         run: |
-          # Create npmrc for authentication
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-
           # Publish with appropriate tag
-          npm publish --tag ${{ steps.publish-tag.outputs.tag }} --access public
+          npm publish --tag ${{ steps.publish-tag.outputs.tag }} --access public --provenance
 
           echo "✅ Published aios-core@${{ needs.build.outputs.version }} with tag ${{ steps.publish-tag.outputs.tag }}"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Verify publication
         if: steps.should-publish.outputs.should_publish == 'true'
@@ -234,6 +232,9 @@ jobs:
     needs: [test, build]
     if: ${{ needs.build.outputs.has_aios_install == 'true' }}
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -285,11 +286,8 @@ jobs:
         if: steps.should-publish.outputs.should_publish == 'true'
         working-directory: packages/aios-install
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          npm publish --tag ${{ steps.publish-tag.outputs.tag }} --access public
+          npm publish --tag ${{ steps.publish-tag.outputs.tag }} --access public --provenance
           echo "✅ Published @synkra/aios-install@${{ steps.pkg-version.outputs.version }}"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Smoke test - verify npx works
         if: steps.should-publish.outputs.should_publish == 'true'
@@ -387,9 +385,9 @@ jobs:
 
           ## 🔗 Links
 
-          * [GitHub Repository](https://github.com/SynkraAI/aios-core)
-          * [Documentation](https://github.com/SynkraAI/aios-core#readme)
-          * [Issues](https://github.com/SynkraAI/aios-core/issues)
+          * [GitHub Repository](https://github.com/SynkraAI/aiox-core)
+          * [Documentation](https://github.com/SynkraAI/aiox-core#readme)
+          * [Issues](https://github.com/SynkraAI/aiox-core/issues)
           EOF
 
       - name: Update release with notes

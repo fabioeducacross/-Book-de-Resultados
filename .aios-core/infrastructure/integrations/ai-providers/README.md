@@ -1,6 +1,6 @@
 # AI Providers
 
-Multi-provider AI integration for AIOS. Supports Claude Code and Gemini CLI with automatic fallback and task-based routing.
+Multi-provider AI integration for AIOX. Supports Claude Code and Gemini CLI with automatic fallback and task-based routing.
 
 ## Architecture
 

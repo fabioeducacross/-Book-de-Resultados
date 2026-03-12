@@ -491,7 +491,7 @@ graph LR
 
 2. **Ambiente Configurado**
    - Git configurado e funcional
-   - Acesso aos templates AIOS
+   - Acesso aos templates AIOX
    - Ferramentas de desenvolvimento instaladas
 
 3. **Contexto do Projeto**
@@ -795,7 +795,7 @@ Os handoff prompts facilitam a transição entre agentes:
 
 ### Documentação Relacionada
 
-- [AIOS Knowledge Base](../../../.aios-core/data/aios-kb.md) - Base de conhecimento do framework
+- [AIOX Knowledge Base](../../../.aios-core/data/aios-kb.md) - Base de conhecimento do framework
 - [Technical Preferences](../../../.aios-core/development/data/technical-preferences.md) - Preferências técnicas do projeto
 - [IDE Development Workflow](../../../.aios-core/data/aios-kb.md#IDE-Development-Workflow) - Fluxo de desenvolvimento no IDE
 
@@ -809,4 +809,4 @@ Os handoff prompts facilitam a transição entre agentes:
 
 ---
 
-*Documento gerado a partir do workflow `brownfield-service.yaml` - AIOS Framework v2.2*
+*Documento gerado a partir do workflow `brownfield-service.yaml` - AIOX Framework v2.2*

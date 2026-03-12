@@ -1,10 +1,10 @@
-# Guia de Testing de Synkra AIOS
+# Guia de Testing de Synkra AIOX
 
 > [EN](../../guides/testing-guide.md) | [PT](../../pt/guides/testing-guide.md) | **ES**
 
 ---
 
-> Guia completa de la estrategia de testing, herramientas y mejores practicas para Synkra AIOS.
+> Guia completa de la estrategia de testing, herramientas y mejores practicas para Synkra AIOX.
 
 **Version:** 2.1.0
 **Ultima Actualizacion:** 2026-01-29
@@ -31,7 +31,7 @@
 
 ## Vision General
 
-AIOS sigue una estrategia de testing integral que asegura la calidad del codigo en todas las capas del framework. Nuestra filosofia de testing esta construida sobre:
+AIOX sigue una estrategia de testing integral que asegura la calidad del codigo en todas las capas del framework. Nuestra filosofia de testing esta construida sobre:
 
 - **Desarrollo Guiado por Tests (TDD)** para funcionalidad core
 - **Testing por Capas** con tests unitarios, de integracion y E2E
@@ -405,7 +405,7 @@ Probar agentes IA requiere consideraciones especiales para comportamiento de per
 /**
  * Tests de Compatibilidad Retroactiva de Agentes
  *
- * Asegura que agentes de versiones anteriores de AIOS continuen funcionando.
+ * Asegura que agentes de versiones anteriores de AIOX continuen funcionando.
  */
 
 const { loadAgent } = require('../../.aios-core/core/registry/agent-loader');
@@ -471,7 +471,7 @@ describe('Comandos de Agentes', () => {
 
 ## Testing Cross-Platform
 
-AIOS soporta Windows, macOS y Linux. El testing cross-platform asegura comportamiento consistente.
+AIOX soporta Windows, macOS y Linux. El testing cross-platform asegura comportamiento consistente.
 
 ### Archivos de Test Especificos por Plataforma
 
@@ -778,7 +778,7 @@ npm test -- --passWithNoTests --testPathIgnorePatterns=integration,e2e
 
 ### Integracion con Quality Gate
 
-El Sistema de Quality Gate de AIOS (ver [Guia de Quality Gates](./quality-gates.md)) integra testing en multiples capas:
+El Sistema de Quality Gate de AIOX (ver [Guia de Quality Gates](./quality-gates.md)) integra testing en multiples capas:
 
 | Capa        | Tipo de Test                  | Cuando         |
 | ----------- | ----------------------------- | -------------- |
@@ -1212,4 +1212,4 @@ module.exports = {
 
 ---
 
-_Guia de Testing de Synkra AIOS v2.1_
+_Guia de Testing de Synkra AIOX v2.1_

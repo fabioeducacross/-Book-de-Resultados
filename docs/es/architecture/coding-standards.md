@@ -8,7 +8,7 @@
 
 ---
 
-# Estandares de Codigo AIOS
+# Estandares de Codigo AIOX
 
 > 🌐 [EN](../../architecture/coding-standards.md) | [PT](../../pt/architecture/coding-standards.md) | **ES**
 
@@ -17,7 +17,7 @@
 **Version:** 1.1
 **Ultima Actualizacion:** 2025-12-14
 **Estado:** OBSOLETO - Ver docs/framework/coding-standards.md
-**Aviso de Migracion:** Este documento migrara al repositorio `SynkraAI/aios-core` en Q2 2026 (ver Decision 005)
+**Aviso de Migracion:** Este documento migrara al repositorio `SynkraAI/aiox-core` en Q2 2026 (ver Decision 005)
 
 ---
 
@@ -37,7 +37,7 @@
 
 ## Descripcion General
 
-Este documento define los estandares oficiales de codigo para el desarrollo del framework AIOS. Todas las contribuciones de codigo deben adherirse a estos estandares para asegurar consistencia, mantenibilidad y calidad.
+Este documento define los estandares oficiales de codigo para el desarrollo del framework AIOX. Todas las contribuciones de codigo deben adherirse a estos estandares para asegurar consistencia, mantenibilidad y calidad.
 
 **Aplicacion:**
 
@@ -547,7 +547,7 @@ if (!taskSchema.validate(taskData)) {
 
 ```javascript
 /**
- * Carga y ejecuta un agente AIOS
+ * Carga y ejecuta un agente AIOX
  *
  * @param {string} agentId - Identificador unico del agente
  * @param {Object} args - Argumentos de ejecucion del agente
@@ -597,7 +597,7 @@ Cada modulo/directorio debe tener un README.md:
 ```markdown
 # Agent Executor
 
-**Proposito:** Carga y ejecuta agentes AIOS con gestion de configuracion.
+**Proposito:** Carga y ejecuta agentes AIOX con gestion de configuracion.
 
 ## Uso
 
@@ -882,7 +882,7 @@ Todos los PRs son revisados automaticamente por CodeRabbit para:
 | Version | Fecha      | Cambios                                                          | Autor            |
 | ------- | ---------- | ---------------------------------------------------------------- | ---------------- |
 | 1.0     | 2025-01-15 | Documento inicial de estandares de codigo                        | Aria (architect) |
-| 1.1     | 2025-12-14 | Actualizado aviso de migracion a SynkraAI/aios-core [Story 6.10] | Dex (dev)        |
+| 1.1     | 2025-12-14 | Actualizado aviso de migracion a SynkraAI/aiox-core [Story 6.10] | Dex (dev)        |
 
 ---
 
@@ -893,4 +893,4 @@ Todos los PRs son revisados automaticamente por CodeRabbit para:
 
 ---
 
-_Este es un estandar oficial del framework AIOS. Todas las contribuciones de codigo deben cumplir con el._
+_Este es un estandar oficial del framework AIOX. Todas las contribuciones de codigo deben cumplir con el._

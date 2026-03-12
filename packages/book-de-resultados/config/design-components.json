@@ -1,0 +1,51 @@
+{
+    "version": "1.0.0",
+    "id": "educacross-book-components",
+    "label": "Educacross Book Component Contracts",
+    "assetSets": {
+        "cover-canoas": {
+            "logoUrl": "assets/logos/canoas-2025/PMC-principal-preto.png",
+            "imagemInstitucional": null
+        },
+        "chapter-resultados-canoas": {
+            "imageUrl": "assets/editorial/canoas-2025/Fotolia_77334942_Subscription_Monthly_M.png",
+            "overlayImageUrl": "assets/editorial/canoas-2025/350.png",
+            "imageAlt": "Abertura editorial do capitulo Resultados"
+        },
+        "participacao-rede-canoas": {
+            "imageUrl": "assets/editorial/canoas-2025/medium-shot-kids-with-tablet.jpg",
+            "imageAlt": "Estudantes usando tablet"
+        },
+        "school-summary-canoas": {
+            "mascotImageUrl": "assets/editorial/canoas-2025/school-owl-reference.png",
+            "mascotAlt": "Mascote institucional",
+            "eyebrowPrefix": "SME"
+        }
+    },
+    "components": {
+        "cover-page": {
+            "kind": "page-cover",
+            "assetSet": "cover-canoas"
+        },
+        "chapter-resultados": {
+            "kind": "chapter-opener",
+            "assetSet": "chapter-resultados-canoas"
+        },
+        "participacao-rede-opening": {
+            "kind": "editorial-opening",
+            "assetSet": "participacao-rede-canoas"
+        },
+        "school-summary": {
+            "kind": "school-summary",
+            "assetSet": "school-summary-canoas"
+        }
+    },
+    "sectionComponents": {
+        "capa": "cover-page",
+        "participacao_rede": "participacao-rede-opening",
+        "escola": "school-summary"
+    },
+    "chapterComponents": {
+        "resultados": "chapter-resultados"
+    }
+}

@@ -546,7 +546,7 @@ Every PR is automatically reviewed by [CodeRabbit](https://github.com/apps/coder
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: ciCdConfiguration()

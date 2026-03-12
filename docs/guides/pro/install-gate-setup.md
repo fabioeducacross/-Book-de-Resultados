@@ -1,6 +1,6 @@
-# AIOS Pro — Guia de Instalacao e Licenciamento
+# AIOX Pro — Guia de Instalacao e Licenciamento
 
-Guia completo para instalar, ativar e gerenciar o AIOS Pro.
+Guia completo para instalar, ativar e gerenciar o AIOX Pro.
 
 **Story:** PRO-6 — License Key & Feature Gating System
 
@@ -8,7 +8,7 @@ Guia completo para instalar, ativar e gerenciar o AIOS Pro.
 
 ## Visao Geral
 
-O AIOS Pro e distribuido via npm publico. O pacote e livre para instalar, mas as features premium requerem uma **licenca ativa** para funcionar.
+O AIOX Pro e distribuido via npm publico. O pacote e livre para instalar, mas as features premium requerem uma **licenca ativa** para funcionar.
 
 ```
 Comprar Licenca → Instalar → Ativar → Usar Features Pro
@@ -26,7 +26,7 @@ Comprar Licenca → Instalar → Ativar → Usar Features Pro
 ## Instalacao Rapida
 
 ```bash
-# Instalar AIOS Pro (instala @aios-fullstack/pro automaticamente)
+# Instalar AIOX Pro (instala @aios-fullstack/pro automaticamente)
 npx aios-pro install
 
 # Ativar sua licenca
@@ -43,9 +43,9 @@ npx aios-pro status
 ### Prerequisitos
 
 - Node.js >= 18
-- `aios-core` >= 4.0.0 instalado no projeto
+- `aiox-core` >= 4.0.0 instalado no projeto
 
-### Passo 1: Instalar AIOS Pro
+### Passo 1: Instalar AIOX Pro
 
 ```bash
 npx aios-pro install
@@ -100,7 +100,7 @@ npx aios-pro features
 
 ## Operacao Offline
 
-Apos a instalacao e ativacao, o AIOS Pro funciona offline:
+Apos a instalacao e ativacao, o AIOX Pro funciona offline:
 
 - **30 dias** sem necessidade de revalidacao
 - **7 dias de grace period** apos expirar o cache
@@ -119,7 +119,7 @@ Para pipelines, instale e ative usando secrets de ambiente:
 
 **GitHub Actions:**
 ```yaml
-- name: Install AIOS Pro
+- name: Install AIOX Pro
   run: npx aios-pro install
 
 - name: Activate License
@@ -197,9 +197,9 @@ License activation failed: ECONNREFUSED
 - **Documentacao:** https://synkra.ai/pro/docs
 - **Comprar:** https://synkra.ai/pro
 - **Suporte:** support@synkra.ai
-- **Issues:** https://github.com/SynkraAI/aios-core/issues
+- **Issues:** https://github.com/SynkraAI/aiox-core/issues
 
 ---
 
-*AIOS Pro Installation Guide v3.0*
+*AIOX Pro Installation Guide v3.0*
 *Story PRO-6 — License Key & Feature Gating System*

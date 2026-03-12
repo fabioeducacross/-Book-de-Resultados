@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@architect** (Aria) is the **Visionary** of the AIOS agent system. This agent is responsible for:
+**@architect** (Aria) is the **Visionary** of the AIOX agent system. This agent is responsible for:
 
 - Designing system architecture and technical solutions
 - Making high-level technical decisions
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @architect System v1.0*
+*AIOX Agent Flows - @architect System v1.0*

@@ -1,0 +1,68 @@
+colors:
+  primary: '#133C58'
+  secondary: '#00A39E'
+  accent: '#FFB545'
+  brandPrimary: '#133C58'
+  brandSecondary: '#00A39E'
+  brandPurple: '#7D6BC2'
+  brandYellow: '#FFB545'
+  brandOrange: '#ED6300'
+  brandGreen: '#8DBF34'
+  brandRed: '#FE5153'
+  background: '#EDECE6'
+  surface: '#FFFFFF'
+  paper: '#F4F1E8'
+  textPrimary: '#676C6E'
+  textSecondary: '#485156'
+  textMuted: '#ACAFB2'
+  textStrong: '#133C58'
+  textSubtle: '#969799'
+  brandStrong: '#133C58'
+  brandSoft: '#F5F4EE'
+  pageBadge: '#133C58'
+  pageBadgeText: '#FFFFFF'
+  highlightSurface: '#F7F4ED'
+  highlightBorder: '#D8D3C8'
+  proficiency:
+    abaixo_do_basico: '#969799'
+    basico: '#ED6300'
+    adequado: '#FFB545'
+    avancado: '#00A39E'
+  deltaPositive: '#005A39'
+  deltaNegative: '#FE5153'
+  deltaNeutral: '#969799'
+  cardBackground: '#FFFFFF'
+  cardBorder: '#DDD8CC'
+  tableBorder: '#D8D3C8'
+  tableSurface: '#FFFFFF'
+  tableHeader: '#00A39E'
+  openerBand: '#133C58'
+  openerSurface: '#EDECE6'
+  ruleStrong: '#FFB545'
+  ruleSoft: '#D8D3C8'
+typography:
+  fontFace: 'Montserrat'
+  bodyFontFace: 'Montserrat'
+  displayFontFace: 'Montserrat'
+  serifFontFace: 'Minion Pro'
+  htmlBodyStack: '"Montserrat", "Segoe UI", Arial, sans-serif'
+  htmlDisplayStack: '"Montserrat", "Segoe UI", Arial, sans-serif'
+  htmlSerifStack: '"Minion Pro", Georgia, "Times New Roman", serif'
+  sizes:
+    coverTitle: 44
+    chapterTitle: 34
+    pageTitle: 26
+    heading: 14
+    subheading: 11
+    body: 9
+    small: 8
+    tiny: 7.5
+spacing:
+  pageMarginX: 0.4
+  pageMarginY: 0.7
+  cardWidth: 2.2
+  cardHeight: 1.0
+  cardGap: 0.24
+  tableWidth: 9.0
+  rhythm: 0.18
+  openerBandHeight: 1.65

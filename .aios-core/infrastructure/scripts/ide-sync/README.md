@@ -3,13 +3,13 @@
 **Story 6.19** - IDE Command Auto-Sync System
 **Story TD-4** - Pre-commit Auto-Stage Integration
 
-Automatically synchronizes AIOS agent definitions to IDE command files.
+Automatically synchronizes AIOX agent definitions to IDE command files.
 
 ## Overview
 
 IDE Sync keeps agent definitions in `.aios-core/development/agents/` synchronized with IDE-specific command files in:
 
-- `.claude/commands/AIOS/agents/` (Claude Code)
+- `.claude/commands/AIOX/agents/` (Claude Code)
 - `.cursor/rules/agents/` (Cursor)
 - `.windsurf/rules/agents/` (Windsurf)
 - `.antigravity/rules/agents/` (Antigravity)
@@ -90,7 +90,7 @@ ideSync:
   targets:
     claude-code:
       enabled: true
-      path: .claude/commands/AIOS/agents
+      path: .claude/commands/AIOX/agents
       format: full-markdown-yaml
     cursor:
       enabled: true

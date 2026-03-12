@@ -29,7 +29,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: githubDevopsGithubPrAutomation()
@@ -630,7 +630,7 @@ For breaking changes, manually edit the PR title to include `!`:
 
 ## Configuration for Different Project Types
 
-### NPM Package with Semantic-Release (aios-core)
+### NPM Package with Semantic-Release (aiox-core)
 ```yaml
 github:
   pr:

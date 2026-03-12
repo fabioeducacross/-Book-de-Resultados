@@ -39,7 +39,7 @@ Enable the meta-agent to improve its own capabilities with comprehensive safegua
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: improveSelf()
@@ -629,7 +629,7 @@ module.exports = {
       // Step 2: Analyze capabilities
       const analysis = await analyzer.analyzeCapabilities({
         target_areas,
-        currentImplementation: './aios-core'
+        currentImplementation: './aiox-core'
       });
       
       // Step 3: Generate improvement plan

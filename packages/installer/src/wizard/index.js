@@ -469,7 +469,7 @@ async function runWizard(options = {}) {
     //   const possibleSourceDirs = [
     //     path.join(__dirname, '..', '..', 'expansion-packs'),
     //     path.join(__dirname, '..', '..', '..', 'expansion-packs'),
-    //     path.join(process.cwd(), 'node_modules', '@synkra/aios-core', 'expansion-packs'),
+    //     path.join(process.cwd(), 'node_modules', '@synkra/aiox-core', 'expansion-packs'),
     //   ];
     //
     //   let sourceExpansionDir = null;

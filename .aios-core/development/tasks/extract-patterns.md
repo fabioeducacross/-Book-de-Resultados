@@ -4,7 +4,7 @@
 
 Extract and document code patterns from the codebase. Analyzes code via AST and regex to detect common patterns used in the project, generating a `patterns.md` file that serves as a reference for agents (especially the Spec Writer) when creating new features.
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: extract-patterns()
@@ -368,7 +368,7 @@ optimizations:
 # Direct script execution
 node .aios-core/infrastructure/scripts/pattern-extractor.js [command] [options]
 
-# Via AIOS command
+# Via AIOX command
 *extract-patterns [command] [options]
 ```
 

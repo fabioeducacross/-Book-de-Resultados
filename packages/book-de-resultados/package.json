@@ -4,6 +4,7 @@
   "description": "Geração automática do Book de Resultados de Avaliação Educacional a partir de planilhas XLSX",
   "main": "src/index.js",
   "scripts": {
+    "dev:audit-ui": "node examples/upload-listagem-auditoria-server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -25,6 +26,7 @@
   },
   "dependencies": {
     "exceljs": "^4.4.0",
+    "js-yaml": "^4.1.1",
     "pptxgenjs": "^4.0.1"
   },
   "devDependencies": {

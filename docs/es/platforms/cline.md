@@ -1,6 +1,6 @@
 <!-- Traducción: ES | Original: /docs/platforms/en/cline.md | Sincronización: 2026-01-26 -->
 
-# Guía AIOS para Cline
+# Guía AIOX para Cline
 
 > 🌐 [EN](../../platforms/cline.md) | [PT](../../pt/platforms/cline.md) | **ES**
 
@@ -16,9 +16,9 @@
 
 Cline es una potente extensión de asistente de codificación IA para VS Code que trae capacidades de codificación autónoma directamente a tu editor favorito. Puede leer, escribir y ejecutar código mientras mantiene el entorno familiar de VS Code.
 
-### ¿Por qué usar AIOS con Cline?
+### ¿Por qué usar AIOX con Cline?
 
-Cline ofrece integración perfecta con VS Code para AIOS:
+Cline ofrece integración perfecta con VS Code para AIOX:
 
 - **Integración Completa de VS Code**: Funciona dentro de tu configuración existente
 - **Activación con @mention**: Activación natural de agentes
@@ -47,7 +47,7 @@ Cline ofrece integración perfecta con VS Code para AIOS:
 | ----------- | ----------------- | -------------- |
 | **VS Code** | 1.80+             | Última versión |
 | **RAM**     | 4GB               | 8GB+           |
-| **Node.js** | 18.0+ (para AIOS) | 20.0+          |
+| **Node.js** | 18.0+ (para AIOX) | 20.0+          |
 
 ### Requisitos de Cuenta
 
@@ -81,7 +81,7 @@ code --install-extension saoudrizwan.claude-dev
 2. Añade tu clave de API (Anthropic, OpenAI, etc.)
 3. Configura el modelo preferido
 
-### Paso 4: Instalar AIOS
+### Paso 4: Instalar AIOX
 
 ```bash
 cd your-project
@@ -116,7 +116,7 @@ Estructura esperada:
 **Ubicación:** `.cline/rules.md`
 
 ```markdown
-# Reglas Synkra AIOS para Cline
+# Reglas Synkra AIOX para Cline
 
 ## Sistema de Agentes
 
@@ -307,7 +307,7 @@ Ver interacciones anteriores:
 
 ```mermaid
 flowchart LR
-    Source["AIOS Core<br/>.aios-core/development/agents"] --> Parser["Analizador de Agentes"]
+    Source["AIOX Core<br/>.aios-core/development/agents"] --> Parser["Analizador de Agentes"]
     Parser --> Transform["Transformador de Cline"]
     Transform --> Output[".cline/agents/"]
 ```
@@ -457,7 +457,7 @@ R: Sí, Cline soporta Ollama y otros proveedores de modelos locales.
 R: Solo con modelos locales configurados.
 
 **P: ¿Cómo actualizo los agentes?**
-R: Ejecuta `npm run sync:agents` después de actualizaciones de AIOS.
+R: Ejecuta `npm run sync:agents` después de actualizaciones de AIOX.
 
 ---
 
@@ -465,7 +465,7 @@ R: Ejecuta `npm run sync:agents` después de actualizaciones de AIOS.
 
 ### Desde Otras Extensiones
 
-1. Instala AIOS para Cline:
+1. Instala AIOX para Cline:
 
    ```bash
    npx @anthropic/aios init --ide cline
@@ -487,8 +487,8 @@ R: Ejecuta `npm run sync:agents` después de actualizaciones de AIOS.
 
 - [GitHub de Cline](https://github.com/cline/cline)
 - [Marketplace de VS Code](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
-- [Guía de Plataforma AIOS](../README.md)
+- [Guía de Plataforma AIOX](../README.md)
 
 ---
 
-_Synkra AIOS - Guía de Plataforma Cline v1.0_
+_Synkra AIOX - Guía de Plataforma Cline v1.0_

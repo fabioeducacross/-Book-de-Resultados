@@ -4,7 +4,7 @@
 
 ---
 
-Guia para configurar servidores MCP (Model Context Protocol) baseados em Docker com AIOS.
+Guia para configurar servidores MCP (Model Context Protocol) baseados em Docker com AIOX.
 
 **Versão:** 2.1.0
 **Última Atualização:** 2026-01-28
@@ -17,7 +17,7 @@ Antes de configurar Docker MCP, certifique-se de ter:
 
 - **Docker Desktop** instalado e em execução
 - **Node.js** 18+ instalado
-- Projeto **AIOS** inicializado
+- Projeto **AIOX** inicializado
 - Chaves de API para os serviços MCP desejados (EXA, Apify, etc.)
 
 ---
@@ -63,7 +63,7 @@ aios mcp add github
 
 ### Arquitetura MCP
 
-AIOS usa Docker MCP Toolkit como a infraestrutura MCP principal:
+AIOX usa Docker MCP Toolkit como a infraestrutura MCP principal:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -423,4 +423,4 @@ Use docker-gateway apenas quando:
 
 ---
 
-_Guia de Configuração Docker MCP do Synkra AIOS v2.1.0_
+_Guia de Configuração Docker MCP do Synkra AIOX v2.1.0_

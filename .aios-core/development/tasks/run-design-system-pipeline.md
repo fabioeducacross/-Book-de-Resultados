@@ -30,7 +30,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: run-design-system-pipeline
@@ -614,7 +614,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Design System Pipeline
-        run: npx aios-core task run-design-system-pipeline --mode=yolo
+        run: npx aiox-core task run-design-system-pipeline --mode=yolo
 ```
 
 ### NPM Script
@@ -622,8 +622,8 @@ jobs:
 ```json
 {
   "scripts": {
-    "ds:pipeline": "npx aios-core task run-design-system-pipeline",
-    "ds:pipeline:ci": "npx aios-core task run-design-system-pipeline --mode=yolo"
+    "ds:pipeline": "npx aiox-core task run-design-system-pipeline",
+    "ds:pipeline:ci": "npx aiox-core task run-design-system-pipeline --mode=yolo"
   }
 }
 ```

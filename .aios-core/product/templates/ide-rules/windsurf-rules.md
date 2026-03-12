@@ -1,8 +1,8 @@
-# Synkra AIOS Development Rules for Windsurf
+# Synkra AIOX Development Rules for Windsurf
 
-## AIOS Agent Integration
+## AIOX Agent Integration
 
-When working with AIOS agents in Windsurf:
+When working with AIOX agents in Windsurf:
 - Use `@agent-name` to activate specific agents (e.g., `@dev`, `@qa`, `@architect`)
 - Agent commands always start with `*` (e.g., `*help`, `*create-story`)
 - Follow the agent's specific workflow and commands
@@ -33,11 +33,11 @@ When working with AIOS agents in Windsurf:
 - Document complex logic with clear comments
 - Update API documentation for endpoint changes
 
-## AIOS-Specific Patterns
+## AIOX-Specific Patterns
 
 ### Working with Workflows
-- Workflows are in `aios-core/workflows/`
-- Tasks are in `aios-core/tasks/`
+- Workflows are in `aiox-core/workflows/`
+- Tasks are in `aiox-core/tasks/`
 - Follow YAML frontmatter conventions
 - Use elicit: true for interactive workflows
 
@@ -51,7 +51,7 @@ Common commands across agents:
 ### File Organization
 ```
 project/
-├── aios-core/          # AIOS framework files
+├── aiox-core/          # AIOX framework files
 │   ├── agents/         # Agent definitions
 │   ├── tasks/          # Executable tasks
 │   ├── workflows/      # Workflow definitions
@@ -77,4 +77,4 @@ project/
 - Reference story IDs in commits
 
 ---
-*Synkra AIOS Configuration v1.0* 
+*Synkra AIOX Configuration v1.0* 

@@ -32,7 +32,7 @@ Validate database migrations are properly created and applied for schema changes
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: qaMigrationValidation()

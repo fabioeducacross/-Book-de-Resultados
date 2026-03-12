@@ -4,7 +4,7 @@
 
 ---
 
-Guia completo para desenvolvedores que desejam contribuir com o projeto Synkra AIOS.
+Guia completo para desenvolvedores que desejam contribuir com o projeto Synkra AIOX.
 
 **Versão:** 1.0.0
 **Última Atualização:** 2026-01-29
@@ -42,8 +42,8 @@ Antes de começar, certifique-se de ter os seguintes itens instalados:
 
 | Ferramenta           | Finalidade                                    |
 | -------------------- | --------------------------------------------- |
-| **Claude Code**      | Desenvolvimento com IA usando agentes AIOS    |
-| **VS Code / Cursor** | IDE com integração AIOS                       |
+| **Claude Code**      | Desenvolvimento com IA usando agentes AIOX    |
+| **VS Code / Cursor** | IDE com integração AIOX                       |
 | **Docker Desktop**   | Servidores MCP e ferramentas containerizadas  |
 
 ### Instalando os Pré-requisitos
@@ -94,7 +94,7 @@ gh auth login
 
 ### Passo 1: Fazer Fork do Repositório
 
-1. Navegue até [github.com/SynkraAI/aios-core](https://github.com/SynkraAI/aios-core)
+1. Navegue até [github.com/SynkraAI/aiox-core](https://github.com/SynkraAI/aiox-core)
 2. Clique no botão **Fork** no canto superior direito
 3. Selecione sua conta do GitHub como destino
 
@@ -102,18 +102,18 @@ gh auth login
 
 ```bash
 # Clonar seu fork
-git clone https://github.com/YOUR_USERNAME/aios-core.git
-cd aios-core
+git clone https://github.com/YOUR_USERNAME/aiox-core.git
+cd aiox-core
 
 # Adicionar remote upstream
-git remote add upstream https://github.com/SynkraAI/aios-core.git
+git remote add upstream https://github.com/SynkraAI/aiox-core.git
 
 # Verificar remotes
 git remote -v
-# origin    https://github.com/YOUR_USERNAME/aios-core.git (fetch)
-# origin    https://github.com/YOUR_USERNAME/aios-core.git (push)
-# upstream  https://github.com/SynkraAI/aios-core.git (fetch)
-# upstream  https://github.com/SynkraAI/aios-core.git (push)
+# origin    https://github.com/YOUR_USERNAME/aiox-core.git (fetch)
+# origin    https://github.com/YOUR_USERNAME/aiox-core.git (push)
+# upstream  https://github.com/SynkraAI/aiox-core.git (fetch)
+# upstream  https://github.com/SynkraAI/aiox-core.git (push)
 ```
 
 ### Passo 3: Manter-se Atualizado
@@ -182,7 +182,7 @@ npm run validate:structure
 
 ### Passo 4: Integração com IDE (Opcional)
 
-Sincronizar agentes AIOS com sua IDE:
+Sincronizar agentes AIOX com sua IDE:
 
 ```bash
 # Sincronizar para todas as IDEs suportadas
@@ -200,10 +200,10 @@ npm run sync:ide:validate
 
 ## Estrutura do Projeto
 
-Entendendo a estrutura de diretórios do `aios-core`:
+Entendendo a estrutura de diretórios do `aiox-core`:
 
 ```
-aios-core/
+aiox-core/
 ├── .aios-core/                    # Fonte do framework (commitado)
 │   ├── core/                      # Utilitários e configurações principais
 │   │   ├── config/                # Arquivos de configuração do framework
@@ -226,7 +226,7 @@ aios-core/
 │       └── checklists/            # Checklists de produto
 │
 ├── .claude/                       # Configuração do Claude Code
-│   ├── commands/AIOS/agents/      # Comandos de skill dos agentes
+│   ├── commands/AIOX/agents/      # Comandos de skill dos agentes
 │   ├── hooks/                     # Hooks de governança
 │   └── rules/                     # Regras de comportamento da IA
 │
@@ -527,7 +527,7 @@ Crie um novo arquivo em `.aios-core/development/tasks/`:
 
 ---
 
-## Definição da Task (AIOS Task Format V1.0)
+## Definição da Task (AIOX Task Format V1.0)
 
 ```yaml
 task: myTaskFunction()
@@ -1081,8 +1081,8 @@ node --inspect node_modules/.bin/jest
 
 ### Recursos
 
-- **GitHub Discussions:** [github.com/SynkraAI/aios-core/discussions](https://github.com/SynkraAI/aios-core/discussions)
-- **Issue Tracker:** [github.com/SynkraAI/aios-core/issues](https://github.com/SynkraAI/aios-core/issues)
+- **GitHub Discussions:** [github.com/SynkraAI/aiox-core/discussions](https://github.com/SynkraAI/aiox-core/discussions)
+- **Issue Tracker:** [github.com/SynkraAI/aiox-core/issues](https://github.com/SynkraAI/aiox-core/issues)
 - **Discord:** [discord.gg/gk8jAdXWmj](https://discord.gg/gk8jAdXWmj)
 
 ### Labels de Issues
@@ -1112,5 +1112,5 @@ node --inspect node_modules/.bin/jest
 
 ---
 
-_Synkra AIOS Development Setup Guide v1.0.0_
+_Synkra AIOX Development Setup Guide v1.0.0_
 _Última Atualização: 2026-01-29_

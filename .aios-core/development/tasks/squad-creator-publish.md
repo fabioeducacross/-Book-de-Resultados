@@ -177,7 +177,7 @@ The generated PR body includes:
 
 ### Pre-submission Checklist
 
-- [x] Squad follows AIOS task-first architecture
+- [x] Squad follows AIOX task-first architecture
 - [x] Documentation is complete
 - [x] Squad validated locally
 - [ ] No sensitive data included

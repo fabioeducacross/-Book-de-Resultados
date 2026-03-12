@@ -1,6 +1,6 @@
-# AIOS Complete Cross-Reference Analysis
+# AIOX Complete Cross-Reference Analysis
 
-**Story:** AIOS-XREF-001
+**Story:** AIOX-XREF-001
 **Generated:** 2026-02-05
 **Owners:** @analyst (Atlas) + @architect (Aria)
 **Scope:** All ~881 framework artifacts across 25 entity types
@@ -24,7 +24,7 @@
 
 ## 1. Executive Summary
 
-This document is the result of a comprehensive cross-reference analysis of every artifact in the Synkra AIOS framework. The analysis was conducted in 7 phases, examining 25 entity types totaling approximately 745 tracked files.
+This document is the result of a comprehensive cross-reference analysis of every artifact in the Synkra AIOX framework. The analysis was conducted in 7 phases, examining 25 entity types totaling approximately 745 tracked files.
 
 ### Key Findings
 
@@ -529,10 +529,10 @@ Files with **no active consumers** anywhere in the runtime codebase.
 
 | File | Location |
 |------|----------|
-| `AIOS-LIVRO-DE-OURO.md` | `docs/standards/` |
-| `AIOS-LIVRO-DE-OURO-V2.1.md` | `docs/standards/` |
-| `AIOS-LIVRO-DE-OURO-V2.1-SUMMARY.md` | `docs/standards/` |
-| `AIOS-FRAMEWORK-MASTER.md` | `docs/standards/` |
+| `AIOX-LIVRO-DE-OURO.md` | `docs/standards/` |
+| `AIOX-LIVRO-DE-OURO-V2.1.md` | `docs/standards/` |
+| `AIOX-LIVRO-DE-OURO-V2.1-SUMMARY.md` | `docs/standards/` |
+| `AIOX-FRAMEWORK-MASTER.md` | `docs/standards/` |
 | `V3-ARCHITECTURAL-DECISIONS.md` | `docs/standards/` |
 
 **Recommendation:** Move to `docs/standards/archive/`.
@@ -665,7 +665,7 @@ infrastructure/   <--   core/   <--   development/   <--   product/
 (base layer)          (imports)       (imports)            (imports)
 ```
 
-- **infrastructure/** has ZERO dependencies on other AIOS modules
+- **infrastructure/** has ZERO dependencies on other AIOX modules
 - **core/** imports from infrastructure (recovery-handler, build-state-manager, executors)
 - **development/** imports from infrastructure (story-manager, greeting-builder)
 - **product/** imports from infrastructure (templates, activation-instructions)
@@ -760,7 +760,7 @@ For complete per-file analysis, see the individual phase documents:
 
 ---
 
-*AIOS Complete Cross-Reference Analysis*
-*Story: AIOS-XREF-001*
+*AIOX Complete Cross-Reference Analysis*
+*Story: AIOX-XREF-001*
 *Generated: 2026-02-05*
 *Total artifacts analyzed: ~745 files across 25 entity types*

@@ -1,4 +1,4 @@
-# Linux Installation Guide for Synkra AIOS
+# Linux Installation Guide for Synkra AIOX
 
 > 🌐 [EN](linux.md) | [PT](../pt/installation/linux.md) | [ES](../es/installation/linux.md)
 
@@ -153,7 +153,7 @@ sudo pacman -S base-devel
 3. Run the installer:
 
    ```bash
-   npx github:SynkraAI/aios-core install
+   npx github:SynkraAI/aiox-core install
    ```
 
 ### Manual Installation
@@ -162,7 +162,7 @@ If the quick install fails, try manual installation:
 
 ```bash
 # Clone the repository
-git clone https://github.com/SynkraAI/aios-core.git ~/.aios-core-source
+git clone https://github.com/SynkraAI/aiox-core.git ~/.aios-core-source
 
 # Navigate to the source
 cd ~/.aios-core-source
@@ -214,7 +214,7 @@ The installer automatically:
    npm install -g @anthropic-ai/claude-code
    ```
 
-2. Commands are installed to `.claude/commands/AIOS/`
+2. Commands are installed to `.claude/commands/AIOX/`
 3. Use `/agent-name` to activate agents
 
 ### Windsurf
@@ -226,7 +226,7 @@ The installer automatically:
 ### VS Code (with Continue extension)
 
 1. Install Continue extension
-2. Configure AIOS rules in `.continue/`
+2. Configure AIOX rules in `.continue/`
 
 ---
 
@@ -335,7 +335,7 @@ export NVM_DIR="$HOME/.nvm"
 # npm global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-# AIOS configuration
+# AIOX configuration
 export AIOS_HOME="$HOME/.aios-core"
 export PATH="$AIOS_HOME/bin:$PATH"
 
@@ -345,7 +345,7 @@ export EDITOR=vim  # or code, nano, etc.
 
 ### XDG Base Directory Compliance
 
-Synkra AIOS respects XDG directories:
+Synkra AIOX respects XDG directories:
 
 ```bash
 # Data files: ~/.local/share/aios/
@@ -362,7 +362,7 @@ To update an existing installation:
 
 ```bash
 # Using npx (recommended)
-npx github:SynkraAI/aios-core install
+npx github:SynkraAI/aiox-core install
 
 # Manual update
 cd ~/.aios-core-source
@@ -387,8 +387,8 @@ See the complete [Uninstallation Guide](../uninstallation.md) for detailed steps
 Quick uninstall:
 
 ```bash
-# Remove AIOS from a project
-rm -rf .aios-core .claude/commands/AIOS
+# Remove AIOX from a project
+rm -rf .aios-core .claude/commands/AIOX
 
 # Remove global installation
 rm -rf ~/.aios-core-source ~/.npm-global/lib/node_modules/@synkra
@@ -449,4 +449,4 @@ rm -rf ~/.aios-core-source ~/.npm-global/lib/node_modules/@synkra
 - [Troubleshooting Guide](troubleshooting.md)
 - [FAQ](faq.md)
 - [Discord Community](https://discord.gg/gk8jAdXWmj)
-- [GitHub Issues](https://github.com/SynkraAI/aios-core/issues)
+- [GitHub Issues](https://github.com/SynkraAI/aiox-core/issues)

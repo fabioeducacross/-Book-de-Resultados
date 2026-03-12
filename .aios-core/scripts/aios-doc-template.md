@@ -1,8 +1,8 @@
-# AIOS Document Template Specification
+# AIOX Document Template Specification
 
 ## Overview
 
-AIOS document templates are defined in YAML format to drive interactive document generation and agent interaction. Templates separate structure definition from content generation, making them both human and LLM-agent-friendly.
+AIOX document templates are defined in YAML format to drive interactive document generation and agent interaction. Templates separate structure definition from content generation, making them both human and LLM-agent-friendly.
 
 ## Template Structure
 

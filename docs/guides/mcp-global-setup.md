@@ -1,10 +1,10 @@
-# AIOS MCP Global Setup Guide
+# AIOX MCP Global Setup Guide
 
 > **EN** | [PT](../pt/guides/mcp-global-setup.md) | [ES](../es/guides/mcp-global-setup.md)
 
 ---
 
-> Configure global MCP (Model Context Protocol) servers for Synkra AIOS.
+> Configure global MCP (Model Context Protocol) servers for Synkra AIOX.
 
 **Version:** 2.1.1
 **Last Updated:** 2025-12-23
@@ -13,7 +13,7 @@
 
 ## Overview
 
-The MCP Global System allows you to configure MCP servers once and share them across all AIOS projects. This eliminates the need to configure the same servers in every project.
+The MCP Global System allows you to configure MCP servers once and share them across all AIOX projects. This eliminates the need to configure the same servers in every project.
 
 ### Benefits
 
@@ -116,7 +116,7 @@ aios mcp setup
 
 **This creates:**
 
-- `~/.aios/` - Global AIOS directory
+- `~/.aios/` - Global AIOX directory
 - `~/.aios/mcp/` - MCP configuration directory
 - `~/.aios/mcp/global-config.json` - Main config file
 - `~/.aios/mcp/servers/` - Individual server configs
@@ -151,7 +151,7 @@ Run 'aios mcp add <server>' to add servers.
 
 ### Using Templates
 
-AIOS includes templates for popular MCP servers:
+AIOX includes templates for popular MCP servers:
 
 ```bash
 # Add from template
@@ -693,4 +693,4 @@ Create `.mcp.json` in project root to override global settings:
 
 ---
 
-_Synkra AIOS v2.1 MCP Global Setup Guide_
+_Synkra AIOX v2.1 MCP Global Setup Guide_

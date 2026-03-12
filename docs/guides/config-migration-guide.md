@@ -9,7 +9,7 @@ Migrate from monolithic `core-config.yaml` to the layered configuration hierarch
 
 ## Overview
 
-AIOS v3.12+ introduces a 4-level configuration hierarchy that replaces the single `core-config.yaml` file:
+AIOX v3.12+ introduces a 4-level configuration hierarchy that replaces the single `core-config.yaml` file:
 
 | Level | File | Git Status | Purpose |
 |-------|------|------------|---------|

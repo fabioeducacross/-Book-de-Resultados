@@ -1,0 +1,254 @@
+
+> aiox-core@4.0.4 test
+> jest --runInBand --detectOpenHandles --bail tests/core/orchestration/workflow-orchestrator.test.js
+
+  console.log
+    
+    ­ƒÜÇ Starting workflow: Test Workflow
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:333:13)
+
+  console.log
+       Phases: 1 | Mode: Interactive
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:334:13)
+
+  console.log
+       Parallel phases: None
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:339:13)
+
+  console.log
+    
+    ­ƒôü Setting up directories...
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:342:13)
+
+  console.log
+       ­ƒôü docs/architecture
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       ­ƒôü docs/frontend
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       ­ƒôü docs/prd
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       ­ƒôü docs/reviews
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       ­ƒôü docs/reports
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       ­ƒôü docs/stories
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       ­ƒôü supabase/docs
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       ­ƒôü .aios/workflow-state
+
+      at WorkflowOrchestrator.log [as setupDirectories] (.aios-core/core/orchestration/workflow-orchestrator.js:119:15)
+
+  console.log
+       Ô£à Directories ready
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:344:13)
+
+  console.log
+    ­ƒöì Phase 0: Pre-Flight Detection...
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:350:13)
+
+  console.log
+       ­ƒôè Database: Ô£ù
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:355:13)
+
+  console.log
+       ­ƒÄ¿ Frontend: Ô£ô (react)
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:360:13)
+
+  console.log
+       ­ƒöº Backend: Ô£ô (node)
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:365:13)
+
+  console.log
+       ­ƒôØ TypeScript: Ô£ô
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:370:13)
+
+  console.log
+       ­ƒôï Applicable phases: 1, 2, 3
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:371:13)
+
+  console.log
+       ­ƒÄ» Confidence: 90%
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:374:13)
+
+  console.log
+       Ô£à Pre-flight detection complete
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:375:13)
+
+  console.log
+       ­ƒöº Preparing phase...
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:508:15)
+
+  console.log
+       ­ƒÜÇ AIOS:agents:dev
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:543:15)
+
+  console.log
+       ­ƒöì Validating output...
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:575:15)
+
+  console.log
+       ÔÅ¡´©Å  Skipping Database Review: No database detected in project
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:476:17)
+
+  console.log
+       ÔÜá´©Å  Implementation: Missing dependencies: docs/stories/story.md
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:491:17)
+
+  console.log
+    
+    ­ƒÆ╗ Phase 1: Discovery
+
+      at WorkflowOrchestrator.log [as _defaultPhaseStart] (.aios-core/core/orchestration/workflow-orchestrator.js:729:13)
+
+  console.log
+       Agent: @dev | Action: *develop
+
+      at WorkflowOrchestrator.log [as _defaultPhaseStart] (.aios-core/core/orchestration/workflow-orchestrator.js:730:13)
+
+  console.log
+       ­ƒöº Preparing phase...
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:508:15)
+
+  console.log
+       ­ƒÜÇ AIOS:agents:dev
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:543:15)
+
+  console.log
+       ­ƒöì Validating output...
+
+      at WorkflowOrchestrator.log [as _executeSinglePhase] (.aios-core/core/orchestration/workflow-orchestrator.js:575:15)
+
+  console.log
+       ­ƒôñ Phase 1 complete
+
+      at WorkflowOrchestrator.log [as _defaultPhaseComplete] (.aios-core/core/orchestration/workflow-orchestrator.js:740:13)
+
+  console.log
+    
+    ­ƒÜÇ Starting workflow: Grouped Workflow
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:333:13)
+
+  console.log
+       Phases: 4 | Mode: Interactive
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:334:13)
+
+  console.log
+       Parallel phases: 2, 3
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:339:13)
+
+  console.log
+    
+    ­ƒôü Setting up directories...
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:342:13)
+
+  console.log
+       Ô£à Directories ready
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:344:13)
+
+  console.log
+    ­ƒöì Phase 0: Pre-Flight Detection...
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:350:13)
+
+  console.log
+       ­ƒôè Database: Ô£ù
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:355:13)
+
+  console.log
+       ­ƒÄ¿ Frontend: Ô£ô (react)
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:360:13)
+
+  console.log
+       ­ƒöº Backend: Ô£ô (node)
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:365:13)
+
+  console.log
+       ­ƒôØ TypeScript: Ô£ô
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:370:13)
+
+  console.log
+       ­ƒôï Applicable phases: 1, 2, 3
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:371:13)
+
+  console.log
+       ­ƒÄ» Confidence: 90%
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:374:13)
+
+  console.log
+       Ô£à Pre-flight detection complete
+
+      at WorkflowOrchestrator.log [as execute] (.aios-core/core/orchestration/workflow-orchestrator.js:375:13)
+
+PASS tests/core/orchestration/workflow-orchestrator.test.js
+  WorkflowOrchestrator
+    happy path execution
+      ÔêÜ should dispatch a phase, validate outputs, persist context, and return summary (74 ms)
+    skip behavior
+      ÔêÜ should skip a phase when condition evaluation fails and persist the skip reason (5 ms)
+      ÔêÜ should skip a phase with missing dependencies outside YOLO mode (5 ms)
+    dispatch fallback
+      ÔêÜ should return a pending dispatch result when dispatchSubagent is not provided (13 ms)
+    validation and summary
+      ÔêÜ should validate created files, execute the checklist, and expose outputs in the summary (9 ms)
+    phase grouping
+      ÔêÜ should group sequential and parallel phases while ignoring workflow end markers (3 ms)
+      ÔêÜ should execute sequential and parallel groups through execute() (8 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        0.526 s, estimated 1 s
+Ran all test suites matching tests/core/orchestration/workflow-orchestrator.test.js.

@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Configure complete GitHub DevOps infrastructure for user projects created with AIOS. This task copies GitHub Actions workflows, configures CodeRabbit, sets up branch protection, and manages secrets.
+Configure complete GitHub DevOps infrastructure for user projects created with AIOX. This task copies GitHub Actions workflows, configures CodeRabbit, sets up branch protection, and manages secrets.
 
 **This task should be executed AFTER `*environment-bootstrap`**, when the Git repository is already initialized and pushed to GitHub.
 
@@ -40,7 +40,7 @@ Configure complete GitHub DevOps infrastructure for user projects created with A
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: setupGitHub()
@@ -698,7 +698,7 @@ Write-Host "Secrets configured: $($secretsConfigured.Count)"
 echo "=== Generating DevOps Setup Report ==="
 
 $report = @"
-# AIOS DevOps Setup Report
+# AIOX DevOps Setup Report
 # Generated: $(Get-Date -Format "yyyy-MM-ddTHH:mm:ss")
 
 setup:

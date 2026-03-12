@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@analyst** (Atlas) es el agente de investigacion y analisis del AIOS, responsable por:
+**@analyst** (Atlas) es el agente de investigacion y analisis del AIOX, responsable por:
 
 - Investigacion de mercado y competencia
 - Analisis de requisitos y viabilidad

@@ -9,7 +9,7 @@
 **Type:** Feature
 **Lead:** @dev (Dex) + @architect (Aria)
 **Depends On:** SYN-1 (Domain Loader — manifest KEY=VALUE format)
-**Repository:** aios-core
+**Repository:** aiox-core
 **Wave:** 2 (Integration + Content)
 
 ## Executor Assignment

@@ -1,4 +1,4 @@
-# 🔴 AIOS Dashboard - Arquitetura de Observabilidade em Tempo Real
+# 🔴 AIOX Dashboard - Arquitetura de Observabilidade em Tempo Real
 
 > **PT** | [EN](../architecture/dashboard-realtime.md) | [ES](../es/architecture/dashboard-realtime.md)
 
@@ -27,7 +27,7 @@
 
 ## Visão Geral
 
-Este documento descreve a arquitetura para **observabilidade em tempo real** do AIOS Dashboard, permitindo que usuários acompanhem comandos executados no CLI com máximo detalhe visual.
+Este documento descreve a arquitetura para **observabilidade em tempo real** do AIOX Dashboard, permitindo que usuários acompanhem comandos executados no CLI com máximo detalhe visual.
 
 ### Caso de Uso Principal
 
@@ -108,7 +108,7 @@ Usuário executa comandos no CLI → Dashboard mostra TUDO em tempo real
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         CLI / AIOS AGENTS                                │
+│                         CLI / AIOX AGENTS                                │
 │  ┌─────────────────────────────────────────────────────────────────┐    │
 │  │                      Claude Code Session                         │    │
 │  │  @architect → *create-architecture → [thinking...] → [file ops] │    │
@@ -433,7 +433,7 @@ JSON Lines (JSONL) - um objeto JSON por linha, apenas append.
   "timestamp": "...",
   "agentId": "architect",
   "data": {
-    "storyId": "AIOS-123",
+    "storyId": "AIOX-123",
     "oldStatus": "in-progress",
     "newStatus": "review"
   }
@@ -1250,4 +1250,4 @@ const DEFAULT_RETENTION: EventRetentionSettings = {
 
 ---
 
-_Documentação gerada por @architect (Aria) - AIOS Core v2.0_
+_Documentação gerada por @architect (Aria) - AIOX Core v2.0_

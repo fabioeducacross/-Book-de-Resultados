@@ -174,7 +174,7 @@ Multi-agent workflow orchestration and ADE (Autonomous Development Engine).
 | `parallel-executor.js` | Concurrent phase execution with max concurrency | None (chalk) | workflow-orchestrator.js, orchestration/index.js | No |
 | `tech-stack-detector.js` | Pre-flight project tech stack detection | None (fs-extra) | workflow-orchestrator.js, master-orchestrator.js, orchestration/index.js | No |
 | `condition-evaluator.js` | Evaluates workflow conditions against tech stack profile | None | workflow-orchestrator.js, orchestration/index.js | No |
-| `skill-dispatcher.js` | Maps agent IDs to AIOS Skill invocations | None | workflow-orchestrator.js, orchestration/index.js | No |
+| `skill-dispatcher.js` | Maps agent IDs to AIOX Skill invocations | None | workflow-orchestrator.js, orchestration/index.js | No |
 | `recovery-handler.js` | Story 0.5: Auto error recovery (retry, rollback, skip, escalate) | None (fs-extra, EventEmitter) | master-orchestrator.js, orchestration/index.js, tests/core/ | No |
 | `gate-evaluator.js` | Story 0.6: Quality gates between epics | None (fs-extra, js-yaml) | master-orchestrator.js, orchestration/index.js, tests/core/ | No |
 | `agent-invoker.js` | Story 0.7: Agent invocation interface for orchestration | None (fs-extra, EventEmitter) | master-orchestrator.js, orchestration/index.js, tests/core/ | No |
@@ -227,7 +227,7 @@ Service registry for worker/task discovery.
 | File | Purpose | Internal Deps | External Consumers | Orphan? |
 |------|---------|---------------|-------------------|---------|
 | `registry-loader.js` | Loads and queries service registry JSON with caching | None | core/index.js, CLI workers/* (list, info, search-keyword, search-semantic), tests/ | No |
-| `build-registry.js` | Scans AIOS modules and builds registry JSON | None (glob) | **None found** (standalone script) | **Partial** -- used as CLI script |
+| `build-registry.js` | Scans AIOX modules and builds registry JSON | None (glob) | **None found** (standalone script) | **Partial** -- used as CLI script |
 | `validate-registry.js` | Validates registry JSON against schema (smoke tests REG-01..06) | None (ajv, ajv-formats) | **None found** (standalone script) | **Partial** -- used as CLI script |
 
 ### 2.14 session/ (2 files)

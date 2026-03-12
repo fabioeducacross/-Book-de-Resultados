@@ -4,7 +4,7 @@
   Última sincronização: 2026-01-29
 -->
 
-# Guia de Instalação Windows para Synkra AIOS
+# Guia de Instalação Windows para Synkra AIOX
 
 > 🌐 [EN](../../installation/windows.md) | **PT** | [ES](../../es/installation/windows.md)
 
@@ -131,7 +131,7 @@ winget install Microsoft.WindowsTerminal
 3. Execute o instalador:
 
    ```powershell
-   npx github:SynkraAI/aios-core install
+   npx github:SynkraAI/aiox-core install
    ```
 
 ### O Que o Instalador Faz
@@ -168,7 +168,7 @@ O instalador automaticamente:
    npm install -g @anthropic-ai/claude-code
    ```
 
-2. Comandos são instalados em `.claude\commands\AIOS\`
+2. Comandos são instalados em `.claude\commands\AIOX\`
 3. Use `/nome-do-agente` para ativar agentes
 
 ### Windsurf
@@ -282,7 +282,7 @@ wsl --install -d Ubuntu
 # Reinicie o computador quando solicitado
 ```
 
-### Configurar AIOS com WSL
+### Configurar AIOX com WSL
 
 ```bash
 # Dentro do WSL, siga o guia de instalação Linux
@@ -303,7 +303,7 @@ Para atualizar uma instalação existente:
 
 ```powershell
 # Usando npx (recomendado)
-npx github:SynkraAI/aios-core install
+npx github:SynkraAI/aiox-core install
 
 # O atualizador irá:
 # - Detectar instalação existente
@@ -343,4 +343,4 @@ npx github:SynkraAI/aios-core install
 - [Guia de Solução de Problemas](troubleshooting.md)
 - [FAQ](faq.md)
 - [Comunidade Discord](https://discord.gg/gk8jAdXWmj)
-- [GitHub Issues](https://github.com/SynkraAI/aios-core/issues)
+- [GitHub Issues](https://github.com/SynkraAI/aiox-core/issues)

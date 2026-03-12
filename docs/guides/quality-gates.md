@@ -1,10 +1,10 @@
-# AIOS Quality Gate System Guide
+# AIOX Quality Gate System Guide
 
 > **EN** | [PT](../pt/guides/quality-gates.md) | [ES](../es/guides/quality-gates.md)
 
 ---
 
-> Comprehensive guide to the 3-layer quality gate system for Synkra AIOS.
+> Comprehensive guide to the 3-layer quality gate system for Synkra AIOX.
 
 **Version:** 2.1.0
 **Last Updated:** 2025-12-01
@@ -13,7 +13,7 @@
 
 ## Overview
 
-The AIOS Quality Gate System provides automated quality assurance through three progressive layers of validation. Each layer catches different types of issues at the appropriate stage of development.
+The AIOX Quality Gate System provides automated quality assurance through three progressive layers of validation. Each layer catches different types of issues at the appropriate stage of development.
 
 ### The 3-Layer Architecture
 
@@ -162,7 +162,7 @@ layer2:
   quinn:
     enabled: true
     autoReview: true
-    agentPath: '.claude/commands/AIOS/agents/qa.md'
+    agentPath: '.claude/commands/AIOX/agents/qa.md'
     severity:
       block: ['CRITICAL']
       warn: ['HIGH', 'MEDIUM']
@@ -528,7 +528,7 @@ layer2:
   quinn:
     enabled: true
     autoReview: true
-    agentPath: '.claude/commands/AIOS/agents/qa.md'
+    agentPath: '.claude/commands/AIOX/agents/qa.md'
     severity:
       block: [CRITICAL]
       warn: [HIGH, MEDIUM]
@@ -605,4 +605,4 @@ verbose:
 
 ---
 
-_Synkra AIOS v2.1 Quality Gate System Guide_
+_Synkra AIOX v2.1 Quality Gate System Guide_

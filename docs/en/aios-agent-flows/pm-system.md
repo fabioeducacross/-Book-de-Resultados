@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@pm** (Morgan) is the **Strategist** of the AIOS agent system. This agent is responsible for:
+**@pm** (Morgan) is the **Strategist** of the AIOX agent system. This agent is responsible for:
 
 - Product management and strategic planning
 - Defining product vision and roadmap
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @pm System v1.0*
+*AIOX Agent Flows - @pm System v1.0*

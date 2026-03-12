@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: deprecateComponent()
@@ -208,7 +208,7 @@ tools:
 #   - deprecation-checklist.md
 ---
 
-# Deprecate Component - AIOS Developer Task
+# Deprecate Component - AIOX Developer Task
 
 ## Purpose
 Mark framework components as deprecated with timeline management and migration path generation.
@@ -267,7 +267,7 @@ class DeprecateComponentTask {
 
   async execute(params) {
     try {
-      console.log(chalk.blue('🚫 AIOS Component Deprecation'));
+      console.log(chalk.blue('🚫 AIOX Component Deprecation'));
       console.log(chalk.gray('Marking component as deprecated with timeline management\n'));
 
       // Parse and validate parameters

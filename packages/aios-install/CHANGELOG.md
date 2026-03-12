@@ -1,4 +1,4 @@
-# Changelog - @synkra/aios-install
+# Changelog - @synkra/aiox-install
 
 All notable changes to this package will be documented in this file.
 
@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of `@synkra/aios-install` NPX package
+- Initial release of `@synkra/aiox-install` NPX package
 - OS detection for macOS, Linux, Windows, and WSL environments
 - Dependency checker for Node.js (>=18), Git, Docker (optional), and gh CLI (optional)
 - Profile selection wizard (bob vs advanced mode)

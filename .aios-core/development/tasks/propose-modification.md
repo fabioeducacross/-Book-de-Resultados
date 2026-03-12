@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: proposeModification()
@@ -205,10 +205,10 @@ checklists:
   - change-checklist.md
 ---
 
-# Propose Modification - AIOS Developer Task
+# Propose Modification - AIOX Developer Task
 
 ## Purpose
-Create and submit modification proposals for collaborative review and approval within the Synkra AIOS framework.
+Create and submit modification proposals for collaborative review and approval within the Synkra AIOX framework.
 
 ## Command Pattern
 ```
@@ -234,13 +234,13 @@ Create and submit modification proposals for collaborative review and approval w
 ## Examples
 ```bash
 # Propose agent enhancement
-*propose-modification aios-core/agents/weather-agent.md enhance --title "Add caching support" --description "Implement response caching to reduce API calls" --priority medium
+*propose-modification aiox-core/agents/weather-agent.md enhance --title "Add caching support" --description "Implement response caching to reduce API calls" --priority medium
 
 # Propose critical refactoring with impact analysis
-*propose-modification aios-core/scripts/core-utility.js refactor --title "Optimize performance" --priority critical --impact-analysis --assignees "alice,bob"
+*propose-modification aiox-core/scripts/core-utility.js refactor --title "Optimize performance" --priority critical --impact-analysis --assignees "alice,bob"
 
 # Create draft proposal for workflow deprecation
-*propose-modification aios-core/workflows/legacy-workflow.yaml deprecate --draft --title "Deprecate legacy workflow" --link-issues "123,456"
+*propose-modification aiox-core/workflows/legacy-workflow.yaml deprecate --draft --title "Deprecate legacy workflow" --link-issues "123,456"
 ```
 
 ## Implementation
@@ -263,7 +263,7 @@ class ProposeModificationTask {
 
   async execute(params) {
     try {
-      console.log(chalk.blue('📝 AIOS Modification Proposal'));
+      console.log(chalk.blue('📝 AIOX Modification Proposal'));
       console.log(chalk.gray('Creating collaborative modification proposal\n'));
 
       // Parse and validate parameters

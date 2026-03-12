@@ -28,7 +28,7 @@ Checklist:
 
 # *create-squad
 
-Cria um novo squad seguindo a arquitetura task-first do AIOS.
+Cria um novo squad seguindo a arquitetura task-first do AIOX.
 
 ## Uso
 
@@ -79,7 +79,7 @@ Cria um novo squad seguindo a arquitetura task-first do AIOS.
   > extend (adiciona as regras do core)
     override (substitui regras do core)
     none (sem heranca)
-? Minimum AIOS version: (2.1.0)
+? Minimum AIOX version: (2.1.0)
 ```
 
 ## Templates Disponiveis

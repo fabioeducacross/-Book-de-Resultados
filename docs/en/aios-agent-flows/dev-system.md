@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@dev** (Dex) is the **Builder** of the AIOS agent system. This agent is responsible for:
+**@dev** (Dex) is the **Builder** of the AIOX agent system. This agent is responsible for:
 
 - Implementing features and writing code
 - Following development stories and acceptance criteria
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @dev System v1.0*
+*AIOX Agent Flows - @dev System v1.0*

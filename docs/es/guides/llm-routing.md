@@ -32,17 +32,17 @@ El Enrutamiento de LLM proporciona dos comandos para diferentes casos de uso:
 
 ### Instalacion
 
-**Opcion 1: Si tienes aios-core clonado**
+**Opcion 1: Si tienes aiox-core clonado**
 ```bash
-# Desde el directorio aios-core
+# Desde el directorio aiox-core
 node .aios-core/infrastructure/scripts/llm-routing/install-llm-routing.js
 ```
 
 **Opcion 2: Instalacion nueva**
 ```bash
 # Clonar el repositorio
-git clone https://github.com/SynkraAI/aios-core.git
-cd aios-core
+git clone https://github.com/SynkraAI/aiox-core.git
+cd aiox-core
 
 # Ejecutar el instalador
 node .aios-core/infrastructure/scripts/llm-routing/install-llm-routing.js
@@ -309,4 +309,4 @@ R: Las claves se cargan desde archivos `.env` (no los subas al repositorio!) o v
 
 ---
 
-*Generado por AIOS Framework - Story 6.7*
+*Generado por AIOX Framework - Story 6.7*

@@ -27,7 +27,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: removeWorktree()
@@ -109,7 +109,7 @@ post-conditions:
 
 ## Description
 
-Removes an AIOS-managed worktree and its associated branch. Includes safety checks for uncommitted changes and provides options for force removal.
+Removes an AIOX-managed worktree and its associated branch. Includes safety checks for uncommitted changes and provides options for force removal.
 
 **Safety Features:**
 

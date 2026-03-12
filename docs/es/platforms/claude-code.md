@@ -1,12 +1,12 @@
 <!-- Traducción: ES | Original: /docs/platforms/en/claude-code.md | Sincronización: 2026-01-26 -->
 
-# Guía AIOS para Claude Code
+# Guía AIOX para Claude Code
 
 > 🌐 [EN](../../platforms/claude-code.md) | [PT](../../pt/platforms/claude-code.md) | **ES**
 
 ---
 
-> **CLI Oficial de Anthropic** - Plataforma Recomendada para AIOS
+> **CLI Oficial de Anthropic** - Plataforma Recomendada para AIOX
 
 ---
 
@@ -16,9 +16,9 @@
 
 Claude Code es la interfaz de línea de comandos oficial de Anthropic para Claude, diseñada para desarrolladores que desean acceso directo y poderoso a las capacidades de Claude en su terminal y flujo de trabajo de desarrollo.
 
-### ¿Por qué usar AIOS con Claude Code?
+### ¿Por qué usar AIOX con Claude Code?
 
-Claude Code ofrece la **mejor integración** con AIOS debido a:
+Claude Code ofrece la **mejor integración** con AIOX debido a:
 
 - **Soporte MCP Nativo**: Protocolo de Contexto de Modelo integrado para extensiones de herramientas
 - **Herramienta de Tareas**: Genera subagentos para operaciones complejas de múltiples pasos
@@ -98,13 +98,13 @@ claude login
 export ANTHROPIC_API_KEY="tu-clave-api"
 ```
 
-### Paso 3: Instalar AIOS
+### Paso 3: Instalar AIOX
 
 ```bash
 # Navega a tu proyecto
 cd tu-proyecto
 
-# Inicializa AIOS
+# Inicializa AIOX
 npx @anthropic/aios init
 
 # Selecciona "Claude Code" cuando se te solicite el IDE
@@ -116,7 +116,7 @@ npx @anthropic/aios init
 # Verifica el tipo de instalación y versión
 claude doctor
 
-# Verifica que los archivos AIOS fueron creados
+# Verifica que los archivos AIOX fueron creados
 ls -la .claude/
 ```
 
@@ -124,7 +124,7 @@ Estructura esperada:
 ```
 .claude/
 ├── commands/
-│   └── AIOS/
+│   └── AIOX/
 │       └── agents/        # Agentes sincronizados
 ├── settings.json          # Configuración local
 └── settings.local.json    # Anulaciones locales
@@ -145,7 +145,7 @@ Este archivo contiene:
 - Contexto del proyecto y reglas
 - Instrucciones de activación de agentes
 - Metodología de desarrollo
-- Comprensión del marco AIOS
+- Comprensión del marco AIOX
 
 ### Variables de Entorno
 
@@ -213,7 +213,7 @@ claude --context "Trabajando en la característica X"
 claude --file src/main.ts
 ```
 
-### Activando Agentes AIOS
+### Activando Agentes AIOX
 
 Los agentes se activan usando comandos slash:
 
@@ -404,9 +404,9 @@ Claude Code muestra estado en tiempo real:
 
 ```mermaid
 flowchart LR
-    Source["AIOS Core<br/>.aios-core/development/agents"] --> Parser["Analizador de Agentes"]
+    Source["AIOX Core<br/>.aios-core/development/agents"] --> Parser["Analizador de Agentes"]
     Parser --> Transform["Transformador Claude"]
-    Transform --> Output[".claude/commands/AIOS/agents"]
+    Transform --> Output[".claude/commands/AIOX/agents"]
 ```
 
 ### Comandos de Sincronización
@@ -453,7 +453,7 @@ activation: /dev
 
 Cuando ocurren conflictos:
 
-1. Los cambios locales se respaldan en `.claude/commands/AIOS/agents/.backup/`
+1. Los cambios locales se respaldan en `.claude/commands/AIOX/agents/.backup/`
 2. La sincronización solicita resolución
 3. Elegir: mantener local, usar remoto, o combinar
 
@@ -527,7 +527,7 @@ Error: Unknown command '/xyz'
 npm run sync:agents
 
 # Verificar que el agente existe
-ls .claude/commands/AIOS/agents/
+ls .claude/commands/AIOX/agents/
 ```
 
 #### Permiso de Herramienta Denegado
@@ -553,7 +553,7 @@ export AIOS_DEBUG=true
 # Ver registros de Claude Code
 cat ~/.claude/logs/latest.log
 
-# Verificar registros de AIOS
+# Verificar registros de AIOX
 cat .aios-core/logs/sync.log
 ```
 
@@ -582,7 +582,7 @@ R: Claude Code es gratuito, pero se aplican costos por uso de API según tu plan
 **P: ¿Puedo usar mis propios modelos?**
 R: Claude Code solo soporta los modelos Claude de Anthropic.
 
-### Preguntas Específicas de AIOS
+### Preguntas Específicas de AIOX
 
 **P: ¿Cómo cambio entre agentes?**
 R: Simplemente usa el comando slash para el agente deseado: `/dev`, `/qa`, etc.
@@ -591,10 +591,10 @@ R: Simplemente usa el comando slash para el agente deseado: `/dev`, `/qa`, etc.
 R: Sí, a través de la herramienta de Tareas que puede generar subagentos.
 
 **P: ¿Dónde se almacenan las definiciones de agentes?**
-R: En `.claude/commands/AIOS/agents/` después de la sincronización.
+R: En `.claude/commands/AIOX/agents/` después de la sincronización.
 
 **P: ¿Con qué frecuencia debo sincronizar agentes?**
-R: Después de actualizar AIOS o cuando los agentes se modifiquen en el núcleo.
+R: Después de actualizar AIOX o cuando los agentes se modifiquen en el núcleo.
 
 ---
 
@@ -607,7 +607,7 @@ R: Después de actualizar AIOS o cuando los agentes se modifiquen en el núcleo.
    cp .cursor/rules.md cursor-rules-backup.md
    ```
 
-2. Inicializa AIOS con Claude Code:
+2. Inicializa AIOX con Claude Code:
    ```bash
    npx @anthropic/aios init --ide claude-code
    ```
@@ -623,8 +623,8 @@ R: Después de actualizar AIOS o cuando los agentes se modifiquen en el núcleo.
 
 ### De Claude Code a Otro IDE
 
-1. Tus agentes AIOS se almacenan en `.aios-core/development/agents/`
-2. Inicializa AIOS para el IDE objetivo
+1. Tus agentes AIOX se almacenan en `.aios-core/development/agents/`
+2. Inicializa AIOX para el IDE objetivo
 3. Los agentes se transformarán al nuevo formato automáticamente
 
 ---
@@ -648,4 +648,4 @@ R: Después de actualizar AIOS o cuando los agentes se modifiquen en el núcleo.
 
 ---
 
-*Synkra AIOS - Guía de Plataforma Claude Code v1.0*
+*Synkra AIOX - Guía de Plataforma Claude Code v1.0*

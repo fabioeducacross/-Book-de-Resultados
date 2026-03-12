@@ -1,12 +1,12 @@
 <!-- Tradução: PT-BR | Original: /docs/en/architecture/module-system.md | Sincronização: 2026-01-26 -->
 
-# Arquitetura do Sistema de Módulos do AIOS
+# Arquitetura do Sistema de Módulos do AIOX
 
 > 🌐 [EN](../../architecture/module-system.md) | **PT** | [ES](../../es/architecture/module-system.md)
 
 ---
 
-> Guia completo para a arquitetura modular v2.1 do Synkra AIOS.
+> Guia completo para a arquitetura modular v2.1 do Synkra AIOX.
 
 **Versão:** 2.1.0
 **Última Atualização:** 2025-12-01
@@ -39,7 +39,7 @@ A arquitetura modular v2.1 aborda vários desafios da estrutura flat da v2.0:
 
 ## Estrutura de Módulos
 
-O Synkra AIOS organiza o diretório `.aios-core/` em quatro módulos principais:
+O Synkra AIOX organiza o diretório `.aios-core/` em quatro módulos principais:
 
 ```
 .aios-core/
@@ -53,7 +53,7 @@ O Synkra AIOS organiza o diretório `.aios-core/` em quatro módulos principais:
 
 ```mermaid
 graph TB
-    subgraph "Framework AIOS v2.1"
+    subgraph "Framework AIOX v2.1"
         CLI[CLI / Ferramentas]
 
         subgraph "Módulo Product"
@@ -168,7 +168,7 @@ const QualityGateManager = require('./.aios-core/core/quality-gates/quality-gate
 
 | Agente          | ID                 | Responsabilidade          |
 | --------------- | ------------------ | ------------------------- |
-| AIOS Master     | `aios-master`      | Orquestração do framework |
+| AIOX Master     | `aios-master`      | Orquestração do framework |
 | Developer       | `dev`              | Implementação de código   |
 | QA              | `qa`               | Garantia de qualidade     |
 | Architect       | `architect`        | Arquitetura técnica       |
@@ -379,4 +379,4 @@ Veja o [Guia de Migração](../../migration/v2.0-to-v2.1.md) para instruções d
 
 ---
 
-_Arquitetura do Sistema de Módulos Synkra AIOS v2.1_
+_Arquitetura do Sistema de Módulos Synkra AIOX v2.1_

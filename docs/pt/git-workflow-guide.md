@@ -4,7 +4,7 @@
   Última sincronização: 2026-01-26
 -->
 
-# Guia de Workflow Git do AIOS
+# Guia de Workflow Git do AIOX
 
 > 🌐 [EN](../git-workflow-guide.md) | **PT** | [ES](../es/git-workflow-guide.md)
 
@@ -26,7 +26,7 @@ _Story: 2.2-git-workflow-implementation.yaml_
 
 ## Visão Geral
 
-O Synkra AIOS implementa uma estratégia de validação de **Defesa em Profundidade** com três camadas progressivas que detectam problemas antecipadamente e garantem a qualidade do código antes do merge.
+O Synkra AIOX implementa uma estratégia de validação de **Defesa em Profundidade** com três camadas progressivas que detectam problemas antecipadamente e garantem a qualidade do código antes do merge.
 
 ### Por Que Três Camadas?
 
@@ -985,12 +985,12 @@ strategy:
 
 ## Referências
 
-- **AIOS Validator:** [.aios-core/utils/aios-validator.js](../../.aios-core/utils/aios-validator.js)
+- **AIOX Validator:** [.aios-core/utils/aios-validator.js](../../.aios-core/utils/aios-validator.js)
 - **CI Workflow:** [.github/workflows/ci.yml](../../.github/workflows/ci.yml)
 
 ---
 
 **Dúvidas? Problemas?**
 
-- [Abra uma Issue](https://github.com/SynkraAI/aios-core/issues)
+- [Abra uma Issue](https://github.com/SynkraAI/aiox-core/issues)
 - [Entre no Discord](https://discord.gg/gk8jAdXWmj)

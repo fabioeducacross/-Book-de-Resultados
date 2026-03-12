@@ -4,13 +4,13 @@
   Última sincronização: 2026-01-26
 -->
 
-# Melhores Práticas de Segurança do Synkra AIOS
+# Melhores Práticas de Segurança do Synkra AIOX
 
 > 🌐 [EN](../security-best-practices.md) | **PT** | [ES](../es/security-best-practices.md)
 
 ---
 
-Este guia fornece recomendações abrangentes de segurança para implantação e manutenção do Synkra AIOS em ambientes de produção.
+Este guia fornece recomendações abrangentes de segurança para implantação e manutenção do Synkra AIOX em ambientes de produção.
 
 ## Índice
 
@@ -27,7 +27,7 @@ Este guia fornece recomendações abrangentes de segurança para implantação e
 
 ## Visão Geral da Arquitetura de Segurança
 
-O Synkra AIOS implementa uma abordagem de segurança em múltiplas camadas:
+O Synkra AIOX implementa uma abordagem de segurança em múltiplas camadas:
 
 ```
 ┌─────────────────────────────────────────┐
@@ -610,4 +610,4 @@ const emergencyConfig = {
 
 **Lembre-se**: Segurança não é uma implementação única, mas um processo contínuo. Revisões, atualizações e melhorias regulares são essenciais para manter um sistema seguro.
 
-Para dúvidas ou preocupações de segurança, contate: security@synkra/aios-core.dev
+Para dúvidas ou preocupações de segurança, contate: security@synkra.ai

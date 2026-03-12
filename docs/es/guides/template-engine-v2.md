@@ -10,7 +10,7 @@
 
 ---
 
-> Motor de generación de documentos y sustitución de variables para Synkra AIOS.
+> Motor de generación de documentos y sustitución de variables para Synkra AIOX.
 
 **Versión:** 2.0
 **Última Actualización:** 2025-12-05
@@ -19,7 +19,7 @@
 
 ## Descripción General
 
-El Motor de Plantillas proporciona una forma consistente de generar documentos (PRDs, ADRs, Stories, etc.) con sustitución de variables, condicionales y bucles. Potencia todas las tareas de generación de documentos en AIOS.
+El Motor de Plantillas proporciona una forma consistente de generar documentos (PRDs, ADRs, Stories, etc.) con sustitución de variables, condicionales y bucles. Potencia todas las tareas de generación de documentos en AIOX.
 
 ### Características Principales
 
@@ -198,7 +198,7 @@ Email: {{project.owner.email}}
 ```javascript
 const variables = {
   project: {
-    name: 'AIOS',
+    name: 'AIOX',
     owner: {
       name: 'Pedro',
       email: 'pedro@example.com',
@@ -481,4 +481,4 @@ console.log('Validation result:', validation);
 
 ---
 
-_Synkra AIOS Motor de Plantillas v2.0_
+_Synkra AIOX Motor de Plantillas v2.0_

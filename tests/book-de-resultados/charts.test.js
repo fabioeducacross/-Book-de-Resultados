@@ -8,6 +8,8 @@ const {
   buildDistributionChart,
   buildRankingChart,
   buildIndicatorCard,
+  buildRankingPositionIndicator,
+  buildComparativoChart,
   generateChartsForPage,
   NIVEL_LABELS,
   NIVEL_COLORS,
@@ -133,6 +135,21 @@ describe('buildIndicatorCard()', () => {
   });
 });
 
+describe('buildRankingPositionIndicator()', () => {
+  test('returns a ranking indicator card when the position is valid', () => {
+    const card = buildRankingPositionIndicator(3);
+    expect(card).toMatchObject({
+      type: 'indicator',
+      titulo: 'Posição Geral',
+      valor: '3º',
+    });
+  });
+
+  test('returns null when the position is invalid', () => {
+    expect(buildRankingPositionIndicator(0)).toBeNull();
+  });
+});
+
 // ─── generateChartsForPage() ──────────────────────────────────────────────────
 
 describe('generateChartsForPage()', () => {
@@ -169,16 +186,76 @@ describe('generateChartsForPage()', () => {
       section: 'escola',
       data: {
         nome_escola: 'Escola A',
+        rankingPosition: 2,
         distribuicao: SAMPLE_DISTRIBUICAO,
         media: 255,
         mediaRede: 246,
         participacao: 90,
         totalAlunos: 80,
+        operacional: {
+          previstos: 82,
+          iniciaram: 80,
+          finalizaram: 78,
+          participacaoTotal: 95.1,
+        },
       },
     };
     const charts = generateChartsForPage(page);
     expect(charts.some((c) => c.type === 'distribution')).toBe(true);
     expect(charts.filter((c) => c.type === 'indicator').length).toBeGreaterThan(0);
+    expect(charts.some((c) => c.titulo === 'Posição Geral')).toBe(true);
+  });
+
+  test('escola: prioritizes operational indicators when available', () => {
+    const page = {
+      section: 'escola',
+      data: {
+        nome_escola: 'Escola A',
+        rankingPosition: 2,
+        distribuicao: SAMPLE_DISTRIBUICAO,
+        media: 255,
+        mediaRede: 246,
+        participacao: 90,
+        totalAlunos: 80,
+        operacional: {
+          previstos: 82,
+          iniciaram: 80,
+          finalizaram: 78,
+          participacaoTotal: 95.1,
+        },
+      },
+    };
+
+    const charts = generateChartsForPage(page);
+    const indicatorTitles = charts.filter((chart) => chart.type === 'indicator').map((chart) => chart.titulo);
+
+    expect(indicatorTitles).toEqual(
+      expect.arrayContaining(['Posição Geral', 'Previstos', 'Iniciaram', 'Finalizaram', 'Participação Total']),
+    );
+  });
+
+  test('resultados_ano: returns ranking, optional distribution and year indicators', () => {
+    const page = {
+      section: 'resultados_ano',
+      data: {
+        ano: '5',
+        mediaRede: 226.3,
+        participacaoMedia: 83.3,
+        distribuicao: SAMPLE_DISTRIBUICAO,
+        escolas: [
+          { nome_escola: 'Escola A', media: 257.5, participacao: 91.5, posicao: 1 },
+          { nome_escola: 'Escola B', media: 195, participacao: 75, posicao: 2 },
+        ],
+      },
+    };
+
+    const charts = generateChartsForPage(page);
+
+    expect(charts.some((chart) => chart.type === 'distribution')).toBe(true);
+    expect(charts.some((chart) => chart.type === 'ranking')).toBe(true);
+    expect(charts.filter((chart) => chart.type === 'indicator').map((chart) => chart.titulo)).toEqual(
+      expect.arrayContaining(['Média da Rede', 'Escolas com resultados', 'Participação Média']),
+    );
   });
 
   test('returns empty array for capa page', () => {
@@ -191,5 +268,133 @@ describe('generateChartsForPage()', () => {
     const page = { section: 'sumario', data: {} };
     const charts = generateChartsForPage(page);
     expect(charts).toHaveLength(0);
+  });
+
+  test('escola_disciplinas: returns a comparativo_chart when participacaoPorDisciplina is present', () => {
+    const page = {
+      section: 'escola_disciplinas',
+      data: {
+        nome_escola: 'Escola A',
+        rankingPosition: 1,
+        participacaoPorDisciplina: [
+          { disciplina: 'Matemática', mediaEscola: 260, mediaRede: 250, deltaMedia: 10, participacaoEscola: 92, participacaoRede: 90 },
+        ],
+      },
+    };
+    const charts = generateChartsForPage(page);
+    expect(charts).toHaveLength(2);
+    expect(charts.some((chart) => chart.type === 'comparativo_chart')).toBe(true);
+    expect(charts.some((chart) => chart.titulo === 'Posição Geral')).toBe(true);
+  });
+
+  test('escola_disciplinas: returns empty array when participacaoPorDisciplina is empty', () => {
+    const page = {
+      section: 'escola_disciplinas',
+      data: { nome_escola: 'Escola A', participacaoPorDisciplina: [] },
+    };
+    const charts = generateChartsForPage(page);
+    expect(charts).toHaveLength(0);
+  });
+
+  test('habilidades_disciplina: returns 2 indicator cards', () => {
+    const page = {
+      section: 'habilidades_disciplina',
+      data: { disciplina: 'Matemática', rows: [], totalHabilidades: 12 },
+    };
+    const charts = generateChartsForPage(page);
+    const indicators = charts.filter((c) => c.type === 'indicator');
+    expect(indicators.length).toBe(2);
+  });
+});
+
+// ─── buildComparativoChart() ──────────────────────────────────────────────────
+
+describe('buildComparativoChart()', () => {
+  const SAMPLE = [
+    {
+      disciplina: 'Matemática',
+      escola: { media: 260, taxaParticipacao: 92 },
+      rede: { media: 250, taxaParticipacao: 90 },
+      delta: { media: 10 },
+    },
+    {
+      disciplina: 'Português',
+      escola: { media: 230, taxaParticipacao: 88 },
+      rede: { media: 242, taxaParticipacao: 90 },
+      delta: { media: -12 },
+    },
+  ];
+
+  test('returns type "comparativo_chart"', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    expect(chart.type).toBe('comparativo_chart');
+  });
+
+  test('pairs count matches input', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    expect(chart.pairs).toHaveLength(2);
+  });
+
+  test('each pair has label, escola, rede, delta', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    chart.pairs.forEach((pair) => {
+      expect(pair).toHaveProperty('label');
+      expect(pair).toHaveProperty('escola');
+      expect(pair).toHaveProperty('rede');
+      expect(pair).toHaveProperty('delta');
+    });
+  });
+
+  test('escola.value and rede.value are populated', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    const mat = chart.pairs.find((p) => p.label === 'Matemática');
+    expect(mat.escola.value).toBe(260);
+    expect(mat.rede.value).toBe(250);
+  });
+
+  test('maxValue is the highest media across escola and rede', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    expect(chart.maxValue).toBe(260);
+  });
+
+  test('minValue is the lowest media', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    expect(chart.minValue).toBe(230);
+  });
+
+  test('positive delta gets a green-family color', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    const mat = chart.pairs.find((p) => p.label === 'Matemática');
+    // deltaPositive default is #2E7D32
+    expect(mat.delta.color).not.toBe('#757575'); // not neutral
+    expect(mat.delta.color).not.toMatch(/c62828/i); // not negative
+  });
+
+  test('negative delta gets a red-family color', () => {
+    const chart = buildComparativoChart(SAMPLE);
+    const port = chart.pairs.find((p) => p.label === 'Português');
+    expect(port.delta.color).not.toBe('#757575'); // not neutral
+    expect(port.delta.color).not.toMatch(/2e7d32/i); // not positive
+  });
+
+  test('handles empty input gracefully', () => {
+    const chart = buildComparativoChart([]);
+    expect(chart.pairs).toHaveLength(0);
+    expect(chart.maxValue).toBe(0);
+    expect(chart.minValue).toBe(0);
+  });
+
+  test('uses custom title', () => {
+    const chart = buildComparativoChart(SAMPLE, 'Custom Comparativo');
+    expect(chart.title).toBe('Custom Comparativo');
+  });
+
+  test('also reads flat format (mediaEscola / mediaRede)', () => {
+    const flat = [
+      { disciplina: 'Matemática', mediaEscola: 260, mediaRede: 250, deltaMedia: 10 },
+    ];
+    const chart = buildComparativoChart(flat);
+    expect(chart.pairs[0].escola.value).toBe(260);
+    expect(chart.pairs[0].rede.value).toBe(250);
   });
 });

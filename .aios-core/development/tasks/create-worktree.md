@@ -27,7 +27,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: createWorktree()
@@ -78,7 +78,7 @@ pre-conditions:
     tipo: pre-condition
     blocker: true
     validação: Script exists at .aios-core/infrastructure/scripts/worktree-manager.js
-    error_message: "WorktreeManager not found. Ensure AIOS is properly installed."
+    error_message: "WorktreeManager not found. Ensure AIOX is properly installed."
 
   - [ ] Max worktrees limit not reached
     tipo: pre-condition

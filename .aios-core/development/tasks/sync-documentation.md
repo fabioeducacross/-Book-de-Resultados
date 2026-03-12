@@ -37,7 +37,7 @@ Automatically synchronize documentation with code changes to ensure documentatio
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: syncDocumentation()
@@ -308,7 +308,7 @@ updated_at: 2025-01-17
 *sync-documentation --check
 
 # Sync specific component
-*sync-documentation --component aios-core/scripts/pattern-learner.js
+*sync-documentation --component aiox-core/scripts/pattern-learner.js
 
 # Sync all components with specific strategies
 *sync-documentation --all --strategies jsdoc,examples
@@ -342,7 +342,7 @@ class SyncDocumentationTask {
 
   async execute(params) {
     try {
-      console.log(chalk.blue('📚 AIOS Documentation Synchronization'));
+      console.log(chalk.blue('📚 AIOX Documentation Synchronization'));
       console.log(chalk.gray('Keeping documentation in sync with code\n'));
 
       // Parse parameters

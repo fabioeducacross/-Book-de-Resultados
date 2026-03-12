@@ -246,7 +246,7 @@ cp .aios-core/utils-archive/specific-utility.js .aios-core/scripts/
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: cleanupUtilities()

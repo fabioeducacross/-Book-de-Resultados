@@ -2,7 +2,7 @@
 
 **Story 1.10b - macOS Testing & Validation**
 
-This guide provides step-by-step instructions for manually testing AIOS on macOS (Intel and Apple Silicon).
+This guide provides step-by-step instructions for manually testing AIOX on macOS (Intel and Apple Silicon).
 
 ---
 
@@ -61,7 +61,7 @@ file $(which node)
 ### 1. Clean Environment Preparation
 
 ```bash
-# Backup existing AIOS installation (if any)
+# Backup existing AIOX installation (if any)
 if [ -d "$HOME/.aios" ]; then
     mv "$HOME/.aios" "$HOME/.aios.backup.$(date +%Y%m%d-%H%M%S)"
 fi
@@ -73,7 +73,7 @@ ls -la "$HOME/.aios.backup"*
 ### 2. Navigate to Test Directory
 
 ```bash
-cd path/to/@synkra/aios-core/tests/macos
+cd path/to/@synkra/aiox-core/tests/macos
 chmod +x *.sh
 ```
 
@@ -109,7 +109,7 @@ npx @synkraai/aios@latest init
 #### 3. Verify Installation
 
 ```bash
-# Check AIOS command availability
+# Check AIOX command availability
 which aios
 # Expected: /usr/local/bin/aios or similar
 
@@ -239,7 +239,7 @@ bash
 cat ~/.bashrc | grep -i aios
 # Or check ~/.bash_profile
 
-# Run AIOS command
+# Run AIOX command
 aios --version
 
 # Exit bash
@@ -274,7 +274,7 @@ exit
 #### 1. Verify Forward Slashes
 
 ```bash
-# Check AIOS installation path
+# Check AIOX installation path
 which aios
 # Should use forward slashes: /usr/local/bin/aios
 # NOT backslashes: \usr\local\bin\aios
@@ -316,7 +316,7 @@ ls -la $(which aios)
 #### 1. Check Generated Files
 
 ```bash
-# Check line endings of AIOS config
+# Check line endings of AIOX config
 file ~/.aios/config.json
 # Should show: ASCII text (LF line endings)
 # NOT: ASCII text, with CRLF line endings
@@ -383,7 +383,7 @@ npm list -g --depth=0
 
 - [ ] Scripts are executable
 - [ ] Config files have correct permissions
-- [ ] User owns all AIOS files
+- [ ] User owns all AIOX files
 - [ ] No sudo required
 
 ---
@@ -524,7 +524,7 @@ csrutil status
 During installation and normal use, verify:
 
 - [ ] No unexpected security prompts
-- [ ] No "unidentified developer" warnings for AIOS
+- [ ] No "unidentified developer" warnings for AIOX
 - [ ] No permission requests beyond expected
 
 #### 3. Check Code Signing (if applicable)
@@ -740,7 +740,7 @@ cd tests/macos
 ### Clean Test Environment
 
 ```bash
-# Remove AIOS
+# Remove AIOX
 rm -rf ~/.aios
 
 # Restore backup

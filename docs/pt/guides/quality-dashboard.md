@@ -364,4 +364,4 @@ A auto-atualização pausa quando:
 
 ---
 
-_Synkra AIOS Quality Dashboard v1.0_
+_Synkra AIOX Quality Dashboard v1.0_

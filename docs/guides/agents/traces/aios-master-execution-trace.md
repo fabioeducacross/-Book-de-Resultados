@@ -93,7 +93,7 @@ aios-master:
 |------|--------|-------|
 | Greeting level | `persona_profile.greeting_levels.archetypal` | `👑 Orion the Orchestrator ready to lead!` |
 | Signature | `persona_profile.communication.signature_closing` | `— Orion, orquestrando o sistema 🎯` |
-| Role | `persona.role` | Master Orchestrator, Framework Developer & AIOS Method Expert |
+| Role | `persona.role` | Master Orchestrator, Framework Developer & AIOX Method Expert |
 | Commands shown | `filterCommandsByVisibility('full')` | 33 commands with `full` visibility |
 
 ---
@@ -157,7 +157,7 @@ flowchart TD
     A["*kb"] --> B[Load kb-mode-interaction.md task]
     B --> C[Load aios-kb.md into context]
     C --> D[Toggle KB mode ON]
-    D --> E[Agent now answers with full AIOS Method knowledge]
+    D --> E[Agent now answers with full AIOX Method knowledge]
     E --> F[User types *kb again to toggle OFF]
 ```
 
@@ -208,7 +208,7 @@ flowchart TD
     O --> Q[Update manifest if applicable]
 ```
 
-**Expected output:** New AIOS component file written to appropriate directory.
+**Expected output:** New AIOX component file written to appropriate directory.
 
 ---
 
@@ -715,7 +715,7 @@ These are built-in commands handled by the agent framework, not external task fi
 |---------|----------|
 | `*help` | Renders full command list from `commands[]` in agent definition (33 commands) |
 | `*status` | Shows current context: active story, branch, modified files, session info |
-| `*guide` | Renders the `## AIOS Master Guide` section from agent .md |
+| `*guide` | Renders the `## AIOX Master Guide` section from agent .md |
 | `*chat-mode` | Starts conversational assistance mode (freeform interaction) |
 | `*doc-out` | Outputs complete document content |
 | `*yolo` | Toggles confirmation skipping mode |
@@ -1014,4 +1014,4 @@ Some dependencies resolve to non-standard paths:
 
 ---
 
-*Traced from source on 2026-02-05 | Story AIOS-TRACE-001*
+*Traced from source on 2026-02-05 | Story AIOX-TRACE-001*

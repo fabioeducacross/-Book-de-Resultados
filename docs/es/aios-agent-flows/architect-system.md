@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@architect** (Aria) es el agente de arquitectura y diseno tecnico del AIOS, responsable por:
+**@architect** (Aria) es el agente de arquitectura y diseno tecnico del AIOX, responsable por:
 
 - Diseno de arquitectura de sistemas
 - Decisiones tecnicas (ADRs)

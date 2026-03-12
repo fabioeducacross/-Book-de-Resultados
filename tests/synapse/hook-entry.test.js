@@ -113,6 +113,24 @@ function buildInput(cwd, overrides = {}) {
   };
 }
 
+function mockProcessStdin(mockStdin) {
+  const originalDescriptor = Object.getOwnPropertyDescriptor(process, 'stdin');
+
+  Object.defineProperty(process, 'stdin', {
+    configurable: true,
+    writable: true,
+    value: mockStdin,
+  });
+
+  return () => {
+    if (originalDescriptor) {
+      Object.defineProperty(process, 'stdin', originalDescriptor);
+    } else {
+      delete process.stdin;
+    }
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Test Suites
 // ---------------------------------------------------------------------------
@@ -468,10 +486,9 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
 
     test('readStdin rejects on invalid JSON from stream', async () => {
       const { Readable } = require('stream');
-      const originalStdin = process.stdin;
 
       const mockStdin = new Readable({ read() {} });
-      Object.defineProperty(process, 'stdin', { value: mockStdin, writable: true });
+      const restoreStdin = mockProcessStdin(mockStdin);
 
       try {
         const promise = hookModule.readStdin();
@@ -480,16 +497,15 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
 
         await expect(promise).rejects.toThrow();
       } finally {
-        Object.defineProperty(process, 'stdin', { value: originalStdin, writable: true });
+        restoreStdin();
       }
     });
 
     test('readStdin resolves valid JSON from stream', async () => {
       const { Readable } = require('stream');
-      const originalStdin = process.stdin;
 
       const mockStdin = new Readable({ read() {} });
-      Object.defineProperty(process, 'stdin', { value: mockStdin, writable: true });
+      const restoreStdin = mockProcessStdin(mockStdin);
 
       try {
         const promise = hookModule.readStdin();
@@ -499,18 +515,17 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
         const result = await promise;
         expect(result).toEqual({ hello: 'world' });
       } finally {
-        Object.defineProperty(process, 'stdin', { value: originalStdin, writable: true });
+        restoreStdin();
       }
     });
 
     test('main() processes input and writes to stdout in-process', async () => {
       const { Readable } = require('stream');
       tmpDir = createMockProject();
-      const originalStdin = process.stdin;
       const originalWrite = process.stdout.write;
 
       const mockStdin = new Readable({ read() {} });
-      Object.defineProperty(process, 'stdin', { value: mockStdin, writable: true });
+      const restoreStdin = mockProcessStdin(mockStdin);
 
       let captured = '';
       process.stdout.write = (data) => { captured += data; return true; };
@@ -524,7 +539,7 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
         const output = JSON.parse(captured);
         expect(output.hookSpecificOutput.additionalContext).toContain('<synapse-rules>');
       } finally {
-        Object.defineProperty(process, 'stdin', { value: originalStdin, writable: true });
+        restoreStdin();
         process.stdout.write = originalWrite;
       }
     });
@@ -532,11 +547,10 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
     test('main() returns silently when .synapse/ is missing', async () => {
       const { Readable } = require('stream');
       tmpDir = createMockProject({ noSynapse: true });
-      const originalStdin = process.stdin;
       const originalWrite = process.stdout.write;
 
       const mockStdin = new Readable({ read() {} });
-      Object.defineProperty(process, 'stdin', { value: mockStdin, writable: true });
+      const restoreStdin = mockProcessStdin(mockStdin);
 
       let captured = '';
       process.stdout.write = (data) => { captured += data; return true; };
@@ -549,7 +563,7 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
 
         expect(captured).toBe('');
       } finally {
-        Object.defineProperty(process, 'stdin', { value: originalStdin, writable: true });
+        restoreStdin();
         process.stdout.write = originalWrite;
       }
     });
@@ -571,11 +585,10 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
           module.exports = { SynapseEngine };
         `,
       });
-      const originalStdin = process.stdin;
       const originalWrite = process.stdout.write;
 
       const mockStdin = new Readable({ read() {} });
-      Object.defineProperty(process, 'stdin', { value: mockStdin, writable: true });
+      const restoreStdin = mockProcessStdin(mockStdin);
 
       let captured = '';
       process.stdout.write = (data) => { captured += data; return true; };
@@ -590,7 +603,7 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
         const inner = JSON.parse(output.hookSpecificOutput.additionalContext);
         expect(inner.pc).toBe(0);
       } finally {
-        Object.defineProperty(process, 'stdin', { value: originalStdin, writable: true });
+        restoreStdin();
         process.stdout.write = originalWrite;
       }
     });
@@ -607,14 +620,13 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
       const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
       const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       const { Readable } = require('stream');
-      const originalStdin = process.stdin;
 
       // Temporarily clear JEST_WORKER_ID so safeExit() calls process.exit()
       const savedWorkerId = process.env.JEST_WORKER_ID;
       delete process.env.JEST_WORKER_ID;
 
       const mockStdin = new Readable({ read() {} });
-      Object.defineProperty(process, 'stdin', { value: mockStdin, writable: true });
+      const restoreStdin = mockProcessStdin(mockStdin);
 
       try {
         hookModule.run();
@@ -634,7 +646,7 @@ describe('SYNAPSE Hook Entry Point (synapse-engine.js)', () => {
         }
         exitSpy.mockRestore();
         errorSpy.mockRestore();
-        Object.defineProperty(process, 'stdin', { value: originalStdin, writable: true });
+        restoreStdin();
       }
     });
 

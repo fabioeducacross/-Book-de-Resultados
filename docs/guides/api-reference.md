@@ -1,10 +1,10 @@
-# AIOS API Reference
+# AIOX API Reference
 
 > **EN** | [PT](../pt/guides/api-reference.md) | [ES](../es/guides/api-reference.md)
 
 ---
 
-Complete API reference for Synkra AIOS - the AI-Orchestrated System for Full Stack Development.
+Complete API reference for Synkra AIOX - the AI-Orchestrated System for Full Stack Development.
 
 **Version:** 2.1.0
 **Last Updated:** 2026-01-29
@@ -29,14 +29,14 @@ Complete API reference for Synkra AIOS - the AI-Orchestrated System for Full Sta
 
 ### API Architecture
 
-AIOS provides a unified API for interacting with specialized AI agents through two primary mechanisms:
+AIOX provides a unified API for interacting with specialized AI agents through two primary mechanisms:
 
 1. **Agent Activation** - Using `@` prefix to activate specialized agents
 2. **Command Execution** - Using `*` prefix to execute agent commands
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      AIOS API Layer                          │
+│                      AIOX API Layer                          │
 ├─────────────────────────────────────────────────────────────┤
 │  @agent         →  Activates agent persona                   │
 │  *command       →  Executes agent command                    │
@@ -397,7 +397,7 @@ Task execution with arguments: { story: "story-1.2.3" }
 
 | Command                | Arguments       | Description                                 |
 | ---------------------- | --------------- | ------------------------------------------- |
-| `*create`              | `{type} {name}` | Create AIOS component (agent/task/workflow) |
+| `*create`              | `{type} {name}` | Create AIOX component (agent/task/workflow) |
 | `*modify`              | `{type} {name}` | Modify existing component                   |
 | `*validate-component`  | `{name}`        | Validate component security                 |
 | `*deprecate-component` | `{name}`        | Deprecate with migration path               |
@@ -415,7 +415,7 @@ Task execution with arguments: { story: "story-1.2.3" }
 | Command | Arguments                  | Description                            |
 | ------- | -------------------------- | -------------------------------------- |
 | `*plan` | `[create\|status\|update]` | Workflow planning                      |
-| `*kb`   | -                          | Toggle KB mode (AIOS Method knowledge) |
+| `*kb`   | -                          | Toggle KB mode (AIOX Method knowledge) |
 
 **Document Operations:**
 
@@ -635,7 +635,7 @@ Claude Code is the primary supported IDE with full integration:
 ```
 .claude/
 ├── commands/
-│   └── AIOS/
+│   └── AIOX/
 │       └── agents/
 │           ├── dev.md
 │           ├── qa.md
@@ -892,13 +892,13 @@ For parallel development:
 
 ## Related Documentation
 
-- [User Guide](./user-guide.md) - Getting started with AIOS
+- [User Guide](./user-guide.md) - Getting started with AIOX
 - [Agent Selection Guide](./agent-selection-guide.md) - Choosing the right agent
 - [ADE Guide](./ade-guide.md) - Autonomous Development Engine
 - [Quality Gates](./quality-gates.md) - Quality assurance workflows
 - [IDE Sync Guide](./ide-sync-guide.md) - Multi-IDE synchronization
-- [Squads Guide](./squads-guide.md) - Extending AIOS with squads
+- [Squads Guide](./squads-guide.md) - Extending AIOX with squads
 
 ---
 
-_Synkra AIOS API Reference v2.1.0_
+_Synkra AIOX API Reference v2.1.0_

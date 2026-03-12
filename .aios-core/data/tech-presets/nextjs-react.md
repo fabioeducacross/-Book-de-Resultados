@@ -861,7 +861,7 @@ export { [feature]Service } from './services/[feature].service'
 
 ---
 
-## Integration with AIOS
+## Integration with AIOX
 
 ### Recommended Workflow
 
@@ -877,13 +877,13 @@ export { [feature]Service } from './services/[feature].service'
    - Use `@qa` with the testing strategy defined
    - Ensure coverage goals are met
 
-### Related AIOS Templates
+### Related AIOX Templates
 
 - `fullstack-architecture-tmpl.yaml` - Main architecture document
 - `front-end-architecture-tmpl.yaml` - Frontend specifics
 - `story-tmpl.yaml` - User story format
 
-### AIOS Commands
+### AIOX Commands
 
 ```bash
 # Create architecture doc using this preset
@@ -928,4 +928,4 @@ When integrating with existing feature:
 
 ---
 
-_AIOS Tech Preset - Synkra AIOS Framework_
+_AIOS Tech Preset - Synkra AIOX Framework_

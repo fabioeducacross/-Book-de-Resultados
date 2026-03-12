@@ -107,7 +107,7 @@ optional:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: poManageStoryBacklog()
@@ -519,5 +519,5 @@ Track effectiveness of Story Backlog:
 ---
 
 *Created: 2025-11-11*
-*Purpose: Officially integrate Story Backlog into AIOS framework*
+*Purpose: Officially integrate Story Backlog into AIOX framework*
 *Story: STORY-013 QA Review Process*

@@ -1,6 +1,6 @@
 # Infrastructure Module
 
-Base layer of the AIOS modular architecture. Contains tools, integrations, scripts, and PM adapters.
+Base layer of the AIOX modular architecture. Contains tools, integrations, scripts, and PM adapters.
 
 ## Structure
 
@@ -55,11 +55,11 @@ infrastructure/ ← core/ ← development/ ← product/
 
 ### Template & Generation
 - `TemplateEngine` - Template rendering
-- `ComponentGenerator` - AIOS component generation
+- `ComponentGenerator` - AIOX component generation
 - `BatchCreator` - Batch operations
 
 ### Validation
-- `AiosValidator` - AIOS component validation
+- `AiosValidator` - AIOX component validation
 - `TemplateValidator` - Template validation
 - `SpotCheckValidator` - Spot check validation
 

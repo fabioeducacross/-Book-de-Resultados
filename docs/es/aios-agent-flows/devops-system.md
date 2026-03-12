@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@devops** (Gage) es el agente de operaciones del AIOS, responsable por:
+**@devops** (Gage) es el agente de operaciones del AIOX, responsable por:
 
 - CI/CD y pipelines
 - Git push (EXCLUSIVO)

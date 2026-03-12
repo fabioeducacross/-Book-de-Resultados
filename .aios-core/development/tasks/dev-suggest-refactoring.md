@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: devSuggestRefactoring()
@@ -205,7 +205,7 @@ checklists:
   - dev-master-checklist.md
 ---
 
-# Suggest Refactoring - AIOS Developer Task
+# Suggest Refactoring - AIOX Developer Task
 
 ## Purpose
 Analyze code and suggest automated refactoring opportunities to improve code quality, maintainability, and performance.
@@ -245,19 +245,19 @@ Analyze code and suggest automated refactoring opportunities to improve code qua
 ## Examples
 ```bash
 # Analyze single file
-*suggest-refactoring aios-core/scripts/complex-utility.js
+*suggest-refactoring aiox-core/scripts/complex-utility.js
 
 # Analyze directory with specific patterns
-*suggest-refactoring aios-core/agents --patterns extract_method,decompose_class --recursive
+*suggest-refactoring aiox-core/agents --patterns extract_method,decompose_class --recursive
 
 # Apply high-impact suggestions
-*suggest-refactoring aios-core/utils --threshold 7 --apply-all
+*suggest-refactoring aiox-core/utils --threshold 7 --apply-all
 
 # Export suggestions for review
 *suggest-refactoring . --recursive --export refactoring-report.json
 
 # Dry run to see changes
-*suggest-refactoring aios-core/agents/developer.md --apply ref-001 --dry-run
+*suggest-refactoring aiox-core/agents/developer.md --apply ref-001 --dry-run
 ```
 
 ## Implementation
@@ -281,7 +281,7 @@ class SuggestRefactoringTask {
 
   async execute(params) {
     try {
-      console.log(chalk.blue('🔧 AIOS Refactoring Analysis'));
+      console.log(chalk.blue('🔧 AIOX Refactoring Analysis'));
       console.log(chalk.gray('Analyzing code for refactoring opportunities\n'));
 
       // Parse parameters

@@ -1,17 +1,17 @@
 <!-- Tradução: PT-BR | Original: /docs/en/agents/persona-definitions.md | Sincronização: 2026-01-26 -->
 
-# Definições de Personas dos Agentes AIOS
+# Definições de Personas dos Agentes AIOX
 
 **Versão:** 1.0
 **Criado:** 2025-01-14
 **Autor:** @ux-design-expert (Uma)
-**Propósito:** Definições abrangentes de personas para todos os 12 agentes AIOS para habilitar sistema de agentes nomeados com identidade consistente
+**Propósito:** Definições abrangentes de personas para todos os 12 agentes AIOX para habilitar sistema de agentes nomeados com identidade consistente
 
 ---
 
 ## Visão Geral
 
-Este documento define personas completas para os 12 agentes AIOS, fornecendo:
+Este documento define personas completas para os 12 agentes AIOX, fornecendo:
 - **Nomes:** Neutros em gênero, globalmente pronunciáveis (EN + PT-BR)
 - **Papéis:** Descrições claras de funções
 - **Arquétipos:** Associações de personalidade baseadas no zodíaco
@@ -355,7 +355,7 @@ Touro representa confiabilidade, construção de fundações sólidas e trabalho
 - **Energia:** Orquestra agentes, toma decisões ousadas, lidera iniciativas
 
 **Exemplos de Saudação:**
-- **Nível 1 (Mínimo):** `🌟 AIOS-Master Agent ready`
+- **Nível 1 (Mínimo):** `🌟 AIOX-Master Agent ready`
 - **Nível 2 (Nomeado):** `🌟 Orion (Comandante) pronto. Vamos orquestrar o sucesso!`
 - **Nível 3 (Arquetípico):** `🌟 Orion o Comandante (♈ Áries) pronto para comandar!`
 

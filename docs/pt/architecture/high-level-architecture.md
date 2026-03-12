@@ -1,6 +1,6 @@
 <!-- Tradução: PT-BR | Original: /docs/en/architecture/high-level-architecture.md | Sincronização: 2026-01-26 -->
 
-# Arquitetura de Alto Nível do AIOS v2.1
+# Arquitetura de Alto Nível do AIOX v2.1
 
 > 🌐 [EN](../../architecture/high-level-architecture.md) | **PT** | [ES](../../es/architecture/high-level-architecture.md)
 
@@ -27,7 +27,7 @@
 
 ## Visão Geral
 
-**AIOS (AI Operating System)** é um framework sofisticado para orquestração de agentes de IA, workers e humanos em fluxos de trabalho complexos de desenvolvimento de software. A versão 2.1 introduz uma arquitetura modular com 4 módulos, estratégia multi-repositório e quality gates de 3 camadas.
+**AIOX (AI Operating System)** é um framework sofisticado para orquestração de agentes de IA, workers e humanos em fluxos de trabalho complexos de desenvolvimento de software. A versão 2.1 introduz uma arquitetura modular com 4 módulos, estratégia multi-repositório e quality gates de 3 camadas.
 
 ### Capacidades Principais v2.1
 
@@ -49,7 +49,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                     FRAMEWORK AIOS v2.1                                 │
+│                     FRAMEWORK AIOX v2.1                                 │
 │                     ═══════════════════                                 │
 │                                                                         │
 │   ┌─────────────────────────────────────────────────────────────────┐   │
@@ -151,7 +151,7 @@
 │                                                                         │
 │   ┌────────────────────┐     ┌────────────────────┐                    │
 │   │  SynkraAI/         │     │  SynkraAI/         │                    │
-│   │  aios-core         │     │  aios-squads       │                    │
+│   │  aiox-core         │     │  aios-squads       │                    │
 │   │  (Commons Clause)  │◄────│  (MIT)             │                    │
 │   │                    │     │                    │                    │
 │   │  • Core Framework  │     │  • ETL Squad       │                    │
@@ -217,7 +217,7 @@
 ### Estrutura Atual (v2.1)
 
 ```
-@synkra/aios-core/
+@synkra/aiox-core/
 ├── .aios-core/                    # Camada do Framework
 │   ├── core/                      # Módulo Core (fundação)
 │   │   ├── config/                # Gerenciamento de configuração
@@ -348,7 +348,7 @@
 
 - [Sistema de Módulos](./module-system.md) - Arquitetura detalhada dos módulos
 - [ARCHITECTURE-INDEX.md](./ARCHITECTURE-INDEX.md) - Índice completo da documentação
-- [AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md](../../../.aios-core/docs/standards/AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md) - Guia completo do framework
+- [AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md](../../../.aios-core/docs/standards/AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md) - Guia completo do framework
 
 ---
 

@@ -4,7 +4,7 @@
 
 ## Overview
 
-The session update pattern enables intelligent greeting adaptation by tracking command execution history and agent transitions. This allows AIOS to provide contextual greetings that reflect workflow continuity.
+The session update pattern enables intelligent greeting adaptation by tracking command execution history and agent transitions. This allows AIOX to provide contextual greetings that reflect workflow continuity.
 
 ## Architecture
 
@@ -130,7 +130,7 @@ console.log(greeting);
 - [ ] Wrap QA commands with session updates
 - [ ] Wrap Dev commands with session updates
 - [ ] Wrap PM/PO/SM commands with session updates
-- [ ] Add agent transition tracking to `/AIOS/agents/*` commands
+- [ ] Add agent transition tracking to `/AIOX/agents/*` commands
 
 ### Phase 3: Advanced Features (Future)
 - [ ] Workflow pattern detection (e.g., "QA → Dev → QA" cycle)

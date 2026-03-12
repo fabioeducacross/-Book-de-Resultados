@@ -1,4 +1,4 @@
-# AIOS Cross-Reference Phase 6: Supporting Systems Analysis
+# AIOX Cross-Reference Phase 6: Supporting Systems Analysis
 
 > **Generated:** 2026-02-05
 > **Scope:** All supporting systems in `.aios-core/`
@@ -30,7 +30,7 @@
 
 **Location:** `.aios-core/workflow-intelligence/`
 **Total Files:** 19
-**Purpose:** Provides intelligent workflow analysis, suggestions, pattern learning, and confidence scoring for the AIOS agent orchestration system.
+**Purpose:** Provides intelligent workflow analysis, suggestions, pattern learning, and confidence scoring for the AIOX agent orchestration system.
 
 ### Architecture
 
@@ -281,7 +281,7 @@ Commands are organized by domain into subdirectories, each with an `index.js` en
 
 | File | Purpose | Consumers | Cross-refs | Orphan? |
 |------|---------|-----------|------------|---------|
-| `validate/index.js` | Validate AIOS installation integrity | `cli/index.js` | Uses `install-manifest.yaml` | No |
+| `validate/index.js` | Validate AIOX installation integrity | `cli/index.js` | Uses `install-manifest.yaml` | No |
 
 ### External References (20+ files reference CLI commands)
 
@@ -343,7 +343,7 @@ The `tools/` directory exists (referenced in `core-config.yaml` as `toolsLocatio
 
 **Location:** `.aios-core/manifests/`
 **Total Files:** 4
-**Purpose:** CSV-based registry of all agents, tasks, and workers with JSON schema validation. Acts as the central inventory of all AIOS components.
+**Purpose:** CSV-based registry of all agents, tasks, and workers with JSON schema validation. Acts as the central inventory of all AIOX components.
 
 ### File Inventory
 
@@ -428,21 +428,21 @@ There appears to be **duplication** between `core/elicitation/` (3 domain files)
 | File | Purpose | Consumers | Cross-refs | Orphan? |
 |------|---------|-----------|------------|---------|
 | `STANDARDS-INDEX.md` | Navigation index for all standards documents | All team members, agent definitions | References all standard docs | No |
-| `AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md` | **PRIMARY** -- Complete v2.1 framework guide (consolidated) | All agents, onboarding | Supersedes all legacy Livro docs | No |
+| `AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md` | **PRIMARY** -- Complete v2.1 framework guide (consolidated) | All agents, onboarding | Supersedes all legacy Livro docs | No |
 | `QUALITY-GATES-SPECIFICATION.md` | 3-layer quality gates system specification | QA agent, devops, quality gate code | Referenced by `core/quality-gates/` | No |
 | `STORY-TEMPLATE-V2-SPECIFICATION.md` | Story template v2.0 specification | PO, SM, story creation tasks | Referenced by story creation workflows | No |
 | `TASK-FORMAT-SPECIFICATION-V1.md` | Task-First architecture format specification | All agents creating tasks | Referenced by task templates | No |
 | `EXECUTOR-DECISION-TREE.md` | Decision tree for Human/Worker/Agent/Clone routing | Orchestration engine | Referenced by workflow patterns | No |
 | `AGENT-PERSONALIZATION-STANDARD-V1.md` | Agent personality and personalization system | Agent creation tasks | Referenced by agent templates | No |
-| `AIOS-COLOR-PALETTE-V2.1.md` | Complete color system for AIOS branding | Dashboard, UI components | Referenced by UX agent | No |
-| `AIOS-COLOR-PALETTE-QUICK-REFERENCE.md` | Quick reference for color palette | Developers, designers | Subset of full palette doc | No |
+| `AIOX-COLOR-PALETTE-V2.1.md` | Complete color system for AIOX branding | Dashboard, UI components | Referenced by UX agent | No |
+| `AIOX-COLOR-PALETTE-QUICK-REFERENCE.md` | Quick reference for color palette | Developers, designers | Subset of full palette doc | No |
 | `OPEN-SOURCE-VS-SERVICE-DIFFERENCES.md` | Business model documentation (OSS vs service) | Product decisions | Needs update per index | No |
 | `V3-ARCHITECTURAL-DECISIONS.md` | Old architectural decisions (archive candidate) | Historical reference | Superseded by ADR system | Yes (Archive) |
-| `AIOS-LIVRO-DE-OURO.md` | v2.0 base document (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
-| `AIOS-LIVRO-DE-OURO-V2.1.md` | v2.1 delta document (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
-| `AIOS-LIVRO-DE-OURO-V2.1-SUMMARY.md` | v2.1 summary (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
-| `AIOS-LIVRO-DE-OURO-V2.2-SUMMARY.md` | Future v2.2 planning (DRAFT) | Planning only | Not yet active | No (Draft) |
-| `AIOS-FRAMEWORK-MASTER.md` | v2.0 framework doc (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
+| `AIOX-LIVRO-DE-OURO.md` | v2.0 base document (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
+| `AIOX-LIVRO-DE-OURO-V2.1.md` | v2.1 delta document (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
+| `AIOX-LIVRO-DE-OURO-V2.1-SUMMARY.md` | v2.1 summary (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
+| `AIOX-LIVRO-DE-OURO-V2.2-SUMMARY.md` | Future v2.2 planning (DRAFT) | Planning only | Not yet active | No (Draft) |
+| `AIOX-FRAMEWORK-MASTER.md` | v2.0 framework doc (DEPRECATED) | Historical reference | Superseded by V2.1-COMPLETE | Yes (Legacy) |
 
 ### External References (20+ files reference docs/standards)
 
@@ -454,7 +454,7 @@ There appears to be **duplication** between `core/elicitation/` (3 domain files)
 
 ### Deprecation Summary
 
-4 files are explicitly deprecated (superseded by `AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md`), 1 is an archive candidate. These should be cleaned up or moved to an `archive/` directory.
+4 files are explicitly deprecated (superseded by `AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md`), 1 is an archive candidate. These should be cleaned up or moved to an `archive/` directory.
 
 ---
 
@@ -491,7 +491,7 @@ No references to `.aios-core/processes/` were found in the codebase.
 | `project-config.yaml` | **NEW** L2 Project config (team-shared, committed) | `core/config/config-resolver.js`, config CLI | Part of ADR-PRO-002; duplicates project portions of `core-config.yaml` | No |
 | `local-config.yaml.template` | **NEW** L4 Local config template (machine-specific, gitignored) | Developers copy to `local-config.yaml` | Part of ADR-PRO-002; secrets and IDE preferences | No |
 | `install-manifest.yaml` | Complete inventory of all files in the framework | Installer, validator, upgrader | Lists every file in `.aios-core/` | No |
-| `user-guide.md` | User guide for Synkra AIOS | Users, onboarding | Referenced by workflows, brownfield guide | No |
+| `user-guide.md` | User guide for Synkra AIOX | Users, onboarding | Referenced by workflows, brownfield guide | No |
 | `working-in-the-brownfield.md` | Guide for brownfield (existing project) development | Brownfield workflows | Referenced by agent definitions, brownfield tasks | No |
 | `package.json` | npm package definition for `@aios-fullstack/core` (v4.31.0) | npm, build system | Defines dependencies, exports, scripts | No |
 
@@ -555,10 +555,10 @@ The `core-config.yaml` continues to function as the primary config (legacy mode)
 
 | File | System | Reason | Recommendation |
 |------|--------|--------|----------------|
-| `docs/standards/AIOS-LIVRO-DE-OURO.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
-| `docs/standards/AIOS-LIVRO-DE-OURO-V2.1.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
-| `docs/standards/AIOS-LIVRO-DE-OURO-V2.1-SUMMARY.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
-| `docs/standards/AIOS-FRAMEWORK-MASTER.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
+| `docs/standards/AIOX-LIVRO-DE-OURO.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
+| `docs/standards/AIOX-LIVRO-DE-OURO-V2.1.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
+| `docs/standards/AIOX-LIVRO-DE-OURO-V2.1-SUMMARY.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
+| `docs/standards/AIOX-FRAMEWORK-MASTER.md` | Docs/Standards | Superseded by V2.1-COMPLETE | Move to archive/ |
 | `docs/standards/V3-ARCHITECTURAL-DECISIONS.md` | Docs/Standards | Archive candidate per STANDARDS-INDEX | Move to archive/ |
 
 ### Duplication Issues
@@ -656,7 +656,7 @@ The `core-config.yaml` continues to function as the primary config (legacy mode)
 
 1. **Root Config is the Hub:** `core-config.yaml` (and its layered replacements) is consumed by virtually every system. It defines resource locations, feature flags, and integration settings.
 
-2. **Manifests are the Registry:** `manifests/workers.csv` contains 204 entries covering all AIOS components. The CLI `workers` commands are the primary consumer.
+2. **Manifests are the Registry:** `manifests/workers.csv` contains 204 entries covering all AIOX components. The CLI `workers` commands are the primary consumer.
 
 3. **Quality Gates span two directories:** `core/quality-gates/` provides the gate logic while `quality/` provides metrics. They connect via the `metrics-hook.js` and are exposed through the `metrics` CLI.
 

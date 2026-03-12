@@ -23,7 +23,14 @@ const RANKING_MAX_PER_PAGE = 25;
  * @returns {BookMetrics}
  */
 function normalize(data) {
-  const { metadata, escolas, resultados, distribuicao } = data;
+  const {
+    metadata = {},
+    escolas = [],
+    resultados = [],
+    distribuicao = [],
+    habilidades = [],
+    source = { layout: 'unknown' },
+  } = data || {};
 
   // Build a lookup map: id_escola (string) → escola object
   const escolaMap = buildEscolaMap(escolas);
@@ -33,6 +40,7 @@ function normalize(data) {
 
   // Per-school metrics
   const escolaMetrics = computeEscolaMetrics(escolaMap, resultados, distribuicao);
+  assignOverallRankingPositions(escolaMetrics);
 
   // Rankings per discipline
   const rankings = buildRankings(escolaMetrics);
@@ -46,7 +54,7 @@ function normalize(data) {
   // Anos/séries list
   const anos = [...new Set(resultados.map((r) => String(r.ano)).filter(Boolean))];
 
-  return {
+  const legacyView = {
     metadata,
     rede: redeMetrics,
     escolas: escolaMetrics,
@@ -55,6 +63,28 @@ function normalize(data) {
     disciplinas,
     anos,
     totalEscolas: escolas.length,
+  };
+
+  const context = buildAssessmentContext(metadata, source);
+  const entities = buildCanonicalEntities({ metadata, escolas, resultados, habilidades }, context);
+  const facts = buildCanonicalFacts(
+    { metadata, escolas, resultados, distribuicao, habilidades },
+    entities,
+    context,
+  );
+  const derived = buildDerivedModel({ entities, facts, rankings, paginatedRankings });
+
+  return {
+    ...legacyView,
+    modelVersion: '2.0',
+    source: normalizeSource(source),
+    context,
+    entities,
+    facts,
+    derived,
+    compatibility: {
+      bookMetricsV1: legacyView,
+    },
   };
 }
 
@@ -91,11 +121,12 @@ function computeRedeMetrics(resultados, distribuicao, escolas) {
   const mediaGeral =
     mediaValues.length > 0 ? mediaValues.reduce((a, b) => a + b, 0) / mediaValues.length : 0;
 
-  // Total students (sum of distribuicao alunos)
-  const totalAlunos = (distribuicao || []).reduce((sum, d) => sum + (Number(d.alunos) || 0), 0);
+  // Total students from escola metadata when available; fallback to distribuicao rows.
+  const totalAlunos = computeTotalAlunos(escolas, distribuicao);
 
   // Distribution of proficiency levels (network-wide)
   const distribuicaoRede = computeDistribuicao(distribuicao);
+  const distribuicaoPorDisciplina = computeDistribuicaoPorDisciplina(distribuicao);
 
   // Per-discipline means
   const mediasPorDisciplina = computeMediasPorDisciplina(resultados);
@@ -106,6 +137,7 @@ function computeRedeMetrics(resultados, distribuicao, escolas) {
     participacaoMedia: round(participacaoMedia, 1),
     mediaGeral: round(mediaGeral, 1),
     distribuicao: distribuicaoRede,
+    distribuicaoPorDisciplina,
     mediasPorDisciplina,
   };
 }
@@ -145,6 +177,7 @@ function computeEscolaMetrics(escolaMap, resultados, distribuicao) {
       participacao: round(participacao, 1),
       totalAlunos,
       distribuicao: computeDistribuicao(dist),
+      distribuicaoPorDisciplina: computeDistribuicaoPorDisciplina(dist),
       resultadosPorAno: groupResultadosPorAno(rows),
     });
   }
@@ -235,6 +268,46 @@ function computeDistribuicao(dist) {
   return { ...counts, total, percentuais };
 }
 
+function computeDistribuicaoPorDisciplina(dist) {
+  const grouped = groupBy(
+    (dist || []).filter((row) => row && row.disciplina),
+    (row) => row.disciplina,
+  );
+  const result = {};
+
+  for (const [disciplina, rows] of grouped.entries()) {
+    result[disciplina] = computeDistribuicao(rows);
+  }
+
+  return result;
+}
+
+function computeTotalAlunos(escolas, distribuicao) {
+  const escolaTotals = (escolas || [])
+    .map((escola) => Number(escola.alunos_finalizaram ?? escola.totalAlunos))
+    .filter((value) => !isNaN(value) && value > 0);
+
+  if (escolaTotals.length > 0) {
+    return escolaTotals.reduce((sum, value) => sum + value, 0);
+  }
+
+  const hasDisciplineBreakdown = (distribuicao || []).some((row) => row && row.disciplina);
+  if (hasDisciplineBreakdown) {
+    const porDisciplina = computeDistribuicaoPorDisciplina(distribuicao);
+    const primeiraDisciplina = Object.values(porDisciplina)[0];
+    return primeiraDisciplina ? primeiraDisciplina.total : 0;
+  }
+
+  return (distribuicao || []).reduce((sum, d) => sum + (Number(d.alunos) || 0), 0);
+}
+
+function assignOverallRankingPositions(escolaMetrics) {
+  const ordered = [...(escolaMetrics || [])].sort((a, b) => b.media - a.media);
+  ordered.forEach((item, index) => {
+    item.rankingPosition = index + 1;
+  });
+}
+
 /**
  * Groups resultados by ano/serie and calculates means.
  * @param {Array} rows
@@ -275,6 +348,610 @@ function computeMediasPorDisciplina(resultados) {
   return result;
 }
 
+function normalizeSource(source) {
+  return {
+    layout: source && source.layout ? source.layout : 'unknown',
+    sheetMap: source && source.sheetMap ? source.sheetMap : {},
+    trace: source && source.trace ? source.trace : {},
+  };
+}
+
+function buildAssessmentContext(metadata, source) {
+  const municipio = normalizeText(metadata.municipio) || normalizeText(metadata.nome_rede) || 'Município';
+  const anoLetivo = normalizeText(metadata.ano);
+  const ciclo = normalizeText(metadata.ciclo);
+  const redeLabel = normalizeText(metadata.nome_rede) || municipio || 'Rede Principal';
+
+  return {
+    assessmentId: slugify([municipio, anoLetivo, ciclo].filter(Boolean).join('-')) || 'book-de-resultados',
+    redeId: `rede_${slugify(redeLabel) || 'principal'}`,
+    municipio,
+    anoLetivo,
+    ciclo,
+    dataAvaliacao: normalizeText(metadata.data),
+    layout: source && source.layout ? source.layout : 'unknown',
+  };
+}
+
+function buildCanonicalEntities(raw, context) {
+  const { metadata, escolas, resultados, habilidades } = raw;
+  const areaMap = new Map();
+  const disciplinaMap = new Map();
+  const anoMap = new Map();
+  const areas = [];
+  const disciplinas = [];
+  const anos = [];
+
+  const ensureArea = (label) => {
+    const nome = normalizeText(label);
+    if (!nome) return null;
+
+    const key = normalizeDimensionKey(nome);
+    if (areaMap.has(key)) {
+      return areaMap.get(key);
+    }
+
+    const area = {
+      id: slugify(nome) || `area_${areas.length + 1}`,
+      nome,
+    };
+    areaMap.set(key, area);
+    areas.push(area);
+    return area;
+  };
+
+  const ensureDisciplina = (label) => {
+    const nome = normalizeText(label);
+    if (!nome) return null;
+
+    const key = normalizeDimensionKey(nome);
+    if (disciplinaMap.has(key)) {
+      return disciplinaMap.get(key);
+    }
+
+    const area = ensureArea(nome);
+    const disciplina = {
+      id: slugify(nome) || `disciplina_${disciplinas.length + 1}`,
+      nome,
+      areaId: area ? area.id : null,
+    };
+    disciplinaMap.set(key, disciplina);
+    disciplinas.push(disciplina);
+    return disciplina;
+  };
+
+  const ensureAno = (label) => {
+    const valor = normalizeText(label) || 'Geral';
+    const key = normalizeLookupKey(valor);
+    if (anoMap.has(key)) {
+      return anoMap.get(key);
+    }
+
+    const nome = isGeneralLabel(valor) ? 'Geral' : valor;
+    const ano = {
+      id: isGeneralLabel(valor) ? 'geral' : slugify(valor) || `ano_${anos.length + 1}`,
+      nome,
+      ordem: inferYearOrder(nome),
+      sourceValue: valor,
+    };
+    anoMap.set(key, ano);
+    anos.push(ano);
+    return ano;
+  };
+
+  ensureAno('Geral');
+
+  (resultados || []).forEach((resultado) => {
+    ensureDisciplina(resultado.disciplina);
+    ensureAno(resultado.ano);
+  });
+
+  const habilidadesCanonicas = (habilidades || []).map((habilidade, index) => {
+    const area = ensureArea(habilidade.area_conhecimento);
+    const ano = ensureAno(habilidade.ano_escolar);
+    const disciplina = area ? disciplinaMap.get(normalizeDimensionKey(area.nome)) || null : null;
+
+    return {
+      id:
+        [
+          area ? area.id : 'area',
+          ano ? ano.id : 'ano',
+          slugify(habilidade.codigo_habilidade || habilidade.habilidade || String(index + 1)),
+        ].join('|'),
+      codigo: normalizeText(habilidade.codigo_habilidade),
+      descricao: normalizeText(habilidade.habilidade),
+      tematica: normalizeText(habilidade.tematica),
+      areaId: area ? area.id : null,
+      disciplinaId: disciplina ? disciplina.id : null,
+      anoId: ano ? ano.id : 'geral',
+    };
+  });
+
+  return {
+    rede: {
+      id: context.redeId,
+      nome: normalizeText(metadata.nome_rede) || context.municipio,
+      municipio: context.municipio,
+      anoLetivo: context.anoLetivo,
+      ciclo: context.ciclo,
+      dataAvaliacao: context.dataAvaliacao,
+    },
+    escolas: (escolas || []).map((escola) => ({
+      id: String(escola.id_escola),
+      redeId: context.redeId,
+      nome: normalizeText(escola.nome_escola),
+      status: normalizeText(escola.status) || null,
+      previstos: toNullableNumber(escola.alunos_previstos),
+      iniciaram: toNullableNumber(escola.alunos_iniciaram),
+      finalizaram: toNullableNumber(escola.alunos_finalizaram),
+      participacaoTotal: toNullableNumber(escola.participacao_total),
+    })),
+    areas,
+    disciplinas,
+    anos: sortYears(anos),
+    habilidades: habilidadesCanonicas,
+  };
+}
+
+function buildCanonicalFacts(raw, entities, context) {
+  return {
+    participacoes: buildParticipationFacts(raw, entities, context),
+    proficiencias: buildProficiencyFacts(raw, entities, context),
+    desempenhosHabilidade: buildSkillPerformanceFacts(raw.habilidades, entities.habilidades, context),
+  };
+}
+
+function buildParticipationFacts(raw, entities, context) {
+  const { metadata, escolas, resultados } = raw;
+  const disciplinaLookup = buildNamedEntityLookup(entities.disciplinas);
+  const anoLookup = buildNamedEntityLookup(entities.anos);
+  const rawEscolaMap = new Map((escolas || []).map((escola) => [String(escola.id_escola), escola]));
+  const facts = [];
+
+  facts.push({
+    assessmentId: context.assessmentId,
+    scope: { type: 'rede', id: context.redeId },
+    disciplinaId: null,
+    anoId: 'geral',
+    previstos: toNullableNumber(metadata.alunos_previstos),
+    iniciaram: toNullableNumber(metadata.alunos_iniciaram),
+    finalizaram: toNullableNumber(metadata.alunos_finalizaram),
+    participantes: sumNumbersOrNull((resultados || []).map((row) => row.participantes)),
+    taxaParticipacao: roundNullable(
+      firstNonNullNumber([
+        calculatePercent(metadata.alunos_finalizaram, metadata.alunos_previstos),
+        averageNumbers((resultados || []).map((row) => row.participacao)),
+      ]),
+      1,
+    ),
+  });
+
+  const redeGroups = groupBy((resultados || []).filter(Boolean), (row) => {
+    const disciplinaId = resolveEntityId(row.disciplina, disciplinaLookup);
+    const anoId = resolveEntityId(row.ano, anoLookup, 'geral');
+    return `${disciplinaId}::${anoId}`;
+  });
+
+  for (const [key, rows] of redeGroups.entries()) {
+    const [disciplinaId, anoId] = key.split('::');
+    facts.push({
+      assessmentId: context.assessmentId,
+      scope: { type: 'rede', id: context.redeId },
+      disciplinaId,
+      anoId,
+      previstos: null,
+      iniciaram: null,
+      finalizaram: null,
+      participantes: sumNumbersOrNull(rows.map((row) => row.participantes)),
+      taxaParticipacao: roundNullable(averageNumbers(rows.map((row) => row.participacao)), 1),
+    });
+  }
+
+  (entities.escolas || []).forEach((escola) => {
+    const rawEscola = rawEscolaMap.get(escola.id) || {};
+    const escolaRows = (resultados || []).filter((row) => String(row.id_escola) === escola.id);
+    facts.push({
+      assessmentId: context.assessmentId,
+      scope: { type: 'escola', id: escola.id },
+      disciplinaId: null,
+      anoId: 'geral',
+      previstos: escola.previstos,
+      iniciaram: escola.iniciaram,
+      finalizaram: escola.finalizaram,
+      participantes: sumNumbersOrNull(escolaRows.map((row) => row.participantes)),
+      taxaParticipacao: roundNullable(
+        firstNonNullNumber([
+          escola.participacaoTotal,
+          calculatePercent(rawEscola.alunos_finalizaram, rawEscola.alunos_previstos),
+          averageNumbers(escolaRows.map((row) => row.participacao)),
+        ]),
+        1,
+      ),
+    });
+  });
+
+  const escolaGroups = groupBy((resultados || []).filter(Boolean), (row) => {
+    const disciplinaId = resolveEntityId(row.disciplina, disciplinaLookup);
+    const anoId = resolveEntityId(row.ano, anoLookup, 'geral');
+    return `${String(row.id_escola)}::${disciplinaId}::${anoId}`;
+  });
+
+  for (const [key, rows] of escolaGroups.entries()) {
+    const [escolaId, disciplinaId, anoId] = key.split('::');
+    facts.push({
+      assessmentId: context.assessmentId,
+      scope: { type: 'escola', id: escolaId },
+      disciplinaId,
+      anoId,
+      previstos: null,
+      iniciaram: null,
+      finalizaram: null,
+      participantes: sumNumbersOrNull(rows.map((row) => row.participantes)),
+      taxaParticipacao: roundNullable(averageNumbers(rows.map((row) => row.participacao)), 1),
+    });
+  }
+
+  return facts;
+}
+
+function buildProficiencyFacts(raw, entities, context) {
+  const { resultados, distribuicao } = raw;
+  const disciplinaLookup = buildNamedEntityLookup(entities.disciplinas);
+  const anoLookup = buildNamedEntityLookup(entities.anos);
+  const facts = [];
+  const distribuicaoPorEscola = groupBy((distribuicao || []).filter(Boolean), (row) => String(row.id_escola));
+  const distribuicaoPorEscolaDisciplina = groupBy(
+    (distribuicao || []).filter((row) => row && row.disciplina),
+    (row) => `${String(row.id_escola)}::${normalizeDimensionKey(row.disciplina)}`,
+  );
+  const distribuicaoPorDisciplina = groupBy(
+    (distribuicao || []).filter((row) => row && row.disciplina),
+    (row) => normalizeDimensionKey(row.disciplina),
+  );
+
+  facts.push({
+    assessmentId: context.assessmentId,
+    scope: { type: 'rede', id: context.redeId },
+    disciplinaId: null,
+    anoId: 'geral',
+    media: roundNullable(averageNumbers((resultados || []).map((row) => row.media)), 1),
+    baseParticipantes: sumNumbersOrNull((resultados || []).map((row) => row.participantes)),
+    distribuicao: buildDistributionFact(distribuicao),
+  });
+
+  const redeGroups = groupBy((resultados || []).filter(Boolean), (row) => {
+    const disciplinaId = resolveEntityId(row.disciplina, disciplinaLookup);
+    const anoId = resolveEntityId(row.ano, anoLookup, 'geral');
+    return `${disciplinaId}::${anoId}`;
+  });
+
+  for (const [key, rows] of redeGroups.entries()) {
+    const [disciplinaId, anoId] = key.split('::');
+    const distRows = distribuicaoPorDisciplina.get(normalizeDimensionKey(rows[0].disciplina)) || [];
+    facts.push({
+      assessmentId: context.assessmentId,
+      scope: { type: 'rede', id: context.redeId },
+      disciplinaId,
+      anoId,
+      media: roundNullable(averageNumbers(rows.map((row) => row.media)), 1),
+      baseParticipantes: sumNumbersOrNull(rows.map((row) => row.participantes)),
+      distribuicao: buildDistributionFact(distRows),
+    });
+  }
+
+  const escolaGroups = groupBy((resultados || []).filter(Boolean), (row) => {
+    const disciplinaId = resolveEntityId(row.disciplina, disciplinaLookup);
+    const anoId = resolveEntityId(row.ano, anoLookup, 'geral');
+    return `${String(row.id_escola)}::${disciplinaId}::${anoId}`;
+  });
+
+  const resultadosPorEscola = groupBy((resultados || []).filter(Boolean), (row) => String(row.id_escola));
+
+  for (const [escolaId, rows] of resultadosPorEscola.entries()) {
+    facts.push({
+      assessmentId: context.assessmentId,
+      scope: { type: 'escola', id: escolaId },
+      disciplinaId: null,
+      anoId: 'geral',
+      media: roundNullable(averageNumbers(rows.map((row) => row.media)), 1),
+      baseParticipantes: sumNumbersOrNull(rows.map((row) => row.participantes)),
+      distribuicao: buildDistributionFact(distribuicaoPorEscola.get(escolaId) || []),
+    });
+  }
+
+  for (const [key, rows] of escolaGroups.entries()) {
+    const [escolaId, disciplinaId, anoId] = key.split('::');
+    const distKey = `${escolaId}::${normalizeDimensionKey(rows[0].disciplina)}`;
+    facts.push({
+      assessmentId: context.assessmentId,
+      scope: { type: 'escola', id: escolaId },
+      disciplinaId,
+      anoId,
+      media: roundNullable(averageNumbers(rows.map((row) => row.media)), 1),
+      baseParticipantes: sumNumbersOrNull(rows.map((row) => row.participantes)),
+      distribuicao: buildDistributionFact(distribuicaoPorEscolaDisciplina.get(distKey) || []),
+    });
+  }
+
+  return facts;
+}
+
+function buildSkillPerformanceFacts(rawHabilidades, habilidades, context) {
+  return (rawHabilidades || []).map((habilidade, index) => ({
+    assessmentId: context.assessmentId,
+    scope: { type: 'rede', id: context.redeId },
+    habilidadeId: habilidades[index] ? habilidades[index].id : `habilidade_${index + 1}`,
+    desempenhoPercentual: roundNullable(toNullableNumber(habilidade.desempenho_percentual), 2),
+  }));
+}
+
+function buildDerivedModel({ entities, facts, rankings, paginatedRankings }) {
+  return {
+    comparativos: {
+      escolaVsRede: buildEscolaVsRedeComparatives(entities, facts),
+    },
+    rankings: {
+      porDisciplina: rankings,
+      paginados: paginatedRankings,
+    },
+    indexes: buildCanonicalIndexes(entities),
+  };
+}
+
+function buildEscolaVsRedeComparatives(entities, facts) {
+  const escolaLookup = new Map((entities.escolas || []).map((item) => [item.id, item]));
+  const disciplinaLookup = new Map((entities.disciplinas || []).map((item) => [item.id, item]));
+  const anoLookup = new Map((entities.anos || []).map((item) => [item.id, item]));
+  const redeProficiencias = new Map();
+  const redeParticipacoes = new Map();
+  const escolaParticipacoes = new Map();
+
+  (facts.proficiencias || [])
+    .filter((fact) => fact.scope.type === 'rede' && fact.disciplinaId)
+    .forEach((fact) => {
+      redeProficiencias.set(`${fact.disciplinaId}::${fact.anoId}`, fact);
+    });
+
+  (facts.participacoes || [])
+    .filter((fact) => fact.scope.type === 'rede' && fact.disciplinaId)
+    .forEach((fact) => {
+      redeParticipacoes.set(`${fact.disciplinaId}::${fact.anoId}`, fact);
+    });
+
+  (facts.participacoes || [])
+    .filter((fact) => fact.scope.type === 'escola')
+    .forEach((fact) => {
+      escolaParticipacoes.set(`${fact.scope.id}::${fact.disciplinaId || 'geral'}::${fact.anoId}`, fact);
+    });
+
+  return (facts.proficiencias || [])
+    .filter((fact) => fact.scope.type === 'escola' && fact.disciplinaId)
+    .map((fact) => {
+      const key = `${fact.disciplinaId}::${fact.anoId}`;
+      const redeFact = redeProficiencias.get(key) || redeProficiencias.get(`${fact.disciplinaId}::geral`);
+      if (!redeFact) {
+        return null;
+      }
+
+      const redeParticipation =
+        redeParticipacoes.get(key) ||
+        redeParticipacoes.get(`${fact.disciplinaId}::geral`) ||
+        null;
+      const escolaParticipation =
+        escolaParticipacoes.get(`${fact.scope.id}::${fact.disciplinaId}::${fact.anoId}`) ||
+        escolaParticipacoes.get(`${fact.scope.id}::geral::geral`) ||
+        null;
+
+      return {
+        escolaId: fact.scope.id,
+        escolaNome: (escolaLookup.get(fact.scope.id) || {}).nome || '',
+        disciplinaId: fact.disciplinaId,
+        disciplina: (disciplinaLookup.get(fact.disciplinaId) || {}).nome || fact.disciplinaId,
+        anoId: fact.anoId,
+        ano: (anoLookup.get(fact.anoId) || {}).nome || fact.anoId,
+        escola: {
+          media: fact.media,
+          taxaParticipacao: escolaParticipation ? escolaParticipation.taxaParticipacao : null,
+        },
+        rede: {
+          media: redeFact.media,
+          taxaParticipacao: redeParticipation ? redeParticipation.taxaParticipacao : null,
+        },
+        delta: {
+          media: roundNullable(subtractNumbers(fact.media, redeFact.media), 1),
+          taxaParticipacao: roundNullable(
+            subtractNumbers(
+              escolaParticipation ? escolaParticipation.taxaParticipacao : null,
+              redeParticipation ? redeParticipation.taxaParticipacao : null,
+            ),
+            1,
+          ),
+        },
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => {
+      const escolaOrder = left.escolaNome.localeCompare(right.escolaNome);
+      if (escolaOrder !== 0) return escolaOrder;
+      const disciplinaOrder = left.disciplina.localeCompare(right.disciplina);
+      if (disciplinaOrder !== 0) return disciplinaOrder;
+      return left.ano.localeCompare(right.ano);
+    });
+}
+
+function buildCanonicalIndexes(entities) {
+  return {
+    redeById: entities.rede ? { [entities.rede.id]: entities.rede } : {},
+    escolaById: toObjectById(entities.escolas),
+    areaById: toObjectById(entities.areas),
+    disciplinaById: toObjectById(entities.disciplinas),
+    anoById: toObjectById(entities.anos),
+    habilidadeById: toObjectById(entities.habilidades),
+  };
+}
+
+function buildDistributionFact(rows) {
+  if (!rows || rows.length === 0) {
+    return null;
+  }
+
+  const summary = computeDistribuicao(rows);
+  return {
+    total: summary.total,
+    abaixo_do_basico: {
+      percentual: summary.percentuais.abaixo_do_basico,
+      alunos: summary.abaixo_do_basico,
+    },
+    basico: {
+      percentual: summary.percentuais.basico,
+      alunos: summary.basico,
+    },
+    adequado: {
+      percentual: summary.percentuais.adequado,
+      alunos: summary.adequado,
+    },
+    avancado: {
+      percentual: summary.percentuais.avancado,
+      alunos: summary.avancado,
+    },
+  };
+}
+
+function buildNamedEntityLookup(items) {
+  const lookup = new Map();
+  (items || []).forEach((item) => {
+    if (!item) return;
+    if (item.nome) {
+      lookup.set(normalizeDimensionKey(item.nome), item.id);
+    }
+    if (item.sourceValue) {
+      lookup.set(normalizeLookupKey(item.sourceValue), item.id);
+    }
+  });
+  return lookup;
+}
+
+function resolveEntityId(value, lookup, fallback = null) {
+  const key = normalizeDimensionKey(value);
+  if (lookup.has(key)) {
+    return lookup.get(key);
+  }
+  const sourceKey = normalizeLookupKey(value);
+  if (lookup.has(sourceKey)) {
+    return lookup.get(sourceKey);
+  }
+  return fallback;
+}
+
+function sortYears(anos) {
+  return [...(anos || [])].sort((left, right) => {
+    if (left.ordem !== right.ordem) {
+      return left.ordem - right.ordem;
+    }
+    return left.nome.localeCompare(right.nome);
+  });
+}
+
+function inferYearOrder(label) {
+  if (isGeneralLabel(label)) {
+    return 0;
+  }
+
+  const match = String(label || '').match(/(\d+)/);
+  return match ? Number(match[1]) : 999;
+}
+
+function isGeneralLabel(label) {
+  return normalizeLookupKey(label) === 'geral';
+}
+
+function normalizeDimensionKey(value) {
+  return normalizeLookupKey(value)
+    .replace(/^lingua portuguesa$/, 'portugues')
+    .replace(/^lp$/, 'portugues');
+}
+
+function normalizeLookupKey(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ');
+}
+
+function normalizeText(value) {
+  return value === undefined || value === null ? '' : String(value).trim();
+}
+
+function slugify(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
+function toNullableNumber(value) {
+  if (value === undefined || value === null || value === '') {
+    return null;
+  }
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : null;
+}
+
+function averageNumbers(values) {
+  const numeric = (values || []).map((value) => toNullableNumber(value)).filter((value) => value !== null);
+  if (numeric.length === 0) {
+    return null;
+  }
+  return numeric.reduce((sum, value) => sum + value, 0) / numeric.length;
+}
+
+function sumNumbersOrNull(values) {
+  const numeric = (values || []).map((value) => toNullableNumber(value)).filter((value) => value !== null);
+  if (numeric.length === 0) {
+    return null;
+  }
+  return numeric.reduce((sum, value) => sum + value, 0);
+}
+
+function calculatePercent(part, total) {
+  const numerator = toNullableNumber(part);
+  const denominator = toNullableNumber(total);
+  if (numerator === null || denominator === null || denominator <= 0) {
+    return null;
+  }
+  return (numerator / denominator) * 100;
+}
+
+function subtractNumbers(left, right) {
+  if (left === null || left === undefined || right === null || right === undefined) {
+    return null;
+  }
+  return Number(left) - Number(right);
+}
+
+function roundNullable(value, decimals = 1) {
+  return value === null || value === undefined ? null : round(Number(value), decimals);
+}
+
+function firstNonNullNumber(values) {
+  for (const value of values || []) {
+    const numeric = toNullableNumber(value);
+    if (numeric !== null) {
+      return numeric;
+    }
+  }
+  return null;
+}
+
+function toObjectById(items) {
+  return Object.fromEntries((items || []).filter(Boolean).map((item) => [item.id, item]));
+}
+
 /**
  * Groups an array by a key function.
  * @template T
@@ -310,6 +987,7 @@ module.exports = {
   buildRankings,
   paginateRankings,
   computeDistribuicao,
+  computeDistribuicaoPorDisciplina,
   round,
   PAGINATION_THRESHOLD_SCHOOLS,
   RANKING_MAX_PER_PAGE,

@@ -1,6 +1,6 @@
 # PM Adapters
 
-Project Management tool adapters for AIOS. Enables story synchronization with various PM tools.
+Project Management tool adapters for AIOX. Enables story synchronization with various PM tools.
 
 ## Available Adapters
 

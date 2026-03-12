@@ -8,7 +8,7 @@ For guided automation (persona-switching), use `run-workflow.md` directly.
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: runWorkflowEngine()

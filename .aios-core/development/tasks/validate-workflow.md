@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: validateWorkflow()
@@ -232,7 +232,7 @@ updated_at: 2026-01-31
 
 ## Purpose
 
-To validate workflow YAML files against AIOS conventions, checking structure, agent references, artifact flow, and logical consistency. Supports validating a single workflow or all workflows in a given context (core or squad).
+To validate workflow YAML files against AIOX conventions, checking structure, agent references, artifact flow, and logical consistency. Supports validating a single workflow or all workflows in a given context (core or squad).
 
 ## Prerequisites
 

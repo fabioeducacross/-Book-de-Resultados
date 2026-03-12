@@ -358,4 +358,4 @@ The auto-refresh pauses when:
 
 ---
 
-_Synkra AIOS Quality Dashboard v1.0_
+_Synkra AIOX Quality Dashboard v1.0_

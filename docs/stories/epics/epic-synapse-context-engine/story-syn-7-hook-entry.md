@@ -9,7 +9,7 @@
 **Type:** Feature
 **Lead:** @dev (Dex) + @devops (Gage)
 **Depends On:** SYN-6 (SynapseEngine Orchestrator)
-**Repository:** aios-core
+**Repository:** aiox-core
 **Wave:** 2 (Integration + Content)
 
 ## Executor Assignment
@@ -24,7 +24,7 @@ quality_gate_tools: [manual-review, coderabbit-cli, unit-tests]
 
 ## User Story
 
-**Como** sistema AIOS,
+**Como** sistema AIOX,
 **Quero** um hook entry point registrado como `UserPromptSubmit` que importa o SynapseEngine e processa cada prompt do usuario via protocolo stdin/stdout JSON,
 **Para** injetar regras contextuais `<synapse-rules>` automaticamente a cada prompt, substituindo o CARL hook como motor de contexto per-prompt.
 

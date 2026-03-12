@@ -518,7 +518,7 @@ Antes de iniciar este workflow, certifique-se de:
 
 - [ ] GitHub CLI configurado (`gh auth status`)
 - [ ] Acesso ao PM tool (ClickUp/GitHub/Jira) se aplicavel
-- [ ] Core config AIOS configurado (`.aios-core/core-config.yaml`)
+- [ ] Core config AIOX configurado (`.aios-core/core-config.yaml`)
 
 ---
 

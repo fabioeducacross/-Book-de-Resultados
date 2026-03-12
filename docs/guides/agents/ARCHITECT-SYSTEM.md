@@ -9,7 +9,7 @@
 
 ## Visao Geral
 
-O agente **@architect** (Aria) e o **Holistic System Architect & Full-Stack Technical Leader** do AIOS. Este agente e responsavel por:
+O agente **@architect** (Aria) e o **Holistic System Architect & Full-Stack Technical Leader** do AIOX. Este agente e responsavel por:
 
 - **Arquitetura de sistemas completos** (microservices, monolith, serverless, hybrid)
 - **Selecao de stack tecnologico** (frameworks, linguagens, plataformas)
@@ -56,7 +56,7 @@ O agente **@architect** (Aria) e o **Holistic System Architect & Full-Stack Tech
 | Arquivo | Proposito |
 |---------|-----------|
 | `.aios-core/development/agents/architect.md` | Definicao core do agente Architect |
-| `.claude/commands/AIOS/agents/architect.md` | Comando Claude Code para ativar @architect |
+| `.claude/commands/AIOX/agents/architect.md` | Comando Claude Code para ativar @architect |
 
 ### Arquivos de Templates do @architect
 
@@ -71,7 +71,7 @@ O agente **@architect** (Aria) e o **Holistic System Architect & Full-Stack Tech
 
 | Arquivo | Proposito |
 |---------|-----------|
-| `.aios-core/development/data/technical-preferences.md` | Preferencias tecnicas padrao do AIOS |
+| `.aios-core/development/data/technical-preferences.md` | Preferencias tecnicas padrao do AIOX |
 
 ### Arquivos Relacionados de Outros Agentes
 

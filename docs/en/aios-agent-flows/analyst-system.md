@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@analyst** (Atlas) is the **Researcher** of the AIOS agent system. This agent is responsible for:
+**@analyst** (Atlas) is the **Researcher** of the AIOX agent system. This agent is responsible for:
 
 - Conducting research and analysis tasks
 - Gathering and synthesizing information
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @analyst System v1.0*
+*AIOX Agent Flows - @analyst System v1.0*

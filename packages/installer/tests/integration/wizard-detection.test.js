@@ -332,7 +332,7 @@ describe('Wizard Integration with Project Type Detection', () => {
       await runWizard({ targetDir: '/test' });
 
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining('Welcome to AIOS Installer'),
+        expect.stringContaining('Welcome to AIOX Installer'),
       );
     });
 
@@ -348,4 +348,3 @@ describe('Wizard Integration with Project Type Detection', () => {
     });
   });
 });
-

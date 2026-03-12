@@ -929,14 +929,14 @@ graph TD
 
 ### Notes on Dependency Locations
 
-The agent definition references dependencies using short names (e.g., `aios-core/tasks/...`). The actual resolution paths are:
+The agent definition references dependencies using short names (e.g., `aiox-core/tasks/...`). The actual resolution paths are:
 
 | Dependency Type | Agent Definition Path | Actual Disk Location |
 |-----------------|----------------------|---------------------|
-| Tasks | `aios-core/tasks/{name}` | `.aios-core/development/tasks/{name}` |
-| Templates | `aios-core/templates/{name}` | `.aios-core/product/templates/{name}` |
-| Checklists | `aios-core/checklists/{name}` | `.aios-core/product/checklists/{name}` |
-| Data | `aios-core/data/{name}` | `.aios-core/data/{name}` or `.aios-core/product/data/{name}` |
+| Tasks | `aiox-core/tasks/{name}` | `.aios-core/development/tasks/{name}` |
+| Templates | `aiox-core/templates/{name}` | `.aios-core/product/templates/{name}` |
+| Checklists | `aiox-core/checklists/{name}` | `.aios-core/product/checklists/{name}` |
+| Data | `aiox-core/data/{name}` | `.aios-core/data/{name}` or `.aios-core/product/data/{name}` |
 
 All 9 templates, all 4 checklists, and all 7 data files resolve correctly to files in `product/` directories. The `development/data/` directory does not exist; data files live under `.aios-core/data/` and `.aios-core/product/data/`.
 
@@ -993,4 +993,4 @@ workflow_type: greenfield | brownfield | complete
 
 ---
 
-*Traced from source on 2026-02-05 | Story AIOS-TRACE-001*
+*Traced from source on 2026-02-05 | Story AIOX-TRACE-001*

@@ -1,10 +1,10 @@
-# Synkra AIOS Development Rules for Cline
+# Synkra AIOX Development Rules for Cline
 
-You are working with Synkra AIOS, an AI-Orchestrated System for Full Stack Development.
+You are working with Synkra AIOX, an AI-Orchestrated System for Full Stack Development.
 
 ## Core Framework Understanding
 
-Synkra AIOS is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
+Synkra AIOX is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
 
 ## Agent System
 
@@ -41,10 +41,10 @@ When an agent is active:
 - Add tests for new features
 - Test edge cases and error scenarios
 
-## AIOS Framework Structure
+## AIOX Framework Structure
 
 ```
-aios-core/
+aiox-core/
 ├── agents/         # Agent persona definitions (YAML/Markdown)
 ├── tasks/          # Executable task workflows
 ├── workflows/      # Multi-step workflow definitions
@@ -81,4 +81,4 @@ Cline requires explicit approval for:
 - Configure in Cline settings for additional tools
 
 ---
-*Synkra AIOS Cline Configuration v2.1*
+*Synkra AIOX Cline Configuration v2.1*

@@ -1,7 +1,7 @@
-# macOS Testing Suite for AIOS
+# macOS Testing Suite for AIOX
 **Story 1.10b - macOS Testing & Validation**
 
-Comprehensive test automation framework for validating AIOS installation on macOS (Intel and Apple Silicon).
+Comprehensive test automation framework for validating AIOX installation on macOS (Intel and Apple Silicon).
 
 ---
 
@@ -190,7 +190,7 @@ This is **expected behavior**.
 
 ```bash
 # Run tests from your home directory or user-writable location
-cd ~/path/to/@synkra/aios-core/tests/macos
+cd ~/path/to/@synkra/aiox-core/tests/macos
 ./run-all-tests.sh
 ```
 

@@ -57,6 +57,56 @@ function validateConfigContent(content, format) {
   // Text format doesn't need validation
 }
 
+function createSpinnerStub() {
+  return {
+    text: '',
+    start(text) {
+      if (text !== undefined) {
+        this.text = text;
+      }
+      return this;
+    },
+    stop() {
+      return this;
+    },
+    succeed(text) {
+      if (text !== undefined) {
+        this.text = text;
+      }
+      return this;
+    },
+    fail(text) {
+      if (text !== undefined) {
+        this.text = text;
+      }
+      return this;
+    },
+    info(text) {
+      if (text !== undefined) {
+        this.text = text;
+      }
+      return this;
+    },
+    warn(text) {
+      if (text !== undefined) {
+        this.text = text;
+      }
+      return this;
+    },
+  };
+}
+
+function createSafeSpinner() {
+  const canRenderSpinner =
+    process.env.NODE_ENV !== 'test' &&
+    process.stdout &&
+    process.stdin &&
+    process.stdout.isTTY &&
+    process.stdin.isTTY;
+
+  return canRenderSpinner ? ora() : createSpinnerStub();
+}
+
 /**
  * Create backup of existing file
  * @param {string} filePath - Path to file to backup
@@ -399,7 +449,7 @@ async function generateIDEConfigs(selectedIDEs, wizardState, options = {}) {
   // Generate template variables
   const templateVars = generateTemplateVariables(wizardState);
 
-  const spinner = ora();
+  const spinner = createSafeSpinner();
 
   try {
     for (const ideKey of selectedIDEs) {

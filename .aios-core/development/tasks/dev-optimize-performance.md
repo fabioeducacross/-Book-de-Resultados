@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: devOptimizePerformance()
@@ -205,7 +205,7 @@ checklists:
   - dev-master-checklist.md
 ---
 
-# Optimize Performance - AIOS Developer Task
+# Optimize Performance - AIOX Developer Task
 
 ## Purpose
 Analyze code for performance bottlenecks and suggest optimizations to improve runtime performance, memory usage, and scalability.
@@ -244,19 +244,19 @@ Analyze code for performance bottlenecks and suggest optimizations to improve ru
 ## Examples
 ```bash
 # Analyze single file
-*optimize-performance aios-core/scripts/data-processor.js
+*optimize-performance aiox-core/scripts/data-processor.js
 
 # Analyze directory with specific patterns
-*optimize-performance aios-core/agents --patterns algorithm_complexity,async_operations --recursive
+*optimize-performance aiox-core/agents --patterns algorithm_complexity,async_operations --recursive
 
 # Generate performance report
 *optimize-performance . --recursive --report performance-report.json
 
 # Focus on database optimizations
-*optimize-performance aios-core/services --focus database --recursive
+*optimize-performance aiox-core/services --focus database --recursive
 
 # Apply specific optimization
-*optimize-performance aios-core/scripts/calculator.js --apply opt-001
+*optimize-performance aiox-core/scripts/calculator.js --apply opt-001
 ```
 
 ## Implementation
@@ -280,7 +280,7 @@ class OptimizePerformanceTask {
 
   async execute(params) {
     try {
-      console.log(chalk.blue('⚡ AIOS Performance Optimization'));
+      console.log(chalk.blue('⚡ AIOX Performance Optimization'));
       console.log(chalk.gray('Analyzing code for performance improvements\n'));
 
       // Parse parameters

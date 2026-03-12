@@ -1,14 +1,16 @@
 {
-  "name": "aios-pro",
+  "name": "aiox-pro",
   "version": "0.1.0",
-  "description": "CLI for AIOS Pro — install, activate and manage your license",
+  "description": "CLI for AIOX Pro — install, activate and manage your license",
   "bin": {
+    "aiox-pro": "bin/aios-pro.js",
     "aios-pro": "bin/aios-pro.js"
   },
   "files": [
     "bin/"
   ],
   "keywords": [
+    "aiox",
     "aios",
     "pro",
     "license",
@@ -19,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SynkraAI/aios-core.git",
+    "url": "git+https://github.com/SynkraAI/aiox-core.git",
     "directory": "packages/aios-pro-cli"
   },
   "engines": {

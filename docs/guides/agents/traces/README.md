@@ -1,10 +1,10 @@
-# AIOS Agent Execution Traces - Index
+# AIOX Agent Execution Traces - Index
 
-> **Story:** AIOS-TRACE-001 | **Traced from source code, not documentation.**
+> **Story:** AIOX-TRACE-001 | **Traced from source code, not documentation.**
 
 ## Overview
 
-This directory contains comprehensive runtime execution trace documentation for all 12 AIOS agents. Each document shows **exactly** what files are loaded, in what order, and why - from agent activation through every command execution.
+This directory contains comprehensive runtime execution trace documentation for all 12 AIOX agents. Each document shows **exactly** what files are loaded, in what order, and why - from agent activation through every command execution.
 
 ---
 
@@ -253,4 +253,4 @@ All traces were created by reading actual source code, **NOT** from documentatio
 
 ---
 
-*Traced from source on 2026-02-05 | Story AIOS-TRACE-001*
+*Traced from source on 2026-02-05 | Story AIOX-TRACE-001*

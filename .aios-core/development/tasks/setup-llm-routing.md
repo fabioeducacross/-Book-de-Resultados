@@ -106,7 +106,7 @@ acceptance-criteria:
 ### Step 1: Run Installer
 
 ```bash
-# From aios-core root
+# From aiox-core root
 node .aios-core/infrastructure/scripts/llm-routing/install-llm-routing.js
 ```
 
@@ -210,7 +210,7 @@ claude-free
 ```yaml
 story: "6.7"
 version: 1.1.0
-migrated_from: @synkra/aios-core
+migrated_from: @synkra/aiox-core
 dependencies:
   - install-llm-routing.js
   - llm-routing.yaml

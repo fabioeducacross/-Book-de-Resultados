@@ -11,6 +11,7 @@ const {
   buildRankings,
   paginateRankings,
   computeDistribuicao,
+  computeDistribuicaoPorDisciplina,
   round,
   PAGINATION_THRESHOLD_SCHOOLS,
   RANKING_MAX_PER_PAGE,
@@ -46,6 +47,100 @@ const BASE_DISTRIBUICAO = [
   { id_escola: '2', nivel: 'avancado', alunos: 3 },
   { id_escola: '2', nivel: 'abaixo_do_basico', alunos: 6 },
 ];
+
+function makeCanoasData() {
+  return {
+    metadata: {
+      municipio: 'Canoas',
+      ano: '2025',
+      ciclo: '2025-sem2',
+      data: '2025-10-01',
+      nome_rede: 'Rede Canoas',
+      alunos_previstos: 100,
+      alunos_iniciaram: 93,
+      alunos_finalizaram: 80,
+    },
+    escolas: [
+      {
+        id_escola: '1',
+        nome_escola: 'Escola Alpha',
+        alunos_previstos: 60,
+        alunos_iniciaram: 55,
+        alunos_finalizaram: 50,
+        participacao_total: 83.3,
+      },
+      {
+        id_escola: '2',
+        nome_escola: 'Escola Beta',
+        alunos_previstos: 40,
+        alunos_iniciaram: 38,
+        alunos_finalizaram: 30,
+        participacao_total: 75,
+      },
+    ],
+    resultados: [
+      { id_escola: '1', ano: 'Geral', disciplina: 'Matemática', media: 260, participacao: 90, participantes: 54 },
+      { id_escola: '2', ano: 'Geral', disciplina: 'Matemática', media: 240, participacao: 70, participantes: 28 },
+      {
+        id_escola: '1',
+        ano: 'Geral',
+        disciplina: 'Língua Portuguesa',
+        media: 250,
+        participacao: 80,
+        participantes: 48,
+      },
+      {
+        id_escola: '2',
+        ano: 'Geral',
+        disciplina: 'Língua Portuguesa',
+        media: 230,
+        participacao: 60,
+        participantes: 24,
+      },
+    ],
+    distribuicao: [
+      { id_escola: '1', disciplina: 'Matemática', nivel: 'adequado', alunos: 30 },
+      { id_escola: '1', disciplina: 'Matemática', nivel: 'avancado', alunos: 24 },
+      { id_escola: '2', disciplina: 'Matemática', nivel: 'basico', alunos: 20 },
+      { id_escola: '2', disciplina: 'Matemática', nivel: 'adequado', alunos: 8 },
+      { id_escola: '1', disciplina: 'Língua Portuguesa', nivel: 'basico', alunos: 18 },
+      { id_escola: '1', disciplina: 'Língua Portuguesa', nivel: 'adequado', alunos: 30 },
+      { id_escola: '2', disciplina: 'Língua Portuguesa', nivel: 'abaixo_do_basico', alunos: 10 },
+      { id_escola: '2', disciplina: 'Língua Portuguesa', nivel: 'basico', alunos: 14 },
+    ],
+    habilidades: [
+      {
+        area_conhecimento: 'Língua Portuguesa',
+        ano_escolar: '3º Ano',
+        codigo_habilidade: 'LP3A1',
+        tematica: 'Leitura',
+        habilidade: 'Localizar informações explícitas em textos.',
+        desempenho_percentual: 79.67,
+      },
+      {
+        area_conhecimento: 'Matemática',
+        ano_escolar: '5º Ano',
+        codigo_habilidade: 'MA5A2',
+        tematica: 'Números',
+        habilidade: 'Resolver problemas com números naturais.',
+        desempenho_percentual: 64.2,
+      },
+    ],
+    source: {
+      layout: 'canoas-avaliacao-digital',
+      sheetMap: {
+        proficiencias: 'Proficiências',
+        habilidades: 'Habilidades',
+      },
+      trace: {
+        escolas: 2,
+        resultados: 4,
+        distribuicao: 8,
+        habilidades: 2,
+      },
+    },
+  };
+}
 
 // ─── round() ──────────────────────────────────────────────────────────────────
 
@@ -104,6 +199,20 @@ describe('computeDistribuicao()', () => {
   });
 });
 
+describe('computeDistribuicaoPorDisciplina()', () => {
+  test('groups distribuicao by disciplina when provided', () => {
+    const dist = [
+      { disciplina: 'Matemática', nivel: 'adequado', alunos: 10 },
+      { disciplina: 'Matemática', nivel: 'basico', alunos: 5 },
+      { disciplina: 'Português', nivel: 'avancado', alunos: 3 },
+    ];
+
+    const result = computeDistribuicaoPorDisciplina(dist);
+    expect(result.Matemática.total).toBe(15);
+    expect(result.Português.total).toBe(3);
+  });
+});
+
 // ─── computeRedeMetrics() ─────────────────────────────────────────────────────
 
 describe('computeRedeMetrics()', () => {
@@ -135,6 +244,20 @@ describe('computeRedeMetrics()', () => {
     expect(metrics.mediaGeral).toBe(0);
     expect(metrics.totalAlunos).toBe(0);
   });
+
+  test('uses escola totals to avoid double counting when distribuicao has disciplina breakdown', () => {
+    const escolas = [{ id_escola: '1', nome_escola: 'Escola Alpha', alunos_finalizaram: 37 }];
+    const resultados = [{ id_escola: '1', ano: 'Geral', disciplina: 'Matemática', media: 50, participacao: 90 }];
+    const distribuicao = [
+      { id_escola: '1', disciplina: 'Matemática', nivel: 'adequado', alunos: 20 },
+      { id_escola: '1', disciplina: 'Português', nivel: 'adequado', alunos: 20 },
+    ];
+
+    const metrics = computeRedeMetrics(resultados, distribuicao, escolas);
+    expect(metrics.totalAlunos).toBe(37);
+    expect(metrics.distribuicaoPorDisciplina.Matemática.total).toBe(20);
+    expect(metrics.distribuicaoPorDisciplina.Português.total).toBe(20);
+  });
 });
 
 // ─── computeEscolaMetrics() ───────────────────────────────────────────────────
@@ -159,6 +282,20 @@ describe('computeEscolaMetrics()', () => {
     const metrics = computeEscolaMetrics(escolaMap, BASE_RESULTADOS, BASE_DISTRIBUICAO);
     const alpha = metrics.find((m) => m.id_escola === '1');
     expect(alpha.totalAlunos).toBe(10 + 20 + 5 + 2);
+  });
+
+  test('includes distribuicaoPorDisciplina when rows have disciplina', () => {
+    const escolaMetrics = computeEscolaMetrics(
+      makeEscolaMap([{ id_escola: '1', nome_escola: 'Escola Alpha' }]),
+      [{ id_escola: '1', ano: 'Geral', disciplina: 'Matemática', media: 50, participacao: 90 }],
+      [
+        { id_escola: '1', disciplina: 'Matemática', nivel: 'adequado', alunos: 10 },
+        { id_escola: '1', disciplina: 'Português', nivel: 'basico', alunos: 5 },
+      ],
+    );
+
+    expect(escolaMetrics[0].distribuicaoPorDisciplina.Matemática.total).toBe(10);
+    expect(escolaMetrics[0].distribuicaoPorDisciplina.Português.total).toBe(5);
   });
 });
 
@@ -242,5 +379,85 @@ describe('normalize()', () => {
     const metrics = normalize(data);
     expect(metrics.disciplinas).toContain('Matemática');
     expect(metrics.disciplinas).toContain('Português');
+  });
+
+  test('assigns overall rankingPosition to each escola', () => {
+    const data = {
+      metadata: { municipio: 'Canoas', ano: 2025, ciclo: 'sem1', data: '2025-01-01' },
+      escolas: BASE_ESCOLAS,
+      resultados: BASE_RESULTADOS,
+      distribuicao: BASE_DISTRIBUICAO,
+    };
+    const metrics = normalize(data);
+    const alpha = metrics.escolas.find((item) => item.id_escola === '1');
+    const beta = metrics.escolas.find((item) => item.id_escola === '2');
+
+    expect(alpha.rankingPosition).toBe(1);
+    expect(beta.rankingPosition).toBe(2);
+  });
+
+  test('materializes the canonical v2 model without breaking the legacy shape', () => {
+    const metrics = normalize(makeCanoasData());
+
+    expect(metrics.modelVersion).toBe('2.0');
+    expect(metrics.context).toMatchObject({
+      municipio: 'Canoas',
+      ciclo: '2025-sem2',
+      layout: 'canoas-avaliacao-digital',
+    });
+    expect(metrics.entities.rede.nome).toBe('Rede Canoas');
+    expect(metrics.entities.escolas).toHaveLength(2);
+    expect(metrics.entities.habilidades).toHaveLength(2);
+    expect(metrics.compatibility.bookMetricsV1.rede.mediaGeral).toBe(metrics.rede.mediaGeral);
+    expect(metrics.compatibility.bookMetricsV1.escolas).toHaveLength(metrics.escolas.length);
+  });
+
+  test('builds canonical facts for participation, proficiency and skill performance', () => {
+    const metrics = normalize(makeCanoasData());
+
+    expect(metrics.facts.participacoes).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          scope: { type: 'escola', id: '1' },
+          disciplinaId: 'matematica',
+          anoId: 'geral',
+          taxaParticipacao: 90,
+        }),
+      ]),
+    );
+
+    expect(metrics.facts.proficiencias).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          scope: { type: 'rede', id: metrics.context.redeId },
+          disciplinaId: 'matematica',
+          anoId: 'geral',
+          media: 250,
+        }),
+      ]),
+    );
+
+    expect(metrics.facts.desempenhosHabilidade).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          habilidadeId: expect.stringContaining('LP3A1'.toLowerCase()),
+          desempenhoPercentual: 79.67,
+        }),
+      ]),
+    );
+  });
+
+  test('derives escola vs rede comparatives from canonical facts', () => {
+    const metrics = normalize(makeCanoasData());
+    const comparative = metrics.derived.comparativos.escolaVsRede.find(
+      (item) => item.escolaId === '1' && item.disciplina === 'Matemática',
+    );
+
+    expect(comparative).toBeDefined();
+    expect(comparative.escola.media).toBe(260);
+    expect(comparative.rede.media).toBe(250);
+    expect(comparative.escola.taxaParticipacao).toBe(90);
+    expect(comparative.delta.media).toBe(10);
+    expect(comparative.delta.taxaParticipacao).toBe(10);
   });
 });

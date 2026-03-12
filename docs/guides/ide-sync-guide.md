@@ -1,10 +1,10 @@
 # IDE Sync Guide
 
-Synchronize AIOS agents, tasks, workflows, and checklists across multiple IDE configurations.
+Synchronize AIOX agents, tasks, workflows, and checklists across multiple IDE configurations.
 
 ## Overview
 
-The `*command` task automates the synchronization of AIOS components to all configured IDE directories (`.claude/`, `.cursor/`, `.gemini/`, etc.), eliminating manual copy operations.
+The `*command` task automates the synchronization of AIOX components to all configured IDE directories (`.claude/`, `.cursor/`, `.gemini/`, etc.), eliminating manual copy operations.
 
 ## Quick Start
 
@@ -186,4 +186,4 @@ Check that the IDE is enabled in `active_ides` section.
 
 - [Squads Overview](./squads-overview.md)
 - [Agent Reference](../agent-reference-guide.md)
-- [AIOS Architecture](../core-architecture.md)
+- [AIOX Architecture](../core-architecture.md)

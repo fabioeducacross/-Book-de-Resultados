@@ -155,6 +155,7 @@ function main(options = {}) {
   const projectRoot = options.projectRoot || path.resolve(__dirname, '..', '..', '..', '..');
   const constitutionPath = options.constitutionPath || path.join(projectRoot, '.aios-core', 'constitution.md');
   const outputPath = options.outputPath || path.join(projectRoot, '.synapse', 'constitution');
+  const shouldSetExitCode = options.setExitCode ?? require.main === module;
 
   // Read source
   let content;
@@ -163,7 +164,9 @@ function main(options = {}) {
   } catch (error) {
     if (error.code === 'ENOENT') {
       console.error(`Constitution not found: ${constitutionPath}`);
-      process.exitCode = 1;
+      if (shouldSetExitCode) {
+        process.exitCode = 1;
+      }
       return { success: false, error: 'Constitution file not found' };
     }
     throw error;
@@ -174,7 +177,9 @@ function main(options = {}) {
 
   if (articles.length === 0) {
     console.error('No articles found in constitution.md');
-    process.exitCode = 1;
+    if (shouldSetExitCode) {
+      process.exitCode = 1;
+    }
     return { success: false, error: 'No articles found' };
   }
 
@@ -192,6 +197,10 @@ function main(options = {}) {
 
   const totalRules = articles.reduce((sum, a) => sum + a.rules.length + 1, 0);
   console.log(`Constitution generated: ${articles.length} articles, ${totalRules} rules`);
+
+  if (shouldSetExitCode) {
+    process.exitCode = 0;
+  }
 
   return { success: true, articles: articles.length, rules: totalRules, outputPath };
 }

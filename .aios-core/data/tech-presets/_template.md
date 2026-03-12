@@ -229,9 +229,9 @@ describe('[Component/Service]', () => {
 
 ---
 
-## Integration with AIOS
+## Integration with AIOX
 
-> Como este preset se integra com o workflow AIOS.
+> Como este preset se integra com o workflow AIOX.
 
 ### Recommended Workflow
 
@@ -239,7 +239,7 @@ describe('[Component/Service]', () => {
 2. **Development Phase:** Use `@dev` following these patterns
 3. **QA Phase:** Use `@qa` with the testing strategy defined
 
-### Related AIOS Templates
+### Related AIOX Templates
 
 - `architecture-tmpl.yaml` - Use for architecture docs
 - `front-end-architecture-tmpl.yaml` - Use for frontend specifics
@@ -254,4 +254,4 @@ describe('[Component/Service]', () => {
 
 ---
 
-_AIOS Tech Preset - Created with Synkra AIOS Framework_
+_AIOS Tech Preset - Created with Synkra AIOX Framework_

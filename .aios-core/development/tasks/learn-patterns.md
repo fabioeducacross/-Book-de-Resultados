@@ -25,7 +25,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: learnPatterns()
@@ -206,7 +206,7 @@ updated_at: 2025-11-17
 # No checklists needed - analytical pattern learning task, no deliverables requiring validation
 ---
 
-# Learn Patterns - AIOS Developer Task
+# Learn Patterns - AIOX Developer Task
 
 ## Purpose
 Learn patterns from successful modifications to improve future meta-agent suggestions and automation.
@@ -240,7 +240,7 @@ Learn patterns from successful modifications to improve future meta-agent sugges
 *learn-patterns --type code,refactoring --threshold 0.9
 
 # Analyze patterns for a component
-*learn-patterns --component aios-core/agents/developer.md --analyze
+*learn-patterns --component aiox-core/agents/developer.md --analyze
 
 # Get suggestions for upcoming modification
 *learn-patterns --suggest mod-123456 --type refactoring
@@ -269,7 +269,7 @@ class LearnPatternsTask {
 
   async execute(params) {
     try {
-      console.log(chalk.blue('🧠 AIOS Pattern Learning'));
+      console.log(chalk.blue('🧠 AIOX Pattern Learning'));
       console.log(chalk.gray('Learning from successful modifications\n'));
 
       // Parse parameters

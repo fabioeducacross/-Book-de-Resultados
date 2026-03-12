@@ -36,7 +36,7 @@
 
 ## 🎯 Story
 
-**As a** AIOS framework user,  
+**As a** AIOX framework user,  
 **I want** agents to use a unified greeting system that integrates session context, project status, agent personalization, and user preferences,  
 **So that** I have a consistent, fast, and contextually relevant experience when activating any agent.
 
@@ -675,7 +675,7 @@ module.exports = { generateGreeting };
 2. Find STEP 3 section (starts with `- STEP 3: |`)
 3. Replace entire STEP 3 block with new format above
 4. Save file
-5. Test activation: `/AIOS/agents/qa`
+5. Test activation: `/AIOX/agents/qa`
 
 **Validation Checklist for QA Pilot:**
 - [ ] QA agent file updated correctly
@@ -698,7 +698,7 @@ module.exports = { generateGreeting };
    rm .aios/session-state.json
    
    # Activate QA agent
-   /AIOS/agents/qa
+   /AIOX/agents/qa
    
    # Expected: "new" session type detected
    # Expected: Full greeting with role description
@@ -711,7 +711,7 @@ module.exports = { generateGreeting };
    node -e "const fs = require('fs'); const path = require('path'); const sessionPath = path.join(process.cwd(), '.aios', 'session-state.json'); fs.mkdirSync(path.dirname(sessionPath), { recursive: true }); fs.writeFileSync(sessionPath, JSON.stringify({ sessionId: 'test-123', startTime: new Date().toISOString(), lastActivity: new Date().toISOString(), agentSequence: [{ id: 'po', name: 'Pax' }], lastCommands: ['create-story'], workflowActive: null }), 'utf8');"
    
    # Activate QA agent
-   /AIOS/agents/qa
+   /AIOX/agents/qa
    
    # Expected: "existing" session type detected
    # Expected: Quick greeting (no role description)
@@ -1327,7 +1327,7 @@ describe('Greeting System Integration', () => {
 
 **User activates agent:**
 ```bash
-/AIOS/agents/qa
+/AIOX/agents/qa
 ```
 
 **Agent STEP 3 executes:**

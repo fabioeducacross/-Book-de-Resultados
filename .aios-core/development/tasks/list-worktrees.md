@@ -13,7 +13,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: listWorktrees()
@@ -71,11 +71,11 @@ pre-conditions:
 
 ## Description
 
-Lists all AIOS-managed worktrees with their current status, uncommitted changes, and age. Provides visibility into parallel development activities.
+Lists all AIOX-managed worktrees with their current status, uncommitted changes, and age. Provides visibility into parallel development activities.
 
 **Features:**
 
-- Shows all active worktrees managed by AIOS
+- Shows all active worktrees managed by AIOX
 - Displays uncommitted changes count
 - Highlights stale worktrees (> 30 days)
 - Multiple output formats (table, json, minimal)
@@ -121,7 +121,7 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 
 ### Step 2: Load Worktrees
 
-**Action:** Get all AIOS-managed worktrees
+**Action:** Get all AIOX-managed worktrees
 
 ```javascript
 const WorktreeManager = require('./.aios-core/infrastructure/scripts/worktree-manager.js');
@@ -230,7 +230,7 @@ Total: 3  │  Active: 2  │  Stale: 1  │  Limit: 10
 ```
 📁 No Active Worktrees
 
-No AIOS-managed worktrees found.
+No AIOX-managed worktrees found.
 
 Create one with:
   *create-worktree {storyId}
@@ -289,10 +289,10 @@ Formatted list based on `format` parameter.
 
 ```
 ❌ WorktreeManager not found.
-   Ensure AIOS is properly installed.
+   Ensure AIOX is properly installed.
 ```
 
-**Resolution:** Check AIOS installation.
+**Resolution:** Check AIOX installation.
 
 ---
 

@@ -30,7 +30,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: initProjectStatus()
@@ -344,7 +344,7 @@ console.log('\nType *help to see available commands!');
 **If missing:** Add entry to `.gitignore`
 
 ```gitignore
-# AIOS Project Status Cache (auto-generated)
+# AIOX Project Status Cache (auto-generated)
 .aios/project-status.yaml
 ```
 

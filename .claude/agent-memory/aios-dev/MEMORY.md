@@ -41,7 +41,7 @@
 - Always match existing format when editing
 
 ### IDE Sync
-- Source: `.aios-core/development/agents/` -- Claude mirror: `.claude/commands/AIOS/agents/`
+- Source: `.aios-core/development/agents/` -- Claude mirror: `.claude/commands/AIOX/agents/`
 - These are separate files; `ideSync` handles sync separately
 
 ### File Locking (Cross-Platform)

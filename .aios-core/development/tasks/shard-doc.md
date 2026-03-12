@@ -88,7 +88,7 @@ If the user has @kayvan/markdown-tree-parser installed, use it and skip the manu
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: shardDoc()

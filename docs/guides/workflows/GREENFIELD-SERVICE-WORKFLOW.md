@@ -728,7 +728,7 @@ export AIOS_DEBUG=true
 | Arquivo | Descricao |
 |---------|-----------|
 | `.aios-core/development/workflows/greenfield-service.yaml` | Definicao do workflow |
-| `.aios-core/data/aios-kb.md` | Knowledge base do AIOS |
+| `.aios-core/data/aios-kb.md` | Knowledge base do AIOX |
 
 ### Agentes
 

@@ -1,14 +1,14 @@
-# Synkra AIOS Development Rules for Claude Code
+# Synkra AIOX Development Rules for Claude Code
 
-You are working with Synkra AIOS, an AI-Orchestrated System for Full Stack Development.
+You are working with Synkra AIOX, an AI-Orchestrated System for Full Stack Development.
 
-<!-- AIOS-MANAGED-START: core-framework -->
+<!-- AIOX-MANAGED-START: core-framework -->
 ## Core Framework Understanding
 
-Synkra AIOS is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
-<!-- AIOS-MANAGED-END: core-framework -->
+Synkra AIOX is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
+<!-- AIOX-MANAGED-END: core-framework -->
 
-<!-- AIOS-MANAGED-START: agent-system -->
+<!-- AIOX-MANAGED-START: agent-system -->
 ## Agent System
 
 ### Agent Activation
@@ -21,7 +21,7 @@ When an agent is active:
 - Follow that agent's specific persona and expertise
 - Use the agent's designated workflow patterns
 - Maintain the agent's perspective throughout the interaction
-<!-- AIOS-MANAGED-END: agent-system -->
+<!-- AIOX-MANAGED-END: agent-system -->
 
 ## Development Methodology
 
@@ -45,11 +45,11 @@ When an agent is active:
 - Add tests for new features
 - Test edge cases and error scenarios
 
-<!-- AIOS-MANAGED-START: framework-structure -->
-## AIOS Framework Structure
+<!-- AIOX-MANAGED-START: framework-structure -->
+## AIOX Framework Structure
 
 ```
-aios-core/
+aiox-core/
 ├── agents/         # Agent persona definitions (YAML/Markdown)
 ├── tasks/          # Executable task workflows
 ├── workflows/      # Multi-step workflow definitions
@@ -63,7 +63,7 @@ docs/
 ├── architecture/   # System architecture documentation
 └── guides/         # User and developer guides
 ```
-<!-- AIOS-MANAGED-END: framework-structure -->
+<!-- AIOX-MANAGED-END: framework-structure -->
 
 ## Workflow Execution
 
@@ -118,8 +118,8 @@ try {
 - Use for PR creation: `gh pr create`
 - Check org access: `gh api user/memberships`
 
-<!-- AIOS-MANAGED-START: aios-patterns -->
-## AIOS-Specific Patterns
+<!-- AIOX-MANAGED-START: aios-patterns -->
+## AIOX-Specific Patterns
 
 ### Working with Templates
 ```javascript
@@ -142,7 +142,7 @@ const story = await loadStory(storyId);
 story.updateTask(taskId, { status: 'completed' });
 await story.save();
 ```
-<!-- AIOS-MANAGED-END: aios-patterns -->
+<!-- AIOX-MANAGED-END: aios-patterns -->
 
 ## Environment Setup
 
@@ -157,10 +157,10 @@ await story.save();
 - `.env` - Environment variables
 - `aios.config.js` - Project-specific settings
 
-<!-- AIOS-MANAGED-START: common-commands -->
+<!-- AIOX-MANAGED-START: common-commands -->
 ## Common Commands
 
-### AIOS Master Commands
+### AIOX Master Commands
 - `*help` - Show available commands
 - `*create-story` - Create new story
 - `*task {name}` - Execute specific task
@@ -171,7 +171,7 @@ await story.save();
 - `npm test` - Run tests
 - `npm run lint` - Check code style
 - `npm run build` - Build project
-<!-- AIOS-MANAGED-END: common-commands -->
+<!-- AIOX-MANAGED-END: common-commands -->
 
 ## Debugging
 
@@ -228,4 +228,4 @@ npm run trace -- workflow-name
 - Document breaking changes prominently
 
 ---
-*Synkra AIOS Claude Code Configuration v2.0*
+*Synkra AIOX Claude Code Configuration v2.0*

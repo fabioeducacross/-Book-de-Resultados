@@ -323,18 +323,22 @@ class AgentConfigLoader {
     try {
       const content = await fs.readFile(agentPath, 'utf8');
       
-      // Extract YAML block (handle both ```yaml and ```yml)
-      const yamlMatch = content.match(/```ya?ml\n([\s\S]*?)\n```/);
-      if (!yamlMatch) {
+      // Extract YAML block (handle both ```yaml and ```yml, CRLF/LF line endings,
+      // and frontmatter-style definitions used by some agent files).
+      const yamlMatch = content.match(/```ya?ml\r?\n([\s\S]*?)\r?\n```/);
+      const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      const rawYaml = yamlMatch?.[1] ?? frontmatterMatch?.[1];
+
+      if (!rawYaml) {
         throw new Error(`No YAML block found in ${this.agentId}.md`);
       }
       
       let agentDef;
       try {
-        agentDef = yaml.load(yamlMatch[1]);
+        agentDef = yaml.load(rawYaml);
       } catch (parseError) {
         // Try normalizing compact command format before parsing
-        const normalizedYaml = this._normalizeCompactCommands(yamlMatch[1]);
+        const normalizedYaml = this._normalizeCompactCommands(rawYaml);
         try {
           agentDef = yaml.load(normalizedYaml);
         } catch (_secondError) {

@@ -4,7 +4,7 @@
   Última sincronización: 2026-01-26
 -->
 
-# Guía de Flujo de Trabajo Git de AIOS
+# Guía de Flujo de Trabajo Git de AIOX
 
 > 🌐 [EN](../git-workflow-guide.md) | [PT](../pt/git-workflow-guide.md) | **ES**
 
@@ -26,7 +26,7 @@ _Story: 2.2-git-workflow-implementation.yaml_
 
 ## Descripción General
 
-Synkra AIOS implementa una estrategia de validación de **Defensa en Profundidad** con tres capas progresivas que detectan problemas tempranamente y aseguran la calidad del código antes del merge.
+Synkra AIOX implementa una estrategia de validación de **Defensa en Profundidad** con tres capas progresivas que detectan problemas tempranamente y aseguran la calidad del código antes del merge.
 
 ### ¿Por Qué Tres Capas?
 
@@ -984,12 +984,12 @@ strategy:
 
 ## Referencias
 
-- **AIOS Validator:** [.aios-core/utils/aios-validator.js](../../.aios-core/utils/aios-validator.js)
+- **AIOX Validator:** [.aios-core/utils/aios-validator.js](../../.aios-core/utils/aios-validator.js)
 - **CI Workflow:** [.github/workflows/ci.yml](../../.github/workflows/ci.yml)
 
 ---
 
 **¿Preguntas? ¿Problemas?**
 
-- [Abrir un Issue](https://github.com/SynkraAI/aios-core/issues)
+- [Abrir un Issue](https://github.com/SynkraAI/aiox-core/issues)
 - [Unirse a Discord](https://discord.gg/gk8jAdXWmj)

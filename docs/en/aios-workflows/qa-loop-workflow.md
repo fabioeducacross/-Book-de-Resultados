@@ -10,7 +10,7 @@
 
 ## Summary
 
-The **QA Loop Workflow** defines the quality assurance cycle within AIOS development. It ensures:
+The **QA Loop Workflow** defines the quality assurance cycle within AIOX development. It ensures:
 
 - Comprehensive test coverage
 - Code quality standards

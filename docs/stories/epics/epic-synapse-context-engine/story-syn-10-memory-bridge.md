@@ -9,7 +9,7 @@
 **Type:** Feature
 **Lead:** @dev (Dex)
 **Depends On:** SYN-6 (SynapseEngine Orchestrator), MIS-6 (Pipeline Integration — Done), PRO-6 (feature-gate.js — In Progress)
-**Repository:** aios-core + pro (single PR in aios-core with pro submodule update)
+**Repository:** aiox-core + pro (single PR in aiox-core with pro submodule update)
 **Wave:** 3 (Pro + Polish)
 
 ## Executor Assignment

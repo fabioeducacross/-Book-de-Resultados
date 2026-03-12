@@ -1,6 +1,6 @@
 <!-- Traducción: ES | Original: /docs/platforms/en/roo-code.md | Sincronización: 2026-01-26 -->
 
-# Guía AIOS para Roo Code
+# Guía AIOX para Roo Code
 
 > 🌐 [EN](../../platforms/roo-code.md) | [PT](../../pt/platforms/roo-code.md) | **ES**
 
@@ -16,7 +16,7 @@
 
 Roo Code es una extensión de VS Code que utiliza un sistema basado en modos para asistencia con IA. Cada modo proporciona contexto y capacidades especializadas, lo que facilita cambiar entre diferentes tipos de tareas.
 
-### ¿Por qué usar AIOS con Roo Code?
+### ¿Por qué usar AIOX con Roo Code?
 
 Roo Code ofrece un enfoque único basado en modos:
 
@@ -45,7 +45,7 @@ Roo Code ofrece un enfoque único basado en modos:
 | ----------- | ----------------- | -------------- |
 | **VS Code** | 1.80+             | Última versión |
 | **RAM**     | 4GB               | 8GB+           |
-| **Node.js** | 18.0+ (para AIOS) | 20.0+          |
+| **Node.js** | 18.0+ (para AIOX) | 20.0+          |
 
 ### Requisitos de Cuenta
 
@@ -78,7 +78,7 @@ code --install-extension RooVeterinaryInc.roo-cline
 2. Ingresa tu clave API
 3. Selecciona el modelo preferido
 
-### Paso 4: Instalar AIOS
+### Paso 4: Instalar AIOX
 
 ```bash
 cd your-project
@@ -113,12 +113,12 @@ Estructura esperada:
 **Ubicación:** `.roo/rules.md`
 
 ```markdown
-# Reglas Synkra AIOS para Roo Code
+# Reglas Synkra AIOX para Roo Code
 
 ## Sistema de Agentes
 
 - Usa el selector de modo para cambiar agentes
-- Cada modo corresponde a un agente AIOS
+- Cada modo corresponde a un agente AIOX
 
 ## Estándares de Desarrollo
 
@@ -217,7 +217,7 @@ Roo Code viene con varios modos integrados:
 | **Debug**        | Diagnóstico sistemático de problemas              |
 | **Orchestrator** | Coordinación de flujos de trabajo de varios pasos |
 
-### Modos Personalizados AIOS
+### Modos Personalizados AIOX
 
 | Modo             | Agente    | Propósito                |
 | ---------------- | --------- | ------------------------ |
@@ -357,7 +357,7 @@ Los modos pueden heredar de la base:
 
 ```mermaid
 flowchart LR
-    Source["AIOS Core<br/>.aios-core/development/agents"] --> Parser["Agent Parser"]
+    Source["AIOX Core<br/>.aios-core/development/agents"] --> Parser["Agent Parser"]
     Parser --> Transform["Roo Transformer"]
     Transform --> Agents[".roo/agents/"]
     Transform --> Modes[".roomodes"]
@@ -494,7 +494,7 @@ R: Sí, los modos personalizados definidos en `.roomodes` persisten con tu proye
 
 ### De Cline a Roo Code
 
-1. Instala AIOS para Roo Code:
+1. Instala AIOX para Roo Code:
    ```bash
    npx @anthropic/aios init --ide roo-code
    ```
@@ -502,7 +502,7 @@ R: Sí, los modos personalizados definidos en `.roomodes` persisten con tu proye
 
 ### De Roo Code a Cursor
 
-1. Los agentes AIOS en `.aios-core/` son portables
+1. Los agentes AIOX en `.aios-core/` son portables
 2. Inicializa para Cursor:
    ```bash
    npx @anthropic/aios init --ide cursor
@@ -516,8 +516,8 @@ R: Sí, los modos personalizados definidos en `.roomodes` persisten con tu proye
 - [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
 - [Repositorio de GitHub](https://github.com/RooCodeInc/Roo-Code)
 - [Comunidad Discord](https://discord.gg/roocode)
-- [Guía de Plataforma AIOS](../README.md)
+- [Guía de Plataforma AIOX](../README.md)
 
 ---
 
-_Synkra AIOS - Guía de Plataforma Roo Code v1.0_
+_Synkra AIOX - Guía de Plataforma Roo Code v1.0_

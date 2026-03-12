@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@squad-creator** (Nova) es el agente de creacion de squads del AIOS, responsable por:
+**@squad-creator** (Nova) es el agente de creacion de squads del AIOX, responsable por:
 
 - Creacion de expansion packs
 - Configuracion de nuevos agentes

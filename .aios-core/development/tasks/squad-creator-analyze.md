@@ -214,7 +214,7 @@ Overview
   Version: {version}
   Author: {author}
   License: {license}
-  AIOS Min Version: {aiosMinVersion}
+  AIOX Min Version: {aiosMinVersion}
 
 Components
   Agents ({count})

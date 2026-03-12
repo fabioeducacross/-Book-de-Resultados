@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V2.0)
+## Task Definition (AIOX Task Format V2.0)
 
 ```yaml
 task: testValidationTask()

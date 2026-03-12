@@ -1,8 +1,11 @@
 {
-  "name": "aios-core",
+  "name": "aiox-core",
   "version": "4.0.4",
-  "description": "Synkra AIOS: AI-Orchestrated System for Full Stack Development - Core Framework",
+  "description": "Synkra AIOX: AI-Orchestrated System for Full Stack Development - Core Framework",
   "bin": {
+    "aiox": "bin/aios.js",
+    "aiox-core": "bin/aios.js",
+    "aiox-minimal": "bin/aios-minimal.js",
     "aios": "bin/aios.js",
     "aios-core": "bin/aios.js",
     "aios-minimal": "bin/aios-minimal.js"
@@ -69,6 +72,7 @@
   },
   "keywords": [
     "ai",
+    "aiox",
     "aios",
     "agile",
     "agents",
@@ -83,21 +87,22 @@
     "vite-style",
     "automation"
   ],
-  "author": "Synkra AIOS Team",
+  "author": "Synkra AIOX Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SynkraAI/aios-core.git"
+    "url": "git+https://github.com/SynkraAI/aiox-core.git"
   },
   "bugs": {
-    "url": "https://github.com/SynkraAI/aios-core/issues"
+    "url": "https://github.com/SynkraAI/aiox-core/issues"
   },
-  "homepage": "https://github.com/SynkraAI/aios-core#readme",
+  "homepage": "https://github.com/SynkraAI/aiox-core#readme",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^30.0.0",

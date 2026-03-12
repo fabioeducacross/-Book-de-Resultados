@@ -1,6 +1,6 @@
 # Analyze Project Structure
 
-**Purpose:** Analyze an existing AIOS project to understand its structure, services, patterns, and provide recommendations for implementing new features. This is Phase 1 of the Incremental Feature Workflow.
+**Purpose:** Analyze an existing AIOX project to understand its structure, services, patterns, and provide recommendations for implementing new features. This is Phase 1 of the Incremental Feature Workflow.
 
 ---
 
@@ -27,7 +27,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: analyzeProjectStructure()
@@ -87,7 +87,7 @@ pre-conditions:
     blocker: true
     validation: |
       Check .aios-core/ directory exists in project root
-    error_message: "Pre-condition failed: Not an AIOS project (.aios-core/ not found)"
+    error_message: "Pre-condition failed: Not an AIOX project (.aios-core/ not found)"
 
   - [ ] Project path is accessible
     type: pre-condition
@@ -192,8 +192,8 @@ acceptance-criteria:
 **Common Errors:**
 
 1. **Error:** No .aios-core/ Directory
-   - **Cause:** Not an AIOS project
-   - **Resolution:** Initialize AIOS first or check directory
+   - **Cause:** Not an AIOX project
+   - **Resolution:** Initialize AIOX first or check directory
    - **Recovery:** Exit with clear message
 
 2. **Error:** No Services Found
@@ -273,7 +273,7 @@ Present these prompts to the user:
 **Scan the following locations:**
 
 ```javascript
-// Core AIOS structure
+// Core AIOX structure
 const scanLocations = {
   aiosCore: '.aios-core/',
   services: '.aios-core/infrastructure/services/',
@@ -414,7 +414,7 @@ Generate `docs/architecture/project-analysis.md`:
 
 | Aspect | Value |
 |--------|-------|
-| Framework | AIOS-FullStack |
+| Framework | AIOX-FullStack |
 | Primary Language | {primaryLanguage} |
 | Existing Services | {serviceCount} |
 | Testing Framework | {testFramework} |

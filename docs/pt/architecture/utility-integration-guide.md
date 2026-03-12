@@ -9,13 +9,13 @@
 **Versão:** 1.0.0
 **Criado em:** 2025-10-29
 **Autores:** Sarah (@po), Winston (@architect)
-**Propósito:** Definir padrões para integração de scripts utilitários no framework AIOS
+**Propósito:** Definir padrões para integração de scripts utilitários no framework AIOX
 
 ---
 
 ## O que é Integração de Utilitários?
 
-**Definição:** Integração de utilitários é o processo de tornar um script utilitário órfão **descobrível, documentado e utilizável** dentro do framework AIOS.
+**Definição:** Integração de utilitários é o processo de tornar um script utilitário órfão **descobrível, documentado e utilizável** dentro do framework AIOX.
 
 Um utilitário é considerado **totalmente integrado** quando:
 1. ✅ **Registrado** no core-config.yaml

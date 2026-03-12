@@ -2,7 +2,7 @@
 
 **Versao:** 1.0
 **Tipo:** Workflow Generico
-**Autor:** Orion (AIOS Master)
+**Autor:** Orion (AIOX Master)
 **Data de Criacao:** 2025-01-30
 **Tags:** story, development-cycle, quality-gate, agile, generic
 
@@ -10,7 +10,7 @@
 
 ## Visao Geral
 
-O **Story Development Cycle** e o workflow central do AIOS para desenvolvimento de stories. Ele automatiza o fluxo completo desde a criacao ate a entrega com quality gate integrado, seguindo a sequencia: **criar -> validar -> implementar -> QA review**.
+O **Story Development Cycle** e o workflow central do AIOX para desenvolvimento de stories. Ele automatiza o fluxo completo desde a criacao ate a entrega com quality gate integrado, seguindo a sequencia: **criar -> validar -> implementar -> QA review**.
 
 ### Objetivo
 
@@ -549,7 +549,7 @@ graph TD
 
 ### Configuracao do Projeto
 
-1. **core-config.yaml** - Arquivo de configuracao AIOS obrigatorio
+1. **core-config.yaml** - Arquivo de configuracao AIOX obrigatorio
    - `devStoryLocation` - Local das stories
    - `prd.*` - Configuracao do PRD
    - `architecture.*` - Configuracao da arquitetura
@@ -739,7 +739,7 @@ cat docs/prd/PRD.md  # ou localizado conforme config
 **Solucao:**
 ```bash
 # Verificar output do CodeRabbit
-wsl bash -c 'cd /mnt/c/.../@synkra/aios-core && ~/.local/bin/coderabbit --prompt-only -t uncommitted'
+wsl bash -c 'cd /mnt/c/.../@synkra/aiox-core && ~/.local/bin/coderabbit --prompt-only -t uncommitted'
 
 # Corrigir issues manualmente
 # Depois re-executar *develop

@@ -6,7 +6,7 @@
 
 ## Overview
 
-Every AIOS agent goes through a **single unified activation pipeline** before presenting its greeting. As of Story ACT-6, the previous two-path architecture (Path A: direct GreetingBuilder invocation, Path B: generate-greeting.js CLI wrapper) has been consolidated into one entry point.
+Every AIOX agent goes through a **single unified activation pipeline** before presenting its greeting. As of Story ACT-6, the previous two-path architecture (Path A: direct GreetingBuilder invocation, Path B: generate-greeting.js CLI wrapper) has been consolidated into one entry point.
 
 | Component | Role |
 |-----------|------|
@@ -595,7 +595,7 @@ graph TD
 
 ## 13. `user_profile` Impact Matrix (Story ACT-2)
 
-The `user_profile` setting (`bob` or `advanced`) affects behavior across the entire AIOS pipeline. This section documents every file that references `user_profile`/`userProfile` and the behavioral difference between modes.
+The `user_profile` setting (`bob` or `advanced`) affects behavior across the entire AIOX pipeline. This section documents every file that references `user_profile`/`userProfile` and the behavioral difference between modes.
 
 ### 13.1 Bob Mode Flow
 
@@ -685,7 +685,7 @@ In `bob` mode, non-PM agents return **empty command lists** (redirect to @pm sho
 
 ---
 
-*Traced from source on 2026-02-05 | Story AIOS-TRACE-001*
+*Traced from source on 2026-02-05 | Story AIOX-TRACE-001*
 *Updated on 2026-02-06 | Story ACT-2 - user_profile impact matrix added*
 *Updated on 2026-02-06 | Story ACT-6 - Unified Activation Pipeline (Path A/B merged)*
 *Updated on 2026-02-06 | Story ACT-8 - Config governance: enriched pm, ux-design-expert, analyst, sm, squad-creator*

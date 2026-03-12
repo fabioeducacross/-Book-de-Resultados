@@ -6,12 +6,12 @@
 
 ## Summary
 
-**@aios-master** (Orion) is the **Orchestrator** of the AIOS agent system. This agent is responsible for:
+**@aios-master** (Orion) is the **Orchestrator** of the AIOX agent system. This agent is responsible for:
 
 - Coordinating all other agents in the system
 - Managing the overall workflow and task delegation
 - Ensuring proper execution of complex multi-agent operations
-- Providing the main entry point for AIOS interactions
+- Providing the main entry point for AIOX interactions
 
 ---
 
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @aios-master System v1.0*
+*AIOX Agent Flows - @aios-master System v1.0*

@@ -4,7 +4,7 @@
   Última sincronización: 2026-01-29
 -->
 
-# Guía de Instalación Linux para Synkra AIOS
+# Guía de Instalación Linux para Synkra AIOX
 
 > 🌐 [EN](../../installation/linux.md) | [PT](../../pt/installation/linux.md) | **ES**
 
@@ -152,7 +152,7 @@ sudo pacman -S base-devel
 3. Ejecute el instalador:
 
    ```bash
-   npx github:SynkraAI/aios-core install
+   npx github:SynkraAI/aiox-core install
    ```
 
 ### Qué Hace el Instalador
@@ -195,7 +195,7 @@ El instalador automáticamente:
    npm install -g @anthropic-ai/claude-code
    ```
 
-2. Comandos se instalan en `.claude/commands/AIOS/`
+2. Comandos se instalan en `.claude/commands/AIOX/`
 3. Use `/nombre-del-agente` para activar agentes
 
 ### Windsurf
@@ -272,7 +272,7 @@ Para actualizar una instalación existente:
 
 ```bash
 # Usando npx (recomendado)
-npx github:SynkraAI/aios-core install
+npx github:SynkraAI/aiox-core install
 ```
 
 El actualizador:
@@ -312,4 +312,4 @@ El actualizador:
 - [Guía de Solución de Problemas](troubleshooting.md)
 - [FAQ](faq.md)
 - [Comunidad Discord](https://discord.gg/gk8jAdXWmj)
-- [GitHub Issues](https://github.com/SynkraAI/aios-core/issues)
+- [GitHub Issues](https://github.com/SynkraAI/aiox-core/issues)

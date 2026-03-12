@@ -1,4 +1,4 @@
-# Guia AIOS para Windsurf
+# Guia AIOX para Windsurf
 
 > 🌐 [EN](../../platforms/windsurf.md) | **PT** | [ES](../../es/platforms/windsurf.md)
 
@@ -14,9 +14,9 @@
 
 Windsurf é um ambiente de desenvolvimento com IA que introduz o "Cascade" - uma abordagem inovadora para codificação assistida por IA que mantém contexto através de múltiplas interações e arquivos. Construído para desenvolvedores que querem integração profunda de IA em seu fluxo de trabalho.
 
-### Por que usar AIOS com Windsurf?
+### Por que usar AIOX com Windsurf?
 
-O Windsurf oferece capacidades únicas para o AIOS:
+O Windsurf oferece capacidades únicas para o AIOX:
 
 - **Cascade Flow**: Mantém contexto através de operações complexas
 - **Ativação @mention**: Sintaxe natural de ativação de agentes
@@ -46,7 +46,7 @@ O Windsurf oferece capacidades únicas para o AIOS:
 | **RAM**             | 4GB                              | 8GB+          |
 | **Espaço em Disco** | 500MB                            | 1GB+          |
 | **SO**              | macOS 10.15+, Windows 10+, Linux | Última versão |
-| **Node.js**         | 18.0+ (para AIOS)                | 20.0+         |
+| **Node.js**         | 18.0+ (para AIOX)                | 20.0+         |
 
 ### Requisitos de Conta
 
@@ -70,7 +70,7 @@ brew install --cask windsurf
 # Ou baixe diretamente
 ```
 
-### Passo 2: Instalar o AIOS
+### Passo 2: Instalar o AIOX
 
 ```bash
 cd seu-projeto
@@ -109,7 +109,7 @@ Este arquivo usa formato markdown com tags XML:
 
 ```markdown
 <rules>
-# Regras de Desenvolvimento Synkra AIOS
+# Regras de Desenvolvimento Synkra AIOX
 
 ## Integração de Agentes
 
@@ -318,7 +318,7 @@ API RESTful com Express.js
 
 ```mermaid
 flowchart LR
-    Source["AIOS Core<br/>.aios-core/development/agents"] --> Parser["Parser de Agente"]
+    Source["AIOX Core<br/>.aios-core/development/agents"] --> Parser["Parser de Agente"]
     Parser --> Transform["Transformador Windsurf"]
     Transform --> Output[".windsurf/rules/"]
     Transform --> Rules[".windsurfrules"]
@@ -465,7 +465,7 @@ R: Edição básica funciona offline, mas recursos de IA requerem internet.
    cp .cursor/rules.md cursor-backup.md
    ```
 
-2. Inicialize AIOS para Windsurf:
+2. Inicialize AIOX para Windsurf:
 
    ```bash
    npx @anthropic/aios init --ide windsurf
@@ -475,7 +475,7 @@ R: Edição básica funciona offline, mas recursos de IA requerem internet.
 
 ### Do Windsurf para Outras IDEs
 
-1. Agentes AIOS em `.aios-core/` são independentes de IDE
+1. Agentes AIOX em `.aios-core/` são independentes de IDE
 2. Inicialize para a IDE de destino
 3. Agentes transformam automaticamente
 
@@ -485,8 +485,8 @@ R: Edição básica funciona offline, mas recursos de IA requerem internet.
 
 - [Documentação do Windsurf](https://codeium.com/windsurf/docs)
 - [Comunidade Codeium](https://discord.gg/codeium)
-- [Guia de Plataformas AIOS](../README.md)
+- [Guia de Plataformas AIOX](../README.md)
 
 ---
 
-_Synkra AIOS - Guia da Plataforma Windsurf v1.0_
+_Synkra AIOX - Guia da Plataforma Windsurf v1.0_

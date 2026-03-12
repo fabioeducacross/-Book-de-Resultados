@@ -13,7 +13,7 @@
 
 ## Resumen Ejecutivo
 
-**@docs (Ajax)** es un agente de IA especializado en crear **documentacion educativa** para AIOS. A diferencia de la documentacion tecnica (JSDoc/Typedoc), Ajax se enfoca en **tutoriales, guias de incorporacion, explicadores visuales y materiales de capacitacion para socios**.
+**@docs (Ajax)** es un agente de IA especializado en crear **documentacion educativa** para AIOX. A diferencia de la documentacion tecnica (JSDoc/Typedoc), Ajax se enfoca en **tutoriales, guias de incorporacion, explicadores visuales y materiales de capacitacion para socios**.
 
 ### Objetivos Principales
 
@@ -91,7 +91,7 @@ agent:
 whenToUse: |
   Activa @docs cuando necesites:
   - Guias de incorporacion para nuevos usuarios o socios
-  - Tutoriales explicando como usar funciones de AIOS
+  - Tutoriales explicando como usar funciones de AIOX
   - Diagramas Mermaid visualizando flujos del sistema
   - Materiales de capacitacion para socios (Wave 4)
   - Actualizaciones de contenido educativo despues de cambios de codigo
@@ -505,7 +505,7 @@ Checklist:
     - check: "El diagrama es legible (no demasiado abarrotado)"
       blocker: false
 
-    - check: "Usa estilo consistente (paleta de colores AIOS)"
+    - check: "Usa estilo consistente (paleta de colores AIOX)"
       blocker: false
 
 Template: docs/templates/mermaid-diagram-template.mmd
@@ -660,7 +660,7 @@ atomic_layer: Content
 
 whenToUse: |
   - Incorporacion de socios Wave 4 (Epic 14, 15, 16)
-  - Nuevo socio se une al ecosistema AIOS
+  - Nuevo socio se une al ecosistema AIOX
   - Materiales de capacitacion de socios necesitan actualizacion
   - Creacion de cursos de certificacion
 
@@ -749,7 +749,7 @@ Checklist:
     - check: "Tiene seccion 'Errores Comunes'"
       blocker: false
 
-    - check: "Enlaces a documentacion AIOS relevante"
+    - check: "Enlaces a documentacion AIOX relevante"
       blocker: false
 
     - check: "Incluye informacion de contacto de soporte"
@@ -1098,7 +1098,7 @@ Ubicacion: `docs/templates/agent-documentation-template.md`
 
 ## Vision General
 
-[Nombre del Agente] es el agente [rol] de AIOS, especializado en [experiencia principal].
+[Nombre del Agente] es el agente [rol] de AIOX, especializado en [experiencia principal].
 
 **Cuando usar @[agent-name]:**
 - [Caso de uso 1]
@@ -1359,7 +1359,7 @@ flowchart TD
 ```
 
 **Notas de Plantilla:**
-- Usar paleta de colores AIOS (Azul primario, Purpura secundario, Rosa terciario)
+- Usar paleta de colores AIOX (Azul primario, Purpura secundario, Rosa terciario)
 - Mantener diagramas enfocados (max 10-12 nodos)
 - Usar etiquetas claras y orientadas a la accion
 - Incluir leyenda si se usan simbolos personalizados
@@ -1462,7 +1462,7 @@ Ubicacion: `docs/templates/qa-report-template.md`
 
 ```bash
 #!/bin/bash
-# Hook de Auto-Actualizacion AIOS @docs
+# Hook de Auto-Actualizacion AIOX @docs
 # Se activa cuando se fusionan cambios de codigo
 
 echo "Verificando actualizaciones de documentacion necesarias..."
@@ -1471,7 +1471,7 @@ echo "Verificando actualizaciones de documentacion necesarias..."
 changed_files=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)
 
 # Verificar si cambio codigo fuente
-if echo "$changed_files" | grep -qE "^(src/|aios-core/)"; then
+if echo "$changed_files" | grep -qE "^(src/|aiox-core/)"; then
   echo "Cambios de codigo detectados. Analizando impacto en documentacion..."
 
   # Invocar tarea de actualizacion de @docs
@@ -1503,7 +1503,7 @@ on:
   pull_request:
     paths:
       - 'src/**'
-      - 'aios-core/**'
+      - 'aiox-core/**'
       - 'expansion-packs/**'
 
 jobs:
@@ -1521,7 +1521,7 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Instalar AIOS CLI
+      - name: Instalar AIOX CLI
         run: npm install -g @aios/core
 
       - name: Analizar cambios de PR
@@ -1586,7 +1586,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
 
-      - name: Instalar AIOS CLI
+      - name: Instalar AIOX CLI
         run: npm install -g @aios/core
 
       - name: Ejecutar QA de Documentacion
@@ -1908,7 +1908,7 @@ dashboard:
 
 - [ ] **Amor de Usuarios:** Documentacion en top 3 funciones amadas por usuarios
 
-- [ ] **Reconocimiento de Industria:** Docs de AIOS citados como "mejor en espacio de agentes IA"
+- [ ] **Reconocimiento de Industria:** Docs de AIOX citados como "mejor en espacio de agentes IA"
 
 **Objetivo:** $16,400+ valor total (coincide con trayectoria ROI a 3 anos)
 
@@ -2050,7 +2050,7 @@ dashboard:
 
 ### Referencias Internas
 
-**Documentacion AIOS:**
+**Documentacion AIOX:**
 - Epics Wave 4: `docs/epics/epic-14-partners-onboarding.md`, `epic-15-partner-os-mvp.md`, `epic-16-scale-100-partners.md`
 - Arquitectura de agentes: `docs/architecture/agent-system.md`
 - Estructura de tareas: `docs/WORKFLOW-COMPLETE-CONSOLIDATED-V3.md`
@@ -2081,7 +2081,7 @@ Esta especificacion sigue la estructura **WORKFLOW-V3.0** para todas las tareas:
 
 ## Apendice B: Actualizacion de Lista de Agentes
 
-Con la adicion de @docs (Ajax), AIOS ahora tiene **13 agentes nombrados**:
+Con la adicion de @docs (Ajax), AIOX ahora tiene **13 agentes nombrados**:
 
 | # | Agente | Nombre | Rol | Arquetipo | Color |
 |---|--------|--------|-----|-----------|-------|

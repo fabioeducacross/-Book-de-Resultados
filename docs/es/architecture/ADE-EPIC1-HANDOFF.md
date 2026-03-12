@@ -70,7 +70,7 @@ await manager.cleanup();
 ## Puntos de Integración
 
 - **status.json**: Estado del worktree rastreado en `.aios/status.json`
-- **Dashboard**: API de WorktreeManager consumida por AIOS Dashboard
+- **Dashboard**: API de WorktreeManager consumida por AIOX Dashboard
 - **Epic 4**: Execution Engine usa worktrees para desarrollo aislado
 
 ---

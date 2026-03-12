@@ -31,7 +31,7 @@ This task provides instructions for validating documentation against checklists.
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: executeChecklist()

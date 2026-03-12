@@ -10,7 +10,7 @@
 
 ---
 
-Como contribuir squads para o ecossistema AIOS.
+Como contribuir squads para o ecossistema AIOX.
 
 ## Visão Geral
 
@@ -30,7 +30,7 @@ Todos os squads contribuídos devem atender a estes padrões:
 | **Manifesto válido** | `squad.yaml` passa validação JSON Schema |
 | **Documentação** | README.md com instruções de uso |
 | **Licença** | Licença open source (MIT, Apache 2.0, etc.) |
-| **Compatibilidade AIOS** | `aios.minVersion: "2.1.0"` ou superior |
+| **Compatibilidade AIOX** | `aios.minVersion: "2.1.0"` ou superior |
 | **Arquitetura task-first** | Tasks como pontos de entrada principais |
 
 ### Recomendado
@@ -229,7 +229,7 @@ Siga versionamento semântico:
 - Teste seu squad antes de publicar
 - Responda a issues e feedback
 - Mantenha dependências mínimas
-- Siga convenções do AIOS
+- Siga convenções do AIOX
 
 ### Não Faça
 
@@ -241,8 +241,8 @@ Siga versionamento semântico:
 
 ## Obtendo Ajuda
 
-- **Perguntas**: [GitHub Discussions](https://github.com/SynkraAI/aios-core/discussions)
-- **Issues**: [Issue Tracker](https://github.com/SynkraAI/aios-core/issues)
+- **Perguntas**: [GitHub Discussions](https://github.com/SynkraAI/aiox-core/discussions)
+- **Issues**: [Issue Tracker](https://github.com/SynkraAI/aiox-core/issues)
 - **Diretrizes**: Este documento
 
 ## Recursos Relacionados

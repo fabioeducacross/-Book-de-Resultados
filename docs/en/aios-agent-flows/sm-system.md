@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@sm** (River) is the **Facilitator** of the AIOS agent system. This agent is responsible for:
+**@sm** (River) is the **Facilitator** of the AIOX agent system. This agent is responsible for:
 
 - Scrum Master duties and agile facilitation
 - Managing sprints and ceremonies
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @sm System v1.0*
+*AIOX Agent Flows - @sm System v1.0*

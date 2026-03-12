@@ -9,7 +9,7 @@
 
 ## Visão Geral
 
-O agente **@qa (Quinn)** e o Test Architect & Quality Advisor do AIOS. Seu papel e fornecer analise abrangente de qualidade, decisoes de quality gates e recomendacoes acionaveis para equipes de desenvolvimento.
+O agente **@qa (Quinn)** e o Test Architect & Quality Advisor do AIOX. Seu papel e fornecer analise abrangente de qualidade, decisoes de quality gates e recomendacoes acionaveis para equipes de desenvolvimento.
 
 **Arquetipo:** Guardian (Virgem)
 **Tom de Comunicacao:** Analitico, sistematico, educacional, pragmatico
@@ -64,7 +64,7 @@ O agente **@qa (Quinn)** e o Test Architect & Quality Advisor do AIOS. Seu papel
 | Arquivo | Propósito |
 |---------|-----------|
 | `.aios-core/development/agents/qa.md` | Definição completa do agente QA |
-| `.claude/commands/AIOS/agents/qa.md` | Comando Claude Code para ativar @qa |
+| `.claude/commands/AIOX/agents/qa.md` | Comando Claude Code para ativar @qa |
 
 ### Arquivos de Workflow
 
@@ -375,10 +375,10 @@ coderabbit_integration:
 
 ```bash
 # Pre-review (uncommitted changes)
-wsl bash -c 'cd /mnt/c/.../@synkra/aios-core && ~/.local/bin/coderabbit --prompt-only -t uncommitted'
+wsl bash -c 'cd /mnt/c/.../@synkra/aiox-core && ~/.local/bin/coderabbit --prompt-only -t uncommitted'
 
 # Story review (committed changes vs main)
-wsl bash -c 'cd /mnt/c/.../@synkra/aios-core && ~/.local/bin/coderabbit --prompt-only -t committed --base main'
+wsl bash -c 'cd /mnt/c/.../@synkra/aiox-core && ~/.local/bin/coderabbit --prompt-only -t committed --base main'
 ```
 
 ### Fluxo de Self-Healing

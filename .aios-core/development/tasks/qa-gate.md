@@ -22,7 +22,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: qaGate()
@@ -200,7 +200,7 @@ updated_at: 2025-11-17
 
 ---
 
- Powered by AIOS™ Core -->
+ Powered by AIOX™ Core -->
 
 ---
 tools:
@@ -226,7 +226,7 @@ Generate a standalone quality gate file that provides a clear pass/fail decision
 
 ## Gate File Location
 
-**ALWAYS** check the `aios-core/core-config.yaml` for the `qa.qaLocation/gates`
+**ALWAYS** check the `aiox-core/core-config.yaml` for the `qa.qaLocation/gates`
 
 Slug rules:
 
@@ -336,7 +336,7 @@ waiver:
 
 ## Output Requirements
 
-1. **ALWAYS** create gate file at: `qa.qaLocation/gates` from `aios-core/core-config.yaml`
+1. **ALWAYS** create gate file at: `qa.qaLocation/gates` from `aiox-core/core-config.yaml`
 2. **ALWAYS** append this exact format to story's QA Results section:
 
    ```text

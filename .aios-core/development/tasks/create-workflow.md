@@ -41,7 +41,7 @@ Before proceeding, check the Entity Registry for existing artifacts:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: createWorkflow()
@@ -247,7 +247,7 @@ tools:
 # Create Workflow
 
 ## Purpose
-To create a new workflow definition that orchestrates multiple agents and tasks for complex multi-step processes in Synkra AIOS.
+To create a new workflow definition that orchestrates multiple agents and tasks for complex multi-step processes in Synkra AIOX.
 
 ## Prerequisites
 - User authorization verified

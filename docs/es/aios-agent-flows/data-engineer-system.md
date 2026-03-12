@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@data-engineer** (Dara) es el agente de datos del AIOS, responsable por:
+**@data-engineer** (Dara) es el agente de datos del AIOX, responsable por:
 
 - Diseno de esquemas de base de datos
 - Migraciones y versionamiento

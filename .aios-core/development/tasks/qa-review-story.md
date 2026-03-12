@@ -35,7 +35,7 @@ Perform a comprehensive test architecture review with quality gate decision. Thi
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: qaReviewStory()
@@ -252,7 +252,7 @@ Execute CodeRabbit self-healing **FIRST** before manual review:
 │  WHILE iteration < max_iterations:                                │
 │    ┌─────────────────────────────────────────────────────────┐   │
 │    │ 1. Run CodeRabbit CLI                                   │   │
-│    │    wsl bash -c 'cd /mnt/c/.../@synkra/aios-core &&         │   │
+│    │    wsl bash -c 'cd /mnt/c/.../@synkra/aiox-core &&         │   │
 │    │    ~/.local/bin/coderabbit --prompt-only                │   │
 │    │    -t committed --base main'                            │   │
 │    │                                                          │   │

@@ -17,7 +17,7 @@
 
 | Aspecto | Valor |
 |---------|-------|
-| Framework | AIOS-FullStack |
+| Framework | AIOX-FullStack |
 | Linguagem Principal | TypeScript/JavaScript |
 | Sistema de Squads | v2.1 (Arquitetura Task-First) |
 | Tasks Existentes | 8 tasks do squad-creator |

@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@qa** (Quinn) es el agente de calidad del AIOS, responsable por:
+**@qa** (Quinn) es el agente de calidad del AIOX, responsable por:
 
 - Tests y validacion
 - Revision de codigo

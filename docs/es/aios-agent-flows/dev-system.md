@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@dev** (Dex) es el agente de desarrollo del AIOS, responsable por:
+**@dev** (Dex) es el agente de desarrollo del AIOX, responsable por:
 
 - Implementacion de codigo
 - Seguir stories y acceptance criteria

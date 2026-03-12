@@ -4,13 +4,13 @@
   Última sincronización: 2026-01-26
 -->
 
-# Guía de Descubrimiento de Servicios de AIOS
+# Guía de Descubrimiento de Servicios de AIOX
 
 > 🌐 [EN](../../guides/service-discovery.md) | [PT](../../pt/guides/service-discovery.md) | **ES**
 
 ---
 
-> Cómo descubrir, consultar y usar workers en el framework AIOS.
+> Cómo descubrir, consultar y usar workers en el framework AIOX.
 
 **Versión:** 2.1.0
 **Última Actualización:** 2025-12-01
@@ -19,7 +19,7 @@
 
 ## Resumen
 
-El sistema de Descubrimiento de Servicios permite encontrar y usar workers (tareas, plantillas, scripts, workflows) en todo el framework AIOS. El **Registro de Servicios** es el catálogo central que contiene metadatos sobre todos los workers disponibles.
+El sistema de Descubrimiento de Servicios permite encontrar y usar workers (tareas, plantillas, scripts, workflows) en todo el framework AIOX. El **Registro de Servicios** es el catálogo central que contiene metadatos sobre todos los workers disponibles.
 
 ### Conceptos Clave
 
@@ -521,4 +521,4 @@ await registry.load(true);
 
 ---
 
-_Guía de Descubrimiento de Servicios de Synkra AIOS v2.1_
+_Guía de Descubrimiento de Servicios de Synkra AIOX v2.1_

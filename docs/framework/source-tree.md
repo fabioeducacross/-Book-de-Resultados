@@ -1,11 +1,11 @@
-# AIOS Source Tree Structure
+# AIOX Source Tree Structure
 
 > 🌐 **EN** | [PT](../pt/framework/source-tree.md) | [ES](../es/framework/source-tree.md)
 
 **Version:** 4.0.0
 **Last Updated:** 2026-02-11
 **Status:** Official Framework Standard
-**Repository:** SynkraAI/aios-core
+**Repository:** SynkraAI/aiox-core
 
 ---
 
@@ -13,7 +13,7 @@
 
 - [Overview](#overview)
 - [Modular Architecture](#modular-architecture)
-- [Framework Core (.aios-core/)](#framework-core-aios-core)
+- [Framework Core (.aios-core/)](#framework-core-aiox-core)
 - [Module Details](#module-details)
 - [Documentation (docs/)](#documentation-docs)
 - [Squads System](#squads-system)
@@ -25,7 +25,7 @@
 
 ## Overview
 
-AIOS uses a **modular architecture** with clear separation of concerns:
+AIOX uses a **modular architecture** with clear separation of concerns:
 
 1. **Framework Core** (`.aios-core/`) - Portable framework components organized by domain
 2. **Project Workspace** (root) - Project-specific implementation
@@ -41,7 +41,7 @@ AIOS uses a **modular architecture** with clear separation of concerns:
 ## Modular Architecture
 
 ```
-aios-core/                             # Root project
+aiox-core/                             # Root project
 ├── .aios-core/                        # Framework core (modular)
 │   ├── cli/                           # CLI commands and utilities
 │   ├── core/                          # Framework essentials
@@ -123,7 +123,7 @@ aios-core/                             # Root project
 │   └── utils/                         # Core utilities
 │
 ├── data/                              # Shared Data
-│   ├── aios-kb.md                     # AIOS knowledge base (@aios-master, lazy-loaded)
+│   ├── aios-kb.md                     # AIOX knowledge base (@aios-master, lazy-loaded)
 │   ├── agent-config-requirements.yaml # Per-agent config loading rules (@architect, updated on agent changes)
 │   ├── technical-preferences.md       # User/team technical preferences (@architect, updated on preference changes)
 │   └── workflow-patterns.yaml         # Workflow detection patterns (@sm, updated on workflow changes)
@@ -313,7 +313,7 @@ docs/
 │   └── README.md                      # Migration notice
 │
 ├── stories/                           # Development stories
-│   ├── aios migration/                # AIOS migration stories
+│   ├── aios migration/                # AIOX migration stories
 │   │   ├── story-6.1.2.1.md
 │   │   ├── story-6.1.2.2.md
 │   │   ├── story-6.1.2.3.md
@@ -388,7 +388,7 @@ docs/
 
 ### Overview
 
-Squads are modular extensions that add specialized capabilities to AIOS. Unlike the deprecated Squads, Squads follow a standardized template structure.
+Squads are modular extensions that add specialized capabilities to AIOX. Unlike the deprecated Squads, Squads follow a standardized template structure.
 
 ### Squad Template Location
 
@@ -445,7 +445,7 @@ workflows:
 
 # Dependencies
 dependencies:
-  aios-core: '>=2.1.0'
+  aiox-core: '>=2.1.0'
 ```
 
 ### Migration from Squads
@@ -463,10 +463,10 @@ dependencies:
 
 **Decision 005 defines 5 separate repositories:**
 
-### REPO 1: SynkraAI/aios-core (Commons Clause)
+### REPO 1: SynkraAI/aiox-core (Commons Clause)
 
 ```
-aios-core/
+aiox-core/
 ├── .aios-core/                        # Framework assets (modular v2.0)
 │   ├── cli/                           # CLI commands and utilities
 │   ├── core/                          # Framework essentials
@@ -517,7 +517,7 @@ aios-core/
 
 ```
 squads/
-├── verified/                          # AIOS-curated squads
+├── verified/                          # AIOX-curated squads
 │   ├── github-devops/
 │   ├── db-sage/
 │   └── coderabbit-workflow/
@@ -599,7 +599,7 @@ mmos/
 Directories: kebab-case (lowercase, hyphen-separated)
   ✅ .aios-core/
   ✅ Squads/
-  ❌ .AIOS-Core/
+  ❌ .AIOX-Core/
   ❌ expansionPacks/
 
 Files (Code): kebab-case with extension
@@ -885,4 +885,4 @@ Runtime state is persisted in `.aios/`:
 
 ---
 
-_This is an official AIOS framework standard. All file placement must follow this structure._
+_This is an official AIOX framework standard. All file placement must follow this structure._

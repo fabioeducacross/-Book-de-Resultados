@@ -41,7 +41,7 @@ Before proceeding, check the Entity Registry for existing artifacts:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: createTask()

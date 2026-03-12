@@ -1,10 +1,10 @@
-# Synkra AIOS Testing Guide
+# Synkra AIOX Testing Guide
 
 > **EN** | [PT](../pt/guides/testing-guide.md) | [ES](../es/guides/testing-guide.md)
 
 ---
 
-> Comprehensive guide to the testing strategy, tools, and best practices for Synkra AIOS.
+> Comprehensive guide to the testing strategy, tools, and best practices for Synkra AIOX.
 
 **Version:** 2.1.0
 **Last Updated:** 2026-01-29
@@ -31,7 +31,7 @@
 
 ## Overview
 
-AIOS follows a comprehensive testing strategy that ensures code quality across all layers of the framework. Our testing philosophy is built on:
+AIOX follows a comprehensive testing strategy that ensures code quality across all layers of the framework. Our testing philosophy is built on:
 
 - **Test-Driven Development (TDD)** for core functionality
 - **Layered Testing** with unit, integration, and E2E tests
@@ -405,7 +405,7 @@ Testing AI agents requires special considerations for persona behavior and comma
 /**
  * Agent Backward Compatibility Tests
  *
- * Ensures agents from previous AIOS versions continue to work.
+ * Ensures agents from previous AIOX versions continue to work.
  */
 
 const { loadAgent } = require('../../.aios-core/core/registry/agent-loader');
@@ -471,7 +471,7 @@ describe('Agent Commands', () => {
 
 ## Cross-Platform Testing
 
-AIOS supports Windows, macOS, and Linux. Cross-platform testing ensures consistent behavior.
+AIOX supports Windows, macOS, and Linux. Cross-platform testing ensures consistent behavior.
 
 ### Platform-Specific Test Files
 
@@ -778,7 +778,7 @@ npm test -- --passWithNoTests --testPathIgnorePatterns=integration,e2e
 
 ### Quality Gate Integration
 
-The AIOS Quality Gate System (see [Quality Gates Guide](./quality-gates.md)) integrates testing at multiple layers:
+The AIOX Quality Gate System (see [Quality Gates Guide](./quality-gates.md)) integrates testing at multiple layers:
 
 | Layer       | Test Type               | When         |
 | ----------- | ----------------------- | ------------ |
@@ -1212,4 +1212,4 @@ module.exports = {
 
 ---
 
-_Synkra AIOS v2.1 Testing Guide_
+_Synkra AIOX v2.1 Testing Guide_

@@ -19,7 +19,7 @@ Hook Interface (hook-interface.js)
          ↓
 Hook Runners (runners/*.js)
          ↓
-Application Logic (aios-core, aios-pro)
+Application Logic (aiox-core, aios-pro)
 ```
 
 ---
@@ -303,5 +303,5 @@ const proModule = require('../../pro/...'); // Fails if pro absent
 
 ---
 
-*Unified Hooks System - AIOS Core*
+*Unified Hooks System - AIOX Core*
 *Updated: 2026-02-09 - Story MIS-3*

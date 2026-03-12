@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Book de Resultados — Data Contract",
   "description": "Schema de validação para a planilha de dados do Book de Resultados de Avaliação Educacional",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "object",
   "required": ["metadata", "escolas", "resultados", "distribuicao"],
   "properties": {
@@ -115,6 +115,80 @@
         },
         "additionalProperties": true
       }
+    },
+    "habilidades": {
+      "type": "array",
+      "description": "Desempenho por habilidade, área do conhecimento e ano escolar",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "area_conhecimento",
+          "ano_escolar",
+          "codigo_habilidade",
+          "habilidade",
+          "desempenho_percentual"
+        ],
+        "properties": {
+          "area_conhecimento": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Área de conhecimento associada à habilidade"
+          },
+          "ano_escolar": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Ano escolar da habilidade"
+          },
+          "codigo_habilidade": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Código da habilidade"
+          },
+          "tematica": {
+            "type": "string",
+            "description": "Temática pedagógica da habilidade"
+          },
+          "habilidade": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Descrição textual da habilidade"
+          },
+          "desempenho_percentual": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Percentual de desempenho da habilidade"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "source": {
+      "type": "object",
+      "description": "Metadados do layout detectado e rastreio de parsing",
+      "required": ["layout"],
+      "properties": {
+        "layout": {
+          "type": "string",
+          "description": "Layout detectado da planilha"
+        },
+        "sheetMap": {
+          "type": "object",
+          "description": "Mapeamento entre nomes lógicos e nomes reais das abas",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "trace": {
+          "type": "object",
+          "description": "Contadores úteis para auditoria do parsing",
+          "additionalProperties": {
+            "type": ["integer", "number"]
+          }
+        }
+      },
+      "additionalProperties": true
     }
   }
 }

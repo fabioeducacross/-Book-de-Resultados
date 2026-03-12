@@ -1,4 +1,4 @@
-# AIOS Color Palette - Quick Reference
+# AIOX Color Palette - Quick Reference
 
 **Version:** 2.1.0 | **Status:** ✅ Active
 
@@ -37,11 +37,11 @@
 ### JavaScript/Node.js
 
 ```javascript
-// Import the AIOS color system
+// Import the AIOX color system
 const { colors, status, headings } = require('./src/utils/aios-colors');
 
 // Use in your code
-console.log(headings.h1('Welcome to AIOS!'));
+console.log(headings.h1('Welcome to AIOX!'));
 console.log(status.success('Installation complete!'));
 console.log(status.tip('Press Enter to continue'));
 ```
@@ -68,7 +68,7 @@ console.log(status.tip('Press Enter to continue'));
 
 ### Welcome Screen
 ```javascript
-console.log(headings.h1('🎉 Welcome to AIOS v2.1 Installer!'));
+console.log(headings.h1('🎉 Welcome to AIOX v2.1 Installer!'));
 console.log(colors.info('Let\'s configure your project...\n'));
 ```
 
@@ -164,7 +164,7 @@ Expected output:
 
 ## 📚 Full Documentation
 
-- **Complete Guide:** [AIOS-COLOR-PALETTE-V2.1.md](./AIOS-COLOR-PALETTE-V2.1.md)
+- **Complete Guide:** [AIOX-COLOR-PALETTE-V2.1.md](./AIOX-COLOR-PALETTE-V2.1.md)
 - **Color Module:** `src/utils/aios-colors.js`
 - **Demo:** `examples/color-palette-demo.js`
 

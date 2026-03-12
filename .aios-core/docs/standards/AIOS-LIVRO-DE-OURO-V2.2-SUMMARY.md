@@ -1,9 +1,9 @@
-# 📘 AIOS v2.2 - Livro de Ouro (Future Vision)
+# 📘 AIOX v2.2 - Livro de Ouro (Future Vision)
 
 **Version:** 2.2.0-with-memory-layer  
 **Date:** June 2026 (as-if-implemented)  
 **Status:** Production Release  
-**Base Documentation:** `AIOS-LIVRO-DE-OURO-V2.1-SUMMARY.md` + this document
+**Base Documentation:** `AIOX-LIVRO-DE-OURO-V2.1-SUMMARY.md` + this document
 
 ---
 
@@ -12,8 +12,8 @@
 This is a **delta document** highlighting **ONLY what changed in v2.2** compared to v2.1.
 
 For complete content:
-- ✅ **`AIOS-LIVRO-DE-OURO.md`** (v2.0 base)
-- ✅ **`AIOS-LIVRO-DE-OURO-V2.1-SUMMARY.md`** (v2.1 changes)
+- ✅ **`AIOX-LIVRO-DE-OURO.md`** (v2.0 base)
+- ✅ **`AIOX-LIVRO-DE-OURO-V2.1-SUMMARY.md`** (v2.1 changes)
 - ✅ **This document** (v2.2 changes ONLY)
 
 **Combined reading:** v2.0 base + v2.1 delta + v2.2 delta = Complete v2.2 understanding
@@ -795,7 +795,7 @@ Features:
 ### Complete Project Structure
 
 ```
-@synkra/aios-core/                        # Root project
+@synkra/aiox-core/                        # Root project
 ├── .aios-core/                        # Modular Architecture
 │   │
 │   ├── core/                          # Core Framework Module
@@ -968,10 +968,10 @@ Features:
 │   │       └── ...
 │   │
 │   └── docs/                          # Framework documentation
-│       ├── AIOS-FRAMEWORK-MASTER.md
-│       ├── AIOS-LIVRO-DE-OURO.md
-│       ├── AIOS-LIVRO-DE-OURO-V2.1.md
-│       ├── AIOS-LIVRO-DE-OURO-V2.2.md # ⭐ NEW
+│       ├── AIOX-FRAMEWORK-MASTER.md
+│       ├── AIOX-LIVRO-DE-OURO.md
+│       ├── AIOX-LIVRO-DE-OURO-V2.1.md
+│       ├── AIOX-LIVRO-DE-OURO-V2.2.md # ⭐ NEW
 │       ├── EXECUTOR-DECISION-TREE.md
 │       ├── TASK-FORMAT-SPECIFICATION-V1.md
 │       └── ...

@@ -1,10 +1,10 @@
-# Guia de Hardening de Segurança do AIOS
+# Guia de Hardening de Segurança do AIOX
 
 > [EN](../../guides/security-hardening.md) | **PT** | [ES](../../es/guides/security-hardening.md)
 
 ---
 
-> Guia completo para fortalecer a segurança de implantações do Synkra AIOS - do desenvolvimento à produção.
+> Guia completo para fortalecer a segurança de implantações do Synkra AIOX - do desenvolvimento à produção.
 
 **Versão:** 2.1.0
 **Última Atualização:** 2026-01-29
@@ -29,7 +29,7 @@
 
 ## Visão Geral de Segurança
 
-O Synkra AIOS opera em uma camada privilegiada entre modelos de IA e seu sistema. Este guia cobre estratégias de hardening específicas para ambientes de desenvolvimento orquestrados por IA.
+O Synkra AIOX opera em uma camada privilegiada entre modelos de IA e seu sistema. Este guia cobre estratégias de hardening específicas para ambientes de desenvolvimento orquestrados por IA.
 
 ### Arquitetura de Segurança
 
@@ -49,7 +49,7 @@ O Synkra AIOS opera em uma camada privilegiada entre modelos de IA e seu sistema
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Preocupações de Segurança Específicas do AIOS
+### Preocupações de Segurança Específicas do AIOX
 
 | Preocupação                | Nível de Risco | Mitigação                         |
 | -------------------------- | -------------- | --------------------------------- |
@@ -62,7 +62,7 @@ O Synkra AIOS opera em uma camada privilegiada entre modelos de IA e seu sistema
 
 ### Defesa em Profundidade
 
-O AIOS implementa múltiplas camadas de proteção:
+O AIOX implementa múltiplas camadas de proteção:
 
 1. **Permission Modes** - Controle da autonomia do agente (Explore/Ask/Auto)
 2. **Claude Hooks** - Validação pré-execução (read-protection, sql-governance)
@@ -74,7 +74,7 @@ O AIOS implementa múltiplas camadas de proteção:
 
 ## Gerenciamento de Chaves de API
 
-Chaves de API são os segredos mais críticos no AIOS. Chaves comprometidas podem levar a uso não autorizado, violações de dados e impacto financeiro significativo.
+Chaves de API são os segredos mais críticos no AIOX. Chaves comprometidas podem levar a uso não autorizado, violações de dados e impacto financeiro significativo.
 
 ### Hierarquia de Armazenamento
 
@@ -185,7 +185,7 @@ function validateApiKeys() {
 
 ```bash
 # ============================================================
-# CONFIGURAÇÃO DE AMBIENTE DO AIOS
+# CONFIGURAÇÃO DE AMBIENTE DO AIOX
 # ============================================================
 # SEGURANÇA: Este arquivo NUNCA deve ser commitado no controle de versão
 # Adicione ao .gitignore: .env, .env.local, .env.*.local
@@ -305,7 +305,7 @@ function validateEnvironment() {
 
 ## Permissões de Arquivos e Diretórios
 
-### Permissões da Estrutura de Diretórios do AIOS
+### Permissões da Estrutura de Diretórios do AIOX
 
 ```bash
 # ============================================================
@@ -315,7 +315,7 @@ function validateEnvironment() {
 # Raiz do projeto (padrão)
 chmod 755 /path/to/project
 
-# Diretórios de configuração do AIOS
+# Diretórios de configuração do AIOX
 chmod 700 .aios/              # Apenas o proprietário pode acessar
 chmod 700 .aios-core/         # Fonte do framework
 chmod 700 .claude/            # Configuração do Claude
@@ -371,7 +371,7 @@ security:
 #!/bin/bash
 # scripts/check-permissions.sh
 
-echo "Verificação de Permissões de Segurança do AIOS"
+echo "Verificação de Permissões de Segurança do AIOX"
 echo "==============================================="
 
 # Verifica arquivos críticos
@@ -412,7 +412,7 @@ echo "Verificação de permissões concluída."
 
 ### Isolamento MCP via Docker
 
-O AIOS usa containers Docker para isolar servidores MCP do sistema host:
+O AIOX usa containers Docker para isolar servidores MCP do sistema host:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -1283,7 +1283,7 @@ function validateProductionSecurity() {
 
 ### Política de Divulgação Responsável
 
-Se você descobrir uma vulnerabilidade de segurança no Synkra AIOS, por favor siga práticas de divulgação responsável:
+Se você descobrir uma vulnerabilidade de segurança no Synkra AIOX, por favor siga práticas de divulgação responsável:
 
 ### Processo de Relatório
 
@@ -1306,7 +1306,7 @@ Se você descobrir uma vulnerabilidade de segurança no Synkra AIOS, por favor s
 
 **Componente Afetado:** [ex: InputSanitizer, AuthSystem, MCP Gateway]
 
-**Versão do AIOS:** [ex: 2.1.0]
+**Versão do AIOX:** [ex: 2.1.0]
 
 **Descrição:**
 [Descrição detalhada da vulnerabilidade]
@@ -1343,7 +1343,7 @@ Contribuidores que divulgam vulnerabilidades de forma responsável são reconhec
 
 ### Programa de Bug Bounty
 
-Atualmente, o Synkra AIOS não possui um programa formal de bug bounty. No entanto, contribuições significativas de segurança são reconhecidas e podem receber licenças AIOS Pro ou outro reconhecimento.
+Atualmente, o Synkra AIOX não possui um programa formal de bug bounty. No entanto, contribuições significativas de segurança são reconhecidas e podem receber licenças AIOX Pro ou outro reconhecimento.
 
 ---
 
@@ -1356,4 +1356,4 @@ Atualmente, o Synkra AIOS não possui um programa formal de bug bounty. No entan
 
 ---
 
-_Guia de Hardening de Segurança do Synkra AIOS v2.1.0_
+_Guia de Hardening de Segurança do Synkra AIOX v2.1.0_

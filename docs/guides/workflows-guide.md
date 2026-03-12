@@ -1,4 +1,4 @@
-# AIOS Workflows Guide
+# AIOX Workflows Guide
 
 **Version:** 1.0.0
 **Last Updated:** 2026-02-02
@@ -8,7 +8,7 @@
 
 ## Overview
 
-AIOS Workflows are orchestrated sequences of agent activities that automate complex development processes. They provide structured, repeatable patterns for common development scenarios.
+AIOX Workflows are orchestrated sequences of agent activities that automate complex development processes. They provide structured, repeatable patterns for common development scenarios.
 
 ### Key Concepts
 
@@ -294,7 +294,7 @@ Workflows persist across Claude Code sessions:
 
 ## Workflow Patterns
 
-AIOS detects common workflow patterns based on command history:
+AIOX detects common workflow patterns based on command history:
 
 ### Detected Patterns
 
@@ -393,7 +393,7 @@ cat .aios-core/development/workflows/{name}.yaml
 
 For complete documentation for each workflow, including detailed step-by-step guides, flowcharts, and implementation details, see:
 
-- [AIOS Workflows](../aios-workflows/README.md) - Complete documentation for each workflow
+- [AIOX Workflows](../aios-workflows/README.md) - Complete documentation for each workflow
 
 ---
 
@@ -405,4 +405,4 @@ For complete documentation for each workflow, including detailed step-by-step gu
 
 ---
 
-*AIOS Workflows Guide v1.0 - Orchestrating AI-Human Collaboration*
+*AIOX Workflows Guide v1.0 - Orchestrating AI-Human Collaboration*

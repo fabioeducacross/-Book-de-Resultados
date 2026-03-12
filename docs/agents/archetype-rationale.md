@@ -1,17 +1,17 @@
-# AIOS Agent Archetype Rationale
+# AIOX Agent Archetype Rationale
 
 > 🌐 **EN** | [PT](../pt/agents/archetype-rationale.md) | [ES](../es/agents/archetype-rationale.md)
 
 **Version:** 1.0
 **Created:** 2025-01-14
 **Author:** @ux-design-expert (Uma) + @architect (Aria)
-**Purpose:** Document design decisions, cultural sensitivity considerations, and alternative options for AIOS agent persona system
+**Purpose:** Document design decisions, cultural sensitivity considerations, and alternative options for AIOX agent persona system
 
 ---
 
 ## 📋 Executive Summary
 
-This document provides the complete rationale for the AIOS agent persona system, including:
+This document provides the complete rationale for the AIOX agent persona system, including:
 
 - Why we chose zodiac archetypes
 - Design decision process
@@ -19,7 +19,7 @@ This document provides the complete rationale for the AIOS agent persona system,
 - Alternative options considered
 - Research evidence supporting the approach
 
-**Key Decision:** Use zodiac archetypes (12 signs) as personality framework for 12 AIOS agents, with perfect elemental balance and global cultural appropriateness.
+**Key Decision:** Use zodiac archetypes (12 signs) as personality framework for 12 AIOX agents, with perfect elemental balance and global cultural appropriateness.
 
 ---
 
@@ -291,7 +291,7 @@ After evaluating multiple archetype systems, we selected zodiac signs for the fo
 **Pros:**
 
 - Complete control
-- Perfectly matched to AIOS
+- Perfectly matched to AIOX
 - No cultural baggage
 
 **Cons:**
@@ -601,7 +601,7 @@ greeting = `${icon} ${name} the ${role} (${zodiac_symbol} ${archetype}) ready to
 
 ## 🎯 Conclusion
 
-**Zodiac archetypes provide the ideal framework for AIOS agent personas because:**
+**Zodiac archetypes provide the ideal framework for AIOX agent personas because:**
 
 1. ✅ Universal recognition across cultures
 2. ✅ Perfect 12:12 mapping to our agent count

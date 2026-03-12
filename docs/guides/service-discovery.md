@@ -1,10 +1,10 @@
-# AIOS Service Discovery Guide
+# AIOX Service Discovery Guide
 
 > **EN** | [PT](../pt/guides/service-discovery.md) | [ES](../es/guides/service-discovery.md)
 
 ---
 
-> How to discover, query, and use workers in the AIOS framework.
+> How to discover, query, and use workers in the AIOX framework.
 
 **Version:** 2.1.0
 **Last Updated:** 2025-12-01
@@ -13,7 +13,7 @@
 
 ## Overview
 
-The Service Discovery system enables finding and using workers (tasks, templates, scripts, workflows) across the AIOS framework. The **Service Registry** is the central catalog containing metadata about all available workers.
+The Service Discovery system enables finding and using workers (tasks, templates, scripts, workflows) across the AIOX framework. The **Service Registry** is the central catalog containing metadata about all available workers.
 
 ### Key Concepts
 
@@ -515,4 +515,4 @@ await registry.load(true);
 
 ---
 
-_Synkra AIOS v2.1 Service Discovery Guide_
+_Synkra AIOX v2.1 Service Discovery Guide_

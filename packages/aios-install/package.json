@@ -1,9 +1,10 @@
 {
-  "name": "@synkra/aios-install",
+  "name": "@synkra/aiox-install",
   "version": "1.0.0",
-  "description": "NPX installer for AIOS - AI-Orchestrated System for Full Stack Development",
+  "description": "NPX installer for AIOX - AI-Orchestrated System for Full Stack Development",
   "main": "src/installer.js",
   "bin": {
+    "aiox-install": "./bin/aios-install.js",
     "aios-install": "./bin/aios-install.js",
     "edmcp": "./bin/edmcp.js"
   },
@@ -24,6 +25,7 @@
     "release:dry": "npx semantic-release --dry-run"
   },
   "keywords": [
+    "aiox",
     "aios",
     "installer",
     "npx",
@@ -37,12 +39,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SynkraAI/aios-core.git"
+    "url": "git+https://github.com/SynkraAI/aiox-core.git"
   },
   "bugs": {
-    "url": "https://github.com/SynkraAI/aios-core/issues"
+    "url": "https://github.com/SynkraAI/aiox-core/issues"
   },
-  "homepage": "https://github.com/SynkraAI/aios-core#readme",
+  "homepage": "https://github.com/SynkraAI/aiox-core#readme",
   "engines": {
     "node": ">=18.0.0"
   },

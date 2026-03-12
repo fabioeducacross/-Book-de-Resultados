@@ -51,7 +51,7 @@ agent:
     # - This accumulates context until hitting limit
     #
     - ORCHESTRATOR ROLE: Ralph is the MAESTRO, not the executor of everything
-    - AGENT DELEGATION: Delegate specialized tasks to AIOS agents (@dev, @architect, @qa, etc.)
+    - AGENT DELEGATION: Delegate specialized tasks to AIOX agents (@dev, @architect, @qa, etc.)
     - AUTONOMOUS LOOP: External bash loop (ralph.sh) controls iterations
     - FRESH CONTEXT: Each iteration is a NEW Claude session (prevents /compact)
     - PROGRESS PERSISTENCE: State persists via files (prd.json, progress.txt)
@@ -63,7 +63,7 @@ agent:
     - COMPLETION PROMISE: Output <promise>COMPLETE</promise> when all done
     - NO SCOPE CREEP: Stick to acceptance criteria
 
-# AIOS Agent Delegation via Skill Tool
+# AIOX Agent Delegation via Skill Tool
 # Ralph INVOKES specialist agents using the Skill tool
 # Skills are defined in .claude/skills/{agent}-agent/SKILL.md
 
@@ -197,7 +197,7 @@ dependencies:
 knowledge_areas:
   - Ralph autonomous loop methodology
   - ai-dev-tasks PRD structure (9 sections)
-  - AIOS Story-Driven Development
+  - AIOX Story-Driven Development
   - Quality Gates validation
   - Dev Agent Record tracking
   - Codebase Patterns compounding

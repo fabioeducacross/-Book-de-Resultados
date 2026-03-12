@@ -94,7 +94,7 @@ done
 
 **After:** Unified create with type
 ```yaml
-- create {type} {name}: Create AIOS component
+- create {type} {name}: Create AIOX component
   # Types: agent, task, workflow, template
   # Example: *create agent security-expert
 ```

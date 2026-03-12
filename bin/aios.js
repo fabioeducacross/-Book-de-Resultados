@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS-FullStack CLI
+ * AIOX-FullStack CLI
  * Main entry point - Standalone (no external dependencies for npx compatibility)
  * Version: 4.0.0
  */
@@ -38,7 +38,7 @@ async function runWizard(options = {}) {
       return;
     }
     console.error('❌ Initialization wizard not found');
-    console.error('Please ensure AIOS-FullStack is installed correctly.');
+    console.error('Please ensure AIOX-FullStack is installed correctly.');
     process.exit(1);
   }
 
@@ -55,62 +55,62 @@ async function runWizard(options = {}) {
 // Helper: Show help
 function showHelp() {
   console.log(`
-AIOS-FullStack v${packageJson.version}
+AIOX-FullStack v${packageJson.version}
 AI-Orchestrated System for Full Stack Development
 
 USAGE:
-  npx aios-core@latest              # Run installation wizard
-  npx aios-core@latest install      # Install in current project
-  npx aios-core@latest init <name>  # Create new project
-  npx aios-core@latest update       # Update to latest version
-  npx aios-core@latest validate     # Validate installation integrity
-  npx aios-core@latest info         # Show system info
-  npx aios-core@latest doctor       # Run diagnostics
-  npx aios-core@latest --version    # Show version
-  npx aios-core@latest --version -d # Show detailed version info
-  npx aios-core@latest --help       # Show this help
+  npx aiox-core@latest              # Run installation wizard
+  npx aiox-core@latest install      # Install in current project
+  npx aiox-core@latest init <name>  # Create new project
+  npx aiox-core@latest update       # Update to latest version
+  npx aiox-core@latest validate     # Validate installation integrity
+  npx aiox-core@latest info         # Show system info
+  npx aiox-core@latest doctor       # Run diagnostics
+  npx aiox-core@latest --version    # Show version
+  npx aiox-core@latest --version -d # Show detailed version info
+  npx aiox-core@latest --help       # Show this help
 
 UPDATE:
-  aios update                    # Update to latest version
-  aios update --check            # Check for updates without applying
-  aios update --dry-run          # Preview what would be updated
-  aios update --force            # Force update even if up-to-date
-  aios update --verbose          # Show detailed output
+  aiox update                    # Update to latest version
+  aiox update --check            # Check for updates without applying
+  aiox update --dry-run          # Preview what would be updated
+  aiox update --force            # Force update even if up-to-date
+  aiox update --verbose          # Show detailed output
 
 VALIDATION:
-  aios validate                    # Validate installation integrity
-  aios validate --repair           # Repair missing/corrupted files
-  aios validate --repair --dry-run # Preview repairs
-  aios validate --detailed         # Show detailed file list
+  aiox validate                    # Validate installation integrity
+  aiox validate --repair           # Repair missing/corrupted files
+  aiox validate --repair --dry-run # Preview repairs
+  aiox validate --detailed         # Show detailed file list
 
 CONFIGURATION:
-  aios config show                       # Show resolved configuration
-  aios config show --debug               # Show with source annotations
-  aios config diff --levels L1,L2        # Compare config levels
-  aios config migrate                    # Migrate monolithic to layered
-  aios config validate                   # Validate config files
-  aios config init-local                 # Create local-config.yaml
+  aiox config show                       # Show resolved configuration
+  aiox config show --debug               # Show with source annotations
+  aiox config diff --levels L1,L2        # Compare config levels
+  aiox config migrate                    # Migrate monolithic to layered
+  aiox config validate                   # Validate config files
+  aiox config init-local                 # Create local-config.yaml
 
 SERVICE DISCOVERY:
-  aios workers search <query>            # Search for workers
-  aios workers search "json" --category=data
-  aios workers search "transform" --tags=etl,data
-  aios workers search "api" --format=json
+  aiox workers search <query>            # Search for workers
+  aiox workers search "json" --category=data
+  aiox workers search "transform" --tags=etl,data
+  aiox workers search "api" --format=json
 
 EXAMPLES:
   # Install in current directory
-  npx aios-core@latest
+  npx aiox-core@latest
 
   # Install with minimal mode (only expansion-creator)
-  npx aios-core-minimal@latest
+  npx aiox-core-minimal@latest
 
   # Create new project
-  npx aios-core@latest init my-project
+  npx aiox-core@latest init my-project
 
   # Search for workers
-  aios workers search "json csv"
+  aiox workers search "json csv"
 
-For more information, visit: https://github.com/SynkraAI/aios-core
+For more information, visit: https://github.com/SynkraAI/aiox-core
 `);
 }
 
@@ -125,8 +125,8 @@ async function showVersion() {
   }
 
   // Detailed version output (Story 7.2: Version Tracking)
-  console.log(`AIOS-FullStack v${packageJson.version}`);
-  console.log('Package: aios-core');
+  console.log(`AIOX-FullStack v${packageJson.version}`);
+  console.log('Package: aiox-core');
 
   // Check for local installation
   const localVersionPath = path.join(process.cwd(), '.aios-core', 'version.json');
@@ -162,7 +162,7 @@ async function showVersion() {
         console.log('\n⚠️  Version mismatch!');
         console.log(`  Local:  ${versionInfo.version}`);
         console.log(`  Latest: ${packageJson.version}`);
-        console.log('  Run \'npx aios-core update\' to update.');
+        console.log('  Run \'npx aiox-core update\' to update.');
       } else {
         console.log('\n✅ Up to date');
       }
@@ -171,13 +171,13 @@ async function showVersion() {
     }
   } else {
     console.log('\n📭 No local installation found');
-    console.log('  Run \'npx aios-core install\' to install AIOS in this project.');
+    console.log('  Run \'npx aiox-core install\' to install AIOX in this project.');
   }
 }
 
 // Helper: Show system info
 function showInfo() {
-  console.log('📊 AIOS-FullStack System Information\n');
+  console.log('📊 AIOX-FullStack System Information\n');
   console.log(`Version: ${packageJson.version}`);
   console.log(`Platform: ${process.platform}`);
   console.log(`Node.js: ${process.version}`);
@@ -188,7 +188,7 @@ function showInfo() {
   // Check if .aios-core exists
   const aiosCoreDir = path.join(__dirname, '..', '.aios-core');
   if (fs.existsSync(aiosCoreDir)) {
-    console.log('\n✓ AIOS Core installed');
+    console.log('\n✓ AIOX Core installed');
 
     // Count components
     const countFiles = (dir) => {
@@ -204,13 +204,13 @@ function showInfo() {
     console.log(`  - Templates: ${countFiles(path.join(aiosCoreDir, 'templates'))}`);
     console.log(`  - Workflows: ${countFiles(path.join(aiosCoreDir, 'workflows'))}`);
   } else {
-    console.log('\n⚠️  AIOS Core not found');
+    console.log('\n⚠️  AIOX Core not found');
   }
 
-  // Check AIOS Pro status (Task 5.1)
+  // Check AIOX Pro status (Task 5.1)
   const proDir = path.join(__dirname, '..', 'pro');
   if (fs.existsSync(proDir)) {
-    console.log('\n✓ AIOS Pro installed');
+    console.log('\n✓ AIOX Pro installed');
 
     try {
       const { featureGate } = require(path.join(proDir, 'license', 'feature-gate'));
@@ -299,7 +299,7 @@ async function runUpdate() {
 
     if (!fs.existsSync(updaterPath)) {
       console.error('❌ Updater module not found');
-      console.error('Please ensure AIOS-FullStack is installed correctly.');
+      console.error('Please ensure AIOX-FullStack is installed correctly.');
       process.exit(1);
     }
 
@@ -321,7 +321,7 @@ async function runUpdate() {
       }
     } else {
       // Update mode
-      console.log('🔄 AIOS Update\n');
+      console.log('🔄 AIOX Update\n');
 
       const result = await updater.update({
         dryRun: isDryRun,
@@ -356,7 +356,7 @@ async function runDoctor() {
 
   if (showHelp) {
     console.log(`
-Usage: aios-core doctor [options]
+Usage: aiox-core doctor [options]
 
 Run system diagnostics and optionally fix issues.
 
@@ -366,14 +366,14 @@ Options:
   -h, --help     Show this help message
 
 Examples:
-  $ npx aios-core doctor              # Run diagnostics
-  $ npx aios-core doctor --fix        # Fix detected issues
-  $ npx aios-core doctor --dry-run    # Preview fixes
+  $ npx aiox-core doctor              # Run diagnostics
+  $ npx aiox-core doctor --fix        # Fix detected issues
+  $ npx aiox-core doctor --dry-run    # Preview fixes
 `);
     return;
   }
 
-  console.log('🏥 AIOS System Diagnostics\n');
+  console.log('🏥 AIOX System Diagnostics\n');
 
   const issues = [];
   let hasErrors = false;
@@ -438,10 +438,10 @@ Examples:
     console.log('⚠️  Git not found (optional but recommended)');
   }
 
-  // Check 4: AIOS installation
+  // Check 4: AIOX installation
   const aiosCoreDir = path.join(__dirname, '..', '.aios-core');
   if (fs.existsSync(aiosCoreDir)) {
-    console.log(`✔ Synkra AIOS: v${packageJson.version}`);
+    console.log(`✔ Synkra AIOX: v${packageJson.version}`);
 
     // Check for corruption using validate (if available)
     try {
@@ -454,15 +454,15 @@ Examples:
         issues.push({
           type: 'aios_corrupted',
           autoFix: true,
-          message: `AIOS Core: ${report.stats.missingFiles} missing, ${report.stats.corruptedFiles} corrupted files`,
+          message: `AIOX Core: ${report.stats.missingFiles} missing, ${report.stats.corruptedFiles} corrupted files`,
           fixAction: async () => {
-            console.log('  🔧 Repairing AIOS installation...');
+            console.log('  🔧 Repairing AIOX installation...');
             await validator.repair();
             console.log('  ✓ Repair complete');
           },
         });
         hasErrors = true;
-        console.log(`⚠️  AIOS Core: ${report.stats.missingFiles} missing, ${report.stats.corruptedFiles} corrupted files`);
+        console.log(`⚠️  AIOX Core: ${report.stats.missingFiles} missing, ${report.stats.corruptedFiles} corrupted files`);
       }
     } catch {
       // Validation not available, skip corruption check
@@ -471,11 +471,11 @@ Examples:
     issues.push({
       type: 'aios_missing',
       autoFix: true,
-      message: 'AIOS Core not installed',
+      message: 'AIOX Core not installed',
       fixAction: async () => {
-        console.log('  🔧 Installing AIOS...');
+        console.log('  🔧 Installing AIOX...');
         try {
-          execSync('npx aios-core install --force --quiet', { stdio: 'inherit', timeout: 60000 });
+          execSync('npx aiox-core install --force --quiet', { stdio: 'inherit', timeout: 60000 });
           console.log('  ✓ Installation complete');
         } catch (installError) {
           console.error(`  ✗ Installation failed: ${installError.message}`);
@@ -484,11 +484,11 @@ Examples:
       },
     });
     hasErrors = true;
-    console.log('✗ AIOS Core not installed');
-    console.log('  Run: npx aios-core@latest');
+    console.log('✗ AIOX Core not installed');
+    console.log('  Run: npx aiox-core@latest');
   }
 
-  // Check 5: AIOS Pro license status (Task 5.1)
+  // Check 5: AIOX Pro license status (Task 5.1)
   const proDir = path.join(__dirname, '..', 'pro');
   if (fs.existsSync(proDir)) {
     try {
@@ -503,19 +503,19 @@ Examples:
       };
 
       if (state === 'Active') {
-        console.log(`${stateEmoji[state]} AIOS Pro: License active`);
+        console.log(`${stateEmoji[state]} AIOX Pro: License active`);
       } else if (state === 'Grace') {
-        console.log(`${stateEmoji[state]} AIOS Pro: License in grace period`);
-        console.log('  Run: aios pro validate');
+        console.log(`${stateEmoji[state]} AIOX Pro: License in grace period`);
+        console.log('  Run: aiox pro validate');
       } else if (state === 'Expired') {
-        console.log(`${stateEmoji[state]} AIOS Pro: License expired`);
-        console.log('  Run: aios pro activate --key <KEY>');
+        console.log(`${stateEmoji[state]} AIOX Pro: License expired`);
+        console.log('  Run: aiox pro activate --key <KEY>');
       } else {
-        console.log(`${stateEmoji[state]} AIOS Pro: Not activated`);
-        console.log('  Run: aios pro activate --key <KEY>');
+        console.log(`${stateEmoji[state]} AIOX Pro: Not activated`);
+        console.log('  Run: aiox pro activate --key <KEY>');
       }
     } catch {
-      console.log('⚠️  AIOS Pro: Unable to check license status');
+      console.log('⚠️  AIOX Pro: Unable to check license status');
     }
   }
 
@@ -583,7 +583,7 @@ function formatBytes(bytes) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
-// Helper: Remove AIOS sections from .gitignore
+// Helper: Remove AIOX sections from .gitignore
 function cleanGitignore(gitignorePath) {
   if (!fs.existsSync(gitignorePath)) return { removed: false };
 
@@ -620,9 +620,9 @@ function cleanGitignore(gitignorePath) {
 // Helper: Show uninstall help
 function showUninstallHelp() {
   console.log(`
-Usage: npx aios-core uninstall [options]
+Usage: npx aiox-core uninstall [options]
 
-Remove AIOS from the current project.
+Remove AIOX from the current project.
 
 Options:
   --force      Skip confirmation prompt
@@ -634,7 +634,7 @@ What gets removed:
   - .aios-core/     Framework core files
   - docs/stories/   Story files (if created by AIOS)
   - squads/         Squad expansion packs
-  - .gitignore      AIOS-added entries only
+  - .gitignore      AIOX-added entries only
 
 What is preserved (with --keep-data):
   - .aios/          Project settings and agent history
@@ -645,25 +645,25 @@ Exit Codes:
 
 Examples:
   # Interactive uninstall (with confirmation)
-  npx aios-core uninstall
+  npx aiox-core uninstall
 
   # Force uninstall without prompts
-  npx aios-core uninstall --force
+  npx aiox-core uninstall --force
 
   # See what would be removed
-  npx aios-core uninstall --dry-run
+  npx aiox-core uninstall --dry-run
 
   # Uninstall but keep project data
-  npx aios-core uninstall --keep-data
+  npx aiox-core uninstall --keep-data
 `);
 }
 
 // Helper: Show doctor help
 function showDoctorHelp() {
   console.log(`
-Usage: npx aios-core doctor [options]
+Usage: npx aiox-core doctor [options]
 
-Run health checks on your AIOS installation.
+Run health checks on your AIOX installation.
 
 Options:
   --fix        Automatically fix detected issues
@@ -684,13 +684,13 @@ Exit Codes:
 
 Examples:
   # Run health check
-  npx aios-core doctor
+  npx aiox-core doctor
 
   # Auto-fix detected issues
-  npx aios-core doctor --fix
+  npx aiox-core doctor --fix
 
   # Preview what would be fixed
-  npx aios-core doctor --fix --dry-run
+  npx aiox-core doctor --fix --dry-run
 `);
 }
 
@@ -716,7 +716,7 @@ async function runUninstall(options = {}) {
   );
 
   if (existingItems.length === 0) {
-    console.log('ℹ️  No AIOS installation found in this directory.');
+    console.log('ℹ️  No AIOX installation found in this directory.');
     return;
   }
 
@@ -772,7 +772,7 @@ async function runUninstall(options = {}) {
     if (fs.existsSync(gitignorePath)) {
       const content = fs.readFileSync(gitignorePath, 'utf8');
       if (content.includes('# AIOS') || content.includes('# Added by AIOS')) {
-        console.log('  • .gitignore AIOS entries will be cleaned');
+        console.log('  • .gitignore AIOX entries will be cleaned');
       }
     }
     console.log('');
@@ -793,7 +793,7 @@ async function runUninstall(options = {}) {
     });
 
     const answer = await new Promise(resolve => {
-      rl.question('⚠️  Are you sure you want to uninstall AIOS? (y/N): ', resolve);
+      rl.question('⚠️  Are you sure you want to uninstall AIOX? (y/N): ', resolve);
     });
     rl.close();
 
@@ -804,7 +804,7 @@ async function runUninstall(options = {}) {
   }
 
   // Perform removal
-  if (!quiet) console.log('\n🗑️  Removing AIOS components...\n');
+  if (!quiet) console.log('\n🗑️  Removing AIOX components...\n');
 
   for (const item of existingItems) {
     const itemPath = path.join(cwd, item.path);
@@ -820,28 +820,28 @@ async function runUninstall(options = {}) {
   const gitignorePath = path.join(cwd, '.gitignore');
   const gitignoreResult = cleanGitignore(gitignorePath);
   if (gitignoreResult.removed && !quiet) {
-    console.log(`  ✓ Cleaned ${gitignoreResult.lines} AIOS entries from .gitignore`);
+    console.log(`  ✓ Cleaned ${gitignoreResult.lines} AIOX entries from .gitignore`);
   }
 
   // Summary
   if (!quiet) {
-    console.log('\n✅ AIOS has been uninstalled.');
+    console.log('\n✅ AIOX has been uninstalled.');
     if (keepData) {
       console.log('   Your project data in .aios/ has been preserved.');
     }
-    console.log('\n   To reinstall: npx aios-core install');
+    console.log('\n   To reinstall: npx aiox-core install');
   }
 }
 
 // Helper: Show install help
 function showInstallHelp() {
   console.log(`
-Usage: npx aios-core install [options]
+Usage: npx aiox-core install [options]
 
-Install AIOS in the current directory.
+Install AIOX in the current directory.
 
 Options:
-  --force      Overwrite existing AIOS installation
+  --force      Overwrite existing AIOX installation
   --quiet      Minimal output (no banner, no prompts) - ideal for CI/CD
   --dry-run    Simulate installation without modifying files
   --merge      Auto-merge existing config files (brownfield mode)
@@ -850,10 +850,10 @@ Options:
 
 Smart Merge (Brownfield):
   When installing in a project with existing config files (.env, CLAUDE.md),
-  AIOS can merge new settings while preserving your customizations.
+  AIOX can merge new settings while preserving your customizations.
 
   - .env files: Adds new variables, preserves existing values
-  - CLAUDE.md: Updates AIOS sections, keeps your custom rules
+  - CLAUDE.md: Updates AIOX sections, keeps your custom rules
 
 Exit Codes:
   0  Installation successful
@@ -861,19 +861,19 @@ Exit Codes:
 
 Examples:
   # Interactive installation
-  npx aios-core install
+  npx aiox-core install
 
   # Force reinstall without prompts
-  npx aios-core install --force
+  npx aiox-core install --force
 
   # Brownfield: merge configs automatically
-  npx aios-core install --merge
+  npx aiox-core install --merge
 
   # Silent install for CI/CD
-  npx aios-core install --quiet --force
+  npx aiox-core install --quiet --force
 
   # Preview what would be installed
-  npx aios-core install --dry-run
+  npx aiox-core install --dry-run
 `);
 }
 
@@ -881,9 +881,9 @@ Examples:
 // Helper: Show init help
 function showInitHelp() {
   console.log(`
-Usage: npx aios-core init <project-name> [options]
+Usage: npx aiox-core init <project-name> [options]
 
-Create a new AIOS project with the specified name.
+Create a new AIOX project with the specified name.
 
 Options:
   --force              Force creation in non-empty directory
@@ -898,10 +898,10 @@ Available Templates:
   enterprise  Everything + dashboards + team integrations
 
 Examples:
-  npx aios-core init my-project
-  npx aios-core init my-project --template minimal
-  npx aios-core init my-project --force --skip-install
-  npx aios-core init . --template enterprise
+  npx aiox-core init my-project
+  npx aiox-core init my-project --template minimal
+  npx aiox-core init my-project --force --skip-install
+  npx aiox-core init . --template enterprise
 `);
 }
 
@@ -950,7 +950,7 @@ async function initProject() {
 
   if (!projectName) {
     console.error('❌ Project name is required');
-    console.log('\nUsage: npx aios-core init <project-name> [options]');
+    console.log('\nUsage: npx aiox-core init <project-name> [options]');
     console.log('Run with --help for more information.');
     process.exit(1);
   }
@@ -978,7 +978,7 @@ async function initProject() {
     console.log(`✓ Created directory: ${projectName}`);
   }
 
-  console.log(`Creating new AIOS project: ${displayName}`);
+  console.log(`Creating new AIOX project: ${displayName}`);
   if (template !== 'default') {
     console.log(`Template: ${template}`);
   }
@@ -1026,7 +1026,7 @@ async function main() {
       break;
 
     case 'pro':
-      // AIOS Pro License Management - Story PRO-6
+      // AIOX Pro License Management - Story PRO-6
       try {
         const { run } = require('../.aios-core/cli/index.js');
         await run(process.argv);
@@ -1051,7 +1051,7 @@ async function main() {
         noMerge: installArgs.includes('--no-merge'),
       };
       if (!installOptions.quiet) {
-        console.log('AIOS-FullStack Installation\n');
+        console.log('AIOX-FullStack Installation\n');
       }
       await runWizard(installOptions);
       break;
@@ -1123,7 +1123,7 @@ async function main() {
 
     case undefined:
       // No arguments - run wizard directly (npx default behavior)
-      console.log('AIOS-FullStack Installation\n');
+      console.log('AIOX-FullStack Installation\n');
       await runWizard();
       break;
 

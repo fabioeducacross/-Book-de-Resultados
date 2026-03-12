@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@data-engineer** (Dara) is the **Data Sage** of the AIOS agent system. This agent is responsible for:
+**@data-engineer** (Dara) is the **Data Sage** of the AIOX agent system. This agent is responsible for:
 
 - Designing database schemas and data models
 - Managing data migrations and transformations
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @data-engineer System v1.0*
+*AIOX Agent Flows - @data-engineer System v1.0*

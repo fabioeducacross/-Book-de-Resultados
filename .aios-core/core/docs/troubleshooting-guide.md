@@ -1,8 +1,8 @@
-# Synkra AIOS Meta-Agent Troubleshooting Guide
+# Synkra AIOX Meta-Agent Troubleshooting Guide
 
 ## Overview
 
-This guide helps diagnose and resolve common issues when using the Synkra AIOS meta-agent for component creation and management.
+This guide helps diagnose and resolve common issues when using the Synkra AIOX meta-agent for component creation and management.
 
 ## Table of Contents
 
@@ -22,7 +22,7 @@ This guide helps diagnose and resolve common issues when using the Synkra AIOS m
 
 **Symptoms:**
 ```
-❌ Error: Agent 'data-analyst' already exists at /aios-core/agents/data-analyst.md
+❌ Error: Agent 'data-analyst' already exists at /aiox-core/agents/data-analyst.md
 ```
 
 **Causes:**
@@ -38,13 +38,13 @@ This guide helps diagnose and resolve common issues when using the Synkra AIOS m
 
 2. Check existing components:
    ```bash
-   ls aios-core/agents/
+   ls aiox-core/agents/
    ```
 
 3. If overwriting is intended:
    ```bash
    # Remove existing component first
-   rm aios-core/agents/data-analyst.md
+   rm aiox-core/agents/data-analyst.md
    *create-agent
    ```
 
@@ -90,7 +90,7 @@ This guide helps diagnose and resolve common issues when using the Synkra AIOS m
 **Solutions:**
 1. Verify template location:
    ```bash
-   ls aios-core/templates/
+   ls aiox-core/templates/
    # Should see: agent-template.yaml, task-template.md, workflow-template.yaml
    ```
 
@@ -103,7 +103,7 @@ This guide helps diagnose and resolve common issues when using the Synkra AIOS m
 3. Check working directory:
    ```bash
    pwd
-   # Should be in @synkra/aios-core root
+   # Should be in @synkra/aiox-core root
    ```
 
 ## Template Processing Problems
@@ -220,12 +220,12 @@ Generated content contains: {{AGENT_NAME}} instead of actual value
 **Solutions:**
 1. Create session directory:
    ```bash
-   mkdir -p aios-core/.sessions
+   mkdir -p aiox-core/.sessions
    ```
 
 2. Check permissions:
    ```bash
-   chmod 755 aios-core/.sessions
+   chmod 755 aiox-core/.sessions
    ```
 
 3. Verify disk space:
@@ -321,7 +321,7 @@ Generated content contains: {{AGENT_NAME}} instead of actual value
 
 2. Check transaction directory:
    ```bash
-   ls aios-core/logs/transactions/
+   ls aiox-core/logs/transactions/
    ```
 
 3. Use specific transaction ID:
@@ -348,10 +348,10 @@ Generated content contains: {{AGENT_NAME}} instead of actual value
 1. Manual cleanup:
    ```bash
    # Check failed files
-   ls -la aios-core/agents/file1.md
+   ls -la aiox-core/agents/file1.md
    
    # Remove manually if needed
-   rm aios-core/agents/file1.md
+   rm aiox-core/agents/file1.md
    ```
 
 2. Force rollback:
@@ -362,7 +362,7 @@ Generated content contains: {{AGENT_NAME}} instead of actual value
 3. Restore from backup:
    ```bash
    # Check backups
-   ls aios-core/logs/transactions/txn-*/backups/
+   ls aiox-core/logs/transactions/txn-*/backups/
    ```
 
 ## Batch Creation Failures
@@ -417,7 +417,7 @@ Generated content contains: {{AGENT_NAME}} instead of actual value
 1. Check failure details:
    ```bash
    # Review transaction log
-   cat aios-core/logs/transactions/latest.json
+   cat aiox-core/logs/transactions/latest.json
    ```
 
 2. Rollback and retry:
@@ -526,7 +526,7 @@ FATAL ERROR: JavaScript heap out of memory
 
 3. Clear caches:
    ```bash
-   rm -rf aios-core/.cache/
+   rm -rf aiox-core/.cache/
    ```
 
 ## Debug Techniques
@@ -548,13 +548,13 @@ DEBUG=perf:* *create-agent
 
 ```bash
 # Application logs
-tail -f aios-core/logs/aios-developer.log
+tail -f aiox-core/logs/aios-developer.log
 
 # Transaction logs
-ls -la aios-core/logs/transactions/
+ls -la aiox-core/logs/transactions/
 
 # Error logs
-grep ERROR aios-core/logs/*.log
+grep ERROR aiox-core/logs/*.log
 ```
 
 ### Validate Components
@@ -593,9 +593,9 @@ grep ERROR aios-core/logs/*.log
 
 ### Documentation
 
-- Template syntax: `aios-core/docs/template-syntax.md`
-- Creation guide: `aios-core/docs/component-creation-guide.md`
-- API reference: `aios-core/docs/api-reference.md`
+- Template syntax: `aiox-core/docs/template-syntax.md`
+- Creation guide: `aiox-core/docs/component-creation-guide.md`
+- API reference: `aiox-core/docs/api-reference.md`
 
 ### Support Channels
 
@@ -610,12 +610,12 @@ If all else fails:
 
 1. **Backup current state**:
    ```bash
-   tar -czf aios-backup.tar.gz aios-core/
+   tar -czf aios-backup.tar.gz aiox-core/
    ```
 
 2. **Reset to clean state**:
    ```bash
-   git checkout -- aios-core/
+   git checkout -- aiox-core/
    npm run setup
    ```
 

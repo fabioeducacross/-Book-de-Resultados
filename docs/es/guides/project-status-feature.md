@@ -19,7 +19,7 @@
 
 ## Descripción General
 
-La funcionalidad de Estado del Proyecto muestra automáticamente tu contexto de trabajo actual cuando cualquier agente AIOS se activa. Esto incluye:
+La funcionalidad de Estado del Proyecto muestra automáticamente tu contexto de trabajo actual cuando cualquier agente AIOX se activa. Esto incluye:
 
 - **Rama de Git** en la que estás actualmente
 - **Archivos modificados** en tu directorio de trabajo
@@ -52,7 +52,7 @@ Type *help to see available commands!
 ### Prerrequisitos
 
 - **Repositorio Git** - El proyecto debe estar inicializado con `git init`
-- **Framework AIOS-FullStack** instalado
+- **Framework AIOX-FullStack** instalado
 - **Node.js 18+** con paquetes requeridos
 
 ### Configuración Inicial
@@ -219,7 +219,7 @@ Solo muestra stories con status: `InProgress` o `In Progress`.
 
 ## Agentes Afectados
 
-Los 11 agentes AIOS muestran estado del proyecto:
+Los 11 agentes AIOX muestran estado del proyecto:
 
 1. **@dev** (Dex - Builder)
 2. **@po** (Pax - Balancer)

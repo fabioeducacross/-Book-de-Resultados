@@ -28,7 +28,7 @@
 
 ## Resumo Executivo
 
-Este documento especifica as capacidades de auto-recuperação do Sistema de Verificação de Saúde do AIOS (HCS). A auto-recuperação permite que o sistema corrija automaticamente certos problemas enquanto mantém a segurança e o controle do usuário.
+Este documento especifica as capacidades de auto-recuperação do Sistema de Verificação de Saúde do AIOX (HCS). A auto-recuperação permite que o sistema corrija automaticamente certos problemas enquanto mantém a segurança e o controle do usuário.
 
 ### Princípios Fundamentais
 
@@ -366,7 +366,7 @@ Apenas estes padrões são candidatos para auto-correção:
 ```yaml
 safeToAutoFix:
   paths:
-    - '.aios/**' # Arquivos de workspace do AIOS
+    - '.aios/**' # Arquivos de workspace do AIOX
     - '.aios-core/**/*.yaml' # YAML do framework (cuidado)
     - '.claude/**' # Configuração do Claude
     - '.vscode/settings.json' # Apenas configurações da IDE

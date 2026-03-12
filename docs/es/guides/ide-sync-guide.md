@@ -6,11 +6,11 @@
 
 # Guia de Sincronizacion de IDE
 
-Sincroniza agentes, tasks, workflows y checklists de AIOS a traves de multiples configuraciones de IDE.
+Sincroniza agentes, tasks, workflows y checklists de AIOX a traves de multiples configuraciones de IDE.
 
 ## Vision General
 
-La task `*command` automatiza la sincronizacion de componentes AIOS a todos los directorios de IDE configurados (`.claude/`, `.cursor/`, `.gemini/`, etc.), eliminando operaciones de copia manuales.
+La task `*command` automatiza la sincronizacion de componentes AIOX a todos los directorios de IDE configurados (`.claude/`, `.cursor/`, `.gemini/`, etc.), eliminando operaciones de copia manuales.
 
 ## Inicio Rapido
 
@@ -192,4 +192,4 @@ Verificar que el IDE esta habilitado en la seccion `active_ides`.
 
 - [Vision General de Squads](./squads-overview.md)
 - [Referencia de Agentes](../agent-reference-guide.md)
-- [Arquitectura AIOS](../core-architecture.md)
+- [Arquitectura AIOX](../core-architecture.md)

@@ -540,7 +540,7 @@ CREATE mínimo - só coisas realmente novas
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    AIOS IDS DASHBOARD                           │
+│                    AIOX IDS DASHBOARD                           │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  REGISTRY HEALTH          DECISION METRICS                      │

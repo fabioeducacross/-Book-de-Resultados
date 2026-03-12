@@ -24,7 +24,9 @@ const { validate } = require('./validator');
 const { normalize } = require('./normalizer');
 const { render } = require('./renderer');
 const { generateChartsForPage } = require('./charts');
-const { exportPptx, exportJson, buildOutputFilename } = require('./exporter');
+const { exportPptx, exportPdf, exportJson, buildOutputFilename } = require('./exporter');
+const { createTheme, loadThemeFromPath, DEFAULT_THEME } = require('./theme');
+const { loadDesignManifest, DEFAULT_DESIGN_MANIFEST_PATH } = require('./design-manifest');
 
 /**
  * Generates the Book de Resultados from an XLSX file.
@@ -32,11 +34,17 @@ const { exportPptx, exportJson, buildOutputFilename } = require('./exporter');
  * @param {object} options
  * @param {string}   options.inputFile    - Absolute path to the XLSX spreadsheet
  * @param {string}   options.outputDir    - Directory where the output will be saved
- * @param {'pptx'|'json'} [options.format='pptx'] - Output format
+ * @param {'pptx'|'pdf'|'json'} [options.format='pptx'] - Output format
  * @param {string}   [options.version='v1']  - Version string for the filename
  * @param {string}   [options.logoUrl]    - Optional logo URL for the cover
  * @param {string}   [options.imagemInstitucional] - Optional cover image URL
+ * @param {object}   [options.editorialAssets] - Optional asset map for editorial chapter/opening images
+ * @param {object}   [options.theme]      - Optional theme overrides (see src/theme.js)
+ * @param {string}   [options.pdfBrowserPath] - Optional Chromium/Edge path for PDF export
+ * @param {boolean}  [options.keepHtml=false] - Preserve the generated .print.html when exporting PDF
+ * @param {boolean}  [options.reviewHtml=false] - Preserve the print HTML and emit a .print.review.json manifest tied to the current editorial baseline
  * @param {boolean}  [options.strict=false] - If true, throw on validation warnings too
+ * @param {string}   [options.designManifestPath] - Optional path to a design manifest JSON file
  *
  * @returns {Promise<GenerationResult>}
  * @throws {ValidationError} if data validation fails and strict=false is not set
@@ -49,11 +57,27 @@ async function generateBook(options = {}) {
     version = 'v1',
     logoUrl,
     imagemInstitucional,
+    editorialAssets,
+    theme: themeOverrides,
+    pdfBrowserPath,
+    keepHtml = false,
+    reviewHtml = false,
     strict = false,
+    designManifestPath = DEFAULT_DESIGN_MANIFEST_PATH,
   } = options;
 
   if (!inputFile) throw new Error('"inputFile" é obrigatório');
   if (!outputDir) throw new Error('"outputDir" é obrigatório');
+
+  const designManifest = loadDesignManifest(designManifestPath);
+  const manifestBaseTheme = designManifest.theme.tokensFilePath
+    ? loadThemeFromPath(designManifest.theme.tokensFilePath)
+    : DEFAULT_THEME;
+  const manifestTheme = createTheme(designManifest.theme.overrides || {}, manifestBaseTheme);
+  const resolvedTheme = createTheme(themeOverrides || {}, manifestTheme);
+  const resolvedLogoUrl = logoUrl || designManifest.assets.logoUrl;
+  const resolvedImagemInstitucional = imagemInstitucional || designManifest.assets.imagemInstitucional;
+  const resolvedEditorialAssets = editorialAssets || designManifest.assets.editorialAssets || null;
 
   const startTime = Date.now();
   const log = [];
@@ -91,26 +115,53 @@ async function generateBook(options = {}) {
 
   // ── Step 4: Render ─────────────────────────────────────────────────────────
   log.push({ step: 'render', status: 'started', ts: new Date().toISOString() });
-  const pages = render(metrics, { logoUrl, imagemInstitucional });
+  const pages = render(metrics, {
+    logoUrl: resolvedLogoUrl,
+    imagemInstitucional: resolvedImagemInstitucional,
+    editorialAssets: resolvedEditorialAssets,
+    theme: resolvedTheme,
+    designManifest,
+  });
   log.push({ step: 'render', status: 'ok', pageCount: pages.length, ts: new Date().toISOString() });
 
   // ── Step 5: Generate chart descriptors ───────────────────────────────────
   log.push({ step: 'charts', status: 'started', ts: new Date().toISOString() });
-  const chartsPerPage = pages.map((page) => generateChartsForPage(page));
+  const chartsPerPage = pages.map((page) => generateChartsForPage(page, resolvedTheme));
   log.push({ step: 'charts', status: 'ok', ts: new Date().toISOString() });
 
   // ── Step 6: Export ─────────────────────────────────────────────────────────
   log.push({ step: 'export', status: 'started', format, ts: new Date().toISOString() });
   let outputFile;
+  let artifacts = null;
   switch (format) {
     case 'pptx':
-      outputFile = await exportPptx(pages, chartsPerPage, rawData.metadata, outputDir, { version });
+      outputFile = await exportPptx(pages, chartsPerPage, rawData.metadata, outputDir, {
+        version,
+        theme: resolvedTheme,
+        designManifest,
+      });
       break;
+    case 'pdf': {
+      const exportArtifacts = {};
+      outputFile = await exportPdf(pages, chartsPerPage, rawData.metadata, outputDir, {
+        version,
+        theme: resolvedTheme,
+        browserPath: pdfBrowserPath,
+        keepHtml,
+        reviewHtml,
+        designManifest,
+        artifactCollector: exportArtifacts,
+      });
+      if (Object.keys(exportArtifacts).length > 0) {
+        artifacts = exportArtifacts;
+      }
+      break;
+    }
     case 'json':
       outputFile = await exportJson(pages, chartsPerPage, rawData.metadata, outputDir, { version });
       break;
     default:
-      throw new Error(`Formato não suportado: "${format}". Use 'pptx' ou 'json'.`);
+      throw new Error(`Formato não suportado: "${format}". Use 'pptx', 'pdf' ou 'json'.`);
   }
   log.push({ step: 'export', status: 'ok', outputFile, ts: new Date().toISOString() });
 
@@ -124,6 +175,7 @@ async function generateBook(options = {}) {
     warnings,
     log,
     filename: path.basename(outputFile),
+    ...(artifacts ? { artifacts } : {}),
   };
 }
 
@@ -139,4 +191,10 @@ class ValidationError extends Error {
   }
 }
 
-module.exports = { generateBook, ValidationError, buildOutputFilename };
+module.exports = {
+  generateBook,
+  ValidationError,
+  buildOutputFilename,
+  // Expose theme utilities for consumers who want to customize their book
+  createTheme,
+};

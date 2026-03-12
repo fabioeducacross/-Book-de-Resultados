@@ -9,7 +9,7 @@
 
 ## Visao Geral
 
-O agente **@sm (River)** e o Scrum Master tecnico do AIOS, especializado em preparacao de stories e facilitacao de processos ageis. Seu papel principal e criar stories detalhadas e acionaveis que agentes desenvolvedores possam implementar com minima necessidade de pesquisa adicional.
+O agente **@sm (River)** e o Scrum Master tecnico do AIOX, especializado em preparacao de stories e facilitacao de processos ageis. Seu papel principal e criar stories detalhadas e acionaveis que agentes desenvolvedores possam implementar com minima necessidade de pesquisa adicional.
 
 **Responsabilidades Principais:**
 - Criacao e refinamento de user stories
@@ -43,7 +43,7 @@ O agente **@sm (River)** e o Scrum Master tecnico do AIOS, especializado em prep
 | Arquivo | Proposito |
 |---------|-----------|
 | `.aios-core/development/agents/sm.md` | Definicao core do agente SM |
-| `.claude/commands/AIOS/agents/sm.md` | Comando Claude Code para ativar @sm |
+| `.claude/commands/AIOX/agents/sm.md` | Comando Claude Code para ativar @sm |
 | `.cursor/rules/sm.md` | Regras para Cursor IDE |
 | `.cursor/rules/sm.mdc` | Regras compiladas para Cursor |
 
@@ -405,8 +405,8 @@ dependencies:
 **Sintoma:** Task halts com mensagem de arquivo nao encontrado
 
 **Solucao:**
-1. Copiar de `GITHUB aios-core/core-config.yaml`
-2. Ou executar AIOS installer: `npm run aios:install`
+1. Copiar de `GITHUB aiox-core/core-config.yaml`
+2. Ou executar AIOX installer: `npm run aios:install`
 3. Configurar `devStoryLocation`, `prdSharded`, etc.
 
 ### Checklist retorna FAIL em multiplas categorias

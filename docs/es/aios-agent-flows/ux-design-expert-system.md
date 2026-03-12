@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@ux-design-expert** (Uma) es el agente de UX/UI del AIOS, responsable por:
+**@ux-design-expert** (Uma) es el agente de UX/UI del AIOX, responsable por:
 
 - Diseno de interfaces
 - User experience

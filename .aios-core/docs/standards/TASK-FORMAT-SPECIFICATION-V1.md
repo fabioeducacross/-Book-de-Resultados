@@ -1,4 +1,4 @@
-# AIOS Task Format Specification V1.0
+# AIOX Task Format Specification V1.0
 
 **Date:** 2025-11-13  
 **Version:** 1.0.0  
@@ -9,13 +9,13 @@
 
 ## Purpose
 
-This document defines the UNIVERSAL format for AIOS Tasks, ensuring consistency, scalability, and reusability across workflows, executors, and teams.
+This document defines the UNIVERSAL format for AIOX Tasks, ensuring consistency, scalability, and reusability across workflows, executors, and teams.
 
 ---
 
 ## Task Format Overview
 
-Every AIOS Task MUST follow this structure:
+Every AIOX Task MUST follow this structure:
 
 ```yaml
 #### Step X: [Task Name]
@@ -503,7 +503,7 @@ atomic_layer: Strategy   # Step 3: Analyze Brief
 **Tools:**
 - callAgent:
     version: 1.0.0
-    used_for: AIOS agent caller with retry logic
+    used_for: AIOX agent caller with retry logic
     shared_with: [Step 3, Step 4, Step 5, Step 6, Step 7, Step 8, Step 9, Step 11]
     cost: varies by agent
     
@@ -1251,7 +1251,7 @@ atomic_layer: Atom
 
 ## Validation Checklist
 
-Use this checklist to validate any AIOS Task:
+Use this checklist to validate any AIOX Task:
 
 ### Required Fields
 

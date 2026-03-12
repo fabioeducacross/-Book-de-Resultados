@@ -9,13 +9,13 @@
 **Versión:** 1.0.0
 **Creado:** 2025-10-29
 **Autores:** Sarah (@po), Winston (@architect)
-**Propósito:** Definir patrones estándar para integrar scripts de utilidades en el framework AIOS
+**Propósito:** Definir patrones estándar para integrar scripts de utilidades en el framework AIOX
 
 ---
 
 ## ¿Qué es la Integración de Utilidades?
 
-**Definición:** La integración de utilidades es el proceso de hacer que un script de utilidad huérfano sea **descubrible, documentado y utilizable** dentro del framework AIOS.
+**Definición:** La integración de utilidades es el proceso de hacer que un script de utilidad huérfano sea **descubrible, documentado y utilizable** dentro del framework AIOX.
 
 Una utilidad se considera **completamente integrada** cuando:
 1. ✅ **Registrada** en core-config.yaml

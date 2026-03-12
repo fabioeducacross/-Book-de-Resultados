@@ -21,7 +21,7 @@ Checklist:
 
 # *migrate-squad
 
-Migrates legacy squad formats to AIOS 2.1 standard.
+Migrates legacy squad formats to AIOX 2.1 standard.
 
 ## Usage
 

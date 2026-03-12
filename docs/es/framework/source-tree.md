@@ -4,7 +4,7 @@
   Última sincronización: 2026-01-26
 -->
 
-# Estructura del Árbol de Código Fuente AIOS
+# Estructura del Árbol de Código Fuente AIOX
 
 > 🌐 [EN](../../framework/source-tree.md) | [PT](../../pt/framework/source-tree.md) | **ES**
 
@@ -13,7 +13,7 @@
 **Versión:** 2.0
 **Última Actualización:** 2025-12-15
 **Estado:** Estándar Oficial del Framework
-**Repositorio:** SynkraAI/aios-core
+**Repositorio:** SynkraAI/aiox-core
 
 ---
 
@@ -21,7 +21,7 @@
 
 - [Descripción General](#descripción-general)
 - [Arquitectura Modular](#arquitectura-modular)
-- [Core del Framework (.aios-core/)](#core-del-framework-aios-core)
+- [Core del Framework (.aios-core/)](#core-del-framework-aiox-core)
 - [Detalles de Módulos](#detalles-de-módulos)
 - [Documentación (docs/)](#documentación-docs)
 - [Sistema de Squads](#sistema-de-squads)
@@ -32,7 +32,7 @@
 
 ## Descripción General
 
-AIOS utiliza una **arquitectura modular** con clara separación de responsabilidades:
+AIOX utiliza una **arquitectura modular** con clara separación de responsabilidades:
 
 1. **Core del Framework** (`.aios-core/`) - Componentes portables del framework organizados por dominio
 2. **Workspace del Proyecto** (raíz) - Implementación específica del proyecto
@@ -48,7 +48,7 @@ AIOS utiliza una **arquitectura modular** con clara separación de responsabilid
 ## Arquitectura Modular
 
 ```
-aios-core/                             # Proyecto raíz
+aiox-core/                             # Proyecto raíz
 ├── .aios-core/                        # Core del framework (modular)
 │   ├── cli/                           # Comandos CLI y utilidades
 │   ├── core/                          # Esenciales del framework
@@ -130,7 +130,7 @@ aios-core/                             # Proyecto raíz
 │   └── utils/                         # Utilidades core
 │
 ├── data/                              # Datos Compartidos
-│   └── aios-kb.md                     # Base de conocimiento AIOS
+│   └── aios-kb.md                     # Base de conocimiento AIOX
 │
 ├── development/                       # Assets de Desarrollo
 │   ├── agents/                        # Definiciones de agentes (11 agentes core)
@@ -279,7 +279,7 @@ docs/
 │   └── README.md                      # Aviso de migración
 │
 ├── stories/                           # Stories de desarrollo
-│   ├── aios migration/                # Stories de migración AIOS
+│   ├── aios migration/                # Stories de migración AIOX
 │   │   ├── story-6.1.2.1.md
 │   │   ├── story-6.1.2.2.md
 │   │   ├── story-6.1.2.3.md
@@ -354,7 +354,7 @@ docs/
 
 ### Descripción General
 
-Los Squads son extensiones modulares que agregan capacidades especializadas a AIOS. A diferencia de los Squads deprecados, los Squads siguen una estructura de template estandarizada.
+Los Squads son extensiones modulares que agregan capacidades especializadas a AIOX. A diferencia de los Squads deprecados, los Squads siguen una estructura de template estandarizada.
 
 ### Ubicación del Template de Squad
 
@@ -411,7 +411,7 @@ workflows:
 
 # Dependencies
 dependencies:
-  aios-core: '>=2.1.0'
+  aiox-core: '>=2.1.0'
 ```
 
 ### Migración desde Squads
@@ -429,10 +429,10 @@ dependencies:
 
 **Decision 005 define 5 repositorios separados:**
 
-### REPO 1: SynkraAI/aios-core (Commons Clause)
+### REPO 1: SynkraAI/aiox-core (Commons Clause)
 
 ```
-aios-core/
+aiox-core/
 ├── .aios-core/                        # Assets del framework (modular v2.0)
 │   ├── cli/                           # Comandos CLI y utilidades
 │   ├── core/                          # Esenciales del framework
@@ -483,7 +483,7 @@ aios-core/
 
 ```
 squads/
-├── verified/                          # Squads curados por AIOS
+├── verified/                          # Squads curados por AIOX
 │   ├── github-devops/
 │   ├── db-sage/
 │   └── coderabbit-workflow/
@@ -565,7 +565,7 @@ mmos/
 Directorios: kebab-case (minúsculas, separados por guion)
   ✅ .aios-core/
   ✅ Squads/
-  ❌ .AIOS-Core/
+  ❌ .AIOX-Core/
   ❌ expansionPacks/
 
 Archivos (Código): kebab-case con extensión
@@ -724,4 +724,4 @@ outputs/                               # Salidas de runtime (gitignored)
 
 ---
 
-_Este es un estándar oficial del framework AIOS. Toda colocación de archivos debe seguir esta estructura._
+_Este es un estándar oficial del framework AIOX. Toda colocación de archivos debe seguir esta estructura._

@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for AIOS-FullStack
+about: Suggest an idea for AIOX-FullStack
 title: '[FEATURE] '
 labels: ['enhancement', 'needs-triage']
 assignees: ''
@@ -23,13 +23,13 @@ Describe the solution you'd like:
 - What API or interface would you expect?
 
 ### 📦 Package Scope
-Which AIOS-FullStack package should this feature belong to?
-- [ ] @synkra/aios-core/workspace (overall framework)
-- [ ] @synkra/aios-core/core (meta-agent, task management)
-- [ ] @synkra/aios-core/memory (vector storage, semantic search)
-- [ ] @synkra/aios-core/security (sanitization, vulnerability scanning)
-- [ ] @synkra/aios-core/performance (monitoring, profiling, optimization)
-- [ ] @synkra/aios-core/telemetry (analytics, error reporting, metrics)
+Which AIOX-FullStack package should this feature belong to?
+- [ ] @synkra/aiox-core/workspace (overall framework)
+- [ ] @synkra/aiox-core/core (meta-agent, task management)
+- [ ] @synkra/aiox-core/memory (vector storage, semantic search)
+- [ ] @synkra/aiox-core/security (sanitization, vulnerability scanning)
+- [ ] @synkra/aiox-core/performance (monitoring, profiling, optimization)
+- [ ] @synkra/aiox-core/telemetry (analytics, error reporting, metrics)
 - [ ] New package: ________________
 
 ### 📋 Code Example
@@ -37,9 +37,9 @@ What would the API look like? Provide a code example:
 
 ```javascript
 // Example of how this feature would be used
-const { AIOS } = require('@synkra/aios-core/workspace');
+const { AIOX } = require('@synkra/aiox-core/workspace');
 
-const aios = new AIOS();
+const aios = new AIOX();
 // Your proposed feature usage here
 ```
 
@@ -56,7 +56,7 @@ If you have ideas on how this could be implemented:
 - Potential challenges
 
 ### 📊 Impact Assessment
-How would this feature impact AIOS-FullStack?
+How would this feature impact AIOX-FullStack?
 - [ ] Breaking change - requires major version bump
 - [ ] New functionality - backward compatible
 - [ ] Enhancement to existing feature

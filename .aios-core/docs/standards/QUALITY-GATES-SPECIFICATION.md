@@ -545,7 +545,7 @@ reviews:
 
 ## Related Documents
 
-- [AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md)
+- [AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md)
 - [CodeRabbit Integration Decisions](../../docs/architecture/coderabbit-integration-decisions.md)
 - [STORY-TEMPLATE-V2-SPECIFICATION.md](./STORY-TEMPLATE-V2-SPECIFICATION.md)
 

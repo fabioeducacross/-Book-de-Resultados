@@ -4,7 +4,7 @@
 
 ---
 
-This guide provides comprehensive instructions for uninstalling Synkra AIOS from your system.
+This guide provides comprehensive instructions for uninstalling Synkra AIOX from your system.
 
 ## Table of Contents
 
@@ -22,7 +22,7 @@ This guide provides comprehensive instructions for uninstalling Synkra AIOS from
 
 ### Important Considerations
 
-⚠️ **Warning**: Uninstalling Synkra AIOS will:
+⚠️ **Warning**: Uninstalling Synkra AIOX will:
 
 - Remove all framework files
 - Delete agent configurations (unless preserved)
@@ -43,7 +43,7 @@ This guide provides comprehensive instructions for uninstalling Synkra AIOS from
 
 ```bash
 # Create complete backup
-npx @synkra/aios-core backup --complete
+npx aiox-core backup --complete
 
 # Or manually backup important directories
 tar -czf aios-backup-$(date +%Y%m%d).tar.gz \
@@ -59,17 +59,17 @@ tar -czf aios-backup-$(date +%Y%m%d).tar.gz \
 
 ### Using Built-in Uninstaller
 
-The fastest way to uninstall Synkra AIOS:
+The fastest way to uninstall Synkra AIOX:
 
 ```bash
 # Basic uninstall (preserves user data)
-npx @synkra/aios-core uninstall
+npx aiox-core uninstall
 
 # Complete uninstall (removes everything)
-npx @synkra/aios-core uninstall --complete
+npx aiox-core uninstall --complete
 
 # Uninstall with data preservation
-npx @synkra/aios-core uninstall --keep-data
+npx aiox-core uninstall --keep-data
 ```
 
 ### Interactive Uninstall
@@ -77,7 +77,7 @@ npx @synkra/aios-core uninstall --keep-data
 For guided uninstallation:
 
 ```bash
-npx @synkra/aios-core uninstall --interactive
+npx aiox-core uninstall --interactive
 ```
 
 This will prompt you for:
@@ -121,14 +121,14 @@ This will prompt you for:
 
 ```bash
 # Complete removal
-npx @synkra/aios-core uninstall --complete --no-backup
+npx aiox-core uninstall --complete --no-backup
 ```
 
 ### Step 4: Remove Global Installation
 
 ```bash
 # Remove global npm package
-npm uninstall -g @synkra/aios-core
+npm uninstall -g aiox-core
 
 # Remove npx cache
 npm cache clean --force
@@ -140,13 +140,13 @@ npm cache clean --force
 
 ```powershell
 # Remove AppData files
-Remove-Item -Recurse -Force "$env:APPDATA\@synkra/aios-core"
+Remove-Item -Recurse -Force "$env:APPDATA\@synkra/aiox-core"
 
 # Remove temp files
 Remove-Item -Recurse -Force "$env:TEMP\aios-*"
 
 # Remove registry entries (if any)
-Remove-Item -Path "HKCU:\Software\Synkra AIOS" -Recurse
+Remove-Item -Path "HKCU:\Software\Synkra AIOX" -Recurse
 ```
 
 #### macOS/Linux
@@ -154,10 +154,10 @@ Remove-Item -Path "HKCU:\Software\Synkra AIOS" -Recurse
 ```bash
 # Remove config files
 rm -rf ~/.aios
-rm -rf ~/.config/@synkra/aios-core
+rm -rf ~/.config/@synkra/aiox-core
 
 # Remove cache
-rm -rf ~/.cache/@synkra/aios-core
+rm -rf ~/.cache/@synkra/aiox-core
 
 # Remove temp files
 rm -rf /tmp/aios-*
@@ -169,13 +169,13 @@ rm -rf /tmp/aios-*
 
 ```bash
 # Remove only agents
-npx @synkra/aios-core uninstall agents
+npx aiox-core uninstall agents
 
 # Remove only workflows
-npx @synkra/aios-core uninstall workflows
+npx aiox-core uninstall workflows
 
 # Remove memory layer
-npx @synkra/aios-core uninstall memory-layer
+npx aiox-core uninstall memory-layer
 
 # Remove specific agent
 *uninstall agent-name
@@ -276,11 +276,11 @@ Create `clean-uninstall.sh`:
 
 ```bash
 #!/bin/bash
-echo "Synkra AIOS Complete Uninstall"
+echo "Synkra AIOX Complete Uninstall"
 echo "================================="
 
 # Confirmation
-read -p "This will remove ALL Synkra AIOS data. Continue? (y/N) " -n 1 -r
+read -p "This will remove ALL Synkra AIOX data. Continue? (y/N) " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
@@ -288,7 +288,7 @@ fi
 
 # Stop all processes
 echo "Stopping all processes..."
-pkill -f "@synkra/aios-core" || true
+pkill -f "@synkra/aiox-core" || true
 pkill -f "aios-developer" || true
 
 # Remove project files
@@ -299,17 +299,17 @@ rm -rf workflows/
 rm -rf tasks/
 rm -rf templates/
 rm -rf Squads/
-rm -rf node_modules/@synkra/aios-core/
+rm -rf node_modules/@synkra/aiox-core/
 
 # Remove global files
 echo "Removing global files..."
-npm uninstall -g @synkra/aios-core
+npm uninstall -g aiox-core
 
 # Remove user data
 echo "Removing user data..."
 rm -rf ~/.aios
-rm -rf ~/.config/@synkra/aios-core
-rm -rf ~/.cache/@synkra/aios-core
+rm -rf ~/.config/@synkra/aiox-core
+rm -rf ~/.cache/@synkra/aiox-core
 
 # Clean npm cache
 echo "Cleaning npm cache..."
@@ -317,9 +317,9 @@ npm cache clean --force
 
 # Remove from package.json
 echo "Updating package.json..."
-npm uninstall @synkra/aios-core/core
-npm uninstall @synkra/aios-core/memory
-npm uninstall @synkra/aios-core/meta-agent
+npm uninstall @synkra/aiox-core/core
+npm uninstall @synkra/aiox-core/memory
+npm uninstall @synkra/aiox-core/meta-agent
 
 echo "Uninstall complete!"
 ```
@@ -328,11 +328,11 @@ echo "Uninstall complete!"
 
 ```powershell
 # PowerShell script for Windows cleanup
-Write-Host "Cleaning Synkra AIOS from Windows Registry..."
+Write-Host "Cleaning Synkra AIOX from Windows Registry..."
 
 # Remove from PATH
 $path = [Environment]::GetEnvironmentVariable("PATH", "User")
-$newPath = ($path.Split(';') | Where-Object { $_ -notmatch '@synkra/aios-core' }) -join ';'
+$newPath = ($path.Split(';') | Where-Object { $_ -notmatch '@synkra/aiox-core' }) -join ';'
 [Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
 
 # Remove registry keys
@@ -352,10 +352,10 @@ Write-Host "Registry cleanup complete!"
 
 ```bash
 # Linux/macOS
-sudo npx @synkra/aios-core uninstall --complete
+sudo npx aiox-core uninstall --complete
 
 # Windows (Run as Administrator)
-npx @synkra/aios-core uninstall --complete
+npx aiox-core uninstall --complete
 ```
 
 #### 2. Process Still Running
@@ -364,11 +364,11 @@ npx @synkra/aios-core uninstall --complete
 # Force stop all processes
 # Linux/macOS
 killall -9 node
-killall -9 @synkra/aios-core
+killall -9 @synkra/aiox-core
 
 # Windows
 taskkill /F /IM node.exe
-taskkill /F /IM @synkra/aios-core.exe
+taskkill /F /IM @synkra/aiox-core.exe
 ```
 
 #### 3. Files Locked
@@ -397,7 +397,7 @@ If normal uninstall fails:
 ```bash
 #!/bin/bash
 # force-uninstall.sh
-echo "Force uninstalling Synkra AIOS..."
+echo "Force uninstalling Synkra AIOX..."
 
 # Kill all related processes
 pkill -9 -f aios || true
@@ -405,12 +405,12 @@ pkill -9 -f aios || true
 # Remove all files
 rm -rf .aios* aios* *aios*
 rm -rf agents workflows tasks templates
-rm -rf node_modules/@synkra/aios-core
+rm -rf node_modules/@synkra/aiox-core
 rm -rf ~/.aios* ~/.config/aios* ~/.cache/aios*
 
 # Clean npm
 npm cache clean --force
-npm uninstall -g @synkra/aios-core
+npm uninstall -g aiox-core
 
 echo "Force uninstall complete!"
 ```
@@ -437,7 +437,7 @@ ps aux | grep aios
 ```bash
 # Remove from .bashrc/.zshrc
 sed -i '/AIOS_/d' ~/.bashrc
-sed -i '/@synkra/aios-core/d' ~/.bashrc
+sed -i '/@synkra/aiox-core/d' ~/.bashrc
 
 # Remove from .env files
 find . -name ".env*" -exec sed -i '/AIOS_/d' {} \;
@@ -450,8 +450,8 @@ find . -name ".env*" -exec sed -i '/AIOS_/d' {} \;
 {
   "scripts": {
     // Remove these entries
-    "aios": "@synkra/aios-core",
-    "meta-agent": "@synkra/aios-core meta-agent"
+    "aios": "@synkra/aiox-core",
+    "meta-agent": "@synkra/aiox-core meta-agent"
   }
 }
 ```
@@ -459,7 +459,7 @@ find . -name ".env*" -exec sed -i '/AIOS_/d' {} \;
 ### 4. Clean Git Repository
 
 ```bash
-# Remove AIOS-specific git hooks
+# Remove AIOX-specific git hooks
 rm -f .git/hooks/*aios*
 
 # Update .gitignore
@@ -468,14 +468,14 @@ sed -i '/aios-/d' .gitignore
 
 # Commit removal
 git add -A
-git commit -m "Remove Synkra AIOS"
+git commit -m "Remove Synkra AIOX"
 ```
 
 ## Reinstallation
 
 ### After Complete Uninstall
 
-If you want to reinstall Synkra AIOS:
+If you want to reinstall Synkra AIOX:
 
 1. **Wait for cleanup**
 
@@ -492,7 +492,7 @@ If you want to reinstall Synkra AIOS:
 
 3. **Fresh installation**
    ```bash
-   npx @synkra/aios-core@latest init my-project
+   npx aiox-core@latest init my-project
    ```
 
 ### Restoring from Backup
@@ -516,7 +516,7 @@ cp -r ~/aios-backup/agents/* ./agents/
 
 ## Uninstall Verification Checklist
 
-- [ ] All AIOS processes stopped
+- [ ] All AIOX processes stopped
 - [ ] Project files removed
 - [ ] Global npm package uninstalled
 - [ ] User configuration files deleted
@@ -524,7 +524,7 @@ cp -r ~/aios-backup/agents/* ./agents/
 - [ ] Environment variables removed
 - [ ] Registry entries cleaned (Windows)
 - [ ] Git repository updated
-- [ ] No remaining AIOS files found
+- [ ] No remaining AIOX files found
 - [ ] System PATH updated
 
 ## Getting Help
@@ -532,8 +532,8 @@ cp -r ~/aios-backup/agents/* ./agents/
 If you encounter issues during uninstallation:
 
 1. **Check Documentation**
-   - [FAQ](https://github.com/SynkraAI/aios-core/wiki/faq#uninstall)
-   - [Troubleshooting](https://github.com/SynkraAI/aios-core/wiki/troubleshooting)
+   - [FAQ](https://github.com/SynkraAI/aiox-core/wiki/faq#uninstall)
+   - [Troubleshooting](https://github.com/SynkraAI/aiox-core/wiki/troubleshooting)
 
 2. **Community Support**
    - Discord: #uninstall-help
@@ -542,7 +542,7 @@ If you encounter issues during uninstallation:
 3. **Emergency Support**
    ```bash
    # Generate uninstall report
-   npx @synkra/aios-core diagnose --uninstall > uninstall-report.log
+   npx aiox-core diagnose --uninstall > uninstall-report.log
    ```
 
 ---

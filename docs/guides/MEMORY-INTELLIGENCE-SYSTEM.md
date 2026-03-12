@@ -10,7 +10,7 @@
 
 > **NOTA:** Este documento descreve o **estado futuro** do sistema de memoria apos todas as 7 stories do Epic MIS serem implementadas. Para o estado atual, consulte [MEMORY-SYSTEM.md](MEMORY-SYSTEM.md).
 
-> **ARQUITETURA:** O MIS segue o modelo **Open Core** do AIOS. Toda a inteligencia de memoria reside no repositorio privado `aios-pro` (submodule `pro/`). O `aios-core` (open source) fornece apenas extension points e funciona 100% sem memoria inteligente — exatamente como hoje.
+> **ARQUITETURA:** O MIS segue o modelo **Open Core** do AIOX. Toda a inteligencia de memoria reside no repositorio privado `aios-pro` (submodule `pro/`). O `aiox-core` (open source) fornece apenas extension points e funciona 100% sem memoria inteligente — exatamente como hoje.
 
 ---
 
@@ -43,7 +43,7 @@
 
 ### O Problema (Estado Atual)
 
-O sistema de memoria atual opera em **duas camadas desconectadas** (Claude Code nativo + AIOS Framework) com gaps criticos:
+O sistema de memoria atual opera em **duas camadas desconectadas** (Claude Code nativo + AIOX Framework) com gaps criticos:
 
 - **Sem session-digest** — conhecimento contextual evapora ao fechar sessao
 - **Sem retrieval inteligente** — agentes carregam tudo-ou-nada (200 linhas de MEMORY.md)
@@ -58,15 +58,15 @@ O MIS unifica as duas camadas em um sistema inteligente de 4 camadas, seguindo o
 
 | Camada | Funcao | Repositorio | Story |
 |--------|--------|-------------|-------|
-| **Cleanup** | Remover dead code, preparar base | **aios-core** | MIS-2 |
+| **Cleanup** | Remover dead code, preparar base | **aiox-core** | MIS-2 |
 | **Capture** | Captura conhecimento de sessao via hooks | **aios-pro** | MIS-3 |
 | **Storage** | Armazena em Markdown com frontmatter YAML | **aios-pro** | MIS-3, MIS-4 |
-| **Retrieval** | Recupera por relevancia com progressive disclosure | **aios-pro** + extension points em **aios-core** | MIS-4, MIS-6 |
+| **Retrieval** | Recupera por relevancia com progressive disclosure | **aios-pro** + extension points em **aiox-core** | MIS-4, MIS-6 |
 | **Evolution** | Aprende e evolui regras automaticamente | **aios-pro** | MIS-5, MIS-7 |
 
 ### Principios Chave (vs Estado Atual)
 
-| Aspecto | Estado Atual | Com MIS (aios-pro ativo) | Sem MIS (aios-core only) |
+| Aspecto | Estado Atual | Com MIS (aios-pro ativo) | Sem MIS (aiox-core only) |
 |---------|-------------|--------------------------|--------------------------|
 | Session end | Nada acontece | PreCompact digest captura aprendizados | Nada acontece (como hoje) |
 | Memory load | MEMORY.md (200 linhas, tudo-ou-nada) | Progressive disclosure (HOT/WARM/COLD) | MEMORY.md (como hoje) |
@@ -80,13 +80,13 @@ O MIS unifica as duas camadas em um sistema inteligente de 4 camadas, seguindo o
 
 ### Principio Fundamental
 
-> **aios-core funciona 100% sem o MIS** — exatamente como funciona hoje. Quando `aios-pro` esta presente (submodule `pro/`), o MIS se conecta automaticamente via extension points. Zero configuracao manual.
+> **aiox-core funciona 100% sem o MIS** — exatamente como funciona hoje. Quando `aios-pro` esta presente (submodule `pro/`), o MIS se conecta automaticamente via extension points. Zero configuracao manual.
 
 ### Modelo Open Core
 
 ```mermaid
 flowchart LR
-    subgraph CORE["aios-core (Open Source, MIT)"]
+    subgraph CORE["aiox-core (Open Source, MIT)"]
         direction TB
         C1["UnifiedActivationPipeline"]
         C2["gotchas-memory.js (mantido)"]
@@ -118,7 +118,7 @@ flowchart LR
 
 ### Pattern de Integracao: pro-detector
 
-O aios-core ja possui o modulo `bin/utils/pro-detector.js` (Story PRO-5):
+O aiox-core ja possui o modulo `bin/utils/pro-detector.js` (Story PRO-5):
 
 ```javascript
 const { isProAvailable, loadProModule } = require('../../bin/utils/pro-detector');
@@ -155,7 +155,7 @@ Features adicionais a registrar:
 
 ### O Que Vai em Cada Repositorio
 
-#### aios-core (open source) — Extension Points Only
+#### aiox-core (open source) — Extension Points Only
 
 | Arquivo | Tipo | Descricao |
 |---------|------|-----------|
@@ -183,7 +183,7 @@ Features adicionais a registrar:
 
 ### Hook Configuration Strategy
 
-Os hooks do Claude Code sao configurados em `.claude/settings.json` (aios-core). O script apontado reside em `pro/`:
+Os hooks do Claude Code sao configurados em `.claude/settings.json` (aiox-core). O script apontado reside em `pro/`:
 
 ```json
 {
@@ -279,7 +279,7 @@ Correcoes do usuario sao capturadas, padroes extraidos, regras propostas com con
 
 Cada agente tem memoria privada + acesso a memorias compartilhadas. Sem cross-contaminacao.
 
-### 8. Open Core (AIOS PRO pattern)
+### 8. Open Core (AIOX PRO pattern)
 
 Toda a inteligencia de memoria e uma feature premium. O core funciona identicamente sem ela. A integracao e automatica via extension points + `isProAvailable()`.
 
@@ -296,7 +296,7 @@ flowchart TB
         SS([SessionStart]) --> WORK[Working] --> PC([PreCompact]) --> STOP([Stop])
     end
 
-    subgraph CORE_BOUNDARY["aios-core (Open Source)"]
+    subgraph CORE_BOUNDARY["aiox-core (Open Source)"]
         direction TB
         EXT["Extension Points<br/>in Pipeline"]
         HOOK_RUNNER[".aios-core/hooks/<br/>pro-hook-runner.js"]
@@ -349,7 +349,7 @@ flowchart TB
     style EVOLUTION fill:#F3E5F5,stroke:#7B1FA2
 ```
 
-### Fluxo Sem Pro (aios-core standalone)
+### Fluxo Sem Pro (aiox-core standalone)
 
 ```mermaid
 flowchart LR
@@ -370,7 +370,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    subgraph CORE["aios-core"]
+    subgraph CORE["aiox-core"]
         HR[".aios-core/hooks/<br/>pro-hook-runner.js"]
         UAP["unified-activation-<br/>pipeline.js"]
         GM["gotchas-memory.js"]
@@ -438,7 +438,7 @@ A Capture Layer intercepta eventos de sessao via hooks do Claude Code e extrai c
 ### Configuracao de Hooks
 
 ```json
-// .claude/settings.json (aios-core — committed)
+// .claude/settings.json (aiox-core — committed)
 {
   "hooks": {
     "PreCompact": [
@@ -472,7 +472,7 @@ O `pro-hook-runner.js` (~20 linhas, no core) verifica `isProAvailable()` e deleg
 
 ```mermaid
 flowchart TD
-    subgraph CORE_HOOKS["aios-core"]
+    subgraph CORE_HOOKS["aiox-core"]
         HR["pro-hook-runner.js"]
     end
 
@@ -671,8 +671,8 @@ flowchart TD
 ```mermaid
 sequenceDiagram
     participant CC as Claude Code
-    participant HR as pro-hook-runner.js<br/>(aios-core)
-    participant PD as pro-detector.js<br/>(aios-core)
+    participant HR as pro-hook-runner.js<br/>(aiox-core)
+    participant PD as pro-detector.js<br/>(aiox-core)
     participant SD as session-digest.js<br/>(aios-pro)
     participant FS as .aios/memories/
 
@@ -754,11 +754,11 @@ Cada agente acessa:
 
 ```mermaid
 sequenceDiagram
-    participant UAP as UnifiedActivationPipeline<br/>(aios-core)
-    participant PD as pro-detector.js<br/>(aios-core)
+    participant UAP as UnifiedActivationPipeline<br/>(aiox-core)
+    participant PD as pro-detector.js<br/>(aiox-core)
     participant ML as memory-loader.js<br/>(aios-pro)
     participant MR as memory-retriever.js<br/>(aios-pro)
-    participant GB as GreetingBuilder<br/>(aios-core)
+    participant GB as GreetingBuilder<br/>(aiox-core)
 
     Note over UAP: ANTES: Claude Code ja carregou<br/>CLAUDE.md, rules, MEMORY.md
 
@@ -829,7 +829,7 @@ related_memories: [mem-2026-02-08-003]
 evidence_count: 5
 ---
 
-# Always Use Absolute Imports in AIOS
+# Always Use Absolute Imports in AIOX
 
 ## Pattern
 Use `@/` prefix for all imports. Never use relative imports (`../`).
@@ -954,7 +954,7 @@ Sessao 7: Erro "EACCES permission denied" 3x → auto-gotcha
 
 ## Mapa de Arquivos do Sistema
 
-### aios-core (Open Source) — Extension Points
+### aiox-core (Open Source) — Extension Points
 
 | Arquivo | Tipo | Story | Descricao |
 |---------|------|-------|-----------|
@@ -982,7 +982,7 @@ Sessao 7: Erro "EACCES permission denied" 3x → auto-gotcha
 | `pro/pro-config.yaml` | Config | MIS-3 | Enable memory flags |
 | `pro/feature-registry.yaml` | Config | MIS-3 | Add MIS feature IDs |
 
-### Arquivos Removidos (MIS-2, aios-core)
+### Arquivos Removidos (MIS-2, aiox-core)
 
 | Arquivo | Linhas | Razao |
 |---------|--------|-------|
@@ -996,7 +996,7 @@ Sessao 7: Erro "EACCES permission denied" 3x → auto-gotcha
 
 ## Diferencas: Estado Atual vs MIS
 
-| Aspecto | aios-core hoje | aios-core + aios-pro (MIS) | aios-core sem pro |
+| Aspecto | aiox-core hoje | aiox-core + aios-pro (MIS) | aiox-core sem pro |
 |---------|---------------|---------------------------|------------------|
 | **Camadas** | 2 desconectadas | 4 integradas via pro | 2 desconectadas (como hoje) |
 | **Session end** | Nada | PreCompact digest + Stop flush | Nada (como hoje) |
@@ -1017,11 +1017,11 @@ gantt
     title Epic MIS - Story Dependencies & Repositories
     dateFormat YYYY-MM-DD
 
-    section aios-core
+    section aiox-core
     MIS-1 Investigation (Done)           :done, mis1, 2026-02-09, 1d
     MIS-2 Dead Code Cleanup              :active, mis2, after mis1, 1d
 
-    section aios-core + aios-pro
+    section aiox-core + aios-pro
     MIS-3 Session Digest                 :mis3, after mis1, 3d
     MIS-6 Pipeline Integration           :mis6, after mis4, 2d
 
@@ -1033,12 +1033,12 @@ gantt
 
 | Story | Titulo | Repositorio | Depende De | Horas |
 |-------|--------|-------------|------------|-------|
-| MIS-1 | Investigation & Architecture Design | docs (aios-core) | — | 12h (Done) |
-| MIS-2 | Dead Code Cleanup & Path Repair | **aios-core** | MIS-1 | 4h |
-| MIS-3 | Session Digest (PreCompact Hook) | **aios-core** (hook runner) + **aios-pro** (digest) | MIS-1 | 14h |
+| MIS-1 | Investigation & Architecture Design | docs (aiox-core) | — | 12h (Done) |
+| MIS-2 | Dead Code Cleanup & Path Repair | **aiox-core** | MIS-1 | 4h |
+| MIS-3 | Session Digest (PreCompact Hook) | **aiox-core** (hook runner) + **aios-pro** (digest) | MIS-1 | 14h |
 | MIS-4 | Progressive Memory Retrieval | **aios-pro** | MIS-3 | 16h |
 | MIS-5 | Self-Learning Engine | **aios-pro** | MIS-3, MIS-4 | 14h |
-| MIS-6 | Pipeline Integration & Agent Memory API | **aios-core** (ext points) + **aios-pro** (loader) | MIS-4 | 10h |
+| MIS-6 | Pipeline Integration & Agent Memory API | **aiox-core** (ext points) + **aios-pro** (loader) | MIS-4 | 10h |
 | MIS-7 | CLAUDE.md & Rules Auto-Evolution | **aios-pro** | MIS-5 | 8h |
 | **Total** | | | | **~78h** |
 
@@ -1070,8 +1070,8 @@ gantt
 
 ---
 
-*AIOS Memory Intelligence System — Architecture Vision v2.1 (Core/Pro Split)*
+*AIOX Memory Intelligence System — Architecture Vision v2.1 (Core/Pro Split)*
 *Target state apos Epic MIS completo (7 stories, ~78 horas)*
-*aios-core: extension points + dead code cleanup*
+*aiox-core: extension points + dead code cleanup*
 *aios-pro: toda a inteligencia de memoria (Capture, Storage, Retrieval, Evolution)*
 *@architect (Aria) — arquitetando o futuro*

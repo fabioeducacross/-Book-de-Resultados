@@ -1,4 +1,4 @@
-<!-- Powered by AIOS™ Core -->
+<!-- Powered by AIOX™ Core -->
 
 ---
 tools:
@@ -19,11 +19,11 @@ Quick NFR validation focused on the core four: security, performance, reliabilit
 ```yaml
 required:
   - story_id: '{epic}.{story}' # e.g., "1.3"
-  - story_path: `aios-core/core-config.yaml` for the `devStoryLocation`
+  - story_path: `aiox-core/core-config.yaml` for the `devStoryLocation`
 
 optional:
-  - architecture_refs: `aios-core/core-config.yaml` for the `architecture.architectureFile`
-  - technical_preferences: `aios-core/core-config.yaml` for the `technicalPreferences`
+  - architecture_refs: `aiox-core/core-config.yaml` for the `architecture.architectureFile`
+  - technical_preferences: `aiox-core/core-config.yaml` for the `technicalPreferences`
   - acceptance_criteria: From story file
 ```
 
@@ -335,7 +335,7 @@ maintainability:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: qaNfrAssess()

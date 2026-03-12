@@ -1,6 +1,6 @@
 # Workflow Management
 
-Enables AIOS orchestrator to manage and execute team workflows.
+Enables AIOX orchestrator to manage and execute team workflows.
 
 ## Dynamic Workflow Loading
 

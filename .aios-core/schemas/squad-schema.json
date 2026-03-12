@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/SynkraAI/aios-core/schemas/squad-schema.json",
+  "$id": "https://github.com/SynkraAI/aiox-core/schemas/squad-schema.json",
   "title": "AIOS Squad Manifest",
   "description": "Schema for squad.yaml manifest files (Task-First Architecture)",
   "type": "object",

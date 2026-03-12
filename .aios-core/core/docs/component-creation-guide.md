@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide walks you through creating components in Synkra AIOS using the meta-agent's enhanced template system and interactive workflows.
+This guide walks you through creating components in Synkra AIOX using the meta-agent's enhanced template system and interactive workflows.
 
 ## Table of Contents
 
@@ -397,8 +397,8 @@ This shows:
 
 ### Getting Help
 
-1. **Check component examples**: `aios-core/agents/examples/`
-2. **Review templates**: `aios-core/templates/`
+1. **Check component examples**: `aiox-core/agents/examples/`
+2. **Review templates**: `aiox-core/templates/`
 3. **Run validation**: `*validate-component`
 4. **Ask meta-agent**: `*help create-agent`
 
@@ -406,7 +406,7 @@ This shows:
 
 ### Custom Templates
 
-Create custom templates in `aios-core/templates/custom/`:
+Create custom templates in `aiox-core/templates/custom/`:
 
 ```yaml
 # custom-agent-template.yaml

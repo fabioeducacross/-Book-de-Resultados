@@ -1,10 +1,10 @@
-# Synkra AIOS Development Rules for Roo Code
+# Synkra AIOX Development Rules for Roo Code
 
-You are working with Synkra AIOS, an AI-Orchestrated System for Full Stack Development.
+You are working with Synkra AIOX, an AI-Orchestrated System for Full Stack Development.
 
 ## Core Framework Understanding
 
-Synkra AIOS is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
+Synkra AIOX is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
 
 ## Agent System
 
@@ -41,10 +41,10 @@ When an agent mode is active:
 - Add tests for new features
 - Test edge cases and error scenarios
 
-## AIOS Framework Structure
+## AIOX Framework Structure
 
 ```
-aios-core/
+aiox-core/
 ├── agents/         # Agent persona definitions (YAML/Markdown)
 ├── tasks/          # Executable task workflows
 ├── workflows/      # Multi-step workflow definitions
@@ -63,7 +63,7 @@ docs/
 
 ### Mode Configuration
 - Modes are defined in `.roomodes` file
-- Each mode corresponds to an AIOS agent persona
+- Each mode corresponds to an AIOX agent persona
 - Switching modes automatically loads the appropriate context
 
 ### Available Modes
@@ -83,4 +83,4 @@ docs/
 - Leverage auto-apply for suggested changes
 
 ---
-*Synkra AIOS Roo Code Configuration v2.1*
+*Synkra AIOX Roo Code Configuration v2.1*

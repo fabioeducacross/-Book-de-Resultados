@@ -33,7 +33,7 @@ Execute test suite and validate code quality before marking tests complete.
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: qaRunTests()

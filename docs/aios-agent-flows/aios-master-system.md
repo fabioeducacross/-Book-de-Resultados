@@ -9,13 +9,13 @@
 
 ## Visão Geral
 
-O **@aios-master** (Orion - The Orchestrator) e o meta-agente principal do framework AIOS-FULLSTACK. Ele atua como orquestrador universal, desenvolvedor de framework e especialista no metodo AIOS. Suas principais responsabilidades incluem:
+O **@aios-master** (Orion - The Orchestrator) e o meta-agente principal do framework AIOX-FULLSTACK. Ele atua como orquestrador universal, desenvolvedor de framework e especialista no metodo AIOX. Suas principais responsabilidades incluem:
 
 - **Orquestracao Universal**: Executa qualquer task de qualquer agente diretamente
 - **Desenvolvimento de Framework**: Cria e modifica agentes, tasks, workflows e templates
 - **Gestao de Componentes**: Valida, deprecia e analisa componentes do sistema
 - **Coordenacao Multi-Agente**: Gerencia workflows complexos entre multiplos agentes
-- **Knowledge Base**: Acesso ao conhecimento completo do AIOS Method
+- **Knowledge Base**: Acesso ao conhecimento completo do AIOX Method
 
 ### Quando Usar
 
@@ -23,7 +23,7 @@ O **@aios-master** (Orion - The Orchestrator) e o meta-agente principal do frame
 - Orquestrar workflows multi-agente complexos
 - Executar qualquer task diretamente sem transformacao de persona
 - Operacoes de meta-framework e coordenacao cross-agente
-- Acessar o Knowledge Base do AIOS (*kb)
+- Acessar o Knowledge Base do AIOX (*kb)
 
 ---
 
@@ -60,7 +60,7 @@ O **@aios-master** (Orion - The Orchestrator) e o meta-agente principal do frame
 | Arquivo | Propósito |
 |---------|-----------|
 | `.aios-core/development/agents/aios-master.md` | Definição completa do agente (persona, comandos, dependencias) |
-| `.claude/commands/AIOS/agents/aios-master.md` | Comando Claude Code para ativar @aios-master |
+| `.claude/commands/AIOX/agents/aios-master.md` | Comando Claude Code para ativar @aios-master |
 
 ### Arquivos de Templates do @aios-master
 
@@ -85,7 +85,7 @@ O **@aios-master** (Orion - The Orchestrator) e o meta-agente principal do frame
 
 | Arquivo | Propósito |
 |---------|-----------|
-| `.aios-core/development/data/aios-kb.md` | Knowledge Base do AIOS Method |
+| `.aios-core/development/data/aios-kb.md` | Knowledge Base do AIOX Method |
 | `.aios-core/development/data/brainstorming-techniques.md` | Tecnicas de brainstorming |
 | `.aios-core/development/data/elicitation-methods.md` | Metodos de elicitacao |
 | `.aios-core/development/data/technical-preferences.md` | Preferencias tecnicas |
@@ -531,8 +531,8 @@ agent:
 
 ### Standards e Documentação
 
-- [AIOS Framework Master](.aios-core/docs/standards/AIOS-FRAMEWORK-MASTER.md)
-- [AIOS Livro de Ouro](.aios-core/docs/standards/AIOS-LIVRO-DE-OURO.md)
+- [AIOX Framework Master](.aios-core/docs/standards/AIOX-FRAMEWORK-MASTER.md)
+- [AIOX Livro de Ouro](.aios-core/docs/standards/AIOX-LIVRO-DE-OURO.md)
 - [Agent Personalization Standard](.aios-core/docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md)
 
 ### Diretorio de Tasks

@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@aios-master** (Orion) es el agente orquestador central del AIOS, responsable por:
+**@aios-master** (Orion) es el agente orquestador central del AIOX, responsable por:
 
 - Coordinar todos los agentes del sistema
 - Gestionar workflows multi-agente

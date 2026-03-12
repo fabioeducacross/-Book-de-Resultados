@@ -381,7 +381,7 @@ Location: `.aios-core/data/`
 - **YES (7 files):** No references found outside install-manifest. These files exist in the codebase but are never consumed by any task, agent, or workflow.
 - **WEAK (27 files):** Referenced only in passive registries (install-manifest, service-registry, workers.csv, documentation) but not actively consumed by any task execution path. These include:
   - HBS templates (loaded dynamically by the template engine, so they ARE used at runtime through `create-doc`)
-  - IDE rules (deployed to target projects, not consumed by AIOS agents)
+  - IDE rules (deployed to target projects, not consumed by AIOX agents)
   - Personalization templates (meta-templates used as structural references)
 
 ### Most-Connected Files
@@ -443,7 +443,7 @@ These files exist in `.aios-core/product/templates/` and are listed in the insta
 
 These files exist in registries but lack direct task/agent consumption paths. Most are:
 - **HBS templates (8):** Actually consumed dynamically by the template engine at runtime. Not truly orphaned.
-- **IDE rules (7):** Output artifacts for target projects. Consumed externally, not by AIOS tasks.
+- **IDE rules (7):** Output artifacts for target projects. Consumed externally, not by AIOX tasks.
 - **Personalization templates (5):** Meta-templates used as structural blueprints.
 - **Other (7):** Various structural/documentation templates with registry-only references.
 

@@ -1,10 +1,10 @@
-# Getting Started with Synkra AIOS
+# Getting Started with Synkra AIOX
 
 > 🌐 **EN** | [PT](./pt/getting-started.md) | [ES](./es/getting-started.md)
 
 ---
 
-Welcome to Synkra AIOS! This guide will walk you through your first steps with the AI-powered self-modifying development framework.
+Welcome to Synkra AIOX! This guide will walk you through your first steps with the AI-powered self-modifying development framework.
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ Welcome to Synkra AIOS! This guide will walk you through your first steps with t
 
 ### Prerequisites
 
-Before installing Synkra AIOS, ensure you have:
+Before installing Synkra AIOX, ensure you have:
 
 - **Node.js** version 14.0.0 or higher
 - **npm** version 6.0.0 or higher
@@ -36,32 +36,32 @@ The fastest way to get started is using npx:
 
 ```bash
 # Create a new project
-npx @synkra/aios-core init my-first-project
+npx aiox-core init my-first-project
 
 # Navigate to your project
 cd my-first-project
 
 # Start the meta-agent
-npx @synkra/aios-core
+npx aiox-core
 ```
 
 ### Installation Options
 
-Synkra AIOS offers flexible installation options:
+Synkra AIOX offers flexible installation options:
 
 ```bash
 # 1. Create new project with custom template
-npx @synkra/aios-core init my-project --template enterprise
+npx aiox-core init my-project --template enterprise
 
 # 2. Install in existing project
 cd existing-project
-npx @synkra/aios-core install
+npx aiox-core install
 
 # 3. Force installation in non-empty directory
-npx @synkra/aios-core init my-project --force
+npx aiox-core init my-project --force
 
 # 4. Skip dependency installation (manual install later)
-npx @synkra/aios-core init my-project --skip-install
+npx aiox-core init my-project --skip-install
 ```
 
 ## Your First Project
@@ -126,7 +126,7 @@ AIOS_TELEMETRY=enabled
 
 ## Understanding the Meta-Agent
 
-The meta-agent is the core of Synkra AIOS - an AI that understands and can modify its own codebase.
+The meta-agent is the core of Synkra AIOX - an AI that understands and can modify its own codebase.
 
 ### Key Capabilities
 
@@ -160,7 +160,7 @@ graph TD
 
 ```bash
 # Start in current directory
-npx @synkra/aios-core
+npx aiox-core
 
 # Or use the shorthand
 npx aios
@@ -501,7 +501,7 @@ examples:
 - **[Meta-Agent Commands Reference](./meta-agent-commands.md)**: Complete command list
 - **[Architecture Overview](./core-architecture.md)**: Technical deep dive
 - **[Troubleshooting Guide](./troubleshooting.md)**: Common issues and solutions
-- **[Video Tutorials](https://@synkra/aios-core.dev/tutorials)**: Visual learning
+- **[Video Tutorials](https://@synkra/aiox-core.dev/tutorials)**: Visual learning
 
 ### Advanced Topics
 
@@ -530,10 +530,10 @@ Join our community for support and updates:
 node --version  # Should be >= 14.0.0
 
 # Verify installation
-npx @synkra/aios-core doctor
+npx aiox-core doctor
 
 # Fix common issues
-npx @synkra/aios-core doctor --fix
+npx aiox-core doctor --fix
 ```
 
 **API Key errors**
@@ -561,6 +561,6 @@ ls -la .env
 
 **Ready to build something amazing?** The meta-agent is waiting to help you create, improve, and evolve your code. Start with `*help` and explore the possibilities!
 
-Remember: Synkra AIOS learns and improves with use. The more you interact with it, the better it understands your development style and needs.
+Remember: Synkra AIOX learns and improves with use. The more you interact with it, the better it understands your development style and needs.
 
-Happy coding with Synkra AIOS! 🚀
+Happy coding with Synkra AIOX! 🚀

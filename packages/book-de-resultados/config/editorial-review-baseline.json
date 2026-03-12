@@ -1,0 +1,48 @@
+{
+  "id": "book-atual-html-review",
+  "version": "1.0.0",
+  "sourceArtifact": "book atual",
+  "comparisonTarget": "Usar a diagramação e a identidade visual do book atual como baseline obrigatório para aprovar cada seção do HTML paginado antes do PDF final.",
+  "description": "Baseline editorial inicial para o ciclo HTML-first do Book de Resultados. Este arquivo descreve o que precisa ser preservado enquanto o HTML vira o artefato central de revisão visual.",
+  "referenceArtifacts": [
+    {
+      "type": "pdf",
+      "path": "tests\\book-de-resultados\\fixtures\\canoas-2025-sem2\\RelatórioDigitaldeAvaliação_Canoas_2025_SegundoSemestre.pdf",
+      "label": "Book institucional de referência (Canoas 2025 segundo semestre)"
+    }
+  ],
+  "nonNegotiables": [
+    "Preservar a hierarquia tipográfica, a cromia, os fundos e o grid editorial do book atual.",
+    "Comparar a fidelidade por seção antes de aprovar o documento completo.",
+    "Tratar o HTML paginado como artefato oficial de revisão; o PDF é a materialização final de impressão."
+  ],
+  "prioritySections": [
+    "capa",
+    "capitulo",
+    "visao_geral",
+    "resultados_disciplina"
+  ],
+  "reviewChecklist": {
+    "global": [
+      "Conferir ordem das seções, paginação, respiros e alinhamento geral contra o book atual.",
+      "Validar tipografia, cromia, fundos e ritmo visual antes de aprovar o PDF final.",
+      "Registrar divergências por seção em vez de avaliar o documento inteiro de forma subjetiva."
+    ],
+    "capa": [
+      "Comparar título principal, faixa institucional, cidade, edição e presença dos ativos visuais com a capa do book atual.",
+      "Verificar ocupação de página, alinhamento e relação entre logo e imagem institucional."
+    ],
+    "capitulo": [
+      "Comparar marcador de capítulo, título, resumo e linguagem visual da abertura contra o book atual.",
+      "Garantir que a abertura mantenha respiro editorial e funcione como separador claro de bloco."
+    ],
+    "visao_geral": [
+      "Comparar hierarquia dos indicadores, títulos de painéis e proporção entre cards, gráficos e tabelas.",
+      "Validar que a leitura da página continue institucional e não pareça um dashboard genérico."
+    ],
+    "resultados_disciplina": [
+      "Comparar composição dos blocos analíticos, ordem das informações e densidade visual da página.",
+      "Conferir consistência entre títulos, subtítulos, indicadores e painel de proficiência."
+    ]
+  }
+}

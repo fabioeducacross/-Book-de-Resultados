@@ -1,6 +1,6 @@
-# AIOS Health Dashboard
+# AIOX Health Dashboard
 
-Visual dashboard for the AIOS Health Check System. Displays real-time health status, domain scores, issues, and self-healing history.
+Visual dashboard for the AIOX Health Check System. Displays real-time health status, domain scores, issues, and self-healing history.
 
 ## Features
 
@@ -118,4 +118,4 @@ The dashboard expects health check JSON in the format produced by the JSON repor
 
 ---
 
-_Part of AIOS-FULLSTACK - Story HCS-2 Phase 4_
+_Part of AIOX-FULLSTACK - Story HCS-2 Phase 4_

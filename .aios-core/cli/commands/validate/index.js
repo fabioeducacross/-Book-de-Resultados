@@ -188,6 +188,8 @@ async function runValidation(options) {
     // Try to find source in common locations
     const possibleSources = [
       path.join(__dirname, '../../../../..'), // npm package root
+      path.join(projectRoot, 'node_modules/aiox-core'),
+      path.join(projectRoot, 'node_modules/@synkra/aiox-core'),
       path.join(projectRoot, 'node_modules/aios-core'),
       path.join(projectRoot, 'node_modules/@synkra/aios-core'),
     ];

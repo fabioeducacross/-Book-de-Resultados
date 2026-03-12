@@ -666,7 +666,7 @@ errors:
 
 ```yaml
 project:
-  name: '@synkra/aios-core'
+  name: '@synkra/aiox-core'
   version: '2.3.0'
   type: EXISTING_AIOS
 

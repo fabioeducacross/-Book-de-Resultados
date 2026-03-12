@@ -1,7 +1,7 @@
 // Integration/Performance test - uses describeIntegration
 /**
  * STORY-1.1: NPX Integration Tests
- * Tests for npx @synkra/aios-core@latest execution
+ * Tests for npx aiox-core@latest execution
  */
 
 const { spawn } = require('child_process');
@@ -17,8 +17,9 @@ describeIntegration('npx Execution', () => {
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
       expect(packageJson.bin).toBeDefined();
-      expect(packageJson.bin['aios']).toBe('./bin/aios.js');
-      expect(packageJson.bin['@synkra/aios-core']).toBe('./bin/aios.js');
+      expect(packageJson.bin['aiox']).toBe('bin/aios.js');
+      expect(packageJson.bin['aiox-core']).toBe('bin/aios.js');
+      expect(packageJson.bin['aios']).toBe('bin/aios.js');
     });
 
     it('should have preferGlobal set to false', () => {
@@ -33,7 +34,7 @@ describeIntegration('npx Execution', () => {
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
       expect(packageJson.files).toContain('bin/');
-      expect(packageJson.files).toContain('index.js');
+      expect(packageJson.files).toContain('README.md');
       // Note: .aios-core/ should be included if it exists
       const hasAiosCore = packageJson.files.some(f => 
         f === '.aios-core/' || f === 'aios-core/',
@@ -79,7 +80,7 @@ describeIntegration('npx Execution', () => {
       child.on('close', (code) => {
         expect(code).toBe(0);
         expect(output).toContain('USAGE');
-        expect(output).toContain('@synkra/aios-core');
+        expect(output).toContain('npx aiox-core');
         done();
       });
     }, timeout);
@@ -205,4 +206,3 @@ describeIntegration('npx Execution', () => {
     }, 10000);
   });
 });
-

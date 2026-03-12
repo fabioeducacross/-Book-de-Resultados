@@ -27,7 +27,7 @@
 
 ## Resumo Executivo
 
-Este documento define os modos de execução para o Sistema de Verificação de Saúde do AIOS (HCS), baseado em pesquisa de melhores práticas da indústria do Kubernetes, VS Code, Terraform, npm/yarn e padrões CLI "doctor" (Flutter, Homebrew, WP-CLI).
+Este documento define os modos de execução para o Sistema de Verificação de Saúde do AIOX (HCS), baseado em pesquisa de melhores práticas da indústria do Kubernetes, VS Code, Terraform, npm/yarn e padrões CLI "doctor" (Flutter, Homebrew, WP-CLI).
 
 ### Principais Recomendações
 
@@ -335,7 +335,7 @@ healthCheck:
 
 ```yaml
 # .github/workflows/health-check.yml
-name: AIOS Health Check
+name: AIOX Health Check
 
 on:
   schedule:
@@ -381,7 +381,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "⚠️ AIOS Health Check Falhou",
+              "text": "⚠️ AIOX Health Check Falhou",
               "blocks": [
                 {
                   "type": "section",

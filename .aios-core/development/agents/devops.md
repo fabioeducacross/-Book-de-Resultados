@@ -321,7 +321,7 @@ dependencies:
       - Checks $AIOS_ACTIVE_AGENT environment variable
       - Blocks push if agent != "github-devops"
       - Displays helpful message redirecting to @github-devops
-      - Works in ANY repository using AIOS-FullStack
+      - Works in ANY repository using AIOX-FullStack
 
   workflow_examples:
     repository_detection: |

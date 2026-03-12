@@ -1,14 +1,14 @@
 # Release Notes — Epic 12: Bob Orchestrator
 
 **Release Date:** 2026-02-05
-**PR:** [#87](https://github.com/SynkraAI/aios-core/pull/87)
+**PR:** [#87](https://github.com/SynkraAI/aiox-core/pull/87)
 **Merged By:** @oalanicolas
 
 ---
 
 ## 🎯 Overview
 
-Epic 12 completa a implementação do **Bob** (PM Orchestrator), o orquestrador autônomo CLI-First do Synkra AIOS. Bob é o "cérebro" que coordena agentes de desenvolvimento, mantém contexto de projeto, e gerencia workflows complexos de forma autônoma.
+Epic 12 completa a implementação do **Bob** (PM Orchestrator), o orquestrador autônomo CLI-First do Synkra AIOX. Bob é o "cérebro" que coordena agentes de desenvolvimento, mantém contexto de projeto, e gerencia workflows complexos de forma autônoma.
 
 ---
 
@@ -33,7 +33,7 @@ Epic 12 completa a implementação do **Bob** (PM Orchestrator), o orquestrador 
 - **Event System** — Eventos tipados para integração com ferramentas externas
 
 ### 📦 Instalação & Distribuição
-- **NPX Package** — `npx @synkra/aios-install` para instalação rápida
+- **NPX Package** — `npx @synkra/aiox-install` para instalação rápida
 - **Cross-Platform** — Suporte completo para macOS, Windows/WSL, Linux
 - **Terminal Spawner** — Suporte a múltiplos terminais e iTerm2
 
@@ -100,17 +100,17 @@ Required Status Checks configurados:
 
 ### Instalação
 ```bash
-npx @synkra/aios-install
+npx @synkra/aiox-install
 ```
 
 ### Ativar Bob
 ```bash
-# Via AIOS Master
-npx aios-core
+# Via AIOX Master
+npx aiox-core
 @pm
 
 # Ou diretamente
-npx aios-core bob
+npx aiox-core bob
 ```
 
 ### Comandos Bob
@@ -163,7 +163,7 @@ npx aios-core bob
 
 ## 🙏 Agradecimentos
 
-Epic 12 foi desenvolvido seguindo a metodologia **Story-Driven Development** do AIOS, com validação contínua via CodeRabbit e CI/CD automatizado.
+Epic 12 foi desenvolvido seguindo a metodologia **Story-Driven Development** do AIOX, com validação contínua via CodeRabbit e CI/CD automatizado.
 
 **Agentes envolvidos:**
 - @po (Pax) — Product Owner, gestão de stories

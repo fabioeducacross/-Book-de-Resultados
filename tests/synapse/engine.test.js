@@ -39,7 +39,7 @@ jest.mock('../../.aios-core/core/synapse/layers/l0-constitution', () => {
   };
   mockLayerModules.L0 = cls;
   return cls;
-}, { virtual: true });
+});
 
 jest.mock('../../.aios-core/core/synapse/layers/l1-global', () => {
   const cls = class MockL1 {
@@ -48,7 +48,7 @@ jest.mock('../../.aios-core/core/synapse/layers/l1-global', () => {
   };
   mockLayerModules.L1 = cls;
   return cls;
-}, { virtual: true });
+});
 
 jest.mock('../../.aios-core/core/synapse/layers/l2-agent', () => {
   const cls = class MockL2 {
@@ -57,7 +57,7 @@ jest.mock('../../.aios-core/core/synapse/layers/l2-agent', () => {
   };
   mockLayerModules.L2 = cls;
   return cls;
-}, { virtual: true });
+});
 
 jest.mock('../../.aios-core/core/synapse/layers/l3-workflow', () => {
   const cls = class MockL3 {
@@ -66,32 +66,32 @@ jest.mock('../../.aios-core/core/synapse/layers/l3-workflow', () => {
   };
   mockLayerModules.L3 = cls;
   return cls;
-}, { virtual: true });
+});
 
 // L4-L7: simulate missing modules (MODULE_NOT_FOUND with proper code)
 jest.mock('../../.aios-core/core/synapse/layers/l4-task', () => {
   const err = new Error("Cannot find module './layers/l4-task'");
   err.code = 'MODULE_NOT_FOUND';
   throw err;
-}, { virtual: true });
+});
 
 jest.mock('../../.aios-core/core/synapse/layers/l5-squad', () => {
   const err = new Error("Cannot find module './layers/l5-squad'");
   err.code = 'MODULE_NOT_FOUND';
   throw err;
-}, { virtual: true });
+});
 
 jest.mock('../../.aios-core/core/synapse/layers/l6-keyword', () => {
   const err = new Error("Cannot find module './layers/l6-keyword'");
   err.code = 'MODULE_NOT_FOUND';
   throw err;
-}, { virtual: true });
+});
 
 jest.mock('../../.aios-core/core/synapse/layers/l7-star-command', () => {
   const err = new Error("Cannot find module './layers/l7-star-command'");
   err.code = 'MODULE_NOT_FOUND';
   throw err;
-}, { virtual: true });
+});
 
 // Mock memory bridge (SYN-10)
 const mockGetMemoryHints = jest.fn(() => Promise.resolve([]));

@@ -1,6 +1,6 @@
 /**
- * AIOS Updater
- * Intelligent update system for AIOS-Core installations
+ * AIOX Updater
+ * Intelligent update system for AIOX installations
  *
  * @module packages/installer/src/updater
  * @story Epic 7 - CLI Update Command
@@ -22,6 +22,18 @@ const https = require('https');
 const { execSync } = require('child_process');
 const { hashFile, hashesMatch } = require('../installer/file-hasher');
 const { PostInstallValidator, formatReport: formatValidationReport } = require('../installer/post-install-validator');
+
+const FRAMEWORK_PACKAGE_CANDIDATES = [
+  'aiox-core',
+  '@synkra/aiox-core',
+  'aios-core',
+  '@synkra/aios-core',
+];
+const REGISTRY_LATEST_ENDPOINTS = [
+  'https://registry.npmjs.org/aiox-core/latest',
+  'https://registry.npmjs.org/@synkra/aiox-core/latest',
+  'https://registry.npmjs.org/@synkra/aios-core/latest',
+];
 
 /**
  * Update status types
@@ -104,7 +116,7 @@ class AIOSUpdater {
       result.installedAt = this.installedVersion?.installedAt || null;
 
       if (!result.installed) {
-        result.error = 'AIOS not installed or version info not found';
+        result.error = 'AIOX not installed or version info not found';
         return result;
       }
 
@@ -118,7 +130,7 @@ class AIOSUpdater {
         if (!isOnline) {
           result.error = 'You appear to be offline. Please check your internet connection.';
         } else {
-          result.error = 'Package @synkra/aios-core not found on npm registry. This may be a local development installation.';
+          result.error = 'Package aiox-core not found on npm registry. This may be a local development installation.';
         }
         return result;
       }
@@ -164,9 +176,17 @@ class AIOSUpdater {
       }
     }
 
-    // Fallback to package.json
-    const packageJsonPath = path.join(this.projectRoot, 'node_modules', '@synkra', 'aios-core', 'package.json');
-    if (fs.existsSync(packageJsonPath)) {
+    // Fallback to package.json in installed package locations
+    const packageJsonPaths = [
+      path.join(this.projectRoot, 'node_modules', 'aiox-core', 'package.json'),
+      path.join(this.projectRoot, 'node_modules', '@synkra', 'aiox-core', 'package.json'),
+      path.join(this.projectRoot, 'node_modules', 'aios-core', 'package.json'),
+      path.join(this.projectRoot, 'node_modules', '@synkra', 'aios-core', 'package.json'),
+    ];
+    for (const packageJsonPath of packageJsonPaths) {
+      if (!fs.existsSync(packageJsonPath)) {
+        continue;
+      }
       try {
         const pkg = await fs.readJson(packageJsonPath);
         return { version: pkg.version, installedAt: null, mode: 'unknown' };
@@ -180,7 +200,7 @@ class AIOSUpdater {
     if (fs.existsSync(localPackageJsonPath)) {
       try {
         const pkg = await fs.readJson(localPackageJsonPath);
-        if (pkg.name === '@synkra/aios-core' || pkg.name === 'aios-core') {
+        if (FRAMEWORK_PACKAGE_CANDIDATES.includes(pkg.name)) {
           return { version: pkg.version, installedAt: null, mode: 'framework-development' };
         }
       } catch (error) {
@@ -197,39 +217,47 @@ class AIOSUpdater {
    * @returns {Promise<string|null>} Latest version or null
    */
   async getLatestVersion() {
-    return new Promise((resolve) => {
-      const request = https.get(
-        'https://registry.npmjs.org/@synkra/aios-core/latest',
-        { timeout: this.options.timeout },
-        (res) => {
-          let data = '';
+    for (const endpoint of REGISTRY_LATEST_ENDPOINTS) {
+      const version = await new Promise((resolve) => {
+        const request = https.get(
+          endpoint,
+          { timeout: this.options.timeout },
+          (res) => {
+            let data = '';
 
-          res.on('data', (chunk) => {
-            data += chunk;
-          });
+            res.on('data', (chunk) => {
+              data += chunk;
+            });
 
-          res.on('end', () => {
-            try {
-              const json = JSON.parse(data);
-              resolve(json.version || null);
-            } catch {
-              resolve(null);
-            }
-          });
-        },
-      );
+            res.on('end', () => {
+              try {
+                const json = JSON.parse(data);
+                resolve(json.version || null);
+              } catch {
+                resolve(null);
+              }
+            });
+          },
+        );
 
-      request.on('error', (error) => {
-        this.log(`npm registry error: ${error.message}`);
-        resolve(null);
+        request.on('error', (error) => {
+          this.log(`npm registry error (${endpoint}): ${error.message}`);
+          resolve(null);
+        });
+
+        request.on('timeout', () => {
+          request.destroy();
+          this.log(`npm registry timeout (${endpoint})`);
+          resolve(null);
+        });
       });
 
-      request.on('timeout', () => {
-        request.destroy();
-        this.log('npm registry timeout');
-        resolve(null);
-      });
-    });
+      if (version) {
+        return version;
+      }
+    }
+
+    return null;
   }
 
   /**
@@ -587,7 +615,7 @@ class AIOSUpdater {
 
     try {
       // Use npm to update the package
-      const cmd = `npm install @synkra/aios-core@${targetVersion} --save-exact`;
+      const cmd = `npm install aiox-core@${targetVersion} --save-exact`;
       this.log(`Running: ${cmd}`);
 
       execSync(cmd, {

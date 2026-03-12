@@ -17,7 +17,7 @@ describe('.env Template Generator', () => {
       expect(content).toMatch(/AIOS_VERSION=\d+\.\d+\.\d+/);
       expect(content).toContain('OPENAI_API_KEY=');
       expect(content).toContain('ANTHROPIC_API_KEY=');
-      expect(content).toContain('# Synkra AIOS Environment Configuration');
+      expect(content).toContain('# Synkra AIOX Environment Configuration');
     });
 
     it('should generate .env with provided API keys', () => {

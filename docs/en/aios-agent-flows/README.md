@@ -1,4 +1,4 @@
-# AIOS Agent Flows - Detailed Agent Documentation
+# AIOX Agent Flows - Detailed Agent Documentation
 
 > **EN** | [PT](../../aios-agent-flows/README.md) | [ES](../../es/aios-agent-flows/README.md)
 
@@ -12,7 +12,7 @@
 
 ## Overview
 
-This folder contains detailed documentation for all AIOS agents, including:
+This folder contains detailed documentation for all AIOX agents, including:
 
 - **Complete system** for each agent
 - **Mermaid flowcharts** of operations
@@ -171,7 +171,7 @@ flowchart TB
 |---------------|----------|---------|
 | Agent Reference Guide | [docs/agent-reference-guide.md](../../agent-reference-guide.md) | Quick reference |
 | Workflows Guide | [docs/guides/workflows-guide.md](../../guides/workflows-guide.md) | Workflows guide |
-| AIOS Workflows | [docs/aios-workflows/](../../aios-workflows/) | Detailed workflows |
+| AIOX Workflows | [docs/aios-workflows/](../../aios-workflows/) | Detailed workflows |
 | Architecture | [docs/architecture/](../../architecture/) | Technical architecture |
 
 ---
@@ -187,4 +187,4 @@ To add or update agent documentation:
 
 ---
 
-*AIOS Agent Flows Documentation v1.0 - Detailed documentation of the agent system*
+*AIOX Agent Flows Documentation v1.0 - Detailed documentation of the agent system*

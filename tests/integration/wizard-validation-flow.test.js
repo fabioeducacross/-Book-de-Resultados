@@ -23,7 +23,7 @@ describe('Wizard Validation Flow', () => {
       dependencies: {
         success: true,
         packageManager: 'npm',
-        offlineMode: false,
+        offlineMode: true,
       },
     };
 
@@ -49,7 +49,7 @@ describe('Wizard Validation Flow', () => {
         },
         configPath: '.mcp.json',
       },
-      dependencies: { success: true, packageManager: 'npm' },
+      dependencies: { success: true, packageManager: 'npm', offlineMode: true },
     };
 
     // When
@@ -64,7 +64,7 @@ describe('Wizard Validation Flow', () => {
     const installationContext = {
       files: { env: '.env' },
       configs: {},
-      dependencies: { success: true },
+      dependencies: { success: true, offlineMode: true },
     };
 
     const progressCalls = [];

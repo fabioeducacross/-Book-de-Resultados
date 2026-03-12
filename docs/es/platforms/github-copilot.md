@@ -1,6 +1,6 @@
 <!-- Traducción: ES | Original: /docs/platforms/en/github-copilot.md | Sincronización: 2026-01-26 -->
 
-# Guía de AIOS para GitHub Copilot
+# Guía de AIOX para GitHub Copilot
 
 > 🌐 [EN](../../platforms/github-copilot.md) | [PT](../../pt/platforms/github-copilot.md) | **ES**
 
@@ -16,7 +16,7 @@
 
 GitHub Copilot es el asistente de programación impulsado por IA de GitHub que se integra directamente con VS Code y otros editores. Ofrece finalizaciones de código, asistencia de chat e integración profunda con GitHub para solicitudes de extracción y revisiones de código.
 
-### ¿Por qué usar AIOS con GitHub Copilot?
+### ¿Por qué usar AIOX con GitHub Copilot?
 
 GitHub Copilot proporciona ventajas únicas:
 
@@ -46,7 +46,7 @@ GitHub Copilot proporciona ventajas únicas:
 |---|---|---|
 | **VS Code** | 1.101+ | Última versión |
 | **RAM** | 4GB | 8GB+ |
-| **Node.js** | 18.0+ (para AIOS) | 20.0+ |
+| **Node.js** | 18.0+ (para AIOX) | 20.0+ |
 
 ### Requisitos de Cuenta
 
@@ -81,7 +81,7 @@ Habilitar el modo agente en VS Code:
 2. Autoriza VS Code
 3. Verifica que la suscripción esté activa
 
-### Paso 3: Instalar AIOS
+### Paso 3: Instalar AIOX
 
 ```bash
 cd your-project
@@ -120,7 +120,7 @@ Este archivo proporciona contexto global a Copilot:
 # Instrucciones del Proyecto para GitHub Copilot
 
 ## Descripción General del Proyecto
-Este proyecto utiliza Synkra AIOS para desarrollo orquestado por IA.
+Este proyecto utiliza Synkra AIOX para desarrollo orquestado por IA.
 
 ## Estándares de Codificación
 - TypeScript con modo estricto
@@ -141,13 +141,13 @@ Cada agente tiene un modo de chat dedicado:
 ```markdown
 <!-- aios-dev.chatmode.md -->
 ---
-name: AIOS Developer
+name: AIOX Developer
 description: Agente Senior Full Stack Developer
 ---
 
 # Agente de Desarrollador
 
-Eres un Senior Full Stack Developer trabajando con Synkra AIOS.
+Eres un Senior Full Stack Developer trabajando con Synkra AIOX.
 
 ## Experiencia
 - TypeScript/JavaScript
@@ -183,14 +183,14 @@ VS Code proporciona cuatro modos integrados:
 | **Ask** | Responde preguntas sin hacer cambios |
 | **Edit** | Control granular sobre las ediciones propuestas |
 
-### Activando Modos de Agentes AIOS
+### Activando Modos de Agentes AIOX
 
 1. Abre la vista de Chat
 2. Haz clic en el selector de modo (parte superior del chat)
 3. Selecciona el modo deseado (Agent, Plan, Ask, Edit)
-4. Para agentes AIOS, usa modos de chat personalizados en `.github/chatmodes/`
+4. Para agentes AIOX, usa modos de chat personalizados en `.github/chatmodes/`
 
-### Modos Personalizados AIOS
+### Modos Personalizados AIOX
 
 | Modo | Propósito |
 |---|---|
@@ -315,7 +315,7 @@ crea un productService
 
 ```mermaid
 flowchart LR
-    Source["AIOS Core<br/>.aios-core/development/agents"] --> Parser["Agent Parser"]
+    Source["AIOX Core<br/>.aios-core/development/agents"] --> Parser["Agent Parser"]
     Parser --> Transform["Copilot Transformer"]
     Transform --> Modes[".github/chatmodes/"]
     Transform --> Instructions[".github/copilot-instructions.md"]
@@ -335,7 +335,7 @@ npm run sync:agents -- --ide github-copilot
 
 ```markdown
 ---
-name: AIOS Developer
+name: AIOX Developer
 description: Asistencia en desarrollo full-stack
 ---
 
@@ -393,7 +393,7 @@ Eres un Senior Full Stack Developer.
 
 #### Los Modos de Chat No Aparecen
 ```
-Problema: Los modos de agentes AIOS no aparecen en el selector
+Problema: Los modos de agentes AIOX no aparecen en el selector
 ```
 **Solución:**
 1. Asegúrate de tener VS Code 1.101+
@@ -452,7 +452,7 @@ R: Los modos de chat son contextos persistentes, mientras que las @menciones son
 
 ### De Cursor a Copilot
 
-1. Instala AIOS para Copilot:
+1. Instala AIOX para Copilot:
    ```bash
    npx @anthropic/aios init --ide github-copilot
    ```
@@ -477,4 +477,4 @@ R: Los modos de chat son contextos persistentes, mientras que las @menciones son
 
 ---
 
-*Synkra AIOS - Guía de Plataforma GitHub Copilot v1.0*
+*Synkra AIOX - Guía de Plataforma GitHub Copilot v1.0*

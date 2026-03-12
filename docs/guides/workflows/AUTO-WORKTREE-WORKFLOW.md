@@ -74,7 +74,7 @@ flowchart TB
     PF2 -->|Nao| ERR2[Erro: Git < 2.5]
 
     PF3 -->|Existe| PF4
-    PF3 -->|Nao existe| ERR3[Erro: AIOS incompleto]
+    PF3 -->|Nao existe| ERR3[Erro: AIOX incompleto]
 
     PF4 -->|OK| S1
     PF4 -->|Limite| WARN1[Aviso: Proximo do limite]
@@ -141,7 +141,7 @@ stateDiagram-v2
 
 ```mermaid
 graph TB
-    subgraph AIOS["AIOS Core"]
+    subgraph AIOX["AIOX Core"]
         WF[auto-worktree.yaml<br/>Workflow Definition]
         TK[create-worktree.md<br/>Task Definition]
     end
@@ -169,7 +169,7 @@ graph TB
     GIT -->|Cria| WT
     WM -->|Grava logs| LOG
 
-    style AIOS fill:#e3f2fd
+    style AIOX fill:#e3f2fd
     style INFRA fill:#fce4ec
     style FS fill:#f3e5f5
     style AGENTS fill:#e8f5e9
@@ -459,7 +459,7 @@ Alteracoes aqui nao afetam a branch principal ate o merge.
 |-----------|---------------|-------------|
 | **Git** | >= 2.5 | `git --version` |
 | **Node.js** | >= 18 | `node --version` |
-| **AIOS Core** | Instalado | Verificar `.aios-core/` |
+| **AIOX Core** | Instalado | Verificar `.aios-core/` |
 
 ### Dependencias NPM
 
@@ -591,7 +591,7 @@ flowchart TD
 |------|-------|-----------|
 | `Not a git repository` | Diretorio nao e repo git | Executar `git init` |
 | `Git worktree not supported` | Git < 2.5 | Atualizar Git |
-| `WorktreeManager not found` | AIOS incompleto | Reinstalar AIOS |
+| `WorktreeManager not found` | AIOX incompleto | Reinstalar AIOX |
 | `Maximum worktrees limit reached` | >= 10 worktrees | Executar `*cleanup-worktrees` |
 | `Could not determine story ID` | ID nao encontrado | Fornecer ID explicitamente |
 | `Worktree creation failed` | Erro no git worktree | Verificar git status |
@@ -786,4 +786,4 @@ ls .git/worktrees/{storyId}/locked
 
 ---
 
-*Documentacao gerada automaticamente pelo AIOS-FULLSTACK*
+*Documentacao gerada automaticamente pelo AIOX-FULLSTACK*

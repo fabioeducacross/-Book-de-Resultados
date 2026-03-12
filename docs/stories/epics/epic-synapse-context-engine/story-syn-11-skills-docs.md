@@ -9,7 +9,7 @@
 **Type:** Feature
 **Lead:** @dev (Dex) + @architect (Aria)
 **Depends On:** SYN-7 (Hook Entry Point — Done)
-**Repository:** aios-core
+**Repository:** aiox-core
 **Wave:** 3 (Pro + Polish)
 
 ## Executor Assignment
@@ -24,7 +24,7 @@ quality_gate_tools: [manual-review, coderabbit-cli]
 
 ## User Story
 
-**Como** usuario do AIOS,
+**Como** usuario do AIOX,
 **Quero** uma skill SYNAPSE com documentacao completa (overview, guias de referencia, troubleshooting) acessivel via `/synapse` no Claude Code,
 **Para** entender como o motor SYNAPSE funciona, quais dominios existem, como criar/gerenciar dominios customizados, e como diagnosticar problemas — sem precisar ler codigo fonte.
 

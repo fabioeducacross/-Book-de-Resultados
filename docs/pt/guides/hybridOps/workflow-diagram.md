@@ -203,7 +203,7 @@ pie title Task Delegation Distribution
 
 ## Pontos de Integracao
 
-### Com Agents AIOS
+### Com Agents AIOX
 
 | Integracao     | Descricao                                                   |
 | -------------- | ----------------------------------------------------------- |
@@ -214,7 +214,7 @@ pie title Task Delegation Distribution
 
 ### Com Quality Gates
 
-HybridOps integra com os quality gates de 3 camadas do AIOS:
+HybridOps integra com os quality gates de 3 camadas do AIOX:
 
 | Camada                      | Papel no HybridOps                  |
 | --------------------------- | ----------------------------------- |
@@ -275,7 +275,7 @@ HybridOps integra com os quality gates de 3 camadas do AIOS:
 ## Documentos Relacionados
 
 - [hybrid-ops-pv.yaml](./hybrid-ops-pv.yaml) - Definicao do workflow
-- [Arquitetura de Alto Nivel AIOS](../../architecture/high-level-architecture.md)
+- [Arquitetura de Alto Nivel AIOX](../../architecture/high-level-architecture.md)
 - [Arquitetura CI/CD](../../architecture/ci-cd.md)
 
 ---

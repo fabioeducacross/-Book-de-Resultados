@@ -1,4 +1,4 @@
-# Sistema UX-Design-Expert AIOS
+# Sistema UX-Design-Expert AIOX
 
 > **Versão:** 1.0.0
 > **Criado:** 2026-02-04
@@ -9,7 +9,7 @@
 
 ## Visão Geral
 
-Este documento descreve o sistema completo do agente **UX-Design Expert (Uma)**, incluindo todos os arquivos envolvidos, fluxos de trabalho, comandos disponiveis, integracoes com outros agentes e workflows AIOS.
+Este documento descreve o sistema completo do agente **UX-Design Expert (Uma)**, incluindo todos os arquivos envolvidos, fluxos de trabalho, comandos disponiveis, integracoes com outros agentes e workflows AIOX.
 
 O UX-Design Expert e um agente hibrido que combina:
 - **Sally's UX Principles** - Empatia, pesquisa de usuario, design centrado no usuario
@@ -88,7 +88,7 @@ flowchart TB
 | Arquivo | Propósito |
 |---------|-----------|
 | `.aios-core/development/agents/ux-design-expert.md` | Definição completa do agente (persona, comandos, workflows) |
-| `.claude/commands/AIOS/agents/ux-design-expert.md` | Comando Claude Code para ativar @ux-design-expert |
+| `.claude/commands/AIOX/agents/ux-design-expert.md` | Comando Claude Code para ativar @ux-design-expert |
 
 ### Tasks por Fase
 

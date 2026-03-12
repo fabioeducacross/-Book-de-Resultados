@@ -9,7 +9,7 @@ const path = require('path');
  * @property {string} repositoryUrl - Git remote URL
  * @property {string} mode - 'framework-development' or 'project-development'
  * @property {string} projectRoot - Current working directory
- * @property {string} frameworkLocation - Path to AIOS framework files
+ * @property {string} frameworkLocation - Path to framework files
  * @property {string} packageName - Name from package.json
  * @property {string} packageVersion - Version from package.json
  */
@@ -22,7 +22,7 @@ function detectRepositoryContext() {
     remoteUrl = execSync('git config --get remote.origin.url', { cwd })
       .toString()
       .trim();
-  } catch (error) {
+  } catch (_error) {
     console.warn('⚠️  No git repository detected');
     return null;
   }
@@ -36,11 +36,24 @@ function detectRepositoryContext() {
 
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
-  // Detect if we're in @synkra/aios-core repo itself
+  // Detect if we're in the framework repo itself, accepting both legacy AIOS and new AIOX names.
+  const frameworkPackageNames = new Set([
+    '@aios/fullstack',
+    '@aiox/fullstack',
+    '@synkra/aios-core',
+    '@synkra/aiox-core',
+    'aios-core',
+    'aiox-core',
+  ]);
+  const frameworkRemoteMarkers = [
+    '@synkra/aios-core',
+    '@synkra/aiox-core',
+    'SynkraAI/aios-core',
+    'SynkraAI/aiox-core',
+  ];
   const isFrameworkRepo =
-    packageJson.name === '@aios/fullstack' ||
-    packageJson.name === '@synkra/aios-core' ||
-    remoteUrl.includes('@synkra/aios-core');
+    frameworkPackageNames.has(packageJson.name) ||
+    frameworkRemoteMarkers.some((marker) => remoteUrl.includes(marker));
 
   // Load installation config if exists
   let installConfig = null;
@@ -55,10 +68,21 @@ function detectRepositoryContext() {
     mode: installConfig?.installation?.mode ||
           (isFrameworkRepo ? 'framework-development' : 'project-development'),
     projectRoot: cwd,
-    frameworkLocation: isFrameworkRepo ? cwd : path.join(cwd, 'node_modules/@aios/fullstack'),
+    frameworkLocation: isFrameworkRepo ? cwd : findFrameworkLocation(cwd),
     packageName: packageJson.name,
     packageVersion: packageJson.version,
   };
+}
+
+function findFrameworkLocation(projectRoot) {
+  const candidates = [
+    path.join(projectRoot, 'node_modules', '@synkra', 'aiox-core'),
+    path.join(projectRoot, 'node_modules', '@synkra', 'aios-core'),
+    path.join(projectRoot, 'node_modules', '@aiox', 'fullstack'),
+    path.join(projectRoot, 'node_modules', '@aios', 'fullstack'),
+  ];
+
+  return candidates.find((candidate) => fs.existsSync(candidate)) || candidates[0];
 }
 
 module.exports = { detectRepositoryContext };

@@ -10,13 +10,25 @@ Este pacote implementa o pipeline completo de geração do relatório institucio
 
 ```
 Planilha XLSX
-  ↓ parser       — leitura das 4 abas (metadata, escolas, resultados, distribuicao)
+  ↓ parser       — leitura do layout legado de 4 abas ou do layout real de Avaliação Digital
   ↓ validator    — validação do contrato de dados
   ↓ normalizer   — cálculo de métricas e rankings
   ↓ renderer     — construção das páginas do book
   ↓ charts       — descritores de gráficos por página
-  ↓ exporter     — exportação para PPTX / JSON
+  ↓ exporter     — exportação para PPTX / PDF / JSON
 ```
+
+---
+
+## Diagnóstico de Layout
+
+O pacote já possui exportação PDF baseada em HTML paginado. O fluxo real para `format: 'pdf'` é HTML → navegador headless → PDF.
+
+O diagnóstico atual é que o principal gargalo para reproduzir o book institucional não está na conversão para PDF, mas na fidelidade visual do HTML/CSS de impressão.
+
+Documento técnico completo:
+
+- `docs/pt/specifications/book-de-resultados-diagnostico-html-pdf.md`
 
 ---
 
@@ -36,7 +48,7 @@ const { generateBook } = require('@synkra/book-de-resultados');
 const result = await generateBook({
   inputFile: '/caminho/para/resultados.xlsx',
   outputDir: '/caminho/para/saida',
-  format: 'pptx',    // 'pptx' | 'json'
+  format: 'pptx',    // 'pptx' | 'pdf' | 'json'
   version: 'v1',
 });
 
@@ -45,11 +57,27 @@ console.log(`Páginas: ${result.pageCount}`);
 console.log(`Tempo: ${result.durationMs}ms`);
 ```
 
+### Exemplo de integração UI + backend
+
+O pacote inclui um servidor HTTP mínimo para conectar o wireframe de upload/listagem/auditoria ao backend real de geração:
+
+```bash
+npm run dev:audit-ui --workspace packages/book-de-resultados
+```
+
+Depois, abra http://127.0.0.1:3210 para testar a listagem de execuções, a auditoria detalhada e o upload de uma planilha XLSX.
+
+O histórico de execuções do exemplo é persistido localmente em `packages/book-de-resultados/examples/.runtime/audit-runs.json`, e a tela já envia filtros de data, operação, status, responsável e registro para a API.
+
 ---
 
 ## Contrato de Dados da Planilha
 
-A planilha XLSX deve conter **4 abas**:
+O parser suporta dois formatos de entrada:
+
+### Formato 1 — layout legado de 4 abas
+
+A planilha XLSX pode conter **4 abas**:
 
 ### Aba `metadata`
 
@@ -87,6 +115,15 @@ Pares chave-valor (coluna A = chave, coluna B = valor):
 | nivel     | ✅          | `abaixo_do_basico`, `basico`, `adequado`, `avancado`   |
 | alunos    | ✅          | Número de alunos no nível (inteiro ≥ 0)                |
 
+### Formato 2 — layout real de Avaliação Digital
+
+Também é suportado o layout observado no caso real de Canoas 2025.2, com as abas:
+
+- `Proficiências`
+- `Habilidades`
+
+Nesse modo, o parser detecta automaticamente a estrutura da planilha e a projeta para o contrato canônico do pipeline.
+
 ---
 
 ## Estrutura do Book Gerado
@@ -95,12 +132,19 @@ Pares chave-valor (coluna A = chave, coluna B = valor):
 1  Capa
 2  Apresentação
 3  Sumário (gerado automaticamente)
-4  Visão Geral da Rede
-5  Resultados por Disciplina   (uma página por disciplina)
-6  Ranking de Escolas           (paginado se > 20 escolas)
-7  Resultados por Escola        (uma página por escola)
-8  Resultados por Ano/Série
-9  Metodologia
+4  Antes da Avaliação          (abertura editorial)
+5  Contexto da Avaliação
+6  Durante a Aplicação         (capítulo editorial)
+7  Participação durante a aplicação
+8  Metodologia
+9  Resultados                  (capítulo editorial)
+10 Visão Geral da Rede
+11 Resultados por Disciplina   (uma página por disciplina)
+12 Resultados por Ano/Série
+13 Ranking de Escolas          (paginado se > 20 escolas)
+14 Habilidades por Disciplina  (quando disponível — paginado a cada 20 linhas)
+15 Resultados por Escola       (panorama + comparativo por área para cada escola)
+16 Próximos Passos             (capítulo e encerramento editorial)
 ```
 
 ---
@@ -122,10 +166,14 @@ Pares chave-valor (coluna A = chave, coluna B = valor):
 | --------------------- | ----------------- | ----------- | -------- | ------------------------------------- |
 | `inputFile`           | string            | ✅          | —        | Caminho absoluto para o arquivo XLSX  |
 | `outputDir`           | string            | ✅          | —        | Diretório de saída                    |
-| `format`              | `'pptx'`\|`'json'`| —           | `'pptx'` | Formato de exportação                 |
+| `format`              | `'pptx'`\|`'pdf'`\|`'json'`| —           | `'pptx'` | Formato de exportação                 |
 | `version`             | string            | —           | `'v1'`   | Versão do relatório                   |
 | `logoUrl`             | string            | —           | —        | Caminho ou URL do logo para a capa    |
 | `imagemInstitucional` | string            | —           | —        | Imagem institucional para a capa      |
+| `theme`               | object            | —           | —        | Overrides de tema visual (ver abaixo) |
+| `pdfBrowserPath`      | string            | —           | —        | Caminho explícito para Edge/Chrome no modo PDF |
+| `keepHtml`            | boolean           | —           | `false`  | Preserva o `.print.html` gerado ao exportar PDF |
+| `reviewHtml`          | boolean           | —           | `false`  | Preserva o `.print.html` e gera um `.print.review.json` com checklist e baseline editorial |
 | `strict`              | boolean           | —           | `false`  | Se `true`, falha em avisos também     |
 
 **Retorno:**
@@ -139,6 +187,12 @@ Pares chave-valor (coluna A = chave, coluna B = valor):
   durationMs: number;       // Tempo de geração em ms
   warnings: string[];       // Avisos de validação
   log: object[];            // Log detalhado de cada etapa
+  artifacts?: {
+    pdfFile?: string;
+    printHtmlFile?: string;
+    reviewManifestFile?: string;
+    editorialBaselineFile?: string;
+  }
 }
 ```
 
@@ -147,6 +201,140 @@ Pares chave-valor (coluna A = chave, coluna B = valor):
 - `Error` — se `inputFile` ou `outputDir` não forem fornecidos
 - `ValidationError` — se a planilha não passar na validação
 - `Error` — se o arquivo XLSX não puder ser lido
+
+### Exportação PDF
+
+Ao usar `format: 'pdf'`, o pacote renderiza um HTML paginado e o imprime com um navegador Chromium/Edge em modo headless. O caminho do navegador pode ser:
+
+- detectado automaticamente em instalações comuns de Edge/Chrome
+- informado explicitamente em `pdfBrowserPath`
+- definido pela variável de ambiente `BOOK_DE_RESULTADOS_PDF_BROWSER`
+
+```js
+await generateBook({
+  inputFile,
+  outputDir,
+  format: 'pdf',
+  pdfBrowserPath: 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+});
+```
+
+### Revisão HTML contra o book atual
+
+Quando o objetivo é revisar fidelidade visual antes do PDF final, ative `reviewHtml`.
+
+```js
+const result = await generateBook({
+  inputFile,
+  outputDir,
+  format: 'pdf',
+  pdfBrowserPath: 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+  reviewHtml: true,
+});
+
+console.log(result.artifacts.printHtmlFile);
+console.log(result.artifacts.reviewManifestFile);
+```
+
+Nesse modo, o pacote:
+
+- preserva o `.print.html` gerado
+- cria um `.print.review.json` com sequência de páginas, seções prioritárias e checklist de revisão
+- referencia o baseline editorial versionado em `packages/book-de-resultados/config/editorial-review-baseline.json`
+- aponta para o PDF institucional real versionado em `tests\book-de-resultados\fixtures\canoas-2025-sem2\RelatórioDigitaldeAvaliação_Canoas_2025_SegundoSemestre.pdf`
+
+O baseline inicial assume uma regra simples: o HTML precisa seguir a diagramação e a identidade visual do **book atual**. O PDF continua sendo a materialização final de impressão.
+
+---
+
+## Tema Visual (Theme)
+
+O Book de Resultados possui um sistema de tema parametrizável. Todas as cores, tipografia e espaçamentos têm valores padrão sensatos que podem ser sobrescritos pontualmente via `createTheme()` ou via a opção `theme` do `generateBook`.
+
+O preset padrão agora fica versionado em `packages/book-de-resultados/config/theme.tokens.yaml`, o que facilita revisar e evoluir a identidade visual sem espalhar tokens mutáveis pelo código.
+
+Acima desse preset, o pacote também suporta um manifesto editorial versionado em `packages/book-de-resultados/config/design-manifest.json`. Esse arquivo referencia o arquivo de tokens, centraliza assets padrão e registra metadados editoriais usados no HTML paginado e no review manifest.
+
+### Uso rápido
+
+```js
+const { generateBook, createTheme } = require('@synkra/book-de-resultados');
+
+// Tema padrão (sem alterações)
+await generateBook({ inputFile, outputDir });
+
+// Tema personalizado — altera apenas o que for passado; o restante herda o padrão
+await generateBook({
+  inputFile,
+  outputDir,
+  theme: {
+    colors: {
+      primary: '#0D47A1',                   // cor principal (títulos, cabeçalhos)
+      proficiency: {
+        adequado: '#1B5E20',                // cor do nível Adequado
+      },
+    },
+    typography: {
+      fontFace: 'Arial',                    // fonte global
+    },
+  },
+});
+```
+
+### Estrutura do tema padrão
+
+```js
+{
+  colors: {
+    primary:         '#1A237E',   // títulos e headings
+    secondary:       '#3949AB',   // bordas e acentos
+    accent:          '#5C6BC0',   // elementos secundários
+    background:      '#FFFFFF',
+    surface:         '#F5F5F5',
+    textPrimary:     '#212121',
+    textSecondary:   '#424242',
+    textMuted:       '#757575',
+    proficiency: {
+      abaixo_do_basico: '#D32F2F',
+      basico:           '#F57C00',
+      adequado:         '#388E3C',
+      avancado:         '#1565C0',
+    },
+    deltaPositive:   '#2E7D32',   // delta positivo (verde)
+    deltaNegative:   '#C62828',   // delta negativo (vermelho)
+    deltaNeutral:    '#757575',   // delta neutro / sem dados
+    cardBackground:  '#E8EAF6',
+    cardBorder:      '#3949AB',
+    tableBorder:     '#BDBDBD',
+    tableSurface:    '#FAFAFA',
+    tableHeader:     '#E8EAF6',
+  },
+  typography: {
+    fontFace: 'Calibri',
+    sizes: { pageTitle: 20, heading: 16, subheading: 13, body: 12, small: 10, tiny: 9 },
+  },
+  spacing: {
+    pageMarginX: 0.3, pageMarginY: 0.85,
+    cardWidth: 2.2, cardHeight: 1.0, cardGap: 0.2, tableWidth: 9.0,
+  },
+}
+```
+
+---
+
+## Componentes Visuais
+
+Além dos descritores de gráfico (`charts.js`), o pipeline gera **descritores de componentes** ricos, usados pelo exporter ao montar os slides.
+
+| Componente              | Seções que o usam                                     | Descrição                                                    |
+| ----------------------- | ----------------------------------------------------- | ------------------------------------------------------------ |
+| `proficiencia`          | `escola`, `visao_geral`, `resultados_disciplina`      | Tabela colorida por nível com alunos e % por faixa           |
+| `comparativo`           | `escola_disciplinas`                                  | Tabela lado a lado escola vs. rede com delta colorido (+/−)  |
+| `habilidades_table`     | `habilidades_disciplina`                              | Tabela de habilidades paginada, com coloração por desempenho |
+
+### Habilidades por Disciplina
+
+Quando a planilha contém dados de habilidades (aba `Habilidades`), o book gera automaticamente páginas de tipo `habilidades_disciplina`, uma por disciplina, paginadas a cada 20 linhas. Cada linha é colorida pela faixa de proficiência do `% Acerto`.
 
 ---
 
@@ -167,22 +355,89 @@ relatorio_canoas_2025_2025_sem2_v1.pptx
 ## Testes
 
 ```bash
+# Run all book-de-resultados tests (unit + regression)
+npm test -- --testPathPattern="tests/book-de-resultados"
+
+# Run only the Canoas regression suite
+npm test -- --testPathPattern="regression-canoas"
+
+# Run all tests
 npm test
 ```
 
 ---
 
+## Suíte de Regressão — Caso Canoas
+
+A suíte `tests/book-de-resultados/regression-canoas.test.js` valida o pipeline
+completo (**parse → validate → normalize → render → charts → export**) usando
+uma planilha sanitizada / anônima definida em `tests/book-de-resultados/canoas-fixture.js`.
+
+### Estrutura dos arquivos de regressão
+
+| Arquivo | Propósito |
+|---|---|
+| `tests/book-de-resultados/canoas-fixture.js` | Planilha ExcelJS em memória com 3 escolas anônimas + 6 habilidades |
+| `tests/book-de-resultados/canoas-baseline.json` | Baseline estrutural: valores esperados para cada etapa do pipeline |
+| `tests/book-de-resultados/regression-canoas.test.js` | Suíte completa — 8 estágios + helper de atualização |
+
+### CI-safety
+
+O `exportPdf()` usa `child_process.execFile` para chamar um browser headless.
+Nos testes de regressão esse módulo é substituído por um mock Jest que escreve
+um PDF mínimo `%PDF-1.4\n% mocked` — nenhum Chromium/Edge instalado é necessário.
+
+### Atualizando o Baseline com Segurança
+
+Ao **alterar intencionalmente** o comportamento do pipeline (novo campo,
+mudança de paginação, novo tipo de página etc.) o baseline deve ser
+regenerado:
+
+```bash
+# 1. Execute a suíte com a flag UPDATE_BASELINE=1
+UPDATE_BASELINE=1 npx jest tests/book-de-resultados/regression-canoas.test.js
+
+# No Windows (PowerShell)
+$env:UPDATE_BASELINE=1; npx jest tests/book-de-resultados/regression-canoas.test.js
+
+# No Windows (cmd)
+set UPDATE_BASELINE=1 && npx jest tests/book-de-resultados/regression-canoas.test.js
+```
+
+O script re-executa o pipeline com a fixture anônima, captura as propriedades
+estruturais reais e sobrescreve `tests/book-de-resultados/canoas-baseline.json`.
+
+```bash
+# 2. Verifique o diff antes de commitar
+git diff tests/book-de-resultados/canoas-baseline.json
+
+# 3. Confira que a suíte passa sem UPDATE_BASELINE
+npx jest tests/book-de-resultados/regression-canoas.test.js
+
+# 4. Commite o baseline atualizado junto com a mudança de código
+git add tests/book-de-resultados/canoas-baseline.json
+git commit -m "test(regression): update Canoas baseline after <descrição da mudança>"
+```
+
+> **Nunca** atualize o baseline para cobrir uma regressão involuntária.
+> O baseline deve ser atualizado **somente** quando a mudança de comportamento
+> é deliberada e revisada.
+
+---
+
 ## Módulos
 
-| Módulo          | Responsabilidade                          |
-| --------------- | ----------------------------------------- |
-| `src/parser.js`    | Leitura e parsing do XLSX                |
-| `src/validator.js` | Validação do contrato de dados           |
-| `src/normalizer.js`| Cálculo de métricas e rankings           |
-| `src/charts.js`    | Descritores de gráficos por página       |
-| `src/renderer.js`  | Construção das páginas do book           |
-| `src/exporter.js`  | Exportação para PPTX/JSON                |
-| `src/index.js`     | Orquestração do pipeline completo        |
+| Módulo                 | Responsabilidade                                       |
+| ---------------------- | ------------------------------------------------------ |
+| `src/parser.js`        | Leitura e parsing do XLSX                             |
+| `src/validator.js`     | Validação do contrato de dados                        |
+| `src/normalizer.js`    | Cálculo de métricas e rankings                        |
+| `src/renderer.js`      | Construção das páginas do book                        |
+| `src/charts.js`        | Descritores de gráficos por página                    |
+| `src/components.js`    | Descritores de componentes visuais (proficiência, habilidades, comparativo) |
+| `src/theme.js`         | Sistema de tema visual parametrizável                 |
+| `src/exporter.js`      | Exportação para PPTX/PDF/JSON (usa tema e componentes) |
+| `src/index.js`         | Orquestração do pipeline completo                     |
 
 ---
 

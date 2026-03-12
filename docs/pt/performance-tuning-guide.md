@@ -4,7 +4,7 @@
   Última sincronização: 2026-01-26
 -->
 
-# Guia de Otimização de Performance do Synkra AIOS
+# Guia de Otimização de Performance do Synkra AIOX
 
 > 🌐 [EN](../performance-tuning-guide.md) | **PT** | [ES](../es/performance-tuning-guide.md)
 
@@ -12,7 +12,7 @@
 
 ## Visao Geral
 
-Este guia abrangente fornece estratégias, ferramentas e melhores práticas para otimizar a performance do Synkra AIOS em todos os componentes críticos.
+Este guia abrangente fornece estratégias, ferramentas e melhores práticas para otimizar a performance do Synkra AIOX em todos os componentes críticos.
 
 ## Metas de Performance
 

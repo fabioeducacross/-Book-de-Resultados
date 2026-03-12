@@ -1,4 +1,4 @@
-# Guia de Workflows do AIOS
+# Guia de Workflows do AIOX
 
 **Versao:** 1.0.0
 **Ultima Atualizacao:** 2026-02-02
@@ -8,7 +8,7 @@
 
 ## Visao Geral
 
-Os Workflows do AIOS sao sequencias orquestradas de atividades de agents que automatizam processos de desenvolvimento complexos. Eles fornecem padroes estruturados e repetitivos para cenarios de desenvolvimento comuns.
+Os Workflows do AIOX sao sequencias orquestradas de atividades de agents que automatizam processos de desenvolvimento complexos. Eles fornecem padroes estruturados e repetitivos para cenarios de desenvolvimento comuns.
 
 ### Conceitos Chave
 
@@ -294,7 +294,7 @@ Workflows persistem entre sessoes do Claude Code:
 
 ## Padroes de Workflow
 
-O AIOS detecta padroes comuns de workflow baseados no historico de comandos:
+O AIOX detecta padroes comuns de workflow baseados no historico de comandos:
 
 ### Padroes Detectados
 
@@ -397,4 +397,4 @@ cat .aios-core/development/workflows/{name}.yaml
 
 ---
 
-*Guia de Workflows do AIOS v1.0 - Orquestrando Colaboracao IA-Humano*
+*Guia de Workflows do AIOX v1.0 - Orquestrando Colaboracao IA-Humano*

@@ -1,0 +1,125 @@
+{
+    "manifestVersion": "1.0.0",
+    "id": "educacross-book-editorial",
+    "label": "Educacross Book Editorial",
+    "themeRef": "canoas-publication-export",
+    "theme": {
+        "tokensFile": "theme.tokens.yaml",
+        "overrides": {}
+    },
+    "componentsFile": "design-components.json",
+    "assets": {
+        "logoUrl": "assets/logos/canoas-2025/PMC-principal-preto.png",
+        "imagemInstitucional": null,
+        "editorialAssets": {
+            "participacaoImageUrl": "assets/editorial/canoas-2025/medium-shot-kids-with-tablet.jpg",
+            "participacaoImageAlt": "Estudantes usando tablet",
+            "escolasParticipantesImageUrl": "assets/editorial/canoas-2025/fotolia_52159267.jpg",
+            "escolasParticipantesImageAlt": "Estudantes em sala de aula",
+            "chapterResultadosImageUrl": "assets/editorial/canoas-2025/Fotolia_77334942_Subscription_Monthly_M.png",
+            "chapterResultadosOverlayImageUrl": "assets/editorial/canoas-2025/350.png",
+            "chapterResultadosImageAlt": "Abertura editorial do capítulo Resultados"
+        }
+    },
+    "editorial": {
+        "sourceOfTruth": "html-paginado",
+        "baselineFile": "editorial-review-baseline.json"
+    },
+    "templates": {
+        "cover-page": {
+            "shellRef": "cover-slab",
+            "styleRef": "institutional-cover",
+            "chromeMode": "none"
+        },
+        "chapter-opener": {
+            "shellRef": "chapter-hero-shell",
+            "styleRef": "chapter-hero",
+            "chromeMode": "none"
+        },
+        "editorial-body": {
+            "shellRef": "editorial-split-shell",
+            "styleRef": "editorial-split",
+            "chromeMode": "none"
+        },
+        "editorial-table": {
+            "shellRef": "editorial-table-shell",
+            "styleRef": "editorial-table",
+            "chromeMode": "none"
+        },
+        "network-overview": {
+            "shellRef": "network-overview-shell",
+            "styleRef": "analytic-overview",
+            "chromeMode": "default"
+        },
+        "discipline-results": {
+            "shellRef": "discipline-results-shell",
+            "styleRef": "analytic-discipline",
+            "chromeMode": "default"
+        },
+        "ranking-table": {
+            "shellRef": "dense-table-shell",
+            "styleRef": "dense-table",
+            "chromeMode": "framed",
+            "frameId": "ranking-frame"
+        },
+        "school-overview": {
+            "shellRef": "school-summary-shell",
+            "styleRef": "school-summary",
+            "chromeMode": "framed",
+            "frameId": "school-frame"
+        },
+        "school-comparison": {
+            "shellRef": "school-comparison-shell",
+            "styleRef": "school-comparison",
+            "chromeMode": "framed",
+            "frameId": "school-frame"
+        },
+        "skills-table": {
+            "shellRef": "dense-table-shell",
+            "styleRef": "dense-table",
+            "chromeMode": "framed",
+            "frameId": "skills-frame"
+        }
+    },
+    "sections": {
+        "capa": {
+            "template": "cover-page"
+        },
+        "capitulo": {
+            "template": "chapter-opener"
+        },
+        "contexto_avaliacao": {
+            "template": "editorial-body"
+        },
+        "participacao_rede": {
+            "template": "editorial-body"
+        },
+        "participacao_rede_tabela": {
+            "template": "editorial-table"
+        },
+        "metodologia": {
+            "template": "editorial-body"
+        },
+        "visao_geral": {
+            "template": "network-overview"
+        },
+        "resultados_disciplina": {
+            "template": "discipline-results"
+        },
+        "ranking": {
+            "template": "ranking-table"
+        },
+        "escola": {
+            "template": "school-overview"
+        },
+        "escola_disciplinas": {
+            "template": "school-comparison"
+        },
+        "habilidades_disciplina": {
+            "template": "skills-table"
+        },
+        "proximos_passos": {
+            "template": "editorial-body"
+        }
+    }
+}

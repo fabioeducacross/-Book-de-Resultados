@@ -1,4 +1,4 @@
-# AIOS Executor Decision Tree
+# AIOX Executor Decision Tree
 
 **Date:** 2025-11-13  
 **Version:** 1.0.0  
@@ -9,7 +9,7 @@
 
 ## Purpose
 
-This document defines HOW to choose the appropriate executor type (Agente, Worker, Humano, Clone) for any AIOS Task based on task characteristics, requirements, and constraints.
+This document defines HOW to choose the appropriate executor type (Agente, Worker, Humano, Clone) for any AIOX Task based on task characteristics, requirements, and constraints.
 
 ---
 

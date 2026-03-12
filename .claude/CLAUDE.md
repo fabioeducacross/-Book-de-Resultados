@@ -1,4 +1,4 @@
-# CLAUDE.md - Synkra AIOS
+# CLAUDE.md - Synkra AIOX
 
 Este arquivo configura o comportamento do Claude Code ao trabalhar neste repositório.
 
@@ -6,7 +6,7 @@ Este arquivo configura o comportamento do Claude Code ao trabalhar neste reposit
 
 ## Constitution
 
-O AIOS possui uma **Constitution formal** com princípios inegociáveis e gates automáticos.
+O AIOX possui uma **Constitution formal** com princípios inegociáveis e gates automáticos.
 
 **Documento completo:** `.aios-core/constitution.md`
 
@@ -34,13 +34,13 @@ Configure in `~/.claude/settings.json` (global) or `.claude/settings.json` (proj
 { "language": "portuguese" }
 ```
 
-The installer writes this automatically during `npx aios-core install`. No language config in `core-config.yaml`.
+The installer writes this automatically during `npx aiox-core install`. No language config in `core-config.yaml`.
 
 ---
 
 ## Premissa Arquitetural: CLI First
 
-O Synkra AIOS segue uma hierarquia clara de prioridades que deve guiar **TODAS** as decisões:
+O Synkra AIOX segue uma hierarquia clara de prioridades que deve guiar **TODAS** as decisões:
 
 ```
 CLI First → Observability Second → UI Third
@@ -67,7 +67,7 @@ CLI First → Observability Second → UI Third
 ## Estrutura do Projeto
 
 ```
-aios-core/
+aiox-core/
 ├── .aios-core/              # Core do framework
 │   ├── core/                # Módulos principais (orchestration, memory, etc.)
 │   ├── data/                # Knowledge base, entity registry
@@ -87,7 +87,7 @@ aios-core/
 ## Sistema de Agentes
 
 ### Ativação de Agentes
-Use `@agent-name` ou `/AIOS:agents:agent-name`:
+Use `@agent-name` ou `/AIOX:agents:agent-name`:
 
 | Agente | Persona | Escopo Principal |
 |--------|---------|------------------|
@@ -270,11 +270,11 @@ npm run typecheck           # Verificar tipos
 npm run build               # Build produção
 ```
 
-### AIOS
+### AIOX
 ```bash
-npx aios-core install       # Instalar AIOS
-npx aios-core doctor        # Diagnóstico do sistema
-npx aios-core info          # Informações do sistema
+npx aiox-core install       # Instalar AIOX
+npx aiox-core doctor        # Diagnóstico do sistema
+npx aiox-core info          # Informações do sistema
 ```
 
 ### Dashboard (apps/dashboard/)
@@ -312,5 +312,5 @@ tail -f .aios/logs/agent.log
 
 ---
 
-*Synkra AIOS Claude Code Configuration v4.0*
+*Synkra AIOX Claude Code Configuration v4.0*
 *CLI First | Observability Second | UI Third*

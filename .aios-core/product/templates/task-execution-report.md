@@ -289,7 +289,7 @@ Architecture design complete:
 
 ### Output
 PRD created:
-- Product: AIOS Framework
+- Product: AIOX Framework
 - Version: 2.0
 - Epics: 5 defined
 - Stories: 23 planned

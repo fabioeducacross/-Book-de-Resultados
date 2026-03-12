@@ -1,4 +1,4 @@
-# [P0] Missing AIOS Core module: utils/repository-detector - Blocks Linux Installation
+# [P0] Missing AIOX Core module: utils/repository-detector - Blocks Linux Installation
 
 ## 🔴 Priority: P0 (CRITICAL - Installation Blocked)
 
@@ -13,7 +13,7 @@
 
 ## 📋 Description
 
-The AIOS installer fails immediately on Linux systems with a module not found error, preventing any installation or testing. The installer cannot locate the AIOS Core module `utils/repository-detector`, blocking all Linux platform validation for Story 1.10c.
+The AIOX installer fails immediately on Linux systems with a module not found error, preventing any installation or testing. The installer cannot locate the AIOX Core module `utils/repository-detector`, blocking all Linux platform validation for Story 1.10c.
 
 **Impact:** This is a **CRITICAL BLOCKER** for Sprint 1 completion, as Story 1.10c cannot proceed without a working installer on Linux.
 
@@ -24,9 +24,9 @@ The AIOS installer fails immediately on Linux systems with a module not found er
 ### Error Message
 
 ```
-Error: Cannot find AIOS Core module: utils/repository-detector
+Error: Cannot find AIOX Core module: utils/repository-detector
 Searched: ${PROJECT_ROOT}/.aios-core/utils/repository-detector
-Please ensure @synkra/aios-core is installed correctly.
+Please ensure @synkra/aiox-core is installed correctly.
     at loadAIOSCore (${PROJECT_ROOT}/bin/aios-init.js:43:11)
 ```
 
@@ -44,7 +44,7 @@ Please ensure @synkra/aios-core is installed correctly.
 
 - Ubuntu 24.04 LTS (WSL) or native Linux
 - Node.js v18.20.8+
-- AIOS-Fullstack repository cloned
+- AIOX-Fullstack repository cloned
 
 ### Steps to Reproduce
 
@@ -66,7 +66,7 @@ Please ensure @synkra/aios-core is installed correctly.
 
 ### Expected Behavior
 
-- Installer should locate AIOS Core module successfully
+- Installer should locate AIOX Core module successfully
 - Help text should display (with `--help` flag)
 - Installation wizard should launch (without flags)
 - Installation should proceed normally
@@ -162,7 +162,7 @@ Please ensure @synkra/aios-core is installed correctly.
    ```javascript
    const fs = require('fs');
    if (!fs.existsSync(detectorPath + '.js')) {
-     console.error('AIOS Core module not found.');
+     console.error('AIOX Core module not found.');
      console.error('Please run: npm install');
      process.exit(1);
    }

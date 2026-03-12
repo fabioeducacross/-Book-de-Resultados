@@ -22,8 +22,8 @@ This guide explains how the Memory Intelligence System integrates with the Unifi
 
 ### Extension Point Pattern
 
-The integration follows the AIOS Open Core model:
-- **aios-core:** Extension point in UnifiedActivationPipeline (this guide)
+The integration follows the AIOX Open Core model:
+- **aiox-core:** Extension point in UnifiedActivationPipeline (this guide)
 - **aios-pro:** Memory intelligence implementation (retrieval, scoring, learning)
 
 ```

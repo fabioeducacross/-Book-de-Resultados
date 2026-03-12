@@ -1,4 +1,4 @@
-# AIOS Workflows - Documentação Detalhada dos Workflows
+# AIOX Workflows - Documentação Detalhada dos Workflows
 
 > 🌐 **PT** | [EN](../en/aios-workflows/README.md) | [ES](../es/aios-workflows/README.md)
 
@@ -12,7 +12,7 @@
 
 ## Visão Geral
 
-Esta pasta contém a documentação detalhada de todos os workflows do AIOS, incluindo:
+Esta pasta contém a documentação detalhada de todos os workflows do AIOX, incluindo:
 
 - **Diagramas Mermaid** completos (flowchart, sequence, state)
 - **Steps detalhados** com inputs/outputs
@@ -244,4 +244,4 @@ Para adicionar ou atualizar documentação de workflows:
 
 ---
 
-*AIOS Workflows Documentation v1.0 - Documentação detalhada dos workflows de desenvolvimento*
+*AIOX Workflows Documentation v1.0 - Documentação detalhada dos workflows de desenvolvimento*

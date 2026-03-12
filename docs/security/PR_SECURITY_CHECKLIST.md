@@ -25,9 +25,9 @@ This PR implements comprehensive security hardening for the post-install validat
 
 **Action Required**: Before production release, maintainers must:
 
-1. Generate a key pair: `minisign -G -p aios-core.pub -s aios-core.key`
+1. Generate a key pair: `minisign -G -p aiox-core.pub -s aiox-core.key`
 2. Update `PINNED_PUBLIC_KEY` in `manifest-signature.js` with the real public key
-3. Sign the manifest: `minisign -Sm install-manifest.yaml -s aios-core.key`
+3. Sign the manifest: `minisign -Sm install-manifest.yaml -s aiox-core.key`
 
 ### 2. Path Traversal Prevention
 
@@ -113,7 +113,7 @@ None. The validator maintains backward compatibility:
 1. **Generate signing keys**:
 
    ```bash
-   minisign -G -p aios-core.pub -s aios-core.key
+   minisign -G -p aiox-core.pub -s aiox-core.key
    ```
 
 2. **Update public key** in `src/installer/manifest-signature.js`:
@@ -129,7 +129,7 @@ None. The validator maintains backward compatibility:
 3. **Sign manifest** before each release:
 
    ```bash
-   minisign -Sm .aios-core/install-manifest.yaml -s aios-core.key
+   minisign -Sm .aios-core/install-manifest.yaml -s aiox-core.key
    ```
 
 4. **Commit signature file**:

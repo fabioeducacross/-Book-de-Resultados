@@ -1,17 +1,17 @@
-# AIOS Agent Persona Definitions
+# AIOX Agent Persona Definitions
 
 > 🌐 **EN** | [PT](../pt/agents/persona-definitions.md) | [ES](../es/agents/persona-definitions.md)
 
 **Version:** 1.0
 **Created:** 2025-01-14
 **Author:** @ux-design-expert (Uma)
-**Purpose:** Comprehensive persona definitions for all 12 AIOS agents to enable named agent system with consistent identity
+**Purpose:** Comprehensive persona definitions for all 12 AIOX agents to enable named agent system with consistent identity
 
 ---
 
 ## 🎯 Overview
 
-This document defines complete personas for the 12 AIOS agents, providing:
+This document defines complete personas for the 12 AIOX agents, providing:
 
 - **Names:** Gender-neutral, globally pronounceable (EN + PT-BR)
 - **Roles:** Clear function descriptions
@@ -393,7 +393,7 @@ Aries represents initiative, pioneering spirit, and taking action - essential fo
 
 **Greeting Examples:**
 
-- **Level 1 (Minimal):** `🌟 AIOS-Master Agent ready`
+- **Level 1 (Minimal):** `🌟 AIOX-Master Agent ready`
 - **Level 2 (Named):** `🌟 Orion (Commander) ready. Let's orchestrate success!`
 - **Level 3 (Archetypal):** `🌟 Orion the Commander (♈ Aries) ready to command!`
 

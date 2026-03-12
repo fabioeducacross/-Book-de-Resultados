@@ -69,7 +69,7 @@ export const useProjectsStore = create<ProjectsState>()(
       },
       reset: () => set({ data: null, loading: false, error: null }),
     }),
-    { name: 'aios-core' }
+    { name: 'aiox-core' }
   )
 );
 ```

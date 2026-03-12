@@ -1,6 +1,6 @@
-# AIOS Agents Directory
+# AIOX Agents Directory
 
-This directory contains agent definition files that define the personas, capabilities, and tool dependencies for all AIOS agents.
+This directory contains agent definition files that define the personas, capabilities, and tool dependencies for all AIOX agents.
 
 ## Quick Start
 

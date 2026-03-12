@@ -98,7 +98,15 @@ async function validateDependencies(depsContext = {}) {
     await checkCriticalDependencies(results);
 
     // Run npm audit (non-blocking - warnings only)
-    await runSecurityAudit(results, depsContext.packageManager);
+    if (depsContext.offlineMode) {
+      results.checks.push({
+        component: 'Security Audit',
+        status: 'skipped',
+        message: 'Skipped in offline mode',
+      });
+    } else {
+      await runSecurityAudit(results, depsContext.packageManager);
+    }
 
     // Count installed packages
     await countInstalledPackages(results, nodeModulesPath);

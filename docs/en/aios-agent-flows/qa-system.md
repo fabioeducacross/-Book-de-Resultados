@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@qa** (Quinn) is the **Guardian** of quality in the AIOS agent system. This agent is responsible for:
+**@qa** (Quinn) is the **Guardian** of quality in the AIOX agent system. This agent is responsible for:
 
 - Testing and quality assurance
 - Writing and executing test cases
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @qa System v1.0*
+*AIOX Agent Flows - @qa System v1.0*

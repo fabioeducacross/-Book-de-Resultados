@@ -6,7 +6,7 @@
 
 ## Summary
 
-**@ux-design-expert** (Uma) is the **Designer** of the AIOS agent system. This agent is responsible for:
+**@ux-design-expert** (Uma) is the **Designer** of the AIOX agent system. This agent is responsible for:
 
 - User experience design and research
 - Creating wireframes and prototypes
@@ -23,4 +23,4 @@ For complete documentation including flowcharts, command mappings, integrations,
 
 ---
 
-*AIOS Agent Flows - @ux-design-expert System v1.0*
+*AIOX Agent Flows - @ux-design-expert System v1.0*

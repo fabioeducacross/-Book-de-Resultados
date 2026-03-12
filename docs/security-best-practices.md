@@ -1,10 +1,10 @@
-# Synkra AIOS Security Best Practices
+# Synkra AIOX Security Best Practices
 
 > 🌐 **EN** | [PT](./pt/security-best-practices.md) | [ES](./es/security-best-practices.md)
 
 ---
 
-This guide provides comprehensive security recommendations for deploying and maintaining Synkra AIOS in production environments.
+This guide provides comprehensive security recommendations for deploying and maintaining Synkra AIOX in production environments.
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ This guide provides comprehensive security recommendations for deploying and mai
 
 ## Security Architecture Overview
 
-Synkra AIOS implements a multi-layered security approach:
+Synkra AIOX implements a multi-layered security approach:
 
 ```
 ┌─────────────────────────────────────────┐
@@ -604,4 +604,4 @@ const emergencyConfig = {
 
 **Remember**: Security is not a one-time implementation but an ongoing process. Regular reviews, updates, and improvements are essential for maintaining a secure system.
 
-For questions or security concerns, contact: security@synkra/aios-core.dev
+For questions or security concerns, contact: security@synkra.ai

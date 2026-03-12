@@ -1,4 +1,4 @@
-# Cambios en los Agentes ADE - Alteraciones en los Agentes AIOS
+# Cambios en los Agentes ADE - Alteraciones en los Agentes AIOX
 
 > **Documento:** Registro de las alteraciones realizadas en los agentes para soportar ADE
 > **Fecha:** 2026-01-29
@@ -9,12 +9,12 @@
 
 ## Descripción General
 
-Este documento registra todas las alteraciones realizadas en los archivos de definición de los agentes AIOS para soportar el AIOS Autonomous Development Engine (ADE).
+Este documento registra todas las alteraciones realizadas en los archivos de definición de los agentes AIOX para soportar el AIOX Autonomous Development Engine (ADE).
 
 **Archivos modificados:**
 
 - `.aios-core/development/agents/*.md` (fuente)
-- `.claude/commands/AIOS/agents/*.md` (sincronizado)
+- `.claude/commands/AIOX/agents/*.md` (sincronizado)
 
 ---
 
@@ -430,7 +430,7 @@ dependencies:
 Todos los agentes fueron sincronizados entre:
 
 ```
-.aios-core/development/agents/   →   .claude/commands/AIOS/agents/
+.aios-core/development/agents/   →   .claude/commands/AIOX/agents/
          (fuente)                           (sincronizado)
 ```
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AIOS-FullStack Installation Wizard v5 (LEGACY)
+ * AIOX-FullStack Installation Wizard v5 (LEGACY)
  * Based on the original beautiful visual design with ASCII art
  * Version: 2.1.0
  *
@@ -13,7 +13,7 @@
  * is not available. All new development should use the new wizard.
  *
  * Migration path:
- * - Use `npx aios-core` which routes through bin/aios.js to the new wizard
+ * - Use `npx aiox-core` which routes through bin/aios.js to the new wizard
  * - Do NOT call this file directly
  *
  * Supported IDEs (7 total):
@@ -44,7 +44,7 @@ const packageJsonVersion = require(path.join(__dirname, '..', 'package.json')).v
 const VERSION = chalk.yellow(`Installer v${packageJsonVersion}`);
 
 /**
- * Smart path resolution for AIOS Core modules
+ * Smart path resolution for AIOX Core modules
  */
 function resolveAiosCoreModule(modulePath) {
   const aiosCoreModule = path.join(__dirname, '..', '.aios-core', modulePath);
@@ -56,16 +56,16 @@ function resolveAiosCoreModule(modulePath) {
 
   if (!moduleExists) {
     throw new Error(
-      `Cannot find AIOS Core module: ${modulePath}\n` +
+      `Cannot find AIOX Core module: ${modulePath}\n` +
         `Searched: ${aiosCoreModule}\n` +
-        'Please ensure @synkra/aios-core is installed correctly.'
+        'Please ensure AIOX is installed correctly.'
     );
   }
 
   return require(aiosCoreModule);
 }
 
-// Load AIOS Core modules
+// Load AIOX Core modules
 const { detectRepositoryContext } = resolveAiosCoreModule(
   'infrastructure/scripts/repository-detector'
 );
@@ -133,7 +133,7 @@ async function main() {
       const defaultPackage = {
         name: dirName.toLowerCase().replace(/\s+/g, '-'),
         version: '1.0.0',
-        description: 'AIOS-FullStack project',
+        description: 'AIOX-FullStack project',
         main: 'index.js',
         scripts: { test: 'echo "Error: no test specified" && exit 1' },
         keywords: [],
@@ -170,7 +170,7 @@ async function main() {
   const hasExistingInstall = fs.existsSync(installedManifestPath);
 
   if (hasExistingInstall && brownfieldUpgrader) {
-    console.log(chalk.yellow('🔄 Existing AIOS installation detected!'));
+    console.log(chalk.yellow('🔄 Existing AIOX installation detected!'));
     console.log('');
 
     const sourceDir = path.join(context.frameworkLocation, '.aios-core');
@@ -248,7 +248,7 @@ async function main() {
           brownfieldUpgrader.updateInstalledManifest(
             projectRoot,
             sourceManifest,
-            `aios-core@${packageJson.version}`
+            `aiox-core@${packageJson.version}`
           );
 
           console.log(chalk.green('✓') + ` Upgraded ${result.filesInstalled.length} files`);
@@ -291,15 +291,15 @@ async function main() {
     {
       type: 'list',
       name: 'installMode',
-      message: chalk.white('How are you using AIOS-FullStack?'),
+      message: chalk.white('How are you using AIOX-FullStack?'),
       choices: [
         {
-          name: '  Using AIOS in a project ' + chalk.gray('(Framework files added to .gitignore)'),
+          name: '  Using AIOX in a project ' + chalk.gray('(Framework files added to .gitignore)'),
           value: 'project-development',
         },
         {
           name:
-            '  Developing AIOS framework itself ' + chalk.gray('(Framework files are source code)'),
+            '  Developing AIOX framework itself ' + chalk.gray('(Framework files are source code)'),
           value: 'framework-development',
         },
       ],
@@ -460,9 +460,9 @@ async function main() {
     }
   }
 
-  // Step 4b: Copy AIOS Core files
+  // Step 4b: Copy AIOX Core files
   console.log('');
-  console.log(chalk.blue('📦 Installing AIOS Core files...'));
+  console.log(chalk.blue('📦 Installing AIOX Core files...'));
 
   const sourceCoreDir = path.join(context.frameworkLocation, '.aios-core');
   const targetCoreDir = path.join(context.projectRoot, '.aios-core');
@@ -471,7 +471,7 @@ async function main() {
     await fse.copy(sourceCoreDir, targetCoreDir);
     console.log(
       chalk.green('✓') +
-        ' AIOS Core files installed ' +
+        ' AIOX Core files installed ' +
         chalk.gray('(11 agents, 68 tasks, 23 templates)')
     );
 
@@ -484,7 +484,7 @@ async function main() {
           brownfieldUpgrader.updateInstalledManifest(
             context.projectRoot,
             sourceManifest,
-            `aios-core@${packageJson.version}`
+            `aiox-core@${packageJson.version}`
           );
           console.log(
             chalk.green('✓') +
@@ -502,7 +502,7 @@ async function main() {
       }
     }
   } else {
-    console.error(chalk.red('✗') + ' AIOS Core files not found');
+    console.error(chalk.red('✗') + ' AIOX Core files not found');
     process.exit(1);
   }
 
@@ -584,9 +584,9 @@ async function main() {
       await fse.ensureDir(path.dirname(aiossReadme));
       await fse.writeFile(
         aiossReadme,
-        `# AIOS Core Commands
+        `# AIOX Core Commands
 
-This directory contains the core AIOS-FullStack agents and tasks.
+This directory contains the core AIOX-FullStack agents and tasks.
 
 ## Usage
 - Agents: Use slash commands like /dev, /architect, /qa, /pm, etc.
@@ -632,9 +632,9 @@ See .aios-core/user-guide.md for complete documentation.
       await fse.ensureDir(path.dirname(cursorReadme));
       await fse.writeFile(
         cursorReadme,
-        `# AIOS Core Rules
+        `# AIOX Core Rules
 
-This directory contains the core AIOS-FullStack agent rules for Cursor.
+This directory contains the core AIOX-FullStack agent rules for Cursor.
 
 ## Usage
 These rules are automatically loaded by Cursor to provide agent-specific context.
@@ -694,8 +694,8 @@ See .aios-core/user-guide.md for complete documentation.
             const agentName = f.replace('.md', '');
             return {
               slug: `bmad-${agentName}`,
-              name: `AIOS ${agentName.charAt(0).toUpperCase() + agentName.slice(1)}`,
-              roleDefinition: `AIOS-FullStack ${agentName} agent - see .aios-core/agents/${f}`,
+              name: `AIOX ${agentName.charAt(0).toUpperCase() + agentName.slice(1)}`,
+              roleDefinition: `AIOX-FullStack ${agentName} agent - see .aios-core/agents/${f}`,
               groups: ['aios'],
               source: 'project',
             };
@@ -742,6 +742,7 @@ See .aios-core/user-guide.md for complete documentation.
     // Secondary: context-based framework location
     path.join(context.frameworkLocation, 'expansion-packs'),
     // Tertiary: installed in project's node_modules
+    path.join(context.projectRoot, 'node_modules', '@synkra/aiox-core', 'expansion-packs'),
     path.join(context.projectRoot, 'node_modules', '@synkra/aios-core', 'expansion-packs'),
     path.join(context.projectRoot, 'node_modules', '@aios', 'fullstack', 'expansion-packs'),
   ];
@@ -934,7 +935,7 @@ See .aios-core/user-guide.md for complete documentation.
   console.log('');
   console.log(chalk.gray('═'.repeat(80)));
   console.log('');
-  console.log(chalk.green.bold('✓ AIOS-FullStack installation complete! 🎉'));
+  console.log(chalk.green.bold('✓ AIOX-FullStack installation complete! 🎉'));
   console.log('');
   console.log(chalk.cyan('📋 Configuration Summary:'));
   console.log('  ' + chalk.dim('Mode:           ') + installMode);
@@ -1067,16 +1068,16 @@ function updateGitIgnore(mode, projectRoot) {
   if (mode === 'project-development') {
     const frameworkRules = [
       '',
-      '# AIOS-FullStack Framework Files (auto-managed - do not edit)',
+      '# AIOX-FullStack Framework Files (auto-managed - do not edit)',
       '.aios-core/',
       'node_modules/@aios/',
       'outputs/minds/',
       '.aios-installation-config.yaml',
-      '# End AIOS-FullStack auto-managed section',
+      '# End AIOX-FullStack auto-managed section',
       '',
     ];
 
-    const hasFrameworkSection = gitignore.includes('# AIOS-FullStack Framework Files');
+    const hasFrameworkSection = gitignore.includes('# AIOX-FullStack Framework Files');
 
     if (!hasFrameworkSection) {
       gitignore += frameworkRules.join('\n');

@@ -1,4 +1,4 @@
-# Sistema do Agente Analyst (@analyst) - AIOS
+# Sistema do Agente Analyst (@analyst) - AIOX
 
 > **Versao:** 1.0.0
 > **Criado:** 2026-02-04
@@ -56,7 +56,7 @@ O agente Analyst e projetado para:
 | Arquivo | Proposito |
 |---------|-----------|
 | `.aios-core/development/agents/analyst.md` | Definicao core do agente Analyst |
-| `.claude/commands/AIOS/agents/analyst.md` | Comando Claude Code para ativar @analyst |
+| `.claude/commands/AIOX/agents/analyst.md` | Comando Claude Code para ativar @analyst |
 
 ### Tasks do Analyst
 
@@ -93,7 +93,7 @@ O agente Analyst e projetado para:
 
 | Arquivo | Proposito |
 |---------|-----------|
-| `.aios-core/development/data/aios-kb.md` | Knowledge base do AIOS |
+| `.aios-core/development/data/aios-kb.md` | Knowledge base do AIOX |
 | `.aios-core/development/data/brainstorming-techniques.md` | Tecnicas de brainstorming disponiveis |
 
 ### Workflows que Usam o Analyst

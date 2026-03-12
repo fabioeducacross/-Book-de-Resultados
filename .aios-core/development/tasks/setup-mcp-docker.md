@@ -10,7 +10,7 @@
 
 ## Purpose
 
-Configure Docker MCP Toolkit as the primary MCP infrastructure for AIOS, using **HTTP transport** instead of stdio to avoid timeout issues during gateway initialization.
+Configure Docker MCP Toolkit as the primary MCP infrastructure for AIOX, using **HTTP transport** instead of stdio to avoid timeout issues during gateway initialization.
 
 **Key Changes in v2.0:**
 - Uses HTTP/SSE transport (fixes 30s timeout issue)
@@ -19,7 +19,7 @@ Configure Docker MCP Toolkit as the primary MCP infrastructure for AIOS, using *
 
 ---
 
-## AIOS Default MCPs
+## AIOX Default MCPs
 
 | Preset | MCPs | API Key Required | Tokens |
 |--------|------|------------------|--------|
@@ -59,7 +59,7 @@ Configure Docker MCP Toolkit as the primary MCP infrastructure for AIOS, using *
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: setupMcpDocker()
@@ -187,7 +187,7 @@ acceptance-criteria:
 
 ## Purpose
 
-Configure Docker MCP Toolkit as the primary MCP infrastructure for AIOS, replacing 1MCP with the containerized gateway approach. This enables:
+Configure Docker MCP Toolkit as the primary MCP infrastructure for AIOX, replacing 1MCP with the containerized gateway approach. This enables:
 - **98.7% token reduction** via Code Mode
 - **Dynamic MCP loading** (mcp-find, mcp-add, mcp-remove)
 - **Sandbox execution** for workflows
@@ -351,7 +351,7 @@ docker mcp gateway run --port 8080 --transport sse --watch
 curl -s http://localhost:8080/health || echo "Gateway starting..."
 ```
 
-### 3. Enable AIOS Default MCPs
+### 3. Enable AIOX Default MCPs
 
 ```bash
 # Minimal preset (no API keys required)

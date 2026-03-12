@@ -1,4 +1,4 @@
-# 🏛️ AIOS Dashboard - Arquitetura Completa
+# 🏛️ AIOX Dashboard - Arquitetura Completa
 
 > **Versão:** 2.0.0
 > **Data:** 2026-01-29
@@ -34,7 +34,7 @@
 
 ## Visão Geral
 
-O AIOS Dashboard é uma aplicação web Next.js que fornece uma interface visual para monitorar e gerenciar o sistema AIOS. Ele se comunica com o CLI/AIOS através de arquivos de status no filesystem e Server-Sent Events (SSE).
+O AIOX Dashboard é uma aplicação web Next.js que fornece uma interface visual para monitorar e gerenciar o sistema AIOX. Ele se comunica com o CLI/AIOX através de arquivos de status no filesystem e Server-Sent Events (SSE).
 
 ### Princípios Arquiteturais
 
@@ -48,7 +48,7 @@ O AIOS Dashboard é uma aplicação web Next.js que fornece uma interface visual
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                           AIOS DASHBOARD                                 │
+│                           AIOX DASHBOARD                                 │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
@@ -108,7 +108,7 @@ O AIOS Dashboard é uma aplicação web Next.js que fornece uma interface visual
                                      │ Write
                                      │
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         CLI / AIOS AGENTS                                │
+│                         CLI / AIOX AGENTS                                │
 │  @dev │ @qa │ @architect │ @pm │ @po │ @analyst │ @devops               │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -169,7 +169,7 @@ apps/dashboard/
 │   │   │   ├── github/route.ts       # GitHub API proxy
 │   │   │   ├── logs/route.ts         # Log streaming
 │   │   │   ├── qa/metrics/route.ts   # QA metrics
-│   │   │   ├── status/route.ts       # AIOS status polling
+│   │   │   ├── status/route.ts       # AIOX status polling
 │   │   │   └── stories/              # Stories CRUD
 │   │   │       ├── route.ts          # GET/POST /api/stories
 │   │   │       └── [id]/route.ts     # GET/PUT/DELETE /api/stories/:id
@@ -457,7 +457,7 @@ unsubscribe();
 #### GET /api/status
 
 ```typescript
-// Retorna status atual do AIOS
+// Retorna status atual do AIOX
 // Lê de: .aios/dashboard/status.json
 
 interface AiosStatus {
@@ -538,7 +538,7 @@ interface CreateStoryRequest {
 
 ```
 ┌─────────────┐                              ┌──────────────────┐
-│   CLI/AIOS  │                              │    Dashboard     │
+│   CLI/AIOX  │                              │    Dashboard     │
 │   (Claude)  │                              │    (Next.js)     │
 └──────┬──────┘                              └────────┬─────────┘
        │                                              │
@@ -925,4 +925,4 @@ export { StoryDetailModal } from './StoryDetailModal';
 
 ---
 
-_Documentação gerada por @architect (Aria) - AIOS Core v2.0_
+_Documentação gerada por @architect (Aria) - AIOX Core v2.0_

@@ -191,7 +191,12 @@ describe('ParallelExecutor', () => {
       const timeoutExecutor = new ParallelExecutor({ timeout: 100 });
 
       const slowExecutor = jest.fn().mockImplementation(
-        () => new Promise((resolve) => setTimeout(() => resolve({ success: true }), 500)),
+        () => new Promise((resolve) => {
+          const timer = setTimeout(() => resolve({ success: true }), 500);
+          if (typeof timer.unref === 'function') {
+            timer.unref();
+          }
+        }),
       );
       const fastExecutor = jest.fn().mockResolvedValue({ success: true, output: 'fast' });
 

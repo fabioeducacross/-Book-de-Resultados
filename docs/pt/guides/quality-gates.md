@@ -4,13 +4,13 @@
   Última sincronização: 2026-01-26
 -->
 
-# Guia do Sistema de Quality Gates AIOS
+# Guia do Sistema de Quality Gates AIOX
 
 > 🌐 [EN](../../guides/quality-gates.md) | **PT** | [ES](../../es/guides/quality-gates.md)
 
 ---
 
-> Guia completo para o sistema de quality gates de 3 camadas do Synkra AIOS.
+> Guia completo para o sistema de quality gates de 3 camadas do Synkra AIOX.
 
 **Versão:** 2.1.0
 **Última Atualização:** 2025-12-01
@@ -19,7 +19,7 @@
 
 ## Visão Geral
 
-O Sistema de Quality Gates do AIOS fornece garantia de qualidade automatizada através de três camadas progressivas de validação. Cada camada captura diferentes tipos de problemas no estágio apropriado do desenvolvimento.
+O Sistema de Quality Gates do AIOX fornece garantia de qualidade automatizada através de três camadas progressivas de validação. Cada camada captura diferentes tipos de problemas no estágio apropriado do desenvolvimento.
 
 ### A Arquitetura de 3 Camadas
 
@@ -168,7 +168,7 @@ layer2:
   quinn:
     enabled: true
     autoReview: true
-    agentPath: '.claude/commands/AIOS/agents/qa.md'
+    agentPath: '.claude/commands/AIOX/agents/qa.md'
     severity:
       block: ['CRITICAL']
       warn: ['HIGH', 'MEDIUM']
@@ -534,7 +534,7 @@ layer2:
   quinn:
     enabled: true
     autoReview: true
-    agentPath: '.claude/commands/AIOS/agents/qa.md'
+    agentPath: '.claude/commands/AIOX/agents/qa.md'
     severity:
       block: [CRITICAL]
       warn: [HIGH, MEDIUM]
@@ -611,4 +611,4 @@ verbose:
 
 ---
 
-_Guia do Sistema de Quality Gates Synkra AIOS v2.1_
+_Guia do Sistema de Quality Gates Synkra AIOX v2.1_

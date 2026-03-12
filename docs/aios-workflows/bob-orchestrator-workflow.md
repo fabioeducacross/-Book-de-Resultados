@@ -13,7 +13,7 @@
 
 ## Visão Geral
 
-O **Bob Orchestrator** é o meta-workflow central do AIOS que orquestra todo o ciclo de desenvolvimento de forma autônoma. Bob é ativado através do `@pm` com perfil `bob` e atua como um orquestrador que:
+O **Bob Orchestrator** é o meta-workflow central do AIOX que orquestra todo o ciclo de desenvolvimento de forma autônoma. Bob é ativado através do `@pm` com perfil `bob` e atua como um orquestrador que:
 
 - Detecta o estado do projeto automaticamente
 - Decide qual workflow executar (Greenfield, Brownfield, Enhancement)
@@ -39,9 +39,9 @@ CLI First → Observability Second → UI Third
 | Cenário | Recomendado |
 |---------|-------------|
 | Projeto novo do zero | Sim (PATH D: Greenfield) |
-| Projeto existente sem docs AIOS | Sim (PATH B: Brownfield Discovery) |
-| Projeto AIOS com novas features | Sim (PATH C: Enhancement) |
-| Primeira vez no AIOS | Sim (PATH A: Onboarding) |
+| Projeto existente sem docs AIOX | Sim (PATH B: Brownfield Discovery) |
+| Projeto AIOX com novas features | Sim (PATH C: Enhancement) |
+| Primeira vez no AIOX | Sim (PATH A: Onboarding) |
 | Hotfixes urgentes | Não - use @dev diretamente |
 | Tasks pontuais | Não - use agentes individuais |
 
@@ -80,7 +80,7 @@ flowchart TB
     subgraph TREE["3. DECISION TREE"]
         S4 --> T1{"Tem config?"}
         T1 -->|Não| PA["PATH A:<br/>ONBOARDING"]
-        T1 -->|Sim| T2{"Tem docs AIOS?"}
+        T1 -->|Sim| T2{"Tem docs AIOX?"}
         T2 -->|Não| PB["PATH B:<br/>BROWNFIELD"]
         T2 -->|Sim| PC["PATH C:<br/>ENHANCEMENT"]
         T1 -->|Projeto vazio| PD["PATH D:<br/>GREENFIELD"]
@@ -293,7 +293,7 @@ flowchart LR
 | `user_profile` | `bob` ou `advanced` | `bob` |
 | `educational_mode` | Painel detalhado | `false` |
 | `coderabbit_integration` | Self-healing ativo | `true` |
-| `default_model` | Modelo padrão | `claude-opus-4-5-20250514` |
+| `default_model` | Modelo padrão | gerenciado pelo usuário (opcional) |
 | `default_language` | Idioma | `pt` |
 
 ---
@@ -366,7 +366,7 @@ flowchart TB
 flowchart TB
     START["Analisar projeto"] --> Q1{"Tem config<br/>resolvido?"}
     Q1 -->|Não| PA["PATH A:<br/>ONBOARDING"]
-    Q1 -->|Sim| Q2{"Tem docs AIOS?<br/>(architecture.md, stories/)"}
+    Q1 -->|Sim| Q2{"Tem docs AIOX?<br/>(architecture.md, stories/)"}
     Q2 -->|Não| PB["PATH B:<br/>BROWNFIELD DISCOVERY"]
     Q2 -->|Sim| PC["PATH C:<br/>ENHANCEMENT"]
     Q1 -->|Diretório vazio| PD["PATH D:<br/>GREENFIELD"]
@@ -402,7 +402,7 @@ flowchart TB
 #### Pergunta de Perfil (PRD §2.4)
 
 ```
-🤖 Bem-vindo ao AIOS!
+🤖 Bem-vindo ao AIOX!
 
 Quando uma IA gera código para você, qual opção te descreve melhor?
 
@@ -418,7 +418,7 @@ Escolha [1/2]:
 #### Instalação via NPX (Story 12.9)
 
 ```bash
-npx @synkra/aios-install
+npx @synkra/aiox-install
 ```
 
 O instalador:
@@ -435,7 +435,7 @@ O instalador:
 
 | Atributo | Valor |
 |----------|-------|
-| **Condição** | Projeto existente SEM docs AIOS |
+| **Condição** | Projeto existente SEM docs AIOX |
 | **Duração** | 2-4 horas |
 | **Story Epic 12** | 12.8 |
 | **Módulo** | `terminal-spawner.js` |
@@ -491,7 +491,7 @@ sequenceDiagram
 
 | Atributo | Valor |
 |----------|-------|
-| **Condição** | Projeto AIOS com docs existentes |
+| **Condição** | Projeto AIOX com docs existentes |
 | **Story Epic 12** | 12.3 |
 | **Módulo** | `executor-assignment.js` |
 
@@ -1167,7 +1167,7 @@ Se terminal spawn falha:
 | Workflow | Trigger | Propósito |
 |----------|---------|-----------|
 | `bob-integration.yml` | PR para `.aios-core/core/` | Valida bob-orchestrator.js |
-| `npm-publish.yml` | Tag `v*.*.*` | Publica @synkra/aios-install |
+| `npm-publish.yml` | Tag `v*.*.*` | Publica @synkra/aiox-install |
 | `cross-platform.yml` | PR | Testa pm.sh em matrix |
 | `release.yml` | Release | Gera release notes |
 
@@ -1313,7 +1313,7 @@ mindmap
 flowchart TB
     Q1{"Config existe?"}
     Q1 -->|Não| PA["PATH A: Onboarding"]
-    Q1 -->|Sim| Q2{"Docs AIOS existem?"}
+    Q1 -->|Sim| Q2{"Docs AIOX existem?"}
     Q2 -->|Não| PB["PATH B: Brownfield"]
     Q2 -->|Sim| PC["PATH C: Enhancement"]
     Q1 -->|Vazio| PD["PATH D: Greenfield"]
@@ -1454,7 +1454,7 @@ rm .aios/.session-state.yaml
 - [Story Development Cycle](./story-development-cycle-workflow.md)
 - [Brownfield Discovery](./brownfield-discovery-workflow.md)
 - [Spec Pipeline](./spec-pipeline-workflow.md)
-- [PRD AIOS v2 Bob](../prd/aios-v2-bob/)
+- [PRD AIOX v2 Bob](../prd/aios-v2-bob/)
 
 ### Stories Relacionadas (Epic 12)
 
@@ -1468,7 +1468,7 @@ rm .aios/.session-state.yaml
 | 12.6 | Observability Panel + Dashboard Bridge | P1-HIGH | panel-renderer.js, bob-status.json, WebSocket |
 | 12.7 | Modo Educativo | P2-MEDIUM | Flag educational_mode, toggle |
 | 12.8 | Brownfield Discovery | P2-MEDIUM | Detecção, análise paralela |
-| 12.9 | NPX Installer | P2-MEDIUM | npx @synkra/aios-install |
+| 12.9 | NPX Installer | P2-MEDIUM | npx @synkra/aiox-install |
 | 12.10 | Terminal Spawning E2E | P0-CRITICAL | Cross-platform, fallback inline |
 | 12.11 | CI/CD Pipeline | P1-HIGH | GitHub Actions, quality gates |
 | 12.12 | Dashboard Bob Panel | P1-HIGH | bob-store.ts, componentes UI |

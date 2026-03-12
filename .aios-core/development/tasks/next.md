@@ -4,7 +4,7 @@
 
 Suggest next commands based on current workflow context using the Workflow Intelligence System (WIS). Helps users navigate workflows efficiently without memorizing command sequences.
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: next()

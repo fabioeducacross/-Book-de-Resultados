@@ -32,7 +32,7 @@ Automated security vulnerability scanning for common security anti-patterns.
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: qaSecurityChecklist()

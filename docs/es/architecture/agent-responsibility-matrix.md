@@ -15,7 +15,7 @@
 
 ## Resumen Ejecutivo
 
-Este documento define límites claros de responsabilidad para todos los agentes AIOS, con enfoque particular en:
+Este documento define límites claros de responsabilidad para todos los agentes AIOX, con enfoque particular en:
 1. **Centralización de GitHub DevOps** - Solo @github-devops puede hacer push al repositorio remoto
 2. **Especialización de Arquitectura de Datos** - @data-architect maneja base de datos/ciencia de datos
 3. **División de Gestión de Ramas** - @sm (local) vs @github-devops (remoto)

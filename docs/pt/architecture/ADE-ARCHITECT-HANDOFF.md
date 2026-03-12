@@ -3,13 +3,13 @@
 > **De:** Quinn (@qa) - QA Agent
 > **Para:** Sage (@architect) - Solution Architect
 > **Data:** 2026-01-28
-> **Projeto:** AIOS Autonomous Development Engine (ADE)
+> **Projeto:** AIOX Autonomous Development Engine (ADE)
 
 ---
 
 ## Resumo Executivo
 
-O ADE é um projeto de **Prompt Engineering + Infraestrutura** para habilitar execução autônoma de desenvolvimento no AIOS. Aproximadamente **60% do trabalho é criação de tasks .md, workflows .yaml e templates** - não código tradicional.
+O ADE é um projeto de **Prompt Engineering + Infraestrutura** para habilitar execução autônoma de desenvolvimento no AIOX. Aproximadamente **60% do trabalho é criação de tasks .md, workflows .yaml e templates** - não código tradicional.
 
 **Você é o líder técnico deste projeto.** @dev será acionado apenas para scripts JS específicos.
 
@@ -260,11 +260,11 @@ Semanas 9-10: Epic 7 (Memory Layer)
 
 ### Stories
 
-- `docs/stories/aios-core-ade/` (7 arquivos de epic + README)
+- `docs/stories/aiox-core-ade/` (7 arquivos de epic + README)
 
 ### Quality Gates
 
-- `docs/qa/gates/aios-core-ade/` (7 arquivos de gate + README)
+- `docs/qa/gates/aiox-core-ade/` (7 arquivos de gate + README)
 
 ### Referência
 

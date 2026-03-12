@@ -10,7 +10,7 @@
 
 ---
 
-> Motor de geração de documentos e substituição de variáveis para Synkra AIOS.
+> Motor de geração de documentos e substituição de variáveis para Synkra AIOX.
 
 **Versão:** 2.0
 **Última Atualização:** 2025-12-05
@@ -19,7 +19,7 @@
 
 ## Visão Geral
 
-O Template Engine fornece uma forma consistente de gerar documentos (PRDs, ADRs, Stories, etc.) com substituição de variáveis, condicionais e loops. Ele alimenta todas as tarefas de geração de documentos no AIOS.
+O Template Engine fornece uma forma consistente de gerar documentos (PRDs, ADRs, Stories, etc.) com substituição de variáveis, condicionais e loops. Ele alimenta todas as tarefas de geração de documentos no AIOX.
 
 ### Funcionalidades Principais
 
@@ -198,7 +198,7 @@ Email: {{project.owner.email}}
 ```javascript
 const variables = {
   project: {
-    name: 'AIOS',
+    name: 'AIOX',
     owner: {
       name: 'Pedro',
       email: 'pedro@example.com',
@@ -481,4 +481,4 @@ console.log('Validation result:', validation);
 
 ---
 
-_Synkra AIOS Template Engine v2.0_
+_Synkra AIOX Template Engine v2.0_

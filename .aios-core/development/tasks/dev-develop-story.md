@@ -42,7 +42,7 @@ Execute story development with selectable automation modes to accommodate differ
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: devDevelopStory()
@@ -553,7 +553,7 @@ Execute **AFTER** all tasks are complete but **BEFORE** running the DOD checklis
 │  WHILE iteration < max_iterations:                           │
 │    ┌────────────────────────────────────────────────────┐   │
 │    │ 1. Run CodeRabbit CLI                              │   │
-│    │    wsl bash -c 'cd /mnt/c/.../@synkra/aios-core &&    │   │
+│    │    wsl bash -c 'cd /mnt/c/.../@synkra/aiox-core &&    │   │
 │    │    ~/.local/bin/coderabbit --prompt-only           │   │
 │    │    -t uncommitted'                                  │   │
 │    │                                                     │   │

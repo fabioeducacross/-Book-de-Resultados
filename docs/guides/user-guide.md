@@ -1,10 +1,10 @@
-# AIOS User Guide
+# AIOX User Guide
 
 > **EN**
 
 ---
 
-Complete guide for using Synkra AIOS - the AI-Orchestrated System for Full Stack Development.
+Complete guide for using Synkra AIOX - the AI-Orchestrated System for Full Stack Development.
 
 **Version:** 2.1.0
 **Last Updated:** 2026-01-28
@@ -15,7 +15,7 @@ Complete guide for using Synkra AIOS - the AI-Orchestrated System for Full Stack
 
 ### Prerequisites
 
-Before using AIOS, ensure you have:
+Before using AIOX, ensure you have:
 
 - **Node.js** version 18.0.0 or higher
 - **npm** version 8.0.0 or higher
@@ -26,11 +26,11 @@ Before using AIOS, ensure you have:
 
 ```bash
 # New project (Greenfield)
-npx @synkra/aios-core init my-project
+npx aiox-core init my-project
 
 # Existing project (Brownfield)
 cd existing-project
-npx @synkra/aios-core install
+npx aiox-core install
 ```
 
 ### First Steps
@@ -57,14 +57,14 @@ aios agents list
 
 > **"Structure is Sacred. Tone is Flexible."**
 
-AIOS provides orchestrated structure while allowing flexibility in communication. This means:
+AIOX provides orchestrated structure while allowing flexibility in communication. This means:
 
 - **Fixed:** Template positions, section order, metric formats, file structure, workflows
 - **Flexible:** Status messages, vocabulary choices, emoji usage, personality, tone
 
-### The AIOS Difference
+### The AIOX Difference
 
-| Traditional AI Dev            | AIOS                                    |
+| Traditional AI Dev            | AIOX                                    |
 | ----------------------------- | --------------------------------------- |
 | Uncoordinated agents          | 11 specialized agents with clear roles  |
 | Inconsistent results          | Structured workflows with quality gates |
@@ -75,7 +75,7 @@ AIOS provides orchestrated structure while allowing flexibility in communication
 
 ## Agents
 
-AIOS includes 11 specialized agents, each with a distinct role and personality:
+AIOX includes 11 specialized agents, each with a distinct role and personality:
 
 | Agent     | ID               | Archetype    | Responsibility          |
 | --------- | ---------------- | ------------ | ----------------------- |
@@ -159,7 +159,7 @@ See the [Command Authority Matrix](../architecture/command-authority-matrix.md) 
 
 ## Tasks
 
-Tasks are the primary entry point in AIOS. Everything is a task.
+Tasks are the primary entry point in AIOX. Everything is a task.
 
 ### Task-First Architecture
 
@@ -202,7 +202,7 @@ Workflows orchestrate multiple tasks and agents for complex operations.
 | Workflow                 | Use Case                | Agents Involved   |
 | ------------------------ | ----------------------- | ----------------- |
 | `greenfield-fullstack`   | New full-stack project  | All agents        |
-| `brownfield-integration` | Add AIOS to existing    | dev, architect    |
+| `brownfield-integration` | Add AIOX to existing    | dev, architect    |
 | `fork-join`              | Parallel task execution | Multiple          |
 | `organizer-worker`       | Delegated execution     | po, dev           |
 | `data-pipeline`          | ETL workflows           | data-engineer, qa |
@@ -221,7 +221,7 @@ aios workflow brownfield-integration --target=./existing-project
 
 ## Squads
 
-Squads are modular teams of AI agents that extend AIOS functionality.
+Squads are modular teams of AI agents that extend AIOX functionality.
 
 ### What is a Squad?
 
@@ -240,7 +240,7 @@ A squad is a self-contained package containing:
 
 ```
 Level 1: LOCAL        --> ./squads/           (Private)
-Level 2: AIOS-SQUADS  --> github.com/SynkraAI (Public/Free)
+Level 2: AIOX-SQUADS  --> github.com/SynkraAI (Public/Free)
 Level 3: SYNKRA API   --> api.synkra.dev      (Marketplace)
 ```
 
@@ -289,7 +289,7 @@ my-project/
 ### Common Commands
 
 ```bash
-# AIOS Master Commands
+# AIOX Master Commands
 *help                # Show available commands
 *create-story        # Create new story
 *task {name}         # Execute specific task
@@ -332,7 +332,7 @@ features:
 
 ai:
   provider: anthropic
-  model: claude-3-opus
+  # model: user-managed (set your preferred model)
 
 environment: development
 ```
@@ -352,7 +352,7 @@ AIOS_DEBUG=false
 
 ### IDE Integration
 
-AIOS supports multiple IDEs. Configuration is synchronized across:
+AIOX supports multiple IDEs. Configuration is synchronized across:
 
 - Claude Code (`.claude/`)
 - Cursor (`.cursor/`)
@@ -403,8 +403,8 @@ aios rebuild
 
 ### Getting Help
 
-- **GitHub Discussions**: [github.com/SynkraAI/aios-core/discussions](https://github.com/SynkraAI/aios-core/discussions)
-- **Issue Tracker**: [github.com/SynkraAI/aios-core/issues](https://github.com/SynkraAI/aios-core/issues)
+- **GitHub Discussions**: [github.com/SynkraAI/aiox-core/discussions](https://github.com/SynkraAI/aiox-core/discussions)
+- **Issue Tracker**: [github.com/SynkraAI/aiox-core/issues](https://github.com/SynkraAI/aiox-core/issues)
 - **Discord**: [Join our server](https://discord.gg/gk8jAdXWmj)
 
 ---
@@ -451,7 +451,7 @@ Choose the appropriate agent for each task:
 
 ### 3. Follow Quality Gates
 
-AIOS implements 3-layer quality gates:
+AIOX implements 3-layer quality gates:
 
 1. **Layer 1 (Local)**: Pre-commit hooks, linting, type checking
 2. **Layer 2 (CI/CD)**: Automated tests, CodeRabbit review
@@ -486,4 +486,4 @@ aios squads search {keyword}
 
 ---
 
-_Synkra AIOS User Guide v2.1.0_
+_Synkra AIOX User Guide v2.1.0_

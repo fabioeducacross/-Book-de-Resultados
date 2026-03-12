@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Load AIOS project context before task execution. Provides git state, gotchas filtered by category, technical preferences, and core configuration.
+Load AIOX project context before task execution. Provides git state, gotchas filtered by category, technical preferences, and core configuration.
 
 ## Input
 

@@ -4,7 +4,7 @@
   Última sincronización: 2026-01-28
 -->
 
-# Documentación de Synkra AIOS
+# Documentación de Synkra AIOX
 
 > 🌐 [EN](../README.md) | [PT](../pt/README.md) | **ES**
 
@@ -109,8 +109,8 @@ Seguimos prácticas estándar de la industria para i18n:
 
 ## 📄 Licencia
 
-Esta documentación es parte de Synkra AIOS, licenciada bajo [Licencia MIT](../../LICENSE).
+Esta documentación es parte de Synkra AIOX, licenciada bajo [Licencia MIT](../../LICENSE).
 
 ---
 
-_Synkra AIOS - Orquestando IA para un Mejor Desarrollo de Software_
+_Synkra AIOX - Orquestando IA para un Mejor Desarrollo de Software_

@@ -1,4 +1,4 @@
-# Synkra AIOS Documentation
+# Synkra AIOX Documentation
 
 > **AI-Orchestrated System for Full Stack Development**
 
@@ -109,8 +109,8 @@ We follow industry-standard i18n practices:
 
 ## 📄 License
 
-This documentation is part of Synkra AIOS, licensed under [MIT License](../LICENSE).
+This documentation is part of Synkra AIOX, licensed under [MIT License](../LICENSE).
 
 ---
 
-_Synkra AIOS - Orchestrating AI for Better Software Development_
+_Synkra AIOX - Orchestrating AI for Better Software Development_

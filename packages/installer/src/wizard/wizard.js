@@ -7,12 +7,12 @@ const {
 } = require('../../../../.aios-core/infrastructure/scripts/documentation-integrity/mode-detector');
 
 /**
- * Interactive Wizard for AIOS Installation
+ * Interactive Wizard for AIOX Installation
  *
  * Supports three installation modes:
  * - GREENFIELD: New project - generates all docs and config
  * - BROWNFIELD: Existing project - analyzes and adapts
- * - FRAMEWORK_DEV: Contributing to aios-core itself
+ * - FRAMEWORK_DEV: Contributing to aiox-core itself
  *
  * @module wizard
  * @version 2.0.0
@@ -32,7 +32,7 @@ async function runWizard(options = {}) {
 
   try {
     // Step 1: Welcome screen
-    console.log('🚀 Welcome to AIOS Installer\n');
+    console.log('🚀 Welcome to AIOX Installer\n');
 
     // Step 2: Detect installation mode (Story 6.9)
     console.log('📊 Analyzing project directory...');
@@ -241,4 +241,3 @@ module.exports = {
   getProjectType,
   InstallationMode,
 };
-

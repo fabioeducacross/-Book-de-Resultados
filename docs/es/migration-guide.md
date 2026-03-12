@@ -4,13 +4,13 @@
   Ultima sincronizacion: 2026-01-26
 -->
 
-# Guia de Actualizacion de Synkra AIOS
+# Guia de Actualizacion de Synkra AIOX
 
 > 🌐 [EN](../migration-guide.md) | [PT](../pt/migration-guide.md) | **ES**
 
 ---
 
-Esta guia te ayuda a actualizar entre versiones de Synkra AIOS.
+Esta guia te ayuda a actualizar entre versiones de Synkra AIOX.
 
 ## Tabla de Contenidos
 
@@ -26,7 +26,7 @@ Esta guia te ayuda a actualizar entre versiones de Synkra AIOS.
 
 ### Version Actual
 
-**Synkra AIOS v4.4.0** (Version Estable Actual)
+**Synkra AIOX v4.4.0** (Version Estable Actual)
 
 ### Rutas de Actualizacion
 
@@ -85,7 +85,7 @@ cp -r .aios-core/tasks/custom ../backups/custom-tasks/
 
 ```bash
 # Registrar version actual
-npm list @synkra/aios-core/core > ../backups/version-info.txt
+npm list @synkra/aiox-core/core > ../backups/version-info.txt
 
 # Listar archivos personalizados
 find .aios-core -name "*.custom.*" -type f > ../backups/custom-files.txt
@@ -100,7 +100,7 @@ find .aios-core -name "*.custom.*" -type f > ../backups/custom-files.txt
 # Cerrar todas las integraciones de IDE y agentes activos
 
 # 2. Actualizar a la ultima version
-npm install -g @synkra/aios-core@latest
+npm install -g aiox-core@latest
 
 # 3. Ejecutar comando de actualizacion
 aios upgrade
@@ -113,13 +113,13 @@ aios --version
 
 ```bash
 # 1. Eliminar instalacion anterior
-npm uninstall -g @synkra/aios-core
+npm uninstall -g aiox-core
 
 # 2. Limpiar cache
 npm cache clean --force
 
 # 3. Instalar ultima version
-npm install -g @synkra/aios-core@latest
+npm install -g aiox-core@latest
 
 # 4. Reinicializar proyecto
 cd your-project
@@ -131,13 +131,13 @@ aios init --upgrade
 ```bash
 # Actualizar dependencias del proyecto
 cd your-project
-npm update @synkra/aios-core/core
+npm update @synkra/aiox-core/core
 
 # Reinstalar dependencias
 npm install
 
 # Verificar actualizacion
-npm list @synkra/aios-core/core
+npm list @synkra/aiox-core/core
 ```
 
 ## Verificacion Post-Actualizacion
@@ -201,7 +201,7 @@ rm -rf current-project
 tar -xzf backups/aios-backup-YYYYMMDD-HHMMSS.tar.gz
 
 # Reinstalar version anterior
-npm install -g @synkra/aios-core@<previous-version>
+npm install -g aiox-core@<previous-version>
 
 # Verificar rollback
 aios --version
@@ -229,7 +229,7 @@ npm install
 npm cache clean --force
 
 # Intentar con logging detallado
-npm install -g @synkra/aios-core@latest --verbose
+npm install -g aiox-core@latest --verbose
 
 # Verificar permisos de npm
 npm config get prefix
@@ -279,7 +279,7 @@ aios memory reset
 Si encuentras problemas no cubiertos aqui:
 
 1. **Verificar Logs**: Revisar `.aios-core/logs/upgrade.log`
-2. **GitHub Issues**: [github.com/SynkraAI/aios-core/issues](https://github.com/SynkraAI/aios-core/issues)
+2. **GitHub Issues**: [github.com/SynkraAI/aiox-core/issues](https://github.com/SynkraAI/aiox-core/issues)
 3. **Comunidad Discord**: [discord.gg/gk8jAdXWmj](https://discord.gg/gk8jAdXWmj)
 4. **Documentacion**: [directorio docs](./getting-started.md)
 

@@ -22,7 +22,7 @@ describeIntegration('Dependency Validator', () => {
       // Given
       fs.existsSync.mockReturnValue(true);
       fs.readFileSync.mockReturnValue(JSON.stringify({
-        name: '@synkra/aios-core',
+        name: 'aiox-core',
         version: '1.0.0',
         dependencies: {
           express: '^4.18.0',
@@ -131,6 +131,37 @@ describeIntegration('Dependency Validator', () => {
 
       // Then
       expect(auditCalled).toBe(true);
+    });
+
+    it('should skip npm audit in offline mode', async () => {
+      // Given
+      fs.existsSync.mockReturnValue(true);
+      fs.readFileSync.mockReturnValue(JSON.stringify({ name: 'test' }));
+      fs.readdirSync.mockReturnValue([]);
+
+      let auditCalled = false;
+      childProcess.exec.mockImplementation((cmd, callback) => {
+        auditCalled = true;
+        callback(null, JSON.stringify({ vulnerabilities: {} }), '');
+      });
+
+      // When
+      const result = await validateDependencies({
+        success: true,
+        packageManager: 'npm',
+        offlineMode: true,
+      });
+
+      // Then
+      expect(auditCalled).toBe(false);
+      expect(result.checks).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            component: 'Security Audit',
+            status: 'skipped',
+          }),
+        ]),
+      );
     });
 
     it('should handle npm audit vulnerabilities', async () => {

@@ -10,7 +10,7 @@
 
 ---
 
-Guia de referência completo para todos os comandos do meta-agente Synkra AIOS.
+Guia de referência completo para todos os comandos do meta-agente Synkra AIOX.
 
 ## Sumário
 
@@ -715,7 +715,7 @@ Exemplos:
 
 ### *update
 
-Atualiza o Synkra AIOS.
+Atualiza o Synkra AIOX.
 
 ```bash
 *update [options]
@@ -937,10 +937,10 @@ Entre no modo interativo para comandos contínuos:
 ```bash
 *interactive
 
-AIOS> create-agent helper
-AIOS> activate helper
-AIOS> helper translate "Hello" --to spanish
-AIOS> exit
+AIOX> create-agent helper
+AIOX> activate helper
+AIOX> helper translate "Hello" --to spanish
+AIOX> exit
 ```
 
 ## Variáveis de Ambiente

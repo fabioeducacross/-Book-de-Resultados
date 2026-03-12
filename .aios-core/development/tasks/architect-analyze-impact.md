@@ -22,7 +22,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: architectAnalyzeImpact()
@@ -200,10 +200,10 @@ updated_at: 2025-11-17
 
 ---
 
-alyze Impact - AIOS Developer Task
+alyze Impact - AIOX Developer Task
 
 ## Purpose
-Analyze the potential impact of proposed component modifications on the broader Synkra AIOS framework.
+Analyze the potential impact of proposed component modifications on the broader Synkra AIOX framework.
 
 ## Command Pattern
 ```
@@ -227,16 +227,16 @@ Analyze the potential impact of proposed component modifications on the broader 
 ## Examples
 ```bash
 # Analyze impact of modifying an agent
-*analyze-impact modify aios-core/agents/weather-agent.md --depth deep --include-tests
+*analyze-impact modify aiox-core/agents/weather-agent.md --depth deep --include-tests
 
 # Analyze deprecation impact with visual output
-*analyze-impact deprecate aios-core/scripts/old-helper.js --output-format visual --save-report reports/deprecation-impact.html
+*analyze-impact deprecate aiox-core/scripts/old-helper.js --output-format visual --save-report reports/deprecation-impact.html
 
 # Quick impact check for refactoring
-*analyze-impact refactor aios-core/tasks/process-data.md --depth shallow --risk-threshold medium
+*analyze-impact refactor aiox-core/tasks/process-data.md --depth shallow --risk-threshold medium
 
 # Analyze removal with approval workflow
-*analyze-impact remove aios-core/workflows/legacy-workflow.yaml --depth deep --save-report reports/removal-impact.json
+*analyze-impact remove aiox-core/workflows/legacy-workflow.yaml --depth deep --save-report reports/removal-impact.json
 ```
 
 ## Implementation
@@ -261,7 +261,7 @@ class AnalyzeImpactTask {
 
   async execute(params) {
     try {
-      console.log(chalk.blue('🔍 AIOS Impact Analysis'));
+      console.log(chalk.blue('🔍 AIOX Impact Analysis'));
       console.log(chalk.gray('Analyzing potential impact of component modifications\\n'));
 
       // Parse and validate parameters
@@ -792,7 +792,7 @@ module.exports = AnalyzeImpactTask;
 ```json
 {
   "success": true,
-  "targetComponent": "aios-core/agents/weather-agent.md",
+  "targetComponent": "aiox-core/agents/weather-agent.md",
   "riskLevel": "medium",
   "affectedComponents": 12,
   "propagationDepth": 3,

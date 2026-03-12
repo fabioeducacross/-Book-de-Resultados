@@ -6,7 +6,7 @@
  *   node diagnose-installation.js
  *
  * Or directly from URL:
- *   npx https://raw.githubusercontent.com/SynkraAI/aios-core/main/tools/diagnose-installation.js
+ *   npx https://raw.githubusercontent.com/SynkraAI/aiox-core/main/tools/diagnose-installation.js
  */
 
 const { execSync, spawnSync: _spawnSync } = require('child_process');

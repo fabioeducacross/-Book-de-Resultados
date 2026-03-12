@@ -10,7 +10,7 @@
 
 ---
 
-Introdução aos AIOS Squads - equipes modulares de agentes de IA que estendem a funcionalidade do framework.
+Introdução aos AIOX Squads - equipes modulares de agentes de IA que estendem a funcionalidade do framework.
 
 **Versão:** 2.1.0
 **Última Atualização:** 2026-01-28
@@ -19,9 +19,9 @@ Introdução aos AIOS Squads - equipes modulares de agentes de IA que estendem a
 
 ## O que são Squads?
 
-Squads são equipes modulares de agentes de IA que estendem a funcionalidade do AIOS para domínios ou casos de uso específicos. Cada squad é um pacote autocontido que pode ser instalado, compartilhado e composto com outros squads.
+Squads são equipes modulares de agentes de IA que estendem a funcionalidade do AIOX para domínios ou casos de uso específicos. Cada squad é um pacote autocontido que pode ser instalado, compartilhado e composto com outros squads.
 
-> **AIOS Squads:** Equipes de agentes de IA trabalhando com você
+> **AIOX Squads:** Equipes de agentes de IA trabalhando com você
 
 ### Características Principais
 
@@ -35,7 +35,7 @@ Squads são equipes modulares de agentes de IA que estendem a funcionalidade do 
 
 ### Squad vs. Agentes Tradicionais
 
-| Agentes Tradicionais   | AIOS Squads                  |
+| Agentes Tradicionais   | AIOX Squads                  |
 | ---------------------- | ---------------------------- |
 | Agentes individuais    | Equipe coordenada de agentes |
 | Propósito único        | Workflows focados em domínio |
@@ -91,7 +91,7 @@ author: Seu Nome <email@exemplo.com>
 license: MIT
 slashPrefix: my # Prefixo de comando para IDE
 
-# Compatibilidade AIOS
+# Compatibilidade AIOX
 aios:
   minVersion: '2.1.0'
   type: squad
@@ -182,7 +182,7 @@ tags:
 │                    DISTRIBUIÇÃO DE SQUADS                     │
 ├─────────────────────────────────────────────────────────────┤
 │  Nível 1: LOCAL        --> ./squads/           (Privado)     │
-│  Nível 2: AIOS-SQUADS  --> github.com/SynkraAI (Público)     │
+│  Nível 2: AIOX-SQUADS  --> github.com/SynkraAI (Público)     │
 │  Nível 3: SYNKRA API   --> api.synkra.dev      (Marketplace) │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -223,8 +223,8 @@ Tasks devem seguir [TASK-FORMAT-SPECIFICATION-V1](../../../.aios-core/docs/stand
 
 | Modo       | Comportamento                           |
 | ---------- | --------------------------------------- |
-| `extend`   | Adiciona regras do squad às regras AIOS |
-| `override` | Substitui regras AIOS pelas do squad    |
+| `extend`   | Adiciona regras do squad às regras AIOX |
+| `override` | Substitui regras AIOX pelas do squad    |
 | `none`     | Configuração independente               |
 
 ### 3. Valide Antes de Publicar
@@ -295,7 +295,7 @@ Use versionamento semântico:
 
 ### Qual a diferença entre um Squad e um Expansion Pack?
 
-**Squads** são o novo padrão (AIOS 2.1+) substituindo Expansion Packs. Squads têm:
+**Squads** são o novo padrão (AIOX 2.1+) substituindo Expansion Packs. Squads têm:
 
 - Arquitetura task-first
 - Validação JSON Schema
@@ -316,9 +316,9 @@ dependencies:
     - etl-squad@^2.0.0
 ```
 
-### Qual a versão mínima do AIOS para Squads?
+### Qual a versão mínima do AIOX para Squads?
 
-Squads requerem AIOS 2.1.0+. Defina no manifesto:
+Squads requerem AIOX 2.1.0+. Defina no manifesto:
 
 ```yaml
 aios:

@@ -4,7 +4,7 @@
   Ultima sincronizacion: 2026-01-29
 -->
 
-# AIOS Autonomous Development Engine (ADE) - Guia Completa
+# AIOX Autonomous Development Engine (ADE) - Guia Completa
 
 > **Version:** 1.0.0
 > **Fecha:** 2026-01-29
@@ -14,7 +14,7 @@
 
 ## Que es el ADE?
 
-El **AIOS Autonomous Development Engine (ADE)** es un sistema de desarrollo autonomo que transforma requisitos vagos en codigo funcional a traves de pipelines estructurados y agentes especializados.
+El **AIOX Autonomous Development Engine (ADE)** es un sistema de desarrollo autonomo que transforma requisitos vagos en codigo funcional a traves de pipelines estructurados y agentes especializados.
 
 ### Caracteristicas Principales
 

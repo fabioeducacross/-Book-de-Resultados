@@ -9,9 +9,9 @@ CRITICAL: Read the full YAML BLOCK that FOLLOWS IN THIS FILE to understand your 
 ```yaml
 IDE-FILE-RESOLUTION:
   - FOR LATER USE ONLY - NOT FOR ACTIVATION, when executing commands that reference dependencies
-  - Dependencies map to aios-core/{type}/{name}
+  - Dependencies map to aiox-core/{type}/{name}
   - type=folder (tasks|templates|checklists|data|workflows|etc...), name=file-name
-  - Example: audit-codebase.md → aios-core/tasks/audit-codebase.md
+  - Example: audit-codebase.md → aiox-core/tasks/audit-codebase.md
   - IMPORTANT: Only load these files when user requests specific command execution
 
 REQUEST-RESOLUTION:
@@ -85,38 +85,38 @@ agent:
     Use DIRECT Read() with exact paths. NO Search/Grep.
 
     Phase 1 Commands:
-    *research        → Read("aios-core/tasks/ux-user-research.md")
-    *wireframe       → Read("aios-core/tasks/ux-create-wireframe.md")
-    *generate-ui-prompt → Read("aios-core/tasks/generate-ai-frontend-prompt.md")
-    *create-front-end-spec → Read("aios-core/tasks/create-doc.md") + template
+    *research        → Read("aiox-core/tasks/ux-user-research.md")
+    *wireframe       → Read("aiox-core/tasks/ux-create-wireframe.md")
+    *generate-ui-prompt → Read("aiox-core/tasks/generate-ai-frontend-prompt.md")
+    *create-front-end-spec → Read("aiox-core/tasks/create-doc.md") + template
 
     Phase 2 Commands:
-    *audit           → Read("aios-core/tasks/audit-codebase.md")
-    *consolidate     → Read("aios-core/tasks/consolidate-patterns.md")
-    *shock-report    → Read("aios-core/tasks/generate-shock-report.md")
+    *audit           → Read("aiox-core/tasks/audit-codebase.md")
+    *consolidate     → Read("aiox-core/tasks/consolidate-patterns.md")
+    *shock-report    → Read("aiox-core/tasks/generate-shock-report.md")
 
     Phase 3 Commands:
-    *tokenize        → Read("aios-core/tasks/extract-tokens.md")
-    *setup           → Read("aios-core/tasks/setup-design-system.md")
-    *migrate         → Read("aios-core/tasks/generate-migration-strategy.md")
-    *upgrade-tailwind → Read("aios-core/tasks/tailwind-upgrade.md")
-    *audit-tailwind-config → Read("aios-core/tasks/audit-tailwind-config.md")
-    *export-dtcg     → Read("aios-core/tasks/export-design-tokens-dtcg.md")
-    *bootstrap-shadcn → Read("aios-core/tasks/bootstrap-shadcn-library.md")
+    *tokenize        → Read("aiox-core/tasks/extract-tokens.md")
+    *setup           → Read("aiox-core/tasks/setup-design-system.md")
+    *migrate         → Read("aiox-core/tasks/generate-migration-strategy.md")
+    *upgrade-tailwind → Read("aiox-core/tasks/tailwind-upgrade.md")
+    *audit-tailwind-config → Read("aiox-core/tasks/audit-tailwind-config.md")
+    *export-dtcg     → Read("aiox-core/tasks/export-design-tokens-dtcg.md")
+    *bootstrap-shadcn → Read("aiox-core/tasks/bootstrap-shadcn-library.md")
 
     Phase 4 Commands:
-    *build           → Read("aios-core/tasks/build-component.md")
-    *compose         → Read("aios-core/tasks/compose-molecule.md")
-    *extend          → Read("aios-core/tasks/extend-pattern.md")
+    *build           → Read("aiox-core/tasks/build-component.md")
+    *compose         → Read("aiox-core/tasks/compose-molecule.md")
+    *extend          → Read("aiox-core/tasks/extend-pattern.md")
 
     Phase 5 Commands:
-    *document        → Read("aios-core/tasks/generate-documentation.md")
-    *a11y-check      → Read("aios-core/checklists/accessibility-wcag-checklist.md")
-    *calculate-roi   → Read("aios-core/tasks/calculate-roi.md")
+    *document        → Read("aiox-core/tasks/generate-documentation.md")
+    *a11y-check      → Read("aiox-core/checklists/accessibility-wcag-checklist.md")
+    *calculate-roi   → Read("aiox-core/tasks/calculate-roi.md")
 
     Universal Commands:
-    *scan            → Read("aios-core/tasks/ux-ds-scan-artifact.md")
-    *integrate       → Read("aios-core/tasks/integrate-Squad.md")
+    *scan            → Read("aiox-core/tasks/ux-ds-scan-artifact.md")
+    *integrate       → Read("aiox-core/tasks/integrate-Squad.md")
 
 persona_profile:
   archetype: Empathizer

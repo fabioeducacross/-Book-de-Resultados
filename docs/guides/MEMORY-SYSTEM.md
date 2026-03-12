@@ -12,7 +12,7 @@
 1. [Visao Geral](#visao-geral)
 2. [Diagrama de Arquitetura Completo](#diagrama-de-arquitetura-completo)
 3. [Camada 1: Claude Code Nativo](#camada-1-claude-code-nativo)
-4. [Camada 2: AIOS Framework](#camada-2-aios-framework)
+4. [Camada 2: AIOX Framework](#camada-2-aios-framework)
 5. [Fluxo de Ativacao de Agente (Memory Load)](#fluxo-de-ativacao-de-agente-memory-load)
 6. [Fluxo de Persistencia (Memory Save)](#fluxo-de-persistencia-memory-save)
 7. [Fluxo de Session Lifecycle](#fluxo-de-session-lifecycle)
@@ -29,12 +29,12 @@
 
 ## Visao Geral
 
-O sistema de memoria do AIOS opera em **duas camadas independentes** que coexistem mas **nao se comunicam entre si**:
+O sistema de memoria do AIOX opera em **duas camadas independentes** que coexistem mas **nao se comunicam entre si**:
 
 | Camada | Gerenciado Por | Escopo |
 |--------|---------------|--------|
 | **Camada 1: Claude Code Nativo** | Claude Code CLI | Auto Memory, CLAUDE.md, Session Transcripts |
-| **Camada 2: AIOS Framework** | Scripts JS em `.aios-core/` | Gotchas, Session State, Context Snapshots, Timeline |
+| **Camada 2: AIOX Framework** | Scripts JS em `.aios-core/` | Gotchas, Session State, Context Snapshots, Timeline |
 
 ### Principios Chave
 
@@ -55,7 +55,7 @@ flowchart TB
         direction TB
         CLAUDE_MD_G["CLAUDE.md Global<br/>~/.claude/CLAUDE.md"]
         CLAUDE_MD_W["CLAUDE.md Workspace<br/>Workspaces/.claude/CLAUDE.md"]
-        CLAUDE_MD_P["CLAUDE.md Projeto<br/>aios-core/.claude/CLAUDE.md"]
+        CLAUDE_MD_P["CLAUDE.md Projeto<br/>aiox-core/.claude/CLAUDE.md"]
         RULES["Rules/*.md<br/>5 arquivos de regras"]
         AUTO_MEM["Auto Memory<br/>~/.claude/projects/.../memory/MEMORY.md<br/>Primeiras 200 linhas no system prompt"]
         COMPOUND["Compound Analysis<br/>memory/compound-analysis/<br/>11 arquivos (9 conteudo + manifest + summary)"]
@@ -64,7 +64,7 @@ flowchart TB
         SESSIONS_IDX["Sessions Index<br/>sessions-index.json"]
     end
 
-    subgraph AIOS_FRAMEWORK["Camada 2: AIOS Framework"]
+    subgraph AIOS_FRAMEWORK["Camada 2: AIOX Framework"]
         direction TB
         GOTCHAS["Gotchas Memory<br/>.aios-core/core/memory/gotchas-memory.js"]
         CTX_SNAP["Context Snapshot<br/>.aios-core/core/memory/context-snapshot.js"]
@@ -83,7 +83,7 @@ flowchart TB
         S_AGENT_MEM[".claude/agent-memory/"]
     end
 
-    subgraph STORAGE_AIOS["Storage AIOS (.aios/)"]
+    subgraph STORAGE_AIOS["Storage AIOX (.aios/)"]
         S_GOTCHAS[".aios/gotchas.json + .md"]
         S_ERRORS[".aios/error-tracking.json"]
         S_SNAPSHOTS[".aios/snapshots/"]
@@ -173,8 +173,8 @@ flowchart TD
     subgraph LOAD["Carregamento Automatico — Ordem Fixa"]
         LOAD_GLOBAL["1. ~/.claude/CLAUDE.md<br/>Instrucoes globais do usuario"]
         LOAD_WORKSPACE["2. Workspaces/.claude/CLAUDE.md<br/>Instrucoes nivel workspace"]
-        LOAD_PROJECT["3. aios-core/.claude/CLAUDE.md<br/>Instrucoes nivel projeto"]
-        LOAD_RULES["4. aios-core/.claude/rules/*.md<br/>5 arquivos de regras detalhadas"]
+        LOAD_PROJECT["3. aiox-core/.claude/CLAUDE.md<br/>Instrucoes nivel projeto"]
+        LOAD_RULES["4. aiox-core/.claude/rules/*.md<br/>5 arquivos de regras detalhadas"]
         LOAD_MEMORY["5. ~/.claude/projects/.../memory/MEMORY.md<br/>Auto Memory (primeiras 200 linhas)"]
     end
 
@@ -237,7 +237,7 @@ flowchart LR
 
     SQUAD_AGENTS["Agentes de Squad<br/>(Claude Code Agents)"] -->|"frontmatter<br/>memory: project"| AGENT_MEM
 
-    NOTE["NOTA: Apenas agentes<br/>definidos em .claude/agents/<br/>usam esta memoria.<br/>Agentes AIOS (.aios-core/<br/>development/agents/)<br/>NAO usam."]
+    NOTE["NOTA: Apenas agentes<br/>definidos em .claude/agents/<br/>usam esta memoria.<br/>Agentes AIOX (.aios-core/<br/>development/agents/)<br/>NAO usam."]
 
     style AGENT_MEM fill:#F3E5F5,stroke:#7B1FA2
     style NOTE fill:#FFF9C4,stroke:#F9A825
@@ -245,7 +245,7 @@ flowchart LR
 
 ---
 
-## Camada 2: AIOS Framework
+## Camada 2: AIOX Framework
 
 ### Visao dos 4 Modulos de Memoria
 
@@ -421,7 +421,7 @@ sequenceDiagram
 
     UAP-->>CC: {greeting, quality: full|partial|fallback}
 
-    Note over CC: NENHUMA memoria AIOS<br/>e carregada automaticamente<br/>no system prompt.<br/>Apenas contexto de sessao<br/>aparece no greeting.
+    Note over CC: NENHUMA memoria AIOX<br/>e carregada automaticamente<br/>no system prompt.<br/>Apenas contexto de sessao<br/>aparece no greeting.
 ```
 
 ---
@@ -758,7 +758,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph AIOS_EVENTS["Eventos AIOS"]
+    subgraph AIOS_EVENTS["Eventos AIOX"]
         E1["sessionStart"]
         E2["beforeAgent"]
         E3["beforeTool"]
@@ -850,7 +850,7 @@ flowchart TD
 
 | Arquivo | CLI | Funcao |
 |---------|-----|--------|
-| `.aios-core/hooks/gemini/session-start.js` | Gemini | Carrega contexto AIOS no inicio da sessao |
+| `.aios-core/hooks/gemini/session-start.js` | Gemini | Carrega contexto AIOX no inicio da sessao |
 | `.aios-core/hooks/gemini/session-end.js` | Gemini | Persiste sumario da sessao em `.aios/sessions/` |
 | `.aios-core/hooks/gemini/before-agent.js` | Gemini | Pre-processamento antes de agente |
 | `.aios-core/hooks/gemini/before-tool.js` | Ambos | Pre-processamento antes de tool |
@@ -865,8 +865,8 @@ flowchart TD
 |---------|--------|
 | `~/.claude/CLAUDE.md` | Instrucoes globais (carregado sempre) |
 | `Workspaces/.claude/CLAUDE.md` | Instrucoes workspace (carregado sempre) |
-| `aios-core/.claude/CLAUDE.md` | Instrucoes projeto (carregado sempre) |
-| `aios-core/.claude/rules/*.md` | 5 arquivos de regras (carregados sempre) |
+| `aiox-core/.claude/CLAUDE.md` | Instrucoes projeto (carregado sempre) |
+| `aiox-core/.claude/rules/*.md` | 5 arquivos de regras (carregados sempre) |
 | `~/.claude/projects/.../memory/MEMORY.md` | Auto memory (primeiras 200 linhas, carregado sempre) |
 | `~/.claude/projects/.../memory/compound-analysis/*.md` | 9 arquivos de analise sintetizada (referenciados do MEMORY.md) |
 | `.claude/agent-memory/{agent}/MEMORY.md` | Memoria por agente de squad (6 agentes) |
@@ -947,7 +947,7 @@ Quando uma sessao fecha, o conhecimento contextual e **perdido** exceto:
 IMPACTO: HIGH
 ```
 
-Os modulos AIOS (gotchas, snapshots, timeline) **nao fazem flush** automatico ao final da sessao. Dados em memoria podem se perder se o processo terminar abruptamente.
+Os modulos AIOX (gotchas, snapshots, timeline) **nao fazem flush** automatico ao final da sessao. Dados em memoria podem se perder se o processo terminar abruptamente.
 
 ### Gap 3: Hooks Gemini Nao Portados
 
@@ -963,7 +963,7 @@ IMPACTO: MEDIUM
 IMPACTO: MEDIUM
 ```
 
-Claude auto-memory (`MEMORY.md`) e AIOS memory (`.aios/`) nunca se sincronizam. Gotchas capturadas pelo AIOS nao aparecem no MEMORY.md e vice-versa.
+Claude auto-memory (`MEMORY.md`) e AIOX memory (`.aios/`) nunca se sincronizam. Gotchas capturadas pelo AIOX nao aparecem no MEMORY.md e vice-versa.
 
 ### Gap 5: compound-analysis Estatico
 
@@ -997,6 +997,6 @@ Os 9 arquivos em `memory/compound-analysis/` foram gerados por ferramenta extern
 
 ---
 
-*AIOS Memory System Architecture Guide v1.0*
+*AIOX Memory System Architecture Guide v1.0*
 *Traced from source code, not documentation.*
 *@architect (Aria) — arquitetando o futuro*

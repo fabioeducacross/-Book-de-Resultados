@@ -23,7 +23,7 @@ To conduct a structured brainstorming session with multiple AI agents (and optio
 
 - **topic**: `string`
   - **Description**: The challenge, opportunity, or question to brainstorm about
-  - **Example**: "How can we improve user onboarding for AIOS?"
+  - **Example**: "How can we improve user onboarding for AIOX?"
   - **Validation**: Must be at least 20 characters
 
 - **session_goal**: `string`
@@ -312,7 +312,7 @@ ${rec.next_steps.map(step => `- ${step}`).join('\n')}
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: facilitateBrainstormingSession()
@@ -483,7 +483,7 @@ updated_at: 2025-11-17
 
 ```bash
 aios activate Maestro
-aios brainstorm "How can we improve AIOS user onboarding for non-technical users?"
+aios brainstorm "How can we improve AIOX user onboarding for non-technical users?"
 ```
 
 **Output**: 25 ideas across 5 categories, top 10 prioritized with next steps

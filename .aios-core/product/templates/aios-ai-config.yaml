@@ -40,7 +40,7 @@ ai_providers:
 # Claude Code Configuration
 claude:
   # Model to use
-  model: claude-3-5-sonnet    # Options: claude-3-5-sonnet, claude-3-opus, etc.
+  # model: user-managed (optional — set your preferred model)
 
   # Execution timeout (ms)
   timeout: 300000             # 5 minutes

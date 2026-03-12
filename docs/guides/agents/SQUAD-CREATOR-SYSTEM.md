@@ -1,4 +1,4 @@
-# Sistema de Criacao e Gerenciamento de Squads AIOS
+# Sistema de Criacao e Gerenciamento de Squads AIOX
 
 > **Versao:** 1.0.0
 > **Criado:** 2026-02-04
@@ -9,13 +9,13 @@
 
 ## Visao Geral
 
-O **Squad Creator** (Craft) e o agente especializado do AIOS para criacao, validacao, publicacao e gerenciamento de squads. Squads sao pacotes modulares de agentes, tasks, workflows e recursos que podem ser reutilizados entre projetos.
+O **Squad Creator** (Craft) e o agente especializado do AIOX para criacao, validacao, publicacao e gerenciamento de squads. Squads sao pacotes modulares de agentes, tasks, workflows e recursos que podem ser reutilizados entre projetos.
 
-Este sistema implementa a **arquitetura task-first** do AIOS, onde tasks sao o ponto de entrada principal para execucao, e agentes orquestram essas tasks.
+Este sistema implementa a **arquitetura task-first** do AIOX, onde tasks sao o ponto de entrada principal para execucao, e agentes orquestram essas tasks.
 
 ### Propositos do Sistema
 
-- **Criar squads** seguindo padroes e estrutura do AIOS
+- **Criar squads** seguindo padroes e estrutura do AIOX
 - **Validar squads** contra JSON Schema e especificacoes de task
 - **Listar squads** locais do projeto
 - **Distribuir squads** em 3 niveis (Local, aios-squads, Synkra API)
@@ -28,7 +28,7 @@ Este sistema implementa a **arquitetura task-first** do AIOS, onde tasks sao o p
 2. **Validacao Obrigatoria**: Sempre validar antes de distribuir
 3. **JSON Schema**: Manifests validados contra schema
 4. **3 Niveis de Distribuicao**: Local, Publico (aios-squads), Marketplace (Synkra API)
-5. **Integracao com aios-core**: Squads trabalham em sinergia com o framework
+5. **Integracao com aiox-core**: Squads trabalham em sinergia com o framework
 
 ---
 
@@ -39,7 +39,7 @@ Este sistema implementa a **arquitetura task-first** do AIOS, onde tasks sao o p
 | Arquivo | Proposito |
 |---------|-----------|
 | `.aios-core/development/agents/squad-creator.md` | Definicao core do agente Squad Creator |
-| `.claude/commands/AIOS/agents/squad-creator.md` | Comando Claude Code para ativar @squad-creator |
+| `.claude/commands/AIOX/agents/squad-creator.md` | Comando Claude Code para ativar @squad-creator |
 
 ### Arquivos de Tasks do @squad-creator
 
@@ -510,7 +510,7 @@ slashPrefix: string   # prefixo para comandos
 tags: string[]        # keywords para descoberta
 
 aios:
-  minVersion: string  # versao minima do AIOS
+  minVersion: string  # versao minima do AIOX
   type: squad
 
 components:
@@ -668,7 +668,7 @@ flowchart LR
 - [Script: squad-validator.js](.aios-core/development/scripts/squad/squad-validator.js)
 - [Schema: squad-schema.json](.aios-core/schemas/squad-schema.json)
 - [Agent: squad-creator.md](.aios-core/development/agents/squad-creator.md)
-- [Command: squad-creator.md](.claude/commands/AIOS/agents/squad-creator.md)
+- [Command: squad-creator.md](.claude/commands/AIOX/agents/squad-creator.md)
 
 ---
 

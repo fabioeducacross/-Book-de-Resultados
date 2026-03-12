@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@pm** (Morgan) es el agente de Product Management del AIOS, responsable por:
+**@pm** (Morgan) es el agente de Product Management del AIOX, responsable por:
 
 - Estrategia de producto
 - Roadmap y planificacion

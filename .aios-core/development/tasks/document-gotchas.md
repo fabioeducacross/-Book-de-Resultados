@@ -6,7 +6,7 @@ Extract and consolidate gotchas from session insights into a searchable knowledg
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: documentGotchas()

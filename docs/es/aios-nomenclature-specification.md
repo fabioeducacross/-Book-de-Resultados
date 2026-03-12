@@ -4,7 +4,7 @@
   Última sincronización: 2026-01-26
 -->
 
-# Especificación de Nomenclatura de AIOS
+# Especificación de Nomenclatura de AIOX
 
 > 🌐 [EN](../aios-nomenclature-specification.md) | [PT](../pt/aios-nomenclature-specification.md) | **ES**
 
@@ -20,7 +20,7 @@
 
 ## Resumen Ejecutivo
 
-Este documento establece nomenclatura clara para AIOS para diferenciar entre:
+Este documento establece nomenclatura clara para AIOX para diferenciar entre:
 - **Task Workflow**: Pasos de ejecución interna dentro de una única tarea
 - **Workflow**: Orquestación multi-tarea a través de agentes con capacidades Fork/Join
 
@@ -120,9 +120,9 @@ workflow:
 
 ### Patrón Organizer-Worker
 
-**Concepto:** Inspirado por el protocolo Organizer-Worker de AsyncThink, los workflows de AIOS pueden usar un **Agente Organizador** que coordina **Agentes Trabajadores** ejecutando tareas en paralelo.
+**Concepto:** Inspirado por el protocolo Organizer-Worker de AsyncThink, los workflows de AIOX pueden usar un **Agente Organizador** que coordina **Agentes Trabajadores** ejecutando tareas en paralelo.
 
-**Aplicación a AIOS:**
+**Aplicación a AIOX:**
 
 1. **Agente Organizador:**
    - Coordina la ejecución del workflow
@@ -186,7 +186,7 @@ workflow:
 
 **Concepto:** Agent Lightning permite optimizar CUALQUIER agente con CUALQUIER framework usando aprendizaje por refuerzo, sin modificar el código del agente.
 
-**Aplicación a AIOS:**
+**Aplicación a AIOX:**
 
 1. **Integración con Lightning Server:**
    - Recopilar trazas de ejecución de agentes
@@ -650,7 +650,7 @@ workflow:
    - [Documentación](https://microsoft.github.io/agent-lightning/latest/)
    - Conceptos Clave: Optimización sin código, entrenamiento RL, soporte multi-agente
 
-3. **Gestión de Workflows AIOS:** Patrones de workflow existentes en AIOS
+3. **Gestión de Workflows AIOX:** Patrones de workflow existentes en AIOX
    - `common/utils/workflow-management.md`
    - `docs/WORKFLOW-COMPLETE-CONSOLIDATED-V3.md`
 

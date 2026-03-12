@@ -10,7 +10,7 @@
 
 ## Summary
 
-The **Story Development Cycle Workflow** is the core development process in AIOS. It orchestrates the complete lifecycle of implementing a user story:
+The **Story Development Cycle Workflow** is the core development process in AIOX. It orchestrates the complete lifecycle of implementing a user story:
 
 - Story breakdown and task creation
 - Test-first development approach
@@ -20,7 +20,7 @@ The **Story Development Cycle Workflow** is the core development process in AIOS
 
 ### When to Use
 
-- For every story implementation in AIOS
+- For every story implementation in AIOX
 - Called by greenfield and brownfield workflows
 - After spec-pipeline approval
 

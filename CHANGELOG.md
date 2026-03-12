@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Synkra AIOS will be documented in this file.
+All notable changes to Synkra AIOX will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -57,7 +57,7 @@ This release introduces **Squad Continuous Improvement** capabilities with analy
 
 ### Highlights
 
-This release marks the **Open-Source Community Readiness** milestone, preparing AIOS for public contribution while introducing the **Squad System** for extensibility.
+This release marks the **Open-Source Community Readiness** milestone, preparing AIOX for public contribution while introducing the **Squad System** for extensibility.
 
 ### Added
 
@@ -208,7 +208,7 @@ This release marks the **Open-Source Community Readiness** milestone, preparing 
 
 ### Technical
 - Story: 4.6 - Move Hybrid-Ops to Separate Repository
-- Breaking Change: hybrid-ops no longer bundled with @synkra/aios-core
+- Breaking Change: hybrid-ops no longer bundled with @synkra/aiox-core
 - Migration: Users can install from external repo to `expansion-packs/hybrid-ops/`
 - Story: 4.7 - Removed `expansion-packs/hybrid-ops.legacy/` directory (legacy backup no longer needed)
 - Story: 4.5.3 - Expansion-Packs Naming Convention Migration
@@ -230,11 +230,11 @@ This release marks the **Open-Source Community Readiness** milestone, preparing 
 ### Fixed
 - NPX installation from temporary directory no longer attempts IDE detection
 - Clear error message guides users to correct installation directory
-- Prevents confusion when running `npx @synkra/aios-core install` from home directory
+- Prevents confusion when running `npx aiox-core install` from home directory
 
 ### Changed
 - Early exit with `process.exit(1)` when NPX temporary context detected
-- Help message provides actionable solution: `cd /path/to/your/project && npx @synkra/aios-core install`
+- Help message provides actionable solution: `cd /path/to/your/project && npx aiox-core install`
 
 ### Technical
 - Story: 2.3 - NPX Installation Context Detection & Help Text (macOS)

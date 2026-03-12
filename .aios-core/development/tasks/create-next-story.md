@@ -23,7 +23,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: createNextStory()
@@ -219,8 +219,8 @@ To identify the next logical story based on project progress and epic definition
 
 ### 0. Load Core Configuration and Check Workflow
 
-- Load `aios-core/core-config.yaml` from the project root
-- If the file does not exist, HALT and inform the user: "core-config.yaml not found. This file is required for story creation. You can either: 1) Copy it from GITHUB aios-core/core-config.yaml and configure it for your project OR 2) Run the AIOS installer against your project to upgrade and add the file automatically. Please add and configure core-config.yaml before proceeding."
+- Load `aiox-core/core-config.yaml` from the project root
+- If the file does not exist, HALT and inform the user: "core-config.yaml not found. This file is required for story creation. You can either: 1) Copy it from GITHUB aiox-core/core-config.yaml and configure it for your project OR 2) Run the AIOX installer against your project to upgrade and add the file automatically. Please add and configure core-config.yaml before proceeding."
 - Extract key configurations: `devStoryLocation`, `prd.*`, `architecture.*`, `workflow.*`
 
 ### 1. Identify Next Story for Preparation
@@ -762,13 +762,13 @@ Use the primary agent from "Specialized Agent Assignment" to determine which sel
 - Verify all source references are included for technical details
 - Ensure tasks align with both epic requirements and architecture constraints
 - Update status to "Draft" and save the story file
-- Execute `aios-core/tasks/execute-checklist` `aios-core/checklists/story-draft-checklist`
+- Execute `aiox-core/tasks/execute-checklist` `aiox-core/checklists/story-draft-checklist`
 - Provide summary to user including:
   - Story created: `{devStoryLocation}/{epicNum}.{storyNum}.story.md`
   - Status: Draft
   - Key technical components included from architecture docs
   - Any deviations or conflicts noted between epic and architecture
   - Checklist Results
-  - Next steps: For Complex stories, suggest the user carefully review the story draft and also optionally have the PO run the task `aios-core/tasks/validate-next-story`
+  - Next steps: For Complex stories, suggest the user carefully review the story draft and also optionally have the PO run the task `aiox-core/tasks/validate-next-story`
 
 **ClickUp Integration Note:** This task now includes Epic verification (Section 5.1), ClickUp story task creation (Section 5.3), and automatic frontmatter updates (Section 5.4). Stories are created as subtasks of their parent Epic in ClickUp's Backlog list. If Epic verification or ClickUp sync fails, the story file will still be created locally with a warning message.

@@ -49,7 +49,7 @@ const TRANSLATIONS = {
 
     // Completion
     installComplete: 'Installation Complete!',
-    readyToUse: 'Your AIOS project is ready.',
+    readyToUse: 'Your AIOX project is ready.',
     nextSteps: 'Next steps:',
     quickStart: 'Quick Start:',
     quickStartAgents: 'Talk to your AI agents: @dev, @qa, @architect',
@@ -59,7 +59,7 @@ const TRANSLATIONS = {
     // Cancellation
     cancelConfirm: 'Cancel installation?',
     cancelled: 'Installation cancelled.',
-    tryAgain: 'Run `npx @synkra/aios-core init` to try again.',
+    tryAgain: 'Run `npx aiox-core init` to try again.',
     continuing: 'Continuing installation...',
   },
 
@@ -68,7 +68,7 @@ const TRANSLATIONS = {
     selectLanguage: 'Selecione o idioma:',
 
     // User Profile (Story 10.2 - Epic 10: User Profile System)
-    // PRD: AIOS v2.0 "Projeto Bob" - Seção 2.4 (exact copy)
+    // PRD: AIOX v2.0 "Projeto Bob" - Seção 2.4 (exact copy)
     userProfileQuestion: 'Quando uma IA gera código para você, qual dessas opções te descreve melhor?',
     modoAssistido: 'Modo Assistido',
     modoAssistidoDesc: 'Não sei avaliar se o código está certo ou errado',
@@ -92,7 +92,7 @@ const TRANSLATIONS = {
     recommended: 'Recomendado',
 
     // Progress messages
-    installingCore: 'Instalando AIOS core...',
+    installingCore: 'Instalando AIOX core...',
     installingIDE: 'Configurando IDEs...',
     installingDeps: 'Instalando dependências...',
     configuringEnv: 'Configurando ambiente...',
@@ -106,7 +106,7 @@ const TRANSLATIONS = {
 
     // Completion
     installComplete: 'Instalação Completa!',
-    readyToUse: 'Seu projeto AIOS está pronto.',
+    readyToUse: 'Seu projeto AIOX está pronto.',
     nextSteps: 'Próximos passos:',
     quickStart: 'Início Rápido:',
     quickStartAgents: 'Converse com seus agentes IA: @dev, @qa, @architect',
@@ -116,7 +116,7 @@ const TRANSLATIONS = {
     // Cancellation
     cancelConfirm: 'Cancelar instalação?',
     cancelled: 'Instalação cancelada.',
-    tryAgain: 'Execute `npx @synkra/aios-core init` para tentar novamente.',
+    tryAgain: 'Execute `npx aiox-core init` para tentar novamente.',
     continuing: 'Continuando instalação...',
   },
 
@@ -148,7 +148,7 @@ const TRANSLATIONS = {
     recommended: 'Recomendado',
 
     // Progress messages
-    installingCore: 'Instalando AIOS core...',
+    installingCore: 'Instalando AIOX core...',
     installingIDE: 'Configurando IDEs...',
     installingDeps: 'Instalando dependencias...',
     configuringEnv: 'Configurando ambiente...',
@@ -162,7 +162,7 @@ const TRANSLATIONS = {
 
     // Completion
     installComplete: '¡Instalación Completa!',
-    readyToUse: 'Tu proyecto AIOS está listo.',
+    readyToUse: 'Tu proyecto AIOX está listo.',
     nextSteps: 'Próximos pasos:',
     quickStart: 'Inicio Rápido:',
     quickStartAgents: 'Habla con tus agentes IA: @dev, @qa, @architect',
@@ -172,7 +172,7 @@ const TRANSLATIONS = {
     // Cancellation
     cancelConfirm: '¿Cancelar instalación?',
     cancelled: 'Instalación cancelada.',
-    tryAgain: 'Ejecute `npx @synkra/aios-core init` para intentar nuevamente.',
+    tryAgain: 'Ejecute `npx aiox-core init` para intentar nuevamente.',
     continuing: 'Continuando instalación...',
   },
 };

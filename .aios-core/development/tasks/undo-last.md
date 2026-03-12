@@ -31,7 +31,7 @@
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: undoLast()
@@ -240,9 +240,9 @@ Transaction: txn-1234567890-abcd
 Type: component_creation
 Date: 2025-01-31T10:30:00Z
 Operations:
-  - Created: /aios-core/agents/data-analyst.md
-  - Updated: /aios-core/team-manifest.yaml
-  - Created: /aios-core/tasks/analyze-data.md
+  - Created: /aiox-core/agents/data-analyst.md
+  - Updated: /aiox-core/team-manifest.yaml
+  - Created: /aiox-core/tasks/analyze-data.md
 ```
 
 ### Step 3: Execute Rollback

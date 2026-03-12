@@ -2,14 +2,14 @@
 
 **Version:** 2.1.0
 **Date:** 2025-12-09
-**Purpose:** Document differences between AIOS open-source and AIOS service implementations
+**Purpose:** Document differences between AIOX open-source and AIOX service implementations
 **Status:** ⚠️ Needs Review - Updated for v2.1 Multi-Repo Strategy
 
 ---
 
 ## Overview
 
-AIOS has two deployment contexts:
+AIOX has two deployment contexts:
 1. **Open-Source** - Public repositories, community-driven, self-hosted
 2. **Service** - Commercial offering (e.g., MMOS Mind emulations, certified partner integrations)
 
@@ -23,7 +23,7 @@ This document clarifies which features apply to which context.
 
 | Repository | License | Type | Contains |
 |------------|---------|------|----------|
-| `SynkraAI/aios-core` | Commons Clause | Public | Core framework, 11 agents, Quality Gates |
+| `SynkraAI/aiox-core` | Commons Clause | Public | Core framework, 11 agents, Quality Gates |
 | `SynkraAI/aios-squads` | MIT | Public | ETL, Creator, MMOS-Mapper squads |
 | `SynkraAI/mcp-ecosystem` | Apache 2.0 | Public | Docker MCP, IDE configs, MCP presets |
 | `SynkraAI/mmos` | Proprietary + NDA | Private | MMOS Minds, DNA Mental |
@@ -45,7 +45,7 @@ This document clarifies which features apply to which context.
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                    OPEN-SOURCE (Public Repos)                           │
 │                                                                         │
-│   SynkraAI/aios-core        SynkraAI/aios-squads                   │
+│   SynkraAI/aiox-core        SynkraAI/aios-squads                   │
 │   ┌─────────────────────┐     ┌─────────────────────┐                  │
 │   │ • Core Framework    │     │ • ETL Squad         │                  │
 │   │ • 11 Base Agents    │     │ • Creator Squad     │                  │
@@ -489,7 +489,7 @@ function validateTask(task) {
 
 ## Related Documents
 
-- [AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOS-LIVRO-DE-OURO-V2.1-COMPLETE.md) - Complete v2.1 framework guide
+- [AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md](./AIOX-LIVRO-DE-OURO-V2.1-COMPLETE.md) - Complete v2.1 framework guide
 - [STANDARDS-INDEX.md](./STANDARDS-INDEX.md) - Standards navigation
 - [TASK-FORMAT-SPECIFICATION-V1.md](./TASK-FORMAT-SPECIFICATION-V1.md) - Complete task format spec
 - [AGENT-PERSONALIZATION-STANDARD-V1.md](./AGENT-PERSONALIZATION-STANDARD-V1.md) - Personality guidelines
@@ -508,4 +508,4 @@ function validateTask(task) {
 
 **Last Updated:** 2025-12-09
 **Version:** 2.1.0
-**Applies to:** AIOS v2.1+
+**Applies to:** AIOX v2.1+

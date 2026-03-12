@@ -89,7 +89,7 @@ To automate the complete software release process, including:
 - **published_packages**: `array<object>`
   - **Description**: Published packages with URLs
   - **Structure**: `{ registry, package_name, version, url }`
-  - **Example**: `[{ registry: "npm", package_name: "aios-core", version: "2.1.3", url: "https://npmjs.com/package/aios-core" }]`
+  - **Example**: `[{ registry: "npm", package_name: "aiox-core", version: "2.1.3", url: "https://npmjs.com/package/aiox-core" }]`
 
 - **release_notes**: `string`
   - **Description**: Formatted release notes (for announcements)
@@ -407,7 +407,7 @@ pip install {package_name}=={new_version}
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: releaseManagement()

@@ -92,15 +92,15 @@ describe('Mode Detector', () => {
       expect(result.markers.hasCargoToml).toBe(true);
     });
 
-    it('should detect FRAMEWORK_DEV mode for aios-core repository', () => {
-      // Create .aios-core directory
-      fs.mkdirSync(path.join(tempDir, '.aios-core'));
+    it('should detect FRAMEWORK_DEV mode for aiox-core repository', () => {
+      // Create .aiox-core directory
+      fs.mkdirSync(path.join(tempDir, '.aiox-core'));
 
-      // Create package.json with aios-core name
+      // Create package.json with aiox-core name
       fs.writeFileSync(
         path.join(tempDir, 'package.json'),
         JSON.stringify({
-          name: '@aios/core',
+          name: 'aiox-core',
           workspaces: ['packages/*'],
         }),
       );
@@ -113,9 +113,9 @@ describe('Mode Detector', () => {
       expect(result.markers.isAiosCoreRepo).toBe(true);
     });
 
-    it('should detect BROWNFIELD mode for user project with existing AIOS', () => {
-      // Create .aios-core directory
-      fs.mkdirSync(path.join(tempDir, '.aios-core'));
+    it('should detect BROWNFIELD mode for user project with existing AIOX', () => {
+      // Create .aiox-core directory
+      fs.mkdirSync(path.join(tempDir, '.aiox-core'));
 
       // Create package.json with different name (user project)
       fs.writeFileSync(
@@ -188,26 +188,26 @@ describe('Mode Detector', () => {
   });
 
   describe('isAiosCoreRepository', () => {
-    it('should return true for @aios/core package', () => {
+    it('should return true for @aiox/core package', () => {
       fs.writeFileSync(
         path.join(tempDir, 'package.json'),
-        JSON.stringify({ name: '@aios/core' }),
+        JSON.stringify({ name: '@aiox/core' }),
       );
 
       expect(isAiosCoreRepository(tempDir)).toBe(true);
     });
 
-    it('should return true for aios-core package', () => {
+    it('should return true for aiox-core package', () => {
       fs.writeFileSync(
         path.join(tempDir, 'package.json'),
-        JSON.stringify({ name: 'aios-core' }),
+        JSON.stringify({ name: 'aiox-core' }),
       );
 
       expect(isAiosCoreRepository(tempDir)).toBe(true);
     });
 
     it('should return false for generic monorepo with workspaces pattern only', () => {
-      // Generic monorepos should NOT be detected as aios-core
+      // Generic monorepos should NOT be detected as the framework repo
       fs.writeFileSync(
         path.join(tempDir, 'package.json'),
         JSON.stringify({ name: 'something', workspaces: ['packages/*'] }),
@@ -216,8 +216,8 @@ describe('Mode Detector', () => {
       expect(isAiosCoreRepository(tempDir)).toBe(false);
     });
 
-    it('should return true for workspaces pattern with aios marker', () => {
-      // Workspaces + .aios-core/infrastructure marker = aios-core repo
+    it('should return true for workspaces pattern with legacy AIOS marker', () => {
+      // Workspaces + .aios-core/infrastructure marker = framework repo (legacy compatibility)
       fs.writeFileSync(
         path.join(tempDir, 'package.json'),
         JSON.stringify({ name: 'something', workspaces: ['packages/*'] }),
@@ -309,7 +309,7 @@ describe('Mode Detector', () => {
       expect(result.warnings[0]).toContain('directory is not empty');
     });
 
-    it('should warn when selecting framework-dev for non-aios-core repo', () => {
+    it('should warn when selecting framework-dev for non-aiox-core repo', () => {
       const detected = {
         mode: InstallationMode.BROWNFIELD,
         markers: { isAiosCoreRepo: false },
@@ -318,7 +318,7 @@ describe('Mode Detector', () => {
       const result = validateModeSelection(InstallationMode.FRAMEWORK_DEV, detected);
 
       expect(result.warnings).toHaveLength(1);
-      expect(result.warnings[0]).toContain('aios-core repository');
+      expect(result.warnings[0]).toContain('aiox-core repository');
     });
 
     it('should suggest greenfield when selecting brownfield for empty directory', () => {

@@ -4,7 +4,7 @@
   Última sincronização: 2026-01-28
 -->
 
-# Roadmap de Documentação AIOS
+# Roadmap de Documentação AIOX
 
 > 🌐 [EN](../DOCUMENTATION-ROADMAP.md) | **PT** | [ES](../es/DOCUMENTATION-ROADMAP.md)
 

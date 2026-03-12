@@ -39,7 +39,7 @@ Before proceeding, check the Entity Registry for impact of this modification:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: modifyWorkflow()

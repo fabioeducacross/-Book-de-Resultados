@@ -39,7 +39,7 @@ Before proceeding, check the Entity Registry for impact of this modification:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: modifyTask()
@@ -229,7 +229,7 @@ To safely modify existing task definitions while maintaining their effectiveness
 
 ## Prerequisites
 
-- Target task must exist in `aios-core/tasks/`
+- Target task must exist in `aiox-core/tasks/`
 - User must provide modification intent or specific changes
 - Backup system must be available for rollback
 - Understanding of task dependencies and usage
@@ -238,8 +238,8 @@ To safely modify existing task definitions while maintaining their effectiveness
 
 ### 1. Task Analysis and Backup
 
-- Load target task from `aios-core/tasks/{task-name}.md`
-- Create timestamped backup: `aios-core/tasks/.backups/{task-name}.md.{timestamp}`
+- Load target task from `aiox-core/tasks/{task-name}.md`
+- Create timestamped backup: `aiox-core/tasks/.backups/{task-name}.md.{timestamp}`
 - Analyze task structure:
   - Purpose and prerequisites
   - Task execution steps

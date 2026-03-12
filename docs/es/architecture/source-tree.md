@@ -8,7 +8,7 @@
 
 ---
 
-# Estructura del Arbol de Codigo Fuente AIOS
+# Estructura del Arbol de Codigo Fuente AIOX
 
 > 🌐 [EN](../../architecture/source-tree.md) | [PT](../../pt/architecture/source-tree.md) | **ES**
 
@@ -17,15 +17,15 @@
 **Version:** 1.1
 **Ultima Actualizacion:** 2025-12-14
 **Estado:** OBSOLETO - Ver docs/framework/source-tree.md
-**Aviso de Migracion:** Este documento migrara al repositorio `SynkraAI/aios-core` en Q2 2026 (ver Decision 005)
+**Aviso de Migracion:** Este documento migrara al repositorio `SynkraAI/aiox-core` en Q2 2026 (ver Decision 005)
 
 ---
 
 ## 📋 Tabla de Contenidos
 
 - [Descripcion General](#descripcion-general)
-- [Estructura Actual (aios-core Brownfield)](#estructura-actual-aios-core-brownfield)
-- [Framework Core (.aios-core/)](#framework-core-aios-core)
+- [Estructura Actual (aiox-core Brownfield)](#estructura-actual-aiox-core-brownfield)
+- [Framework Core (.aios-core/)](#framework-core-aiox-core)
 - [Documentacion (docs/)](#documentacion-docs)
 - [Sistema de Squads](#sistema-de-squads)
 - [Estructura Futura (Post-Migracion Q2 2026)](#estructura-futura-post-migracion-q2-2026)
@@ -36,7 +36,7 @@
 
 ## Descripcion General
 
-AIOS usa una **arquitectura de doble capa**:
+AIOX usa una **arquitectura de doble capa**:
 
 1. **Framework Core** (`.aios-core/`) - Componentes portables del framework
 2. **Workspace del Proyecto** (raiz) - Implementacion especifica del proyecto
@@ -49,10 +49,10 @@ AIOS usa una **arquitectura de doble capa**:
 
 ---
 
-## Estructura Actual (aios-core Brownfield)
+## Estructura Actual (aiox-core Brownfield)
 
 ```
-aios-core/                             # Raiz (proyecto brownfield)
+aiox-core/                             # Raiz (proyecto brownfield)
 ├── .aios-core/                        # Framework core (portable)
 │   ├── core/                          # Esenciales del framework (v2.1)
 │   │   ├── config/                    # Sistema de configuracion
@@ -86,7 +86,7 @@ aios-core/                             # Raiz (proyecto brownfield)
 │   └── squad/                         # Plantilla de squad para extensiones (ver docs/guides/squads-guide.md)
 │
 ├── bin/                               # Ejecutables CLI
-│   ├── @synkra/aios-core.js           # Punto de entrada principal del CLI
+│   ├── @synkra/aiox-core.js           # Punto de entrada principal del CLI
 │   └── aios-minimal.js                # CLI minimo
 │
 ├── tools/                             # Herramientas de build y utilidad
@@ -125,7 +125,7 @@ aios-core/                             # Raiz (proyecto brownfield)
 
 ## Framework Core (.aios-core/)
 
-**Proposito:** Componentes portables del framework que funcionan en cualquier proyecto AIOS.
+**Proposito:** Componentes portables del framework que funcionan en cualquier proyecto AIOX.
 
 ### Estructura de Directorios
 
@@ -186,7 +186,7 @@ aios-core/                             # Raiz (proyecto brownfield)
 │   └── change-checklist.md            # Checklist de gestion de cambios
 │
 ├── data/                              # 6 archivos de base de conocimiento
-│   ├── aios-kb.md                     # Base de conocimiento AIOS
+│   ├── aios-kb.md                     # Base de conocimiento AIOX
 │   ├── technical-preferences.md       # Preferencias de tech stack
 │   ├── elicitation-methods.md         # Tecnicas de elicitacion
 │   ├── brainstorming-techniques.md    # Metodos de brainstorming
@@ -288,7 +288,7 @@ docs/
 │   └── README.md                      # Aviso de migracion
 │
 ├── stories/                           # Historias de desarrollo
-│   ├── aios migration/                # Historias de migracion AIOS
+│   ├── aios migration/                # Historias de migracion AIOX
 │   │   ├── story-6.1.2.1.md
 │   │   ├── story-6.1.2.2.md
 │   │   ├── story-6.1.2.3.md
@@ -363,7 +363,7 @@ docs/
 
 ### Descripcion General
 
-Los Squads son extensiones modulares que agregan capacidades especializadas a AIOS. A diferencia de los Paquetes de Expansion obsoletos, los Squads siguen una estructura de plantilla estandarizada.
+Los Squads son extensiones modulares que agregan capacidades especializadas a AIOX. A diferencia de los Paquetes de Expansion obsoletos, los Squads siguen una estructura de plantilla estandarizada.
 
 ### Ubicacion de Plantilla de Squad
 
@@ -420,7 +420,7 @@ workflows:
 
 # Dependencias
 dependencies:
-  aios-core: '>=2.1.0'
+  aiox-core: '>=2.1.0'
 ```
 
 ### Migracion desde Paquetes de Expansion
@@ -438,10 +438,10 @@ dependencies:
 
 **La Decision 005 define 5 repositorios separados:**
 
-### REPO 1: SynkraAI/aios-core (Commons Clause)
+### REPO 1: SynkraAI/aiox-core (Commons Clause)
 
 ```
-aios-core/
+aiox-core/
 ├── src/                               # Codigo fuente
 │   ├── core/                          # Motor de orquestacion core
 │   │   ├── agent-executor.js
@@ -479,7 +479,7 @@ aios-core/
 
 ```
 squads/
-├── verified/                          # Squads curados por AIOS
+├── verified/                          # Squads curados por AIOX
 │   ├── github-devops/
 │   ├── db-sage/
 │   └── coderabbit-workflow/
@@ -561,7 +561,7 @@ mmos/
 Directorios: kebab-case (minusculas, separadas por guion)
   ✅ .aios-core/
   ✅ Squads/
-  ❌ .AIOS-Core/
+  ❌ .AIOX-Core/
   ❌ expansionPacks/
 
 Archivos (Codigo): kebab-case con extension
@@ -707,4 +707,4 @@ outputs/                               # Salidas de runtime (gitignored)
 
 ---
 
-_Este es un estandar oficial del framework AIOS. Toda colocacion de archivos debe seguir esta estructura._
+_Este es un estandar oficial del framework AIOX. Toda colocacion de archivos debe seguir esta estructura._

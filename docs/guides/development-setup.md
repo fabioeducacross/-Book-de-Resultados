@@ -4,7 +4,7 @@
 
 ---
 
-Complete guide for developers who want to contribute to the Synkra AIOS project.
+Complete guide for developers who want to contribute to the Synkra AIOX project.
 
 **Version:** 1.0.0
 **Last Updated:** 2026-01-29
@@ -42,8 +42,8 @@ Before starting, ensure you have the following installed:
 
 | Tool                 | Purpose                                 |
 | -------------------- | --------------------------------------- |
-| **Claude Code**      | AI-powered development with AIOS agents |
-| **VS Code / Cursor** | IDE with AIOS integration               |
+| **Claude Code**      | AI-powered development with AIOX agents |
+| **VS Code / Cursor** | IDE with AIOX integration               |
 | **Docker Desktop**   | MCP servers and containerized tools     |
 
 ### Installing Prerequisites
@@ -94,7 +94,7 @@ gh auth login
 
 ### Step 1: Fork the Repository
 
-1. Navigate to [github.com/SynkraAI/aios-core](https://github.com/SynkraAI/aios-core)
+1. Navigate to [github.com/SynkraAI/aiox-core](https://github.com/SynkraAI/aiox-core)
 2. Click the **Fork** button in the top-right corner
 3. Select your GitHub account as the destination
 
@@ -102,18 +102,18 @@ gh auth login
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/aios-core.git
-cd aios-core
+git clone https://github.com/YOUR_USERNAME/aiox-core.git
+cd aiox-core
 
 # Add upstream remote
-git remote add upstream https://github.com/SynkraAI/aios-core.git
+git remote add upstream https://github.com/SynkraAI/aiox-core.git
 
 # Verify remotes
 git remote -v
-# origin    https://github.com/YOUR_USERNAME/aios-core.git (fetch)
-# origin    https://github.com/YOUR_USERNAME/aios-core.git (push)
-# upstream  https://github.com/SynkraAI/aios-core.git (fetch)
-# upstream  https://github.com/SynkraAI/aios-core.git (push)
+# origin    https://github.com/YOUR_USERNAME/aiox-core.git (fetch)
+# origin    https://github.com/YOUR_USERNAME/aiox-core.git (push)
+# upstream  https://github.com/SynkraAI/aiox-core.git (fetch)
+# upstream  https://github.com/SynkraAI/aiox-core.git (push)
 ```
 
 ### Step 3: Stay Updated
@@ -182,7 +182,7 @@ npm run validate:structure
 
 ### Step 4: IDE Integration (Optional)
 
-Sync AIOS agents to your IDE:
+Sync AIOX agents to your IDE:
 
 ```bash
 # Sync to all supported IDEs
@@ -200,10 +200,10 @@ npm run sync:ide:validate
 
 ## Project Structure
 
-Understanding the `aios-core` directory structure:
+Understanding the `aiox-core` directory structure:
 
 ```
-aios-core/
+aiox-core/
 ├── .aios-core/                    # Framework source (committed)
 │   ├── core/                      # Core utilities and config
 │   │   ├── config/                # Framework configuration files
@@ -226,7 +226,7 @@ aios-core/
 │       └── checklists/            # Product checklists
 │
 ├── .claude/                       # Claude Code configuration
-│   ├── commands/AIOS/agents/      # Agent skill commands
+│   ├── commands/AIOX/agents/      # Agent skill commands
 │   ├── hooks/                     # Governance hooks
 │   └── rules/                     # AI behavior rules
 │
@@ -527,7 +527,7 @@ Create a new file in `.aios-core/development/tasks/`:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: myTaskFunction()
@@ -1081,8 +1081,8 @@ node --inspect node_modules/.bin/jest
 
 ### Resources
 
-- **GitHub Discussions:** [github.com/SynkraAI/aios-core/discussions](https://github.com/SynkraAI/aios-core/discussions)
-- **Issue Tracker:** [github.com/SynkraAI/aios-core/issues](https://github.com/SynkraAI/aios-core/issues)
+- **GitHub Discussions:** [github.com/SynkraAI/aiox-core/discussions](https://github.com/SynkraAI/aiox-core/discussions)
+- **Issue Tracker:** [github.com/SynkraAI/aiox-core/issues](https://github.com/SynkraAI/aiox-core/issues)
 - **Discord:** [discord.gg/gk8jAdXWmj](https://discord.gg/gk8jAdXWmj)
 
 ### Issue Labels
@@ -1112,5 +1112,5 @@ node --inspect node_modules/.bin/jest
 
 ---
 
-_Synkra AIOS Development Setup Guide v1.0.0_
+_Synkra AIOX Development Setup Guide v1.0.0_
 _Last Updated: 2026-01-29_

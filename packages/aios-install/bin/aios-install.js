@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 /**
- * AIOS NPX Installer - Entry Point
+ * AIOX NPX Installer - Entry Point
  *
  * Usage:
- *   npx @synkra/aios-install          # Interactive installation
- *   npx @synkra/aios-install --dry-run # Preview what would be done
- *   npx @synkra/aios-install --version # Show version
+ *   npx @synkra/aiox-install           # Interactive installation
+ *   npx @synkra/aiox-install --dry-run # Preview what would be done
+ *   npx @synkra/aiox-install --version # Show version
  *
- * @package @synkra/aios-install
+ * @package @synkra/aiox-install
  */
 
 'use strict';
@@ -20,8 +20,8 @@ const pkg = require('../package.json');
 const program = new Command();
 
 program
-  .name('aios-install')
-  .description('NPX installer for AIOS - AI-Orchestrated System for Full Stack Development')
+  .name('aiox-install')
+  .description('NPX installer for AIOX - AI-Orchestrated System for Full Stack Development')
   .version(pkg.version, '-v, --version', 'Output the current version')
   .option('--dry-run', 'Preview what would be done without making changes')
   .option('--verbose', 'Enable verbose output')

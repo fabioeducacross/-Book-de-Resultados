@@ -6,7 +6,7 @@
 
 ---
 
-Todos los cambios notables en Synkra AIOS seran documentados en este archivo.
+Todos los cambios notables en Synkra AIOX seran documentados en este archivo.
 
 El formato esta basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto sigue [Versionado Semantico](https://semver.org/spec/v2.0.0.html).
@@ -37,7 +37,7 @@ y este proyecto sigue [Versionado Semantico](https://semver.org/spec/v2.0.0.html
 - **Estructura de Directorios**: Renombrado `.bmad-core/` a `.aios-core/`
 - **Formato de Configuracion**: Mejorado `core-config.yaml` con nuevas secciones para git, projectStatus y opciones de sharding
 - **Formato de Agentes**: Actualizado esquema YAML de agentes con persona_profile, visibilidad de comandos y campos whenToUse
-- **Configuracion de IDE**: Agentes de Claude Code movidos a `.claude/commands/AIOS/agents/`
+- **Configuracion de IDE**: Agentes de Claude Code movidos a `.claude/commands/AIOX/agents/`
 - **Ubicaciones de Archivos**:
   - `docs/architecture/coding-standards.md` → `docs/framework/coding-standards.md`
   - `docs/architecture/tech-stack.md` → `docs/framework/tech-stack.md`
@@ -52,7 +52,7 @@ y este proyecto sigue [Versionado Semantico](https://semver.org/spec/v2.0.0.html
 
 ### Obsoleto
 
-- Proceso de instalacion manual (usar `npx @synkra/aios-core install` en su lugar)
+- Proceso de instalacion manual (usar `npx aiox-core install` en su lugar)
 - Nombre de directorio `.bmad-core/` (migrado automaticamente)
 
 ### Seguridad
@@ -66,7 +66,7 @@ y este proyecto sigue [Versionado Semantico](https://semver.org/spec/v2.0.0.html
 
 ### Agregado
 
-- Lanzamiento publico inicial de Synkra AIOS
+- Lanzamiento publico inicial de Synkra AIOX
 - 11 agentes de IA especializados (dev, qa, architect, pm, po, sm, analyst, ux-expert, data-engineer, devops, db-sage)
 - Sistema de flujos de trabajo con mas de 60 tareas predefinidas
 - Sistema de plantillas con mas de 20 plantillas de documentos
@@ -99,7 +99,7 @@ y este proyecto sigue [Versionado Semantico](https://semver.org/spec/v2.0.0.html
 **Actualizacion rapida:**
 
 ```bash
-npx @synkra/aios-core install --force-upgrade
+npx aiox-core install --force-upgrade
 ```
 
 **Cambios clave:**
@@ -113,5 +113,5 @@ npx @synkra/aios-core install --force-upgrade
 
 - [Solucion de Problemas](./installation/troubleshooting.md)
 - [FAQ](./installation/faq.md)
-- [Repositorio GitHub](https://github.com/SynkraAI/aios-core)
-- [Rastreador de Issues](https://github.com/SynkraAI/aios-core/issues)
+- [Repositorio GitHub](https://github.com/SynkraAI/aiox-core)
+- [Rastreador de Issues](https://github.com/SynkraAI/aiox-core/issues)

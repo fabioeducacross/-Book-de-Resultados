@@ -527,7 +527,7 @@ graph TB
 | Requisito | Descrição | Verificação |
 |-----------|-----------|-------------|
 | **Aplicação Existente** | Frontend ativo para análise | Codebase acessível |
-| **Templates AIOS** | Templates instalados | Verificar `.aios-core/development/templates/` |
+| **Templates AIOX** | Templates instalados | Verificar `.aios-core/development/templates/` |
 | **Agentes Configurados** | Todos os agentes do workflow | Verificar `.aios-core/development/agents/` |
 | **Git Configurado** | Controle de versao | `git status` funcional |
 | **Node.js** | Runtime para scripts | `node --version` >= 18 |
@@ -724,7 +724,7 @@ ls .aios-core/development/templates/
 ```
 
 2. Verificar nome correto do template no workflow
-3. Se necessario, reinstalar templates do AIOS core
+3. Se necessario, reinstalar templates do AIOX core
 
 ---
 
@@ -793,7 +793,7 @@ ls .aios-core/development/templates/
 #### Verificar Status do Projeto
 
 ```bash
-# Via AIOS
+# Via AIOX
 @aios-master
 *status
 
@@ -829,7 +829,7 @@ ls docs/architecture/
 
 | Documento | Localização | Descrição |
 |-----------|-------------|-----------|
-| AIOS Knowledge Base | `.aios-core/data/aios-kb.md` | Base de conhecimento AIOS |
+| AIOX Knowledge Base | `.aios-core/data/aios-kb.md` | Base de conhecimento AIOX |
 | IDE Development Workflow | `.aios-core/data/aios-kb.md#IDE Development Workflow` | Workflow de desenvolvimento IDE |
 | Brownfield PRD Template | `.aios-core/development/templates/brownfield-prd-tmpl.yaml` | Template PRD brownfield |
 | Frontend Spec Template | `.aios-core/development/templates/front-end-spec-tmpl.yaml` | Template especificacao frontend |

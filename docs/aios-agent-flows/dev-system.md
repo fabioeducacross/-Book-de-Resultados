@@ -9,7 +9,7 @@
 
 ## Visão Geral
 
-O agente **@dev (Dex)** e o Full Stack Developer do AIOS, responsavel pela implementacao de stories, debugging, refactoring e aplicacao das melhores praticas de desenvolvimento. Este agente atua como um **Builder** que implementa stories de forma precisa, atualiza somente as secoes autorizadas dos arquivos de story e mantem testes abrangentes.
+O agente **@dev (Dex)** e o Full Stack Developer do AIOX, responsavel pela implementacao de stories, debugging, refactoring e aplicacao das melhores praticas de desenvolvimento. Este agente atua como um **Builder** que implementa stories de forma precisa, atualiza somente as secoes autorizadas dos arquivos de story e mantem testes abrangentes.
 
 ### Caracteristicas Principais
 
@@ -55,7 +55,7 @@ O agente **@dev (Dex)** e o Full Stack Developer do AIOS, responsavel pela imple
 | Arquivo | Propósito |
 |---------|-----------|
 | `.aios-core/development/agents/dev.md` | Definição core do agente @dev (persona, comandos, workflows) |
-| `.claude/commands/AIOS/agents/dev.md` | Comando Claude Code para ativar @dev |
+| `.claude/commands/AIOX/agents/dev.md` | Comando Claude Code para ativar @dev |
 
 ### Arquivos de Checklists Usados pelo @dev
 

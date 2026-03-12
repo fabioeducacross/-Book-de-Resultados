@@ -10,7 +10,7 @@
 
 ## Vision General
 
-**@sm** (River) es el agente Scrum Master del AIOS, responsable por:
+**@sm** (River) es el agente Scrum Master del AIOX, responsable por:
 
 - Facilitacion de ceremonias
 - Remocion de impedimentos

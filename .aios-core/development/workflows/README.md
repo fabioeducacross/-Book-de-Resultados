@@ -1,6 +1,6 @@
-# AIOS Workflows
+# AIOX Workflows
 
-This directory contains workflow definitions for the Synkra AIOS framework. Workflows define multi-step processes that can be executed by AIOS agents.
+This directory contains workflow definitions for the Synkra AIOX framework. Workflows define multi-step processes that can be executed by AIOX agents.
 
 ## Available Workflows
 
@@ -14,16 +14,16 @@ This directory contains workflow definitions for the Synkra AIOS framework. Work
 - **greenfield-ui.yaml** - Workflow for new UI/frontend projects
 
 ### Configuration Workflows
-- **setup-environment.yaml** - Configure IDE (Windsurf/Cursor/Claude Code) with AIOS development rules
+- **setup-environment.yaml** - Configure IDE (Windsurf/Cursor/Claude Code) with AIOX development rules
 
 ## Setup Environment Workflow
 
-The `setup-environment` workflow helps developers configure their IDE for optimal AIOS development experience.
+The `setup-environment` workflow helps developers configure their IDE for optimal AIOX development experience.
 
 ### Features
 - Detects installed IDEs (Windsurf, Cursor, Claude Code)
 - Backs up existing IDE configurations
-- Applies AIOS-specific development rules
+- Applies AIOX-specific development rules
 - Verifies GitHub CLI installation and authentication
 - Provides clear feedback throughout the process
 
@@ -44,7 +44,7 @@ npm run setup:environment
 1. **IDE Detection** - Scans for `.windsurf/`, `.cursor/`, or `.claude/` directories
 2. **GitHub CLI Check** - Ensures GitHub CLI is installed and authenticated
 3. **Backup Creation** - Saves existing rules before making changes
-4. **Rule Application** - Copies AIOS-specific rules to appropriate locations
+4. **Rule Application** - Copies AIOX-specific rules to appropriate locations
 5. **Verification** - Confirms successful setup
 
 ### IDE Rule Locations

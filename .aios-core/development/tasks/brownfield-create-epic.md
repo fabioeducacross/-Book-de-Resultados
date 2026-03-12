@@ -319,7 +319,7 @@ Once the epic is validated, provide this handoff to the Story Manager:
 
 ---
 
-## Task Definition (AIOS Task Format V1.0)
+## Task Definition (AIOX Task Format V1.0)
 
 ```yaml
 task: brownfieldCreateEpic()

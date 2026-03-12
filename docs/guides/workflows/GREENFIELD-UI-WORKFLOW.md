@@ -670,7 +670,7 @@ graph LR
    - Git configurado
    - Gerenciador de pacotes (npm/yarn/pnpm)
 
-2. **AIOS-Core Disponivel**
+2. **AIOX-Core Disponivel**
    - Templates em `.aios-core/development/templates/`
    - Tasks em `.aios-core/development/tasks/`
    - Checklists em `.aios-core/development/checklists/`
@@ -906,7 +906,7 @@ flowchart TD
 
 ### Documentacao Relacionada
 
-- [AIOS Knowledge Base](.aios-core/data/aios-kb.md) - Base de conhecimento central
+- [AIOX Knowledge Base](.aios-core/data/aios-kb.md) - Base de conhecimento central
 - [Brownfield Workflow](./BROWNFIELD-WORKFLOW.md) - Workflow para projetos existentes (se disponivel)
 
 ---

@@ -1,6 +1,6 @@
 <!-- Traducción: ES | Original: /docs/platforms/en/antigravity.md | Sincronización: 2026-01-26 -->
 
-# Guía AIOS para AntiGravity
+# Guía AIOX para AntiGravity
 
 > 🌐 [EN](../../platforms/antigravity.md) | [PT](../../pt/platforms/antigravity.md) | **ES**
 
@@ -16,7 +16,7 @@
 
 AntiGravity es la plataforma de desarrollo agentic de Google que permite a los desarrolladores construir y orquestar flujos de trabajo impulsados por IA. Cuenta con un enfoque único basado en flujos de trabajo para la activación de agentes y una integración profunda con los servicios de Google Cloud.
 
-### ¿Por qué usar AIOS con AntiGravity?
+### ¿Por qué usar AIOX con AntiGravity?
 
 AntiGravity ofrece capacidades distintivas:
 
@@ -77,7 +77,7 @@ antigravity auth login
 export GOOGLE_APPLICATION_CREDENTIALS="ruta/a/credenciales.json"
 ```
 
-### Paso 3: Instalar AIOS
+### Paso 3: Instalar AIOX
 
 ```bash
 cd tu-proyecto
@@ -137,7 +137,7 @@ proyecto/
 **Ubicación:** `.antigravity/rules.md`
 
 ```markdown
-# Reglas de Synkra AIOS para AntiGravity
+# Reglas de Synkra AIOX para AntiGravity
 
 ## Sistema de Agentes
 - Usa @nombre-agente o flujos de trabajo para activación
@@ -350,7 +350,7 @@ exports.handleRequest = AntiGravity.createFunction({
 
 ```mermaid
 flowchart LR
-    Source["AIOS Core<br/>.aios-core/development/agents"] --> Parser["Analizador de Agentes"]
+    Source["AIOX Core<br/>.aios-core/development/agents"] --> Parser["Analizador de Agentes"]
     Parser --> Transform["Transformador AntiGravity"]
     Transform --> Agents[".antigravity/agents/"]
     Transform --> Workflows[".agent/workflows/"]
@@ -493,7 +493,7 @@ R: Los agentes son personas con experiencia; los flujos de trabajo orquestan acc
 
 ### De AntiGravity a Otros IDEs
 
-1. Los agentes de AIOS permanecen en `.aios-core/`
+1. Los agentes de AIOX permanecen en `.aios-core/`
 2. Inicializa para el IDE destino
 3. Las configuraciones específicas de la plataforma se generan
 
@@ -507,4 +507,4 @@ R: Los agentes son personas con experiencia; los flujos de trabajo orquestan acc
 
 ---
 
-*Synkra AIOS - Guía de Plataforma AntiGravity v1.0*
+*Synkra AIOX - Guía de Plataforma AntiGravity v1.0*

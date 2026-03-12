@@ -1,10 +1,10 @@
-# Synkra AIOS Development Rules for Gemini CLI
+# Synkra AIOX Development Rules for Gemini CLI
 
-You are working with Synkra AIOS, an AI-Orchestrated System for Full Stack Development.
+You are working with Synkra AIOX, an AI-Orchestrated System for Full Stack Development.
 
 ## Core Framework Understanding
 
-Synkra AIOS is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
+Synkra AIOX is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
 
 ## Agent System
 
@@ -56,10 +56,10 @@ When an agent is active:
 - Add tests for new features
 - Test edge cases and error scenarios
 
-## AIOS Framework Structure
+## AIOX Framework Structure
 
 ```
-aios-core/
+aiox-core/
 ├── .aios-core/
 │   ├── core/           # Framework core modules
 │   ├── development/
@@ -78,7 +78,7 @@ aios-core/
 ## Gemini CLI Specific Configuration
 
 ### Skills Integration
-AIOS agents are installed as Gemini CLI skills in `.gemini/rules/AIOS/agents/`.
+AIOX agents are installed as Gemini CLI skills in `.gemini/rules/AIOX/agents/`.
 Skills use the same format as Claude Code - they are fully compatible.
 
 To activate an agent skill:
@@ -88,7 +88,7 @@ To activate an agent skill:
 ```
 
 ### Hooks Configuration
-AIOS can integrate with Gemini CLI hooks for enhanced context injection.
+AIOX can integrate with Gemini CLI hooks for enhanced context injection.
 
 Configure in `.gemini/settings.json`:
 ```json
@@ -108,14 +108,14 @@ Configure in `.gemini/settings.json`:
 
 ### Gemini CLI Lifecycle Events
 Hooks can intercept these events:
-- `SessionStart` - Load AIOS context
+- `SessionStart` - Load AIOX context
 - `BeforeAgent` - Inject gotchas and patterns
 - `BeforeTool` - Security validation
 - `AfterTool` - Audit logging
 - `SessionEnd` - Persist state
 
 ### Extensions
-AIOS can be packaged as a Gemini CLI extension for easy installation:
+AIOX can be packaged as a Gemini CLI extension for easy installation:
 ```bash
 gemini extensions install github.com/synkra/aios-gemini-extension
 ```
@@ -172,7 +172,7 @@ try {
 
 ## Gemini CLI Commands
 
-### AIOS Agent Commands
+### AIOX Agent Commands
 - `*help` - Show available commands
 - `*create-story` - Create new story
 - `*task {name}` - Execute specific task
@@ -230,4 +230,4 @@ tail -f .aios/logs/agent.log
 - Document any manual fixes required
 
 ---
-*Synkra AIOS Gemini CLI Configuration v1.0*
+*Synkra AIOX Gemini CLI Configuration v1.0*

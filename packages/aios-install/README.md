@@ -1,21 +1,21 @@
-# @synkra/aios-install
+# @synkra/aiox-install
 
-NPX installer for AIOS - AI-Orchestrated System for Full Stack Development.
+NPX installer for AIOX - AI-Orchestrated System for Full Stack Development.
 
 ## Quick Start
 
 ```bash
-npx @synkra/aios-install
+npx @synkra/aiox-install
 ```
 
-That's it! The installer will guide you through setting up AIOS in less than 5 minutes.
+That's it! The installer will guide you through setting up AIOX in less than 5 minutes.
 
 ## Features
 
 - **Cross-platform support**: macOS, Windows (with WSL), and Linux
 - **Dependency checking**: Verifies Node.js, Git, Docker, and GitHub CLI
 - **Profile selection**: Choose between "bob" (simplified) or "advanced" mode
-- **Brownfield support**: Detects existing AIOS installations and offers migration
+- **Brownfield support**: Detects existing AIOX installations and offers migration
 - **Dry-run mode**: Preview what would be done without making changes
 
 ## Usage
@@ -23,13 +23,13 @@ That's it! The installer will guide you through setting up AIOS in less than 5 m
 ### Interactive Installation
 
 ```bash
-npx @synkra/aios-install
+npx @synkra/aiox-install
 ```
 
 ### Options
 
 ```bash
-npx @synkra/aios-install --help
+npx @synkra/aiox-install --help
 
 Options:
   -v, --version         Output the current version
@@ -46,7 +46,7 @@ Options:
 Preview the installation without making any changes:
 
 ```bash
-npx @synkra/aios-install --dry-run
+npx @synkra/aiox-install --dry-run
 ```
 
 ### Direct Profile Selection
@@ -54,8 +54,8 @@ npx @synkra/aios-install --dry-run
 Skip the profile question by specifying it directly:
 
 ```bash
-npx @synkra/aios-install --profile bob
-npx @synkra/aios-install --profile advanced
+npx @synkra/aiox-install --profile bob
+npx @synkra/aiox-install --profile advanced
 ```
 
 ## edmcp - Docker MCP Manager
@@ -101,7 +101,7 @@ Full access to all agents and commands.
 
 ## Brownfield Migration
 
-If you have an existing AIOS installation, the installer will:
+If you have an existing AIOX installation, the installer will:
 
 1. Detect your current configuration
 2. Offer to migrate to the new L1-L5 configuration hierarchy
@@ -109,8 +109,8 @@ If you have an existing AIOS installation, the installer will:
 
 ## Support
 
-- Documentation: https://github.com/SynkraAI/aios-core
-- Issues: https://github.com/SynkraAI/aios-core/issues
+- Documentation: https://github.com/SynkraAI/aiox-core
+- Issues: https://github.com/SynkraAI/aiox-core/issues
 
 ## License
 

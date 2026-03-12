@@ -1,0 +1,238 @@
+{
+  "description": "Structural baseline for the Canoas Avaliação Digital regression suite. Generated from the anonymous fixture in canoas-fixture.js. Update with: UPDATE_BASELINE=1 npx jest tests/book-de-resultados/regression-canoas.test.js",
+  "version": "1.0.0",
+  "fixtureRef": "canoas-fixture.js",
+  "pipeline": {
+    "parse": {
+      "layout": "canoas-avaliacao-digital",
+      "municipio": "Canoas",
+      "ano": "2025",
+      "ciclo": "2025-sem2",
+      "escolasCount": 3,
+      "resultadosCount": 6,
+      "distribuicaoCount": 24,
+      "habilidadesCount": 6,
+      "deterministic": {
+        "escolaAlfaMtAbaixo": 19,
+        "escolaAlfaLpAvancado": 43,
+        "note": "Math.round(participantes × pct / 100)"
+      }
+    },
+    "validate": {
+      "valid": true,
+      "errorsCount": 0
+    },
+    "normalize": {
+      "modelVersion": "2.0",
+      "totalEscolas": 3,
+      "totalAlunos": 410,
+      "mediaGeral": 43.3,
+      "disciplinasCount": 2,
+      "entitiesEscolasCount": 3,
+      "entitiesHabilidadesCount": 6,
+      "escolaAlfaRankingPosition": 1,
+      "escolaGamaRankingPosition": 3,
+      "redeDistribuicaoTotal": 747
+    },
+    "render": {
+      "totalPages": 27,
+      "chapterKeys": [
+        "antes",
+        "durante",
+        "resultados",
+        "proximos_passos"
+      ],
+      "escolaPagesCount": 3,
+      "escolaDiscPagesCount": 3,
+      "habilidadesPagesCount": 2,
+      "rankingPagesCount": 2,
+      "sectionSequence": [
+        "capa",
+        "apresentacao",
+        "sumario",
+        "capitulo",
+        "contexto_avaliacao",
+        "capitulo",
+        "participacao_rede",
+        "participacao_rede_tabela",
+        "participacao_rede_tabela",
+        "metodologia",
+        "capitulo",
+        "visao_geral",
+        "resultados_disciplina",
+        "resultados_disciplina",
+        "resultados_ano",
+        "ranking",
+        "ranking",
+        "habilidades_disciplina",
+        "habilidades_disciplina",
+        "escola",
+        "escola_disciplinas",
+        "escola",
+        "escola_disciplinas",
+        "escola",
+        "escola_disciplinas",
+        "capitulo",
+        "proximos_passos"
+      ],
+      "sectionAnnotations": {
+        "3": "capitulo: antes",
+        "5": "capitulo: durante",
+        "9": "capitulo: resultados",
+        "11": "resultados_disciplina: Matemática (first in disciplinas array)",
+        "12": "resultados_disciplina: Língua Portuguesa",
+        "14": "ranking: Matemática",
+        "15": "ranking: Língua Portuguesa",
+        "16": "habilidades_disciplina: Língua Portuguesa (LP habilidades inserted first in fixture)",
+        "17": "habilidades_disciplina: Matemática",
+        "24": "capitulo: proximos_passos"
+      }
+    },
+    "charts": {
+      "visaoGeralChartCount": 5,
+      "resultadosDisciplinaChartCount": 3,
+      "rankingChartCount": 1,
+      "habilidadesChartCount": 2,
+      "escolaChartCount": 6,
+      "escolaDiscChartCount": 2,
+      "notes": {
+        "visaoGeral": "distribution + 4 indicator cards",
+        "resultadosDisciplina": "distribution + 2 indicator cards",
+        "escola": "distribution + ranking + 4 operacional indicator cards (previstos/iniciaram/finalizaram/participacao)"
+      }
+    },
+    "exportJson": {
+      "filename": "relatorio_canoas_2025_2025_sem2_v1.json",
+      "hasMetadata": true,
+      "hasPages": true,
+      "pageCount": 27,
+      "eachPageHasCharts": true
+    },
+    "exportPdf": {
+      "filename": "relatorio_canoas_2025_2025_sem2_v1.pdf",
+      "note": "browser call is mocked via jest.mock('child_process') — no real browser required"
+    },
+    "htmlFidelity": {
+      "pageCount": 27,
+      "chapterPageCount": 4,
+      "analyticSplitCount": 6,
+      "analyticSplitByLayout": {
+        "network-overview-shell": 1,
+        "discipline-results-shell": 2,
+        "school-summary-shell": 3
+      },
+      "contextStripCount": 2,
+      "skillsTableCount": 2,
+      "comparativoChartRowCount": 0,
+      "cover": {
+        "kicker": "Book de Resultados",
+        "bandTitle": "Dossiê Institucional da Avaliação Educacional",
+        "reportTitle": "Relatório de Resultados da Avaliação",
+        "city": "Canoas",
+        "edition": "2025 • 2025-sem2"
+      },
+      "chapters": {
+        "markers": [
+          "Capítulo 01",
+          "Capítulo 02",
+          "Capítulo 03",
+          "Capítulo 04"
+        ],
+        "titles": [
+          "Antes da Avaliação",
+          "Durante a Aplicação",
+          "Resultados",
+          "Próximos Passos"
+        ]
+      },
+      "overview": {
+        "indicatorLabels": [
+          "Total de Escolas",
+          "Total de Estudantes",
+          "Participação Média",
+          "Média Geral"
+        ],
+        "panelTitles": [
+          "Distribuição de Proficiência — Rede",
+          "Leitura por disciplina"
+        ]
+      },
+      "ranking": {
+        "tableHeaders": [
+          "Posição",
+          "Escola",
+          "Participação",
+          "Média"
+        ],
+        "sampleRows": [
+          "EMEF Escola Alfa",
+          "EMEF Escola Beta",
+          "EMEF Escola Gama"
+        ]
+      },
+      "school": {
+        "chromeMode": "framed",
+        "operationalLabels": [
+          "Previstos",
+          "Iniciaram",
+          "Finalizaram",
+          "Participação Total"
+        ],
+        "comparisonTableHeaders": [
+          "Disciplina",
+          "Média Escola",
+          "Média Rede",
+          "Δ Média",
+          "Part. Escola",
+          "Part. Rede"
+        ]
+      },
+      "habilidades": {
+        "frameId": "skills-frame",
+        "chromeMode": "framed",
+        "disciplineOrder": [
+          "Língua Portuguesa",
+          "Matemática"
+        ],
+        "contextLabels": [
+          "Área / Disciplina",
+          "Total de habilidades",
+          "Paginação"
+        ],
+        "firstPageCodes": [
+          "LP3A1",
+          "LP3A2",
+          "LP3A3"
+        ],
+        "secondPageCodes": [
+          "MT5A1",
+          "MT5A2",
+          "MT5A3"
+        ]
+      },
+      "sumarioChecks": [
+        {
+          "title": "Resultados",
+          "page": 11
+        },
+        {
+          "title": "Visão Geral da Rede",
+          "page": 12
+        },
+        {
+          "title": "Resultados — Matemática",
+          "page": 13
+        },
+        {
+          "title": "EMEF Escola Alfa",
+          "page": 20
+        },
+        {
+          "title": "EMEF Escola Alfa — Participação por Área",
+          "page": 21
+        }
+      ]
+    }
+  },
+  "updateInstructions": "See packages/book-de-resultados/README.md § Updating the Canoas Regression Baseline"
+}

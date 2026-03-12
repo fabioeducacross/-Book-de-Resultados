@@ -1,4 +1,4 @@
-# AIOS Presets
+# AIOX Presets
 
 **Version:** 1.0.0
 **Last Updated:** 2026-01-28
@@ -8,7 +8,7 @@
 
 ## Overview
 
-AIOS Presets are pre-configured bundles that provide ready-to-use configurations for specific use cases, project types, or team structures. Presets simplify the initial setup process and ensure consistent configuration across projects.
+AIOX Presets are pre-configured bundles that provide ready-to-use configurations for specific use cases, project types, or team structures. Presets simplify the initial setup process and ensure consistent configuration across projects.
 
 ### What is a Preset?
 
@@ -30,7 +30,7 @@ Presets can be combined (layered) to create custom configurations that match you
 
 | Preset       | Description             | Agents             | Use Case          |
 | ------------ | ----------------------- | ------------------ | ----------------- |
-| `minimal`    | Bare minimum AIOS setup | dev                | Quick prototyping |
+| `minimal`    | Bare minimum AIOX setup | dev                | Quick prototyping |
 | `standard`   | Balanced configuration  | dev, qa, architect | General projects  |
 | `enterprise` | Full-featured setup     | All 11 agents      | Large teams       |
 
@@ -294,7 +294,7 @@ agents:
 1. **Start minimal** - Begin with `minimal` or `standard`, add as needed
 2. **Review before install** - Use `aios presets show` to understand what you're getting
 3. **Export before modifying** - Save your config as a preset before major changes
-4. **Keep presets updated** - Check for preset updates when upgrading AIOS
+4. **Keep presets updated** - Check for preset updates when upgrading AIOX
 
 ### Naming Conventions
 
@@ -356,4 +356,4 @@ presets/
 
 ---
 
-_Last Updated: 2026-01-28 | AIOS Framework Team_
+_Last Updated: 2026-01-28 | AIOX Framework Team_
