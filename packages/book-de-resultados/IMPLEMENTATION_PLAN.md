@@ -116,12 +116,12 @@ Aplicar o mesmo padrao declarativo nas secoes analiticas principais.
 
 ### Tasks
 
-- [ ] Mapear `visao_geral`
-- [ ] Mapear `resultados_disciplina`
-- [ ] Mapear `ranking`
-- [ ] Mapear `habilidades_disciplina`
-- [ ] Revisar `resultados_ano`
-- [ ] Consolidar nomenclatura de shells, frames e context strips
+- [x] Mapear `visao_geral`
+- [x] Mapear `resultados_disciplina`
+- [x] Mapear `ranking`
+- [x] Mapear `habilidades_disciplina`
+- [x] Revisar `resultados_ano`
+- [x] Consolidar nomenclatura de shells, frames e context strips
 
 ## Sprint 6 — Refatoracao do HTML Renderer
 

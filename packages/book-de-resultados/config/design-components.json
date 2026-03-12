@@ -1,5 +1,5 @@
 {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "id": "educacross-book-components",
     "label": "Educacross Book Component Contracts",
     "assetSets": {
@@ -97,6 +97,75 @@
                     "label": "Distribuição de proficiência por disciplina e por ano"
                 }
             }
+        },
+        "network-overview": {
+            "kind": "analytical-overview",
+            "subcomponents": {
+                "overview-hero": {
+                    "kind": "hero-panel",
+                    "label": "Painel hero com indicadores-chave da rede"
+                },
+                "overview-distribution": {
+                    "kind": "distribution-chart",
+                    "label": "Gráfico de distribuição de proficiência da rede"
+                },
+                "overview-indicators": {
+                    "kind": "indicator-grid",
+                    "label": "Grid de indicadores: escolas, alunos, participação, média"
+                }
+            }
+        },
+        "discipline-results": {
+            "kind": "analytical-discipline",
+            "subcomponents": {
+                "discipline-hero": {
+                    "kind": "hero-panel",
+                    "label": "Painel hero com média e participação da disciplina"
+                },
+                "discipline-distribution": {
+                    "kind": "distribution-chart",
+                    "label": "Gráfico de distribuição de proficiência por disciplina"
+                }
+            }
+        },
+        "ranking-table": {
+            "kind": "analytical-ranking",
+            "subcomponents": {
+                "ranking-header": {
+                    "kind": "section-header",
+                    "label": "Cabeçalho com título da disciplina e narrativa"
+                },
+                "ranking-data-table": {
+                    "kind": "data-table",
+                    "label": "Tabela de ranking com posição, escola, média e participação"
+                }
+            }
+        },
+        "skills-table": {
+            "kind": "analytical-skills",
+            "subcomponents": {
+                "skills-context-strip": {
+                    "kind": "context-strip",
+                    "label": "Faixa de contexto com disciplina, total e paginação"
+                },
+                "skills-data-table": {
+                    "kind": "data-table",
+                    "label": "Tabela de habilidades com código, descrição e percentual de acerto"
+                }
+            }
+        },
+        "year-results": {
+            "kind": "analytical-year",
+            "subcomponents": {
+                "year-hero": {
+                    "kind": "hero-panel",
+                    "label": "Painel hero com média e participação do ano/série"
+                },
+                "year-ranking": {
+                    "kind": "data-table",
+                    "label": "Ranking de escolas por ano/série"
+                }
+            }
         }
     },
     "sectionComponents": {
@@ -104,7 +173,12 @@
         "participacao_rede": "participacao-rede-opening",
         "participacao_rede_tabela": "participacao-rede-tabela",
         "escola": "school-summary",
-        "escola_disciplinas": "escola-disciplinas"
+        "escola_disciplinas": "escola-disciplinas",
+        "visao_geral": "network-overview",
+        "resultados_disciplina": "discipline-results",
+        "ranking": "ranking-table",
+        "habilidades_disciplina": "skills-table",
+        "resultados_ano": "year-results"
     },
     "chapterComponents": {
         "resultados": "chapter-resultados"
