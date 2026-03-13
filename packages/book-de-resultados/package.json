@@ -7,7 +7,10 @@
     "dev:audit-ui": "node examples/upload-listagem-auditoria-server.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "visual-clone:run": "node src/visual-clone/run-experiment.js",
+    "visual-clone:capture": "node src/visual-clone/capture-page.js",
+    "visual-clone:extract-ref": "python3 src/visual-clone/extract-reference.py"
   },
   "keywords": [
     "book",
@@ -30,7 +33,9 @@
     "pptxgenjs": "^4.0.1"
   },
   "devDependencies": {
-    "jest": "^30.2.0"
+    "jest": "^30.2.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0"
   },
   "publishConfig": {
     "access": "public"
