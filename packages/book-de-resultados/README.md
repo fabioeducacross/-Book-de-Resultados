@@ -523,6 +523,86 @@ O `html-renderer.js` emite `data-component-id` nos wrappers HTML, permitindo iso
 
 ---
 
+## Experimento de Clone Visual — Visão Geral da Rede
+
+O package inclui uma camada lateral de avaliação visual para o experimento de clone incremental da página **Visão Geral da Rede**. Esta camada não altera o pipeline HTML-first existente: ela mede o quanto o HTML renderizado se aproxima do PDF institucional de referência.
+
+### Arquitetura
+
+```
+PDF institucional          HTML renderizado
+      ↓                          ↓
+ extract-reference.py      capture-page.js
+ (PyMuPDF → PNG)           (Playwright → PNG)
+      ↓                          ↓
+      └─────────── evaluate-visual.js ───────────┘
+                         ↓
+              S = 0,35 × S_pixel
+                + 0,30 × S_ssim
+                + 0,35 × S_layout
+                         ↓
+              experiment-manifest.js
+                  (JSON + history)
+```
+
+### Módulos
+
+| Arquivo | Propósito |
+|---|---|
+| `src/visual-clone/regions.js` | Define as 8 regiões-alvo da página e pesos editoriais |
+| `src/visual-clone/evaluate-visual.js` | Algoritmo de avaliação visual (pixel, SSIM, layout) |
+| `src/visual-clone/experiment-manifest.js` | Gera e persiste o manifesto de experimento em JSON |
+| `src/visual-clone/capture-page.js` | Captura screenshot determinística da página HTML com Playwright |
+| `src/visual-clone/extract-reference.py` | Rasteriza página do PDF de referência com PyMuPDF |
+| `src/visual-clone/run-experiment.js` | Orquestrador completo do pipeline do experimento |
+
+### Pré-requisitos
+
+- Node.js ≥ 18 com Playwright instalado no workspace raiz
+- Python 3 com PyMuPDF: `pip install PyMuPDF`
+
+### Execução
+
+```bash
+# Rodar o experimento completo
+npm run visual-clone:run -- \
+  --html path/to/book.print.html \
+  --pdf tests/book-de-resultados/fixtures/canoas-2025-sem2/RelatórioDigitaldeAvaliação_Canoas_2025_SegundoSemestre.pdf \
+  --pdf-page 4 \
+  --baseline
+
+# Apenas capturar o HTML (requer Playwright)
+npm run visual-clone:capture -- --html path/to/book.print.html --out examples/.runtime/visual-clone-experiment/current
+
+# Apenas extrair referência do PDF (requer PyMuPDF)
+npm run visual-clone:extract-ref -- --pdf path/to/ref.pdf --page 4 --out examples/.runtime/visual-clone-experiment/current
+```
+
+### Artefatos de saída
+
+Os artefatos são salvos em `examples/.runtime/visual-clone-experiment/` (gitignored):
+
+```
+visual-clone-experiment/
+  baseline/         — PNG e manifesto do baseline oficial
+  current/          — PNGs da execução atual (referência + render)
+  diff/             — Imagem diff global por iteração
+  metrics/          — JSON de métricas por iteração
+  history/          — Histórico JSONL de scores por iteração
+  manifest-*.json   — Manifesto completo de cada iteração
+```
+
+### Critérios de aceite
+
+| Métrica | Threshold |
+|---|---|
+| Score global | ≥ 0,90 |
+| Score de layout | ≥ 0,92 |
+| Pixel drift global | < 12% |
+| Menor região crítica | ≥ 0,85 |
+
+---
+
 ## Schema JSON
 
 O contrato de dados está formalizado em:
