@@ -1,0 +1,30 @@
+.school-participation-stars {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      color: #F0A41B;
+      font-size: 16pt;
+      line-height: 1.2;
+      text-shadow: 0 0.6mm 0 #B85A18;
+      margin-bottom: 3mm;
+    }
+
+    .school-summary-copy {
+      margin: 0;
+      max-width: 82mm;
+      color: #5F6972;
+      font-size: 9pt;
+      line-height: 1.62;
+    }
+
+    .school-stat-bubbles {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 5mm;
+      margin-top: 5mm;
+      padding-top: 3mm;
+    }
+
+    .school-stat-bubble {
+      position: relati

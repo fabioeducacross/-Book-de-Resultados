@@ -5,17 +5,21 @@
  *
  * Orchestrates the full report generation pipeline:
  *
- *   XLSX spreadsheet
- *     ↓ parser       — parse spreadsheet into raw data
- *     ↓ validator    — validate data contract compliance
- *     ↓ normalizer   — compute metrics and rankings
- *     ↓ renderer     — build page objects
- *     ↓ charts       — generate chart descriptors per page
- *     ↓ exporter     — export to PPTX / JSON
+ *   XLSX spreadsheet  OR  JSON payload (BackOffice API)
+ *     ↓ parser / input-adapter  — parse into canonical contract
+ *     ↓ validator               — validate data contract compliance
+ *     ↓ normalizer              — compute metrics and rankings
+ *     ↓ renderer                — build page objects
+ *     ↓ charts                  — generate chart descriptors per page
+ *     ↓ exporter                — export to PPTX / JSON / PDF
  *
- * Usage:
+ * Usage (XLSX — CLI):
  *   const { generateBook } = require('.');
- *   const result = await generateBook({ inputFile, outputDir, format: 'pptx' });
+ *   const result = await generateBook({ inputFile, outputDir, format: 'pdf' });
+ *
+ * Usage (JSON — BackOffice API):
+ *   const { generateBook } = require('.');
+ *   const result = await generateBook({ inputData: jsonPayload, outputDir, format: 'pdf' });
  */
 
 const path = require('path');
@@ -27,12 +31,14 @@ const { generateChartsForPage } = require('./charts');
 const { exportPptx, exportPdf, exportJson, buildOutputFilename } = require('./exporter');
 const { createTheme, loadThemeFromPath, DEFAULT_THEME } = require('./theme');
 const { loadDesignManifest, DEFAULT_DESIGN_MANIFEST_PATH } = require('./design-manifest');
+const { adaptJsonPayload, validatePayloadShape } = require('./input-adapter');
 
 /**
  * Generates the Book de Resultados from an XLSX file.
  *
  * @param {object} options
- * @param {string}   options.inputFile    - Absolute path to the XLSX spreadsheet
+ * @param {string}   [options.inputFile]  - Absolute path to the XLSX spreadsheet (CLI mode)
+ * @param {object}   [options.inputData]  - JSON payload from BackOffice API (service mode)
  * @param {string}   options.outputDir    - Directory where the output will be saved
  * @param {'pptx'|'pdf'|'json'} [options.format='pptx'] - Output format
  * @param {string}   [options.version='v1']  - Version string for the filename
@@ -52,6 +58,7 @@ const { loadDesignManifest, DEFAULT_DESIGN_MANIFEST_PATH } = require('./design-m
 async function generateBook(options = {}) {
   const {
     inputFile,
+    inputData,
     outputDir,
     format = 'pptx',
     version = 'v1',
@@ -66,7 +73,8 @@ async function generateBook(options = {}) {
     designManifestPath = DEFAULT_DESIGN_MANIFEST_PATH,
   } = options;
 
-  if (!inputFile) throw new Error('"inputFile" é obrigatório');
+  if (!inputFile && !inputData) throw new Error('"inputFile" ou "inputData" é obrigatório');
+  if (inputFile && inputData) throw new Error('Use "inputFile" ou "inputData", não ambos');
   if (!outputDir) throw new Error('"outputDir" é obrigatório');
 
   const designManifest = loadDesignManifest(designManifestPath);
@@ -82,15 +90,24 @@ async function generateBook(options = {}) {
   const startTime = Date.now();
   const log = [];
 
-  // ── Step 1: Parse ──────────────────────────────────────────────────────────
-  log.push({ step: 'parse', status: 'started', ts: new Date().toISOString() });
+  // ── Step 1: Parse / Adapt ──────────────────────────────────────────────────
+  log.push({ step: 'parse', status: 'started', inputType: inputData ? 'json' : 'xlsx', ts: new Date().toISOString() });
   let rawData;
   try {
-    rawData = await parseSpreadsheet(inputFile);
-    log.push({ step: 'parse', status: 'ok', ts: new Date().toISOString() });
+    if (inputData) {
+      const shapeCheck = validatePayloadShape(inputData);
+      if (!shapeCheck.valid) {
+        throw new Error(`Payload JSON inválido: ${shapeCheck.errors.join('; ')}`);
+      }
+      rawData = adaptJsonPayload(inputData);
+    } else {
+      rawData = await parseSpreadsheet(inputFile);
+    }
+    log.push({ step: 'parse', status: 'ok', inputType: inputData ? 'json' : 'xlsx', ts: new Date().toISOString() });
   } catch (err) {
     log.push({ step: 'parse', status: 'error', message: err.message, ts: new Date().toISOString() });
-    throw new Error(`Falha ao ler a planilha: ${err.message}`);
+    const label = inputData ? 'Falha ao adaptar payload JSON' : 'Falha ao ler a planilha';
+    throw new Error(`${label}: ${err.message}`);
   }
 
   // ── Step 2: Validate ───────────────────────────────────────────────────────
@@ -197,4 +214,7 @@ module.exports = {
   buildOutputFilename,
   // Expose theme utilities for consumers who want to customize their book
   createTheme,
+  // Expose adapter for direct usage by service layer
+  adaptJsonPayload,
+  validatePayloadShape,
 };

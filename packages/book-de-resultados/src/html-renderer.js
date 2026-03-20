@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 const path = require('path');
 const { pathToFileURL } = require('url');
@@ -71,6 +71,13 @@ function resolvePageStyleFlags(page = {}) {
 function buildDocumentStyles(theme) {
   const c = theme.colors || DEFAULT_THEME.colors;
   const t = theme.typography || DEFAULT_THEME.typography;
+  const s = theme.spacing || DEFAULT_THEME.spacing || {};
+  const br = theme.borderRadius || {};
+  const bw = theme.borderWidth || {};
+  const sizes = (t.sizes || {});
+  const weights = (t.weights || {});
+  const lineHeights = (t.lineHeights || {});
+  const ls = (t.letterSpacing || {});
   const proficiency = c.proficiency || DEFAULT_THEME.colors.proficiency;
   const brandStrong = c.primary || c.brandPrimary || c.brandStrong || DEFAULT_THEME.colors.primary;
   const brandSoft = c.brandSoft || c.surface;
@@ -86,10 +93,80 @@ function buildDocumentStyles(theme) {
   const displayFontStack = String(
     t.htmlDisplayStack || t.displayFontFace || t.fontFace || DEFAULT_THEME.typography.fontFace,
   );
+  // Extended color tokens (Figma editorial grays)
+  const textEditorial = c.textEditorial || '#5D6A73';
+  const textEditorialMuted = c.textEditorialMuted || '#61727D';
+  const textEditorialSoft = c.textEditorialSoft || '#59656F';
+  const textLabel = c.textLabel || '#516874';
+  const textNote = c.textNote || '#7A858D';
+  const textKpiNote = c.textKpiNote || '#8A9197';
+  const textReference = c.textReference || '#6F7881';
+  const textReferenceSubtle = c.textReferenceSubtle || '#7B848B';
+  const textReferenceMuted = c.textReferenceMuted || '#8A9299';
+  const textAxis = c.textAxis || '#A0A8AF';
+  // Surface, border, track tokens
+  const surfaceTintSecondary = c.surfaceTintSecondary || '#E8F5F4';
+  const surfaceEditorialPanel = c.surfaceEditorialPanel || 'rgba(246,243,249,0.72)';
+  const borderSeparator = c.borderSeparator || '#E1E5E2';
+  const borderGridRule = c.borderGridRule || '#DDD8CF';
+  const borderRibbon = c.borderRibbon || '#A6C9C4';
+  const borderFrameBadge = c.borderFrameBadge || '#8A9299';
+  const trackBg = c.trackBackground || '#E8ECEB';
+  const trackBgMedia = c.trackBackgroundMedia || '#EDF1EF';
+  const pillNetwork = c.pillNetwork || 'rgba(31,167,217,0.1)';
+  const pillSchool = c.pillSchool || 'rgba(78,195,140,0.12)';
+  // Typography size tokens (pt)
+  const szEyebrow = sizes.eyebrow || 7.8;
+  const szHeaderSubtitle = sizes.headerSubtitle || 8.2;
+  const szHeaderMeta = sizes.headerMeta || 8.1;
+  const szSectionKicker = sizes.sectionKicker || 7.2;
+  const szSchoolName = sizes.schoolName || 18;
+  const szKpiValue = sizes.kpiValue || 22;
+  const szKpiLabel = sizes.kpiLabel || 6.8;
+  const szKpiNote = sizes.kpiNote || 6.9;
+  const szParticipationNumber = sizes.participationNumber || 40;
+  const szParticipationLabel = sizes.participationLabel || 7.5;
+  const szEditorialTitle = sizes.editorialTitle || 10.6;
+  const szEditorialPoint = sizes.editorialPoint || 8;
+  const szRefHeading = sizes.referenceHeading || 14.5;
+  const szRefHeadingPrint = sizes.referenceHeadingPrint || 13;
+  const szRefSubheading = sizes.referenceSubheading || 9;
+  const szRefSubheadingPrint = sizes.referenceSubheadingPrint || 10;
+  const szRefLabel = sizes.referenceLabel || 10.8;
+  const szRefLabelBase = sizes.referenceLabelBase || 12;
+  const szRefChip = sizes.referenceChip || 7.4;
+  const szRefChipBase = sizes.referenceChipBase || 8.8;
+  const szRefAxis = sizes.referenceAxis || 6.1;
+  const szRefAxisBase = sizes.referenceAxisBase || 6.6;
+  const szRefStat = sizes.referenceStat || 8;
+  const szRefStatMedia = sizes.referenceStatMedia || 7.4;
+  const szChromeBadge = sizes.chromeBadge || 8.5;
+  const szChromeLabel = sizes.chromeLabel || 7.6;
+  const szRefDotPrint = sizes.referenceDotPrint || 4.8;
+  // Weight tokens
+  const wRegular = weights.regular || 400;
+  const wMedium = weights.medium || 600;
+  const wBold = weights.bold || 700;
+  const wExtrabold = weights.extrabold || 800;
+  const wBlack = weights.black || 900;
+  // Border radius tokens
+  const brXs = br.xs || '0.6mm';
+  const brSm = br.sm || '1.2mm';
+  const brMd = br.md || '1.6mm';
+  const brLg = br.lg || '1.8mm';
+  const brXl = br.xl || '2mm';
+  const brXxl = br.xxl || '6mm';
+  const brPill = br.pill || '999px';
+  // Border width tokens
+  const bwHairline = bw.hairline || '0.35mm';
+  const bwThin = bw.thin || '0.4mm';
+  const bwRegular = bw.regular || '1px';
+  const bwMedium = bw.medium || '1.4px';
+  const bwThick = bw.thick || '2px';
 
   return `
     @page {
-      size: A4 portrait;
+      size: 250mm 210mm;
       margin: 0;
     }
 
@@ -110,8 +187,8 @@ function buildDocumentStyles(theme) {
 
     .page {
       position: relative;
-      width: 210mm;
-      min-height: 297mm;
+      width: 250mm;
+      min-height: 210mm;
       padding: 16mm 14mm 12mm;
       page-break-after: always;
       background:
@@ -521,9 +598,9 @@ function buildDocumentStyles(theme) {
     }
 
     .cover-hero {
-      min-height: 297mm;
+      min-height: 210mm;
       display: grid;
-      grid-template-rows: 88mm 1.8mm 1fr;
+      grid-template-rows: 62mm 1.8mm 1fr;
       background: linear-gradient(155deg, ${brandStrong} 0 32%, ${c.background} 32% 100%);
       position: relative;
       overflow: hidden;
@@ -637,7 +714,7 @@ function buildDocumentStyles(theme) {
     }
 
     .cover-media-stack {
-      min-height: 122mm;
+      min-height: 82mm;
       border: 1px solid ${c.ruleSoft || c.tableBorder};
       background: linear-gradient(180deg, rgba(19, 61, 89, 0.05) 0%, rgba(255, 255, 255, 0.96) 100%);
       padding: 8mm;
@@ -661,7 +738,7 @@ function buildDocumentStyles(theme) {
 
     .cover-image {
       max-width: 100%;
-      max-height: 96mm;
+      max-height: 68mm;
       object-fit: contain;
       margin: 0 auto;
       position: relative;
@@ -669,8 +746,8 @@ function buildDocumentStyles(theme) {
     }
 
     .chapter-hero {
-      min-height: 297mm;
-      padding: 24mm 18mm;
+      min-height: 210mm;
+      padding: 16mm 18mm;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1005,7 +1082,6 @@ function buildDocumentStyles(theme) {
       gap: 3.8mm;
     }
 
-    .section-visao_geral .summary-callout,
     .section-resultados_disciplina .summary-callout {
       min-height: 100%;
     }
@@ -1174,16 +1250,16 @@ function buildDocumentStyles(theme) {
     .section-visao_geral .indicator-card,
     .section-resultados_disciplina .indicator-card {
       min-height: 22mm;
-      padding: 4.1mm 3.4mm 3.2mm;
-      border-radius: 2.8mm;
-      border-color: #D8DEDC;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 246, 243, 0.96) 100%);
+      padding: 3.9mm 3.4mm 3mm;
+      border-radius: 2.4mm;
+      border-color: #D2DAD7;
+      background: rgba(247, 248, 246, 0.98);
     }
 
     .section-visao_geral .indicator-card::before,
     .section-resultados_disciplina .indicator-card::before {
-      height: 1.1mm;
-      background: linear-gradient(90deg, ${brandStrong}, ${accentColor});
+      height: 0.7mm;
+      background: ${brandStrong};
     }
 
     .section-resultados_disciplina .indicator-card::before {
@@ -1192,16 +1268,19 @@ function buildDocumentStyles(theme) {
 
     .section-visao_geral .indicator-card .value,
     .section-resultados_disciplina .indicator-card .value {
-      font-size: 16pt;
-      line-height: 1;
+      font-size: 15.4pt;
+      line-height: 0.96;
+      letter-spacing: -0.01em;
+      min-height: 5.2mm;
     }
 
     .section-visao_geral .indicator-card .label,
     .section-resultados_disciplina .indicator-card .label {
-      font-size: 7.8pt;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: ${c.textSecondary};
+      font-size: 7.3pt;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      line-height: 1.18;
+      color: #587082;
     }
 
     .section-visao_geral .analytic-split[data-layout="network-overview-shell"],
@@ -1244,17 +1323,16 @@ function buildDocumentStyles(theme) {
       border-left-color: ${c.brandPurple || accentColor};
     }
     .layout-style-analytic-overview.section-visao_geral .hero-panel-overview {
-      border-color: rgba(7, 43, 69, 0.3);
+      border-color: rgba(19, 61, 89, 0.12);
       background:
-        radial-gradient(circle at 12% 18%, rgba(255, 196, 73, 0.24) 0%, rgba(255, 196, 73, 0) 22%),
-        radial-gradient(circle at 88% 16%, rgba(60, 185, 196, 0.24) 0%, rgba(60, 185, 196, 0) 28%),
-        linear-gradient(135deg, #0A3554 0%, #0E5673 52%, #0F6F87 100%);
-      box-shadow: 0 3.2mm 8mm rgba(8, 41, 63, 0.18);
+        radial-gradient(circle at 12% 18%, rgba(255, 196, 73, 0.14) 0%, rgba(255, 196, 73, 0) 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 248, 247, 0.98) 100%);
+      box-shadow: 0 1.6mm 4mm rgba(8, 41, 63, 0.08);
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-overview::before {
-      height: 2.4mm;
-      background: linear-gradient(90deg, ${accentColor}, #FFD36A 52%, #FFFFFF 100%);
+      height: 1.2mm;
+      background: linear-gradient(90deg, ${accentColor}, #FFD36A 52%, rgba(255, 255, 255, 0.8) 100%);
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-kicker,
@@ -1262,44 +1340,43 @@ function buildDocumentStyles(theme) {
     .layout-style-analytic-overview.section-visao_geral .hero-panel-copy,
     .layout-style-analytic-overview.section-visao_geral .hero-panel-overview .page-subtitle,
     .layout-style-analytic-overview.section-visao_geral .hero-panel-footnote {
-      color: #F7FBFC;
+      color: #16384F;
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-kicker {
-      color: #FFD36A;
+      color: #8D5E00;
+      letter-spacing: 0.08em;
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-copy,
     .layout-style-analytic-overview.section-visao_geral .hero-panel-overview .page-subtitle {
-      color: rgba(247, 251, 252, 0.88);
+      color: rgba(22, 56, 79, 0.8);
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-kpi-chip {
-      border-color: rgba(255, 255, 255, 0.14);
-      background: rgba(8, 39, 61, 0.26);
-      color: rgba(247, 251, 252, 0.92);
-      box-shadow: inset 0 0 0 0.2mm rgba(255, 255, 255, 0.08);
+      border-color: rgba(19, 61, 89, 0.12);
+      background: rgba(255, 255, 255, 0.9);
+      color: #35586F;
+      box-shadow: none;
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-kpi-chip strong {
-      color: #FFFFFF;
+      color: #0F3349;
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-emphasis {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(243, 249, 250, 0.98) 100%);
-      border-color: rgba(255, 211, 106, 0.56);
-      box-shadow:
-        0 2.2mm 5mm rgba(4, 25, 40, 0.16),
-        inset 0 0 0 0.3mm rgba(255, 255, 255, 0.7);
+      background: linear-gradient(180deg, rgba(255, 251, 241, 1) 0%, rgba(250, 245, 230, 0.98) 100%);
+      border-color: rgba(214, 169, 72, 0.42);
+      box-shadow: 0 1.4mm 3.4mm rgba(4, 25, 40, 0.08);
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-emphasis-label {
-      color: ${brandStrong};
+      color: #8D5E00;
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-emphasis-value {
-      font-size: 19pt;
-      color: #0A3554;
+      font-size: 18pt;
+      color: #0F3349;
     }
 
     .layout-style-analytic-overview.section-visao_geral .hero-panel-emphasis-note {
@@ -1307,22 +1384,22 @@ function buildDocumentStyles(theme) {
     }
 
     .layout-style-analytic-overview.section-visao_geral .priority-context-band {
-      border-top-color: rgba(7, 43, 69, 0.24);
-      border-bottom-color: rgba(7, 43, 69, 0.24);
-      background: linear-gradient(90deg, #113C5C 0%, #1A4E6B 100%);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+      border-top-color: rgba(19, 61, 89, 0.12);
+      border-bottom-color: rgba(19, 61, 89, 0.12);
+      background: linear-gradient(180deg, rgba(248, 251, 250, 1) 0%, rgba(242, 247, 246, 1) 100%);
+      box-shadow: none;
     }
 
     .layout-style-analytic-overview.section-visao_geral .priority-context-card + .priority-context-card {
-      border-left-color: rgba(255, 255, 255, 0.12);
+      border-left-color: rgba(19, 61, 89, 0.1);
     }
 
     .layout-style-analytic-overview.section-visao_geral .priority-context-label {
-      color: rgba(212, 230, 235, 0.76);
+      color: rgba(53, 88, 111, 0.76);
     }
 
     .layout-style-analytic-overview.section-visao_geral .priority-context-value {
-      color: #FFFFFF;
+      color: #16384F;
     }
 
     .layout-style-analytic-overview.section-visao_geral .priority-context-card-referencia {
@@ -1341,35 +1418,59 @@ function buildDocumentStyles(theme) {
     }
 
     .layout-style-analytic-overview.section-visao_geral .indicator-card-total-escolas,
-    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-estudantes {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 247, 245, 0.94) 100%);
-      border-color: rgba(19, 61, 89, 0.1);
-      box-shadow: 0 1.2mm 3mm rgba(8, 59, 89, 0.04);
-    }
-
+    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-estudantes,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-participacao-media,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-media-geral {
-      border-color: rgba(7, 43, 69, 0.18);
-      background: linear-gradient(135deg, #0C4B66 0%, #126D81 100%);
-      box-shadow: 0 2.4mm 5.6mm rgba(9, 56, 84, 0.18);
-      transform: translateY(-1.2mm);
+      background: rgba(246, 247, 244, 0.98);
+      border-color: rgba(19, 61, 89, 0.12);
+      box-shadow: none;
+      transform: none;
     }
 
+    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-escolas::before,
+    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-estudantes::before,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-participacao-media::before,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-media-geral::before {
-      height: 2mm;
-      background: linear-gradient(90deg, ${accentColor}, #FFD36A 100%);
+      height: 0.7mm;
+      background: #2D5A73;
     }
 
+    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-escolas .value,
+    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-estudantes .value,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-participacao-media .value,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-media-geral .value {
-      font-size: 19.5pt;
-      color: #FFFFFF;
+      font-size: 16.2pt;
+      color: #0F3349;
     }
 
+    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-escolas .label,
+    .layout-style-analytic-overview.section-visao_geral .indicator-card-total-estudantes .label,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-participacao-media .label,
     .layout-style-analytic-overview.section-visao_geral .indicator-card-media-geral .label {
-      color: rgba(236, 246, 247, 0.92);
+      color: #5C7383;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .page-footer {
+      border: 0;
+      border-top: 0.35mm solid rgba(19, 61, 89, 0.16);
+      background: transparent;
+      border-radius: 0;
+      padding: 1.8mm 0 0;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2mm;
+      color: rgba(53, 88, 111, 0.9);
+      font-size: 8.5pt;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .page-footer-center {
+      display: none;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .page-footer-right {
+      color: #0F3349;
+      font-family: ${displayFontStack};
+      font-size: 10.5pt;
+      font-weight: 700;
     }
 
     .layout-style-analytic-overview.section-visao_geral .analytic-split[data-layout="network-overview-shell"] > .overview-shell-main,
@@ -1396,15 +1497,86 @@ function buildDocumentStyles(theme) {
 
     .layout-style-analytic-overview.section-visao_geral .chart-panel-overview-distribution {
       background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(245, 250, 250, 0.98) 100%);
+      padding-top: 4.4mm;
+      padding-bottom: 7.8mm;
     }
 
-    .layout-style-analytic-overview.section-visao_geral .chart-panel-overview-distribution .distribution-stack {
-      margin-bottom: 2.4mm;
-      box-shadow: inset 0 0 0 0.25mm rgba(7, 43, 69, 0.06);
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 2.4mm;
     }
 
-    .layout-style-analytic-overview.section-visao_geral .chart-panel-overview-distribution .distribution-legend {
-      gap: 1.8mm;
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-copy {
+      margin: 0;
+      color: rgba(53, 88, 111, 0.88);
+      font-size: 9.3pt;
+      line-height: 1.45;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-panel .reference-distribution-block {
+      grid-template-columns: 14mm minmax(0, 1fr);
+      gap: 2.6mm;
+      align-items: flex-start;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-panel .reference-distribution-label {
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-panel .reference-distribution-body {
+      gap: 1.6mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-panel .reference-distribution-track {
+      min-height: 12.4mm;
+      border-radius: 1.4mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-panel .reference-distribution-axis {
+      font-size: 6.1pt;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-panel .reference-distribution-stats {
+      gap: 1.2mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-highlights {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-highlight {
+      border: 1px solid rgba(19, 61, 89, 0.12);
+      border-radius: 3mm;
+      background: rgba(248, 251, 250, 0.96);
+      padding: 2.2mm 2.4mm;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-highlight-label {
+      color: rgba(53, 88, 111, 0.82);
+      font-size: 7.8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-highlight-value {
+      color: #0F3349;
+      font-size: 13.4pt;
+      line-height: 1;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-reference-legend {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2mm 2mm;
     }
 
     .layout-style-analytic-overview.section-visao_geral .panel-overview-proficiencia,
@@ -1413,20 +1585,72 @@ function buildDocumentStyles(theme) {
     }
 
     .layout-style-analytic-overview.section-visao_geral .panel-overview-summary {
-      background: linear-gradient(135deg, #0A3554 0%, #0E5673 100%);
-      border-color: rgba(7, 43, 69, 0.24);
-      box-shadow: 0 2.4mm 6mm rgba(8, 41, 63, 0.12);
+      background: linear-gradient(180deg, rgba(240, 236, 246, 0.92) 0%, rgba(245, 242, 248, 0.9) 100%);
+      border-color: rgba(116, 102, 145, 0.16);
+      box-shadow: none;
+      padding: 2.2mm 3mm;
     }
 
     .layout-style-analytic-overview.section-visao_geral .panel-overview-summary .panel-title {
       color: #FFFFFF;
+      margin-bottom: 0.8mm;
+      font-size: 10.8pt;
     }
 
     .layout-style-analytic-overview.section-visao_geral .summary-callout-overview {
-      border-left-width: 2.2mm;
-      border-left-color: #FFD36A;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 250, 250, 0.98) 100%);
-      box-shadow: inset 0 0 0 0.25mm rgba(7, 43, 69, 0.05);
+      border-left-width: 0;
+      border-top: 0.35mm solid rgba(116, 102, 145, 0.22);
+      background: transparent;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      min-height: 0;
+      padding: 1.4mm 0 0.2mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-summary-lead,
+    .layout-style-analytic-overview.section-visao_geral .overview-summary-points p {
+      margin: 0;
+      color: #4D4D67;
+      font-size: 8.25pt;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-summary-stat-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.8mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-summary-stat {
+      border-radius: 2.8mm;
+      background: rgba(248, 251, 250, 0.94);
+      border: 1px solid rgba(19, 61, 89, 0.1);
+      padding: 2mm 2.2mm;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6mm;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-summary-stat-label {
+      color: rgba(53, 88, 111, 0.82);
+      font-size: 7.7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-summary-stat-value {
+      color: #0F3349;
+      font-size: 13.2pt;
+      line-height: 1;
+    }
+
+    .layout-style-analytic-overview.section-visao_geral .overview-summary-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6mm;
     }
 
     .school-discipline-grid,
@@ -1440,7 +1664,7 @@ function buildDocumentStyles(theme) {
     .area-card {
       border: 1px solid ${c.cardBorder};
       background: rgba(255, 255, 255, 0.98);
-      border-radius: 6mm;
+      border-radius: ${brXxl};
       padding: 3.6mm;
       display: flex;
       flex-direction: column;
@@ -1473,11 +1697,11 @@ function buildDocumentStyles(theme) {
     }
 
     .score-pill-network {
-      background: rgba(31, 167, 217, 0.1);
+      background: ${pillNetwork};
     }
 
     .score-pill-school {
-      background: rgba(78, 195, 140, 0.12);
+      background: ${pillSchool};
     }
 
     .score-pill-delta {
@@ -1546,8 +1770,32 @@ function buildDocumentStyles(theme) {
     }
 
     .section-escola_disciplinas .reference-school-area {
-      gap: 6.2mm;
-      padding-top: 2mm;
+      gap: 4mm;
+      padding-top: 0;
+    }
+
+    .section-escola_disciplinas .reference-school-area-title {
+      padding: 0 4.2mm;
+    }
+
+    .section-escola_disciplinas .reference-school-area-heading {
+      font-size: ${szRefHeading}pt;
+      font-weight: 700;
+      color: ${brandStrong};
+      line-height: 1.15;
+      margin: 0 0 1mm;
+    }
+
+    .section-escola_disciplinas .reference-school-area-subheading {
+      font-size: ${szRefSubheading}pt;
+      color: ${textReference};
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .section-escola_disciplinas .reference-school-area-subheading-accent {
+      color: ${brandSecondary};
+      font-weight: 700;
     }
 
     .section-escola_disciplinas .reference-school-area-grid {
@@ -1570,20 +1818,36 @@ function buildDocumentStyles(theme) {
       gap: 2.4mm;
       align-items: center;
       padding-bottom: 1.2mm;
-      border-bottom: 1px solid #E1E5E2;
+      border-bottom: ${bwRegular} solid ${borderSeparator};
     }
 
     .section-escola_disciplinas .reference-area-icon {
       width: 8.4mm;
       height: 8.4mm;
-      border-radius: 1.6mm;
+      border-radius: ${brMd};
+    }
+
+    .section-escola_disciplinas .reference-area-icon.discipline-matematica {
+      background: ${c.brandGreen};
+    }
+
+    .section-escola_disciplinas .reference-area-icon.discipline-linguagens {
+      background: ${c.brandOrange};
     }
 
     .section-escola_disciplinas .reference-area-chip {
       padding: 1.1mm 3.2mm;
-      border-radius: 2mm;
-      font-size: 7.4pt;
+      border-radius: ${brXl};
+      font-size: ${szRefChip}pt;
       letter-spacing: 0.08em;
+    }
+
+    .section-escola_disciplinas .reference-area-chip.discipline-matematica {
+      background: ${c.brandGreen};
+    }
+
+    .section-escola_disciplinas .reference-area-chip.discipline-linguagens {
+      background: ${c.brandOrange};
     }
 
     .section-escola_disciplinas .reference-distribution-block {
@@ -1594,7 +1858,7 @@ function buildDocumentStyles(theme) {
 
     .section-escola_disciplinas .reference-distribution-label {
       padding-top: 1.2mm;
-      font-size: 10.8pt;
+      font-size: ${szRefLabel}pt;
       line-height: 1.04;
       letter-spacing: -0.02em;
     }
@@ -1605,15 +1869,15 @@ function buildDocumentStyles(theme) {
 
     .section-escola_disciplinas .reference-distribution-axis {
       padding: 0 0.4mm;
-      color: #A0A8AF;
-      font-size: 6.1pt;
+      color: ${textAxis};
+      font-size: ${szRefAxis}pt;
     }
 
     .section-escola_disciplinas .reference-distribution-track {
       min-height: 8.4mm;
       border-left-width: 1.4px;
-      border-radius: 1.2mm;
-      background: #EDF1EF;
+      border-radius: ${brSm};
+      background: ${trackBgMedia};
     }
 
     .section-escola_disciplinas .reference-distribution-track::before {
@@ -1623,14 +1887,20 @@ function buildDocumentStyles(theme) {
     }
 
     .section-escola_disciplinas .reference-distribution-stats {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 0.6mm;
       padding-top: 0.4mm;
     }
 
     .section-escola_disciplinas .reference-distribution-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: flex-start;
-      color: #6F7881;
-      font-size: 7.4pt;
+      gap: 0.8mm;
+      color: ${textReference};
+      font-size: ${szRefStatMedia}pt;
     }
 
     .section-escola_disciplinas .reference-distribution-dot {
@@ -1899,21 +2169,74 @@ function buildDocumentStyles(theme) {
     }
 
     .page {
-      padding: 18mm 16mm 15mm;
+      padding: 10mm 30mm 5mm 20mm;
+      max-height: 210mm;
+      overflow: hidden;
       background: linear-gradient(180deg, #FBFBF8 0%, #F4F3EE 100%);
       gap: 4.8mm;
     }
 
     .page::before {
       inset: auto 0 0 0;
-      height: 5.4mm;
+      height: 4.8mm;
       border: none;
       border-radius: 0;
       background: ${c.secondary};
     }
 
+    /* ── Purple bar for editorial / overview / math sections ── */
+    .section-visao_geral::before,
+    .section-participacao_rede::before,
+    .section-participacao_rede_tabela::before,
+    .section-contexto_avaliacao::before,
+    .section-metodologia::before,
+    .section-apresentacao::before,
+    .section-sumario::before,
+    .layout-variant-discipline-matematica::before {
+      background: ${c.brandPurple || '#7D6BC2'};
+    }
+
     .page::after {
       display: none;
+    }
+
+    /* ── Reset cover/chapter padding after Canoas override ── */
+    .page.cover-page,
+    .page.chapter-page {
+      padding: 0;
+      gap: 0;
+      max-height: 210mm;
+    }
+
+    .page.cover-page::before,
+    .page.cover-page::after,
+    .page.chapter-page::before,
+    .page.chapter-page::after {
+      display: none;
+    }
+
+    /* ── Chrome bars for framed pages ── */
+    .layout-chrome-framed:not(.section-escola) {
+      padding: 0;
+    }
+
+    .framed-chrome-header {
+      display: none;
+    }
+
+    .layout-chrome-framed:not(.section-escola) .page-content-framed {
+      padding: 4mm 16mm;
+    }
+
+    .framed-chrome-footer {
+      display: none;
+    }
+
+    .framed-chrome-page-number {
+      border: ${bwThin} solid ${borderFrameBadge};
+      padding: 0.5mm 2mm;
+      font-size: 7pt;
+      line-height: 1;
     }
 
     .page-header {
@@ -1922,18 +2245,12 @@ function buildDocumentStyles(theme) {
     }
 
     .page-header::after {
-      content: 'Relatório Diagnóstico Educacional';
-      position: absolute;
-      top: 18mm;
-      right: 16mm;
-      color: #C6CBD0;
-      font-size: 8.4pt;
-      font-weight: 600;
+      display: none;
     }
 
     .page-heading {
       gap: 0.3mm;
-      padding-right: 34mm;
+      padding-right: 0;
     }
 
     .page-eyebrow {
@@ -2134,7 +2451,7 @@ function buildDocumentStyles(theme) {
     }
 
     .cover-hero {
-      min-height: 297mm;
+      min-height: 210mm;
       display: grid;
       grid-template-columns: 54mm minmax(0, 1fr);
       grid-template-rows: 1fr;
@@ -2183,7 +2500,7 @@ function buildDocumentStyles(theme) {
     }
 
     .cover-band[data-layout="cover-slab"] {
-      padding: 30mm 18mm 18mm;
+      padding: 20mm 18mm 12mm;
       background: linear-gradient(180deg, rgba(4, 29, 43, 0.04), rgba(4, 29, 43, 0));
       display: flex;
       flex-direction: column;
@@ -2304,7 +2621,7 @@ function buildDocumentStyles(theme) {
     }
 
     .chapter-hero {
-      min-height: 297mm;
+      min-height: 210mm;
       background: linear-gradient(180deg, #FCFCF9 0%, #F1F0E8 100%);
     }
 
@@ -2388,8 +2705,8 @@ function buildDocumentStyles(theme) {
       flex-direction: column;
       justify-content: flex-end;
       gap: 3.5mm;
-      padding: 28mm 20mm 22mm;
-      min-height: 297mm;
+      padding: 18mm 20mm 14mm;
+      min-height: 210mm;
     }
 
     .chapter-copy-block {
@@ -2458,7 +2775,7 @@ function buildDocumentStyles(theme) {
     .chapter-hero-resultados .chapter-content-inner {
       justify-content: center;
       gap: 2.4mm;
-      padding: 20mm 20mm 18mm;
+      padding: 14mm 20mm 12mm;
     }
 
     .chapter-hero-resultados .chapter-copy-block {
@@ -2525,11 +2842,203 @@ function buildDocumentStyles(theme) {
       padding-top: 0;
     }
 
-    .analytic-split[data-layout="school-summary-shell"] {
-      grid-template-columns: minmax(69mm, 0.9fr) minmax(0, 1.1fr);
+    .section-escola {
+      padding: 0;
+    }
+
+    .section-escola .school-summary-aside {
+      padding-left: 20mm;
+    }
+
+    .section-escola .school-summary-main {
+      padding-right: 14mm;
+    }
+
+    /* ── escola_disciplinas: clone Figma node 7463:2 ── */
+    .layout-chrome-framed.section-escola_disciplinas {
+      position: relative;
+    }
+
+    .layout-chrome-framed.section-escola_disciplinas::before,
+    .layout-chrome-framed.section-escola_disciplinas::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3.6mm;
+      background: ${brandSecondary};
+      z-index: 10;
+    }
+
+    .layout-chrome-framed.section-escola_disciplinas::before {
+      top: 0;
+      border-radius: ${brXl} ${brXl} 0 0;
+    }
+
+    .layout-chrome-framed.section-escola_disciplinas::after {
+      bottom: 0;
+      border-radius: 0 0 ${brXl} ${brXl};
+    }
+
+    .layout-chrome-framed.section-escola_disciplinas .page-content-framed {
+      padding: 14mm 16mm 19.2mm 14mm;
+    }
+
+    .section-escola_disciplinas .framed-chrome-header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 8mm 16mm 0;
+      min-height: 0;
+      height: auto;
+      border: none;
+      background: none;
+    }
+
+    .section-escola_disciplinas .framed-chrome-header span:first-child {
+      display: none;
+    }
+
+    .section-escola_disciplinas .framed-chrome-header span:last-child {
+      color: ${c.textMuted};
+      font-size: ${szChromeLabel}pt;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .section-escola_disciplinas .framed-chrome-footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      position: absolute;
+      top: 191mm;
+      left: 0;
+      right: 0;
+      padding: 0 16mm;
+      min-height: 0;
+      height: auto;
+      border: none;
+      background: none;
+    }
+
+    .section-escola_disciplinas .framed-chrome-footer .framed-chrome-page-number {
+      font-size: ${szChromeBadge}pt;
+      font-weight: 700;
+      color: ${c.textMuted};
+    }
+
+    .section-escola_disciplinas .framed-chrome-footer .framed-chrome-footer-label {
+      position: absolute;
+      right: 16mm;
+      top: 0;
+      color: ${c.textMuted};
+      font-size: ${szChromeLabel}pt;
+      font-weight: 700;
+    }
+
+    .section-escola_disciplinas .reference-school-area {
+      flex: 1;
+      min-height: 0;
       gap: 0;
-      min-height: 100%;
-      height: 100%;
+    }
+
+    .section-escola_disciplinas .reference-school-area-title {
+      margin-bottom: 12mm;
+    }
+
+    .section-escola_disciplinas .reference-school-area-heading {
+      font-size: ${szRefHeadingPrint}pt;
+      font-weight: ${wExtrabold};
+      color: ${c.textPrimary};
+    }
+
+    .section-escola_disciplinas .reference-school-area-subheading {
+      font-size: ${szRefSubheadingPrint}pt;
+      color: ${brandSecondary};
+    }
+
+    .section-escola_disciplinas .reference-school-area-subheading-accent {
+      color: ${brandSecondary};
+    }
+
+    .section-escola_disciplinas .reference-school-area-grid {
+      align-items: start;
+    }
+
+    .section-escola_disciplinas .reference-area-card {
+      gap: 3mm;
+    }
+
+    .section-escola_disciplinas .reference-area-legend {
+      margin-top: auto;
+      padding-top: 2.5mm;
+      padding-bottom: 2.8mm;
+    }
+
+    .section-escola_disciplinas .reference-distribution-track {
+      min-height: 10mm;
+      border-left-width: 0;
+      border-radius: 0.6mm;
+      background: transparent;
+    }
+
+    .section-escola_disciplinas .reference-distribution-track::before {
+      left: -4mm;
+      width: 2mm;
+      height: 2mm;
+      border-radius: 50%;
+      background: ${brandStrong};
+    }
+
+    .section-escola_disciplinas .reference-distribution-track::after {
+      content: '';
+      position: absolute;
+      left: -2mm;
+      top: 50%;
+      width: 2mm;
+      height: 0.8mm;
+      background: ${brandStrong};
+      transform: translateY(-50%);
+    }
+
+    .section-escola_disciplinas .reference-distribution-dot {
+      width: 7.5mm;
+      height: 7.5mm;
+      box-shadow: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 4.8pt;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .section-escola_disciplinas .reference-distribution-stats {
+      gap: 1.2mm;
+      padding-top: 1.5mm;
+    }
+
+    .section-escola_disciplinas .reference-distribution-stat {
+      font-size: 8pt;
+    }
+
+    .section-escola_disciplinas .reference-distribution-stat strong {
+      color: inherit;
+    }
+
+    .section-escola_disciplinas .reference-area-legend .reference-distribution-dot {
+      width: 3.9mm;
+      height: 3.9mm;
+      font-size: 0;
+    }
+
+    .analytic-split[data-layout="school-summary-shell"] {
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      flex: 1;
+      min-height: 0;
+      align-items: stretch;
       background: #FFFFFF;
       position: relative;
       overflow: hidden;
@@ -2541,7 +3050,7 @@ function buildDocumentStyles(theme) {
       left: 0;
       right: 0;
       bottom: 0;
-      height: 4.2mm;
+      height: 1.4mm;
       background: ${c.secondary};
     }
 
@@ -2553,24 +3062,57 @@ function buildDocumentStyles(theme) {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 12mm 9mm 18mm 10mm;
-      background: linear-gradient(180deg, #D8D5CC 0%, #D5D1C8 100%);
+      padding: 8mm 6mm 8mm 8mm;
+      background: ${c.background};
     }
 
     .school-brand-block {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 2.8mm;
-      margin-bottom: 4mm;
+      gap: 1.6mm;
+      margin-bottom: 3.2mm;
+    }
+
+    .school-editorial-header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2mm;
+      margin-bottom: 2.6mm;
     }
 
     .school-brand-eyebrow {
-      color: #5A6670;
-      font-size: 10.2pt;
+      color: ${brandStrong};
+      font-size: ${szEyebrow}pt;
       font-weight: 700;
-      letter-spacing: 0;
-      text-transform: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .school-header-subtitle {
+      margin: 0;
+      color: ${c.textPrimary};
+      font-size: ${szHeaderSubtitle}pt;
+      font-weight: ${wMedium};
+      line-height: 1.35;
+    }
+
+    .school-header-meta {
+      margin: 0;
+      color: ${c.textSecondary};
+      font-size: ${szHeaderMeta}pt;
+      font-weight: ${wMedium};
+      line-height: 1.35;
+    }
+
+    .school-section-kicker {
+      margin: 0 0 1.6mm;
+      color: ${textEditorialMuted};
+      font-size: ${szSectionKicker}pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .school-brand-partnership {
@@ -2581,8 +3123,12 @@ function buildDocumentStyles(theme) {
     .school-hero-figure {
       position: relative;
       width: 100%;
-      min-height: 39mm;
-      margin-bottom: 1.8mm;
+      min-height: 28mm;
+      margin-bottom: 1.2mm;
+    }
+
+    .school-hero-figure[hidden] {
+      display: none;
     }
 
     .school-hero-figure::after {
@@ -2590,58 +3136,81 @@ function buildDocumentStyles(theme) {
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 2.4mm;
-      height: 0.45mm;
-      background: #0F4A6B;
-      opacity: 0.82;
+      bottom: 1.2mm;
+      height: 1.2mm;
+      background-image:
+        radial-gradient(circle, rgba(15, 74, 107, 0.55) 44%, transparent 46%),
+        radial-gradient(circle, rgba(15, 74, 107, 0.55) 44%, transparent 46%),
+        linear-gradient(to right, rgba(15, 74, 107, 0.38), rgba(15, 74, 107, 0.38));
+      background-size: 1.2mm 1.2mm, 1.2mm 1.2mm, 100% 0.28mm;
+      background-position: left center, right center, center;
+      background-repeat: no-repeat, no-repeat, no-repeat;
     }
 
     .school-hero-figure::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 1.3mm;
-      width: 1.4mm;
-      height: 1.4mm;
-      border-radius: 50%;
-      background: #0F4A6B;
-      box-shadow: calc(100% - 1.4mm) 0 0 #0F4A6B;
+      content: none;
     }
 
     .school-owl-wrap {
       position: relative;
       z-index: 1;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
+      align-items: flex-end;
       width: 100%;
+      min-height: 100%;
     }
 
     .school-owl-wrap .school-owl-image {
-      width: 43mm;
-      max-height: 36mm;
-      object-fit: contain;
-      object-position: center bottom;
-      filter: drop-shadow(0 1.6mm 2.4mm rgba(14, 52, 71, 0.14));
+      position: relative;
+      top: 1px;
+      height: 26mm;
+      width: auto;
       display: block;
+      flex-shrink: 0;
     }
 
     .school-summary-main {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 8.5mm;
-      padding: 14mm 10mm 18mm 10mm;
-      background: #F4F4F4;
+      align-items: stretch;
+      gap: 3.2mm;
+      padding: 11mm 10mm 14mm 10mm;
+      background: #FFFFFF;
+      border-left: ${bwHairline} solid rgba(19, 61, 89, 0.08);
+    }
+
+    .school-summary-main-copy {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .school-summary-main-metrics {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: auto;
+    }
+
+    .school-summary-copy {
+      margin: 0;
+      color: ${textEditorial};
+      font-size: ${szEditorialPoint}pt;
+      font-weight: ${wRegular};
+      line-height: 1.35;
+      letter-spacing: 0;
     }
 
     .school-ranking-ribbon {
       margin-bottom: 4mm;
       padding: 1.6mm 4mm;
-      border-radius: 999px;
-      border: 1px solid #A6C9C4;
+      border-radius: ${brPill};
+      border: ${bwRegular} solid ${borderRibbon};
       background: rgba(255, 255, 255, 0.9);
       color: ${brandStrong};
-      font-size: 8.2pt;
+      font-size: ${szHeaderSubtitle}pt;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -2649,96 +3218,118 @@ function buildDocumentStyles(theme) {
 
     .school-name-display {
       width: 100%;
-      margin: 0 0 5.5mm;
+      margin: 0 0 4.2mm;
       padding-top: 0;
       color: ${brandStrong};
       font-family: ${displayFontStack};
-      font-size: 26pt;
-      line-height: 0.94;
-      letter-spacing: -0.03em;
+      font-size: ${szSchoolName}pt;
+      font-weight: ${wExtrabold};
+      line-height: 1.04;
+      letter-spacing: -0.02em;
     }
 
     .school-kpi-grid {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2.8mm;
-      margin-bottom: 1.2mm;
+      gap: 1.6mm;
+      margin-bottom: 2mm;
     }
 
     .school-kpi-card {
       position: relative;
-      padding: 4.4mm 3.3mm 3.4mm;
-      border: 1px solid rgba(19, 61, 89, 0.08);
-      border-radius: 2.6mm;
-      background: rgba(255, 255, 255, 0.92);
-      text-align: center;
-      box-shadow: 0 1.4mm 2.6mm rgba(15, 47, 66, 0.06);
+      padding: 2.9mm 2.8mm 3.4mm;
+      border: none;
+      background: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 148.822 146.002' preserveAspectRatio='none'%3E%3Cg transform='translate(0%2C146.002) scale(1%2C-1)'%3E%3Cpath d='M142.729 145.252H6.09302C3.14202 145.252 0.75 142.855 0.75 139.899V14.9273C0.75 11.9713 3.14202 9.57426 6.09302 9.57426H28.663C29.823 9.72126 31.583 8.94725 32.596 7.84525L38.434 1.48725C39.383 0.504252 40.884 0.504252 41.787 1.48725L47.625 7.84525C48.302 8.80025 50.062 9.57426 51.557 9.57426H142.729C145.68 9.57426 148.072 11.9713 148.072 14.9273V139.899C148.073 142.855 145.68 145.252 142.729 145.252Z' fill='white' fill-opacity='0.7' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      text-align: left;
+      box-shadow: none;
     }
 
     .school-kpi-card::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: -1.6mm;
-      width: 4.4mm;
-      height: 4.4mm;
-      background: rgba(255, 255, 255, 0.96);
-      transform: translateX(-50%) rotate(45deg);
-      border-right: 1px solid rgba(19, 61, 89, 0.08);
-      border-bottom: 1px solid rgba(19, 61, 89, 0.08);
-      border-radius: 0 0 0.8mm 0;
+      content: none;
     }
 
     .school-kpi-value {
-      color: ${c.secondary};
+      color: ${brandStrong};
       font-family: ${displayFontStack};
-      font-size: 22pt;
-      font-weight: 700;
+      font-size: ${szKpiValue}pt;
+      font-weight: ${wBlack};
       line-height: 1;
     }
 
     .school-kpi-label {
-      margin-top: 1.2mm;
-      color: #5E6770;
-      font-size: 8.4pt;
+      margin-top: 0.8mm;
+      color: ${brandStrong};
+      font-size: ${szKpiLabel}pt;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
     .school-kpi-note {
-      color: #8E969D;
-      font-size: 7.4pt;
+      color: ${textKpiNote};
+      font-size: ${szKpiNote}pt;
       line-height: 1.25;
     }
 
     .school-operational-table {
-      margin-top: 3.2mm;
-      font-size: 8.6pt;
-      border: 1px solid #D8DEDC;
-      background: rgba(255, 255, 255, 0.48);
+      margin-top: 0;
+        font-size: 6.8pt;
+        border: none;
+        border-collapse: collapse;
+        background: #FFFFFF;
     }
 
     .school-operational-table th {
-      background: ${brandStrong};
-      color: #FFFFFF;
-      padding-top: 2.2mm;
-      padding-bottom: 2.2mm;
+        padding: 1.1mm 1.4mm;
+        border: none;
+        background: #FFFFFF;
+        color: ${c.textPrimary};
+        font-size: ${szKpiLabel}pt;
+        font-weight: 700;
+        line-height: 1.1;
     }
+
+      .school-operational-table td {
+        padding: 1.15mm 1.4mm;
+        border: none;
+        background: #FFFFFF;
+        color: ${c.textPrimary};
+        font-size: ${szKpiLabel}pt;
+        line-height: 1.1;
+        vertical-align: middle;
+      }
+
+      .school-operational-table thead th:first-child {
+          background: ${c.secondary};
+        color: transparent;
+      }
+
+      .school-operational-table thead th:last-child {
+        background: ${c.secondary};
+        color: #FFFFFF;
+        text-align: center;
+        letter-spacing: 0.05em;
+      }
 
     .school-operational-table td:last-child,
     .school-operational-table th:last-child {
-      text-align: right;
-      width: 20mm;
+        width: 13.5mm;
+        text-align: center;
     }
 
-    .school-table-section-row td {
-      background: #EFF3F1;
-      color: ${brandStrong};
-      font-size: 8pt;
+    .school-table-section-row th {
+        padding: 1.15mm 1.4mm;
+        background: ${surfaceTintSecondary};
+        color: ${brandStrong};
+        font-size: 6.8pt;
       font-weight: 700;
-      letter-spacing: 0.06em;
+        letter-spacing: 0.05em;
+        text-align: center;
       text-transform: uppercase;
     }
 
@@ -2748,46 +3339,58 @@ function buildDocumentStyles(theme) {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 1mm;
-      padding-top: 5mm;
+      gap: 0.15mm;
+      width: 100%;
+      padding-top: 2.8mm;
+      border-top: 0.35mm solid rgba(19, 61, 89, 0.14);
+    }
+
+    .school-participation-ghost-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.1mm;
     }
 
     .school-participation-number {
-      color: ${brandStrong};
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(19, 61, 89, 0.3);
       font-family: ${displayFontStack};
-      font-size: 28pt;
-      font-weight: 700;
-      line-height: 1;
-      -webkit-text-stroke: 0.28mm rgba(255, 255, 255, 0.9);
-      text-shadow: 0 0.6mm 0 rgba(255, 255, 255, 0.85);
+      font-size: ${szParticipationNumber}pt;
+      font-weight: ${wBlack};
+      line-height: 0.8;
+      letter-spacing: -0.04em;
     }
 
     .school-participation-label {
-      color: ${brandStrong};
-      font-size: 9.4pt;
+      position: relative;
+      left: 0;
+      top: 0;
+      margin-left: 0.8mm;
+      color: ${textLabel};
+      font-size: ${szParticipationLabel}pt;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
     }
 
-    .school-participation-stars {
-      position: absolute;
-      right: 16mm;
-      bottom: 1mm;
-      display: flex;
-      gap: 1mm;
-      color: #F0A41B;
-      font-size: 17pt;
-      line-height: 1;
-      text-shadow: 0 0.6mm 0 #B85A18;
+    .school-participation-note {
+      color: ${textNote};
+      font-size: ${szSectionKicker}pt;
+      line-height: 1.35;
     }
 
-    .school-summary-copy {
-      margin: 0;
-      max-width: 74mm;
-      color: #707A84;
-      font-size: 10.8pt;
-      line-height: 1.95;
+    .school-participation-stars {
+        display: flex;
+        width: 14mm;
+        height: 23mm;
+        position: relative;
+        top: 31px;
+        left: -1px;
+        margin-bottom: 2mm;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgdmlld0JveD0iMCAwIDMzLjQ3MiAzNS42Nzk2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBpZD0iVmVjdG9yIj4KPHBhdGggZD0iTTE4LjY0MzEgMC4wMDcxMjgyOEMxOC42MjkxIDAuMDA1MTI4MjggMTguNTg4MSAwLjAwMzEzMDQ4IDE4LjYwMjEgMC4wMDMxMzA0OEwxOC42MzAxIDAuMDA2MTIxMkMxOC4yNjAxIC0wLjAzNTg3ODggMTcuODcyMSAwLjE0MTExNCAxNy42NjIxIDAuNDQ5MTE0TDExLjgwOTEgOS4wNDAxMkwxLjQxNDEgOS4wODgxM0MwLjkzNjA5NyA5LjA5MTEzIDAuNDg4MTAzIDkuNDY4MTMgMC40MDQxMDMgOS45MzgxM0MwLjQwMzEwMyA5Ljk0NDEzIDAuNDAyMTA0IDkuOTUwMTEgMC40MDIxMDQgOS45NTcxMUwwLjAxMTA5NzYgMTIuNzM4MUwwLjAxMjEwNDcgMTIuNzI3MUMwLjAxMDEwNDcgMTIuNzQxMSAwLjAwODEwNzk1IDEyLjc1NjEgMC4wMDYxMDc5NSAxMi43NzAxTDAuMDA4MTA2ODUgMTIuNzU5MUwwLjAwNTEwMDg3IDEyLjc3ODFDLTAuMDA1ODk5MTMgMTIuODU0MSAwLjAwMTA5ODA2IDEyLjkzMTEgMC4wMjQwOTgxIDEzLjAwNTFDMC4wNDYwOTgxIDEzLjE5MTEgMC4xMDEwOTkgMTMuMzczMSAwLjIxNjA5OSAxMy41MjExTDYuMjI1MSAyMS4yODgxTDMuODAwMSAyOC44NzExVjI4Ljg3MjJDMy43NzgxIDI4Ljk0MDIgMy43NjQxMSAyOS4wMTExIDMuNzU2MTEgMjkuMDgyMUwzLjc1OTEgMjkuMDYyMUwzLjM3NjEgMzEuNzkyMUwzLjM3ODEgMzEuNzcyMUMzLjM3MzEgMzEuNzk5MSAzLjM2OTEgMzEuODI2MSAzLjM2NzEgMzEuODU0MUwzLjM3MDExIDMxLjgzNDFMMy4zNjYxMSAzMS44NjMxQzMuMzUxMTEgMzEuOTY3MSAzLjM2OTEgMzIuMDc0MSAzLjQxNzEgMzIuMTY3MUMzLjQ3MTEgMzIuNDA5MSAzLjU4MjExIDMyLjYzOTIgMy43ODIxMSAzMi43ODYyQzQuMDUzMTEgMzIuOTg1MiA0LjQyNDEgMzMuMDQwMiA0Ljc0MDEgMzIuOTI3MlYzMi45MjYxTDE0LjUyNTEgMjkuNDE3MUwyMi45NjMxIDM1LjQ4ODFDMjMuMjM2MSAzNS42ODQxIDIzLjYwODEgMzUuNzM0MiAyMy45MjMxIDM1LjYxNzJDMjQuMTU1MSAzNS41MzEyIDI0LjMyNTEgMzUuMzQxMSAyNC40NDQxIDM1LjEyNDFDMjQuNTE2MSAzNS4wNDcxIDI0LjU2MzEgMzQuOTQ5MSAyNC41NzgxIDM0Ljg0NDFMMjQuOTc1MSAzMi4wMjMyQzI0Ljk4MzEgMzEuOTY1MiAyNC45ODYxIDMxLjkwNzEgMjQuOTg0MSAzMS44NDkxTDI0Ljc0NDEgMjMuODkwMUwzMi42NjExIDE4LjA4MTFDMzIuODEyMSAxNy45NzAxIDMyLjkxNDEgMTcuODEwMSAzMi45ODYxIDE3LjYzODFDMzMuMDI5MSAxNy41NzQxIDMzLjA1NzEgMTcuNTAxMSAzMy4wNjgxIDE3LjQyNTFMMzMuMDcxMSAxNy40MDYxTDMzLjA2OTEgMTcuNDE3MUMzMy4wNzExIDE3LjQwMjEgMzMuMDczMSAxNy4zODcxIDMzLjA3NTEgMTcuMzczMUwzMy4wNzQxIDE3LjM4NDFMMzMuNDYwMSAxNC42MzUxTDMzLjQ1OTEgMTQuNjQ2MUMzMy40NjExIDE0LjYzMTEgMzMuNDYzMSAxNC42MTYxIDMzLjQ2NTEgMTQuNjAyMUMzMy40NjYxIDE0LjU5NjEgMzMuNDY2MSAxNC41OTExIDMzLjQ2NzEgMTQuNTg0MUMzMy41MTYxIDE0LjExMDEgMzMuMTg5MSAxMy42MjQxIDMyLjczMTEgMTMuNDkwMUwyMi43NTIxIDEwLjU3ODFMMTkuNDk1MSAwLjcwNzExQzE5LjM3MzEgMC4zMzkxMSAxOS4wMjgxIDAuMDU1MTI4MyAxOC42NDQxIDAuMDA3MTI4MjhIMTguNjQzMVoiIGZpbGw9IiNCNDFDMDAiLz4KPHBhdGggZD0iTTE4LjE1OTEgMy4yODMxNEMxOC4wNjUxIDMuMjcyMTQgMTcuOTcwMSAzLjI4NzExIDE3Ljg4NTEgMy4zMjcxMUMxNy43OTkxIDMuMzY2MTEgMTcuNzI2MSAzLjQyODEzIDE3LjY3MzEgMy41MDYxM0wxMS42NjgxIDEyLjMxOTFMMS4wMDMxIDEyLjM2OTFDMC45MDYxMDQgMTIuMzcwMSAwLjgxMjEwOSAxMi4zOTcxIDAuNzMwMTA5IDEyLjQ0ODFDMC42NDkxMDkgMTIuNTAwMSAwLjU4MzExNCAxMi41NzMxIDAuNTQxMTE0IDEyLjY2MDFDMC40OTgxMTQgMTIuNzQ3MSAwLjQ4MTExMSAxMi44NDMxIDAuNDkxMTExIDEyLjkzOTFDMC41MDExMTEgMTMuMDM2MSAwLjUzNzEwNiAxMy4xMjcxIDAuNTk2MTA2IDEzLjIwMzFMNy4xMjMxMSAyMS42MzcxTDMuODc1MTEgMzEuNzk1MUMzLjg0NTExIDMxLjg4NzEgMy44NDIxMSAzMS45ODUxIDMuODY2MTEgMzIuMDc5MUMzLjg4OTExIDMyLjE3MzEgMy45MzkxMSAzMi4yNTgxIDQuMDA4MTEgMzIuMzI1MUM0LjA3NzExIDMyLjM5MjEgNC4xNjQxIDMyLjQzODEgNC4yNTkxIDMyLjQ1OTFDNC4zNTMxIDMyLjQ3OTEgNC40NTExMSAzMi40NzMyIDQuNTQyMTEgMzIuNDQwMkwxNC41ODAxIDI4Ljg0MDFMMjMuMjM4MSAzNS4wNjgxQzIzLjMxNjEgMzUuMTI0MSAyMy40MDkxIDM1LjE1NzIgMjMuNTA1MSAzNS4xNjQyQzIzLjYwMTEgMzUuMTcwMiAyMy42OTgxIDM1LjE0OTIgMjMuNzgzMSAzNS4xMDQyQzIzLjg2ODEgMzUuMDU5MiAyMy45MzkxIDM0Ljk5MDEgMjMuOTg3MSAzNC45MDcxQzI0LjAzNjEgMzQuODIzMSAyNC4wNjAxIDM0LjcyODEgMjQuMDU3MSAzNC42MzIxTDIzLjczNTEgMjMuOTcyMUwzMi4zMzMxIDE3LjY2NDFDMzIuNDExMSAxNy42MDYxIDMyLjQ3MTEgMTcuNTI5MSAzMi41MDcxIDE3LjQzOTFDMzIuNTQzMSAxNy4zNDkxIDMyLjU1MzEgMTcuMjUyMSAzMi41MzYxIDE3LjE1NzFDMzIuNTIwMSAxNy4wNjExIDMyLjQ3NzEgMTYuOTczMSAzMi40MTIxIDE2LjkwMTFDMzIuMzQ4MSAxNi44MjkxIDMyLjI2NTEgMTYuNzc3MSAzMi4xNzIxIDE2Ljc1MDFMMjEuOTM0MSAxMy43NjIxTDE4LjU5MjEgMy42MzUxM0MxOC41NjExIDMuNTQxMTMgMTguNTAzMSAzLjQ1ODExIDE4LjQyNzEgMy4zOTYxMUMxOC4zNTAxIDMuMzMzMTEgMTguMjU3MSAzLjI5NDE0IDE4LjE1OTEgMy4yODMxNFoiIGZpbGw9IiNFNjUzMjEiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zMi41MzUzIDE3LjM0OTdMMzIuOTMxMyAxNC41Mjg3TDMwLjMxODMgMTQuMTYxN0wyOS45MjIzIDE2Ljk4MjdMMzIuNTM1MyAxNy4zNDk3WiIgZmlsbD0iI0U2NTMyMSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTAxNyAxMy4yMTNMMy40OTY3IDEwLjM5MkwwLjg4MjcwNiAxMC4wMjZMMC40ODc3MDEgMTIuODQ3TDMuMTAxNyAxMy4yMTNaIiBmaWxsPSIjRTY1MzIxIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNC44NzQwNyAzMi4wNzQ5TDUuMjcwMDcgMjkuMjUzTDQuMjQzMDcgMjkuMTA5TDMuODQ3MDggMzEuOTMwOUw0Ljg3NDA3IDMyLjA3NDlaIiBmaWxsPSIjRTY1MzIxIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjQuMDQ1OSAzNC43NzAzTDI0LjQ0MTkgMzEuOTQ4M0wyMy40MTQ5IDMxLjgwNDNMMjMuMDE5IDM0LjYyNjNMMjQuMDQ1OSAzNC43NzAzWiIgZmlsbD0iI0U2NTMyMSIvPgo8cGF0aCBkPSJNMTguNTQ4MSAwLjUxMjEzOUMxOC40NTQxIDAuNTAxMTM5IDE4LjM1OTEgMC41MTYxMTUgMTguMjc0MSAwLjU1NjExNUMxOC4xODgxIDAuNTk1MTE1IDE4LjExNTEgMC42NTcxMzEgMTguMDYxMSAwLjczNTEzMUwxMi4wNTcxIDkuNTQ4MTJMMS4zOTIxMSA5LjU5ODE0QzEuMjk1MTEgOS41OTkxNCAxLjIwMTEgOS42MjYxMiAxLjExOTEgOS42NzcxMkMxLjAzODEgOS43MjkxMiAwLjk3MjEwNiA5LjgwMjEyIDAuOTMwMTA2IDkuODg5MTJDMC44ODcxMDYgOS45NzYxMiAwLjg3MDEwMyAxMC4wNzIxIDAuODgwMTAzIDEwLjE2ODFDMC44OTAxMDMgMTAuMjY1MSAwLjkyNjExNCAxMC4zNTYxIDAuOTg1MTE0IDEwLjQzMjFMNy41MTIxMSAxOC44NjYxTDQuMjY0MTEgMjkuMDI0MUM0LjIzNDExIDI5LjExNjEgNC4yMzExIDI5LjIxNDEgNC4yNTUxIDI5LjMwODFDNC4yNzgxIDI5LjQwMjEgNC4zMjgxIDI5LjQ4NzEgNC4zOTcxIDI5LjU1NDFDNC40NjYxIDI5LjYyMTEgNC41NTMxMSAyOS42NjcxIDQuNjQ4MTEgMjkuNjg4MUM0Ljc0MjExIDI5LjcwODEgNC44NDAxMSAyOS43MDEyIDQuOTMxMTEgMjkuNjY5MkwxNC45NjkxIDI2LjA2OTFMMjMuNjI3MSAzMi4yOTYxQzIzLjcwNTEgMzIuMzUzMSAyMy43OTgxIDMyLjM4NjIgMjMuODk0MSAzMi4zOTMyQzIzLjk5MDEgMzIuMzk5MiAyNC4wODcxIDMyLjM3ODIgMjQuMTcyMSAzMi4zMzMyQzI0LjI1NzEgMzIuMjg4MiAyNC4zMjgxIDMyLjIyMDEgMjQuMzc2MSAzMi4xMzYxQzI0LjQyNTEgMzIuMDUzMSAyNC40NDkxIDMxLjk1NzEgMjQuNDQ2MSAzMS44NjExTDI0LjEyNDEgMjEuMjAxMUwzMi43MjIxIDE0Ljg5MjFDMzIuODAwMSAxNC44MzUxIDMyLjg2MDEgMTQuNzU4MSAzMi44OTYxIDE0LjY2ODFDMzIuOTMyMSAxNC41NzgxIDMyLjk0MjEgMTQuNDgxMSAzMi45MjUxIDE0LjM4NjFDMzIuOTA5MSAxNC4yOTAxIDMyLjg2NjEgMTQuMjAyMSAzMi44MDExIDE0LjEzMDFDMzIuNzM3MSAxNC4wNTgxIDMyLjY1NDEgMTQuMDA2MSAzMi41NjExIDEzLjk3OTFMMjIuMzIzMSAxMC45OTExTDE4Ljk4MTEgMC44NjQxMjlDMTguOTUwMSAwLjc3MDEyOSAxOC44OTIxIDAuNjg3MTE1IDE4LjgxNjEgMC42MjUxMTVDMTguNzM5MSAwLjU2MjExNSAxOC42NDYxIDAuNTIzMTM5IDE4LjU0ODEgMC41MTIxMzlaIiBmaWxsPSIjRkZBNjAwIi8+CjxwYXRoIGQ9Ik0xMi4zMzA5IDEwLjA2NUwxLjM5Mzk1IDEwLjExNkw4LjA4Nzk1IDE4Ljc2NUw0Ljc1Njk0IDI5LjE4M0wxNS4wNTA5IDI1LjQ5TDIzLjkyNzkgMzEuODc3TDIzLjU5NzkgMjAuOTQ1TDMyLjQxNDkgMTQuNDc2TDIxLjkxNjkgMTEuNDEyTDE4LjQ4OSAxLjAyNTk3TDEyLjMzMDkgMTAuMDY1WiIgZmlsbD0iI0ZGQzYwMCIvPgo8cGF0aCBkPSJNMTcuOTI0MSA1LjA2MDEyQzE3LjgzMDEgNS4wNDYxMiAxNy43MzQxIDUuMDU5MTQgMTcuNjQ3MSA1LjA5ODE0QzE3LjU2MTEgNS4xMzYxNCAxNy40ODYxIDUuMTk4MTIgMTcuNDMzMSA1LjI3NjEyTDEzLjIyMzEgMTEuNDU0MUw1Ljc0ODExIDExLjQ4OTFDNS42NTQxMSAxMS40ODkxIDUuNTYxMSAxMS41MTYxIDUuNDgxMSAxMS41NjcxQzUuNDAxMSAxMS42MTcxIDUuMzM3MTEgMTEuNjg5MSA1LjI5NTExIDExLjc3MzFDNS4yNTQxMSAxMS44NTgxIDUuMjM3MTEgMTEuOTUzMSA1LjI0NzExIDEyLjA0NzFDNS4yNTYxMSAxMi4xNDExIDUuMjkyMSAxMi4yMzExIDUuMzUwMSAxMi4zMDUxTDkuOTI1MSAxOC4yMTgxTDcuNjQ4MTEgMjUuMzM4MUM3LjYxOTExIDI1LjQyODEgNy42MTYxIDI1LjUyNDEgNy42MzkxIDI1LjYxNjFDNy42NjIxIDI1LjcwODEgNy43MTExIDI1Ljc5MTIgNy43NzkxIDI1Ljg1NzJDNy44NDcxIDI1LjkyMjIgNy45MzIxIDI1Ljk2ODEgOC4wMjQxIDI1Ljk4ODFDOC4xMTYxIDI2LjAwODEgOC4yMTIxMSAyNi4wMDEyIDguMzAxMTEgMjUuOTY5MkwxNS4zMzgxIDIzLjQ0NTJMMjEuNDA2MSAyNy44MTExQzIxLjQ4MzEgMjcuODY2MSAyMS41NzQxIDI3Ljg5OTEgMjEuNjY4MSAyNy45MDUxQzIxLjc2MjEgMjcuOTEyMSAyMS44NTYxIDI3Ljg5MTEgMjEuOTQwMSAyNy44NDcxQzIyLjAyMzEgMjcuODAzMSAyMi4wOTMxIDI3LjczNjEgMjIuMTQwMSAyNy42NTQxQzIyLjE4ODEgMjcuNTcyMSAyMi4yMTExIDI3LjQ3OTIgMjIuMjA5MSAyNy4zODUyTDIxLjk4MzEgMTkuOTEyMUwyOC4wMTAxIDE1LjQ5MDFDMjguMDg2MSAxNS40MzQxIDI4LjE0NTEgMTUuMzU4MSAyOC4xODAxIDE1LjI3MDFDMjguMjE1MSAxNS4xODMxIDI4LjIyNTEgMTUuMDg3MSAyOC4yMDkxIDE0Ljk5NDFDMjguMTkzMSAxNC45MDExIDI4LjE1MDEgMTQuODE0MSAyOC4wODcxIDE0Ljc0NDFDMjguMDI0MSAxNC42NzMxIDI3Ljk0MzEgMTQuNjIyMSAyNy44NTIxIDE0LjU5NTFMMjAuNjc2MSAxMi41MDExTDE4LjMzMzEgNS40MDIxM0MxOC4zMDMxIDUuMzEzMTMgMTguMjQ5MSA1LjIzNDEyIDE4LjE3NzEgNS4xNzMxMkMxOC4xMDUxIDUuMTEzMTIgMTguMDE3MSA1LjA3MzEyIDE3LjkyNDEgNS4wNjAxMloiIGZpbGw9IiNGRkM2MDAiLz4KPHBhdGggZD0iTTEzLjQ5MTQgMTEuOTU5MUw1Ljc0OTQyIDExLjk5NTFMMTAuNDg3NCAxOC4xMTkxTDguMTI5NDEgMjUuNDkyMkwxNS40MTY0IDIyLjg3OTFMMjEuNzAxNCAyNy4zOTkxTDIxLjQ2NzQgMTkuNjYxMUwyNy43MDk0IDE1LjA4MjFMMjAuMjc3NCAxMi45MTMxTDE3Ljg1MDQgNS41NjExM0wxMy40OTE0IDExLjk1OTFaIiBmaWxsPSIjRkZBNjAwIi8+CjxwYXRoIGQ9Ik0xNy44NTIxIDUuNTYxMTNMMTMuNDkzMSAxMS45NTkxTDUuNzUxMSAxMS45OTUxTDcuOTAxMTEgMTQuNzc0MUMxMC4zNzExIDE1LjA1MjEgMTUuOTc4MSAxNi4wNTgxIDIxLjQ2OTEgMTkuNjYxMUwyNy43MTExIDE1LjA4MTFMMjAuMjc5MSAxMi45MTMxTDE3Ljg1MjEgNS41NjExM1oiIGZpbGw9IiNGRkFGMDAiLz4KPHBhdGggZD0iTTEzLjQ5MTQgMTEuOTU5MUw1Ljc0OTQyIDExLjk5NTFMNi4xNTY0MiAxMi41NjkxTDEzLjY3NjQgMTIuNTcyMUwxNy42ODM0IDYuNzI2MTRMMTcuODUwNCA1LjU2MTEzTDEzLjQ5MTQgMTEuOTU5MVoiIGZpbGw9IiNGRjg4MDAiLz4KPHBhdGggZD0iTTE3LjY5MTggNi43MjcxNEwxOS45MzE4IDEzLjQ1MTFMMjcuMTYyOCAxNS41MjExTDI3LjcxMTggMTUuMDgyMUwyMC4yNzkxIDEyLjkxMzFMMTcuODUyMSA1LjU2MTEzTDE3LjY5MTggNi43MjcxNFoiIGZpbGw9IiNGRjg4MDAiLz4KPHBhdGggZD0iTTE2Ljg0ODEgMTMuOTEwMUMxNy40NTUxIDEzLjk5NTEgMTguMDEzMSAxMy41OTUxIDE4LjA5NDEgMTMuMDE2MUMxOC4xNzYxIDEyLjQzNzEgMTcuNzUwMSAxMS44OTgxIDE3LjE0MzEgMTEuODEzMUMxNi41MzYxIDExLjcyNzEgMTUuOTc4MSAxMi4xMjgxIDE1Ljg5NjEgMTIuNzA3MUMxNS44MTUxIDEzLjI4NjEgMTYuMjQxMSAxMy44MjUxIDE2Ljg0ODEgMTMuOTEwMVoiIGZpbGw9InZhcigtLWZpbGwtMCwgI0ZGRUU3MykiLz4KPHBhdGggZD0iTTIyLjU4MzEgMTYuNzg1MUMyMi44MzExIDE2LjIzMjEgMjIuMDM4MSAxNS4zODYxIDIwLjgxMjEgMTQuODk1MUMxOS41ODYxIDE0LjQwNDEgMTguMzkxMSAxNC40NTQxIDE4LjE0MzEgMTUuMDA3MUMxNy44OTYxIDE1LjU2MDEgMTguNjg4MSAxNi40MDYxIDE5LjkxNDEgMTYuODk3MUMyMS4xNDAxIDE3LjM4ODEgMjIuMzM1MSAxNy4zMzgxIDIyLjU4MzEgMTYuNzg1MVoiIGZpbGw9InZhcigtLWZpbGwtMCwgI0ZGRUU3MykiLz4KPC9nPgo8L3N2Zz4K'), url('data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgdmlld0JveD0iMCAwIDMzLjQ3MiAzNS42Nzk2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBpZD0iVmVjdG9yIj4KPHBhdGggZD0iTTE4LjY0MzEgMC4wMDcxMjgyOEMxOC42MjkxIDAuMDA1MTI4MjggMTguNTg4MSAwLjAwMzEzMDQ4IDE4LjYwMjEgMC4wMDMxMzA0OEwxOC42MzAxIDAuMDA2MTIxMkMxOC4yNjAxIC0wLjAzNTg3ODggMTcuODcyMSAwLjE0MTExNCAxNy42NjIxIDAuNDQ5MTE0TDExLjgwOTEgOS4wNDAxMkwxLjQxNDEgOS4wODgxM0MwLjkzNjA5NyA5LjA5MTEzIDAuNDg4MTAzIDkuNDY4MTMgMC40MDQxMDMgOS45MzgxM0MwLjQwMzEwMyA5Ljk0NDEzIDAuNDAyMTA0IDkuOTUwMTEgMC40MDIxMDQgOS45NTcxMUwwLjAxMTA5NzYgMTIuNzM4MUwwLjAxMjEwNDcgMTIuNzI3MUMwLjAxMDEwNDcgMTIuNzQxMSAwLjAwODEwNzk1IDEyLjc1NjEgMC4wMDYxMDc5NSAxMi43NzAxTDAuMDA4MTA2ODUgMTIuNzU5MUwwLjAwNTEwMDg3IDEyLjc3ODFDLTAuMDA1ODk5MTMgMTIuODU0MSAwLjAwMTA5ODA2IDEyLjkzMTEgMC4wMjQwOTgxIDEzLjAwNTFDMC4wNDYwOTgxIDEzLjE5MTEgMC4xMDEwOTkgMTMuMzczMSAwLjIxNjA5OSAxMy41MjExTDYuMjI1MSAyMS4yODgxTDMuODAwMSAyOC44NzExVjI4Ljg3MjJDMy43NzgxIDI4Ljk0MDIgMy43NjQxMSAyOS4wMTExIDMuNzU2MTEgMjkuMDgyMUwzLjc1OTEgMjkuMDYyMUwzLjM3NjEgMzEuNzkyMUwzLjM3ODEgMzEuNzcyMUMzLjM3MzEgMzEuNzk5MSAzLjM2OTEgMzEuODI2MSAzLjM2NzEgMzEuODU0MUwzLjM3MDExIDMxLjgzNDFMMy4zNjYxMSAzMS44NjMxQzMuMzUxMTEgMzEuOTY3MSAzLjM2OTEgMzIuMDc0MSAzLjQxNzEgMzIuMTY3MUMzLjQ3MTEgMzIuNDA5MSAzLjU4MjExIDMyLjYzOTIgMy43ODIxMSAzMi43ODYyQzQuMDUzMTEgMzIuOTg1MiA0LjQyNDEgMzMuMDQwMiA0Ljc0MDEgMzIuOTI3MlYzMi45MjYxTDE0LjUyNTEgMjkuNDE3MUwyMi45NjMxIDM1LjQ4ODFDMjMuMjM2MSAzNS42ODQxIDIzLjYwODEgMzUuNzM0MiAyMy45MjMxIDM1LjYxNzJDMjQuMTU1MSAzNS41MzEyIDI0LjMyNTEgMzUuMzQxMSAyNC40NDQxIDM1LjEyNDFDMjQuNTE2MSAzNS4wNDcxIDI0LjU2MzEgMzQuOTQ5MSAyNC41NzgxIDM0Ljg0NDFMMjQuOTc1MSAzMi4wMjMyQzI0Ljk4MzEgMzEuOTY1MiAyNC45ODYxIDMxLjkwNzEgMjQuOTg0MSAzMS44NDkxTDI0Ljc0NDEgMjMuODkwMUwzMi42NjExIDE4LjA4MTFDMzIuODEyMSAxNy45NzAxIDMyLjkxNDEgMTcuODEwMSAzMi45ODYxIDE3LjYzODFDMzMuMDI5MSAxNy41NzQxIDMzLjA1NzEgMTcuNTAxMSAzMy4wNjgxIDE3LjQyNTFMMzMuMDcxMSAxNy40MDYxTDMzLjA2OTEgMTcuNDE3MUMzMy4wNzExIDE3LjQwMjEgMzMuMDczMSAxNy4zODcxIDMzLjA3NTEgMTcuMzczMUwzMy4wNzQxIDE3LjM4NDFMMzMuNDYwMSAxNC42MzUxTDMzLjQ1OTEgMTQuNjQ2MUMzMy40NjExIDE0LjYzMTEgMzMuNDYzMSAxNC42MTYxIDMzLjQ2NTEgMTQuNjAyMUMzMy40NjYxIDE0LjU5NjEgMzMuNDY2MSAxNC41OTExIDMzLjQ2NzEgMTQuNTg0MUMzMy41MTYxIDE0LjExMDEgMzMuMTg5MSAxMy42MjQxIDMyLjczMTEgMTMuNDkwMUwyMi43NTIxIDEwLjU3ODFMMTkuNDk1MSAwLjcwNzExQzE5LjM3MzEgMC4zMzkxMSAxOS4wMjgxIDAuMDU1MTI4MyAxOC42NDQxIDAuMDA3MTI4MjhIMTguNjQzMVoiIGZpbGw9IiNCNDFDMDAiLz4KPHBhdGggZD0iTTE4LjE1OTEgMy4yODMxNEMxOC4wNjUxIDMuMjcyMTQgMTcuOTcwMSAzLjI4NzExIDE3Ljg4NTEgMy4zMjcxMUMxNy43OTkxIDMuMzY2MTEgMTcuNzI2MSAzLjQyODEzIDE3LjY3MzEgMy41MDYxM0wxMS42NjgxIDEyLjMxOTFMMS4wMDMxIDEyLjM2OTFDMC45MDYxMDQgMTIuMzcwMSAwLjgxMjEwOSAxMi4zOTcxIDAuNzMwMTA5IDEyLjQ0ODFDMC42NDkxMDkgMTIuNTAwMSAwLjU4MzExNCAxMi41NzMxIDAuNTQxMTE0IDEyLjY2MDFDMC40OTgxMTQgMTIuNzQ3MSAwLjQ4MTExMSAxMi44NDMxIDAuNDkxMTExIDEyLjkzOTFDMC41MDExMTEgMTMuMDM2MSAwLjUzNzEwNiAxMy4xMjcxIDAuNTk2MTA2IDEzLjIwMzFMNy4xMjMxMSAyMS42MzcxTDMuODc1MTEgMzEuNzk1MUMzLjg0NTExIDMxLjg4NzEgMy44NDIxMSAzMS45ODUxIDMuODY2MTEgMzIuMDc5MUMzLjg4OTExIDMyLjE3MzEgMy45MzkxMSAzMi4yNTgxIDQuMDA4MTEgMzIuMzI1MUM0LjA3NzExIDMyLjM5MjEgNC4xNjQxIDMyLjQzODEgNC4yNTkxIDMyLjQ1OTFDNC4zNTMxIDMyLjQ3OTEgNC40NTExMSAzMi40NzMyIDQuNTQyMTEgMzIuNDQwMkwxNC41ODAxIDI4Ljg0MDFMMjMuMjM4MSAzNS4wNjgxQzIzLjMxNjEgMzUuMTI0MSAyMy40MDkxIDM1LjE1NzIgMjMuNTA1MSAzNS4xNjQyQzIzLjYwMTEgMzUuMTcwMiAyMy42OTgxIDM1LjE0OTIgMjMuNzgzMSAzNS4xMDQyQzIzLjg2ODEgMzUuMDU5MiAyMy45MzkxIDM0Ljk5MDEgMjMuOTg3MSAzNC45MDcxQzI0LjAzNjEgMzQuODIzMSAyNC4wNjAxIDM0LjcyODEgMjQuMDU3MSAzNC42MzIxTDIzLjczNTEgMjMuOTcyMUwzMi4zMzMxIDE3LjY2NDFDMzIuNDExMSAxNy42MDYxIDMyLjQ3MTEgMTcuNTI5MSAzMi41MDcxIDE3LjQzOTFDMzIuNTQzMSAxNy4zNDkxIDMyLjU1MzEgMTcuMjUyMSAzMi41MzYxIDE3LjE1NzFDMzIuNTIwMSAxNy4wNjExIDMyLjQ3NzEgMTYuOTczMSAzMi40MTIxIDE2LjkwMTFDMzIuMzQ4MSAxNi44MjkxIDMyLjI2NTEgMTYuNzc3MSAzMi4xNzIxIDE2Ljc1MDFMMjEuOTM0MSAxMy43NjIxTDE4LjU5MjEgMy42MzUxM0MxOC41NjExIDMuNTQxMTMgMTguNTAzMSAzLjQ1ODExIDE4LjQyNzEgMy4zOTYxMUMxOC4zNTAxIDMuMzMzMTEgMTguMjU3MSAzLjI5NDE0IDE4LjE1OTEgMy4yODMxNFoiIGZpbGw9IiNFNjUzMjEiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zMi41MzUzIDE3LjM0OTdMMzIuOTMxMyAxNC41Mjg3TDMwLjMxODMgMTQuMTYxN0wyOS45MjIzIDE2Ljk4MjdMMzIuNTM1MyAxNy4zNDk3WiIgZmlsbD0iI0U2NTMyMSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTAxNyAxMy4yMTNMMy40OTY3IDEwLjM5MkwwLjg4MjcwNiAxMC4wMjZMMC40ODc3MDEgMTIuODQ3TDMuMTAxNyAxMy4yMTNaIiBmaWxsPSIjRTY1MzIxIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNC44NzQwNyAzMi4wNzQ5TDUuMjcwMDcgMjkuMjUzTDQuMjQzMDcgMjkuMTA5TDMuODQ3MDggMzEuOTMwOUw0Ljg3NDA3IDMyLjA3NDlaIiBmaWxsPSIjRTY1MzIxIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjQuMDQ1OSAzNC43NzAzTDI0LjQ0MTkgMzEuOTQ4M0wyMy40MTQ5IDMxLjgwNDNMMjMuMDE5IDM0LjYyNjNMMjQuMDQ1OSAzNC43NzAzWiIgZmlsbD0iI0U2NTMyMSIvPgo8cGF0aCBkPSJNMTguNTQ4MSAwLjUxMjEzOUMxOC40NTQxIDAuNTAxMTM5IDE4LjM1OTEgMC41MTYxMTUgMTguMjc0MSAwLjU1NjExNUMxOC4xODgxIDAuNTk1MTE1IDE4LjExNTEgMC42NTcxMzEgMTguMDYxMSAwLjczNTEzMUwxMi4wNTcxIDkuNTQ4MTJMMS4zOTIxMSA5LjU5ODE0QzEuMjk1MTEgOS41OTkxNCAxLjIwMTEgOS42MjYxMiAxLjExOTEgOS42NzcxMkMxLjAzODEgOS43MjkxMiAwLjk3MjEwNiA5LjgwMjEyIDAuOTMwMTA2IDkuODg5MTJDMC44ODcxMDYgOS45NzYxMiAwLjg3MDEwMyAxMC4wNzIxIDAuODgwMTAzIDEwLjE2ODFDMC44OTAxMDMgMTAuMjY1MSAwLjkyNjExNCAxMC4zNTYxIDAuOTg1MTE0IDEwLjQzMjFMNy41MTIxMSAxOC44NjYxTDQuMjY0MTEgMjkuMDI0MUM0LjIzNDExIDI5LjExNjEgNC4yMzExIDI5LjIxNDEgNC4yNTUxIDI5LjMwODFDNC4yNzgxIDI5LjQwMjEgNC4zMjgxIDI5LjQ4NzEgNC4zOTcxIDI5LjU1NDFDNC40NjYxIDI5LjYyMTEgNC41NTMxMSAyOS42NjcxIDQuNjQ4MTEgMjkuNjg4MUM0Ljc0MjExIDI5LjcwODEgNC44NDAxMSAyOS43MDEyIDQuOTMxMTEgMjkuNjY5MkwxNC45NjkxIDI2LjA2OTFMMjMuNjI3MSAzMi4yOTYxQzIzLjcwNTEgMzIuMzUzMSAyMy43OTgxIDMyLjM4NjIgMjMuODk0MSAzMi4zOTMyQzIzLjk5MDEgMzIuMzk5MiAyNC4wODcxIDMyLjM3ODIgMjQuMTcyMSAzMi4zMzMyQzI0LjI1NzEgMzIuMjg4MiAyNC4zMjgxIDMyLjIyMDEgMjQuMzc2MSAzMi4xMzYxQzI0LjQyNTEgMzIuMDUzMSAyNC40NDkxIDMxLjk1NzEgMjQuNDQ2MSAzMS44NjExTDI0LjEyNDEgMjEuMjAxMUwzMi43MjIxIDE0Ljg5MjFDMzIuODAwMSAxNC44MzUxIDMyLjg2MDEgMTQuNzU4MSAzMi44OTYxIDE0LjY2ODFDMzIuOTMyMSAxNC41NzgxIDMyLjk0MjEgMTQuNDgxMSAzMi45MjUxIDE0LjM4NjFDMzIuOTA5MSAxNC4yOTAxIDMyLjg2NjEgMTQuMjAyMSAzMi44MDExIDE0LjEzMDFDMzIuNzM3MSAxNC4wNTgxIDMyLjY1NDEgMTQuMDA2MSAzMi41NjExIDEzLjk3OTFMMjIuMzIzMSAxMC45OTExTDE4Ljk4MTEgMC44NjQxMjlDMTguOTUwMSAwLjc3MDEyOSAxOC44OTIxIDAuNjg3MTE1IDE4LjgxNjEgMC42MjUxMTVDMTguNzM5MSAwLjU2MjExNSAxOC42NDYxIDAuNTIzMTM5IDE4LjU0ODEgMC41MTIxMzlaIiBmaWxsPSIjRkZBNjAwIi8+CjxwYXRoIGQ9Ik0xMi4zMzA5IDEwLjA2NUwxLjM5Mzk1IDEwLjExNkw4LjA4Nzk1IDE4Ljc2NUw0Ljc1Njk0IDI5LjE4M0wxNS4wNTA5IDI1LjQ5TDIzLjkyNzkgMzEuODc3TDIzLjU5NzkgMjAuOTQ1TDMyLjQxNDkgMTQuNDc2TDIxLjkxNjkgMTEuNDEyTDE4LjQ4OSAxLjAyNTk3TDEyLjMzMDkgMTAuMDY1WiIgZmlsbD0iI0ZGQzYwMCIvPgo8cGF0aCBkPSJNMTcuOTI0MSA1LjA2MDEyQzE3LjgzMDEgNS4wNDYxMiAxNy43MzQxIDUuMDU5MTQgMTcuNjQ3MSA1LjA5ODE0QzE3LjU2MTEgNS4xMzYxNCAxNy40ODYxIDUuMTk4MTIgMTcuNDMzMSA1LjI3NjEyTDEzLjIyMzEgMTEuNDU0MUw1Ljc0ODExIDExLjQ4OTFDNS42NTQxMSAxMS40ODkxIDUuNTYxMSAxMS41MTYxIDUuNDgxMSAxMS41NjcxQzUuNDAxMSAxMS42MTcxIDUuMzM3MTEgMTEuNjg5MSA1LjI5NTExIDExLjc3MzFDNS4yNTQxMSAxMS44NTgxIDUuMjM3MTEgMTEuOTUzMSA1LjI0NzExIDEyLjA0NzFDNS4yNTYxMSAxMi4xNDExIDUuMjkyMSAxMi4yMzExIDUuMzUwMSAxMi4zMDUxTDkuOTI1MSAxOC4yMTgxTDcuNjQ4MTEgMjUuMzM4MUM3LjYxOTExIDI1LjQyODEgNy42MTYxIDI1LjUyNDEgNy42MzkxIDI1LjYxNjFDNy42NjIxIDI1LjcwODEgNy43MTExIDI1Ljc5MTIgNy43NzkxIDI1Ljg1NzJDNy44NDcxIDI1LjkyMjIgNy45MzIxIDI1Ljk2ODEgOC4wMjQxIDI1Ljk4ODFDOC4xMTYxIDI2LjAwODEgOC4yMTIxMSAyNi4wMDEyIDguMzAxMTEgMjUuOTY5MkwxNS4zMzgxIDIzLjQ0NTJMMjEuNDA2MSAyNy44MTExQzIxLjQ4MzEgMjcuODY2MSAyMS41NzQxIDI3Ljg5OTEgMjEuNjY4MSAyNy45MDUxQzIxLjc2MjEgMjcuOTEyMSAyMS44NTYxIDI3Ljg5MTEgMjEuOTQwMSAyNy44NDcxQzIyLjAyMzEgMjcuODAzMSAyMi4wOTMxIDI3LjczNjEgMjIuMTQwMSAyNy42NTQxQzIyLjE4ODEgMjcuNTcyMSAyMi4yMTExIDI3LjQ3OTIgMjIuMjA5MSAyNy4zODUyTDIxLjk4MzEgMTkuOTEyMUwyOC4wMTAxIDE1LjQ5MDFDMjguMDg2MSAxNS40MzQxIDI4LjE0NTEgMTUuMzU4MSAyOC4xODAxIDE1LjI3MDFDMjguMjE1MSAxNS4xODMxIDI4LjIyNTEgMTUuMDg3MSAyOC4yMDkxIDE0Ljk5NDFDMjguMTkzMSAxNC45MDExIDI4LjE1MDEgMTQuODE0MSAyOC4wODcxIDE0Ljc0NDFDMjguMDI0MSAxNC42NzMxIDI3Ljk0MzEgMTQuNjIyMSAyNy44NTIxIDE0LjU5NTFMMjAuNjc2MSAxMi41MDExTDE4LjMzMzEgNS40MDIxM0MxOC4zMDMxIDUuMzEzMTMgMTguMjQ5MSA1LjIzNDEyIDE4LjE3NzEgNS4xNzMxMkMxOC4xMDUxIDUuMTEzMTIgMTguMDE3MSA1LjA3MzEyIDE3LjkyNDEgNS4wNjAxMloiIGZpbGw9IiNGRkM2MDAiLz4KPHBhdGggZD0iTTEzLjQ5MTQgMTEuOTU5MUw1Ljc0OTQyIDExLjk5NTFMMTAuNDg3NCAxOC4xMTkxTDguMTI5NDEgMjUuNDkyMkwxNS40MTY0IDIyLjg3OTFMMjEuNzAxNCAyNy4zOTkxTDIxLjQ2NzQgMTkuNjYxMUwyNy43MDk0IDE1LjA4MjFMMjAuMjc3NCAxMi45MTMxTDE3Ljg1MDQgNS41NjExM0wxMy40OTE0IDExLjk1OTFaIiBmaWxsPSIjRkZBNjAwIi8+CjxwYXRoIGQ9Ik0xNy44NTIxIDUuNTYxMTNMMTMuNDkzMSAxMS45NTkxTDUuNzUxMSAxMS45OTUxTDcuOTAxMTEgMTQuNzc0MUMxMC4zNzExIDE1LjA1MjEgMTUuOTc4MSAxNi4wNTgxIDIxLjQ2OTEgMTkuNjYxMUwyNy43MTExIDE1LjA4MTFMMjAuMjc5MSAxMi45MTMxTDE3Ljg1MjEgNS41NjExM1oiIGZpbGw9IiNGRkFGMDAiLz4KPHBhdGggZD0iTTEzLjQ5MTQgMTEuOTU5MUw1Ljc0OTQyIDExLjk5NTFMNi4xNTY0MiAxMi41NjkxTDEzLjY3NjQgMTIuNTcyMUwxNy42ODM0IDYuNzI2MTRMMTcuODUwNCA1LjU2MTEzTDEzLjQ5MTQgMTEuOTU5MVoiIGZpbGw9IiNGRjg4MDAiLz4KPHBhdGggZD0iTTE3LjY5MTggNi43MjcxNEwxOS45MzE4IDEzLjQ1MTFMMjcuMTYyOCAxNS41MjExTDI3LjcxMTggMTUuMDgyMUwyMC4yNzkxIDEyLjkxMzFMMTcuODUyMSA1LjU2MTEzTDE3LjY5MTggNi43MjcxNFoiIGZpbGw9IiNGRjg4MDAiLz4KPHBhdGggZD0iTTE2Ljg0ODEgMTMuOTEwMUMxNy40NTUxIDEzLjk5NTEgMTguMDEzMSAxMy41OTUxIDE4LjA5NDEgMTMuMDE2MUMxOC4xNzYxIDEyLjQzNzEgMTcuNzUwMSAxMS44OTgxIDE3LjE0MzEgMTEuODEzMUMxNi41MzYxIDExLjcyNzEgMTUuOTc4MSAxMi4xMjgxIDE1Ljg5NjEgMTIuNzA3MUMxNS44MTUxIDEzLjI4NjEgMTYuMjQxMSAxMy44MjUxIDE2Ljg0ODEgMTMuOTEwMVoiIGZpbGw9InZhcigtLWZpbGwtMCwgI0ZGRUU3MykiLz4KPHBhdGggZD0iTTIyLjU4MzEgMTYuNzg1MUMyMi44MzExIDE2LjIzMjEgMjIuMDM4MSAxNS4zODYxIDIwLjgxMjEgMTQuODk1MUMxOS41ODYxIDE0LjQwNDEgMTguMzkxMSAxNC40NTQxIDE4LjE0MzEgMTUuMDA3MUMxNy44OTYxIDE1LjU2MDEgMTguNjg4MSAxNi40MDYxIDE5LjkxNDEgMTYuODk3MUMyMS4xNDAxIDE3LjM4ODEgMjIuMzM1MSAxNy4zMzgxIDIyLjU4MzEgMTYuNzg1MVoiIGZpbGw9InZhcigtLWZpbGwtMCwgI0ZGRUU3MykiLz4KPC9nPgo8L3N2Zz4K');
+        background-repeat: no-repeat;
+        background-position: center 1mm, center 11.3mm;
+        background-size: 7.7mm 8.2mm, 9.7mm 10.3mm;
     }
 
     .school-stat-bubbles {
@@ -2795,57 +3398,46 @@ function buildDocumentStyles(theme) {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10mm;
-      margin-top: 6mm;
-      padding-left: 4mm;
+      gap: 2.4mm;
+      min-width: 58mm;
+      margin-top: 0;
+      padding: 0 1.2mm 0 0;
     }
 
     .school-stat-bubble {
       position: relative;
-      width: 44mm;
-      min-height: 33mm;
-      padding: 5mm 4.4mm 4.2mm 6.8mm;
-      border: 0.55mm solid rgba(0, 163, 158, 0.95);
-      border-radius: 2.8mm;
-      background: #F9FAFA;
+      display: block;
+      width: 162.245px;
+      height: 144.502px;
+      top: 0;
+      left: 0;
+      margin-bottom: 0.8mm;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100% 100%;
     }
 
-    .school-stat-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -1.75mm;
-      left: 16mm;
-      width: 5.4mm;
-      height: 5.4mm;
-      background: #F9FAFA;
-      border-right: 0.55mm solid rgba(0, 163, 158, 0.95);
-      border-bottom: 0.55mm solid rgba(0, 163, 158, 0.95);
-      border-radius: 0 0 1mm 0;
-      transform: rotate(45deg);
+    .school-stat-bubble.school-stat-bubble-matematica {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='149' height='146' viewBox='0 0 148.822 146.002' preserveAspectRatio='none'%3E%3Cg transform='matrix(-1,0,0,-1,148.822,146.002)'%3E%3Cpath d='M142.729 145.252H6.09302C3.14202 145.252 0.75 142.855 0.75 139.899V14.9273C0.75 11.9713 3.14202 9.57426 6.09302 9.57426H28.663C29.823 9.72126 31.583 8.94725 32.596 7.84525L38.434 1.48725C39.383 0.504252 40.884 0.504252 41.787 1.48725L47.625 7.84525C48.302 8.80025 50.062 9.57426 51.557 9.57426H142.729C145.68 9.57426 148.072 11.9713 148.072 14.9273V139.899C148.073 142.855 145.68 145.252 142.729 145.252Z' fill='white' stroke='%2300A59F' stroke-width='1.5' stroke-miterlimit='10' vector-effect='non-scaling-stroke'/%3E%3C/g%3E%3C/svg%3E");
     }
 
-    .school-stat-bubble::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: -12mm;
-      width: 12mm;
-      height: 0.55mm;
-      background: rgba(0, 163, 158, 0.95);
+    .school-stat-bubble.school-stat-bubble-linguagens {
+      top: -9px;
+      left: 52.9134px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='149' height='146' viewBox='0 0 148.822 146.002' preserveAspectRatio='none'%3E%3Cpath d='M142.729 145.252H6.09302C3.14202 145.252 0.75 142.855 0.75 139.899V14.9273C0.75 11.9713 3.14202 9.57426 6.09302 9.57426H28.663C29.823 9.72126 31.583 8.94725 32.596 7.84525L38.434 1.48725C39.383 0.504252 40.884 0.504252 41.787 1.48725L47.625 7.84525C48.302 8.80025 50.062 9.57426 51.557 9.57426H142.729C145.68 9.57426 148.072 11.9713 148.072 14.9273V139.899C148.073 142.855 145.68 145.252 142.729 145.252Z' fill='white' stroke='%2300A59F' stroke-width='1.5' stroke-miterlimit='10' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+    }
+
+    .school-stat-bubble > *:not(.school-stat-icon):not(.school-stat-value):not(.school-stat-copy) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .school-stat-bubble > .school-stat-icon {
+      z-index: 2;
     }
 
     .school-stat-bubble:nth-child(2) {
-      margin-left: 21mm;
-    }
-
-    .school-stat-bubble:nth-child(2)::before {
-      top: -10mm;
-      left: -12mm;
-      width: 12mm;
-      height: 10mm;
-      border-left: 0.55mm solid rgba(0, 163, 158, 0.95);
-      border-top: 0.55mm solid rgba(0, 163, 158, 0.95);
-      background: transparent;
+      margin-left: 52.9134px;
     }
 
     .school-stat-icon,
@@ -2858,23 +3450,40 @@ function buildDocumentStyles(theme) {
 
     .school-stat-icon {
       position: absolute;
-      left: -3.9mm;
-      top: 13mm;
-      width: 8.3mm;
-      height: 8.3mm;
-      border-radius: 1.2mm;
-      box-shadow: 0 1mm 2.2mm rgba(15, 47, 66, 0.18);
+      width: 28.347px;
+      height: 28.346px;
+      box-shadow: none;
+      border-radius: ${brSm};
+      overflow: hidden;
+    }
+
+    .school-stat-bubble.school-stat-bubble-matematica .school-stat-icon {
+      top: 50px;
+      left: -14.924px;
+      transform: none;
+    }
+
+    .school-stat-bubble.school-stat-bubble-linguagens .school-stat-icon {
+      top: 56px;
+      left: -14.924px;
+      transform: none;
     }
 
     .school-stat-icon svg,
     .reference-area-icon svg {
-      width: 4.6mm;
-      height: 4.6mm;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.7;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .school-stat-icon.discipline-matematica {
+      background: ${c.brandGreen};
+      color: #FFFFFF;
+    }
+
+    .school-stat-icon.discipline-linguagens {
+      background: ${c.brandOrange};
+      color: #FFFFFF;
     }
 
     .discipline-matematica {
@@ -2887,16 +3496,100 @@ function buildDocumentStyles(theme) {
 
     .school-stat-value {
       font-family: ${displayFontStack};
-      font-size: 26pt;
-      font-weight: 700;
+      position: absolute;
+      z-index: 1;
+      font-size: 52px;
+      font-weight: ${wExtrabold};
       line-height: 1;
+      color: ${c.secondary};
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .school-stat-bubble.school-stat-bubble-matematica .school-stat-value {
+      top: 10px;
+      left: 22px;
+    }
+
+    .school-stat-bubble.school-stat-bubble-linguagens .school-stat-value {
+      top: 16px;
+      left: 22px;
+    }
+
+    .school-stat-bubble-header {
+      display: none;
+    }
+
+    .school-stat-heading {
+      display: none;
     }
 
     .school-stat-copy {
-      margin: 1.8mm 0 0;
+      position: absolute;
+      z-index: 1;
+      margin: 0;
       color: ${brandStrong};
-      font-size: 8.8pt;
-      line-height: 1.5;
+      font-size: 9px;
+      line-height: 13px;
+      letter-spacing: 0;
+      width: 116px;
+    }
+
+
+
+    .school-stat-bubble.school-stat-bubble-matematica .school-stat-copy {
+      top: 65px;
+      left: 22px;
+    }
+
+    .school-stat-bubble.school-stat-bubble-linguagens .school-stat-copy {
+      top: 71px;
+      left: 22px;
+    }
+
+    .school-editorial-panel {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 2.2mm;
+      padding: 4.2mm 4.8mm 4.6mm;
+      border: ${bwHairline} solid rgba(19, 61, 89, 0.12);
+      border-radius: ${brXxl};
+      background: ${surfaceEditorialPanel};
+    }
+
+    .school-editorial-panel-title {
+      margin: 0;
+      color: ${brandStrong};
+      font-size: ${szEditorialTitle}pt;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .school-editorial-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2mm;
+    }
+
+    .school-editorial-point {
+      display: grid;
+      grid-template-columns: 1.8mm minmax(0, 1fr);
+      gap: 1.4mm;
+      align-items: start;
+      color: ${textEditorialSoft};
+      font-size: ${szEditorialPoint}pt;
+      line-height: 1.36;
+    }
+
+    .school-editorial-point::before {
+      content: '';
+      width: 1.5mm;
+      height: 1.5mm;
+      margin-top: 0.7mm;
+      border-radius: 50%;
+      background: ${c.secondary};
     }
 
     .reference-school-area {
@@ -2940,7 +3633,7 @@ function buildDocumentStyles(theme) {
     .reference-area-icon {
       width: 10mm;
       height: 10mm;
-      border-radius: 2mm;
+      border-radius: ${brXl};
       flex-shrink: 0;
     }
 
@@ -2949,7 +3642,7 @@ function buildDocumentStyles(theme) {
       border-radius: 999px;
       background: ${c.secondary};
       color: #FFFFFF;
-      font-size: 8.8pt;
+      font-size: ${szRefChipBase}pt;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -2964,7 +3657,7 @@ function buildDocumentStyles(theme) {
 
     .reference-distribution-label {
       color: ${brandStrong};
-      font-size: 12pt;
+      font-size: ${szRefLabelBase}pt;
       line-height: 1.1;
     }
 
@@ -2979,7 +3672,7 @@ function buildDocumentStyles(theme) {
       grid-template-columns: repeat(11, minmax(0, 1fr));
       padding: 0 0.8mm;
       color: #98A2A9;
-      font-size: 6.6pt;
+      font-size: ${szRefAxisBase}pt;
       line-height: 1;
     }
 
@@ -2992,9 +3685,9 @@ function buildDocumentStyles(theme) {
       display: flex;
       min-height: 10mm;
       overflow: hidden;
-      border-radius: 1.8mm;
+      border-radius: ${brLg};
       border-left: 2px solid ${brandStrong};
-      background: #E8ECEB;
+      background: ${trackBg};
     }
 
     .reference-distribution-track::before {
@@ -3013,6 +3706,11 @@ function buildDocumentStyles(theme) {
       border-right: 1px solid rgba(255, 255, 255, 0.34);
     }
 
+    .reference-distribution-cap {
+      min-width: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.34);
+    }
+
     .reference-distribution-stats {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3024,8 +3722,8 @@ function buildDocumentStyles(theme) {
       align-items: center;
       justify-content: center;
       gap: 1mm;
-      color: #7B848B;
-      font-size: 8pt;
+      color: ${textReferenceSubtle};
+      font-size: ${szRefStat}pt;
       font-weight: 700;
     }
 
@@ -3043,7 +3741,7 @@ function buildDocumentStyles(theme) {
       flex-wrap: wrap;
       gap: 4mm;
       padding-right: 8mm;
-      color: #8A9299;
+      color: ${textReferenceMuted};
       font-size: 8pt;
       font-weight: 700;
     }
@@ -3101,13 +3799,13 @@ function buildDocumentStyles(theme) {
     .section-metodologia .page-content {
       flex: 1;
       display: flex;
-      min-height: 297mm;
+      min-height: 210mm;
     }
 
     .editorial-split {
       display: grid;
       grid-template-columns: 55% 45%;
-      min-height: 297mm;
+      min-height: 210mm;
       width: 100%;
     }
 
@@ -3156,7 +3854,7 @@ function buildDocumentStyles(theme) {
     .editorial-split-content {
       display: flex;
       flex-direction: column;
-      padding: 12mm 12mm 10mm 10mm;
+      padding: 8mm 12mm 6mm 10mm;
       background: #FFFFFF;
       position: relative;
     }
@@ -3229,8 +3927,8 @@ function buildDocumentStyles(theme) {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 5mm;
-      margin-top: 8mm;
+      gap: 3.5mm;
+      margin-top: 5mm;
     }
 
     .editorial-split-text {
@@ -3258,7 +3956,7 @@ function buildDocumentStyles(theme) {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 10mm;
+      margin-top: 6mm;
       padding-top: 3mm;
       border-top: 0.3mm solid #E4E8EA;
     }
@@ -3367,7 +4065,7 @@ function buildDocumentStyles(theme) {
       display: grid;
       grid-template-columns: 57.5% 42.5%;
       width: 100%;
-      min-height: 297mm;
+      min-height: 210mm;
       background: #FFFFFF;
     }
 
@@ -3494,9 +4192,9 @@ function buildDocumentStyles(theme) {
     }
 
     .editorial-table-page {
-      min-height: 297mm;
+      min-height: 210mm;
       width: 100%;
-      padding: 14mm 12mm 10mm;
+      padding: 10mm 12mm 8mm;
       display: flex;
       flex-direction: column;
       gap: 4mm;
@@ -3609,7 +4307,7 @@ function buildDocumentStyles(theme) {
 
     .chapter-hero {
       background: ${brandStrong};
-      min-height: 297mm;
+      min-height: 210mm;
     }
 
     .chapter-hero .chapter-sequence {
@@ -3779,6 +4477,11 @@ function renderFramedPage(page, charts, theme, metadata, options, chrome) {
   const layoutAttributes = buildLayoutAttributes(layout);
   const layoutProfile = resolveLayoutProfile(page, resolvePageChromeSpec(page));
   const frameHeadingId = `page-frame-title-${Number(page.pageNumber || 0) || 'x'}`;
+  const isSchoolComparison = page.section === 'escola_disciplinas';
+  const framedHeaderCaption = isSchoolComparison
+    ? 'Relatório Diagnóstico Educacional'
+    : (chrome.editionLabel || '');
+  const framedFooterLabel = isSchoolComparison ? 'Resultados' : '';
   const framedMeta = [
     chrome.sectionLabel,
     chrome.pageLabel,
@@ -3787,13 +4490,27 @@ function renderFramedPage(page, charts, theme, metadata, options, chrome) {
     chrome.rankingBadge,
   ].filter(Boolean).join(' • ');
 
+  const showChrome = page.section !== 'escola';
+  const chromeHeader = showChrome ? `
+      <div class="framed-chrome-header">
+        <span>${escapeHtml(chrome.sectionLabel || '')}</span>
+        <span>${escapeHtml(framedHeaderCaption)}</span>
+      </div>` : '';
+  const chromeFooter = showChrome ? `
+      <div class="framed-chrome-footer">
+        <span class="framed-chrome-page-number">${escapeHtml(chrome.pageBadgeValue || '')}</span>
+        ${framedFooterLabel ? `<span class="framed-chrome-footer-label">${escapeHtml(framedFooterLabel)}</span>` : ''}
+      </div>` : '';
+
   return `
     <section class="${pageClasses.join(' ')} section-${escapeHtml(page.section)}"${layoutAttributes} aria-labelledby="${frameHeadingId}">
       <div class="framed-page-meta sr-only">${escapeHtml(framedMeta)}</div>
+      ${chromeHeader}
       <div class="page-content page-content-framed">
         <h1 class="sr-only" id="${frameHeadingId}">${escapeHtml(data.layoutHeading || page.title || chrome.sectionLabel || 'Página')}</h1>
         ${renderPageContent(page, charts, theme, layoutProfile, options.assetResolver)}
       </div>
+      ${chromeFooter}
     </section>
   `;
 }
@@ -3947,7 +4664,7 @@ function renderChapterContent(page, assetResolver) {
     <div class="chapter-hero chapter-hero-${data.chapterKey ? escapeHtml(String(data.chapterKey)) : 'default'}" data-layout="${escapeHtml(layoutShell)}" data-shell-ref="${escapeHtml(layoutShell)}">
       ${imageSrc
       ? `<img class="chapter-hero-img" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(data.imageAlt || titleTriple)}" /><div class="chapter-hero-img-overlay"></div>`
-      : `<div class="chapter-hero-bg-accent" aria-hidden="true"></div>`
+      : '<div class="chapter-hero-bg-accent" aria-hidden="true"></div>'
     }
       ${overlayImageSrc ? `<img class="chapter-hero-overlay-asset" src="${escapeHtml(overlayImageSrc)}" alt="" aria-hidden="true" />` : ''}
       <div class="chapter-content-inner">
@@ -4055,21 +4772,25 @@ function renderAnalyticalContent(page, charts, theme) {
 
   if (page.section === 'visao_geral' || page.section === 'escola') {
     blocks.push(renderPriorityContextBand(page));
-    const leftColumnContent = distributionChart
-      ? renderDistributionChart(distributionChart, theme, {
-        panelClassName: page.section === 'visao_geral' ? 'chart-panel-overview-distribution' : '',
-      })
-      : '';
+    const leftColumnContent = page.section === 'visao_geral'
+      ? renderOverviewInstitutionalComposite(page, distributionChart, theme)
+      : distributionChart
+        ? renderDistributionChart(distributionChart, theme, {
+          panelClassName: '',
+        })
+        : '';
     const rightColumnContent = page.section === 'escola'
       ? renderSchoolDisciplineCards(page.data.distribuicaoPorDisciplina, page.data.resultadosPorAno, theme)
-      : renderSummaryCallout(
-        'Leitura institucional',
-        `A rede registra ${formatMaybePercent(page.data.participacaoMedia)} de participação média entre ${page.data.totalAlunos || 0} estudantes e ${page.data.totalEscolas || 0} escolas.`,
-        {
-          panelClassName: 'panel-overview-summary',
-          calloutClassName: 'summary-callout-overview',
-        },
-      );
+      : page.section === 'visao_geral'
+        ? ''
+        : renderSummaryCallout(
+          'Leitura institucional',
+          `A rede registra ${formatMaybePercent(page.data.participacaoMedia)} de participação média entre ${page.data.totalAlunos || 0} estudantes e ${page.data.totalEscolas || 0} escolas.`,
+          {
+            panelClassName: 'panel-overview-summary',
+            calloutClassName: 'summary-callout-overview',
+          },
+        );
     blocks.push(
       renderAnalyticalSplit(
         [leftColumnContent, rightColumnContent].join(''),
@@ -4414,6 +5135,27 @@ function renderDistributionChart(chart, theme, options = {}) {
   `;
 }
 
+function renderOverviewInstitutionalComposite(page, chart, theme) {
+  return [
+    renderOverviewDistributionPanel(page, chart, theme),
+    renderOverviewInstitutionalSummary(page),
+  ].filter(Boolean).join('');
+}
+
+function renderOverviewDistributionPanel(page, chart, theme) {
+  const distribuicao = (page.data && page.data.distribuicao) || {};
+  const title = chart && chart.title
+    ? chart.title
+    : 'Proficiência e habilidades';
+
+  return `
+    <section class="chart-panel chart-panel-overview-distribution overview-reference-panel">
+      <h3 class="chart-title">${escapeHtml(title)}</h3>
+      ${renderReferenceDistributionRow('Rede', distribuicao, theme)}
+    </section>
+  `;
+}
+
 function renderRankingChart(chart, options = {}) {
   const maxValue = chart.maxValue || 0;
   const panelClassName = ['chart-panel', 'chart-panel-ranking', options.rankingPanelClassName]
@@ -4657,17 +5399,16 @@ function renderAnalyticalHero(page) {
     case 'visao_geral':
       return renderSectionHero(
         page,
-        'Panorama consolidado da rede com participação média, proficiência e leitura por disciplina.',
+        'Leitura consolidada da participação, proficiência e desempenho por disciplina.',
         {
-          kicker: 'Panorama institucional',
+          kicker: 'Resultados da rede',
           panelClassName: 'hero-panel-overview',
           emphasis: {
-            label: 'Média geral',
-            value: formatMaybeNumber(page.data.mediaGeral),
-            note: `${formatMaybePercent(page.data.participacaoMedia)} de participação média`,
+            label: 'Participação média',
+            value: formatMaybePercent(page.data.participacaoMedia),
+            note: `${formatMaybeNumber(page.data.mediaGeral)} de média geral`,
           },
           chips: [
-            buildHeroChip('Município', page.data.municipio || '—'),
             buildHeroChip('Escolas', String(page.data.totalEscolas || 0)),
             buildHeroChip('Estudantes', String(page.data.totalAlunos || 0)),
           ],
@@ -4754,6 +5495,110 @@ function renderPriorityContextBand(page) {
   `;
 }
 
+function renderSchoolSummaryHeader(data, schoolSubtitle, rankingLabel) {
+  return `
+    <div class="school-brand-block" data-component="school-summary-header">
+      <div class="school-editorial-header">
+        <div class="school-brand-eyebrow">${escapeHtml(data.schoolEyebrowPrefix || 'SME')} ${escapeHtml(data.municipio || 'Canoas')}</div>
+        <p class="school-header-subtitle">${escapeHtml(schoolSubtitle)}</p>
+        <p class="school-header-meta">${escapeHtml(rankingLabel)}</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderSchoolSummaryMascot(owlAsset) {
+  if (!owlAsset) {
+    return '';
+  }
+
+  return `
+    <div class="school-hero-figure" data-component="school-summary-mascot" aria-hidden="true">
+      <div class="school-owl-wrap">
+        <img class="school-owl-image" src="${escapeHtml(owlAsset)}" alt="Mascote institucional" />
+      </div>
+    </div>
+  `;
+}
+
+function renderSchoolSummaryKpiCards(data, operacional) {
+  return `
+    <div class="school-kpi-grid" data-component="school-summary-kpis">
+      <article class="school-kpi-card">
+        <div class="school-kpi-value">${escapeHtml(formatLocalizedInteger(operacional.iniciaram ?? data.totalAlunos))}</div>
+        <div class="school-kpi-label">Alunos iniciaram</div>
+        <div class="school-kpi-note">Pelo menos uma prova respondida</div>
+      </article>
+      <article class="school-kpi-card">
+        <div class="school-kpi-value">${escapeHtml(formatLocalizedInteger(operacional.finalizaram ?? data.totalAlunos))}</div>
+        <div class="school-kpi-label">Alunos finalizaram</div>
+        <div class="school-kpi-note">Todas as provas respondidas</div>
+      </article>
+    </div>
+  `;
+}
+
+function renderSchoolSummaryOperationalTable(data, participationRows) {
+  const operacional = data.operacional || {};
+  return `
+    <table class="summary-table school-operational-table" data-component="school-summary-operational-table">
+      <thead>
+        <tr>
+          <th scope="col"><span class="sr-only">Descrição</span></th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alunos previstos</td>
+          <td>${escapeHtml(formatLocalizedInteger(operacional.previstos ?? data.totalAlunos))}</td>
+        </tr>
+        <tr class="school-table-section-row">
+          <th scope="colgroup" colspan="2">Participação por competência</th>
+        </tr>
+        ${participationRows.map((row) => `
+          <tr>
+            <td>${escapeHtml(row.disciplina)}</td>
+            <td>${escapeHtml(formatLocalizedInteger(row.total))}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderSchoolSummaryParticipationCallout(participationValue) {
+  return `
+    <div class="school-participation-feature" data-component="school-summary-participation-callout">
+      <div class="school-participation-ghost-wrap">
+        <div class="school-participation-number">${escapeHtml(participationValue)}</div>
+        <span class="school-participation-stars" aria-hidden="true"></span>
+      </div>
+      <div class="school-participation-label">de participação</div>
+    </div>
+  `;
+}
+
+function renderSchoolSummaryEditorialPanel(summaryNarrative, editorialPoints) {
+  return `
+    <section class="school-editorial-panel" data-component="school-summary-editorial-panel">
+      <h3 class="school-editorial-panel-title">Leitura geral da escola</h3>
+      <p class="school-summary-copy">${escapeHtml(summaryNarrative)}</p>
+      <div class="school-editorial-points">
+        ${editorialPoints.map((point) => `<p class="school-editorial-point">${escapeHtml(point)}</p>`).join('')}
+      </div>
+    </section>
+  `;
+}
+
+function renderSchoolSummaryProficiencyCallouts(disciplineHighlights) {
+  return `
+    <div class="school-stat-bubbles" data-component="school-summary-proficiency-callouts">
+      ${disciplineHighlights.map((highlight) => renderSchoolStatBubble(highlight)).join('')}
+    </div>
+  `;
+}
+
 function renderSchoolSummaryPageContent(page, assetResolver = null) {
   const data = page.data || {};
   const operacional = data.operacional || {};
@@ -4763,69 +5608,68 @@ function renderSchoolSummaryPageContent(page, assetResolver = null) {
   const summaryNarrative = buildSchoolPerformanceNarrative(data, disciplineHighlights);
   const layoutShell = resolveLayoutShell(page, 'school-summary-shell');
   const owlAsset = toAssetSrc(resolveSchoolMascotAsset(data), assetResolver);
+  const rankingLabel = data.rankingPosition
+    ? `${data.rankingPosition}ª posição no ranking da rede`
+    : 'Integra o recorte institucional da rede';
+  const schoolSubtitle = data.layoutSubheading || 'Panorama geral da escola';
+  const editorialPoints = [
+    `${participationValue} de participação total entre ${formatLocalizedInteger(operacional.finalizaram ?? data.totalAlunos)} estudantes que concluíram a aplicação.`,
+    `A média geral da escola foi ${formatMaybeNumber(data.media)}, em comparação a ${formatMaybeNumber(data.mediaRede)} pontos na rede.`,
+    disciplineHighlights[0]
+      ? `${formatLocalizedPercent(Math.round(Number(disciplineHighlights[0].percentual) || 0), 0)} dos alunos alcançaram níveis proficientes e avançados em ${disciplineHighlights[0].disciplina}.`
+      : '',
+  ].filter(Boolean);
 
   return `
     <div class="analytic-split" data-layout="${escapeHtml(layoutShell)}">
       <section class="school-summary-aside">
-        <div class="school-brand-block">
-          <div class="school-brand-eyebrow">${escapeHtml(data.schoolEyebrowPrefix || 'SME')} ${escapeHtml(data.municipio || 'Canoas')}</div>
-        </div>
-        <div class="school-hero-figure" aria-hidden="true">
-          <div class="school-owl-wrap">
-            <img class="school-owl-image" src="${escapeHtml(owlAsset)}" alt="Mascote institucional" />
-          </div>
-        </div>
+        ${renderSchoolSummaryHeader(data, schoolSubtitle, rankingLabel)}
+        ${renderSchoolSummaryMascot(owlAsset)}
         <h2 class="school-name-display">${escapeHtml(data.nome_escola || 'Escola')}</h2>
-        <div class="school-kpi-grid">
-          <article class="school-kpi-card">
-            <div class="school-kpi-value">${escapeHtml(formatLocalizedInteger(operacional.iniciaram ?? data.totalAlunos))}</div>
-            <div class="school-kpi-label">Alunos iniciaram</div>
-            <div class="school-kpi-note">(Pelo menos 1 das provas)</div>
-          </article>
-          <article class="school-kpi-card">
-            <div class="school-kpi-value">${escapeHtml(formatLocalizedInteger(operacional.finalizaram ?? data.totalAlunos))}</div>
-            <div class="school-kpi-label">Alunos finalizaram</div>
-            <div class="school-kpi-note">(Todas as provas)</div>
-          </article>
-        </div>
-        <table class="summary-table school-operational-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alunos previstos</td>
-              <td>${escapeHtml(formatLocalizedInteger(operacional.previstos ?? data.totalAlunos))}</td>
-            </tr>
-            <tr class="school-table-section-row">
-              <td colspan="2">Participação por competência</td>
-            </tr>
-            ${participationRows.map((row) => `
-              <tr>
-                <td>${escapeHtml(row.disciplina)}</td>
-                <td>${escapeHtml(formatLocalizedInteger(row.total))}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-        <div class="school-participation-feature">
-          <div class="school-participation-number">${escapeHtml(participationValue)}</div>
-          <div class="school-participation-label">de participação</div>
-        </div>
+        ${renderSchoolSummaryKpiCards(data, operacional)}
+        ${renderSchoolSummaryOperationalTable(data, participationRows)}
+        ${renderSchoolSummaryParticipationCallout(participationValue)}
         <div class="sr-only">Previstos Iniciaram Finalizaram Participação Total</div>
         ${data.rankingPosition ? `<div class="sr-only">${escapeHtml(`Posição Geral: ${data.rankingPosition}º`)}</div>` : ''}
         <div class="sr-only">${escapeHtml(`Distribuição de Proficiência — ${data.nome_escola || ''}`)}</div>
       </section>
       <section class="school-summary-main">
-        <p class="school-summary-copy">${escapeHtml(summaryNarrative)}</p>
-        <div class="school-stat-bubbles">
-          ${disciplineHighlights.map((highlight) => renderSchoolStatBubble(highlight)).join('')}
+        <div class="school-summary-main-copy">
+          ${renderSchoolSummaryEditorialPanel(summaryNarrative, editorialPoints)}
+        </div>
+        <div class="school-summary-main-metrics">
+          ${renderSchoolSummaryProficiencyCallouts(disciplineHighlights)}
         </div>
         <div class="sr-only">${escapeHtml(data.sintese || '')}</div>
       </section>
+    </div>
+  `;
+}
+
+function renderSchoolComparisonHeader(heading, subheadingBase, subheadingAccent) {
+  return `
+    <div class="reference-school-area-title" data-component="escola-disciplinas-header">
+      <h2 class="reference-school-area-heading">${escapeHtml(heading)}</h2>
+      <p class="reference-school-area-subheading">${escapeHtml(subheadingBase)} <strong class="reference-school-area-subheading-accent">· ${escapeHtml(subheadingAccent)}</strong></p>
+    </div>
+  `;
+}
+
+function renderSchoolComparisonGrid(areaRows, theme, networkLabel) {
+  return `
+    <div class="reference-school-area-grid" data-component="escola-disciplinas-comparativos">
+      ${areaRows.map((row) => renderReferenceDisciplineModule(row, theme, networkLabel)).join('')}
+    </div>
+  `;
+}
+
+function renderSchoolComparisonLegend(theme) {
+  return `
+    <div class="reference-area-legend" data-component="escola-disciplinas-legenda">
+      ${renderReferenceLegendItem('<25% de acertos', 'abaixo_do_basico', theme)}
+      ${renderReferenceLegendItem('≥25% de acertos', 'basico', theme)}
+      ${renderReferenceLegendItem('≥50% de acertos', 'adequado', theme)}
+      ${renderReferenceLegendItem('≥70% de acertos', 'avancado', theme)}
     </div>
   `;
 }
@@ -4835,20 +5679,19 @@ function renderSchoolAreaPageContent(page, charts, theme) {
   const areaRows = buildReferenceAreaRows(data);
   const layoutShell = resolveLayoutShell(page, 'school-comparison-shell');
   const networkLabel = data.schoolEyebrowPrefix || 'SME';
+  const heading = data.layoutHeading || 'Proficiência e habilidades';
+  const subheadingBase = 'por área do conhecimento';
+  const subheadingAccent = data.nome_escola || data.chromeSectionLabel || 'Geral da Escola';
 
   return `
     <section class="reference-school-area" data-layout="${escapeHtml(layoutShell)}">
-      <div class="reference-school-area-grid">
-        ${areaRows.map((row) => renderReferenceDisciplineModule(row, theme, networkLabel)).join('')}
-      </div>
-      <div class="reference-area-legend">
-        ${renderReferenceLegendItem('Abaixo do Básico', 'abaixo_do_basico', theme)}
-        ${renderReferenceLegendItem('Básico', 'basico', theme)}
-        ${renderReferenceLegendItem('Adequado', 'adequado', theme)}
-        ${renderReferenceLegendItem('Avançado', 'avancado', theme)}
-      </div>
+      ${renderSchoolComparisonHeader(heading, subheadingBase, subheadingAccent)}
+      ${renderSchoolComparisonGrid(areaRows, theme, networkLabel)}
+      ${renderSchoolComparisonLegend(theme)}
     </section>
-    ${renderComparativoContent(data, theme)}
+    <div data-component="escola-disciplinas-distribuicao">
+      ${renderComparativoContent(data, theme)}
+    </div>
   `;
 }
 
@@ -4980,6 +5823,51 @@ function renderSummaryCallout(title, text, options = {}) {
   `;
 }
 
+function renderOverviewInstitutionalSummary(page) {
+  const distribuicao = (page.data && page.data.distribuicao) || {};
+  const percentuais = distribuicao.percentuais || {};
+  const participation = formatMaybePercent(page.data.participacaoMedia);
+  const mediaGeral = formatMaybeNumber(page.data.mediaGeral);
+  const totalAlunos = String(page.data.totalAlunos || 0);
+  const totalEscolas = String(page.data.totalEscolas || 0);
+  const proficientes = formatLocalizedPercent(Math.round(Number(percentuais.adequado || 0) + Number(percentuais.avancado || 0)), 0);
+  const areaHighlights = summarizeOverviewDisciplineHighlights(page.data.mediasPorDisciplina);
+  const summaryText = `A rede registra ${participation} de participação média entre ${totalAlunos} estudantes distribuídos em ${totalEscolas} escolas, com média geral ${mediaGeral} e ${proficientes} em níveis proficientes; ${areaHighlights.primary} ${areaHighlights.secondary}`;
+
+  return `
+    <section class="panel panel-overview-summary">
+      <div class="summary-callout summary-callout-overview">
+        <p class="overview-summary-lead">${escapeHtml(summaryText)}</p>
+      </div>
+    </section>
+  `;
+}
+
+function summarizeOverviewDisciplineHighlights(mediasPorDisciplina = {}) {
+  const entries = Object.entries(mediasPorDisciplina)
+    .map(([disciplina, values]) => ({
+      disciplina,
+      media: Number(values && values.media),
+    }))
+    .filter((entry) => Number.isFinite(entry.media));
+
+  if (entries.length === 0) {
+    return {
+      primary: 'A leitura por disciplina complementa a visão consolidada da rede e orienta os próximos aprofundamentos.',
+      secondary: 'Use os painéis laterais para identificar diferenças de desempenho e concentração por nível.',
+    };
+  }
+
+  entries.sort((left, right) => right.media - left.media);
+  const strongest = entries[0];
+  const weakest = entries[entries.length - 1];
+
+  return {
+    primary: `${strongest.disciplina} apresenta a maior média consolidada da rede, com ${formatMaybeNumber(strongest.media)}.`,
+    secondary: `${weakest.disciplina} concentra a menor média observada, com ${formatMaybeNumber(weakest.media)}, e pede leitura complementar no resumo por disciplina.`,
+  };
+}
+
 function buildNarrativeContextItems(page) {
   const data = page.data || {};
 
@@ -5089,7 +5977,7 @@ function buildSchoolPerformanceNarrative(data, disciplineHighlights) {
     ? `A participação foi de ${formatLocalizedPercent(operacional.participacaoTotal, 2)} dos alunos matriculados.`
     : '';
   const highlightsText = (disciplineHighlights || [])
-    .map((highlight) => `Em ${highlight.disciplina}, ${formatLocalizedPercent(highlight.percentual, 2)} dos estudantes apresentaram níveis proficientes e avançados.`)
+    .map((highlight) => `Em ${highlight.disciplina}, ${formatLocalizedPercent(Math.round(Number(highlight.percentual) || 0), 0)} dos estudantes apresentaram níveis proficientes e avançados.`)
     .join(' ');
   const comparativeText = `A média geral da escola está ${Number(data.media) >= Number(data.mediaRede) ? 'acima' : 'abaixo'} da média da rede (${formatLocalizedNumber(data.media)} vs ${formatLocalizedNumber(data.mediaRede)}).`;
 
@@ -5133,19 +6021,22 @@ function resolveDisciplineTheme(disciplina) {
   if (normalized.includes('matemat')) {
     return {
       badgeClassName: 'discipline-matematica',
-      accent: '#E89C23',
-      bubbleAccent: '#00A39E',
+      accent: '#FFB637',
+      bubbleAccent: '#00A59F',
       label: 'Matemática',
     };
   }
 
   return {
     badgeClassName: 'discipline-linguagens',
-    accent: '#6B4DA7',
-    bubbleAccent: '#00A39E',
+    accent: '#856BC6',
+    bubbleAccent: '#00A59F',
     label: disciplina || 'Disciplina',
   };
 }
+
+const REFERENCE_DISTRIBUTION_LEVELS = ['abaixo_do_basico', 'basico', 'adequado', 'avancado'];
+const REFERENCE_DISTRIBUTION_LEADING_CAP = 7;
 
 function renderReferenceDisciplineModule(row, theme, networkLabel = 'SME') {
   return `
@@ -5154,7 +6045,7 @@ function renderReferenceDisciplineModule(row, theme, networkLabel = 'SME') {
         <div class="reference-area-icon ${row.badgeClassName}">
           ${renderDisciplineBadgeIcon(row.disciplina)}
         </div>
-        <div class="reference-area-chip">${escapeHtml((row.label || row.disciplina || '').toUpperCase())}</div>
+        <div class="reference-area-chip ${row.badgeClassName}">${escapeHtml((row.label || row.disciplina || '').toUpperCase())}</div>
       </div>
       ${renderReferenceDistributionRow('Escola', row.escola, theme)}
       ${renderReferenceDistributionRow(networkLabel, row.rede, theme)}
@@ -5165,13 +6056,25 @@ function renderReferenceDisciplineModule(row, theme, networkLabel = 'SME') {
 function renderReferenceDistributionRow(label, distribuicao, theme) {
   const ticks = Array.from({ length: 11 }, (_, index) => `<span>${index * 10}</span>`).join('');
   const percentuais = ((distribuicao || {}).percentuais) || {};
-  const levels = ['abaixo_do_basico', 'basico', 'adequado', 'avancado'];
-  const stats = levels.map((level) => `
-    <span class="reference-distribution-stat">
-      <span class="reference-distribution-dot" style="background:${escapeHtml(resolveLevelColor(level, theme))}"></span>
-      <strong>${escapeHtml(formatLocalizedPercent(percentuais[level] || 0, 2))}</strong>
+  const levelValues = REFERENCE_DISTRIBUTION_LEVELS.map((level) => Math.max(Number(percentuais[level] || 0), 0));
+  const levelSum = levelValues.reduce((sum, v) => sum + v, 0);
+  const neutralPercent = Math.max(0, 100 - levelSum);
+  const neutralColor = resolveReferenceLeadingCapColor(theme);
+  const neutralStat = `
+    <span class="reference-distribution-stat reference-distribution-stat-neutral">
+      <span class="reference-distribution-dot" style="background:${escapeHtml(neutralColor)}">···</span>
+      <strong style="color:${escapeHtml(neutralColor)}">${escapeHtml(formatLocalizedPercent(neutralPercent, 2))}</strong>
     </span>
-  `).join('');
+  `;
+  const stats = REFERENCE_DISTRIBUTION_LEVELS.map((level) => {
+    const levelColor = resolveLevelColor(level, theme);
+    return `
+    <span class="reference-distribution-stat">
+      <span class="reference-distribution-dot" style="background:${escapeHtml(levelColor)}">${escapeHtml(resolveLevelGlyph(level))}</span>
+      <strong style="color:${escapeHtml(levelColor)}">${escapeHtml(formatLocalizedPercent(percentuais[level] || 0, 2))}</strong>
+    </span>
+  `;
+  }).join('');
 
   return `
     <div class="reference-distribution-block">
@@ -5179,7 +6082,7 @@ function renderReferenceDistributionRow(label, distribuicao, theme) {
       <div class="reference-distribution-body">
         <div class="reference-distribution-axis">${ticks}</div>
         ${renderReferenceDistributionTrack(distribuicao, theme)}
-        <div class="reference-distribution-stats">${stats}</div>
+        <div class="reference-distribution-stats">${neutralStat}${stats}</div>
       </div>
     </div>
   `;
@@ -5187,41 +6090,71 @@ function renderReferenceDistributionRow(label, distribuicao, theme) {
 
 function renderReferenceDistributionTrack(distribuicao, theme) {
   const percentuais = ((distribuicao || {}).percentuais) || {};
-  const levels = ['abaixo_do_basico', 'basico', 'adequado', 'avancado'];
-  const segments = levels.map((level) => {
-    const percentual = Math.max(Number(percentuais[level] || 0), 0.01);
+  const totals = REFERENCE_DISTRIBUTION_LEVELS.map((level) => Math.max(Number(percentuais[level] || 0), 0));
+  const total = totals.reduce((sum, value) => sum + value, 0);
+  const usableTrack = 100 - REFERENCE_DISTRIBUTION_LEADING_CAP;
+  const segments = REFERENCE_DISTRIBUTION_LEVELS.map((level, index) => {
+    const percentual = totals[index];
+    const scaledPercentual = total > 0 ? (percentual / total) * usableTrack : usableTrack / REFERENCE_DISTRIBUTION_LEVELS.length;
     return `
       <span
         class="reference-distribution-segment"
-        style="flex:${percentual} 1 0;background:${escapeHtml(resolveLevelColor(level, theme))}"
+        style="flex:${scaledPercentual} 1 0;background:${escapeHtml(resolveLevelColor(level, theme))}"
       ></span>
     `;
   }).join('');
 
-  return `<div class="reference-distribution-track">${segments}</div>`;
+  return `<div class="reference-distribution-track"><span class="reference-distribution-cap" style="flex:${REFERENCE_DISTRIBUTION_LEADING_CAP} 0 0;background:${escapeHtml(resolveReferenceLeadingCapColor(theme))}"></span>${segments}</div>`;
 }
 
 function renderReferenceLegendItem(label, level, theme) {
+  const levelColor = resolveLevelColor(level, theme);
   return `
-    <span class="reference-legend-item">
-      <span class="reference-distribution-dot" style="background:${escapeHtml(resolveLevelColor(level, theme))}"></span>
+    <span class="reference-legend-item" style="color:${escapeHtml(levelColor)}">
+      <span class="reference-distribution-dot" style="background:${escapeHtml(levelColor)}"></span>
       <span>${escapeHtml(label)}</span>
     </span>
   `;
 }
 
-function renderSchoolStatBubble(highlight) {
+function resolveSchoolStatBubbleAssets(disciplina) {
+  const normalized = normalizeDisciplineName(disciplina);
+  if (normalized.includes('matemat')) {
+    return {
+      bubbleClassName: 'school-stat-bubble-matematica',
+      iconClassName: 'discipline-matematica',
+      copy: 'dos alunos apresentaram níveis proficientes e avançados em Matemática.',
+    };
+  }
+
+  return {
+    bubbleClassName: 'school-stat-bubble-linguagens',
+    iconClassName: 'discipline-linguagens',
+    copy: 'dos alunos apresentaram níveis proficientes e avançados em Língua Portuguesa.',
+  };
+}
+
+function renderSchoolStatBubbleShape() {
   return `
-    <article class="school-stat-bubble">
-      <div class="school-stat-icon ${highlight.badgeClassName}">
+    <svg class="school-stat-bubble-shape" xmlns="http://www.w3.org/2000/svg" width="149" height="146" viewBox="0 0 148.822 146.002" fill="none" aria-hidden="true">
+      <path d="M142.729 145.252H6.09302C3.14202 145.252 0.75 142.855 0.75 139.899V14.9273C0.75 11.9713 3.14202 9.57426 6.09302 9.57426H28.663C29.823 9.72126 31.583 8.94725 32.596 7.84525L38.434 1.48725C39.383 0.504252 40.884 0.504252 41.787 1.48725L47.625 7.84525C48.302 8.80025 50.062 9.57426 51.557 9.57426H142.729C145.68 9.57426 148.072 11.9713 148.072 14.9273V139.899C148.073 142.855 145.68 145.252 142.729 145.252Z" fill="white" stroke="#00A59F" stroke-width="1.5" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/>
+    </svg>
+  `;
+}
+
+function renderSchoolStatBubble(highlight) {
+  const bubbleAssets = resolveSchoolStatBubbleAssets(highlight.disciplina);
+  const roundedPercent = formatLocalizedPercent(Math.round(Number(highlight.percentual) || 0), 0);
+
+  return `
+    <article class="school-stat-bubble ${bubbleAssets.bubbleClassName}">
+      <div class="school-stat-value">
+        ${escapeHtml(roundedPercent)}
+      </div>
+      <p class="school-stat-copy">${escapeHtml(bubbleAssets.copy)}</p>
+      <div class="school-stat-icon ${bubbleAssets.iconClassName}">
         ${renderDisciplineBadgeIcon(highlight.disciplina)}
       </div>
-      <div class="school-stat-value" style="color:${escapeHtml(highlight.bubbleAccent)}">
-        ${escapeHtml(formatLocalizedPercent(highlight.percentual, 2))}
-      </div>
-      <p class="school-stat-copy">
-        dos alunos apresentaram níveis proficientes e avançados em ${escapeHtml(highlight.disciplina)}.
-      </p>
     </article>
   `;
 }
@@ -5238,17 +6171,20 @@ function renderDisciplineBadgeIcon(disciplina) {
   const normalized = normalizeDisciplineName(disciplina);
   if (normalized.includes('matemat')) {
     return `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="4" y="4" width="16" height="16" rx="3"></rect>
-        <path d="M8 9h8M8 13h8M10 7v10M14 7v10"></path>
+      <svg viewBox="0 0 28.347 28.346" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M10.9049 19.1339H11.8889V17.4019H13.6219V16.4169H11.8889V14.6849H10.9049V16.4169H9.17294V17.4019H10.9049V19.1339ZM15.1369 18.4449H19.0939V17.4799H15.1369V18.4449ZM15.1369 16.3389H19.0939V15.3549H15.1369V16.3389ZM15.8659 13.1299L17.0659 11.9289L18.2669 13.1299L18.976 12.4209L17.7749 11.2209L18.976 10.0199L18.2669 9.31091L17.0659 10.5119L15.8659 9.31091L15.157 10.0199L16.3579 11.2209L15.157 12.4209L15.8659 13.1299ZM9.46796 11.7129H13.326V10.7289H9.46796V11.7129ZM8.26694 21.2599C7.95194 21.2599 7.67694 21.1419 7.43994 20.9059C7.20394 20.6689 7.08594 20.3939 7.08594 20.0789V8.26791C7.08594 7.95291 7.20394 7.67692 7.43994 7.44092C7.67694 7.20492 7.95194 7.08691 8.26694 7.08691H20.0779C20.3929 7.08691 20.6689 7.20492 20.9049 7.44092C21.1409 7.67692 21.2589 7.95291 21.2589 8.26791V20.0789C21.2589 20.3939 21.1409 20.6689 20.9049 20.9059C20.6689 21.1419 20.3929 21.2599 20.0779 21.2599H8.26694ZM8.26694 20.0789H20.0779V8.26791H8.26694V20.0789Z" fill="#FFFFFF"/>
       </svg>
     `;
   }
 
   return `
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7 6h10v12H7z"></path>
-      <path d="M9 9h6M9 12h6M9 15h4"></path>
+    <svg viewBox="0 0 28.347 28.346" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M17.6292 12.1643L15.7622 7.39932C15.6592 7.14632 15.3712 7.02132 15.1152 7.11932L10.3502 8.98633C10.0942 9.08733 9.96915 9.37733 10.0702 9.63333L11.9512 14.3983C12.0522 14.6543 12.3422 14.7793 12.5982 14.6783L17.3492 12.8113C17.6052 12.7103 17.7302 12.4203 17.6292 12.1643ZM12.4502 14.1323L10.6282 9.49631L15.2642 7.67133L17.0852 12.3103L12.4502 14.1323Z" fill="#FFFFFF"/>
+      <path d="M13.0258 15.1553H7.92188C7.64687 15.1553 7.42285 15.3783 7.42285 15.6543V20.7603C7.42285 21.0363 7.64687 21.2593 7.92188 21.2593H13.0258C13.3018 21.2593 13.5249 21.0363 13.5249 20.7603V15.6543C13.5249 15.3783 13.3008 15.1553 13.0258 15.1553ZM12.9639 20.6963H7.98386V15.7163H12.9639V20.6963Z" fill="#FFFFFF"/>
+      <path d="M20.5628 15.1271L15.6298 13.8151C15.3608 13.7501 15.0888 13.9121 15.0188 14.1801L13.7078 19.1121C13.6358 19.3791 13.7939 19.6521 14.0599 19.7231L18.9938 21.0351C19.2598 21.1061 19.5328 20.9481 19.6038 20.6821L20.9049 15.7381C20.9769 15.4751 20.8248 15.2031 20.5628 15.1271ZM19.0798 20.4521L14.2648 19.1881L15.5458 14.3761L20.3578 15.6571L19.0798 20.4521Z" fill="#FFFFFF"/>
+      <path d="M15.524 11.4535C15.473 11.3565 15.406 11.2695 15.325 11.1955L13.924 9.71855L13.758 9.53953C13.717 9.49653 13.6709 9.45754 13.6209 9.42454C13.5709 9.39054 13.5129 9.36854 13.4529 9.35954C13.3089 9.34954 13.169 9.40555 13.072 9.51155C13.033 9.55855 13.006 9.61454 12.993 9.67354C12.979 9.74354 12.972 9.81555 12.974 9.88655V12.1376C12.979 12.2216 12.9839 12.2855 12.9879 12.3305C12.9899 12.3725 12.9979 12.4145 13.0129 12.4545C13.0399 12.5195 13.094 12.5706 13.161 12.5946C13.23 12.6226 13.306 12.6226 13.374 12.5946C13.444 12.5746 13.499 12.5225 13.523 12.4545C13.544 12.3465 13.551 12.2355 13.545 12.1265V11.7255L14.6519 11.2905L14.916 11.5715L15.036 11.6915C15.071 11.7275 15.1089 11.7605 15.1509 11.7865C15.1829 11.8065 15.2179 11.8175 15.2549 11.8205C15.2959 11.8235 15.3369 11.8166 15.3749 11.8016C15.4409 11.7736 15.494 11.7226 15.524 11.6586C15.552 11.5926 15.552 11.5185 15.524 11.4535ZM13.52 11.2485L13.481 9.97655L14.3329 10.9295L13.52 11.2485Z" fill="#FFFFFF"/>
+      <path d="M11.1741 17.9896C11.4411 17.8896 11.6161 17.6326 11.6111 17.3476C11.6111 17.2656 11.597 17.1836 11.569 17.1066C11.542 17.0306 11.501 16.9586 11.449 16.8966C11.397 16.8346 11.3361 16.7816 11.2661 16.7396C11.1801 16.6886 11.0851 16.6535 10.9861 16.6385C10.8671 16.6205 10.746 16.6116 10.625 16.6136H9.69404C9.59304 16.6026 9.49205 16.6326 9.41405 16.6976C9.35005 16.7766 9.32006 16.8766 9.33006 16.9776V19.1756C9.32006 19.2756 9.34905 19.3756 9.41105 19.4556C9.48905 19.5226 9.59204 19.5536 9.69404 19.5426H10.5881C10.7191 19.5386 10.8491 19.5256 10.9781 19.5056C11.0841 19.4936 11.1871 19.4676 11.2861 19.4276C11.4241 19.3696 11.543 19.2726 11.625 19.1476C11.71 19.0146 11.7541 18.8606 11.7511 18.7046C11.7581 18.3576 11.5141 18.0566 11.1741 17.9896ZM9.92705 17.0646H10.3951C10.5581 17.0566 10.7211 17.0806 10.8741 17.1376C10.9801 17.1886 11.043 17.3006 11.031 17.4176C11.032 17.4836 11.0141 17.5486 10.9811 17.6056C10.9421 17.6806 10.8761 17.7386 10.7961 17.7656C10.6851 17.7976 10.5691 17.8116 10.4541 17.8076H9.91307L9.92705 17.0646ZM11.1491 18.6646C11.1491 18.9526 10.9491 19.0966 10.5491 19.0966H9.91307L9.92705 18.2446H10.535C10.696 18.2346 10.858 18.2696 11 18.3456C11.103 18.4176 11.1601 18.5396 11.1491 18.6646Z" fill="#FFFFFF"/>
+      <path d="M18.7161 16.5963C18.6451 16.4193 18.5301 16.2633 18.3821 16.1423C18.2201 16.0063 18.0281 15.9103 17.8221 15.8623C17.6401 15.8113 17.4491 15.7973 17.2611 15.8203C17.0811 15.8423 16.9071 15.9023 16.7511 15.9963C16.5901 16.0953 16.4521 16.2273 16.3451 16.3833C16.2241 16.5603 16.1361 16.7583 16.0841 16.9663C16.0481 17.0993 16.0251 17.2353 16.0171 17.3723C16.0101 17.5013 16.0181 17.6303 16.0421 17.7563C16.0651 17.8763 16.1021 17.9933 16.1541 18.1043C16.2081 18.2173 16.2801 18.3223 16.3671 18.4123C16.4541 18.5013 16.5541 18.5763 16.6641 18.6343C16.7901 18.6993 16.9231 18.7503 17.0601 18.7853C17.2351 18.8353 17.4191 18.8503 17.6011 18.8273C17.7531 18.8033 17.8991 18.7483 18.0291 18.6643C18.1371 18.5973 18.2321 18.5123 18.3101 18.4123C18.3761 18.3293 18.4251 18.2343 18.4531 18.1323C18.4721 18.0663 18.4631 17.9953 18.4271 17.9363C18.3931 17.8773 18.3371 17.8343 18.2701 17.8183C18.2061 17.7953 18.1341 17.8043 18.0771 17.8433C18.0231 17.8883 17.9761 17.9413 17.9401 18.0003C17.8531 18.1273 17.7301 18.2243 17.5871 18.2803C17.4411 18.3283 17.2841 18.3283 17.1381 18.2803C17.0061 18.2553 16.8831 18.1943 16.7821 18.1043C16.6851 17.9933 16.6241 17.8553 16.6081 17.7093C16.5901 17.5203 16.6081 17.3303 16.6621 17.1483C16.7121 16.8673 16.8561 16.6113 17.0711 16.4223C17.2501 16.2823 17.4861 16.2393 17.7041 16.3043C17.8371 16.3353 17.9571 16.4053 18.0491 16.5063C18.1391 16.6183 18.2001 16.7503 18.2281 16.8903C18.2431 16.9653 18.2681 17.0363 18.3041 17.1033C18.3401 17.1533 18.3941 17.1883 18.4551 17.1993C18.5191 17.2163 18.5881 17.2053 18.6431 17.1683C18.7001 17.1333 18.7411 17.0783 18.7581 17.0143C18.7881 16.8733 18.7731 16.7273 18.7161 16.5963Z" fill="#FFFFFF"/>
     </svg>
   `;
 }
@@ -5435,6 +6371,34 @@ function normalizeDisciplineName(value) {
 function resolveLevelColor(level, theme, fallbackColor) {
   const proficiency = ((theme || {}).colors || DEFAULT_THEME.colors).proficiency || DEFAULT_THEME.colors.proficiency;
   return proficiency[level] || fallbackColor || DEFAULT_THEME.colors.primary;
+}
+
+function createComparativoColors(theme) {
+  const colors = ((theme || {}).colors || DEFAULT_THEME.colors);
+  return {
+    escola: colors.secondary || colors.brandSecondary || colors.primary,
+    rede: colors.primary || colors.brandPrimary || colors.textSubtle,
+  };
+}
+
+function resolveReferenceLeadingCapColor(theme) {
+  const colors = ((theme || {}).colors || DEFAULT_THEME.colors);
+  return colors.textSubtle || '#969799';
+}
+
+function resolveLevelGlyph(level) {
+  switch (level) {
+    case 'abaixo_do_basico':
+      return ':(';
+    case 'basico':
+      return ':|';
+    case 'adequado':
+      return ':)';
+    case 'avancado':
+      return ':D';
+    default:
+      return '';
+  }
 }
 
 function formatLevelLabel(level) {

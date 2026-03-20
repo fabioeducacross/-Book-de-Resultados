@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "id": "educacross-book-design-tokens",
+  "description": "Design tokens extraídos do Figma — Book de Resultados Canoas 2025",
+  "figmaSources": [
+    { "nodeId": "7457:123", "label": "escola — school summary page" },
+    { "nodeId": "7463:2", "label": "escola_disciplinas — school comparison page" }
+  ],
+
+  "colors": {
+    "brand": {
+      "primary": "#133C58",
+      "secondary": "#00A59F",
+      "accent": "#FFB637",
+      "purple": "#856BC6",
+      "orange": "#ED6300",
+      "green": "#8DBF34",
+      "red": "#FF5052"
+    },
+    "surface": {
+      "page": "#FFFFFF",
+      "aside": "#EDECE6",
+      "card": "#FFFFFF",
+      "cardAlpha": "rgba(255,255,255,0.98)",
+      "panel": "#FFFFFF",
+      "highlight": "#F7F4ED",
+      "tintSecondary": "#E8F5F4",
+      "editorialPanel": "rgba(246,243,249,0.72)"
+    },
+    "text": {
+      "strong": "#133C58",
+      "primary": "#676C6E",
+      "secondary": "#485156",
+      "subtle": "#969799",
+      "muted": "#ABAFB2",
+      "editorial": "#5D6A73",
+      "editorialMuted": "#61727D",
+      "editorialSoft": "#59656F",
+      "label": "#516874",
+      "note": "#7A858D",
+      "kpiNote": "#8A9197",
+      "reference": "#6F7881",
+      "referenceSubtle": "#7B848B",
+      "referenceMuted": "#8A9299",
+      "axis": "#A0A8AF"
+    },
+    "border": {
+      "card": "#DDD8CC",
+      "table": "#D8D3C8",
+      "highlight": "#D8D3C8",
+      "separator": "#E1E5E2",
+      "gridRule": "#DDD8CF",
+      "ribbon": "#A6C9C4",
+      "frameBadge": "#8A9299",
+      "primaryAlpha8": "rgba(19,61,89,0.08)",
+      "primaryAlpha12": "rgba(19,61,89,0.12)",
+      "primaryAlpha14": "rgba(19,61,89,0.14)",
+      "primaryAlpha18": "rgba(19,61,89,0.18)",
+      "primaryAlpha30": "rgba(19,61,89,0.3)"
+    },
+    "track": {
+      "background": "#E8ECEB",
+      "backgroundMedia": "#EDF1EF"
+    },
+    "pill": {
+      "network": "rgba(31,167,217,0.1)",
+      "school": "rgba(78,195,140,0.12)"
+    },
+    "proficiency": {
+      "abaixo_do_basico": "#FF5052",
+      "basico": "#FFB637",
+      "adequado": "#00A59F",
+      "avancado": "#856BC6"
+    },
+    "delta": {
+      "positive": "#005A39",
+      "negative": "#FF5052",
+      "neutral": "#969799"
+    },
+    "discipline": {
+      "matematica": "#8DBF34",
+      "linguagens": "#ED6300"
+    }
+  },
+
+  "typography": {
+    "fontFamily": {
+      "display": "\"Montserrat\", \"Segoe UI\", Arial, sans-serif",
+      "body": "\"Montserrat\", \"Segoe UI\", Arial, sans-serif",
+      "serif": "\"Minion Pro\", Georgia, \"Times New Roman\", serif"
+    },
+    "fontSize": {
+      "xs": "6.1pt",
+      "xs2": "6.6pt",
+      "xs3": "6.8pt",
+      "xs4": "6.9pt",
+      "xxs": "4.8pt",
+      "sm": "7.2pt",
+      "sm2": "7.4pt",
+      "sm3": "7.5pt",
+      "sm4": "7.6pt",
+      "sm5": "7.8pt",
+      "base": "8pt",
+      "base2": "8.1pt",
+      "base3": "8.2pt",
+      "base4": "8.5pt",
+      "md": "9pt",
+      "md2": "10pt",
+      "md3": "10.6pt",
+      "md4": "10.8pt",
+      "lg": "12pt",
+      "lg2": "13pt",
+      "lg3": "14.5pt",
+      "xl": "18pt",
+      "xl2": "22pt",
+      "xxl": "40pt",
+      "statValue": "52px",
+      "statCopy": "9px"
+    },
+    "fontWeight": {
+      "regular": 400,
+      "medium": 600,
+      "bold": 700,
+      "extrabold": 800,
+      "black": 900
+    },
+    "lineHeight": {
+      "tight": 1,
+      "snug": 1.04,
+      "compact": 1.1,
+      "normal": 1.15,
+      "relaxed": 1.25,
+      "loose": 1.35,
+      "extra": 1.45,
+      "statCopy": "13px"
+    },
+    "letterSpacing": {
+      "tighter": "-0.02em",
+      "tight": "0",
+      "normal": "0.04em",
+      "wide": "0.05em",
+      "wider": "0.06em",
+      "widest": "0.08em"
+    }
+  },
+
+  "spacing": {
+    "page": {
+      "margin": { "x": "0.4cm", "y": "0.7cm" }
+    },
+    "escola": {
+      "asidePadding": "8mm 6mm 8mm 8mm",
+      "asidePaddingLeft": "20mm",
+      "mainPadding": "11mm 10mm 14mm 10mm",
+      "mainPaddingRight": "14mm"
+    },
+    "escolaDisciplinas": {
+      "contentPadding": "14mm 16mm 19.2mm 14mm",
+      "chromeHeaderPadding": "8mm 16mm 0",
+      "chromeFooterPadding": "0 16mm"
+    },
+    "gap": {
+      "xs": "0.8mm",
+      "sm": "1.6mm",
+      "md": "2.2mm",
+      "md2": "2.4mm",
+      "lg": "3mm",
+      "lg2": "3.2mm",
+      "xl": "4mm",
+      "xl2": "5mm",
+      "xxl": "5.4mm"
+    },
+    "titleMarginBottom": "12mm"
+  },
+
+  "layout": {
+    "schoolSummary": {
+      "shellColumns": "1fr 1fr",
+      "kpiGrid": "repeat(2, minmax(0, 1fr))",
+      "disciplineGrid": "repeat(2, minmax(0, 1fr))",
+      "heroMinHeight": "28mm",
+      "owlHeight": "26mm"
+    },
+    "escolaDisciplinas": {
+      "areaGrid": "repeat(2, minmax(0, 1fr))",
+      "distributionBlock": "18mm minmax(0, 1fr)",
+      "distributionBlockMedia": "16mm minmax(0, 1fr)",
+      "distributionStats": "repeat(4, minmax(0, 1fr))",
+      "distributionStatsMedia": "repeat(5, minmax(0, 1fr))",
+      "distributionAxis": "repeat(11, minmax(0, 1fr))",
+      "chromeFooterTop": "191mm",
+      "chromeBandHeight": "3.6mm",
+      "accentLineHeight": "1.4mm"
+    },
+    "stat": {
+      "bubbleWidth": "162.245px",
+      "bubbleHeight": "144.502px",
+      "iconSize": "28.347px",
+      "copyWidth": "116px",
+      "secondBubbleOffset": "52.9134px"
+    },
+    "referenceArea": {
+      "iconSize": "8.4mm",
+      "iconSizeBase": "10mm",
+      "trackMinHeight": "8.4mm",
+      "trackMinHeightBase": "10mm",
+      "dotSizeMedia": "3.1mm",
+      "dotSizeBase": "3.9mm",
+      "dotHeightMedia": "7.5mm",
+      "dotHeightBase": "4mm"
+    }
+  },
+
+  "borderRadius": {
+    "none": "0",
+    "xs": "0.6mm",
+    "sm": "1.2mm",
+    "md": "1.6mm",
+    "lg": "1.8mm",
+    "xl": "2mm",
+    "xxl": "6mm",
+    "pill": "999px"
+  },
+
+  "borderWidth": {
+    "hairline": "0.35mm",
+    "thin": "0.4mm",
+    "regular": "1px",
+    "medium": "1.4px",
+    "thick": "2px",
+    "stroke": "1.5px"
+  },
+
+  "shadows": {
+    "card": "0 1mm 2.5mm rgba(8, 59, 89, 0.04)",
+    "dot": "0 0 0 1px rgba(255,255,255,0.92), 0 0 0 2px rgba(150,158,166,0.25)"
+  }
+}

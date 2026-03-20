@@ -1,8 +1,8 @@
 {
   "agentId": "squad-creator",
   "quality": "full",
-  "totalDuration": 8,
-  "requireChainMs": 2164.4744,
+  "totalDuration": 3,
+  "requireChainMs": 2026.2397,
   "loaders": {
     "agentConfig": {
       "duration": 0,
@@ -21,9 +21,9 @@
       "status": "ok"
     },
     "synapseSession": {
-      "duration": 7,
+      "duration": 2,
       "status": "ok"
     }
   },
-  "timestamp": "2026-03-12T19:52:47.202Z"
+  "timestamp": "2026-03-19T19:20:25.518Z"
 }

@@ -5,6 +5,11 @@
   "main": "src/index.js",
   "scripts": {
     "dev:audit-ui": "node examples/upload-listagem-auditoria-server.js",
+    "dev:listagem-relatorios": "node examples/listagem-relatorios-server.js",
+    "visual:clone:overview": "node scripts/run-visual-clone-experiment.js",
+    "prototype:pipeline": "node scripts/prototype-service-pipeline.js",
+    "server": "node server/start.js",
+    "server:dev": "BOOK_LOG_LEVEL=debug node server/start.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -26,6 +31,7 @@
   },
   "dependencies": {
     "exceljs": "^4.4.0",
+    "fastify": "^5.8.2",
     "js-yaml": "^4.1.1",
     "pptxgenjs": "^4.0.1"
   },

@@ -1,0 +1,399 @@
+{
+    "$schema": "custom",
+    "version": "1.1.0",
+    "id": "pixel-perfect-canoas-2025",
+    "label": "Tokens extraídos da referência visual — Canoas 2025 Sem2",
+    "source": "pdf-reference + figma-node-7463:1325",
+    "notes": "Medidas extraídas do PDF de referência e lapidadas com o node 7463:1325 do Figma. Página custom landscape (250×210mm). Valores em mm salvo indicação.",
+    "page": {
+        "width": "250mm",
+        "height": "210mm",
+        "format": "custom-landscape",
+        "padding": {
+            "top": "18mm",
+            "right": "16mm",
+            "bottom": "15mm",
+            "left": "16mm"
+        }
+    },
+    "schoolSummary": {
+        "layout": "two-column-grid",
+        "grid": {
+            "columns": "minmax(69mm, 0.9fr) minmax(0, 1.1fr)",
+            "gap": "0"
+        },
+        "aside": {
+            "background": "#FFFFFF",
+            "padding": {
+                "top": "8mm",
+                "right": "6mm",
+                "bottom": "8mm",
+                "left": "8mm"
+            },
+            "eyebrow": {
+                "element": "span",
+                "text": "SME Canoas",
+                "fontSize": "7.8pt",
+                "fontWeight": 700,
+                "letterSpacing": "0.08em",
+                "textTransform": "uppercase",
+                "color": "#5D6A73",
+                "marginBottom": "2mm"
+            },
+            "mascot": {
+                "element": "img",
+                "height": "26mm",
+                "position": "relative",
+                "top": "3px",
+                "alignment": "flex-end"
+            },
+            "schoolName": {
+                "element": "h2",
+                "fontSize": "18pt",
+                "fontWeight": 800,
+                "lineHeight": 1.15,
+                "color": "#113C58",
+                "marginTop": "3mm",
+                "marginBottom": "4mm"
+            },
+            "kpiCards": {
+                "layout": "flex-row",
+                "gap": "3mm",
+                "card": {
+                    "element": "article",
+                    "background": "#F4F3EE",
+                    "borderRadius": "2mm",
+                    "padding": "3mm 4mm",
+                    "value": {
+                        "element": "strong",
+                        "fontSize": "22pt",
+                        "fontWeight": 800,
+                        "color": "#00A59F"
+                    },
+                    "label": {
+                        "element": "span",
+                        "fontSize": "6.5pt",
+                        "fontWeight": 700,
+                        "textTransform": "uppercase",
+                        "letterSpacing": "0.04em",
+                        "color": "#113C58"
+                    },
+                    "note": {
+                        "element": "small",
+                        "fontSize": "6pt",
+                        "color": "#8A9299",
+                        "fontStyle": "italic"
+                    }
+                }
+            },
+            "operationalTable": {
+                "element": "table",
+                "width": "100%",
+                "marginTop": "3mm",
+                "fontSize": "7.5pt",
+                "headerRow": {
+                    "background": "#00A59F",
+                    "color": "#FFFFFF",
+                    "fontWeight": 700,
+                    "textTransform": "uppercase",
+                    "fontSize": "6.5pt",
+                    "letterSpacing": "0.05em",
+                    "padding": "1.5mm 2mm"
+                },
+                "sectionRow": {
+                    "background": "#E8F5F4",
+                    "fontWeight": 700,
+                    "fontSize": "6.5pt",
+                    "textTransform": "uppercase",
+                    "padding": "1.2mm 2mm"
+                },
+                "dataRow": {
+                    "padding": "1mm 2mm",
+                    "borderBottom": "0.3px solid rgba(0,0,0,0.08)",
+                    "color": "#333"
+                }
+            },
+            "participationCallout": {
+                "marginTop": "4mm",
+                "number": {
+                    "element": "strong",
+                    "fontSize": "28pt",
+                    "fontWeight": 800,
+                    "color": "#00A59F"
+                },
+                "label": {
+                    "element": "span",
+                    "fontSize": "8pt",
+                    "fontWeight": 700,
+                    "textTransform": "uppercase",
+                    "color": "#5D6A73"
+                },
+                "stars": {
+                    "width": "14mm",
+                    "height": "23mm",
+                    "position": "relative",
+                    "top": "31px"
+                }
+            }
+        },
+        "main": {
+            "background": "#FBFAF7",
+            "borderLeft": "0.35mm solid rgba(19, 61, 89, 0.08)",
+            "padding": {
+                "top": "11mm",
+                "right": "10mm",
+                "bottom": "14mm",
+                "left": "10mm"
+            },
+            "narrativeText": {
+                "element": "p",
+                "fontSize": "9pt",
+                "lineHeight": 1.55,
+                "color": "#4A5258",
+                "marginBottom": "5mm"
+            },
+            "statBubbles": {
+                "layout": "flex-column",
+                "gap": "5mm",
+                "marginTop": "5mm",
+                "paddingTop": "3mm",
+                "bubble": {
+                    "element": "article",
+                    "width": "162.245px",
+                    "height": "144.502px",
+                    "position": "relative",
+                    "borderShape": "speech-bubble-svg",
+                    "borderColor": "#00A59F",
+                    "borderWidth": "1.5px",
+                    "fill": "#FFFFFF",
+                    "value": {
+                        "element": "strong",
+                        "fontSize": "52px",
+                        "fontWeight": 800,
+                        "lineHeight": 1,
+                        "color": "#00A59F"
+                    },
+                    "copy": {
+                        "element": "p",
+                        "fontSize": "9px",
+                        "lineHeight": "13px",
+                        "color": "#113C58",
+                        "width": "116px",
+                        "wrapMode": "natural"
+                    },
+                    "icon": {
+                        "element": "div",
+                        "width": "28.347px",
+                        "height": "28.346px",
+                        "borderRadius": "1.2mm",
+                        "position": "absolute",
+                        "left": "-14.924px"
+                    },
+                    "matematica": {
+                        "valueTop": "10px",
+                        "valueLeft": "22px",
+                        "copyTop": "65px",
+                        "copyLeft": "22px",
+                        "iconTop": "50px",
+                        "iconBackground": "#8CBF32",
+                        "bubbleTabPosition": "bottom-right"
+                    },
+                    "linguagens": {
+                        "offsetTop": "-18px",
+                        "offsetLeft": "61px",
+                        "valueTop": "16px",
+                        "valueLeft": "22px",
+                        "copyTop": "71px",
+                        "copyLeft": "22px",
+                        "iconTop": "56px",
+                        "iconBackground": "#FF6300",
+                        "bubbleTabPosition": "top-left",
+                        "marginLeft": "52.9134px"
+                    }
+                }
+            }
+        }
+    },
+    "schoolArea": {
+        "layout": "reference-school-area",
+        "sourceNode": "7463:1325",
+        "notes": "Sessão lapidada a partir da página 112 no Figma. A barra visual usa um segmento neutro inicial antes dos quatro níveis institucionais; a legenda editorial continua com 4 itens.",
+        "frame": {
+            "titleTop": "30mm",
+            "gridTop": "86mm",
+            "legendTop": "180mm",
+            "pageNumberTop": "191mm",
+            "columnGap": "15mm",
+            "dividerHeight": "64mm"
+        },
+        "header": {
+            "title": {
+                "fontSize": "13pt",
+                "fontWeight": 800,
+                "color": "#676C6E"
+            },
+            "subtitle": {
+                "fontSize": "10pt",
+                "fontWeight": 400,
+                "color": "#00A59F"
+            },
+            "highlight": {
+                "fontWeight": 700,
+                "color": "#00A59F"
+            }
+        },
+        "disciplineCards": {
+            "layout": "grid-2-columns",
+            "gap": "3mm",
+            "divider": {
+                "width": "0.3mm",
+                "height": "64mm",
+                "color": "#E4DED5"
+            },
+            "card": {
+                "borderRadius": "0",
+                "border": "none",
+                "padding": "0",
+                "background": "transparent",
+                "headerGap": "4mm",
+                "disciplineIcon": {
+                    "size": "9.5mm",
+                    "borderRadius": "1.2mm",
+                    "variants": {
+                        "matematica": "#8DBF34",
+                        "linguaPortuguesa": "#FF6300"
+                    }
+                },
+                "disciplineLabel": {
+                    "element": "h3",
+                    "fontSize": "9pt",
+                    "fontWeight": 700,
+                    "textTransform": "uppercase",
+                    "letterSpacing": "0.02em",
+                    "padding": "1.4mm 4mm",
+                    "borderRadius": "2.4mm",
+                    "background": "#00A59F",
+                    "color": "#FFFFFF"
+                },
+                "distributionRow": {
+                    "labelFontSize": "9pt",
+                    "labelColor": "#113C58",
+                    "rowGap": "3.6mm"
+                },
+                "distributionBar": {
+                    "height": "10mm",
+                    "borderRadius": "0.6mm",
+                    "axisFontSize": "5.5pt",
+                    "axisColor": "#64819D",
+                    "axisTickColor": "#113C58",
+                    "leadingNeutral": {
+                        "color": "#969799",
+                        "label": "apoio visual inicial"
+                    },
+                    "levels": {
+                        "abaixoDoBasico": {
+                            "color": "#FF5052",
+                            "label": "<25% de acertos"
+                        },
+                        "basico": {
+                            "color": "#FFB637",
+                            "label": "≥25% de acertos"
+                        },
+                        "adequado": {
+                            "color": "#00A59F",
+                            "label": "≥50% de acertos"
+                        },
+                        "avancado": {
+                            "color": "#856BC6",
+                            "label": "≥70% de acertos"
+                        }
+                    }
+                },
+                "scores": {
+                    "layout": "flex-row",
+                    "gap": "1.2mm",
+                    "iconSize": "7.6mm",
+                    "fontSize": "8pt",
+                    "fontWeight": 700,
+                    "useMoodGlyph": true,
+                    "valueColorMode": "match-level"
+                }
+            }
+        },
+        "legend": {
+            "position": "bottom",
+            "layout": "flex-row",
+            "gap": "4.2mm",
+            "fontSize": "6.7pt",
+            "dotSize": "3.9mm",
+            "textWeight": 800,
+            "textColorMode": "match-level"
+        },
+        "chrome": {
+            "headerCaption": {
+                "fontSize": "7.6pt",
+                "color": "#ABAFB2",
+                "alignment": "right"
+            },
+            "pageNumber": {
+                "fontSize": "8.5pt",
+                "fontWeight": 700,
+                "color": "#ABAFB2",
+                "bubbleStyle": "outline-callout"
+            },
+            "footerLabel": {
+                "fontSize": "7.6pt",
+                "fontWeight": 700,
+                "color": "#ABAFB2",
+                "alignment": "right"
+            }
+        }
+    },
+    "chrome": {
+        "framed": {
+            "headerHeight": "8mm",
+            "footerHeight": "6mm",
+            "headerBackground": "#00A59F",
+            "headerColor": "#FFFFFF",
+            "footerBackground": "transparent",
+            "footerColor": "#8A9299",
+            "pageNumberBox": {
+                "border": "0.4mm solid #8A9299",
+                "padding": "0.5mm 2mm",
+                "fontSize": "7pt"
+            }
+        }
+    },
+    "typography": {
+        "fontFamily": "Montserrat, 'Segoe UI', Arial, sans-serif",
+        "displayFontFamily": "Montserrat, 'Segoe UI', Arial, sans-serif",
+        "scale": {
+            "hero": "28pt",
+            "h1": "18pt",
+            "h2": "13pt",
+            "h3": "10pt",
+            "body": "9pt",
+            "caption": "7.5pt",
+            "micro": "6.5pt"
+        }
+    },
+    "colors": {
+        "brand": "#00A59F",
+        "brandStrong": "#113C58",
+        "brandLight": "#E8F5F4",
+        "accent": "#8CBF32",
+        "accentSecondary": "#FF6300",
+        "text": "#676C6E",
+        "textStrong": "#113C58",
+        "textMuted": "#ABAFB2",
+        "surface": "#FBFAF7",
+        "surfaceWhite": "#FFFFFF",
+        "border": "rgba(19, 61, 89, 0.08)",
+        "pageBg": "linear-gradient(180deg, #FBFBF8 0%, #F4F3EE 100%)",
+        "legendRed": "#FF5052",
+        "legendYellow": "#FFB637",
+        "legendTeal": "#00A59F",
+        "legendPurple": "#856BC6",
+        "divider": "#E4DED5"
+    }
+}

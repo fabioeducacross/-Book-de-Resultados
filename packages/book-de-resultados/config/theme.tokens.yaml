@@ -1,22 +1,33 @@
 colors:
   primary: '#133C58'
-  secondary: '#00A39E'
-  accent: '#FFB545'
+  secondary: '#00A59F'
+  accent: '#FFB637'
   brandPrimary: '#133C58'
-  brandSecondary: '#00A39E'
-  brandPurple: '#7D6BC2'
-  brandYellow: '#FFB545'
+  brandSecondary: '#00A59F'
+  brandPurple: '#856BC6'
+  brandYellow: '#FFB637'
   brandOrange: '#ED6300'
   brandGreen: '#8DBF34'
-  brandRed: '#FE5153'
+  brandRed: '#FF5052'
   background: '#EDECE6'
   surface: '#FFFFFF'
   paper: '#F4F1E8'
   textPrimary: '#676C6E'
   textSecondary: '#485156'
-  textMuted: '#ACAFB2'
+  textMuted: '#ABAFB2'
   textStrong: '#133C58'
   textSubtle: '#969799'
+  # Editorial grays (Figma escola/escola_disciplinas)
+  textEditorial: '#5D6A73'
+  textEditorialMuted: '#61727D'
+  textEditorialSoft: '#59656F'
+  textLabel: '#516874'
+  textNote: '#7A858D'
+  textKpiNote: '#8A9197'
+  textReference: '#6F7881'
+  textReferenceSubtle: '#7B848B'
+  textReferenceMuted: '#8A9299'
+  textAxis: '#A0A8AF'
   brandStrong: '#133C58'
   brandSoft: '#F5F4EE'
   pageBadge: '#133C58'
@@ -24,22 +35,36 @@ colors:
   highlightSurface: '#F7F4ED'
   highlightBorder: '#D8D3C8'
   proficiency:
-    abaixo_do_basico: '#969799'
-    basico: '#ED6300'
-    adequado: '#FFB545'
-    avancado: '#00A39E'
+    abaixo_do_basico: '#FF5052'
+    basico: '#FFB637'
+    adequado: '#00A59F'
+    avancado: '#856BC6'
   deltaPositive: '#005A39'
-  deltaNegative: '#FE5153'
+  deltaNegative: '#FF5052'
   deltaNeutral: '#969799'
   cardBackground: '#FFFFFF'
   cardBorder: '#DDD8CC'
   tableBorder: '#D8D3C8'
   tableSurface: '#FFFFFF'
-  tableHeader: '#00A39E'
+  tableHeader: '#00A59F'
   openerBand: '#133C58'
   openerSurface: '#EDECE6'
-  ruleStrong: '#FFB545'
+  ruleStrong: '#FFB637'
   ruleSoft: '#D8D3C8'
+  # Surface variants (Figma)
+  surfaceTintSecondary: '#E8F5F4'
+  surfaceEditorialPanel: 'rgba(246,243,249,0.72)'
+  # Border variants (Figma)
+  borderSeparator: '#E1E5E2'
+  borderGridRule: '#DDD8CF'
+  borderRibbon: '#A6C9C4'
+  borderFrameBadge: '#8A9299'
+  # Track backgrounds
+  trackBackground: '#E8ECEB'
+  trackBackgroundMedia: '#EDF1EF'
+  # Pill backgrounds
+  pillNetwork: 'rgba(31,167,217,0.1)'
+  pillSchool: 'rgba(78,195,140,0.12)'
 typography:
   fontFace: 'Montserrat'
   bodyFontFace: 'Montserrat'
@@ -57,6 +82,54 @@ typography:
     body: 9
     small: 8
     tiny: 7.5
+    # Escola/escola_disciplinas granular sizes (pt)
+    eyebrow: 7.8
+    headerSubtitle: 8.2
+    headerMeta: 8.1
+    sectionKicker: 7.2
+    schoolName: 18
+    kpiValue: 22
+    kpiLabel: 6.8
+    kpiNote: 6.9
+    participationNumber: 40
+    participationLabel: 7.5
+    editorialTitle: 10.6
+    editorialPoint: 8
+    referenceHeading: 14.5
+    referenceHeadingPrint: 13
+    referenceSubheading: 9
+    referenceSubheadingPrint: 10
+    referenceLabel: 10.8
+    referenceLabelBase: 12
+    referenceChip: 7.4
+    referenceChipBase: 8.8
+    referenceAxis: 6.1
+    referenceAxisBase: 6.6
+    referenceStat: 8
+    referenceStatMedia: 7.4
+    chromeBadge: 8.5
+    chromeLabel: 7.6
+    referenceDotPrint: 4.8
+  weights:
+    regular: 400
+    medium: 600
+    bold: 700
+    extrabold: 800
+    black: 900
+  lineHeights:
+    tight: 1
+    snug: 1.04
+    compact: 1.1
+    normal: 1.15
+    relaxed: 1.25
+    loose: 1.35
+    extra: 1.45
+  letterSpacing:
+    tighter: '-0.02em'
+    normal: '0.04em'
+    wide: '0.05em'
+    wider: '0.06em'
+    widest: '0.08em'
 spacing:
   pageMarginX: 0.4
   pageMarginY: 0.7
@@ -66,3 +139,17 @@ spacing:
   tableWidth: 9.0
   rhythm: 0.18
   openerBandHeight: 1.65
+borderRadius:
+  xs: '0.6mm'
+  sm: '1.2mm'
+  md: '1.6mm'
+  lg: '1.8mm'
+  xl: '2mm'
+  xxl: '6mm'
+  pill: '999px'
+borderWidth:
+  hairline: '0.35mm'
+  thin: '0.4mm'
+  regular: '1px'
+  medium: '1.4px'
+  thick: '2px'

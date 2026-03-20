@@ -57,17 +57,81 @@ console.log(`Páginas: ${result.pageCount}`);
 console.log(`Tempo: ${result.durationMs}ms`);
 ```
 
+## Protótipo do Pipeline HTTP (Fase 2)
+
+Para prototipar o fluxo completo no próprio repositório (sem migração), execute:
+
+```bash
+npm run prototype:pipeline --workspace packages/book-de-resultados
+```
+
+O script faz todo o ciclo automaticamente:
+
+1. Sobe o serviço HTTP localmente
+2. Envia o payload JSON para `POST /generate`
+3. Faz polling em `GET /status/:jobId`
+4. Baixa o PDF em `GET /download/:jobId`
+5. Salva o arquivo em `packages/book-de-resultados/prototype-output/`
+
+Payload padrão usado no protótipo:
+
+- `packages/book-de-resultados/examples/prototype-payload.json`
+
+Parâmetros opcionais:
+
+- `--payload <arquivo.json>`
+- `--output <diretorio>`
+- `--port <numero>`
+- `--browserPath <caminho-do-chrome-chromium>`
+- `--timeoutMs <numero>`
+- `--pollMs <numero>`
+
 ### Exemplo de integração UI + backend
 
-O pacote inclui um servidor HTTP mínimo para conectar o wireframe de upload/listagem/auditoria ao backend real de geração:
+O pacote inclui dois wireframes (UIs) para teste:
+
+#### 1. **Auditoria e Upload (retirado de produção)**
 
 ```bash
 npm run dev:audit-ui --workspace packages/book-de-resultados
 ```
 
-Depois, abra http://127.0.0.1:3210 para testar a listagem de execuções, a auditoria detalhada e o upload de uma planilha XLSX.
+Fluxo: Upload XLSX → processamento → listagem com auditoria
 
-O histórico de execuções do exemplo é persistido localmente em `packages/book-de-resultados/examples/.runtime/audit-runs.json`, e a tela já envia filtros de data, operação, status, responsável e registro para a API.
+Acesso: http://127.0.0.1:3210
+
+Dados persistem em: `packages/book-de-resultados/examples/.runtime/audit-runs.json`
+
+#### 2. **Listagem e Geração de Relatórios (novo)**
+
+```bash
+npm run dev:listagem-relatorios --workspace packages/book-de-resultados
+```
+
+Fluxo: Listar avaliações → filtrar → gerar relatório sob demanda → baixar/visualizar
+
+Acesso: http://127.0.0.1:3220
+
+Documentação completa: `examples/LISTAGEM_RELATORIOS.md`
+
+**Características:**
+- ✅ Filtros: Rede, Data Início/Fim, Área de Conhecimento
+- ✅ Tabela com: Rede | Nome da Avaliação | Data de Aplicação | Ações
+- ✅ Geração sob demanda: botão "Gerar Relatório" → modal com status → Baixar/Visualizar
+- ✅ Mock data integrado (5 avaliações pré-carregadas)
+- ✅ Material Design 3 (responsive)
+
+**Integração HTTP:**
+- `POST /generate` — com payload canônico
+- `GET /status/:jobId` — polling de status
+- `GET /download/:jobId` — stream PDF
+
+**Teste E2E:**
+```bash
+node packages/book-de-resultados/tests/book-de-resultados/e2e-listagem-relatorios.test.js
+```
+
+Valida: POST → Poll → Download em ~6 segundos, gerando PDF de 2.4MB
 
 ---
 

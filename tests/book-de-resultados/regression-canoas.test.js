@@ -972,7 +972,7 @@ describe('Stage 7.5 — HTML/PDF fidelity: institutional composition from the Ca
     baseline.pipeline.htmlFidelity.overview.panelTitles.forEach((title) => {
       expect(overviewPage.text).toContain(title);
     });
-    expect(overviewPage.html).toContain('chart-panel chart-panel-distribution');
+    expect(overviewPage.html).toContain('chart-panel chart-panel-overview-distribution');
     expect(overviewPage.html).toContain('class="summary-table"');
 
     expect(disciplinaPage).toBeDefined();

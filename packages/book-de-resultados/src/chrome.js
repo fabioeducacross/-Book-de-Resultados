@@ -24,6 +24,8 @@ function buildPageChrome(page, metadata, options = {}) {
   const version = normalizeText(options.version) || 'v1';
   const rankingPosition = extractRankingPosition(page);
   const section = normalizeText(page && page.section);
+  const isNetworkOverview = section === 'visao_geral';
+  const isSchoolComparison = section === 'escola_disciplinas';
   const numericPage = toPositiveInteger(page && page.pageNumber);
   const editionParts = [
     normalizeText(metadata && metadata.municipio),
@@ -38,12 +40,12 @@ function buildPageChrome(page, metadata, options = {}) {
     pageLabel: buildPageLabel(numericPage, totalPages),
     pageBadgeValue: numericPage ? String(numericPage) : '',
     pageBadgeDetail: totalPages && numericPage ? `de ${totalPages}` : 'Página',
-    editionLabel: editionParts.join(' • '),
+    editionLabel: isNetworkOverview || isSchoolComparison ? 'Relatório Diagnóstico Educacional' : editionParts.join(' • '),
     rankingBadge: !data.hideRankingBadge && rankingPosition ? `Posição Geral: ${rankingPosition}º` : '',
     footerCenter:
       normalizeText(data.footerCenter) ||
       (rankingPosition ? `Ranking geral da rede: ${rankingPosition}º lugar` : ''),
-    footerRight: normalizeText(data.footerRight) || '',
+    footerRight: normalizeText(data.footerRight) || (isNetworkOverview && numericPage ? String(numericPage) : ''),
   };
 }
 

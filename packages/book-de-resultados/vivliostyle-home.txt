@@ -1,0 +1,129 @@
+Title: Vivliostyle — Enjoy CSS Typesetting!
+
+URL Source: http://vivliostyle.org/
+
+Markdown Content:
+1.   ![Image 1](https://vivliostyle.org/assets/animation1.png)WRITE 
+2.   ![Image 2](https://vivliostyle.org/assets/animation2.png)BUILD 
+3.   ![Image 3](https://vivliostyle.org/assets/animation3.png)PUBLISH 
+
+## [](http://vivliostyle.org/#want-to-read-epub-or-web-documents-in-your-favorite-style)Want to read EPUB or Web documents in your favorite style?
+
+You can read EPUB, HTML or Web publications in Vivliostyle Viewer and use CSS to present it in your preferred style.
+
+1.   [![Image 4](https://vivliostyle.org/assets/projects/thumbnail-viewer.png)](https://vivliostyle.org/viewer/#src=https://vivliostyle.github.io/vivliostyle_doc/samples/gutenberg/Alice.html&bookMode=true)
+
+1.   [Open Vivliostyle Viewer](https://vivliostyle.org/viewer/#src=https://vivliostyle.github.io/vivliostyle_doc/samples/gutenberg/Alice.html&bookMode=true)
+
+## [](http://vivliostyle.org/#what-is-the-vivliostyle-project)What is the Vivliostyle project?
+
+Vivliostyle is developing the following products.
+
+1.   ![Image 5](https://vivliostyle.org/assets/projects/project1.svg)
+2.       1.   ![Image 6](https://vivliostyle.org/assets/projects/project2.svg)
+    2.   ![Image 7](https://vivliostyle.org/assets/projects/project3.svg)
+    3.   ![Image 8](https://vivliostyle.org/assets/projects/project4.svg)[Vivliostyle Pub](https://vivliostyle-pub-develop.vercel.app/)
+
+Enter markdown and you can see the typesetting results immediately (Now in alpha version) 
+
+Other libraries for developers include [“Vivliostyle Core”](https://github.com/vivliostyle/vivliostyle.js/tree/master/packages/core), the core of the typesetting engine, and [“Vivliostyle Print”](https://github.com/vivliostyle/vivliostyle-print), which embeds printing functionality into websites.
+
+## [](http://vivliostyle.org/#help-improve-vivliostyle)Help improve Vivliostyle
+
+The Vivliostyle project discusses development matters on Slack. Please take a look. Click the button below for the development guide and documentation.
+
+1.   [Join our Slack](https://join.slack.com/t/vivliostyle/shared_invite/enQtNzc1NjE4ODk1ODI5LWQxZjM4YTZjMmQ0ZTUyNmUyOGZlMzIwZjQ5OWYwYjkyZDZmOTIwNGMwOWU5NDc0NjE5OTAyMmVhZTRhYTAyNWQ)
+2.   [Join development](https://github.com/vivliostyle)
+3.   [See Documents](https://vivliostyle.org/documents)
+
+Vivliostyle is an independent, open source project. Our project would not be able to continue its development without the support of backers. Please consider helping us.
+
+1.   [![Image 9: libroworks](https://github.com/libroworks.png)](https://github.com/libroworks)
+_💐_
+
+2.   [![Image 10: hidaruma](https://github.com/hidaruma.png)](https://github.com/hidaruma)
+_🌹_
+
+3.   [![Image 11: ryoutakano](https://github.com/ryoutakano.png)](https://github.com/ryoutakano)
+_🌹_
+
+4.   [![Image 12: lostandfound](https://github.com/lostandfound.png)](https://github.com/lostandfound)
+_🌹_
+
+5.   [![Image 13: skoji](https://github.com/skoji.png)](https://github.com/skoji)
+_🌟_
+
+6.   [![Image 14: 74th](https://github.com/74th.png)](https://github.com/74th)
+_🌟_
+
+7.   [![Image 15: NoBooking](https://github.com/NoBooking.png)](https://github.com/NoBooking)
+_🌟_
+
+8.   [![Image 16: vvakame](https://github.com/vvakame.png)](https://github.com/vvakame)
+_🌟_
+
+9.   [![Image 17: y-mikou](https://github.com/y-mikou.png)](https://github.com/y-mikou)
+_🌟_
+
+10.   [![Image 18: u1f992](https://github.com/u1f992.png)](https://github.com/u1f992)
+_🌟_
+
+11.   [![Image 19: yamahige](https://github.com/yamahige.png)](https://github.com/yamahige)
+_🌟_
+
+12.   [![Image 20: munepi](https://github.com/munepi.png)](https://github.com/munepi)
+_⭐️_
+
+13.   [![Image 21: zonuexe](https://github.com/zonuexe.png)](https://github.com/zonuexe)
+_⭐️_
+
+14.   [![Image 22: omasanori](https://github.com/omasanori.png)](https://github.com/omasanori)
+_⭐️_
+
+15.   [![Image 23: monami-ya](https://github.com/monami-ya.png)](https://github.com/monami-ya)
+_⭐️_
+
+16.   [![Image 24: youchan](https://github.com/youchan.png)](https://github.com/youchan)
+_🌹_
+
+17.   [![Image 25: azettl](https://github.com/azettl.png)](https://github.com/azettl)
+_🌹_
+
+18.   [![Image 26: udon-a](https://github.com/udon-a.png)](https://github.com/udon-a)
+_🌹_
+
+19.   [![Image 27: sarashino](https://github.com/sarashino.png)](https://github.com/sarashino)
+_🌟_
+
+20.   [![Image 28: monaka](https://github.com/monaka.png)](https://github.com/monaka)
+_⭐️_
+
+21.   [![Image 29: okuzawats](https://github.com/okuzawats.png)](https://github.com/okuzawats)
+_⭐️_
+
+22.   [![Image 30: niszet](https://github.com/niszet.png)](https://github.com/niszet)
+_⭐️_
+
+23.   [![Image 31: yuji-1980](https://github.com/yuji-1980.png)](https://github.com/yuji-1980)
+_⭐️_
+
+24.   [![Image 32: Atelier-Mirai](https://github.com/Atelier-Mirai.png)](https://github.com/Atelier-Mirai)
+_⭐️_
+
+25.   [![Image 33: hatena](https://github.com/hatena.png)](https://github.com/hatena)
+_🥉_
+
+26.   [![Image 34: MarianoCh](https://github.com/MarianoCh.png)](https://github.com/MarianoCh)
+_🌹_
+
+27.   [![Image 35: Songmu](https://github.com/Songmu.png)](https://github.com/Songmu)
+_🌹_
+
+28.   [![Image 36: u1f992](https://github.com/u1f992.png)](https://github.com/u1f992)
+_🌹_
+
+29.   [![Image 37: EnochGao](https://github.com/EnochGao.png)](https://github.com/EnochGao)
+_⭐️_
+
+1.   [Become a sponsor to Vivliostyle](https://vivliostyle.org/sponsors)
+

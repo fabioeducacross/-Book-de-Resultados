@@ -1,0 +1,123 @@
+{
+    "id": "visao-geral-da-rede",
+    "label": "Visão Geral da Rede",
+    "fixtureDir": "tests/book-de-resultados/fixtures/canoas-2025-sem2",
+    "referencePdf": "tests/book-de-resultados/fixtures/canoas-2025-sem2/RelatórioDigitaldeAvaliação_Canoas_2025_SegundoSemestre.pdf",
+    "outputDir": "packages/book-de-resultados/examples/.runtime/visual-clone-experiment/visao-geral-da-rede",
+    "page": {
+        "section": "visao_geral",
+        "title": "Visão Geral da Rede",
+        "referencePdfPageNumber": 37
+    },
+    "capture": {
+        "viewport": {
+            "width": 1280,
+            "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "waitAfterLoadMs": 400,
+        "pageSelector": ".page.section-visao_geral",
+        "disableAnimationCss": "*, *::before, *::after { animation: none !important; transition: none !important; caret-color: transparent !important; }"
+    },
+    "reference": {
+        "dpi": 144
+    },
+    "regions": [
+        {
+            "id": "header",
+            "label": "Faixa superior e cabeçalho institucional",
+            "selector": ".page-header",
+            "weight": 0.08,
+            "refBox": {
+                "x": 0.0762,
+                "y": 0.0606,
+                "width": 0.8476,
+                "height": 0.0471
+            }
+        },
+        {
+            "id": "hero",
+            "label": "Hero analítico da seção",
+            "selector": ".hero-panel-overview",
+            "weight": 0.2,
+            "refBox": {
+                "x": 0.0762,
+                "y": 0.1239,
+                "width": 0.8476,
+                "height": 0.1704
+            }
+        },
+        {
+            "id": "indicators",
+            "label": "Grade de indicadores",
+            "selector": ".overview-indicator-grid",
+            "weight": 0.12,
+            "refBox": {
+                "x": 0.0762,
+                "y": 0.3071,
+                "width": 0.8476,
+                "height": 0.0741
+            }
+        },
+        {
+            "id": "distribution",
+            "label": "Painel de distribuição",
+            "selector": ".chart-panel-overview-distribution",
+            "weight": 0.16,
+            "refBox": {
+                "x": 0.0762,
+                "y": 0.4534,
+                "width": 0.4667,
+                "height": 0.1457
+            }
+        },
+        {
+            "id": "institutional-summary",
+            "label": "Callout de leitura institucional",
+            "selector": ".panel-overview-summary",
+            "weight": 0.12,
+            "refBox": {
+                "x": 0.0762,
+                "y": 0.6095,
+                "width": 0.4667,
+                "height": 0.1055
+            }
+        },
+        {
+            "id": "proficiencia",
+            "label": "Painel de proficiência",
+            "selector": ".panel-overview-proficiencia",
+            "weight": 0.16,
+            "refBox": {
+                "x": 0.5676,
+                "y": 0.4608,
+                "width": 0.3457,
+                "height": 0.2372
+            }
+        },
+        {
+            "id": "discipline-summary",
+            "label": "Painel de resumo por disciplina",
+            "selector": ".panel-overview-discipline-summary",
+            "weight": 0.1,
+            "refBox": {
+                "x": 0.5676,
+                "y": 0.7081,
+                "width": 0.3457,
+                "height": 0.1521
+            }
+        },
+        {
+            "id": "footer",
+            "label": "Rodapé e paginação",
+            "selector": ".page-footer",
+            "weight": 0.06,
+            "refBox": {
+                "x": 0.0,
+                "y": 0.9797,
+                "width": 1.0,
+                "height": 0.0203
+            }
+        }
+    ]
+}
